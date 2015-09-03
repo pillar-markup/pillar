@@ -45,6 +45,10 @@ shift
 # disable parameter expansion to forward all arguments unprocessed to the VM
 set -f
 
+# TODO: when Pharo knows how to return the correct "current working directory", we
+# can remove the --baseDirectory from here. The current solution is
+# problematic because it overrides any baseDirectory parameter of the
+# pillar.conf file.
 exec "\$PHARO_VM" "\$PILLAR_IMAGE" pillar "\$command" --baseDirectory="\$PWD" "\$@"
 EOF
 
