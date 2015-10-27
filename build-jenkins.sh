@@ -36,8 +36,19 @@ echo =====================================================
 
 cat > pillar <<EOF
 #!/usr/bin/env bash
-PHARO_VM=\${PHARO_VM:-./pharo}
-PILLAR_IMAGE=\${PILLAR_IMAGE:-./Pharo.image}
+PHARO_VM=\${PHARO_VM}
+
+# local pharo VM has a higher priority if it exists
+if [ -f pharo ]; then
+	PILLAR_IMAGE="./Pharo.image"
+fi
+
+PILLAR_IMAGE=\${PILLAR_IMAGE}
+
+# local Pharo.image has a higher priority if it exists
+if [ -f Pharo.image ]; then
+	PILLAR_IMAGE="./Pharo.image"
+fi
 
 command=\$1
 shift
