@@ -40,7 +40,7 @@ PHARO_VM=\${PHARO_VM}
 
 # local pharo VM has a higher priority if it exists
 if [ -f pharo ]; then
-	PILLAR_IMAGE="./Pharo.image"
+	PHARO_VM="./pharo"
 fi
 
 PILLAR_IMAGE=\${PILLAR_IMAGE}
