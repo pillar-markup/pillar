@@ -41,13 +41,13 @@ cat > pillar <<EOF
 # PILLAR_IMAGE=\${PILLAR_IMAGE:-./Pharo.image}
 
 PHARO_VM=\${PHARO_VM}
-local pharo VM has a higher priority if it exists
+# ./pharo has a higher priority than PHARO_VM env if it exists
 if [ -f pharo ]; then
 	PHARO_VM="./pharo"
 fi
 
 PILLAR_IMAGE=\${PILLAR_IMAGE}
-local Pharo.image has a higher priority if it exists
+# Pharo.image has a higher priority than PILLAR_IMAGE env if it exists
 if [ -f Pharo.image ]; then
 	PILLAR_IMAGE="./Pharo.image"
 fi
