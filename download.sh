@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-
-VM_INSTALL_URL="http://get.pharo.org/vm50"
-IMAGE_URL="https://ci.inria.fr/pharo-contribution/job/Pillar/PHARO=50,VERSION=stable,VM=vm/lastSuccessfulBuild/artifact/Pillar-deployment.zip"
 PHARO_VM=${PHARO_VM:-./pharo}
 
 pillar_version="stable"
@@ -90,6 +87,7 @@ if [[ $vm_enable == 0 && $img_enable == 0 ]]; then
 fi
 
 IMAGE_URL="https://ci.inria.fr/pharo-contribution/job/Pillar/PHARO=$pharo_version,VERSION=$pillar_version,VM=vm/lastSuccessfulBuild/artifact/Pillar-deployment.zip";
+VM_INSTALL_URL="http://get.pharo.org/vm$pharo_version"
 
 if [[ $vm_enable == 1 || $img_enable == 0 ]]; then
     get_vm
