@@ -8,7 +8,7 @@ img_enable=0
 
 usage() {
     cat <<HELP
-Usage: $0 [-h|--help] [vm] [image]
+Usage: $0 [-h|--help] [vm] [image] [-p|--pharo version] [dev]
 
 Downloads the latest image and virtual machine (edit the script to set from where).  By default, only the image will be downloaded.
 
