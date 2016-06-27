@@ -4,6 +4,11 @@ VM_INSTALL_URL="http://get.pharo.org/vm50"
 IMAGE_URL="https://ci.inria.fr/pharo-contribution/job/Pillar/PHARO=50,VERSION=stable,VM=vm/lastSuccessfulBuild/artifact/Pillar-deployment.zip"
 PHARO_VM=${PHARO_VM:-./pharo}
 
+pillar_version="stable"
+pharo_version="50"
+vm_enable=0
+img_enable=0
+
 usage() {
     cat <<HELP
 Usage: $0 [-h|--help] [vm] [image]
@@ -55,29 +60,44 @@ wget --help | grep -- "$CERTCHECK" 2>&1 > /dev/null || CERTCHECK=''
 should_prepare_image=0
 
 if [ $# -eq 0 ]; then
-    get_image
-    get_vm
-    should_prepare_image=1
+    vm_enable=1
+    img_enable=1
 else
     while [ $# -gt 0 ]; do
         case "$1" in
             -h|--help|help)
                 usage; exit 0;;
             v|vm)
-                get_vm;;
+                vm_enable=1;;
             i|img|image)
-                get_image;
-                should_prepare_image=1;;
-            dev)
-                IMAGE_URL="https://ci.inria.fr/pharo-contribution/job/Pillar/PHARO=50,VERSION=development,VM=vm/lastSuccessfulBuild/artifact/Pillar-deployment.zip";
-                get_image;
-                get_vm;
-                should_prepare_image=1;;
+                img_enable=1;;
+            d|dev|development)
+                pillar_version="development";;
+            -p|--pharo)
+                shift;
+                pharo_version=$1;;
             *) # boom
                 usage; exit 1;;
         esac
         shift
     done
+fi
+
+
+if [[ $vm_enable == 0 && $img_enable == 0 ]]; then
+    vm_enable=1
+    img_enable=1
+fi
+
+IMAGE_URL="https://ci.inria.fr/pharo-contribution/job/Pillar/PHARO=$pharo_version,VERSION=$pillar_version,VM=vm/lastSuccessfulBuild/artifact/Pillar-deployment.zip";
+
+if [[ $vm_enable == 1 || $img_enable == 0 ]]; then
+    get_vm
+fi
+
+if [[ $vm_enable == 0 || $img_enable == 1 ]]; then
+    get_image
+    should_prepare_image=1
 fi
 
 if [[ $should_prepare_image -eq 1 ]]; then
