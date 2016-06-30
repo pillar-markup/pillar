@@ -12,6 +12,7 @@ wget --quiet -O - get.pharo.org/$PHARO+$VM | bash
 REPO=http://smalltalkhub.com/mc/Pier/$JOB_NAME/main
 ./pharo $JOB_NAME.image config $REPO ConfigurationOf$JOB_NAME --install=$VERSION --group='ALL'
 ./pharo $JOB_NAME.image test --junit-xml-output "$JOB_NAME.*"
+./pharo $JOB_NAME.image config http://smalltalkhub.com/mc/NorbertHartl/Mustache/main ConfigurationOfMustache --install=bleedingEdge
 
 echo =====================================================
 echo = Try to compile EnterprisePharo
