@@ -74,8 +74,8 @@ echo =====================================================
 cat > mustache <<EOF
 #!/usr/bin/env bash
 
-# PHARO_VM=${PHARO_VM:-./pharo}
-# MUSTACHE_IMAGE=${MUSTACHE_IMAGE:-./Pharo.image}
+# PHARO_VM=\${PHARO_VM:-./pharo}
+# MUSTACHE_IMAGE=\${MUSTACHE_IMAGE:-./Pharo.image}
 
 PHARO_VM=${PHARO_VM}
 # ./pharo has a higher priority than PHARO_VM env if it exists
@@ -99,7 +99,7 @@ set -f
 # can remove the --baseDirectory from here. The current solution is
 # problematic because it overrides any baseDirectory parameter of the
 # pillar.conf file.
-exec "$PHARO_VM" "$MUSTACHE_IMAGE" mustache "$option" --baseDirectory="$PWD" "$@"
+exec "\$PHARO_VM" "\$MUSTACHE_IMAGE" mustache "\$option" --baseDirectory="\$PWD" "\$@"
 EOF
 
 chmod +x pillar
