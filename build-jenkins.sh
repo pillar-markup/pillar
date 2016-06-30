@@ -105,7 +105,7 @@ EOF
 chmod +x pillar
 chmod +x mustache
 
-zip -r $JOB_NAME.zip $JOB_NAME.image $JOB_NAME.changes pillar
+zip -r $JOB_NAME.zip $JOB_NAME.image $JOB_NAME.changes pillar mustache
 
 echo =====================================================
 echo = Create a pillar deployment archive
@@ -118,7 +118,7 @@ echo =====================================================
 ./pharo $JOB_NAME.image eval --save "PharoFilesOpener default unsetInformAboutReadOnlyChanges."
 ./pharo $JOB_NAME.image eval --save "Smalltalk logFileName: '/tmp/pillar.log'"
 
-zip -r $JOB_NAME-deployment.zip $JOB_NAME.image $JOB_NAME.changes pillar
+zip -r $JOB_NAME-deployment.zip $JOB_NAME.image $JOB_NAME.changes pillar mustache
 
 # clean up the workspace to not occupy too much stale space on the slaves
 rm -rf *.image *.changes
