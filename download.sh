@@ -42,7 +42,7 @@ get_image() {
         elif [ $(basename $f) == "mustache" ]; then
             echo mustache
             unzip -qp  "$tempzip" "$f" > "mustache"
-            chmod +x pillar
+            chmod +x mustache
         fi
     done
 }
