@@ -77,19 +77,19 @@ cat > mustache <<EOF
 # PHARO_VM=\${PHARO_VM:-./pharo}
 # MUSTACHE_IMAGE=\${MUSTACHE_IMAGE:-./Pharo.image}
 
-PHARO_VM=${PHARO_VM}
+PHARO_VM=\${PHARO_VM}
 # ./pharo has a higher priority than PHARO_VM env if it exists
 if [ -f pharo ]; then
 	PHARO_VM="./pharo"
 fi
 
-MUSTACHE_IMAGE=${MUSTACHE_IMAGE}
+MUSTACHE_IMAGE=\${MUSTACHE_IMAGE}
 # Pharo.image has a higher priority than MUSTACHE_IMAGE env if it exists
 if [ -f Pharo.image ]; then
 	MUSTACHE_IMAGE="./Pharo.image"
 fi
 
-option=$1
+option=\$1
 shift
 
 # disable parameter expansion to forward all arguments unprocessed to the VM
