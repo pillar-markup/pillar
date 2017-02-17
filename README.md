@@ -17,6 +17,5 @@ chmod +x download.sh
 ##Obtaining the soft
 you can find the pharo image 
 
-```
-https://ci.inria.fr/pharo-contribution/job/pillar/
-```
+[https://ci.inria.fr/pharo-contribution/job/pillar/](https://ci.inria.fr/pharo-contribution/job/pillar/)
+
