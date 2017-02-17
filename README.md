@@ -14,3 +14,8 @@ wget https://raw.githubusercontent.com/pillar-markup/pillar/master/download.sh
 chmod +x download.sh
 ./download
 ```
+##Obtaining the soft
+you can find the pharo image 
+
+[https://ci.inria.fr/pharo-contribution/job/pillar/](https://ci.inria.fr/pharo-contribution/job/pillar/)
+
