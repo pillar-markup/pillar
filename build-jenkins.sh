@@ -63,7 +63,7 @@ set -f
 # can remove the --baseDirectory from here. The current solution is
 # problematic because it overrides any baseDirectory parameter of the
 # pillar.conf file.
-exec "\$PHARO_VM" "\$PILLAR_IMAGE" pillar "\$command" --baseDirectory="\$PWD" "\$@"
+exec "\$PHARO_VM" "\$PILLAR_IMAGE" --no-default-preferences pillar "\$command" --baseDirectory="\$PWD" "\$@"
 EOF
 
 
