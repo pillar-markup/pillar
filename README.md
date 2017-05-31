@@ -12,7 +12,7 @@ Read the documentation at [https://ci.inria.fr/pharo-contribution/job/Enterprise
 ```
 wget https://raw.githubusercontent.com/pillar-markup/pillar/master/download.sh
 chmod +x download.sh
-./download
+./download.sh
 ```
 ##Obtaining the soft
 you can find the pharo image 
