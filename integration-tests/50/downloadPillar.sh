@@ -4,5 +4,5 @@ then
 else
 	wget https://raw.githubusercontent.com/pillar-markup/pillar/master/download.sh
 	chmod +x download.sh
-	./download.sh -p 60
+	./download.sh -p ${PHARO_VERSION}
 fi

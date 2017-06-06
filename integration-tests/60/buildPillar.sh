@@ -1,8 +1,8 @@
-wget --quiet -O - get.pharo.org/${PHARO}+${VM} | bash
-REPO=http://smalltalkhub.com/mc/Pier/$JOB_NAME/main
-./pharo $JOB_NAME.image config $REPO ConfigurationOf$JOB_NAME --install=$VERSION --group='ALL'
-./pharo $JOB_NAME.image test --junit-xml-output "$JOB_NAME.*"
-./pharo $JOB_NAME.image config http://smalltalkhub.com/mc/NorbertHartl/Mustache/main ConfigurationOfMustache --install=bleedingEdge
+wget --quiet -O - get.pharo.org/${PHARO_VERSION}+${VM} | bash
+REPO=http://smalltalkhub.com/mc/Pier/Pillar/main
+./pharo Pharo.image config $REPO ConfigurationOfPillar --install=${PILLAR_VERSION} --group='ALL'
+./pharo Pharo.image config http://smalltalkhub.com/mc/NorbertHartl/Mustache/main ConfigurationOfMustache --install=bleedingEdge
+
 cat > pillar <<EOF
 #!/usr/bin/env bash
 
@@ -33,7 +33,6 @@ set -f
 # pillar.conf file.
 exec "\$PHARO_VM" "\$PILLAR_IMAGE" --no-default-preferences pillar "\$command" --baseDirectory="\$PWD" "\$@"
 EOF
-
 
 echo =====================================================
 echo = Create a mustache executable script
