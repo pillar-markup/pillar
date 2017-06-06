@@ -14,8 +14,18 @@ wget https://raw.githubusercontent.com/pillar-markup/pillar/master/download.sh
 chmod +x download.sh
 ./download.sh
 ```
-##Obtaining the soft
+##Obtaining the software
 you can find the pharo image 
 
 [https://ci.inria.fr/pharo-contribution/job/pillar/](https://ci.inria.fr/pharo-contribution/job/pillar/)
 
+
+## Tips
+
+Just a little note to be able to use travis to publish the pdf on git. 
+In the git repo
+
+```
+gem install travis
+travis setup releases
+```
