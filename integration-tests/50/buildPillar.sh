@@ -1,3 +1,5 @@
+#!/bin/bash
+
 wget --quiet -O - get.pharo.org/${PHARO_VERSION}+${VM} | bash
 REPO=http://smalltalkhub.com/mc/Pier/Pillar/main
 ./pharo Pharo.image config $REPO ConfigurationOfPillar --install=${PILLAR_VERSION} --group='ALL'

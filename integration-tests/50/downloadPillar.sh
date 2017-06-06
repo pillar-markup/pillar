@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ ${FULL} == "true" ]
 then
 	${__dir}/buildPillar.sh
