@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ${FULL} == "true" ]
+if [[ ${FULL} == "true" ]];
 then
 	${__dir}/buildPillar.sh
 else
