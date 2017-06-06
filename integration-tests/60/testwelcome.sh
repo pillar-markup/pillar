@@ -11,7 +11,7 @@ mkdir build
 cd build
 
 # Download Pillar
-sh ${__dir}/downloadPillar.sh
+. ${__dir}/downloadPillar.sh
 
 # Download Archetype
 
