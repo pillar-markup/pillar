@@ -19,6 +19,13 @@ you can find the pharo image
 
 [https://ci.inria.fr/pharo-contribution/job/pillar/](https://ci.inria.fr/pharo-contribution/job/pillar/)
 
+## You can get everything prepackaged
+
+Sometimes installing LaTeX can be cumbersome. You can use a docker install with everything prepackaged. 
+
+```
+https://github.com/cdlm/docker-texlive
+```
 
 ## Tips
 
