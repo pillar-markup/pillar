@@ -26,7 +26,8 @@ you can find the pharo image
 ## To set up a booklet 
 
 ```
-./pillar archetype booklet
+./pillar archetype book
+make spiral
 ```
 
 ## You can get everything prepackaged
