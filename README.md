@@ -19,6 +19,16 @@ you can find the pharo image
 
 [https://ci.inria.fr/pharo-contribution/job/pillar/](https://ci.inria.fr/pharo-contribution/job/pillar/)
 
+## Follow the tutorial
+
+[https://ci.inria.fr/pharo-contribution/job/EnterprisePharoBook/lastSuccessfulBuild/artifact/book-result/PillarChap/Pillar.html]
+
+## To set up a booklet 
+
+```
+./pillar archetype booklet
+```
+
 ## You can get everything prepackaged
 
 Sometimes installing LaTeX can be cumbersome. You can use a docker install with everything prepackaged. 
