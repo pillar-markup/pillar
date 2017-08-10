@@ -23,7 +23,7 @@ you can find the pharo image
 
 [https://ci.inria.fr/pharo-contribution/job/EnterprisePharoBook/lastSuccessfulBuild/artifact/book-result/PillarChap/Pillar.html]
 
-## To set up a booklet 
+## To compile a book in booklet format
 
 ```
 ./pillar archetype book
