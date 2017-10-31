@@ -1,0 +1,14 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'OSSubprocess',
+      #directory : 'repository',
+      #platforms : [ #pharo ]
+    }
+  ],
+  #testing : {
+    #include : {
+      #categories : [ 'OSSubprocess-Tests-Unit' ]
+    }
+  }
+}
