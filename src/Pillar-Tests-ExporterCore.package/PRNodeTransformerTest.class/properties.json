@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "DamienCassou 7/20/2016 16:30",
+	"super" : "PRVisitorTest",
+	"category" : "Pillar-Tests-ExporterCore",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRNodeTransformerTest",
+	"type" : "normal"
+}

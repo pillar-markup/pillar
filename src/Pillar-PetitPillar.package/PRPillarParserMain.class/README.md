@@ -1,0 +1,1 @@
+I'm responsible for starting the parsing process of a Pillar document. If possible, I will use a compiled version of PRPillarParser. I will also use the STON reader to read potentital metadata at the begining of the stream.

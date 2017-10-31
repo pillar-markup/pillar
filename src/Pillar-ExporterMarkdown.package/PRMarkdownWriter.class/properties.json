@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "PRHTMLWriter",
+	"category" : "Pillar-ExporterMarkdown",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"nesting"
+	],
+	"name" : "PRMarkdownWriter",
+	"type" : "normal"
+}

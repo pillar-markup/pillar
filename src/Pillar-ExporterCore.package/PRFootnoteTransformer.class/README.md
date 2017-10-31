@@ -1,0 +1,1 @@
+I replace each ==footnote== annotation with a structure of footnote.

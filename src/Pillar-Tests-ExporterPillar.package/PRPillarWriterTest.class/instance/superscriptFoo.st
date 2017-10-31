@@ -1,0 +1,3 @@
+requirements
+superscriptFoo
+	^ '^^foo^^'

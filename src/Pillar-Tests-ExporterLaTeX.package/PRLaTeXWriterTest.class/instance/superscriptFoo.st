@@ -1,0 +1,3 @@
+requirements
+superscriptFoo
+	^ '\textsuperscript{foo}'

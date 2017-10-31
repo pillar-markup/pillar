@@ -1,0 +1,3 @@
+requirements
+packageNamesUnderTest
+	^ self subclassResponsibility

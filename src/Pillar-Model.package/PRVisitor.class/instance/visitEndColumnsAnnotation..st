@@ -1,0 +1,3 @@
+visiting-annotations
+visitEndColumnsAnnotation: aEndColumnsAnnotation
+	self visitAnnotation: aEndColumnsAnnotation

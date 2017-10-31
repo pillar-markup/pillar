@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "DamienCassou 2/28/2014 09:38",
+	"super" : "PRDocumentWriter",
+	"category" : "Pillar-Tests-ExporterCore",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRMockWriter",
+	"type" : "normal"
+}

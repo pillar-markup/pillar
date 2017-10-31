@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "jf 9/18/2009 15:47",
+	"super" : "PRBasicObject",
+	"category" : "Pillar-Model-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"properties"
+	],
+	"name" : "PRObject",
+	"type" : "normal"
+}

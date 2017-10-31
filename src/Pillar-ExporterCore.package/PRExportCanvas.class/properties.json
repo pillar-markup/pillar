@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "PRBasicObject",
+	"category" : "Pillar-ExporterCore-Base",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"stream",
+		"currentBrush"
+	],
+	"name" : "PRExportCanvas",
+	"type" : "normal"
+}

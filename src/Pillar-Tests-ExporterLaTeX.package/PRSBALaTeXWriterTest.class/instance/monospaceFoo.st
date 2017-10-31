@@ -1,0 +1,3 @@
+requirements
+monospaceFoo
+	^ '\textcode{foo}'

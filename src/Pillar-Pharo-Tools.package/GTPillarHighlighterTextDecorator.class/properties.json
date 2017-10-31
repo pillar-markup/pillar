@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "GLMHighlighterTextStylerDecorator",
+	"category" : "Pillar-Pharo-Tools-Editor",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"presentation",
+		"fileReference"
+	],
+	"name" : "GTPillarHighlighterTextDecorator",
+	"type" : "normal"
+}

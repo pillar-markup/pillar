@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRDependenciesCommandLineHandler",
+	"category" : "Pillar-Cli",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRImageDependencyCommandLineHandler",
+	"type" : "normal"
+}

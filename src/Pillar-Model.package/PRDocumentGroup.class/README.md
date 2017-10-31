@@ -1,0 +1,1 @@
+I am an abstract group of document items.

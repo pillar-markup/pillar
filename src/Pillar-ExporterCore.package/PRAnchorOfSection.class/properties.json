@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "CyrilFerlicot 4/20/2015 14:07",
+	"super" : "PRNodeTransformer",
+	"category" : "Pillar-ExporterCore-Export",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"occurenceOfHeader"
+	],
+	"name" : "PRAnchorOfSection",
+	"type" : "normal"
+}

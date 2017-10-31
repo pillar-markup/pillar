@@ -1,0 +1,3 @@
+testing
+hasCaption
+	^ self hasChildren

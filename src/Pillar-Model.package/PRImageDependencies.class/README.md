@@ -1,0 +1,1 @@
+I am a vistitor which visit the document and return all image dependencies of this document.

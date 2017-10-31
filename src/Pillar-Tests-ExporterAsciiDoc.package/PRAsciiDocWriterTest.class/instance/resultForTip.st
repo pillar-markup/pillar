@@ -1,0 +1,3 @@
+requirements
+resultForTip
+	^ 'TIP:'

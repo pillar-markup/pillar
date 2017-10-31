@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRNodeTransformerTest",
+	"category" : "Pillar-Tests-ExporterEPub",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PREPubMenuJustHeaderTransformerTest",
+	"type" : "normal"
+}

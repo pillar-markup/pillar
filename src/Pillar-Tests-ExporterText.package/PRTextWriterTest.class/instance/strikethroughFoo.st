@@ -1,0 +1,3 @@
+requirements
+strikethroughFoo
+	^ 'foo'

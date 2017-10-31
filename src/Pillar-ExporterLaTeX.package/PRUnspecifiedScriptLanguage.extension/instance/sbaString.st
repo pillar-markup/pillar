@@ -1,0 +1,3 @@
+*Pillar-ExporterLaTeX
+sbaString
+	^ 'plain'

@@ -1,0 +1,1 @@
+I replace each slide annotation with a slide structure.

@@ -1,0 +1,3 @@
+visiting-document
+visitEmptyParagraph: aParagraph
+	

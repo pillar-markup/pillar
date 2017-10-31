@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "LukasKomarek 4/21/2016 15:21",
+	"super" : "PRExternalLink",
+	"category" : "Pillar-Model-Document",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRSemanticLink",
+	"type" : "normal"
+}

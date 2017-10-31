@@ -1,0 +1,3 @@
+accessing
+pharoExtensions
+	^ #('image' 'changes')

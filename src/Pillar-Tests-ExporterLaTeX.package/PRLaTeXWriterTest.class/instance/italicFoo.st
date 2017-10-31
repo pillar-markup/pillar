@@ -1,0 +1,3 @@
+requirements
+italicFoo
+	^ '\textit{foo}'

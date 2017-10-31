@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "PRStructureRenderer",
+	"category" : "Pillar-Model-Render",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRDefinitionListRenderer",
+	"type" : "normal"
+}

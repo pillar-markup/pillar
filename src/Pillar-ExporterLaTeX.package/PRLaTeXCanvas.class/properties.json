@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "TorstenBergmann 3/5/2015 22:17",
+	"super" : "PRExportCanvas",
+	"category" : "Pillar-ExporterLaTeX",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"LatexCharacters"
+	],
+	"instvars" : [ ],
+	"name" : "PRLaTeXCanvas",
+	"type" : "normal"
+}

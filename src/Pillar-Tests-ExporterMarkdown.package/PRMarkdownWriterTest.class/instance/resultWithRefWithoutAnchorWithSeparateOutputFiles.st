@@ -1,0 +1,3 @@
+requirements
+resultWithRefWithoutAnchorWithSeparateOutputFiles
+	^ '(ref.html)'

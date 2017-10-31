@@ -1,0 +1,3 @@
+requirements
+termItemWithFoo
+	^ '\item[foo]'

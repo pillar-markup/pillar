@@ -1,0 +1,1 @@
+A Markdown canvas that facilitates writing Markdown to a stream. It essentially use to nesting the lists

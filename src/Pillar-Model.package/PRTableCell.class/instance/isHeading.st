@@ -1,0 +1,3 @@
+testing
+isHeading
+	^ self heading

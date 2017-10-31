@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "CyrilFerlicot 6/3/2015 13:00",
+	"super" : "PRPhase",
+	"category" : "Pillar-ExporterCore-Export",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"newChildren"
+	],
+	"name" : "PRDocumentChildrenTransformer",
+	"type" : "normal"
+}

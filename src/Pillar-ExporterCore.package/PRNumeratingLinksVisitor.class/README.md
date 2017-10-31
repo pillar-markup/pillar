@@ -1,0 +1,1 @@
+I'm created with an anchorsMapping and i give counters at each internal links of the document I visit.

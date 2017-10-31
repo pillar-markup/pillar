@@ -1,0 +1,3 @@
+requirements
+preformattedFooBegin
+	^ 'foo'

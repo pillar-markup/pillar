@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "PRAbstractAnnotationTest",
+	"category" : "Pillar-Tests-Model-Document",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"directory"
+	],
+	"name" : "PRInputFileAnnotationTest",
+	"type" : "normal"
+}

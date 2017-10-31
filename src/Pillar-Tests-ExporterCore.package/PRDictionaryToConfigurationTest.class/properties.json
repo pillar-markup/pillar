@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "CCDictionaryToConfigurationTest",
+	"category" : "Pillar-Tests-ExporterCore",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRDictionaryToConfigurationTest",
+	"type" : "normal"
+}

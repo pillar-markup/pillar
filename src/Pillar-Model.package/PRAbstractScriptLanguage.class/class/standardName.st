@@ -1,0 +1,3 @@
+protected
+standardName
+	^ self subclassResponsibility

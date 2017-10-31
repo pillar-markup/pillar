@@ -1,0 +1,1 @@
+I'm here for authors to specify they don't want syntax highlighting in their scripts.

@@ -1,0 +1,3 @@
+requirements
+figureAnchorForPierLogo
+	^ 'label=pierLogo'

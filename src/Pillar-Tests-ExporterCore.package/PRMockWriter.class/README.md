@@ -1,0 +1,1 @@
+I'm a class responsible for mimicking the behavior of a document writer. I'm useful for some testing classes that need a stupid writer.

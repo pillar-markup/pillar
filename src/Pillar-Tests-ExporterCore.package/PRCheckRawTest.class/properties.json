@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRCheckPhaseTest",
+	"category" : "Pillar-Tests-ExporterCore",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRCheckRawTest",
+	"type" : "normal"
+}

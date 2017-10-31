@@ -1,0 +1,3 @@
+printing
+versionString
+	^ ConfigurationOfPillar project stableVersion versionNumber

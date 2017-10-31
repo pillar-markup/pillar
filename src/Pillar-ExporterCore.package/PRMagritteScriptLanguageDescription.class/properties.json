@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "CyrilFerlicot 6/22/2015 16:58",
+	"super" : "MAElementDescription",
+	"category" : "Pillar-ExporterCore-Description",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRMagritteScriptLanguageDescription",
+	"type" : "normal"
+}

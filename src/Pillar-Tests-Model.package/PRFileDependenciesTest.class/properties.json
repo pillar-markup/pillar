@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRVisitorTest",
+	"category" : "Pillar-Tests-Model-Visitor",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRFileDependenciesTest",
+	"type" : "normal"
+}

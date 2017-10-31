@@ -1,0 +1,4 @@
+private
+stream
+
+	^ stream

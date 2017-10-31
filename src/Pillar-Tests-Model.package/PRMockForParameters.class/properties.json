@@ -1,0 +1,15 @@
+{
+	"classtraitcomposition" : "PRTParametrizable classTrait - {#parameterAt:IsIntegerIn:. #parameters:haveSize:}",
+	"classvars" : [ ],
+	"instvars" : [
+		"parameters"
+	],
+	"name" : "PRMockForParameters",
+	"commentStamp" : "CyrilFerlicot 4/29/2015 13:22",
+	"super" : "Object",
+	"traitcomposition" : "PRTParametrizable",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "Pillar-Tests-Model-Core"
+}

@@ -1,0 +1,1 @@
+I am a path or WriteStream description for Pillar.

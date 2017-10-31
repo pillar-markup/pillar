@@ -1,0 +1,1 @@
+Writes a Pillar document as HTML.

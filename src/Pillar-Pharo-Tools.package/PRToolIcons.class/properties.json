@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "TorstenBergmann 3/5/2015 23:46",
+	"super" : "Object",
+	"category" : "Pillar-Pharo-Tools-Utilities",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"IconCache"
+	],
+	"instvars" : [ ],
+	"name" : "PRToolIcons",
+	"type" : "normal"
+}

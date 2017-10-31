@@ -1,0 +1,3 @@
+configuration
+doNotTransform
+	shouldTransform := false

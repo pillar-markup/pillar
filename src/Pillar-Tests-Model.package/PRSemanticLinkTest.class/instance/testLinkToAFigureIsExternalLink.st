@@ -1,0 +1,3 @@
+tests
+testLinkToAFigureIsExternalLink
+	self expectedFailures

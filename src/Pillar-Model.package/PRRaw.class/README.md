@@ -1,0 +1,3 @@
+I represent a text that is not parsed/analyzed at all. I can have a type to limit the kind of output with which I'm associated. For example, an instance of me with type 'html' will only be written to HTML documents.
+
+I'm particularly useful when the rest of Pillar can't represent something you *really* want in your output: for example, an equation. In this case, you can describe your equation in latex using an instance of me of type latex and a picture everywhere else.

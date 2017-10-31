@@ -1,0 +1,1 @@
+An embedded script

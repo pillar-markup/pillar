@@ -1,0 +1,1 @@
+I am a writer for the GitHub markdown which differs a bit from the `original` markdown.

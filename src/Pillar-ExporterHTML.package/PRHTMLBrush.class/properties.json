@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "DamienCassou 6/2/2014 14:23",
+	"super" : "PRExportBrush",
+	"category" : "Pillar-ExporterHTML",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRHTMLBrush",
+	"type" : "normal"
+}

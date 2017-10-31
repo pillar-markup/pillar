@@ -1,0 +1,3 @@
+requirements
+subscriptFoo
+	^ '\textsubscript{foo}'

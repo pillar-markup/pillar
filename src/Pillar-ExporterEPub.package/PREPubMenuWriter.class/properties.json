@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "PRHTMLWriter",
+	"category" : "Pillar-ExporterEPub",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"maxHeader"
+	],
+	"name" : "PREPubMenuWriter",
+	"type" : "normal"
+}

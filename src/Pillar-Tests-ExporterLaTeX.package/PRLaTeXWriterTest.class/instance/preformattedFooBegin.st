@@ -1,0 +1,3 @@
+requirements
+preformattedFooBegin
+	^ '\begin{verbatim}'

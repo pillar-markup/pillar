@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "Object",
+	"category" : "Pillar-Model-Numbering",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"counters"
+	],
+	"name" : "PRCascadingCounter",
+	"type" : "normal"
+}

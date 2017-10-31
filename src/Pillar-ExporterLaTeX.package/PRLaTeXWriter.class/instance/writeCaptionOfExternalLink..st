@@ -1,0 +1,3 @@
+helpers
+writeCaptionOfExternalLink: anExternalLink
+	self visitAll: anExternalLink children

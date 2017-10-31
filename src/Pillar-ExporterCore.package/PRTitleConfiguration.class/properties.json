@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "CyrilFerlicot 6/24/2015 16:46",
+	"super" : "Object",
+	"category" : "Pillar-ExporterCore-Configuration",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"numbering",
+		"size",
+		"level",
+		"autoAnchor",
+		"configuration",
+		"capitalization"
+	],
+	"name" : "PRTitleConfiguration",
+	"type" : "normal"
+}

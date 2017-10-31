@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "PRObject",
+	"category" : "Pillar-ExporterCore-Export",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"configuration",
+		"input"
+	],
+	"name" : "PRCompilationContext",
+	"type" : "normal"
+}

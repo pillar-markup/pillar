@@ -1,0 +1,1 @@
+I provide abstract tests and helper methods to test the subclasses of PRDocumentWriter.

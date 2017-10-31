@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRNodeTransformerTest",
+	"category" : "Pillar-Tests-ExporterCore",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRSectionTransformerTest",
+	"type" : "normal"
+}

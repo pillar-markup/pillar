@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "CyrilFerlicot 5/21/2015 10:01",
+	"super" : "PRWarning",
+	"category" : "Pillar-Model-Exceptions",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRLinkWarning",
+	"type" : "normal"
+}

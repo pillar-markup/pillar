@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "YannDubois 5/31/2016 14:17",
+	"super" : "PRMarkdownWriter",
+	"category" : "Pillar-ExporterMarkdown",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"firstRow"
+	],
+	"name" : "PRGithubMarkdownWriter",
+	"type" : "normal"
+}

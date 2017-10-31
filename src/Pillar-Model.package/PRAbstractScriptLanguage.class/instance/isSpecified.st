@@ -1,0 +1,3 @@
+testing
+isSpecified
+	^ self subclassResponsibility

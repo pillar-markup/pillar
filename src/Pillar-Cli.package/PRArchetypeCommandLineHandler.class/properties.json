@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "PRSubCommandLineHandler",
+	"category" : "Pillar-Cli",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRArchetypeCommandLineHandler",
+	"type" : "normal"
+}

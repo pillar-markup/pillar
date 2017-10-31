@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "TorstenBergmann 3/5/2015 22:01",
+	"super" : "PRFormat",
+	"category" : "Pillar-Model-Document",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRUnderlineFormat",
+	"type" : "normal"
+}

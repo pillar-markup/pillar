@@ -1,0 +1,1 @@
+I'm a Figure, i can have a label in parameter. My alias (coming from the superclass) represents the figure caption

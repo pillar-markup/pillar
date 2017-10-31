@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "CyrilFerlicot 6/15/2015 11:48",
+	"super" : "PRPhase",
+	"category" : "Pillar-ExporterCore-Export",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRExportPhase",
+	"type" : "normal"
+}
