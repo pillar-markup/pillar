@@ -1,8 +1,8 @@
 SmalltalkCISpec {
   #loading : [
     SCIMetacelloLoadSpec {
-      #baseline : 'OSSubprocess',
-      #directory : 'repository',
+      #baseline : 'Pillar',
+      #directory : 'src',
       #platforms : [ #pharo ]
     }
   ],
