@@ -22,6 +22,6 @@ env:
       ARCHETYPE=welcome
 
 script:
-  - if [[ ${JOB} == "test" ]] then "$SMALLTALK_CI_HOME/run.sh"; fi
-  - if [[ ${JOB} == "build" ]] then "scripts/build.sh"; fi
-  - if [[ ${JOB} == "integration" ]] then "scripts/integration-tests/testarchetype.sh ${ARCHETYPE}"; fi
+  - if [[ ${JOB} == "test"        ]]; then "$SMALLTALK_CI_HOME/run.sh"; fi
+  - if [[ ${JOB} == "build"       ]]; then "scripts/build.sh"; fi
+  - if [[ ${JOB} == "integration" ]]; then "scripts/integration-tests/testarchetype.sh ${ARCHETYPE}"; fi
