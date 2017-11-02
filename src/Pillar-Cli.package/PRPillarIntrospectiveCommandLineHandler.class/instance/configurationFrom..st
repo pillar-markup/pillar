@@ -1,12 +1,7 @@
 activation
 configurationFrom: confFilename
-	| confFile |
-	confFile := self baseDirectory resolve: confFilename.
-	configuration := confFile exists
-		ifTrue: [ [ (PRPillarConfiguration 
-							newFromFile: confFile)
-							baseDirectory:  self baseDirectory ]
-						on: STONReaderError
-						do: [ :error | Exit signalFailure: error messageText ]  ]
-		ifFalse: [ PRPillarConfiguration new ].
-	^ configuration 
+
+	| builder |
+	builder := PRAbstractBuilder new.
+	builder createConfiguration: confFilename baseDirectory: self baseDirectory argDictionary: Dictionary new.
+	^ builder configuration
