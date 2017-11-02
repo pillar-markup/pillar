@@ -11,7 +11,7 @@ PHARO_VM="${__dir}/pharo"
 PILLAR_IMAGE="${__dir}/Pharo.image"
 
 #Read pillar command
-option=\$1
+option=$1
 shift
 
 # disable parameter expansion to forward all arguments unprocessed to the VM
