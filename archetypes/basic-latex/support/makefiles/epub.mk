@@ -1,3 +1,7 @@
+PILLAR_HOME ?= $(shell pwd)
+PILLAR_EXEC ?= $(PILLAR_HOME)/pillar
+MUSTACHE_EXEC ?= $(PILLAR_HOME)/mustache
+
 XHTMLTEMPLATE = ./support/templates/xhtml.mustache.template
 NAVMENUTEMPLATE = ./support/templates/nav.mustache.template
 TOCMENUTEMPLATE = ./support/templates/toc.mustache.template
@@ -21,27 +25,27 @@ $(OUTPUTDIRECTORY)/%.epub: $(OUTPUTDIRECTORY)/%.content.opf
 
 #Navigation Menus
 $(OUTPUTDIRECTORY)/%.nav.xhtml.json: %.pillar
-	./pillar export --to="navmenu" --path="${<}" --outputDirectory=$(OUTPUTDIRECTORY) $<
+	$(PILLAR_EXEC) export --to="navmenu" --path="${<}" --outputDirectory=$(OUTPUTDIRECTORY) $<
 
 $(OUTPUTDIRECTORY)/%.nav.xhtml: $(OUTPUTDIRECTORY)/%.nav.xhtml.json
-	./mustache --data=$< --template=$(NAVMENUTEMPLATE) > $@
+	$(MUSTACHE_EXEC) --data=$< --template=$(NAVMENUTEMPLATE) > $@
 
 $(OUTPUTDIRECTORY)/%.toc.ncx.json: %.pillar
-	./pillar export --to="tocmenu" --path="${<}" --outputDirectory=$(OUTPUTDIRECTORY) $<
+	$(PILLAR_EXEC) export --to="tocmenu" --path="${<}" --outputDirectory=$(OUTPUTDIRECTORY) $<
 
 $(OUTPUTDIRECTORY)/%.toc.ncx: $(OUTPUTDIRECTORY)/%.toc.ncx.json
-	./mustache --data=$< --template=$(TOCMENUTEMPLATE) > $@
+	$(MUSTACHE_EXEC) --data=$< --template=$(TOCMENUTEMPLATE) > $@
 
 #Content.opf & title_page.xhtml
 $(OUTPUTDIRECTORY)/%.content.opf: $(OUTPUTDIRECTORY)/%.xhtml $(OUTPUTDIRECTORY)/%.toc.ncx $(OUTPUTDIRECTORY)/%.nav.xhtml $(OUTPUTDIRECTORY)/%.title_page.xhtml
-	./mustache --data=$<.json --template=$(CONTENTOPFTEMPLATE) > $@
+	$(MUSTACHE_EXEC) --data=$<.json --template=$(CONTENTOPFTEMPLATE) > $@
 
 $(OUTPUTDIRECTORY)/%.title_page.xhtml: $(OUTPUTDIRECTORY)/%.xhtml
-	./mustache --data=$<.json --template=$(TITLEPAGETEMPLATE) > $@
+	$(MUSTACHE_EXEC) --data=$<.json --template=$(TITLEPAGETEMPLATE) > $@
 
 #Chapter compilation
 $(OUTPUTDIRECTORY)/%.xhtml.json: %.pillar
-	./pillar export --to="xhtml" --path="${<}" --outputDirectory=$(OUTPUTDIRECTORY) $<
+	$(PILLAR_EXEC) export --to="xhtml" --path="${<}" --outputDirectory=$(OUTPUTDIRECTORY) $<
 
 $(OUTPUTDIRECTORY)/%.xhtml: $(OUTPUTDIRECTORY)/%.xhtml.json
-	./mustache --data=$< --template=$(XHTMLTEMPLATE) > $@
+	$(MUSTACHE_EXEC) --data=$< --template=$(XHTMLTEMPLATE) > $@

@@ -1,13 +1,17 @@
-MAIN := $(shell ./pillar introspect mainDocument)
+PILLAR_HOME ?= $(shell pwd)
+PILLAR_EXEC ?= $(PILLAR_HOME)/pillar
+MUSTACHE_EXEC ?= $(PILLAR_HOME)/mustache
+
+MAIN := $(shell $(PILLAR_EXEC) introspect mainDocument)
 CHAPTERS = \
 	Chapters/Chapter1/chapter1 \
 	Chapters/Chapter2/chapter2
 
-OUTPUTDIRECTORY := $(shell ./pillar introspect outputDirectory)
-LATEXTEMPLATE := $(shell ./pillar introspect latexTemplate)
-LATEXCHAPTERTEMPLATE := $(shell ./pillar introspect latexChapterTemplate)
-HTMLTEMPLATE := $(shell ./pillar introspect htmlTemplate)
-HTMLCHAPTERTEMPLATE := $(shell ./pillar introspect htmlChapterTemplate)
+OUTPUTDIRECTORY := $(shell $(PILLAR_EXEC) introspect outputDirectory)
+LATEXTEMPLATE := $(shell $(PILLAR_EXEC) introspect latexTemplate)
+LATEXCHAPTERTEMPLATE := $(shell $(PILLAR_EXEC) introspect latexChapterTemplate)
+HTMLTEMPLATE := $(shell $(PILLAR_EXEC) introspect htmlTemplate)
+HTMLCHAPTERTEMPLATE := $(shell $(PILLAR_EXEC) introspect htmlChapterTemplate)
 
 .DEFAULT_GOAL = help
 .phony: all book chapters

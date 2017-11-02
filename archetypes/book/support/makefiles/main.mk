@@ -1,11 +1,15 @@
-MAIN := $(shell ./pillar introspect mainDocument)
+PILLAR_HOME ?= $(shell pwd)
+PILLAR_EXEC ?= $(PILLAR_HOME)/pillar
+MUSTACHE_EXEC ?= $(PILLAR_HOME)/mustache
 
-OUTPUTDIRECTORY := $(shell ./pillar introspect outputDirectory)
-LATEXTEMPLATE := $(shell ./pillar introspect latexTemplate)
-LATEXCHAPTERTEMPLATE := $(shell ./pillar introspect latexChapterTemplate)
-HTMLTEMPLATE := $(shell ./pillar introspect htmlTemplate)
-HTMLCHAPTERTEMPLATE := $(shell ./pillar introspect htmlChapterTemplate)
-CHAPTERS := $(shell ./pillar introspect chapters)
+MAIN := $(shell $(PILLAR_HOME)/pillar introspect mainDocument)
+
+OUTPUTDIRECTORY := $(shell $(PILLAR_EXEC) introspect outputDirectory)
+LATEXTEMPLATE := $(shell $(PILLAR_EXEC) introspect latexTemplate)
+LATEXCHAPTERTEMPLATE := $(shell $(PILLAR_EXEC) introspect latexChapterTemplate)
+HTMLTEMPLATE := $(shell $(PILLAR_EXEC) introspect htmlTemplate)
+HTMLCHAPTERTEMPLATE := $(shell $(PILLAR_EXEC) introspect htmlChapterTemplate)
+CHAPTERS := $(shell $(PILLAR_EXEC) introspect chapters)
 
 .phony: all book chapters
 
