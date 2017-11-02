@@ -9,6 +9,19 @@ os:
 smalltalk:
   - Pharo-6.1
   - Pharo-5.0
-    
+  
+env:
+  matrix:
+    - JOB=test
+    - JOB=build
+    - JOB=integration
+      ARCHETYPE=book
+    - JOB=integration
+      ARCHETYPE=presentation
+    - JOB=integration
+      ARCHETYPE=welcome
+
 script:
-  - "$SMALLTALK_CI_HOME/run.sh"
+  - if [[ ${JOB} == "test" ]] then "$SMALLTALK_CI_HOME/run.sh"; fi
+  - if [[ ${JOB} == "build" ]] then "scripts/build.sh"; fi
+  - if [[ ${JOB} == "integration" ]] then "scripts/integration-tests/test${ARCHETYPE}.sh"; fi
