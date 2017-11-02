@@ -1,11 +1,20 @@
 language: smalltalk
 sudo: false
+
+addons:
+  postgresql: "9.4"
+  apt:
+    packages:
+    - texlive-full
+
 os:
-- linux
-- osx
+  - linux
+  - osx
+
 smalltalk:
-- Pharo-6.1
-- Pharo-5.0
+  - Pharo-6.1
+  - Pharo-5.0
+
 env:
   matrix:
   - JOB=test
@@ -13,10 +22,14 @@ env:
   - JOB=integration ARCHETYPE=book
   - JOB=integration ARCHETYPE=presentation
   - JOB=integration ARCHETYPE=welcome
+  
+before_install:
+  - if [[ ${os} == "osx" ]]; then brew install basictex; fi
+
 script:
-- if [[ ${JOB} == "test"        ]]; then "$SMALLTALK_CI_HOME/run.sh"; fi
-- if [[ ${JOB} == "build"       ]]; then "scripts/build.sh"; zip -ry9 pillar.zip build; fi
-- if [[ ${JOB} == "integration" ]]; then "scripts/integration-tests/testarchetype.sh" "${ARCHETYPE}"; fi
+  - if [[ ${JOB} == "test"        ]]; then "$SMALLTALK_CI_HOME/run.sh"; fi
+  - if [[ ${JOB} == "build"       ]]; then "scripts/build.sh"; zip -ry9 pillar.zip build; fi
+  - if [[ ${JOB} == "integration" ]]; then "scripts/integration-tests/testarchetype.sh" "${ARCHETYPE}"; fi
 
 deploy:
   provider: releases
