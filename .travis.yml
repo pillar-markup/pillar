@@ -24,8 +24,8 @@ env:
   - JOB=integration ARCHETYPE=welcome
   
 before_install:
-  - if [[ ${os} == "osx"   ]]; then brew install basictex; fi
-  - if [[ ${os} == "linux" ]]; then luaotfload-tool --update; fi
+  - if [[ ${TRAVIS_OS_NAME} == "osx"   ]]; then brew install basictex; fi
+  - if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then luaotfload-tool --update; fi
 
 script:
   - if [[ ${JOB} == "test"        ]]; then "$SMALLTALK_CI_HOME/run.sh"; fi
