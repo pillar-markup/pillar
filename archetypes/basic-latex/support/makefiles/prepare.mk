@@ -36,7 +36,7 @@ $(OUTPUTDIRECTORY):
 	mkdir -p $(OUTPUTDIRECTORY)
 
 $(OUTPUTDIRECTORY)/support: $(OUTPUTDIRECTORY)
-	ln -fs ../support $(OUTPUTDIRECTORY)
+	cp -r support $(OUTPUTDIRECTORY)
 
 # this is making hardlinks (symlinks are verbose with absolute paths and
 # computing relative paths is… complicated)

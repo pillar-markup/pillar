@@ -12,7 +12,7 @@ FIGURES := $(shell find . \
 		-print)
 
 clean: ## Cleanup intermediate build products
-	rm -f $(addprefix $(OUTPUTDIRECTORY)/, support gitHeadLocal.gin)
+	rm -f $(addprefix $(OUTPUTDIRECTORY)/, support)
 	for f in $(addprefix $(OUTPUTDIRECTORY)/,$(MAIN) $(CHAPTERS)); do \
 		rm -f "$$(dirname $$f)/root" ; \
 	done
@@ -22,17 +22,13 @@ wipeout: ## Cleanup everything including final build products
 
 # create & initialize output directory, mirroring stuff that has to match the
 # repo hierarchy inside the output dir.
-prepare: $(addprefix $(OUTPUTDIRECTORY)/, support gitHeadLocal.gin $(FIGURES))
+prepare: $(addprefix $(OUTPUTDIRECTORY)/, support $(FIGURES))
 
 $(OUTPUTDIRECTORY):
 	mkdir -p $(OUTPUTDIRECTORY)
 
 $(OUTPUTDIRECTORY)/support: $(OUTPUTDIRECTORY)
-	ln -fs ../support $(OUTPUTDIRECTORY)
-
-# extract versioning info for LaTeX
-$(OUTPUTDIRECTORY)/gitHeadLocal.gin: $(OUTPUTDIRECTORY)
-	bash support/latex/sbabook/gitinfo2.sh > $@
+	cp -r support $(OUTPUTDIRECTORY)
 
 # this is making hardlinks (symlinks are verbose with absolute paths and
 # computing relative paths is… complicated)

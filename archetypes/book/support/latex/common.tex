@@ -3,30 +3,6 @@
 \usepackage{root/support/latex/sbabook/pharo-titlepage}
 
 \usepackage{polyglossia}
-\usepackage[useregional]{datetime2}
-
-% extract info from git commit
-% requires gitinfo2 2.0.7, and below fix needed until 2.0.8 released
-\makeatletter
-\let\THEDAY\@dtm@currentday
-\let\THEMONTH\@dtm@currentmonth
-\let\THEYEAR\@dtm@currentyear
-\makeatother
-\usepackage[local,missing=!,dirty=*]{gitinfo2}
-\usepackage{xstring}% \IfEq and \StrCut
-% a couple extensions...
-\makeatletter
-\newcommand\gitCommitInfo{%
-  \IfEq{\gitRel}{}
-    {\IfEq{\gitAbbrevHash}{!}% same as missing package option
-      {}% no versioning info => no noise
-      {\gitBranch\,@\,\texttt{\gitAbbrevHash\gitDirty}}}
-    {\IfEq{\gitRoff}{0}
-      {release \gitRel}
-      {modified since \gitRel{} --- \gitBranch\,@\,\texttt{\gitAbbrevHash\gitDirty}}}}
-\newcommand\gitdate{\DTMusedate{gitdate}}
-\makeatother
-
 \usepackage[normalem]{ulem} % for strikeout text (\sout{...})
 \usepackage{graphicx}
 
