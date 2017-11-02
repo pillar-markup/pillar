@@ -2,7 +2,7 @@ PILLAR_HOME ?= $(shell pwd)
 PILLAR_EXEC ?= $(PILLAR_HOME)/pillar
 MUSTACHE_EXEC ?= $(PILLAR_HOME)/mustache
 
-MAIN := $(shell $(PILLAR_HOME)/pillar introspect mainDocument)
+MAIN := $(shell $(PILLAR_EXEC) introspect mainDocument)
 
 OUTPUTDIRECTORY := $(shell $(PILLAR_EXEC) introspect outputDirectory)
 LATEXTEMPLATE := $(shell $(PILLAR_EXEC) introspect latexTemplate)
