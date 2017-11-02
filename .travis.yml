@@ -24,9 +24,8 @@ env:
   - JOB=integration ARCHETYPE=welcome
   
 before_install:
-  - if [[ ${TRAVIS_OS_NAME} == "osx"   ]]; then brew install basictex; fi
-  - if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then luaotfload-tool --update; fi
-
+  - scripts/travis/ensure_fonts.sh
+  
 script:
   - if [[ ${JOB} == "test"        ]]; then "$SMALLTALK_CI_HOME/run.sh"; fi
   - if [[ ${JOB} == "build"       ]]; then "scripts/build.sh"; zip -ry9 pillar.zip build; fi
