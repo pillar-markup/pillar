@@ -1,5 +1,6 @@
 OUTPUTDIRECTORY = ./build
 HTMLTEMPLATE = support/templates/welcome.html.template
+PILLAR_HOME ?= $(shell pwd)
 
 include ./support/makefiles/copySupport.mk
 
@@ -9,7 +10,7 @@ initDir:
 welcome: $(OUTPUTDIRECTORY)/welcome.html
 
 $(OUTPUTDIRECTORY)/%.html.json: %.pillar copySupport
-	./pillar export --to=html --outputDirectory=$(OUTPUTDIRECTORY) --outputFile=$< $<
+	$(PILLAR_HOME)/pillar export --to=html --outputDirectory=$(OUTPUTDIRECTORY) --outputFile=$< $<
 
 $(OUTPUTDIRECTORY)/%.html: $(OUTPUTDIRECTORY)/%.html.json
-	./mustache --data=$< --template=${HTMLTEMPLATE} > $@
+	$(PILLAR_HOME)/mustache --data=$< --template=${HTMLTEMPLATE} > $@

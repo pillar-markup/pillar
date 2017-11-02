@@ -8,14 +8,13 @@ set -o xtrace
 
 # Set magic variables for current file & dir
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-__builddir="${__dir}/build"
+__builddir="$(pwd)/build"
 
-${__dir}/build.sh
-
+${__dir}/../build.sh
 
 # Download Archetype
 mkdir -p test && cd test
-${__builddir}/pillar archetype welcome
+${__builddir}/pillar archetype $1
 
 # Build book
-make welcome
+make $1 PILLAR_HOME=${__builddir}
