@@ -1,7 +1,7 @@
 -include $(wildcard *.d)
 
 %.pdf: %.tex
-	latexmk -lualatex -use-make \
+	latexmk -pdflatex=lualatex -pdf -use-make \
 		-latexoption="--file-line-error --halt-on-error" \
 		-deps-out="$*.d" \
 		$<
