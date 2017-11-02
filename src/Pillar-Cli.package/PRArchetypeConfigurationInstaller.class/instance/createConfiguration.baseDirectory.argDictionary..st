@@ -8,6 +8,9 @@ createConfiguration: confFilename baseDirectory: baseDirectoryArg argDictionary:
 	archetype := arguments 
 							at: 'template' 
 							ifAbsent: [ 'book' ].
-	self download: archetype.
-	(configuration baseDirectory / (archetype , '.zip')) asFileReference ensureDelete.
-	tmp ensureDeleteAll.
+							
+	archetype := FileLocator imageDirectory / 'archetypes' / archetype.
+	archetype exists ifFalse: [
+		self error: 'Archetype ', archetype, ' does not exist'
+	].
+	archetype copyAllTo: configuration baseDirectory
