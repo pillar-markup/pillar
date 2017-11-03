@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "PRSubCommandLineHandler",
-	"category" : "Pillar-Cli-Handlers",
+	"super" : "TestCase",
+	"category" : "Pillar-Tests-Cli",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "PRDependenciesCommandLineHandler",
+	"name" : "PRIntrospectCommandTest",
 	"type" : "normal"
 }

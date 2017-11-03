@@ -1,4 +1,4 @@
 activation
 activate
-	configurationInstaller := PRDependencyScripter new forImages.
+	configurationInstaller := PRDependencyCommand new forImages.
 	super activate

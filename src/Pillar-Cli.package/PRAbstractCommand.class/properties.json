@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "StephaneDucasse 3/10/2017 21:57",
 	"super" : "Object",
-	"category" : "Pillar-Cli",
+	"category" : "Pillar-Cli-Model",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
@@ -9,6 +9,6 @@
 		"configuration",
 		"baseDirectory"
 	],
-	"name" : "PRAbstractBuilder",
+	"name" : "PRAbstractCommand",
 	"type" : "normal"
 }

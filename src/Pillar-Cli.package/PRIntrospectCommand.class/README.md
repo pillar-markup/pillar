@@ -1,0 +1,1 @@
+I manage pillar configuration introspection. I'm the model behind the PRIntrospectiveCommandLineHandler.

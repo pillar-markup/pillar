@@ -1,4 +1,4 @@
 activation
 activate
-	configurationInstaller := PRDependencyScripter new forFiles.
+	configurationInstaller := PRDependencyCommand new forFiles.
 	super activate

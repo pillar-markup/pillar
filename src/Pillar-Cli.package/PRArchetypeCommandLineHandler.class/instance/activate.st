@@ -1,5 +1,5 @@
 activation
 activate
-	configurationInstaller := PRArchetypeConfigurationInstaller new.
+	configurationInstaller := PRArchetypeConfigurationInstallerCommand new.
 	super activate.
 	self exitSuccess

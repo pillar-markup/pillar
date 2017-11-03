@@ -1,7 +1,7 @@
 activation
 activate
 
-	configurationInstaller := PRExportBuilder new.
+	configurationInstaller := PRExportCommand new.
 	super activate.
 	configurationInstaller doIt.
 	self exitSuccess
