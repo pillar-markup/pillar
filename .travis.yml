@@ -1,12 +1,6 @@
 language: smalltalk
 sudo: false
 
-addons:
-  postgresql: "9.4"
-  apt:
-    packages:
-    - texlive-full
-
 os:
   - linux
   - osx
@@ -24,6 +18,7 @@ env:
   - JOB=integration ARCHETYPE=welcome
   
 before_install:
+  - scripts/travis/ensure_latex.sh
   - scripts/travis/ensure_fonts.sh
   
 script:
