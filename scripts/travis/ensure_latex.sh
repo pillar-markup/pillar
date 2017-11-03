@@ -36,6 +36,7 @@ fi
 
 ./install-tl -profile ./small.profile -repository http://ctan.sharelatex.com/tex-archive/systems/texlive/tlnet
 tlmgr init-usertree
+tlmgr install latexmk
 
 cd ../..
 
