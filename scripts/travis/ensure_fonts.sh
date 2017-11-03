@@ -10,7 +10,7 @@ if [[ ${TRAVIS_OS_NAME} == "osx"   ]]; then
   cp Fira-4.202/otf/* $font_dir/;
 elif [[ ${TRAVIS_OS_NAME} == "linux" ]]; then
   wget "http://www.carrois.com/downloads/fira_mono_3_2/FiraMonoFonts3206.zip";
-  unzip FiraMono3206.zip;
+  unzip FiraMonoFonts3206.zip;
   mkdir -p ~/.fonts
   cp Fira*/WEB/TTF/*.ttf ~/.fonts;
   cp Fira*/OTF/Fira* ~/.fonts;
