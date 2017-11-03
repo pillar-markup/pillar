@@ -2,8 +2,7 @@
 # Follow instructions on the following gist: https://gist.github.com/muammar/a5ffb635eb7f532346a8e777b847f8a7
 
 if [[ ${TRAVIS_OS_NAME} == "osx"   ]]; then
-  brew update;
-  brew install basictex;
+  wget https://github.com/mozilla/Fira/archive/4.202.zip;
   unzip 4.202.zip;
   font_dir="$HOME/Library/Fonts";
   mkdir -p $font_dir;
@@ -15,5 +14,5 @@ elif [[ ${TRAVIS_OS_NAME} == "linux" ]]; then
   cp Fira*/WEB/TTF/*.ttf ~/.fonts;
   cp Fira*/OTF/Fira* ~/.fonts;
   fc-cache -fv;
-  luaotfload-tool --update;
+  # luaotfload-tool --update;
 fi
