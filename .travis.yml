@@ -18,7 +18,7 @@ env:
   - JOB=integration ARCHETYPE=welcome
   
 install:
-  - scripts/travis/ensure_latex.sh
+  - . scripts/travis/ensure_latex.sh
   - scripts/travis/ensure_fonts.sh
   
 script:
