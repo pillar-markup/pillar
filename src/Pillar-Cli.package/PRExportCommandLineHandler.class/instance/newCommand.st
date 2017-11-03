@@ -1,0 +1,4 @@
+activation
+newCommand
+	
+	^ PRExportCommand new

@@ -1,4 +1,4 @@
 activation
 activate
-	configurationInstaller := PRDependencyCommand new forFiles.
-	super activate
+	
+	self command doIt

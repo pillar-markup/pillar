@@ -1,6 +1,6 @@
 {
-	"commentStamp" : "StephaneDucasse 3/11/2017 08:57",
-	"super" : "PRDependenciesCommandLineHandler",
+	"commentStamp" : "GuillermoPolito 11/3/2017 14:53",
+	"super" : "PRSubCommandLineHandler",
 	"category" : "Pillar-Cli-Handlers",
 	"classinstvars" : [ ],
 	"pools" : [ ],

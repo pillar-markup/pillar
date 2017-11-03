@@ -1,4 +1,4 @@
 accessing
 configuration: aConfiguration
 
-	^ configuration := aConfiguration
+	configuration := aConfiguration
