@@ -10,3 +10,4 @@ tlmgr install tcolorbox
 tlmgr install environ
 tlmgr install trimspaces
 tlmgr install ctablestack
+tlmgr install import
