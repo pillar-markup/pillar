@@ -9,3 +9,4 @@ tlmgr install footmisc
 tlmgr install tcolorbox
 tlmgr install environ
 tlmgr install trimspaces
+tlmgr install ctablestack
