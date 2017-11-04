@@ -1,5 +1,7 @@
-# Install fonts required by the latex book template
+# Install packages required by the latex book template
 
 tlmgr install fira
 tlmgr install gentium-tug
 tlmgr install opensans
+
+tlmgr install varwidth
