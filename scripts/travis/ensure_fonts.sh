@@ -5,3 +5,4 @@ tlmgr install gentium-tug
 tlmgr install opensans
 
 tlmgr install varwidth
+tlmgr install footmisc
