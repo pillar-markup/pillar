@@ -8,3 +8,4 @@ tlmgr install varwidth
 tlmgr install footmisc
 tlmgr install tcolorbox
 tlmgr install environ
+tlmgr install trimspaces
