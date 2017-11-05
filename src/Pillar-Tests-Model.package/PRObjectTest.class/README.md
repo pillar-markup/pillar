@@ -1,1 +1,0 @@
-Tests for expectations that must be valid on all pillar objects

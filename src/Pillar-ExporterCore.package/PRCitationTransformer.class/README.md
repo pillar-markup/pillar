@@ -1,1 +1,0 @@
-I am a transformer which will replace the citation annotations  by a real citation structure.

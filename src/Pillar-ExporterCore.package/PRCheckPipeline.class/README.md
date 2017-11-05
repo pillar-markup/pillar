@@ -1,1 +1,0 @@
-I am the check pipeline, I contain all checkers.

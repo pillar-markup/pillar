@@ -1,1 +1,0 @@
-I generate a documentation about the different script languages from class which inherit from PRRealScriptLanguage.

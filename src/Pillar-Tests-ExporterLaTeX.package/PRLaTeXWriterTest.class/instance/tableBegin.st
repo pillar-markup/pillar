@@ -1,3 +1,0 @@
-requirements
-tableBegin
-	^ '\begin{tabular}'

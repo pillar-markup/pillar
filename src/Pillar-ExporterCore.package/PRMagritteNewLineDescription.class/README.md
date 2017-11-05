@@ -1,1 +1,0 @@
-I am a description of a new line in Pillar.

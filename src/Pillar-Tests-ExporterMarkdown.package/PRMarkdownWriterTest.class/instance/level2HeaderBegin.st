@@ -1,3 +1,0 @@
-requirements
-level2HeaderBegin
-	^ '##'

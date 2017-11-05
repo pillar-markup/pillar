@@ -1,1 +1,0 @@
-I am an internal link pointing to a structure within the current kernel. I reference my owning structure to be able to lookup the referenced structure. The referenced structure is cached in the instance variable ==target==.

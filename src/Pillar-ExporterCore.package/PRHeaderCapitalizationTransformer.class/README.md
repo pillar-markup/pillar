@@ -1,1 +1,0 @@
-I capitalize all headers following the ==level*== configuration parameters.

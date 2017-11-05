@@ -1,1 +1,0 @@
-Italic styling format

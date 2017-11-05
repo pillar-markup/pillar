@@ -1,1 +1,0 @@
-I add line numbers to each script with ==lineNumber=true==.

@@ -1,3 +1,0 @@
-private
-markup
-	^ self subclassResponsibility

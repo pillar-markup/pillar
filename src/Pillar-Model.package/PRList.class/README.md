@@ -1,1 +1,0 @@
-I am an abstract list. My children are instances of *PRListItem*.

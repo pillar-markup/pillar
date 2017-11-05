@@ -1,3 +1,0 @@
-requirements
-testFigureWithoutLabelAndWithoutCaptionAreExportedWithoutEnvironment
-	self skip: 'no figure environment in pillar'
