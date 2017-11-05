@@ -1,0 +1,3 @@
+requirements
+endSlideTag
+	^ '\end{frame}'

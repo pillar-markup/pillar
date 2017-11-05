@@ -1,0 +1,3 @@
+private
+wikiString
+	self subclassResponsibility

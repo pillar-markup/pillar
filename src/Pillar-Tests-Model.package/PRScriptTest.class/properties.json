@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRTextTest",
+	"category" : "Pillar-Tests-Model-Document",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRScriptTest",
+	"type" : "normal"
+}

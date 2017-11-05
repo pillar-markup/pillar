@@ -1,0 +1,1 @@
+I am an error raised when no input file is specified while exporting a pier document

@@ -1,0 +1,1 @@
+I am an external link with an URL (Uniform Resource Locator) as reference.

@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "TorstenBergmann 3/5/2015 21:59",
+	"super" : "PRFormat",
+	"category" : "Pillar-Model-Document",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRItalicFormat",
+	"type" : "normal"
+}

@@ -1,0 +1,1 @@
+I am a superclass of most objects within Pier. I hold a dictionary of properties, so that users can easily annotate me with new values. I am visitable.

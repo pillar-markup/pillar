@@ -1,0 +1,3 @@
+private
+possibleTransformationEnding
+	self cleanSections

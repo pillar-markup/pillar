@@ -1,0 +1,3 @@
+requirements
+dataItemWithBar
+	^ ':bar'

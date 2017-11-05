@@ -1,0 +1,3 @@
+requirements
+resultForNote
+	^ 'NOTE:'

@@ -1,0 +1,3 @@
+requirements
+figureBegin
+	^ '\begin{figure}'

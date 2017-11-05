@@ -1,0 +1,11 @@
++Pillar logo>figures/pillar.png|width=30+
+Welcome to Pillar's little user-guide !!
+
+To write a book, you can create chapters and include them into ''book.pillar'' (see the ''book.pillar'' file)
+or directly edit the file.
+If you don't know ''Pillar'', its documentation is *here>https://ci.inria.fr/pharo-contribution/job/EnterprisePharoBook/lastSuccessfulBuild/artifact/book-result/PillarChap/Pillar.html*
+
+The book is generated directly in HTML and LaTeX with the command ==make book==
+
+You can compile just one chapter with the command ==make book-result/chapterPathAndName.format==
+For example, for the first chapter in LaTeX: ==make book-result/Chapters/Chapter1/chapter1.tex==

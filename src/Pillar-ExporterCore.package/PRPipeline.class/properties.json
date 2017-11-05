@@ -1,0 +1,13 @@
+{
+	"classtraitcomposition" : "PRTPipe classTrait",
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRPipeline",
+	"commentStamp" : "YannDubois 7/12/2016 11:04",
+	"super" : "PRObject",
+	"traitcomposition" : "PRTPipe",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "Pillar-ExporterCore-Export"
+}

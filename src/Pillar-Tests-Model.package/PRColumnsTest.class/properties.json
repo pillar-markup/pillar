@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRDocumentGroupTest",
+	"category" : "Pillar-Tests-Model-Document",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRColumnsTest",
+	"type" : "normal"
+}

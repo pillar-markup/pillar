@@ -1,0 +1,3 @@
+accessing
+renderAsText
+	^ self reference

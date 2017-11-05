@@ -1,0 +1,3 @@
+helpers
+writeCounterDefinitionSeparator
+	canvas nextPutAll: '. '

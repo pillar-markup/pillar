@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "ThibaultArloing 5/4/2016 17:05",
+	"super" : "PRDocumentItem",
+	"category" : "Pillar-Model-Document",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"tag",
+		"structDict"
+	],
+	"name" : "PRStructure",
+	"type" : "normal"
+}

@@ -1,0 +1,3 @@
+helpers
+writeCounterElementSeparator
+	canvas nextPut: $.

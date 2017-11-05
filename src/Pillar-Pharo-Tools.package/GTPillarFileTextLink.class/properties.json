@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "TextAction",
+	"category" : "Pillar-Pharo-Tools-Editor",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"fileReference",
+		"presentation"
+	],
+	"name" : "GTPillarFileTextLink",
+	"type" : "normal"
+}

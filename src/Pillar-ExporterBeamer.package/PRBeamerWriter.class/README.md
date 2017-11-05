@@ -1,0 +1,1 @@
+I'm a writer generating Beamer slides from a Pillar document. Beamer is a LaTeX package specialized in slide creation.

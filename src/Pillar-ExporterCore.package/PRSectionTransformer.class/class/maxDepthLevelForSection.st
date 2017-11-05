@@ -1,0 +1,3 @@
+protected
+maxDepthLevelForSection
+	^ 7

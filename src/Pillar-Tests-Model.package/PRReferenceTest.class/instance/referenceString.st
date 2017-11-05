@@ -1,0 +1,3 @@
+private
+referenceString
+	self subclassResponsibility

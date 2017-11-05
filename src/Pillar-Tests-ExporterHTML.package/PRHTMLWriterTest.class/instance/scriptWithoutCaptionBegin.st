@@ -1,0 +1,3 @@
+requirements
+scriptWithoutCaptionBegin
+	^ '<pre><code'

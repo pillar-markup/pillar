@@ -1,0 +1,3 @@
+helpers
+referenceString
+	self subclassResponsibility

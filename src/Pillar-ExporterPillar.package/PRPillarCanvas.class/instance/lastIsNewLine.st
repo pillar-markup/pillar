@@ -1,0 +1,3 @@
+writing text
+lastIsNewLine
+	^ lastIsNewLine

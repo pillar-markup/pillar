@@ -1,0 +1,3 @@
+visiting-annotations
+visitInputFileAnnotation: anInputFileAnnotation
+	self visitAnnotation: anInputFileAnnotation

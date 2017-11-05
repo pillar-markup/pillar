@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "TudorGirba 10/5/2016 22:50",
+	"super" : "Object",
+	"category" : "Pillar-Pharo-Tools-Editor",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"start",
+		"stop"
+	],
+	"name" : "GTHighlightingCommand",
+	"type" : "normal"
+}

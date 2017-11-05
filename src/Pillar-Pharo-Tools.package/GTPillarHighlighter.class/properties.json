@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "TudorGirba 10/5/2016 13:32",
+	"super" : "PRPillarGrammar",
+	"category" : "Pillar-Pharo-Tools-Editor",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"commands"
+	],
+	"name" : "GTPillarHighlighter",
+	"type" : "normal"
+}

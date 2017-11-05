@@ -1,0 +1,2 @@
+visiting-document
+visitDocumentItem: anObject

@@ -1,0 +1,3 @@
+grammar - Paragraph
+emptyParagraph
+	^ newline

@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "PRSubCommandLineHandler",
+	"category" : "Pillar-GitBook",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"subconfName"
+	],
+	"name" : "PRPrepareForGitBookCommandLineHandler",
+	"type" : "normal"
+}

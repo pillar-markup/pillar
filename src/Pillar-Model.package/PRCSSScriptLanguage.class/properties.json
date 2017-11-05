@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "TorstenBergmann 3/5/2015 22:03",
+	"super" : "PRRealScriptLanguage",
+	"category" : "Pillar-Model-ScriptLanguage",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRCSSScriptLanguage",
+	"type" : "normal"
+}

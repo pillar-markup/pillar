@@ -1,0 +1,3 @@
+protected
+monospaceMacro
+	^ 'textcode'

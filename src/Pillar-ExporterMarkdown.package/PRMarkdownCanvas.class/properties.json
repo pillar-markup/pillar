@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "YannDubois 6/3/2016 09:13",
+	"super" : "PRHTMLCanvas",
+	"category" : "Pillar-ExporterMarkdown",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"lastIsNewLine"
+	],
+	"name" : "PRMarkdownCanvas",
+	"type" : "normal"
+}

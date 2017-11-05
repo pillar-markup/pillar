@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "CyrilFerlicot 6/16/2015 18:07",
+	"super" : "Object",
+	"category" : "Pillar-ExporterCore-Configuration",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"stream"
+	],
+	"name" : "PRTransformersDocumentation",
+	"type" : "normal"
+}

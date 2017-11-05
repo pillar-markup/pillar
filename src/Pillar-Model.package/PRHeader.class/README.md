@@ -1,0 +1,1 @@
+I represent a header within a document. My level is a natural number.

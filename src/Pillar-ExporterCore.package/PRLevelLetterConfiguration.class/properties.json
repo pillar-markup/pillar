@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "CyrilFerlicot 5/18/2015 14:57",
+	"super" : "PRTitleConfiguration",
+	"category" : "Pillar-ExporterCore-Configuration",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRLevelLetterConfiguration",
+	"type" : "normal"
+}

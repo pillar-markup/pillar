@@ -1,0 +1,1 @@
+I'm an exception class representing errors that happens while exporting a pillar document.

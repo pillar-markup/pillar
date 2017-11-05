@@ -1,0 +1,3 @@
+testing
+hasAlias
+	^ self hasChildren

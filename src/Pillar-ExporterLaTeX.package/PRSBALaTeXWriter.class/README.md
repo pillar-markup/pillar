@@ -1,0 +1,1 @@
+Writes LaTeX code in the style expected by sbabook (https://github.com/cdlm/sbabook). sbabook is a special LaTeX book class for our technical books.

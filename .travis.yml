@@ -1,0 +1,36 @@
+language: smalltalk
+sudo: false
+
+os:
+  - linux
+  - osx
+
+smalltalk:
+  - Pharo-6.1
+  - Pharo-5.0
+
+env:
+  matrix:
+  - JOB=test
+  - JOB=build
+  - JOB=integration ARCHETYPE=book
+  - JOB=integration ARCHETYPE=presentation
+  - JOB=integration ARCHETYPE=welcome
+  
+install:
+  - . scripts/travis/ensure_latex.sh
+  - scripts/travis/ensure_fonts.sh
+  
+script:
+  - if [[ ${JOB} == "test"        ]]; then "$SMALLTALK_CI_HOME/run.sh"; fi
+  - if [[ ${JOB} == "build"       ]]; then "scripts/build.sh"; zip -ry9 pillar.zip build; fi
+  - if [[ ${JOB} == "integration" ]]; then "scripts/integration-tests/testarchetype.sh" "${ARCHETYPE}"; fi
+
+deploy:
+  provider: releases
+  file: pillar.zip
+  skip_cleanup: true
+  on:
+    tags:true
+  api_key:
+    secure: DdZ/hZsprzRFIye5mZHl15PnDfw9Ftll/1hedeevo6AjrkNwmZoPhy+eDhayYplK+PsXYGNSiBKf+P6lpNsXbkvGYMnPl3i3B5/hOzBnHE3+KHzfWP+UOPqsZaROHDf7/ntkpOTHNG2VEAq5Aklwm62NKfOXs95QVmI1myunaOzOuAiRVfBivltCa6rVaOZ25QDJobqtq5vCzvcp8r/f/IclprJhvhKAtGxaSdSWySC9BO2JQs7QMxft97GgB03MMl539N0Y0Bk12t+PfwJb7+AT3JS5wgp/4tb9AHWGbu9epOUZvOx6BDvwNZ2BrefllJC/0QFuqmohk1sWCbd5gO6JvKn/mFyFk3rzW3gqKZnet2iAI6cSUPrnBEhMIwL3SRPQ/xrNg0fExD0IS3UrN71Kt2BaeYSGAl9R4cRRIbBUqJ69HNi8n7chIjEEfAzWxMZFQfAYeNiwsoxw5BqANwIR/IM5wRCtUuqVkREk1FqJCsK3dRh4IYyCClI+B3hgwEliDhwT/00v/rGs1NQ2IGdq6aojbD07DFIZi5jFNDx5Ti8o/cc0MhQFOvtlfR1MdE0k0j8hCNo7BI5dYT7XBV9dM9yADurrUxUPcXxE4qiAvtkuPod6C/dSAOXYSvuT6LcwEb44BXBJopGbKj0B8EdyCJUtp4RIhMaD1DmVL4k=

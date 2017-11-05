@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "StephaneDucasse 6/28/2016 21:06",
+	"super" : "PRDocumentWriter",
+	"category" : "Pillar-ExporterPillar",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"nesting",
+		"markupsToEscape"
+	],
+	"name" : "PRPillarWriter",
+	"type" : "normal"
+}

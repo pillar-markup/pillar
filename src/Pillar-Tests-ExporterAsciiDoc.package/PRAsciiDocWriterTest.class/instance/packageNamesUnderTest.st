@@ -1,0 +1,3 @@
+requirements
+packageNamesUnderTest
+	^ #('Pillar-ExporterAsciiDoc')

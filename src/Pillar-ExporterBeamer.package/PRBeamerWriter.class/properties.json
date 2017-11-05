@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "DamienCassou 4/2/2015 14:38",
+	"super" : "PRLaTeXWriter",
+	"category" : "Pillar-ExporterBeamer",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRBeamerWriter",
+	"type" : "normal"
+}

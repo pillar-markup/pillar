@@ -1,0 +1,3 @@
+requirements
+referenceToFigurePierLogo
+	^ '\ref{pierLogo}'

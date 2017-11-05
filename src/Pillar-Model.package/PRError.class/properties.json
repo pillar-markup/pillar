@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "TorstenBergmann 3/5/2015 22:09",
+	"super" : "Error",
+	"category" : "Pillar-Model-Exceptions",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRError",
+	"type" : "normal"
+}

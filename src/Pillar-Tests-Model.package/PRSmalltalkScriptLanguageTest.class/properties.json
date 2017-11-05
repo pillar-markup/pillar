@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRAbstractScriptLanguageTest",
+	"category" : "Pillar-Tests-Model-ScriptLanguage",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRSmalltalkScriptLanguageTest",
+	"type" : "normal"
+}

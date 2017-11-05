@@ -1,0 +1,3 @@
+private
+expectedUrlForSimpleReferenceString
+	self subclassResponsibility 

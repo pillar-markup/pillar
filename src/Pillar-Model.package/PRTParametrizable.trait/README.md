@@ -1,0 +1,1 @@
+I'm a trait that proposes parameter-related methods.

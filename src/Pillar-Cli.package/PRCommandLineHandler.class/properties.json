@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "StephaneDucasse 3/11/2017 08:38",
+	"super" : "BasicCommandLineHandler",
+	"category" : "Pillar-Cli",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRCommandLineHandler",
+	"type" : "normal"
+}

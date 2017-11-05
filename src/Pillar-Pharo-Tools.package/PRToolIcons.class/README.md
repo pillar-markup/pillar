@@ -1,0 +1,1 @@
+An icon cache

@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "TorstenBergmann 3/5/2015 22:17",
+	"super" : "PRDocumentWriter",
+	"category" : "Pillar-ExporterLaTeX",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRLaTeXWriter",
+	"type" : "normal"
+}

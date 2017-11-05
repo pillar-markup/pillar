@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "StephaneDucasse 3/31/2015 10:24",
+	"super" : "CCConfiguration",
+	"category" : "Pillar-ExporterCore-Configuration",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"HeaderConfigurations"
+	],
+	"instvars" : [
+		"verbose",
+		"separateOutputFiles",
+		"disabledPhases",
+		"newLine"
+	],
+	"name" : "PRPillarConfiguration",
+	"type" : "normal"
+}

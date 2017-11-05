@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "YannDubois 4/25/2016 16:47",
+	"super" : "PRDependencies",
+	"category" : "Pillar-Model-Visitor",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRFileDependencies",
+	"type" : "normal"
+}

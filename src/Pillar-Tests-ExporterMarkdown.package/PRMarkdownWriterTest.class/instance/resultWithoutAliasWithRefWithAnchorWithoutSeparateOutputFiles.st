@@ -1,0 +1,3 @@
+requirements
+resultWithoutAliasWithRefWithAnchorWithoutSeparateOutputFiles
+	^ '(#foo)'

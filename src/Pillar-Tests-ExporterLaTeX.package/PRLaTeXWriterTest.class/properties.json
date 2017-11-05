@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRDocumentWriterTest",
+	"category" : "Pillar-Tests-ExporterLaTeX",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRLaTeXWriterTest",
+	"type" : "normal"
+}

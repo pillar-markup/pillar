@@ -1,0 +1,3 @@
+requirement
+acceptedLanguagesRegex
+	^ '^$|', self standardName

@@ -1,0 +1,3 @@
+requirements
+scriptAnchorForMyScript
+	^ 'label=myScript'

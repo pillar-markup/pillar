@@ -1,0 +1,1 @@
+I replace each ==inputFile== annotation with the content of the referenced file.

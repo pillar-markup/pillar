@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "CyrilFerlicot 10/28/2015 22:37",
+	"super" : "PRObject",
+	"category" : "Pillar-Model-Document",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"counter",
+		"start",
+		"stop"
+	],
+	"name" : "PRDocumentItem",
+	"type" : "normal"
+}

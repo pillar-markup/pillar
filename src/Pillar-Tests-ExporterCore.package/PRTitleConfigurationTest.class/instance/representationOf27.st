@@ -1,0 +1,3 @@
+requirement
+representationOf27
+	^ self subclassResponsibility

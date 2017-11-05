@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "GTHighlightingCommand",
+	"category" : "Pillar-Pharo-Tools-Editor",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "GTHeadingHighlightingCommand",
+	"type" : "normal"
+}

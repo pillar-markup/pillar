@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "StephaneDucasse 2/8/2017 12:19",
+	"super" : "PRAbstractBuilder",
+	"category" : "Pillar-Cli",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRArchetypeConfigurationInstaller",
+	"type" : "normal"
+}

@@ -1,0 +1,3 @@
+accessing
+canvasClass
+	^ self subclassResponsibility

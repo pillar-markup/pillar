@@ -1,0 +1,3 @@
+requirements
+resultForWarning
+	^ 'WARNING:'

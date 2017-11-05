@@ -1,0 +1,60 @@
+% -*- mode: latex; -*- mustache tags: {{=« »=}} «! the '&' below prevents HTML escaping. »
+
+\documentclass{beamer}
+
+\usepackage[frenchb]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{pgfpages}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    numberstyle=\tiny\color{codegreen},
+    breaklines=true,
+    captionpos=b,
+    tabsize=2,
+    basicstyle=\ttfamily\scriptsize
+}
+
+\lstset{style=mystyle}
+
+\usetheme{Warsaw}
+
+\setbeamercolor{structure}{fg=red!90!black}
+
+\title{«& title»}
+\subtitle{«& subtitle»}
+\author{«& author»}
+\institute{«& complement»}
+\date{\today}
+
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
+\setbeamercolor{footline}{fg=blue}
+\setbeamerfont{footline}{series=\bfseries}
+\setbeamertemplate{headline}{}
+
+\begin{document}
+
+    \frame[plain]{\titlepage}
+    \frame[plain]{\tableofcontents}
+
+    «& content»
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
