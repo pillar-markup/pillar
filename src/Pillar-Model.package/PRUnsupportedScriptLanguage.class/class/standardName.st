@@ -1,4 +1,0 @@
-protected
-standardName
-
-	^ 'unsupported language'

@@ -1,1 +1,0 @@
-Abstract writer to facilitate the job of writers that need their headers/figures/scripts to be numbered. My subclasses include the html and markdown writers. On the contrary, the latex writer relies on the latex engine to number these elements automatically.

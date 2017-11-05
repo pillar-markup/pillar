@@ -1,3 +1,0 @@
-requirements
-underlineFoo
-	^ 'foo'

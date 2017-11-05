@@ -1,1 +1,0 @@
-I replace each script with a ==fromFile== parameter with the content of the referenced file.

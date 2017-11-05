@@ -1,3 +1,0 @@
-accessing
-writers
-	^ #(#tocmenu #navmenu)

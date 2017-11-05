@@ -1,3 +1,0 @@
-testing
-hasCaption
-	^ self hasChildren

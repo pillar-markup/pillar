@@ -1,3 +1,0 @@
-*Pillar-ExporterCore
-visitScriptLanguageDescription: aScriptLanguageDescription
-	self visitElementDescription: aScriptLanguageDescription

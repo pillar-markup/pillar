@@ -1,3 +1,0 @@
-accessing
-renderAsText
-	^ self reference

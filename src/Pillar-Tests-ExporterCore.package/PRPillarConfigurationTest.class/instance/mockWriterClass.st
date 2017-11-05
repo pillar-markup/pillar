@@ -1,3 +1,0 @@
-helper
-mockWriterClass
-	^ PRMockWriter 

@@ -1,3 +1,0 @@
-requirements
-tableCellWithHeadingFoo
-	^ '\textbf{foo}'

@@ -1,1 +1,0 @@
-Write a Pillar document to an AsciiDoc document

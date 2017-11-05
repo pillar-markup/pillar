@@ -1,3 +1,0 @@
-testing
-hasAlias
-	^ self hasChildren

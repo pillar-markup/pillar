@@ -1,3 +1,0 @@
-requirements
-scriptAnchorForMyScript
-	^ self subclassResponsibility

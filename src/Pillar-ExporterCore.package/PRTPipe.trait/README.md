@@ -1,1 +1,0 @@
-I am a trait used to factorize similar behavior on PRPipeline and PRPhase.

@@ -1,3 +1,0 @@
-common-defaults
-defaultNext
-	^ nil

@@ -1,3 +1,0 @@
-*Pillar-ExporterCore
-visitPathOrStreamDescription: aPathOrStreamDescription
-	self visitElementDescription: aPathOrStreamDescription

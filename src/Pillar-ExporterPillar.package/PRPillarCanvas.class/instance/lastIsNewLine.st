@@ -1,3 +1,0 @@
-writing text
-lastIsNewLine
-	^ lastIsNewLine

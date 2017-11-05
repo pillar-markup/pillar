@@ -1,1 +1,0 @@
-I transform a script structure with the associated structure.

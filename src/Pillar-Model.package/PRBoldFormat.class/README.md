@@ -1,1 +1,0 @@
-Bold styling format

@@ -1,3 +1,0 @@
-tests
-testLinkToAFigureIsExternalLink
-	self expectedFailures
