@@ -11,3 +11,4 @@ tlmgr install environ
 tlmgr install trimspaces
 tlmgr install ctablestack
 tlmgr install import
+tlmgr install multirow
