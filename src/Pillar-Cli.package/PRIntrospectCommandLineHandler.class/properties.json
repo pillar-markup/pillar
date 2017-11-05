@@ -1,11 +1,11 @@
 {
-	"commentStamp" : "GuillermoPolito 11/3/2017 14:53",
+	"commentStamp" : "StephaneDucasse 6/1/2017 12:16",
 	"super" : "PRSubCommandLineHandler",
 	"category" : "Pillar-Cli-Handlers",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "PRFileDependencyCommandLineHandler",
+	"name" : "PRIntrospectCommandLineHandler",
 	"type" : "normal"
 }

@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "StephaneDucasse 3/9/2017 21:25",
 	"super" : "CommandLineHandler",
-	"category" : "Pillar-Cli",
+	"category" : "Pillar-Cli-Handlers",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

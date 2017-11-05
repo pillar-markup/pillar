@@ -13,9 +13,6 @@ env:
   matrix:
   - JOB=test
   - JOB=build
-  - JOB=integration ARCHETYPE=book
-  - JOB=integration ARCHETYPE=presentation
-  - JOB=integration ARCHETYPE=welcome
   
 install:
   - . scripts/travis/ensure_latex.sh
@@ -24,7 +21,6 @@ install:
 script:
   - if [[ ${JOB} == "test"        ]]; then "$SMALLTALK_CI_HOME/run.sh"; fi
   - if [[ ${JOB} == "build"       ]]; then "scripts/build.sh"; zip -ry9 pillar.zip build; fi
-  - if [[ ${JOB} == "integration" ]]; then "scripts/integration-tests/testarchetype.sh" "${ARCHETYPE}"; fi
 
 deploy:
   provider: releases

@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "GuillermoPolito 11/3/2017 10:18",
+	"super" : "PRAbstractCommand",
+	"category" : "Pillar-Cli-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRIntrospectCommand",
+	"type" : "normal"
+}
