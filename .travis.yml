@@ -1,12 +1,6 @@
 language: smalltalk
 sudo: false
 
-addons:
-  postgresql: "9.4"
-  apt:
-    packages:
-    - texlive-full
-
 os:
   - linux
   - osx
@@ -19,6 +13,10 @@ env:
   matrix:
   - JOB=test
   - JOB=build
+  
+install:
+  - . scripts/travis/ensure_latex.sh
+  - scripts/travis/ensure_fonts.sh
   
 script:
   - if [[ ${JOB} == "test"        ]]; then "$SMALLTALK_CI_HOME/run.sh"; fi
