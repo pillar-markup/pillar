@@ -8,7 +8,7 @@ introspect: aValue
 	(specialAccess includes: aValue)
 		ifTrue: [ aValue = 'chapters'
 				ifTrue: [ | files string |
-					files := configuration propertyAt: 'chapters' ifAbsent: [ nil ].
+					files := self configuration propertyAt: 'chapters' ifAbsent: [ nil ].
 					string := ''.
 					files ifNotNil: [ files do: [ :each | string := string , each ] separatedBy: [ string := string , ' ' ] ].
 					^ string ] ].
