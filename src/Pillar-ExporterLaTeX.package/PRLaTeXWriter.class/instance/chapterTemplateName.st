@@ -1,0 +1,4 @@
+templating
+chapterTemplateName
+	
+	^ 'latexChapterTemplate'

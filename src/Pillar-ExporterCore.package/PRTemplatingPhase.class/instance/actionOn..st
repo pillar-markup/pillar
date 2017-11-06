@@ -1,10 +1,14 @@
 actions
 actionOn: aPillarContext
-	| writer content |
+	| writer content metadata template |
 	writer := aPillarContext configuration outputType new.
+
 	content := writer write: aPillarContext input.
-	^ (MustacheTemplate on: (aPillarContext configuration baseDirectory / 'support' / 'templates' / 'main.latex.mustache') readStream contents)
+	metadata := self metadataConfigurationForDocument: aPillarContext input.
+	template := self templateForFile: self configuration inputFile usingWriter: writer.
+	
+	^ (MustacheTemplate on: (aPillarContext configuration baseDirectory / template) readStream contents)
 		value:
-			{('title' -> 'Grgrgrgr').
-			('attribution' -> 'Super cool').
+			{('title' -> (metadata propertyAt: 'title')). 
+			('attribution' -> (metadata propertyAt: 'attribution')).
 			('content' -> content)} asDictionary

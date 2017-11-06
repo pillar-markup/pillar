@@ -5,4 +5,7 @@ actionOn: anInput
 	fileReference ensureDelete.
 	fileReference parent ensureCreateDirectory.
 	fileReference writeStreamDo: [ :stream | stream nextPutAll: anInput ].
+	
+	self createSymbolicLink.
+	
 	^ anInput
