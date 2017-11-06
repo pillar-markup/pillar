@@ -1,6 +1,5 @@
 PILLAR_HOME ?= $(shell pwd)
 PILLAR_EXEC ?= $(PILLAR_HOME)/pillar
-MUSTACHE_EXEC ?= $(PILLAR_HOME)/mustache
 
 $(call check_defined, HTMLTEMPLATE, Template for main document in HTML)
 $(call check_defined, HTMLCHAPTERTEMPLATE, Template for individual chapters in HTML)
@@ -12,16 +11,8 @@ htmlbook: $(OUTPUTDIRECTORY)/$(MAIN).html
 htmlchapters: $(CHAPTERS:%=$(OUTPUTDIRECTORY)/%.html)
 
 clean: html-clean
-html-clean:
-	for f in $(addprefix $(OUTPUTDIRECTORY)/,$(MAIN) $(CHAPTERS)); do \
-		rm -f "$$f.html.json" ; \
-	done
+html-clean: # Nothing
 
-$(OUTPUTDIRECTORY)/$(MAIN).html.json: $(CHAPTERS:%=%.pillar)
-$(OUTPUTDIRECTORY)/%.html.json: %.pillar | prepare
-	$(PILLAR_EXEC) export --to="HTML" --outputDirectory=$(OUTPUTDIRECTORY) --outputFile=$< $<
-
-$(OUTPUTDIRECTORY)/$(MAIN).html: TEMPLATE = $(HTMLTEMPLATE)
-$(CHAPTERS:%=$(OUTPUTDIRECTORY)/%.html): TEMPLATE = $(HTMLCHAPTERTEMPLATE)
-$(OUTPUTDIRECTORY)/%.html: $(OUTPUTDIRECTORY)/%.html.json $(TEMPLATE)
-	$(MUSTACHE_EXEC) --data=$< --template=$(TEMPLATE) > $@
+$(OUTPUTDIRECTORY)/$(MAIN).html: $(CHAPTERS:%=%.pillar)
+$(OUTPUTDIRECTORY)/%.html: %.pillar | prepare
+	$(PILLAR_EXEC) export --to="HTML" --outputDirectory=$(OUTPUTDIRECTORY) --outputFile=$@ $<

@@ -1,6 +1,5 @@
 PILLAR_HOME ?= $(shell pwd)
 PILLAR_EXEC ?= $(PILLAR_HOME)/pillar
-MUSTACHE_EXEC ?= $(PILLAR_HOME)/mustache
 
 $(call check_defined, LATEXTEMPLATE, Template for main document in PDF)
 $(call check_defined, LATEXCHAPTERTEMPLATE, Template for individual chapters in PDF)
@@ -21,18 +20,13 @@ clean: pdf-clean
 pdf-clean:
 	for f in $(addprefix $(OUTPUTDIRECTORY)/,$(MAIN) $(CHAPTERS)); do \
 		latexmk -cd -f -c "$$f" ; \
-		rm -f "$$f.tex" "$$f.tex.json" "$$f.d" $$(dirname $$f)/Makefile; \
+		rm -f "$$f.tex" "$$f.d" $$(dirname $$f)/Makefile; \
 	done
 
 # LaTeX sources generation from Pillar & templates
-$(OUTPUTDIRECTORY)/$(MAIN).tex.json: $(CHAPTERS:%=%.pillar)
-$(OUTPUTDIRECTORY)/%.tex.json: %.pillar | prepare
-	$(PILLAR_EXEC) export --to="LaTeX" --outputDirectory=$(OUTPUTDIRECTORY) --outputFile=$< $<
-
-$(OUTPUTDIRECTORY)/$(MAIN).tex: TEMPLATE = $(LATEXTEMPLATE)
-$(CHAPTERS:%=$(OUTPUTDIRECTORY)/%.tex): TEMPLATE = $(LATEXCHAPTERTEMPLATE)
-$(OUTPUTDIRECTORY)/%.tex: $(OUTPUTDIRECTORY)/%.tex.json $(TEMPLATE)
-	$(MUSTACHE_EXEC) --data=$< --template=$(TEMPLATE) > $@
+$(OUTPUTDIRECTORY)/$(MAIN).tex: $(CHAPTERS:%=%.pillar)
+$(OUTPUTDIRECTORY)/%.tex: %.pillar | prepare
+	$(PILLAR_EXEC) export --to="LaTeX" --outputDirectory=$(OUTPUTDIRECTORY) --outputFile=$@ $<
 
 # Generated rules for each alternate PDF format
 define FORMAT_rule
@@ -46,7 +40,7 @@ clean: $(1)-clean
 $(1)-clean:
 	for f in $$(patsubst %,$$(OUTPUTDIRECTORY)/%.$(1),$$(MAIN) $$(CHAPTERS)); do \
 		latexmk -cd -f -c "$$$$f" ; \
-		rm -f "$$$$f.tex" "$$$$f.tex.json" "$$$$f.d"; \
+		rm -f "$$$$f.tex" "$$$$f.d"; \
 	done
 
 # LaTeX wrapper files for alternate formats
