@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRPhase",
+	"category" : "Pillar-ExporterCore-Export",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRTemplatingPhase",
+	"type" : "normal"
+}

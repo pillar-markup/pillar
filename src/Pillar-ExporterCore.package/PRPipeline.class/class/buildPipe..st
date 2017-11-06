@@ -1,4 +1,6 @@
 building
 buildPipe: aConfiguration
-	 ^ (LPPipeline pipes: (self allPipes: aConfiguration))
-		addAllDependencies: (self allDependencies: aConfiguration) sort
+	 ^ (LPPipeline 
+			pipes: (self allPipes: aConfiguration))
+			pipelineClass: self;
+			addAllDependencies: (self allDependencies: aConfiguration) sort
