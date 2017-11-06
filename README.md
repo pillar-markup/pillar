@@ -1,27 +1,33 @@
 # Pillar
 
-Markup syntax and associated tools to write and generate documentation, books and slides
+[![Build Status](https://travis-ci.org/pillar-markup/pillar.svg?branch=stable)](https://travis-ci.org/pillar-markup/pillar)
 
-[http://www.smalltalkhub.com/#!/~Pier/Pillar](http://www.smalltalkhub.com/#!/~Pier/Pillar)
+Pillar is a markup syntax and tool-suite to generate documentation, books and slides.
 
 Read the documentation at [https://ci.inria.fr/pharo-contribution/job/EnterprisePharoBook/lastSuccessfulBuild/artifact/book-result/PillarChap/Pillar.html](https://ci.inria.fr/pharo-contribution/job/EnterprisePharoBook/lastSuccessfulBuild/artifact/book-result/PillarChap/Pillar.html).
 [Other formats](https://ci.inria.fr/pharo-contribution/job/EnterprisePharoBook/lastSuccessfulBuild/artifactbook-result/PillarChap/)
 
-## Download Pillar (50)
+## Installation
 
+To install this version of pillar, clone this repository and call the `build.sh` script in it:
+
+```bash
+$ git clone git@github.com:pillar-markup/pillar.git -b stable
+$ ./pillar/build/build.sh
 ```
-wget https://raw.githubusercontent.com/pillar-markup/pillar/master/download.sh
-chmod +x download.sh
-./download.sh
+
+That will create a `build` directory in the working directory and build pillar in there. You can then proceed to install pillar where in your home:
+
+```bash
+$ mv build ~/.pillar
 ```
-## Obtaining the software
-you can find the pharo image 
 
-[https://ci.inria.fr/pharo-contribution/job/pillar/](https://ci.inria.fr/pharo-contribution/job/pillar/)
+And then add that directory to the `PILLAR_HOME` and `HOME` environment variables, for example, by modifying your `.bashrc` with
 
-## Follow the tutorial
-
-[https://ci.inria.fr/pharo-contribution/job/EnterprisePharoBook/lastSuccessfulBuild/artifact/book-result/PillarChap/Pillar.html]
+```bash
+export PILLAR_HOME="$HOME/.pillar"
+export PATH="$PATH:$PILLAR_HOME"
+```
 
 ## To compile a book in booklet format
 
@@ -30,20 +36,26 @@ you can find the pharo image
 make spiral
 ```
 
-## You can get everything prepackaged
+## Dependencies
 
-Sometimes installing LaTeX can be cumbersome. You can use a docker install with everything prepackaged. 
+Producing pdf documents with pillar requires a `LaTeX` with the following packages:
+
+- fira
+- gentium-tug
+- opensans
+- varwidth
+- footmisc
+- tcolorbox
+- environ
+- trimspaces
+- ctablestack
+- import
+- multirow
+
+For this, the simplest way to install `LaTeX` is to install texlive-full in your system. Alternatively, you can use a docker install with everything prepackaged. 
 
 ```
 https://github.com/cdlm/docker-texlive
 ```
 
-## Tips
-
-Just a little note to be able to use travis to publish the pdf on git. 
-In the git repo
-
-```
-gem install travis
-travis setup releases
-```
+Otherwise, you can do a manual `LaTeX` install in both linux and osx, as we do in our travis builds. Check our [ensure_latex](scripts/travis/ensure_latex.sh) and [ensure_book_dependencies](scripts/travis/ensure_book_dependencies.sh) scripts.

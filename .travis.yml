@@ -19,7 +19,7 @@ env:
   
 install:
   - . scripts/travis/ensure_latex.sh
-  - scripts/travis/ensure_fonts.sh
+  - scripts/travis/ensure_book_dependencies.sh
   
 script:
   - if [[ ${JOB} == "test"        ]]; then "$SMALLTALK_CI_HOME/run.sh"; fi
