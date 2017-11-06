@@ -1,6 +1,5 @@
 activation
 activate
 
-	configurationInstaller := PRExportCommand new.
-	configurationInstaller doIt.
+	self command doIt.
 	self exitSuccess

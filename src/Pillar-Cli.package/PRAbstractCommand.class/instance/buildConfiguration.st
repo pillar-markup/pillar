@@ -14,4 +14,4 @@ buildConfiguration
 	This is wrong particularly for Pharo <=6 where the working directory is not correctly set."
 	^ PRPillarConfiguration 
 			newFromFile: confFileReference
-			extendedWith: (extraArguments copyWith: ('baseDirectory' -> confFileReference))
+			extendedWith: (extraArguments copyWith: ('baseDirectory' -> workingDirectory))
