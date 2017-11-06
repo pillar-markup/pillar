@@ -10,10 +10,4 @@ extraArguments
 	
 	"We filter out some arguments"
 	argumentsDictionary := (pairs reject: [ :p | self class argumentsOutOfConfiguration includes: p key ]) asDictionary.
-	
-	"We introduce as inputFile the last argument"
-	argumentsDictionary
-		at: 'inputFile' 
-		ifAbsentPut: [ self arguments last ].
-	
 	^ argumentsDictionary
