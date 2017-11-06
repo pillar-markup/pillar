@@ -36,6 +36,18 @@ export PATH="$PATH:$PILLAR_HOME"
 make spiral
 ```
 
+## Usage in Developement
+
+Once built, you can use the artifact in the `build` directory to work. To finish setting up the development environment, do the following:
+- configure the iceberg repository (using the `add local repository` option pointing to your git root)
+- open your environment using `cd build && ./pharo-ui Pharo.image`
+
+If you want to debug the pillar command line handlers you can invoke pillar using the `pillar-db` command that is right next to the `pillar` one. This command will open a graphical IDE that will allow you to debug and test properly.
+
+```bash
+$ pillar-db introspect something
+```
+
 ## Dependencies
 
 Producing pdf documents with pillar requires a `LaTeX` with the following packages:
