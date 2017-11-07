@@ -1,17 +1,22 @@
 actions
 actionOn: aPillarContext
-	| writer metadata template templatedOutput document |
+	| writer template templatedOutput document templateValues |
+	
+	"We get the flattened meta-data obtained from the file header and the pillar configuration
+	We add the text contents to the dictionary.
+	This dictionary will be used by the mustache"
+	templateValues := (self metadataConfigurationForDocument: aPillarContext input pillarDocument) allProperties.
+	templateValues at: #content put: aPillarContext input outputText.
+	
+	"Obtain the corresponding mustache template and apply it"
 	writer := aPillarContext configuration outputType new.
-	metadata := self metadataConfigurationForDocument: aPillarContext input pillarDocument.
 	template := writer templateForContext: aPillarContext.
 	templatedOutput := (MustacheTemplate on: (aPillarContext configuration baseDirectory / template) readStream contents)
-		value:
-			{('title' -> (metadata propertyAt: 'title')).
-			('attribution' -> (metadata propertyAt: 'attribution')).
-			('author' -> (metadata propertyAt: 'author')).
-			('content' -> aPillarContext input outputText)} asDictionary.
+		value: templateValues.
+	
 	document := PROutputDocument new.
 	document pillarDocument: aPillarContext input pillarDocument.
 	document outputText: templatedOutput.
 	aPillarContext input: document.
+	
 	^ aPillarContext

@@ -5,7 +5,9 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"writer"
+	],
 	"name" : "PROutputFormattingPhase",
 	"type" : "normal"
 }
