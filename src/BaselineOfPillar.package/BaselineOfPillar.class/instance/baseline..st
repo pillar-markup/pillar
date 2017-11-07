@@ -1,8 +1,6 @@
 baselines
 baseline: spec
-	
 	<baseline>
-	
 	spec
 		for: #common
 		do: [ spec blessing: #baseline.
@@ -21,7 +19,7 @@ baseline: spec
 				project: 'LightPhaser'
 					with: [ spec
 						className: #ConfigurationOfLightPhaser;
-						versionString: #stable;
+						versionString: '1.0.1';
 						repository: 'http://smalltalkhub.com/mc/Pier/LightPhaser/main/' ];
 				project: 'PetitParser'
 					with: [ spec
