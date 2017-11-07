@@ -5,9 +5,9 @@ testEnsureNewFileWhenExporting
 	configuration := self fromString: '{ #outputFile: "foo.html", #outputType: "html" }'.
 	phase := self actualClass new configuration: configuration.
 	
-	document := PRDocument new
-		add: (PRText content: 'short');
-		yourself.
+	document := PROutputDocument new.
+	document outputText: 'short'.
+
 	pillarContext := PRCompilationContext withDocument: document withConfiguration: configuration.
 	phase exportInput: pillarContext.
 	self assert: (FileSystem workingDirectory / 'foo.html') readStream contents asString equals: 'short'.

@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "GuillermoPolito 11/7/2017 10:56",
+	"super" : "PRObject",
+	"category" : "Pillar-ExporterCore-Export",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"pillarDocument",
+		"outputText"
+	],
+	"name" : "PROutputDocument",
+	"type" : "normal"
+}

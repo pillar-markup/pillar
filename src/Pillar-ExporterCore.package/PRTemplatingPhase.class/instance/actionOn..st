@@ -1,14 +1,17 @@
 actions
 actionOn: aPillarContext
-	| writer content metadata template |
+	| writer metadata template templatedOutput document |
 	writer := aPillarContext configuration outputType new.
-
-	content := writer write: aPillarContext input.
-	metadata := self metadataConfigurationForDocument: aPillarContext input.
+	metadata := self metadataConfigurationForDocument: aPillarContext input pillarDocument.
 	template := self templateForFile: self configuration inputFile usingWriter: writer.
-	
-	^ (MustacheTemplate on: (aPillarContext configuration baseDirectory / template) readStream contents)
+	templatedOutput := (MustacheTemplate
+		on: (aPillarContext configuration baseDirectory / template) readStream contents)
 		value:
-			{('title' -> (metadata propertyAt: 'title')). 
+			{('title' -> (metadata propertyAt: 'title')).
 			('attribution' -> (metadata propertyAt: 'attribution')).
-			('content' -> content)} asDictionary
+			('content' -> aPillarContext input outputText)} asDictionary.
+	document := PROutputDocument new.
+	document pillarDocument: aPillarContext input pillarDocument.
+	document outputText: templatedOutput.
+	aPillarContext input: document.
+	^ aPillarContext
