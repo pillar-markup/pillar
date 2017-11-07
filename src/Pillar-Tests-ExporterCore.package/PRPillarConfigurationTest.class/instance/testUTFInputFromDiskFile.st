@@ -14,9 +14,10 @@ testUTFInputFromDiskFile
 				inputFile: file;
 				outputStream: s;
 				outputType: PRTextWriter;
+				disabledPhases: { #templating };
 				export ].
 	
-	expected := self jsonStreamWithContent: (self someUnicodeString ).
+	expected := self someUnicodeString.
 		
 	file ensureDelete.
 	self assert: output equals: expected contents

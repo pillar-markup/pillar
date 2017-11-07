@@ -16,11 +16,12 @@ testUTFInputFromMemoryFile
 			inputFile: file;
 			outputType: PRTextWriter;
 			outputStream: s;
+			disabledPhases: {#templating};
 			export.
 	].
 	
 	file ensureDelete.
 	
-	expected := self jsonStreamWithContent: (self someUnicodeString ).
+	expected := self someUnicodeString.
 	
 	self assert: output equals: expected contents.

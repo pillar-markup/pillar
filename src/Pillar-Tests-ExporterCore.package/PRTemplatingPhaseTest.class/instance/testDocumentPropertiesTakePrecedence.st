@@ -4,10 +4,11 @@ testDocumentPropertiesTakePrecedence
 	doc := PRDocument new
 		propertyAt: 'title' put: 'Should win';
 		yourself.
-	conf :=  self configurationClass  new.
+	conf := self configurationClass new.
 	conf title: 'Should fail'.
 	data := self actualClass new
 		configuration: conf;
-		extractDataFrom: doc using: PRMockWriter new.
+		metadataConfigurationForDocument: doc.
+		
 	self assert: (data hasProperty: 'title').
 	self assert: (data propertyAt: 'title') equals: 'Should win'
