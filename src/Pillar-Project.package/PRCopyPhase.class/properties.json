@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Pillar-Project",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"directoryName",
+		"directory",
+		"configuration"
+	],
+	"name" : "PRCopyPhase",
+	"type" : "normal"
+}

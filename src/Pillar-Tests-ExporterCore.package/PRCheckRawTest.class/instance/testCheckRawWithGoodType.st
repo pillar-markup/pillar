@@ -1,4 +1,4 @@
-as yet unclassified
+tests
 testCheckRawWithGoodType
 	| input |
 	input := PRDocument new
@@ -9,8 +9,7 @@ testCheckRawWithGoodType
 		yourself.
 	self
 		assert:
-			(self actualClass
-				executeOn:
+			(self actualClass executeOn:
 					(PRCompilationContext
 						withDocument: input
 						withConfiguration: self configurationClass new)) input

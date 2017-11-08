@@ -1,4 +1,4 @@
-as yet unclassified
+tests
 testCheckRawWithWrongType
 	| input |
 	input := PRDocument new

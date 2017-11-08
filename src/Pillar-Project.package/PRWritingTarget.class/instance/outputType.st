@@ -1,0 +1,4 @@
+accessing
+outputType
+	
+	^ self subclassResponsibility

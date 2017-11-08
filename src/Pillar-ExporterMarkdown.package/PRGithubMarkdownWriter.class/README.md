@@ -1,1 +1,4 @@
-I am a writer for the GitHub markdown which differs a bit from the `original` markdown.
+I am a writer for GitHub Flavored Markdown
+https://github.github.com/gfm/
+
+GFM is based on CommonMark and adds couple of extensions.

@@ -1,5 +1,7 @@
-I am an annotation that mark a citation.
-
+I am an annotation that represents a bibliographic citation.
+	
+	${cite:Duca99a}$
+	
 My tag is: 'cite'.
 
 I can have in parameter:
@@ -8,6 +10,6 @@ I can have in parameter:
 
 Examples: 
 
-${cite:foo}$
+	${cite:foo}$
 
-${cite:ref=foo}$
+	${cite:ref=foo}$

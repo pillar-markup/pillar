@@ -1,18 +1,12 @@
 visiting-document
 visitTableRow: aTableRow
+	"https://github.github.com/gfm/#tables-extension-"
 
-	stream << '| '.
-	self visitAll: aTableRow children separatedBy: [ stream << ' | ' ].
-	firstRow ifTrue: [ 
-		stream newLine.
-		firstRow := false.
-		
-		aTableRow children do: [ :aTableCell | 
-			stream << '| '.	
-				aTableCell isAligned 
-					ifTrue: [
-						aTableCell isAlignedLeft ifTrue: [ stream << ':---' ].
-						aTableCell isAlignedCenter ifTrue: [ stream << ':---:' ].
-						aTableCell isAlignedRight ifTrue: [ stream << '---:' ] ]
-					ifFalse: [ stream << ':---:' ] ] ].
+	canvas raw: '| '.
+	self visitAll: aTableRow children separatedBy: [ canvas raw: ' | ' ].
+	canvas raw: ' |'.
+	"GFM doesn't recognize tables without headers, so we always use the first row as headers (alternatively the header row would have to be empty)"
+	firstRow
+		ifTrue: [ firstRow := false.
+			self writeTableConfiguration: aTableRow ].
 	stream newLine

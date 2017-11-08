@@ -6,7 +6,7 @@
 		"hadAllKeys"
 	],
 	"name" : "PRAbstractAnnotation",
-	"commentStamp" : "CyrilFerlicot 10/28/2015 22:53",
+	"commentStamp" : "StephaneDucasse 10/3/2017 22:05",
 	"super" : "PRDocumentItem",
 	"traitcomposition" : "PRTParametrizable",
 	"type" : "normal",

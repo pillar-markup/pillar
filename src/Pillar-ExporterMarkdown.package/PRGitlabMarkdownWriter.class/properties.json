@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "PeterUhnak 8/26/2017 22:19",
+	"super" : "PRMarkdownWriter",
+	"category" : "Pillar-ExporterMarkdown",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"firstRow"
+	],
+	"name" : "PRGitlabMarkdownWriter",
+	"type" : "normal"
+}

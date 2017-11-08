@@ -1,0 +1,4 @@
+accessing
+defaultOutputDirectoryName
+
+	^ '_result'

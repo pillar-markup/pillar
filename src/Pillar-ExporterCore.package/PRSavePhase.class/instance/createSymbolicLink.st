@@ -1,6 +1,9 @@
 actions
 createSymbolicLink
 	| linkName |
+	
+	true ifTrue: [ ^ self ].
+	
 	(self configuration outputFile isStream
 		or: [ self configuration outputDirectory
 				= self configuration baseDirectory ])

@@ -1,1 +1,2 @@
-I am a visitor generating markdown documents
+I am a writer for CommonMark
+http://spec.commonmark.org/0.28/

@@ -1,11 +1,9 @@
 private
 verifyAnchorName: aString
-	"Verify an anchor name, if it has the form 'anchorName@aNumber', the occurence number on 
-	 the dictionary is change by aNumber if it is greater than the occurence and if anchorName 
-	 is a key on the dictionary"
+	"Verify an anchor name, if it has the form 'anchorName@aNumber', the occurence number on  the dictionary is changed by aNumber if it is greater than the occurence and if anchorName is a key on the dictionary"
 	| anchorParts anchorLastPart realAnchorName |
 	
-	anchorParts := (aString substrings: '@') asOrderedCollection .
+	anchorParts := (aString substrings: '@') asOrderedCollection.
 	(anchorParts size > 1)  ifFalse: [ ^ self ].
 	anchorLastPart := (anchorParts at: (anchorParts size)).
 	

@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "PRObject",
+	"category" : "Pillar-Project",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"baseDirectory"
+	],
+	"name" : "PRProject",
+	"type" : "normal"
+}

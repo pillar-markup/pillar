@@ -1,7 +1,8 @@
 adding
 addAnchorOf: aPRHeader
+
 	| anchorText headerText |
-	headerText := aPRHeader children first text.
+	headerText := aPRHeader headerText.
 	
 	occurenceOfHeader at: headerText ifAbsentPut: 0.
 	occurenceOfHeader at: headerText put: ((occurenceOfHeader at: headerText) + 1).

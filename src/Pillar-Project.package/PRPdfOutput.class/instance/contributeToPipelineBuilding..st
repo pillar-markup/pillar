@@ -1,0 +1,7 @@
+building
+contributeToPipelineBuilding: aPRPipelineBuilder 
+	
+	aPRPipelineBuilder outputFormatter: PRLaTeXWriter new.
+	aPRPipelineBuilder addPostFormattingTransformation: PRTemplatingPhase new.
+	aPRPipelineBuilder addPillarDocumentTransformation: PRRelativeReferenceTransformer new.
+	aPRPipelineBuilder addPostSaveTransformation: PRPDFLatexCompilationPhase new.

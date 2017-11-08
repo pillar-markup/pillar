@@ -5,7 +5,6 @@ addLineNumberTo: aScript
 	| text firstOccurence number |
 	text := aScript text.
 	number := 1.
-	stream := String new writeStream.
 	firstOccurence := text indexOfSubCollection: self configuration newLine.
 	[ firstOccurence = 0 ]
 		whileFalse: [ 

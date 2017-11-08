@@ -1,0 +1,2 @@
+I'm a visitor used to compute file and image dependencies using a cache. 
+I should be moved to a separate package. Probably together with the Command Line handlers that expose the functionalities to the command line. 

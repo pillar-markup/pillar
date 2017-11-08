@@ -1,0 +1,4 @@
+accessing
+outputDirectoryName
+	
+	^ self subclassResponsibility

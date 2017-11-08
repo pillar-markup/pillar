@@ -1,3 +1,5 @@
 visiting-document
 visitMonospaceFormat: aFormat
-	canvas raw: '`', aFormat text, '`'
+	"http://spec.commonmark.org/0.28/#code-spans"
+
+	canvas raw: '`' , aFormat text , '`'

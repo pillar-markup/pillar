@@ -6,7 +6,7 @@
 		"caption"
 	],
 	"name" : "PRScript",
-	"commentStamp" : "TorstenBergmann 3/5/2015 22:02",
+	"commentStamp" : "StephaneDucasse 10/3/2017 21:57",
 	"super" : "PRText",
 	"traitcomposition" : "PRTParametrizable",
 	"type" : "normal",

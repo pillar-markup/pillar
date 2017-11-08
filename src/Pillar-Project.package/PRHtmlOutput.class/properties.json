@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRWritingTarget",
+	"category" : "Pillar-Project",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRHtmlOutput",
+	"type" : "normal"
+}

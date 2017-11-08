@@ -1,9 +1,8 @@
 visiting-document
 visitScript: aScript
 	aScript hasLabel
-		ifTrue: [ self createAnchorWith: aScript label.
-			canvas newLine ].
-	self scriptLayout: aScript.
+		ifTrue: [ self createAnchorWith: aScript label ].
+	self writeScript: aScript.
 	aScript hasCaption
 		ifTrue: [ canvas
 				raw: '**' , aScript caption text , '**';

@@ -8,7 +8,7 @@ testAnchorWithSimpleTitleAndAnchorWithSameName
 		add:
 				(PRHeader new	level: 2;
 						add: (PRText content: 'foo'));
-						add: (PRAnchor named: 'foo@41') yourself..
+						add: (PRAnchor named: 'foo@41') yourself.
 	
 	expected := PRDocument new
 		add:

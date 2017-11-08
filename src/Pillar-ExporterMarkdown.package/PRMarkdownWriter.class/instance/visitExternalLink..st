@@ -1,3 +1,5 @@
 visiting-document
 visitExternalLink: anExternalLink
-	self writeExternalLink: anExternalLink.
+	"http://spec.commonmark.org/0.28/#links"
+
+	self writeExternalLink: anExternalLink

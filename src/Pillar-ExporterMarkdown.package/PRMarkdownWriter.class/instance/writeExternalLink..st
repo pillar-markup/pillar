@@ -1,3 +1,7 @@
 private
-writeExternalLink: aExternalLink
-	canvas raw: '[', aExternalLink alias, '](', aExternalLink localFileOrExternalReference, ')'
+writeExternalLink: anExternalLink
+	"http://spec.commonmark.org/0.28/#links"
+
+	canvas raw: '['.
+		self visitDocumentGroup: anExternalLink.
+	canvas raw: '](' , anExternalLink localFileOrExternalReference , ')'

@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "CopyVisitor",
+	"category" : "Pillar-Project",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"conflictResolutionBlock"
+	],
+	"name" : "PRFileCopyVisitor",
+	"type" : "normal"
+}

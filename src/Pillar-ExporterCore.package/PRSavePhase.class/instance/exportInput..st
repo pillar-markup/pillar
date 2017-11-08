@@ -1,14 +1,20 @@
 actions
 exportInput: aPillarContext
-	| fileReference contentToWrite |
+	| contentToWrite relativePath extension outputFileReference outputFormat |
 	contentToWrite := aPillarContext input outputText.
 
 	"We should clean streams vs files here"
 	self configuration outputFile isStream
 		ifTrue: [ self configuration outputFile nextPutAll: contentToWrite.
 			^ self ].
-	fileReference := self configuration outputDirectory
-		resolve: self configuration outputFile.
-	fileReference ensureDelete.
-	fileReference parent ensureCreateDirectory.
-	fileReference writeStreamDo: [ :stream | stream nextPutAll: contentToWrite ]
+
+	outputFormat := self configuration propertyAt: #_outputFormat.
+	extension := outputFormat extension.
+	relativePath := self configuration input file path
+		relativeTo: self configuration baseDirectory path.
+	outputFileReference := ((self configuration outputDirectory / outputFormat outputDirectoryName
+		resolve: relativePath parent) / relativePath basename), extension.
+	
+	outputFileReference ensureDelete.
+	outputFileReference parent ensureCreateDirectory.
+	outputFileReference writeStreamDo: [ :stream | stream nextPutAll: contentToWrite ]

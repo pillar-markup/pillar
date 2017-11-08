@@ -7,3 +7,4 @@ SystemOrganization addCategory: 'Pillar-Model-Numbering'!
 SystemOrganization addCategory: 'Pillar-Model-Render'!
 SystemOrganization addCategory: 'Pillar-Model-ScriptLanguage'!
 SystemOrganization addCategory: 'Pillar-Model-Visitor'!
+SystemOrganization addCategory: 'Pillar-Model-Visitor - Non Core'!

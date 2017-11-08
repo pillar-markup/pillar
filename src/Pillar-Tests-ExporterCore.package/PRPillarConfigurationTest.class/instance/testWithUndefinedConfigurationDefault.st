@@ -2,5 +2,5 @@ tests
 testWithUndefinedConfigurationDefault
 	(self configurationClass newFromString: '{}')
 		inputString: 'input';
-		disabledPhases: {#templating};
+		disabledPhases: {#templating . #saving};
 		export: 'mock'

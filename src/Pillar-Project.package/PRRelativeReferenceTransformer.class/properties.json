@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRPhase",
+	"category" : "Pillar-Project",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRRelativeReferenceTransformer",
+	"type" : "normal"
+}
