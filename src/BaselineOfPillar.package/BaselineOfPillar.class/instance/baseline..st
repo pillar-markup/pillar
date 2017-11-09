@@ -22,7 +22,7 @@ baseline: spec
 				project: 'LightPhaser'
 					with: [ spec
 						className: #ConfigurationOfLightPhaser;
-						versionString: '1.0.1';
+						versionString: '1.0.2';
 						repository: 'http://smalltalkhub.com/mc/Pier/LightPhaser/main/' ];
 				project: 'PetitParser'
 					with: [ spec
