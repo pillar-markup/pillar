@@ -6,5 +6,7 @@ SmalltalkCISpec {
       #platforms : [ #pharo ]
     }
   ],
-  #packages : [ 'Pillar-Tests-Integration' ]
+  #testing : {
+    #packages : [ 'Pillar-Tests-Integration' ]
+  }
 }
