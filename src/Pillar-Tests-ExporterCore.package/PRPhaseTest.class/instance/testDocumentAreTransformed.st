@@ -1,13 +1,14 @@
 tests
 testDocumentAreTransformed
-	| configuration input output expected |
+	| configuration input output |
 	input := 'Foo'.
 	output := WriteStream on: String new.
 	configuration :=  self configurationClass  new
 		inputString: input;
 		outputStream: output;
 		outputType: PRMockWriter;
+		propertyAt: #_outputFormat put: PRMockWriter new;
+		disabledPhases: { #templating };
 		export.
-		
-	expected := self jsonStreamWithContent: 'FooBarTimoleon'.
-	self assert: (Json readFrom: output contents readStream) equals: (Json readFrom: expected contents readStream).
+
+	self assert: output contents equals: 'FooBarTimoleon'.

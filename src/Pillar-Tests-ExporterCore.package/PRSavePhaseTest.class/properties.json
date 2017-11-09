@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "PRExportPhaseTest",
+	"name" : "PRSavePhaseTest",
 	"type" : "normal"
 }

@@ -7,8 +7,8 @@ testTransformerCanBeDisable
 		inputString: input;
 		outputStream: output;
 		outputType: PRMockWriter;
-		disabledPhases: (Array with: 'mock');
+		propertyAt: #_outputFormat put: PRMockWriter new;
+		disabledPhases: { #templating . #mock };
 		export.
 	
-	expected := self jsonStreamWithContent: 'Foo'.
-	self assert: (Json readFrom: output contents readStream) equals: (Json readFrom: expected contents readStream).
+	self assert: output contents equals: input
