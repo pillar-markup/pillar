@@ -7,8 +7,8 @@ SmalltalkCISpec {
     }
   ],
   #testing : {
-    #include : {
-      #categories : [ 'OSSubprocess-Tests-Unit' ]
+    #exclude : {
+      #packages : [ 'Pillar-Tests-Integration' ]
     }
   }
 }

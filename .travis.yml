@@ -11,20 +11,17 @@ smalltalk:
 
 env:
   matrix:
-  - JOB=test
+  - JOB=test TYPE=Unit
+  - JOB=test TYPE=Integration
   - JOB=build
-  - JOB=integration ARCHETYPE=welcome
-  - JOB=integration ARCHETYPE=book
-  - JOB=integration ARCHETYPE=presentation
   
 install:
-  - . scripts/travis/ensure_latex.sh
-  - scripts/travis/ensure_book_dependencies.sh
+  - if [[ ${TYPE} == "Integration" ]]; then . scripts/travis/ensure_latex.sh; fi
+  - if [[ ${TYPE} == "Integration" ]]; then scripts/travis/ensure_book_dependencies.sh fi
   
 script:
-  - if [[ ${JOB} == "test"        ]]; then "$SMALLTALK_CI_HOME/run.sh"; fi
+  - if [[ ${JOB} == "test"        ]]; then "$SMALLTALK_CI_HOME/run.sh" ".smalltalk.${TYPE}.ston"; fi
   - if [[ ${JOB} == "build"       ]]; then "scripts/build.sh"; zip -ry9 pillar.zip build; fi
-  - if [[ ${JOB} == "integration" ]]; then "scripts/integration-tests/testarchetype.sh" "${ARCHETYPE}"; fi
 
 deploy:
   provider: releases

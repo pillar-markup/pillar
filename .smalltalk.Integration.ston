@@ -1,0 +1,10 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'Pillar',
+      #directory : 'src',
+      #platforms : [ #pharo ]
+    }
+  ],
+  #packages : [ 'Pillar-Tests-Integration' ]
+}
