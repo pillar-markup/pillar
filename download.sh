@@ -29,7 +29,7 @@ get_image() {
     trap "rm '$tempzip'" EXIT
 
     wget ${CERTCHECK} --progress=bar:force --output-document="$tempzip" "$IMAGE_URL"
-    for f in $(zipinfo -1 "$tempzip"); do
+    for f in $(unzip -Z -1 "$tempzip"); do
         ext="${f##*.}"
         file=$(basename $f)
         if [ "$ext" == image -o "$ext" == changes ]; then
