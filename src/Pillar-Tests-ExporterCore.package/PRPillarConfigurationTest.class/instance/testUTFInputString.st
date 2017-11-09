@@ -7,6 +7,7 @@ testUTFInputString
 				inputString: self someUnicodeString;
 				outputType: PRTextWriter;
 				outputStream: s;
+				propertyAt: #_outputFormat put: PRTextWriter new;
 				disabledPhases: {#templating};
 				export ].
 	expected := self someUnicodeString.

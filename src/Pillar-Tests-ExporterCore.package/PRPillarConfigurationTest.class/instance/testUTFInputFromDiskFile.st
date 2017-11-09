@@ -14,6 +14,7 @@ testUTFInputFromDiskFile
 				inputFile: file;
 				outputStream: s;
 				outputType: PRTextWriter;
+				propertyAt: #_outputFormat put: PRTextWriter new;
 				disabledPhases: { #templating };
 				export ].
 	

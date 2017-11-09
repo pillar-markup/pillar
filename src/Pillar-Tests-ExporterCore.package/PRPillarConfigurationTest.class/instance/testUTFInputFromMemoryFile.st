@@ -16,6 +16,7 @@ testUTFInputFromMemoryFile
 			inputFile: file;
 			outputType: PRTextWriter;
 			outputStream: s;
+			propertyAt: #_outputFormat put: PRTextWriter new;
 			disabledPhases: {#templating};
 			export.
 	].

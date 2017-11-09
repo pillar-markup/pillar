@@ -19,6 +19,7 @@ testSupportFilesWithFolderInsideOutputDirectoryAreNotExported
 	config
 		inputString: 'Test';
 		outputStream: String new writeStream;
+		propertyAt: #_outputFormat put: PRMockWriter new;
 		disabledPhases: { #templating };
 		export: #text.
 	self assert: (folder / 'bar' / 'bar' / 'foo.html') exists not

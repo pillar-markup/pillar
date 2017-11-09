@@ -16,6 +16,7 @@ testDefaultConfigurationsExistsWithOthersConfigurations
 	(self configurationClass newFromString: ston)
 		inputString: 'Test';
 		outputStream: output;
+		propertyAt: #_outputFormat put: PRMockWriter new;
 		disabledPhases: {#templating};
 		export: 'mock'.
 	self assert: output contents equals: expected contents
