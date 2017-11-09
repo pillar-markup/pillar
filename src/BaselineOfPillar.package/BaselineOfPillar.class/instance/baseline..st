@@ -6,10 +6,10 @@ baseline: spec
 		do: [ spec blessing: #baseline.
 			spec repository: 'http://smalltalkhub.com/mc/Pier/Pillar/main/'.
 			spec
-				project: 'Cocoon'
+				baseline: 'OSSubprocess'
 					with: [ spec
 						repository: 'github://marianopeck/OSSubprocess:v0.2.5/repository' ];
-				baseline: 'OSSubprocess'
+				project: 'Cocoon'
 					with: [ spec
 						className: #ConfigurationOfCocoon;
 						versionString: #stable;
