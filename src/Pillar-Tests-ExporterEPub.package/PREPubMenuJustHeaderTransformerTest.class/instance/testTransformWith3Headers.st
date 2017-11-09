@@ -44,5 +44,7 @@ testTransformWith3Headers
 				with:
 					(self configuration
 						outputType: self actualWriterClass;
+						propertyAt: #_outputFormat put: self actualWriterClass new;
+						disabledPhases: { #templating };
 						yourself))
 		equals: expected

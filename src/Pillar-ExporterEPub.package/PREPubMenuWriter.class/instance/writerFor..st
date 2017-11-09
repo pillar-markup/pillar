@@ -1,0 +1,4 @@
+accessing
+writerFor: aConfiguration
+
+	^ self
