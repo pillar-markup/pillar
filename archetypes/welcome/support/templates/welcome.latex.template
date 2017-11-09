@@ -1,0 +1,37 @@
+% -*- mode: latex; -*- mustache tags: {{=« »=}} «! the '&' below prevents HTML escaping. »
+\documentclass[11pt,a4paper,twoside,english]{book}
+\let\wholebook=\relax
+
+\usepackage{import}
+\subimport{support/latex/}{common.tex}
+
+
+% =================================================================
+\title{«& title»}
+\author{«& attribution»}
+
+\hypersetup{
+  pdftitle = {«& title»},
+  pdfauthor = {«& attribution»},
+  pdfkeywords = {«& keywords»}
+}
+
+
+% =================================================================
+\begin{document}
+
+\maketitle
+
+\frontmatter
+\tableofcontents
+% \listoffigures
+% \listoftables
+
+\mainmatter
+
+«& content»
+
+\backmatter
+% Index would go here
+
+\end{document}

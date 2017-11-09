@@ -4,7 +4,6 @@
 
 \usepackage[frenchb]{babel}
 \usepackage[T1]{fontenc}
-\usepackage[latin1]{inputenc}
 \usepackage{pgfpages}
 \usepackage{listings}
 \usepackage{color}
