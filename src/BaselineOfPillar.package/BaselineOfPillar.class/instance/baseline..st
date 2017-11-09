@@ -8,6 +8,9 @@ baseline: spec
 			spec
 				project: 'Cocoon'
 					with: [ spec
+						repository: 'github://marianopeck/OSSubprocess:v0.2.5/repository' ];
+				baseline: 'OSSubprocess'
+					with: [ spec
 						className: #ConfigurationOfCocoon;
 						versionString: #stable;
 						repository: 'http://smalltalkhub.com/mc/PharoExtras/Cocoon/main' ];
