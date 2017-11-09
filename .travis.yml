@@ -18,10 +18,10 @@ env:
 install:
   - if [[ ${TYPE} == "Integration" ]]; then . scripts/travis/ensure_latex.sh; fi
   - if [[ ${TYPE} == "Integration" ]]; then scripts/travis/ensure_book_dependencies.sh; fi
-  - if [[ ${TYPE} == "Integration" ]]; then cp -r archetypes $SMALLTALK_CI_HOME; fi
+  - if [[ ${TYPE} == "Integration" ]]; then cp -r archetypes $SMALLTALK_CI_BUILD; fi
   
 script:
-  - if [[ ${JOB} == "test"        ]]; then "$SMALLTALK_CI_BUILD/run.sh" ".smalltalk.${TYPE}.ston"; fi
+  - if [[ ${JOB} == "test"        ]]; then "$SMALLTALK_CI_HOME/run.sh" ".smalltalk.${TYPE}.ston"; fi
   - if [[ ${JOB} == "build"       ]]; then "scripts/build.sh"; zip -ry9 pillar.zip build; fi
 
 deploy:
