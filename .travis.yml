@@ -18,6 +18,7 @@ env:
 install:
   - if [[ ${TYPE} == "Integration" ]]; then . scripts/travis/ensure_latex.sh; fi
   - if [[ ${TYPE} == "Integration" ]]; then scripts/travis/ensure_book_dependencies.sh; fi
+  - if [[ ${TYPE} == "Integration" ]]; then cp -r archetypes $SMALLTALK_CI_HOME; fi
   
 script:
   - if [[ ${JOB} == "test"        ]]; then "$SMALLTALK_CI_HOME/run.sh" ".smalltalk.${TYPE}.ston"; fi
