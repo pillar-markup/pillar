@@ -1,0 +1,4 @@
+parameters
+archetypeWelcome
+
+	^  'welcome'

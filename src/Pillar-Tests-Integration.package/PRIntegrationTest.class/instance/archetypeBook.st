@@ -1,0 +1,4 @@
+parameters
+archetypeBook
+
+	^ 'book'

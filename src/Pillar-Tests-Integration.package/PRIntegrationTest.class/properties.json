@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "PRParameterizableTestCase",
+	"category" : "Pillar-Tests-Integration",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"projectDirectory",
+		"project"
+	],
+	"name" : "PRIntegrationTest",
+	"type" : "normal"
+}

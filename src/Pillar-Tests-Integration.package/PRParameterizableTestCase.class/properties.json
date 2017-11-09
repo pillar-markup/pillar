@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "GuillermoPolito 11/9/2017 14:03",
+	"super" : "TestCase",
+	"category" : "Pillar-Tests-Integration",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"testArguments"
+	],
+	"name" : "PRParameterizableTestCase",
+	"type" : "normal"
+}

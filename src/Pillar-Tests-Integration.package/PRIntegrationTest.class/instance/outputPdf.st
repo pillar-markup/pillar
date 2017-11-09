@@ -1,0 +1,4 @@
+parameters
+outputPdf
+
+	^ PRPdfOutput new

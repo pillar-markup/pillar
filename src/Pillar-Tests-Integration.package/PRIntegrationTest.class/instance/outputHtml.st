@@ -1,0 +1,4 @@
+parameters
+outputHtml
+
+	^ PRHtmlOutput new

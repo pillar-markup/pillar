@@ -1,0 +1,4 @@
+parameters
+archetypeBasicLatex
+
+	^ 'basic-latex'
