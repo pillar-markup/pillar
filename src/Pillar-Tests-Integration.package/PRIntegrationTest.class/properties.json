@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "PRParameterizableTestCase",
+	"super" : "TestCase",
 	"category" : "Pillar-Tests-Integration",
 	"classinstvars" : [ ],
 	"pools" : [ ],

@@ -12,3 +12,5 @@ My instances contain then:
  - an array with a permutation of selctors corresponding each to each argument name
 
 My #performTest method is defined  to obtain all test arguments using the argument selectors and then perform the test selector providing those arguments.
+
+I am not used so far because I don't work in SmalltalkCI
