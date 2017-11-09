@@ -1,0 +1,4 @@
+pipeline
+contributeToPipelineBuilding: aPRPipelineBuilder 
+	
+	aPRPipelineBuilder addPillarDocumentTransformation: self

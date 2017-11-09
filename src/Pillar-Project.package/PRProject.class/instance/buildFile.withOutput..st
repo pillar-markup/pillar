@@ -5,7 +5,6 @@ buildFile: inputDocument withOutput: output
 	fileConfiguration := (PRPillarConfiguration newFromDictionary: {
 		'input' -> inputDocument.
 		'_outputFormat' -> output.
-		'outputType' -> output outputType.
 		'_project' -> self.
 	} asDictionary)
 		parent: self configuration.

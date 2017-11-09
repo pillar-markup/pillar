@@ -1,4 +1,5 @@
 building
 contributeToPipelineBuilding: aPRPipelineBuilder 
 	
-	aPRPipelineBuilder outputFormatter: PRHTMLWriter new
+	aPRPipelineBuilder outputFormatter: PRHTMLWriter new.
+	aPRPipelineBuilder addPostFormattingTransformation: PRTemplatingPhase new.

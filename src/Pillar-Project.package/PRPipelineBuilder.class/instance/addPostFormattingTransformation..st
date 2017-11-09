@@ -1,0 +1,3 @@
+accessing
+addPostFormattingTransformation: aTransformation
+	postFormattingTransformations add: aTransformation
