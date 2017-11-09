@@ -8,4 +8,11 @@ testInclude1File
 				level: 2;
 				add: (PRText content: 'Hello World');
 				yourself).
-	self assert: (self executePhase: input) equals: result
+	
+	self
+		assert: (self
+			executePhase: input
+			with: (self configuration
+				input: input;
+				yourself))
+		equals: result

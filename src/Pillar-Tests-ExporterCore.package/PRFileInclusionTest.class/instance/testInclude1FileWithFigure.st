@@ -12,4 +12,11 @@ testInclude1FileWithFigure
 						yourself);
 				yourself);
 		yourself.
-	self assert: (self executePhase: input) equals: result
+	
+	self
+		assert: (self
+			executePhase: input
+			with: (self configuration
+				input: input;
+				yourself))
+		equals: result

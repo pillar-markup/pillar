@@ -14,4 +14,11 @@ testInclude1FileInto1Include
 				add: (PRText content: 'Bye World');
 				yourself);
 		yourself.
-	self assert: (self executePhase: input) equals: result
+	
+	self
+		assert: (self
+			executePhase: input
+			with: (self configuration
+				input: input;
+				yourself))
+		equals: result
