@@ -62,6 +62,8 @@ baseline: spec
 					with: [ spec requires: #('PetitParser' 'Pillar-Model') ];
 				package: 'Pillar-Pharo-Tools'
 					with: [ spec requires: #('Pillar-Model' 'All exporters') ];
+				package: 'Pillar-Project'
+					with: [ spec requires: #('Pillar-Model' 'All exporters' 'OSSubprocess') ];
 				package: #'Pillar-Tests-Cli' with: [ spec requires: #('Pillar-Cli') ];
 				package: #'Pillar-Tests-ExporterAsciiDoc'
 					with: [ spec requires: #(#'Pillar-ExporterAsciiDoc' 'Pillar-Tests-ExporterCore') ];
@@ -87,11 +89,15 @@ baseline: spec
 				package: 'Pillar-Tests-Model'
 					with: [ spec requires: #('Pillar-Model' 'Pillar-ExporterPillar' 'Pillar-ExporterText') ];
 				package: 'Pillar-Tests-PetitPillar'
-					with: [ spec requires: #('PetitParserTest' 'Pillar-PetitPillar') ].
+					with: [ spec requires: #('PetitParserTest' 'Pillar-PetitPillar') ];
+				package: 'Pillar-Tests-Project'
+					with: [ spec requires: #('Pillar-Project') ];
+				package: 'Pillar-Tests-Integration'
+					with: [ spec requires: #('Pillar-Project') ].
 			spec
 				group: 'ALL' with: #('All tests' 'All but tests');
 				group: 'All but tests'
-					with: #('All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'Pillar-GitBook' 'parser');
+					with: #('All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'Pillar-GitBook' 'parser' 'Pillar-Project');
 				group: 'All exporter tests'
 					with:
 					#('html exporter tests' 'latex exporter tests' 'beamer exporter tests' 'deckjs exporter tests' 'markdown exporter tests' 'pillar exporter tests' 'text exporter tests' 'asciidoc exporter tests' 'ePub exporter tests');
@@ -100,7 +106,7 @@ baseline: spec
 					#('html exporter' 'latex exporter' 'beamer exporter' 'deckjs exporter' 'markdown exporter' 'pillar exporter' 'text exporter' 'asciidoc exporter' 'ePub exporter');
 				group: 'All tests'
 					with:
-					#('All exporter tests' 'Pillar-Tests-Model' 'Pillar-Tests-ExporterCore' #'Pillar-Tests-Cli' 'parser tests');
+					#('All exporter tests' 'Pillar-Tests-Model' 'Pillar-Tests-ExporterCore' #'Pillar-Tests-Cli' 'parser tests' 'Pillar-Tests-Project' 'Pillar-Tests-Integration' );
 				group: 'asciidoc exporter' with: #(#'Pillar-ExporterAsciiDoc');
 				group: 'asciidoc exporter tests'
 					with: #(#'Pillar-Tests-ExporterAsciiDoc' 'ePub exporter');
