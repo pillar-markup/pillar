@@ -17,7 +17,6 @@ rm -rf ${__builddir} && mkdir -p ${__builddir} && cd ${__builddir}
 wget --quiet -O - get.pharo.org/${PHARO_VERSION} | bash
 PHARO="./pharo Pharo.image"
 ${PHARO} eval --save "Metacello new baseline: 'Pillar'; repository: 'filetree://${__dir}/../src'; load"
-${PHARO} config http://smalltalkhub.com/mc/NorbertHartl/Mustache/main ConfigurationOfMustache --install=bleedingEdge
 
 ${PHARO} eval --save "Deprecation raiseWarning: false."
 ${PHARO} eval --save "Deprecation showWarning: false."
