@@ -10,7 +10,9 @@
 ]{hyperref}
 
 % Lulu only supports PDF format version 1.3
-\pdfminorversion=3
+% Since we use lualatex to compile, we need to use this command
+% https://tex.stackexchange.com/questions/374991/lualatex-and-pdfminorversion
+\directlua{pdf.setminorversion(3)}
 
 % showing code, inline and as blocks
 \usepackage{listings}
