@@ -7,7 +7,7 @@ executeOn: aPRCompilationContext
 		file"
 	
 	
-	| extension relativePath outputFileReference outputFormat outputDirectory |
+	| extension relativePath outputFileReference outputFormat outputDirectory process |
 	
 	configuration := aPRCompilationContext configuration.
 	outputFormat := configuration propertyAt: #_outputFormat.
@@ -17,13 +17,16 @@ executeOn: aPRCompilationContext
 		relativeTo: configuration baseDirectory path.
 	outputFileReference := ((outputDirectory resolve: relativePath parent) / relativePath basename), extension.
 	
-	OSSUnixSubprocess new
+	process := OSSUnixSubprocess new
 		command: 'latexmk';
 		workingDirectory: outputDirectory fullName;
 		arguments: { 
 			'-pdflatex=lualatex' .
 			'-pdf' .
 			'-ps-' .
+			'-interaction=nonstopmode' .
 			'-outdir=', outputFileReference parent fullName.
 			outputFileReference fullName };
-		runAndWait
+		runAndWait.
+	process isSuccess ifFalse: [
+		self error: 'command latexmk failed' ]
