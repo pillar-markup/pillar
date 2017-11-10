@@ -1,4 +1,0 @@
-activation
-newCommand
-
-	^ PRArchetypeConfigurationInstallerCommand new

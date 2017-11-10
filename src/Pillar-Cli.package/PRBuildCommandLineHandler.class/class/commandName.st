@@ -1,3 +1,3 @@
 accessing
 commandName
-	^ 'export'
+	^ 'build'

@@ -1,5 +1,5 @@
 activation
 activate
 
-	self command installArchetype: self requestedArchetype.
+	self project archetype: self requestedArchetype.
 	self exitSuccess

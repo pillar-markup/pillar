@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "PRExportCommandLineHandler",
+	"name" : "PRBuildCommandLineHandler",
 	"type" : "normal"
 }
