@@ -18,6 +18,7 @@ env:
 install:
   - if [[ ${TYPE} == "Integration" ]]; then . scripts/travis/ensure_latex.sh; fi
   - if [[ ${TYPE} == "Integration" ]]; then scripts/travis/ensure_book_dependencies.sh; fi
+  - if [[ ${TYPE} == "Integration" ]]; then mkdir -p $SMALLTALK_CI_BUILD; fi
   - if [[ ${TYPE} == "Integration" ]]; then cp -r archetypes $SMALLTALK_CI_BUILD; fi
   
 script:
