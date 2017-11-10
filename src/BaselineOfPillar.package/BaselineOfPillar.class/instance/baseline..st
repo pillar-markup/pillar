@@ -11,6 +11,7 @@ baseline: spec
 						repository: 'github://marianopeck/OSSubprocess:v0.2.5/repository' ];
 				project: 'Mustache'
 					with: [ spec
+						className: #ConfigurationOfMustache;
 						versionString: '0.74';
 						repository: 'http://smalltalkhub.com/mc/NorbertHartl/Mustache/main'
 						 ];
