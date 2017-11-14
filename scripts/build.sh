@@ -12,7 +12,7 @@ __builddir="$(pwd)/build"
 
 PHARO_VERSION=61+vm
 
-rm -rf ${__builddir} && mkdir -p ${__builddir} && cd ${__builddir}
+rm -rf "${__builddir}" && mkdir -p "${__builddir}" && cd "${__builddir}"
 
 wget --quiet -O - get.pharo.org/${PHARO_VERSION} | bash
 PHARO="./pharo Pharo.image"
@@ -26,5 +26,5 @@ ${PHARO} eval --save "StartupPreferencesLoader allowStartupScript: false."
 ${PHARO} eval --save "PharoFilesOpener default unsetInformAboutReadOnlyChanges."
 ${PHARO} eval --save "Smalltalk logFileName: '/tmp/pillar.log'"
 
-cp ${__dir}/wrappers/* ${__builddir}
-cp -r ${__dir}/../archetypes ${__builddir}/archetypes
+cp "${__dir}/wrappers/*" "${__builddir}"
+cp -r "${__dir}/../archetypes" "${__builddir}/archetypes"
