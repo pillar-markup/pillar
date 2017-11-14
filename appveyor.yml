@@ -8,8 +8,10 @@ environment:
 
   matrix:
     - SMALLTALK: Pharo-6.1
+      SMALLTALK_CI_TIMEOUT:30
       SMALLTALK_CONFIG: .smalltalk.Unit.ston
     - SMALLTALK: Pharo-5.0
+      SMALLTALK_CI_TIMEOUT:30
       SMALLTALK_CONFIG: .smalltalk.Unit.ston
 
 platform:
