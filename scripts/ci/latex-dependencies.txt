@@ -8,7 +8,6 @@ environ
 trimspaces
 ctablestack
 import
-multirow
 listings
 url
 import
