@@ -97,11 +97,33 @@ Producing pdf documents with pillar requires a `LaTeX` with the following packag
 - ctablestack
 - import
 - multirow
+- listings
+- url
+- import
 
-For this, the simplest way to install `LaTeX` is to install texlive-full in your system. Alternatively, you can use a docker install with everything prepackaged. 
+### *nix specificities
+
+The simplest way to install `LaTeX` is to install texlive-full in your system. Alternatively, you can use a docker install with everything prepackaged. 
 
 ```
 https://github.com/cdlm/docker-texlive
 ```
 
 Otherwise, you can do a manual `LaTeX` install in both linux and osx, as we do in our travis builds. Check our [ensure_latex](scripts/travis/ensure_latex.sh) and [ensure_book_dependencies](scripts/travis/ensure_book_dependencies.sh) scripts.
+
+### Windows specificities
+
+Install a `LaTeX` distribution such as [MiKTeX](https://miktex.org/) and install the dependencies specified above using the provided package manager. Then, make sure the bin directory is in your PATH environment variable. For example this could be the following value:
+
+```
+C:\Program Files\MiKTeX 2.9\miktex\bin\x64
+```
+
+The automatic installer does this for you in general.
+
+Also, latexmk on MiKTeX depends on a perl interpreter, that could be obtained via:
+
+http://www.perl.org/get.html#win32
+
+And requires to install this specific package MiKTeX package:
+- supp-pdf
