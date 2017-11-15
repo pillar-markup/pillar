@@ -19,7 +19,9 @@ contributeToPipelineBuilding: aPRPipelineBuilder
 		inputFile: goal inputDocument file;
 		baseDirectory: project baseDirectory absolutePath asFileReference;
 		outputDirectory: goal targetOutputDirectory).
+  aPRPipelineBuilder addPillarDocumentTransformation: PRLatexPathUpdateVisitor new.
 	aPRPipelineBuilder addPostSaveTransformation: (PRPDFLatexCompilationTask new
 		outputDirectory: goal targetOutputDirectory;
 		outputFile: goal outputDirectory / goal inputDocument file basename , 'pdf';
 		yourself).
+	aPRPipelineBuilder addPostSaveTransformation: PRPDFLatexCompilationPhase new

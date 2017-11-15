@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "GuillermoPolito 11/15/2017 13:01",
+	"super" : "PRNodeTransformer",
+	"category" : "Pillar-ExporterLatex",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRLatexPathUpdateVisitor",
+	"type" : "normal"
+}
