@@ -1,6 +1,33 @@
 baselines
 baseline: spec
 	<baseline>
+	
+	spec
+		for: #windows
+		do: [
+			spec
+				project: 'ProcessWrapper'
+					with: [ spec
+						className: #ConfigurationOfProcessWrapper;
+						versionString: '1.2';
+						repository: 'http://smalltalkhub.com/mc/Pharo/MetaRepoForPharo50/main' ].
+			spec
+				package: 'Pillar-Project'
+				with: [ spec requires: 'ProcessWrapper' ]
+	].
+
+	spec
+		for: #( unix osx )
+		do: [
+			spec
+				baseline: 'OSSubprocess'
+					with: [ spec
+						repository: 'github://marianopeck/OSSubprocess:v0.2.5/repository' ].
+			spec
+				package: 'Pillar-Project'
+				with: [ spec requires: 'OSSubprocess' ]
+	].
+	
 	spec
 		for: #common
 		do: [ spec blessing: #baseline.
