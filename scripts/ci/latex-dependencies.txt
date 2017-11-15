@@ -1,0 +1,15 @@
+fira
+gentium-tug
+opensans
+varwidth
+footmisc
+tcolorbox
+environ
+trimspaces
+ctablestack
+import
+multirow
+listings
+url
+import
+supp-pdf
