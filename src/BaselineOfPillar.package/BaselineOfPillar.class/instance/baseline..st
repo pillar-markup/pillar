@@ -93,7 +93,7 @@ baseline: spec
 				package: 'Pillar-Pharo-Tools'
 					with: [ spec requires: #('Pillar-Model' 'All exporters') ];
 				package: 'Pillar-Project'
-					with: [ spec requires: #('Pillar-Model' 'All exporters' 'OSSubprocess') ];
+					with: [ spec requires: #('Pillar-Model' 'All exporters') ];
 				package: #'Pillar-Tests-Cli' with: [ spec requires: #('Pillar-Cli') ];
 				package: #'Pillar-Tests-ExporterAsciiDoc'
 					with: [ spec requires: #(#'Pillar-ExporterAsciiDoc' 'Pillar-Tests-ExporterCore') ];
