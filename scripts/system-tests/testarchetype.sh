@@ -17,4 +17,4 @@ mkdir -p test && cd test
 ${__builddir}/pillar archetype $1
 
 # Build book
-make $1 PILLAR_HOME=${__builddir}
+${__builddir}/pillar build $2

@@ -9,21 +9,32 @@ smalltalk:
   - Pharo-6.1
   - Pharo-5.0
 
+# System tests test that we can install and use pillar as a black box
+# Integration tests test that pillar itself can interact with generated files, pdf generation
 env:
   matrix:
   - JOB=test TYPE=Unit
   - JOB=test TYPE=Integration
+  - JOB=test TYPE=System ARCHETYPE=book output=pdf
+  - JOB=test TYPE=System ARCHETYPE=book output=html
+  - JOB=test TYPE=System ARCHETYPE=presentation output=pdf
+  - JOB=test TYPE=System ARCHETYPE=presentation output=html
+  - JOB=test TYPE=System ARCHETYPE=welcome output=pdf
+  - JOB=test TYPE=System ARCHETYPE=welcome output=html
+  - JOB=test TYPE=System ARCHETYPE=basic-latex output=pdf
+  - JOB=test TYPE=System ARCHETYPE=basic-latex output=html
   - JOB=build
-  
+
 install:
-  - if [[ ${TYPE} == "Integration" ]]; then . scripts/travis/ensure_latex.sh; fi
-  - if [[ ${TYPE} == "Integration" ]]; then scripts/travis/ensure_book_dependencies.sh; fi
+  - if [[ ${TYPE} == "Integration" ]] || [[ ${TYPE} == "System" ]]; then . scripts/travis/ensure_latex.sh; fi
+  - if [[ ${TYPE} == "Integration" ]] || [[ ${TYPE} == "System" ]]; then scripts/travis/ensure_book_dependencies.sh; fi
   - if [[ ${TYPE} == "Integration" ]]; then mkdir -p $SMALLTALK_CI_BUILD; fi
   - if [[ ${TYPE} == "Integration" ]]; then cp -r archetypes $SMALLTALK_CI_BUILD; fi
   
 script:
-  - if [[ ${JOB} == "test"        ]]; then "$SMALLTALK_CI_HOME/run.sh" ".smalltalk.${TYPE}.ston"; fi
-  - if [[ ${JOB} == "build"       ]]; then "scripts/build.sh"; zip -ry9 pillar.zip build; fi
+  - if [[ ${TYPE} == "Integration" ]]; then "$SMALLTALK_CI_HOME/run.sh" ".smalltalk.${TYPE}.ston"; fi
+  - if [[ ${TYPE} == "System" ]]; then "scripts/system-tests/testarchetype.sh" ${ARCHETYPE}; fi
+  - if [[ ${JOB} == "build" ]]; then "scripts/build.sh"; zip -ry9 pillar.zip build; fi
 
 deploy:
   provider: releases
