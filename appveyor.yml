@@ -19,8 +19,8 @@ environment:
 cache:
   - '%CYG_CACHE%'
   - 'c:\miktex'
-      
- platform:
+
+platform:
   - x86
 
 # MiKTeX installation inspired from https://github.com/open62541/open62541/blob/master/appveyor.yml
