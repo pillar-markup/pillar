@@ -9,6 +9,17 @@ Read the documentation at [https://ci.inria.fr/pharo-contribution/job/Enterprise
 
 ## Installation
 
+### Get a pre-built version
+
+Take a version from the github releases and download it.
+
+You can get the latest release from [here](https://github.com/pillar-markup/pillar/releases).
+
+Otherwise, these are other possible downloads:
+- [V6.0.7](https://github.com/pillar-markup/pillar/archive/v6.0.7.zip)
+
+### Building from sources
+
 To install this version of pillar, clone this repository and call the `build.sh` script in it:
 
 ```bash
@@ -21,6 +32,10 @@ That will create a `build` directory in the working directory and build pillar i
 ```bash
 $ mv build ~/.pillar
 ```
+
+### Setting up your environment
+
+Wether you downloaded an 
 
 And then add that directory to the `PILLAR_HOME` and `HOME` environment variables, for example, by modifying your `.bashrc` with
 
