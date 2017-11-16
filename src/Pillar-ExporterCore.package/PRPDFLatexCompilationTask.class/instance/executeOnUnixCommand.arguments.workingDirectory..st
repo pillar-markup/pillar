@@ -3,7 +3,7 @@ executeOnUnixCommand: command arguments: arguments workingDirectory: aWorkingDir
 	| process |
 	process := OSSUnixSubprocess new
 		command: command;
-		workingDirectory: aWorkingDirectory fullName;
+		workingDirectory: aWorkingDirectory;
 		arguments: arguments;
 		runAndWait.
 	process isSuccess ifFalse: [
