@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "GuillermoPolito 11/15/2017 13:01",
 	"super" : "PRNodeTransformer",
-	"category" : "Pillar-ExporterLatex",
+	"category" : "Pillar-ExporterLaTeX",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
