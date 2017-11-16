@@ -6,13 +6,7 @@ set -o pipefail
 set -o nounset
 set -o xtrace
 
-# Set magic variables for current file & dir
-__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-__builddir="$(pwd)/build"
-
-VM_BINARY_NAME="Pharo"
-VM_BINARY_NAME_LINUX="pharo"
-VM_BINARY_NAME_WINDOWS="PharoConsole"
+# helper functions
 
 function get_platform_identifier() {
   local TMP_OS=`uname | tr "[:upper:]" "[:lower:]"`
@@ -32,31 +26,14 @@ function get_platform_identifier() {
   fi
 }
 
-function get_vm_executable {
-  local OS=$(get_platform_identifier)
-  if [ "$OS" == "win" ]; then
-    echo `find . -name ${VM_BINARY_NAME_WINDOWS}.exe`
-  elif [ "$OS" == "mac" ]; then
-    echo `find . -name ${VM_BINARY_NAME}`
-  elif [ "$OS" == "linux" ]; then
-    echo `ls ${VM_BINARY_NAME_LINUX}`
-  fi
-}
+# Set magic variables for current file & dir
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+__builddir="$(pwd)/build"
+PHARO_VERSION=61+vm
+PHARO="./pharo Pharo.image"
 
 rm -rf "${__builddir}" && mkdir -p "${__builddir}" && cd "${__builddir}"
-
-PHARO_VERSION=61
-PLATFORM_IDENFIFIER=$(get_platform_identifier)
-
-wget --output-document=image.zip files.pharo.org/get-files/${PHARO_VERSION}/pharo.zip
-wget --output-document=sources.zip files.pharo.org/get-files/${PHARO_VERSION}/sources.zip
-wget --output-document=vm.zip files.pharo.org/get-files/${PHARO_VERSION}/pharo-${PLATFORM_IDENFIFIER}-stable.zip
-
-unzip "sources.zip" && rm "sources.zip"
-unzip "image.zip" && rm "image.zip"
-unzip "vm.zip" && rm "vm.zip"
-
-PHARO="$(get_vm_executable) Pharo.image"
+wget -O - get.pharo.org/61+vm | bash
 
 REPOSITORY_PATH=${__dir}/../src
 OS=$(get_platform_identifier)
