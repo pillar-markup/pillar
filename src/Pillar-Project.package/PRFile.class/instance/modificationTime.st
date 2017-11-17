@@ -1,0 +1,4 @@
+accessing
+modificationTime
+	
+	^ fileReference modificationTime

@@ -1,13 +1,14 @@
 {
 	"commentStamp" : "",
-	"super" : "PRPhase",
+	"super" : "PRPillarObjectTask",
 	"category" : "Pillar-Project",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"destinationDirectory"
+		"pillarDocument",
+		"transformations"
 	],
-	"name" : "PRRelativeReferenceTransformer",
+	"name" : "PRTransformTask",
 	"type" : "normal"
 }

@@ -1,13 +1,15 @@
 {
 	"commentStamp" : "",
-	"super" : "PRPhase",
+	"super" : "PRPillarObjectTask",
 	"category" : "Pillar-Project",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"destinationDirectory"
+		"pillarDocument",
+		"outputFormat",
+		"outputFile"
 	],
-	"name" : "PRRelativeReferenceTransformer",
+	"name" : "PROutputFormatterTask",
 	"type" : "normal"
 }

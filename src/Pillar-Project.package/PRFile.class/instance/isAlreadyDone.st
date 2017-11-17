@@ -1,0 +1,4 @@
+accessing
+isAlreadyDone
+	
+	^ fileReference exists

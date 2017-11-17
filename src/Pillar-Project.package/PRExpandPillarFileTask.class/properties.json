@@ -1,13 +1,13 @@
 {
 	"commentStamp" : "",
-	"super" : "PRPhase",
+	"super" : "PRPillarObjectTask",
 	"category" : "Pillar-Project",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"destinationDirectory"
+		"pillarDocument"
 	],
-	"name" : "PRRelativeReferenceTransformer",
+	"name" : "PRExpandPillarFileTask",
 	"type" : "normal"
 }

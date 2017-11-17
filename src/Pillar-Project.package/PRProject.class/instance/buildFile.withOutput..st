@@ -1,14 +1,33 @@
 building
-buildFile: inputDocument withOutput: output
-	| pipeline compilationContext fileConfiguration |
-	pipeline := inputDocument pipelineForOutput: output doing: [ :builder | builder save ].
-	fileConfiguration := (PRPillarConfiguration newFromDictionary: {
-		'input' -> inputDocument.
-		'_outputFormat' -> output.
-		'_project' -> self.
-	} asDictionary)
-		parent: self configuration.
-	compilationContext := PRCompilationContext
-		withDocument: inputDocument file
-		withConfiguration: fileConfiguration.
-	pipeline executeOn: compilationContext
+buildFile: inputDocument withOutput: buildTarget
+
+	| configuration outputDirectory extension relativePath outputFile destinationDirectory templating |
+	self halt.
+
+	outputDirectory := self configuration outputDirectory  / buildTarget outputDirectoryName.
+	extension := buildTarget extension.
+	relativePath := inputDocument file path
+		relativeTo: self configuration baseDirectory path.
+	destinationDirectory := outputDirectory resolve: relativePath parent.
+	outputFile := (destinationDirectory / relativePath basename), extension.
+
+
+	templating := PRTemplatingTask new
+		project: self;
+		pillarDocument: (PROutputFormatterTask new
+			project: self;
+			pillarDocument: (PRTransformTask new
+				addTransformation: (PRRelativeReferenceTransformer new
+					destinationDirectory: destinationDirectory;
+					yourself);
+				pillarDocument: (PRExpandPillarFileTask new
+					project: self;
+					pillarDocument: (PRPillarParseTask new
+						project: self;
+						inputFile: inputDocument file)));
+			outputFormat: buildTarget);
+		templateFile: (self configuration baseDirectory / ((buildTarget writerFor: self configuration) templateForConfiguration: self configuration)).
+
+	PRSaveTask new
+		pillarDocument: templating;
+		outputFile: outputFile
