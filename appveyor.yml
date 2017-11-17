@@ -34,7 +34,7 @@ install:
   - initexmf --set-config-value [MPM]AutoInstall=1
   - initexmf --update-fndb
   # Copy archetypes to build folder to run integration tests
-  - '%CYG_BASH% -lc "mkdir -p $SMALLTALK_CI_BUILD; cp -r archetypes $SMALLTALK_CI_BUILD"'
+  - '%CYG_BASH% -lc "cd $APPVEYOR_BUILD_FOLDER; mkdir -p $SMALLTALK_CI_BUILD; cp -r archetypes $SMALLTALK_CI_BUILD"'
 
 build: false
 
