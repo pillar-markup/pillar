@@ -11,7 +11,7 @@ actionOn: aPillarContext
 	"Obtain the corresponding mustache template and apply it"
 	writer := (aPillarContext configuration propertyAt: #_outputFormat) writerFor: aPillarContext configuration.
 	template := writer templateForContext: aPillarContext.
-	templatedOutput := (MustacheTemplate on: (aPillarContext configuration baseDirectory / template) readStream contents)
+	templatedOutput := (MustacheTemplate on: ((aPillarContext configuration baseDirectory / template) readStreamDo: [ :stream | stream contents ]))
 		value: templateValues.
 	
 	document := PROutputDocument new.
