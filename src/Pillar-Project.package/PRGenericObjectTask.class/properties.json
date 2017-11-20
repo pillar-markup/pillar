@@ -1,17 +1,17 @@
 {
 	"commentStamp" : "",
-	"super" : "PRPillarTask",
-	"category" : "Pillar-Tests-Project",
+	"super" : "PRPillarObjectTask",
+	"category" : "Pillar-Project-Mike",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
 		"block",
-		"isDone",
-		"result",
 		"dependencies",
+		"result",
+		"isDone",
 		"modificationTime"
 	],
-	"name" : "PRGenericTask",
+	"name" : "PRGenericObjectTask",
 	"type" : "normal"
 }

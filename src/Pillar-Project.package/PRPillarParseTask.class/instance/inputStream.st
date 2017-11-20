@@ -1,0 +1,4 @@
+accessing
+inputStream
+	
+	^ inputTask result

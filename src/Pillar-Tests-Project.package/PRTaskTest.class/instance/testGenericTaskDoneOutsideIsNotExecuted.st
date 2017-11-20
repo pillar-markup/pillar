@@ -3,8 +3,8 @@ testGenericTaskDoneOutsideIsNotExecuted
 
 	| executed |
 	executed := 0.
-	(PRGenericTask doing: [ executed := executed + 1 ])
-		isAlreadyDone: true;
+	(PRGenericObjectTask onBlock: [ executed := executed + 1 ])
+		result: 0;
 		execute;
 		execute;
 		execute;

@@ -5,10 +5,10 @@ testGenericTaskDependencyIsExecutedIfDependentIsExecuted
 	executed := false.
 	dependencyExecuted := false.
 	
-	dependency := PRGenericTask doing: [ 
+	dependency := PRGenericObjectTask onBlock: [ 
 		dependencyExecuted := true ].
 	
-	mainTask := (PRGenericTask doing: [ 
+	mainTask := (PRGenericObjectTask onBlock: [ 
 		executed := true ])
 			addDependency: dependency.
 	

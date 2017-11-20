@@ -3,6 +3,6 @@ testGenericTaskExecutedIsExecutedFirstTime
 
 	| executed |
 	executed := false.
-	(PRGenericTask doing: [ executed := true ]) execute.
+	(PRGenericObjectTask onBlock: [ executed := true ]) execute.
 	
 	self assert: executed

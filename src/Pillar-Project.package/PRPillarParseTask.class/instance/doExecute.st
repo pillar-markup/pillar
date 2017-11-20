@@ -1,15 +1,10 @@
 execution
 doExecute
 	
-	| parsingPhase taskConfiguration parsedTree |
-	taskConfiguration := (PRPillarConfiguration newFromDictionary: { 
-		#input -> (PRInputDocument new file: goal inputDocument file; project: project; yourself).
-	} asDictionary)
-		parent: goal project configuration;
-		yourself.
-		
-	parsingPhase := PRParsingPhase withParser: PRDocument parser.
-	parsingPhase configuration: taskConfiguration.
-	parsedTree := parsingPhase executeOn: (PRCompilationContext withDocument: goal inputDocument file withConfiguration: taskConfiguration).
-	
-	^ self cacheResult: parsedTree
+	| parser stream |
+	parser := PRDocument parser.
+	"We have to read the entire contents into memory because the API of ZnCharacterReadStream and the pillar parser are not compatible"
+	stream := (ZnCharacterReadStream on: self inputStream) contents asString readStream.
+	[ ^ self cacheResult: (parser parse: stream) ]
+		on: PRError , STONReaderError
+		do: [ :exception | exception class signal: exception messageText , ' Inside: ' , self inputStream asString ].	

@@ -5,15 +5,15 @@ testGenericTaskDependencyIsReExecutedIfInvalidated
 	executed := false.
 	dependencyExecuted := 0.
 	
-	dependency := PRGenericTask doing: [ 
+	dependency := PRGenericObjectTask onBlock: [ 
 		dependencyExecuted := dependencyExecuted + 1 ].
 	
-	mainTask := (PRGenericTask doing: [ 
+	mainTask := (PRGenericObjectTask onBlock: [ 
 		executed := true ])
 			addDependency: dependency.
 	
 	mainTask execute.
-	dependency isAlreadyDone: false.
+	dependency invalidate.
 	mainTask execute.
 	
 	self assert: dependencyExecuted equals: 2

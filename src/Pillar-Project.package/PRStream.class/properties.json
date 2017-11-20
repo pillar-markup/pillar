@@ -1,14 +1,13 @@
 {
 	"commentStamp" : "",
-	"super" : "PRPillarObjectTask",
+	"super" : "Object",
 	"category" : "Pillar-Project-Mike",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"inputDocument",
-		"inputTask"
+		"stream"
 	],
-	"name" : "PRPillarParseTask",
+	"name" : "PRStream",
 	"type" : "normal"
 }

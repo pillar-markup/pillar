@@ -3,7 +3,7 @@ testGenericTaskExecutedIsExecutedOnlyOnce
 
 	| executed |
 	executed := 0.
-	(PRGenericTask doing: [ executed := executed + 1 ])
+	(PRGenericObjectTask onBlock:[ executed := executed + 1 ])
 		execute;
 		execute;
 		execute;
