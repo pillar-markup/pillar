@@ -12,7 +12,12 @@
 		"pillarDocumentTransformations",
 		"postFormattingTransformations",
 		"save",
-		"postSaveTransformations"
+		"postSaveTransformations",
+		"target",
+		"project",
+		"inputFile",
+		"outputFile",
+		"goal"
 	],
 	"name" : "PRPipelineBuilder",
 	"type" : "normal"

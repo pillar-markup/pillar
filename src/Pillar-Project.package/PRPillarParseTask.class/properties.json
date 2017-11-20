@@ -6,8 +6,7 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"inputDocument",
-		"inputFile"
+		"inputDocument"
 	],
 	"name" : "PRPillarParseTask",
 	"type" : "normal"

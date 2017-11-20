@@ -1,4 +1,4 @@
 execution
 dependencies
 	
-	^ { PRFile on: inputFile }
+	^ { PRFile on: goal inputDocument file }

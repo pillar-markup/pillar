@@ -1,17 +1,39 @@
 building
 build
-	| transformations |
-	transformations := OrderedCollection new.
-	transformations addAll: self preParsingTransformations.
-	parser ifNotNil: [
-		transformations
-			add: (PRParsingPhase withParser: parser);
-			add: (PRFileInclusion new) ].
-	transformations addAll: (LPPipeline pipes: self pillarDocumentTransformations) sort pipes.
-	outputFormatter
-		ifNotNil: [ transformations add: (PROutputFormattingPhase withFormatter: outputFormatter) ].
-	transformations addAll: self postFormattingTransformations.
+
+	| pipeline |
+	pipeline := PRPillarParseTask new
+		goal: goal.
+
+	pipeline := PRExpandPillarFileTask new
+		pillarDocument: pipeline;
+		goal: goal.
+	
+	pipeline := PRTransformTask new
+		transformations: (LPPipeline pipes: self pillarDocumentTransformations) sort pipes;
+		pillarDocument: pipeline;
+		goal: goal.
+		
+	pipeline := PROutputFormatterTask new
+		pillarDocument: pipeline;
+		goal: goal.
+	
+	pipeline := self postFormattingTransformations
+		inject: pipeline
+		into: [ :accum :task | 
+			task
+				goal: goal;
+				pillarDocument: accum;
+				yourself ].
+	
 	save ifTrue: [ 
-		transformations add: PRSavePhase new ].
-	transformations addAll: self postSaveTransformations.
-	^ LPPipeline pipes: transformations
+		pipeline := PRSaveTask new
+			pillarDocument: pipeline;
+			goal: goal ].
+
+	^ self postSaveTransformations
+		inject: pipeline
+		into: [ :accum :task | 
+			task 
+				goal: goal;
+				pillarDocument: accum ]

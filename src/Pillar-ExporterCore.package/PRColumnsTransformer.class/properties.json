@@ -7,7 +7,8 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"currentColumns",
-		"currentColumn"
+		"currentColumn",
+		"goal"
 	],
 	"name" : "PRColumnsTransformer",
 	"type" : "normal"

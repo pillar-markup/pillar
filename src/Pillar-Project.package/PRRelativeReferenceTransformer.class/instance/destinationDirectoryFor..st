@@ -6,5 +6,5 @@ destinationDirectoryFor: aPRCompilationContext
 	
 	filePath := aPRCompilationContext configuration input file parent.
 	relativePath := filePath relativeTo: aPRCompilationContext configuration baseDirectory.
-	outputFormat := self configuration propertyAt: #_outputFormat.
+	outputFormat := goal target.
 	^ aPRCompilationContext configuration outputDirectory  / outputFormat outputDirectoryName resolve: relativePath.

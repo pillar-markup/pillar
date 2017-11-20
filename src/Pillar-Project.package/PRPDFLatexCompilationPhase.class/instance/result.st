@@ -1,0 +1,4 @@
+execution
+result
+	
+	^ self outputFile

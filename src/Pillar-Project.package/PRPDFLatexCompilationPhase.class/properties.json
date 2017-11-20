@@ -1,12 +1,12 @@
 {
 	"commentStamp" : "",
-	"super" : "Object",
+	"super" : "PRPillarTask",
 	"category" : "Pillar-Project",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"configuration"
+		"savedDocument"
 	],
 	"name" : "PRPDFLatexCompilationPhase",
 	"type" : "normal"

@@ -1,4 +1,4 @@
 execution
 isAlreadyDone
 
-	self subclassResponsibility
+	^ self result exists

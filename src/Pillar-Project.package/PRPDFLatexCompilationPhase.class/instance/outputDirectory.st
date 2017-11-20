@@ -1,0 +1,4 @@
+accessing
+outputDirectory
+	
+	^ goal outputDirectory

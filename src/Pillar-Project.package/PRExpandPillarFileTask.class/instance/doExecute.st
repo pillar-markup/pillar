@@ -1,7 +1,10 @@
 execution
 doExecute
 	
-	| inclusionPhase |
+	| inclusionPhase hackedConfiguration |
 	inclusionPhase := PRFileInclusion new.
-	inclusionPhase configuration: nil.
+	"FileInclusion requires a configuration with an input entry"
+	hackedConfiguration := PRPillarConfiguration newFromDictionary: { #input -> goal inputDocument } asDictionary.
+	hackedConfiguration parent: goal project configuration.
+	inclusionPhase configuration: hackedConfiguration.
 	^ self cacheResult: (inclusionPhase executeOn: pillarDocument execute)

@@ -1,13 +1,15 @@
 {
 	"commentStamp" : "",
-	"super" : "PRPillarTask",
+	"super" : "Object",
 	"category" : "Pillar-Project",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"pillarDocument"
+		"input",
+		"target",
+		"project"
 	],
-	"name" : "PRSaveTask",
+	"name" : "PRBuildGoal",
 	"type" : "normal"
 }

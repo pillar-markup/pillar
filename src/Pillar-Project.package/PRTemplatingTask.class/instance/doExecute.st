@@ -8,7 +8,7 @@ doExecute
 	templateValues := (self metadataConfigurationForDocument: pillarDocument execute) allProperties.
 	templateValues at: #content put: pillarDocument execute input outputText.
 	
-	templatedOutput := (MustacheTemplate on: templateFile readStream contents)
+	templatedOutput := (MustacheTemplate on: self templateFile readStream contents)
 		value: templateValues.
 	
 	document := PROutputDocument new.
@@ -17,4 +17,4 @@ doExecute
 	
 	^ self cacheResult: (PRCompilationContext
 		withDocument: document
-		withConfiguration: project configuration)
+		withConfiguration: goal project configuration)

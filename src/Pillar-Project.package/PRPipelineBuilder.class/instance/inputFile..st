@@ -1,4 +1,3 @@
-dependencies
+accessing
 inputFile: aFileReference 
-	
 	inputFile := aFileReference

@@ -1,4 +1,4 @@
 execution
 isAlreadyDone
 	
-	^ self outputFile exists
+	^ self result exists

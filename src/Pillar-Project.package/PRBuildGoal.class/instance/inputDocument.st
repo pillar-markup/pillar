@@ -1,0 +1,4 @@
+accessing
+inputDocument
+	
+	^ input

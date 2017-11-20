@@ -6,8 +6,7 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"pillarDocument",
-		"templateFile"
+		"pillarDocument"
 	],
 	"name" : "PRTemplatingTask",
 	"type" : "normal"

@@ -6,7 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"currentSlide"
+		"currentSlide",
+		"goal"
 	],
 	"name" : "PRSlideTransformer",
 	"type" : "normal"

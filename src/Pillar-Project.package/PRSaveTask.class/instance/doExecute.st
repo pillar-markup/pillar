@@ -1,7 +1,7 @@
 execution
 doExecute
 	
-	outputFile ensureDelete.
-	outputFile parent ensureCreateDirectory.
-	outputFile writeStreamDo: [ :stream | 
+	self outputFile ensureDelete.
+	self outputFile parent ensureCreateDirectory.
+	self outputFile writeStreamDo: [ :stream | 
 		stream nextPutAll: pillarDocument execute input outputText ]
