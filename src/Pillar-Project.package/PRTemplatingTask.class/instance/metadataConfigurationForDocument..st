@@ -1,4 +1,4 @@
-templating
+metadata
 metadataConfigurationForDocument: aPRCompilationContext 
 	
 	| subConfiguration |

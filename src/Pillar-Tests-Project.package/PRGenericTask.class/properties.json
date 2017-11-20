@@ -1,13 +1,17 @@
 {
 	"commentStamp" : "",
 	"super" : "PRPillarTask",
-	"category" : "Pillar-Project",
+	"category" : "Pillar-Tests-Project",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"savedDocument"
+		"block",
+		"isDone",
+		"result",
+		"dependencies",
+		"modificationTime"
 	],
-	"name" : "PRPDFLatexCompilationPhase",
+	"name" : "PRGenericTask",
 	"type" : "normal"
 }

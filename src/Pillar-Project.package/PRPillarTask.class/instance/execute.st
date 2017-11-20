@@ -2,5 +2,7 @@ execution
 execute
 	
 	self needsToReexecute
-		ifTrue: [ self doExecute ].
+		ifTrue: [ 
+			self ensureDependencies.
+			self doExecute ].
 	^ self result

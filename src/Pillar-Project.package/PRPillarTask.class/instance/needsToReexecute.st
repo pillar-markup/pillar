@@ -1,4 +1,4 @@
-execution
+testing
 needsToReexecute
 
 	self isAlreadyDone ifFalse: [ ^ true ].

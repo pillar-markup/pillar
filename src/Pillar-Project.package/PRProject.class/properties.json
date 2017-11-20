@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "GuillermoPolito 11/9/2017 15:07",
 	"super" : "PRObject",
-	"category" : "Pillar-Project",
+	"category" : "Pillar-Project-Core",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

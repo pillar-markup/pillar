@@ -1,4 +1,4 @@
-execution
+testing
 isAlreadyDone
 	
 	^ self result exists

@@ -1,4 +1,0 @@
-execution
-result
-	
-	^ outputFile 

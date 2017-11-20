@@ -1,4 +1,4 @@
-execution
+caching
 cacheResult: aResult
 
 	cachedObject := aResult.

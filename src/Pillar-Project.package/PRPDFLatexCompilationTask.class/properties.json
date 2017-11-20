@@ -1,15 +1,13 @@
 {
 	"commentStamp" : "",
 	"super" : "PRPillarTask",
-	"category" : "Pillar-Project",
+	"category" : "Pillar-Project-Mike",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"buildTarget",
-		"pillarDocument",
-		"outputFile"
+		"savedDocument"
 	],
-	"name" : "PRPillarBuildTask",
+	"name" : "PRPDFLatexCompilationTask",
 	"type" : "normal"
 }

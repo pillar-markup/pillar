@@ -4,4 +4,4 @@ contributeToPipelineBuilding: aPRPipelineBuilder
 	aPRPipelineBuilder outputFormatter: self.
 	aPRPipelineBuilder addPostFormattingTransformation: PRTemplatingTask new.
 	aPRPipelineBuilder addPillarDocumentTransformation: PRRelativeReferenceTransformer new.
-	aPRPipelineBuilder addPostSaveTransformation: PRPDFLatexCompilationPhase new.
+	aPRPipelineBuilder addPostSaveTransformation: PRPDFLatexCompilationTask new.
