@@ -1,4 +1,0 @@
-accessing
-isAlreadyDone
-	
-	^ fileReference exists
