@@ -6,8 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"project",
-		"goal",
 		"result"
 	],
 	"name" : "PRPillarTask",

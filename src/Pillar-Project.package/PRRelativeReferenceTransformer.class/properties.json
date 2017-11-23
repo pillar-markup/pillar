@@ -6,8 +6,9 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"destinationDirectory",
-		"goal"
+		"inputFile",
+		"baseDirectory",
+		"outputDirectory"
 	],
 	"name" : "PRRelativeReferenceTransformer",
 	"type" : "normal"

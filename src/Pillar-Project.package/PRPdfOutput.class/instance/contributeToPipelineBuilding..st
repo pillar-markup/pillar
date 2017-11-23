@@ -14,7 +14,10 @@ contributeToPipelineBuilding: aPRPipelineBuilder
 			projectConfiguration: configuration;
 			templateFile: templateFile;
 			yourself).
-	aPRPipelineBuilder addPillarDocumentTransformation: PRRelativeReferenceTransformer new.
+	aPRPipelineBuilder addPillarDocumentTransformation: (PRRelativeReferenceTransformer new
+		inputFile: goal inputDocument file;
+		baseDirectory: project baseDirectory absolutePath asFileReference;
+		outputDirectory: goal targetOutputDirectory).
 	aPRPipelineBuilder addPostSaveTransformation: (PRPDFLatexCompilationTask new
 		outputDirectory: goal targetOutputDirectory;
 		outputFile: goal outputDirectory / goal inputDocument file basename , 'pdf';

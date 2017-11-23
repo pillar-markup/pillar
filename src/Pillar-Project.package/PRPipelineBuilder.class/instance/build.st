@@ -11,8 +11,7 @@ build
 	
 	pipeline := PRTransformTask new
 		transformations: (LPPipeline pipes: self pillarDocumentTransformations) sort pipes;
-		pillarDocumentDependency: pipeline;
-		goal: goal.
+		pillarDocumentDependency: pipeline.
 		
 	pipeline := PROutputFormatterTask new
 		pillarDocumentDependency: pipeline;
@@ -22,7 +21,6 @@ build
 		inject: pipeline
 		into: [ :accum :task | 
 			task
-				goal: goal;
 				formattedDocumentDependency: accum;
 				yourself ].
 	
@@ -34,6 +32,4 @@ build
 	^ self postSaveTransformations
 		inject: pipeline
 		into: [ :accum :task | 
-			task 
-				goal: goal;
-				inputFileDependency: accum ]
+			task inputFileDependency: accum ]
