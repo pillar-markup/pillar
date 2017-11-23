@@ -1,4 +1,4 @@
 accessing
 result
-
-	self subclassResponsibility
+	
+	^ result value

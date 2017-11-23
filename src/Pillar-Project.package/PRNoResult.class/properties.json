@@ -1,15 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "Object",
+	"super" : "PRResult",
 	"category" : "Pillar-Project-Mike",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"project",
-		"goal",
-		"result"
-	],
-	"name" : "PRPillarTask",
+	"instvars" : [ ],
+	"name" : "PRNoResult",
 	"type" : "normal"
 }

@@ -5,4 +5,5 @@ doExecute
 	self outputFile parent ensureCreateDirectory.
 	self outputFile writeStreamDo: [ :stream | 
 		stream binary.
-		(ZnCharacterWriteStream on: stream) nextPutAll: self outputDocument outputText ]
+		(ZnCharacterWriteStream on: stream) nextPutAll: self outputDocument outputText ].
+	^ self outputFile

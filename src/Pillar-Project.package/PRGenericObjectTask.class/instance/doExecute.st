@@ -1,4 +1,4 @@
 execution
 doExecute
 	
-	^ self result: block value
+	^ block value

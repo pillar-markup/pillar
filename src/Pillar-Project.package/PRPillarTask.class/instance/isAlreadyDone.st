@@ -1,4 +1,4 @@
-execution
+testing
 isAlreadyDone
-
-	self subclassResponsibility
+	
+	^ result isDone

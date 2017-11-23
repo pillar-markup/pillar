@@ -1,4 +1,4 @@
 accessing
 modificationTime
 	
-	self subclassResponsibility
+	^ result modificationTime

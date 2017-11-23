@@ -4,5 +4,5 @@ execute
 	self needsToReexecute
 		ifTrue: [ 
 			self ensureDependencies.
-			self doExecute ].
+			self result: self doExecute ].
 	^ self result

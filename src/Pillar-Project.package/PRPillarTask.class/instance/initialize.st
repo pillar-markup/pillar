@@ -1,4 +1,4 @@
 initialization
 initialize
 	super initialize.
-	isDone := false.
+	result := PRNoResult new

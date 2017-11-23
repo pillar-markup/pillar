@@ -38,4 +38,4 @@ build
 		into: [ :accum :task | 
 			task 
 				goal: goal;
-				pillarDocumentDependency: accum ]
+				inputFileDependency: accum ]

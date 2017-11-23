@@ -1,4 +1,4 @@
 accessing
 outputFile
 	
-	^ goal outputDirectory / goal inputDocument file basename , 'pdf'
+	^ self outputDirectory / goal inputDocument file basename , 'pdf'

@@ -5,11 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"project",
-		"goal",
-		"result"
-	],
-	"name" : "PRPillarTask",
+	"instvars" : [ ],
+	"name" : "PRResult",
 	"type" : "normal"
 }

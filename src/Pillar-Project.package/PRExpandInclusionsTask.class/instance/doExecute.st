@@ -5,4 +5,4 @@ doExecute
 	inclusionVisitor := PRFileInclusion new.
 	inclusionVisitor topFile: goal inputDocument file.
 	inclusionVisitor expansionTask: self.
-	^ self result: (inclusionVisitor start: self pillarDocument)
+	^ inclusionVisitor start: self pillarDocument

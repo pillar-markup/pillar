@@ -7,9 +7,8 @@ doExecute
 		file"
 	
 	
-	| outputDirectory process inputFile |
+	| outputDirectory process |
 	
-	inputFile := savedDocument execute.
 	outputDirectory := (goal project outputDirectory / goal target outputDirectoryName).
 	
 	process := OSSUnixSubprocess new
@@ -20,8 +19,10 @@ doExecute
 			'-pdf' .
 			'-ps-' .
 			'-interaction=nonstopmode' .
-			'-outdir=', inputFile parent fullName.
-			inputFile fullName };
+			'-outdir=', self inputFile parent fullName.
+			self inputFile fullName };
 		runAndWait.
 	process isSuccess ifFalse: [
-		self error: 'command latexmk failed' ]
+		self error: 'command latexmk failed' ].
+
+	^ self outputFile

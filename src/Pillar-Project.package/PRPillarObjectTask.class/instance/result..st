@@ -1,6 +1,4 @@
 accessing
 result: aResult
 
-	result := aResult.
-	isDone := true.
-	modificationTime := DateAndTime now
+	result := PRObjectResult object: aResult.

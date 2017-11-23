@@ -15,4 +15,4 @@ doExecute
 	document pillarDocument: self formattedDocument pillarDocument.
 	document outputText: templatedOutput.
 	
-	^ self result: document
+	^ document

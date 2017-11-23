@@ -1,0 +1,1 @@
+I am a task whose result is a file. The modification time of this task is the file modification time.

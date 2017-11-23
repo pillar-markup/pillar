@@ -6,4 +6,4 @@ doExecute
 	output := PROutputDocument new.
 	output pillarDocument: self pillarDocument.
 	output outputText: content.
-	^ self result: output
+	^ output
