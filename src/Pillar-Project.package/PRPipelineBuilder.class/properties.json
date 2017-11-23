@@ -8,7 +8,6 @@
 	"instvars" : [
 		"parser",
 		"outputFormatter",
-		"preParsingTransformations",
 		"pillarDocumentTransformations",
 		"postFormattingTransformations",
 		"save",

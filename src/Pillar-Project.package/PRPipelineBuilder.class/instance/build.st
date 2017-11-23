@@ -3,12 +3,11 @@ build
 
 	| pipeline |
 	pipeline := PRParseTask new
-		inputStreamDependency: (PRGenericObjectTask result: inputDocument readStream binary);
-		goal: goal.
+		inputStreamDependency: (PRGenericObjectTask result: inputDocument readStream binary).
 
 	pipeline := PRExpandInclusionsTask new
-		pillarDocumentDependency: pipeline;
-		goal: goal.
+		inputFile: goal inputDocument file;
+		pillarDocumentDependency: pipeline.
 	
 	pipeline := PRTransformTask new
 		transformations: (LPPipeline pipes: self pillarDocumentTransformations) sort pipes;
@@ -17,8 +16,7 @@ build
 		
 	pipeline := PROutputFormatterTask new
 		pillarDocumentDependency: pipeline;
-		writer: (goal target writerFor: goal project configuration);
-		goal: goal.
+		writer: (goal target writerFor: goal project configuration).
 	
 	pipeline := self postFormattingTransformations
 		inject: pipeline

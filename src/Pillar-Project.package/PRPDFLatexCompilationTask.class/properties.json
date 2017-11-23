@@ -6,7 +6,9 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"inputDocumentDependency"
+		"inputDocumentDependency",
+		"outputFile",
+		"outputDirectory"
 	],
 	"name" : "PRPDFLatexCompilationTask",
 	"type" : "normal"

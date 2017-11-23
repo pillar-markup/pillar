@@ -12,8 +12,7 @@ testInclufingFileWithFigureReferenceExpandsReferenceRelativeToParent
 	document add: (PRInputFileAnnotation value: 'inner/include').
 	
 	task := PRExpandInclusionsTask new.
-	task goal: (PRBuildGoal new
-		inputDocument: (PRInputDocument new file: topFileReference; yourself)).
+	task inputFile: topFileReference.
 	task pillarDocumentDependency: (PRGenericObjectTask result: document).
 	
 	task execute.

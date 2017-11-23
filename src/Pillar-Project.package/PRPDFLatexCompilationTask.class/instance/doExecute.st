@@ -6,11 +6,7 @@ doExecute
 		-deps-out=""$*.d"" \
 		file"
 	
-	
-	| outputDirectory process |
-	
-	outputDirectory := (goal project outputDirectory / goal target outputDirectoryName).
-	
+	| process |
 	process := OSSUnixSubprocess new
 		command: 'latexmk';
 		workingDirectory: outputDirectory fullName;
@@ -25,4 +21,4 @@ doExecute
 	process isSuccess ifFalse: [
 		self error: 'command latexmk failed' ].
 
-	^ self outputFile
+	^ outputFile
