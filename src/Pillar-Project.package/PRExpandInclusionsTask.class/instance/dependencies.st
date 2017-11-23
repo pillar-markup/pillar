@@ -11,6 +11,6 @@ dependencies
 		collect: [ :each | self pillarDependencyOn: each ].
 		
 	^ pillarDocumentDependency dependencies,
-		(imageDependencies asArray collect: [ :each | PRFile on: each ]),
-			(fileDependencies asArray collect: [ :each | PRFile on: each ]),
+		(imageDependencies asArray collect: [ :each | PRGenericObjectTask result: each ]),
+			(fileDependencies asArray collect: [ :each | PRGenericObjectTask result: each ]),
 				(fileDependencies flatCollect: [ :each | each dependencies ])
