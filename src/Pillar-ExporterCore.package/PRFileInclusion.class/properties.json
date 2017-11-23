@@ -6,7 +6,12 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"shouldTransform"
+		"shouldTransform",
+		"input",
+		"goal",
+		"topFile",
+		"expansionTask",
+		"inProcessFiles"
 	],
 	"name" : "PRFileInclusion",
 	"type" : "normal"

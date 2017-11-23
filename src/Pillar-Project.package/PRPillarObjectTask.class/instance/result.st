@@ -1,4 +1,4 @@
 accessing
 result
 	
-	^ cachedObject
+	^ result

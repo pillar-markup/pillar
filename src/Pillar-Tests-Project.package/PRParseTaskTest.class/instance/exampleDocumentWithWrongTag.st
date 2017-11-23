@@ -1,0 +1,4 @@
+examples
+exampleDocumentWithWrongTag
+
+	^ '${wrongTag}$'

@@ -6,8 +6,9 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"cachedObject",
-		"cachedTime"
+		"result",
+		"modificationTime",
+		"isDone"
 	],
 	"name" : "PRPillarObjectTask",
 	"type" : "normal"

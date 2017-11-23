@@ -15,7 +15,7 @@ actionOn: aPillarContext
 		value: templateValues.
 	
 	document := PROutputDocument new.
-	document pillarDocument: aPillarContext input pillarDocument.
+	document pillarDocumentDependency: aPillarContext input pillarDocument.
 	document outputText: templatedOutput.
 	aPillarContext input: document.
 	

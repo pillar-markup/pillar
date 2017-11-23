@@ -2,9 +2,9 @@ metadata
 metadataConfigurationForDocument: aPRCompilationContext 
 	
 	| subConfiguration |
-	subConfiguration := goal project configuration class new.
-	subConfiguration parent: goal project configuration.
+	subConfiguration := projectConfiguration class new.
+	subConfiguration parent: projectConfiguration.
 	CCMagritteDictionaryReader
-		writeDictionary: pillarDocument execute properties copy
+		writeDictionary: self formattedDocument properties copy
 		toConfiguration: subConfiguration.
 	^ subConfiguration

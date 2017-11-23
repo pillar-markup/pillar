@@ -1,0 +1,4 @@
+writing
+textToWrite
+
+	^ 'test'

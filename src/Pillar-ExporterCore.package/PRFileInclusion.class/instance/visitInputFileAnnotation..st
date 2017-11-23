@@ -1,22 +1,26 @@
 visiting-document
 visitInputFileAnnotation: anInputFileAnnotation
 	"I load the file and if the file exist I replace the node of the annotation by the content of the file."
-	| input includedFile phase includedPillarAST |
-	input := self configuration propertyAt: #input.
-	includedFile := anInputFileAnnotation fileWithConfiguration: self configuration.
-	phase := PRParsingPhase withParser: input parser.
-	includedPillarAST := phase parseFile: includedFile.
+	| includedFile includedPillarAST cleanPillarAST |
+	includedFile := topFile parent resolve: anInputFileAnnotation value.
+	self validateInclusionOfFile: includedFile.
+	
+	includedPillarAST := PRDocument parser parse: includedFile.
+	
+	cleanPillarAST := (PRCleanAnnotationInParagraphTransfomer new
+		configuration: self configuration;
+		start: includedPillarAST).
 	
 	"Execute a file inclusion step recursively" 
 	includedPillarAST := PRFileInclusion new
-		configuration: self configuration;
-		start: (PRCleanAnnotationInParagraphTransfomer new
-			configuration: self configuration;
-			start:includedPillarAST).
+		topFile: includedFile;
+		inProcessFiles: (inProcessFiles copyWith: topFile);
+		start: cleanPillarAST.
 	
 	"If we include a file, we need to update all references to external files in it.
 	References that were before relative to the included document, should be now relative to the container document."
 	PRUpdateFileInclusionReference
 		start: includedPillarAST
-		with: (includedFile parent relativeTo: self configuration baseDirectory) pillarPrintString.
+		with: (includedFile parent relativeTo: topFile parent) pillarPrintString.
+	
 	self replace: includedPillarAST children.

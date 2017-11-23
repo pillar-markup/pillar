@@ -1,0 +1,3 @@
+accessing
+pillarDocumentDependency: aPRTransformTask 
+	pillarDocumentDependency := aPRTransformTask

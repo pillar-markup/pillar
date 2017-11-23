@@ -1,0 +1,4 @@
+accessing
+projectConfiguration: aPRPillarConfiguration
+
+	projectConfiguration := aPRPillarConfiguration

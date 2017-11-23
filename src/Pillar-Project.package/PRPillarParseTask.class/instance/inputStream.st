@@ -1,4 +1,0 @@
-accessing
-inputStream
-	
-	^ inputTask result

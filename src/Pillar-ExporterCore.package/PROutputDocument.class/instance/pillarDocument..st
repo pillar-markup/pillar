@@ -1,3 +1,3 @@
 accessing
-pillarDocument: anObject
-	pillarDocument := anObject
+pillarDocument: aPRDocument 
+	pillarDocument := aPRDocument

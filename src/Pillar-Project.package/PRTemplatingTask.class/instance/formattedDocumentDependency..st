@@ -1,0 +1,3 @@
+accessing
+formattedDocumentDependency: aPROutputFormatterTask 
+	formattedDocumentDependency := aPROutputFormatterTask

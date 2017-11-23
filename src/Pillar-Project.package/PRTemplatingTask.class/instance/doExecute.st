@@ -5,16 +5,14 @@ doExecute
 	"We get the flattened meta-data obtained from the file header and the pillar configuration
 	We add the text contents to the dictionary.
 	This dictionary will be used by the mustache"
-	templateValues := (self metadataConfigurationForDocument: pillarDocument execute) allProperties.
-	templateValues at: #content put: pillarDocument execute input outputText.
+	templateValues := (self metadataConfigurationForDocument: self formattedDocument pillarDocument) allProperties.
+	templateValues at: #content put: self formattedDocument outputText.
 	
 	templatedOutput := (MustacheTemplate on: self templateFile readStream contents)
 		value: templateValues.
 	
 	document := PROutputDocument new.
-	document pillarDocument: pillarDocument execute input pillarDocument.
+	document pillarDocument: self formattedDocument pillarDocument.
 	document outputText: templatedOutput.
 	
-	^ self cacheResult: (PRCompilationContext
-		withDocument: document
-		withConfiguration: goal project configuration)
+	^ self result: document

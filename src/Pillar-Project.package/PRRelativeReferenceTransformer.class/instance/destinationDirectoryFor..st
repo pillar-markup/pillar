@@ -1,10 +1,10 @@
 accessing
-destinationDirectoryFor: aPRCompilationContext 
+destinationDirectoryFor: aDocument 
 	
 	| filePath relativePath outputFormat |
 	destinationDirectory ifNotNil: [ ^ destinationDirectory ].
 	
-	filePath := aPRCompilationContext configuration input file parent.
-	relativePath := filePath relativeTo: aPRCompilationContext configuration baseDirectory.
+	filePath := goal inputDocument file parent.
+	relativePath := filePath relativeTo: goal project configuration baseDirectory.
 	outputFormat := goal target.
-	^ aPRCompilationContext configuration outputDirectory  / outputFormat outputDirectoryName resolve: relativePath.
+	^ goal project configuration outputDirectory  / outputFormat outputDirectoryName resolve: relativePath.

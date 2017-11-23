@@ -1,7 +1,7 @@
 actions
-actionOn: aPRCompilationContext 
+actionOn: aPRDocument
 
 	PRUpdateFileInclusionReference
-		start: aPRCompilationContext input
-		with: (self destinationDirectoryFor: aPRCompilationContext) fullName.
-	^ aPRCompilationContext
+		start: aPRDocument
+		with: (self destinationDirectoryFor: aPRDocument) fullName.
+	^ aPRDocument

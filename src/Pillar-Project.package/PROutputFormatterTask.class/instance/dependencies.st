@@ -1,4 +1,4 @@
 accessing
 dependencies
 	
-	^ { pillarDocument }
+	^ { pillarDocumentDependency }

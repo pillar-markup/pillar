@@ -1,12 +1,13 @@
 {
-	"commentStamp" : "",
+	"commentStamp" : "GuillermoPolito 11/22/2017 17:26",
 	"super" : "PRPillarObjectTask",
 	"category" : "Pillar-Project-Mike",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"pillarDocument"
+		"writer",
+		"pillarDocumentDependency"
 	],
 	"name" : "PROutputFormatterTask",
 	"type" : "normal"

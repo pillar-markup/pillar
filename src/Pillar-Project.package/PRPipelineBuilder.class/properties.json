@@ -17,7 +17,8 @@
 		"project",
 		"inputFile",
 		"outputFile",
-		"goal"
+		"goal",
+		"inputDocument"
 	],
 	"name" : "PRPipelineBuilder",
 	"type" : "normal"

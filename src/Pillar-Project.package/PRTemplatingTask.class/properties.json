@@ -1,12 +1,14 @@
 {
-	"commentStamp" : "",
+	"commentStamp" : "GuillermoPolito 11/22/2017 18:21",
 	"super" : "PRPillarObjectTask",
 	"category" : "Pillar-Project-Mike",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"pillarDocument"
+		"formattedDocumentDependency",
+		"projectConfiguration",
+		"templateFile"
 	],
 	"name" : "PRTemplatingTask",
 	"type" : "normal"

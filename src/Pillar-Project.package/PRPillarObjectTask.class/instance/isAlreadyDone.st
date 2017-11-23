@@ -1,4 +1,4 @@
 testing
 isAlreadyDone
-
-	^ cachedObject notNil
+	
+	^ isDone

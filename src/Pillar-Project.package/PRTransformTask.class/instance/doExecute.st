@@ -1,9 +1,9 @@
 execution
 doExecute
 	
-	^ self cacheResult: (transformations
-		inject: pillarDocument execute
+	^ self result: (transformations
+		inject: self pillarDocument
 		into: [ :accum :each | 
 			each
 				goal: goal;
-				executeOn: accum ])
+				start: accum ])

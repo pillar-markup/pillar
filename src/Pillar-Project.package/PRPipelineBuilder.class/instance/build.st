@@ -2,20 +2,22 @@ building
 build
 
 	| pipeline |
-	pipeline := PRPillarParseTask new
+	pipeline := PRParseTask new
+		inputStreamDependency: (PRGenericObjectTask result: inputDocument readStream binary);
 		goal: goal.
 
-	pipeline := PRExpandPillarFileTask new
-		pillarDocument: pipeline;
+	pipeline := PRExpandInclusionsTask new
+		pillarDocumentDependency: pipeline;
 		goal: goal.
 	
 	pipeline := PRTransformTask new
 		transformations: (LPPipeline pipes: self pillarDocumentTransformations) sort pipes;
-		pillarDocument: pipeline;
+		pillarDocumentDependency: pipeline;
 		goal: goal.
 		
 	pipeline := PROutputFormatterTask new
-		pillarDocument: pipeline;
+		pillarDocumentDependency: pipeline;
+		writer: (goal target writerFor: goal project configuration);
 		goal: goal.
 	
 	pipeline := self postFormattingTransformations
@@ -23,17 +25,17 @@ build
 		into: [ :accum :task | 
 			task
 				goal: goal;
-				pillarDocument: accum;
+				formattedDocumentDependency: accum;
 				yourself ].
 	
 	save ifTrue: [ 
 		pipeline := PRSaveTask new
-			pillarDocument: pipeline;
-			goal: goal ].
+			outputDocumentDependency: pipeline;
+			outputFile: goal outputFile ].
 
 	^ self postSaveTransformations
 		inject: pipeline
 		into: [ :accum :task | 
 			task 
 				goal: goal;
-				pillarDocument: accum ]
+				pillarDocumentDependency: accum ]

@@ -1,3 +1,3 @@
 accessing
 outputFile
-	^ goal outputFile
+	^ outputFile
