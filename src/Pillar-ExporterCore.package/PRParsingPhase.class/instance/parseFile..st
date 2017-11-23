@@ -4,7 +4,7 @@ parseFile: aFile
 	result := aFile
 		readStreamDo: [ :input | 
 			| znReadStream |
-			znReadStream := (ZnCharacterReadStream on: (aFile readStreamDo: [ :stream | stream binary contents ]) readStream) contents asString readStream.
+			znReadStream := (ZnCharacterReadStream on: (aFile readStreamDo: [ :stream | stream binary contents asByteArray ]) readStream) contents asString readStream.
 			[ self parser parse: znReadStream ]
 				on: PRError , STONReaderError
 				do:
