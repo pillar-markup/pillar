@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "GuillermoPolito 11/23/2017 11:46",
+	"super" : "PRFileGenerationTask",
+	"category" : "Pillar-ExporterCore-Pipeline",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"inputDocumentDependency",
+		"outputFile",
+		"outputDirectory"
+	],
+	"name" : "PRPDFLatexCompilationTask",
+	"type" : "normal"
+}

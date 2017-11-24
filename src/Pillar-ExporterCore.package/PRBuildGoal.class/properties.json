@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Pillar-ExporterCore-Pipeline",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"input",
+		"target",
+		"project"
+	],
+	"name" : "PRBuildGoal",
+	"type" : "normal"
+}

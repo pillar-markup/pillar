@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "GuillermoPolito 11/22/2017 14:26",
+	"super" : "PRPillarObjectTask",
+	"category" : "Pillar-ExporterCore-Pipeline",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"inputDocument",
+		"inputStreamDependency"
+	],
+	"name" : "PRParseTask",
+	"type" : "normal"
+}

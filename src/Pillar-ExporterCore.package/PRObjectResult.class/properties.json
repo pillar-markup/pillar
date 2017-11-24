@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "GuillermoPolito 11/23/2017 11:52",
+	"super" : "PRResult",
+	"category" : "Pillar-ExporterCore-Pipeline",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"object",
+		"modificationTime"
+	],
+	"name" : "PRObjectResult",
+	"type" : "normal"
+}

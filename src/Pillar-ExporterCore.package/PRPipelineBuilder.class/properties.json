@@ -1,0 +1,24 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Pillar-ExporterCore-Pipeline",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"parser",
+		"outputFormatter",
+		"pillarDocumentTransformations",
+		"postFormattingTransformations",
+		"save",
+		"postSaveTransformations",
+		"target",
+		"project",
+		"inputFile",
+		"outputFile",
+		"goal",
+		"inputDocument"
+	],
+	"name" : "PRPipelineBuilder",
+	"type" : "normal"
+}
