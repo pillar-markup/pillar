@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "PRWritingTarget",
-	"category" : "Pillar-Project-Core",
+	"category" : "Pillar-Project-Html",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

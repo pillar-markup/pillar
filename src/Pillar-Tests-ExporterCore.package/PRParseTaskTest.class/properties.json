@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "",
 	"super" : "TestCase",
-	"category" : "Pillar-Tests-Project",
+	"category" : "Pillar-Tests-ExporterCore",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "PRTaskTest",
+	"name" : "PRParseTaskTest",
 	"type" : "normal"
 }
