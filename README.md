@@ -24,7 +24,7 @@ To install this version of pillar, clone this repository and call the `build.sh`
 
 ```bash
 $ git clone git@github.com:pillar-markup/pillar.git -b stable
-$ ./pillar/build/build.sh
+$ ./pillar/scripts/build.sh
 ```
 
 That will create a `build` directory in the working directory and build pillar in there. You can then proceed to install pillar where in your home:

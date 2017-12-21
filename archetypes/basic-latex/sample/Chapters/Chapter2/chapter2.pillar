@@ -1,9 +1,9 @@
-There is also a template system, you can find template in the folder ''support/template''.
+There is also a template system, you can find template in the folder ''_support/template''.
 Some template are already written, but if you want to have your own, you had two solutions:
 -edit the existing template related to the format you want to change (recommanded)
 -create your own template with its own name and change used template in the Makefile
 
-You will found some template examples in ''support/template'' folder to see how it works.
+You will found some template examples in ''_support/template'' folder to see how it works.
 
 The default template system is ''Mustache'' but if you want to use another one it is possible.
 In that case you will have to edit the makefile to use your own template system.

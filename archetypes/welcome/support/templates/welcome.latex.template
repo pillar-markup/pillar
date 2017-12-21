@@ -3,7 +3,7 @@
 \let\wholebook=\relax
 
 \usepackage{import}
-\subimport{support/latex/}{common.tex}
+\subimport{_support/latex/}{common.tex}
 
 
 % =================================================================

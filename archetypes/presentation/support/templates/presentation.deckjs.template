@@ -8,29 +8,29 @@
   <title> {{{title}}} </title>
 
   <!-- Required stylesheet -->
-  <link rel="stylesheet" media="screen" href="support/html/deckjs/deck.core.css">
+  <link rel="stylesheet" media="screen" href="_support/html/deckjs/deck.core.css">
 
   <!-- Extension CSS files go here. Remove or add as needed. -->
-  <link rel="stylesheet" media="screen" href="support/html/deckjs/deck.goto.css">
-  <link rel="stylesheet" media="screen" href="support/html/deckjs/deck.menu.css">
-  <link rel="stylesheet" media="screen" href="support/html/deckjs/deck.navigation.css">
-  <link rel="stylesheet" media="screen" href="support/html/deckjs/deck.status.css">
-  <link rel="stylesheet" media="screen" href="support/html/deckjs/deck.scale.css">
+  <link rel="stylesheet" media="screen" href="_support/html/deckjs/deck.goto.css">
+  <link rel="stylesheet" media="screen" href="_support/html/deckjs/deck.menu.css">
+  <link rel="stylesheet" media="screen" href="_support/html/deckjs/deck.navigation.css">
+  <link rel="stylesheet" media="screen" href="_support/html/deckjs/deck.status.css">
+  <link rel="stylesheet" media="screen" href="_support/html/deckjs/deck.scale.css">
 
   <!-- Style theme. More available in /themes/style/ or create your own. -->
-  <link rel="stylesheet" media="screen" href="support/html/deckjs/web-2.0.css">
+  <link rel="stylesheet" media="screen" href="_support/html/deckjs/web-2.0.css">
 
   <!-- Transition theme. More available in /themes/transition/ or create your own. -->
-  <link rel="stylesheet" media="screen" href="support/html/deckjs/horizontal-slide.css">
+  <link rel="stylesheet" media="screen" href="_support/html/deckjs/horizontal-slide.css">
 
   <!-- Basic black and white print styles -->
-  <link rel="stylesheet" media="print" href="support/html/deckjs/print.css">
+  <link rel="stylesheet" media="print" href="_support/html/deckjs/print.css">
 
   <!-- Pillar extended style theme. -->
-  <link rel="stylesheet" media="screen" href="support/html/deckjs/pillar.deckjs.css">
+  <link rel="stylesheet" media="screen" href="_support/html/deckjs/pillar.deckjs.css">
 
   <!-- Required Modernizr file -->
-  <script src="support/html/deckjs/modernizr.custom.js"></script>
+  <script src="_support/html/deckjs/modernizr.custom.js"></script>
 </head>
 <body>
   <div class="deck-container">
@@ -74,15 +74,15 @@
   </div>
 
 <!-- Required JS files. -->
-<script src="support/html/deckjs/jquery.min.js"></script>
-<script src="support/html/deckjs/deck.core.js"></script>
+<script src="_support/html/deckjs/jquery.min.js"></script>
+<script src="_support/html/deckjs/deck.core.js"></script>
 
 <!-- Extension JS files. Add or remove as needed. -->
-<script src="support/html/deckjs/deck.menu.js"></script>
-<script src="support/html/deckjs/deck.goto.js"></script>
-<script src="support/html/deckjs/deck.status.js"></script>
-<script src="support/html/deckjs/deck.navigation.js"></script>
-<script src="support/html/deckjs/deck.scale.js"></script>
+<script src="_support/html/deckjs/deck.menu.js"></script>
+<script src="_support/html/deckjs/deck.goto.js"></script>
+<script src="_support/html/deckjs/deck.status.js"></script>
+<script src="_support/html/deckjs/deck.navigation.js"></script>
+<script src="_support/html/deckjs/deck.scale.js"></script>
 
 <!-- Initialize the deck. You can put this in an external file if desired. -->
 <script>
