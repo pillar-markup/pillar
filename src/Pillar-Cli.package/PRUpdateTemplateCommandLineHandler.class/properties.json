@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "PRArchetypeCommandLineHandler",
+	"name" : "PRUpdateTemplateCommandLineHandler",
 	"type" : "normal"
 }

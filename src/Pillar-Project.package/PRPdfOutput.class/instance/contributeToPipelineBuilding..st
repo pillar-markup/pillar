@@ -5,6 +5,7 @@ contributeToPipelineBuilding: aPRPipelineBuilder
 	goal := aPRPipelineBuilder goal.
 	project := goal project.
 	configuration := project configuration.
+	configuration inputFile: goal inputDocument file.
 	templateFile := project baseDirectory / 
 		((goal target writerFor: configuration) templateForConfiguration: configuration).
 

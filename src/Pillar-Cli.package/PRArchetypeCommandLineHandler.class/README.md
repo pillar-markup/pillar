@@ -1,7 +1,6 @@
-I am a command line handler to download an archetype.
+I am a command line handler to create a pillar project in the current directory.
+The pillar project contains a basic template and skeleton pillar files following the archetype convention.
 
-I'm using like :
+Example of usage:
 
-./pillar archetype book : this command create a book archetype
-
-Follow https://github.com/ThibaultAr/Pillar-Archetype to known all archetypes
+./pillar archetype book

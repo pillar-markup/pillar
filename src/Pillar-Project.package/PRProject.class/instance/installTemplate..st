@@ -1,7 +1,7 @@
-actions
-archetype: archetypeName
+templates
+installTemplate: archetypeName 
 	
 	| archetype |
 	archetype := self archetypeNamed: archetypeName.
 	archetype validateExists.
-	archetype installIn: self baseDirectory
+	archetype installTemplateIn: self baseDirectory

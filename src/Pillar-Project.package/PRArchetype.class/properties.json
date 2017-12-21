@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "PRObject",
+	"category" : "Pillar-Project-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"name",
+		"project"
+	],
+	"name" : "PRArchetype",
+	"type" : "normal"
+}
