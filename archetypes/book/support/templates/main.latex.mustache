@@ -1,16 +1,16 @@
 % -*- mode: latex; -*- mustache tags: {{=« »=}} «! the '&' below prevents HTML escaping. »
-\documentclass[10pt,twoside,english]{support/latex/sbabook/sbabook}
+\documentclass[10pt,twoside,english]{_support/latex/sbabook/sbabook}
 \let\wholebook=\relax
 
 \usepackage{import}
-\subimport{support/latex/}{common.tex}
+\subimport{_support/latex/}{common.tex}
 
 %=================================================================
 % Debug packages for page layout and overfull lines
 % Remove the showtrims document option before printing
 \ifshowtrims
   \usepackage{showframe}
-  \usepackage[color=magenta,width=5mm]{support/latex/overcolored}
+  \usepackage[color=magenta,width=5mm]{_support/latex/overcolored}
 \fi
 
 
@@ -68,7 +68,7 @@
   author's moral rights.
 
   \begin{center}
-    \includegraphics[width=0.2\textwidth]{support/latex/sbabook/CreativeCommons-BY-SA.pdf}
+    \includegraphics[width=0.2\textwidth]{_support/latex/sbabook/CreativeCommons-BY-SA.pdf}
   \end{center}
 
   Your fair dealing and other rights are in no way affected by the
