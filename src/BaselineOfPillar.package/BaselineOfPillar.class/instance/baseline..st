@@ -9,12 +9,9 @@ baseline: spec
 				baseline: 'OSSubprocess'
 					with: [ spec
 						repository: 'github://marianopeck/OSSubprocess:v0.2.5/repository' ];
-				project: 'Mustache'
+				baseline: 'Mustache'
 					with: [ spec
-						className: #ConfigurationOfMustache;
-						versionString: '0.74';
-						repository: 'http://smalltalkhub.com/mc/NorbertHartl/Mustache/main'
-						 ];
+						repository: 'github://noha/mustache:v1.0/repository' ];
 				project: 'Cocoon'
 					with: [ spec
 						className: #ConfigurationOfCocoon;
