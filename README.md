@@ -27,17 +27,16 @@ $ git clone git@github.com:pillar-markup/pillar.git -b stable
 $ ./pillar/scripts/build.sh
 ```
 
-That will create a `build` directory in the working directory and build pillar in there. You can then proceed to install pillar where in your home:
+That will create a `build` directory in the working directory and build pillar in there. You can then proceed to install pillar where you want in your home directory.
+Here we place it as .pillar. 
 
 ```bash
 $ mv build ~/.pillar
 ```
-
 ### Setting up your environment
 
-Wether you downloaded an 
-
-And then add that directory to the `PILLAR_HOME` and `HOME` environment variables, for example, by modifying your `.bashrc` with
+Once you downloaded pillar and moved it to your home directory, 
+then add that directory to the `PILLAR_HOME` and `HOME` environment variables, for example, by modifying your `.bashrc` with
 
 ```bash
 export PILLAR_HOME="$HOME/.pillar"
@@ -47,7 +46,7 @@ export PATH="$PATH:$PILLAR_HOME"
 ## To compile a book in booklet format
 
 ```
-./pillar archetype book
+pillar archetype book
 make spiral
 ```
 
