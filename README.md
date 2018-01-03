@@ -31,7 +31,7 @@ That will create a `build` directory in the working directory and build pillar i
 Here we place it as .pillar. 
 
 ```bash
-$ mv build ~/.pillar
+$ mv pillar ~/.pillar
 ```
 ### Setting up your environment
 
@@ -39,7 +39,7 @@ Once you downloaded pillar and moved it to your home directory,
 then add that directory to the `PILLAR_HOME` and `HOME` environment variables, for example, by modifying your `.bashrc` with
 
 ```bash
-export PILLAR_HOME="$HOME/.pillar"
+export PILLAR_HOME="$HOME/.pillar/build"
 export PATH="$PATH:$PILLAR_HOME"
 ```
 
