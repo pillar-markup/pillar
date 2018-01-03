@@ -23,7 +23,7 @@ Otherwise, these are other possible downloads:
 To install this version of pillar, clone this repository and call the `build.sh` script in it:
 
 ```bash
-$ git clone git@github.com:pillar-markup/pillar.git -b stable
+$ git clone git@github.com:pillar-markup/pillar.git -b newpipeline
 $ ./pillar/scripts/build.sh
 ```
 
@@ -47,7 +47,7 @@ export PATH="$PATH:$PILLAR_HOME"
 
 ```
 pillar archetype book
-make spiral
+pillar build pdf
 ```
 
 ## Usage in Developement
