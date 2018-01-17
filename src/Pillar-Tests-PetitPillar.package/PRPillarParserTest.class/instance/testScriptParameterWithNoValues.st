@@ -2,6 +2,6 @@ tests - Script
 testScriptParameterWithNoValues
 	| script |
 	super testScriptParameterWithNoValues.
-	script := PRScript content: 'bar'.
+	script := PRCodeblock content: 'bar'.
 	script parameters at: 'foo' put: ''.
 	self assert: result equals: script

@@ -3,7 +3,7 @@ testScriptWithProblematicEval
 	| input |
 	input := PRDocument new
 		add:
-				((PRScript content: 'Object SomethingThatIsNotAMethod')
+				((PRCodeblock content: 'Object SomethingThatIsNotAMethod')
 						eval: true;
 						yourself);
 		yourself.

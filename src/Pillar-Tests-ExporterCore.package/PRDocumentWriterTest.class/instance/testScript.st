@@ -1,5 +1,5 @@
 tests
 testScript
 	| item |
-	item := PRScript content: 'foo'.
+	item := PRCodeblock content: 'foo'.
 	self assertWriting: item includesTexts: {self scriptWithoutCaptionBegin . self foo}

@@ -5,7 +5,7 @@ testScriptWithSeveralLineNumbers
 	self skip.
 	input := PRDocument new
 		add:
-				((PRScript content: 'stream nextPut: $h; nextPut: $e; nextPut: $l; nextPutAll: ''lo''
+				((PRCodeblock content: 'stream nextPut: $h; nextPut: $e; nextPut: $l; nextPutAll: ''lo''
  world
  !')
 						lineNumber: true;
@@ -14,7 +14,7 @@ testScriptWithSeveralLineNumbers
 		yourself.
 	expected := PRDocument new
 		add:
-				((PRScript content: '1	stream nextPut: $h; nextPut: $e; nextPut: $l; nextPutAll: ''lo''
+				((PRCodeblock content: '1	stream nextPut: $h; nextPut: $e; nextPut: $l; nextPutAll: ''lo''
 2	world
 3 	!')
 						lineNumber: true;

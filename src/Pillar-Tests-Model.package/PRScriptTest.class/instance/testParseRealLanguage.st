@@ -6,7 +6,7 @@ testParseRealLanguage
 	text := 'foo'.
 	tree := PRDocument new
 		add:
-			((PRScript content: 'foo')
+			((PRCodeblock content: 'foo')
 				language: PRSmalltalkScriptLanguage default;
 				yourself);
 		yourself.

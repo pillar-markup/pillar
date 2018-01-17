@@ -12,7 +12,7 @@ textMarkups
 		at: PRUnderlineFormat put: '__';
 		at: PRFigure put: '+';
 		at: PRLink put: '*';
-		at: PRScript put: '[[[';
+		at: PRCodeblock put: '[[[';
 		at: PRRaw put: '{{{';
 		at: PRAbstractAnnotation put: '${'.
 	^ markups

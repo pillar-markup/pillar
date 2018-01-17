@@ -3,7 +3,7 @@ testLastLineOutOfBounds
 	| input |
 	input := PRDocument new
 		add:
-				((PRScript content: '')
+				((PRCodeblock content: '')
 						fromFile: 'code.st';
 						lastLine: 500 yourself);
 		yourself.

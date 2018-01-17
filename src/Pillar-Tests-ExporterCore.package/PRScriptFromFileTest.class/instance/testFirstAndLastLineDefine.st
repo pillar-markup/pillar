@@ -3,14 +3,14 @@ testFirstAndLastLineDefine
 	| input expected |
 	input := PRDocument new
 		add:
-				((PRScript content: '')
+				((PRCodeblock content: '')
 						fromFile: 'code.st';
 						firstLine: self firstLine +1;
 						lastLine: self firstLine + 3 yourself);
 		yourself.
 	expected := PRDocument new
 		add:
-				((PRScript content: self middleCode)
+				((PRCodeblock content: self middleCode)
 						fromFile: 'code.st';
 						firstLine: self firstLine +1;
 						lastLine: self firstLine + 3 yourself);

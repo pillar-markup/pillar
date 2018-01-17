@@ -6,7 +6,7 @@ testParseWithSimpleCaption
 	text := 'foo'.
 	tree := PRDocument new
 		add:
-			((PRScript content: 'foo')
+			((PRCodeblock content: 'foo')
 				caption: 'foo';
 				yourself);
 		yourself.

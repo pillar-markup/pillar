@@ -2,7 +2,7 @@ tests
 testScriptsHaveACaption
 	| item caption |
 	caption := 'A description'.
-	item := (PRScript content: 'foo')
+	item := (PRCodeblock content: 'foo')
 		caption:  caption;
 		yourself.
 	self

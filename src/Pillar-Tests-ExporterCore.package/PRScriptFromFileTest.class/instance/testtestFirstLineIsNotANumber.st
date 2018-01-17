@@ -3,7 +3,7 @@ testtestFirstLineIsNotANumber
 	| input |
 	input := PRDocument new
 		add:
-				((PRScript content: '')
+				((PRCodeblock content: '')
 						fromFile: 'code.st';
 						firstLine: 'foo' yourself);
 		yourself.

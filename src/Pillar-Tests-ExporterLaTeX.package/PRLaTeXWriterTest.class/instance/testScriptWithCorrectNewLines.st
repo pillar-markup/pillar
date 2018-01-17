@@ -1,7 +1,7 @@
 tests
 testScriptWithCorrectNewLines
 	| item |
-	item := (PRScript content: 'foo')
+	item := (PRCodeblock content: 'foo')
 		label: 'myScript';
 		caption: 'a caption';
 		yourself.

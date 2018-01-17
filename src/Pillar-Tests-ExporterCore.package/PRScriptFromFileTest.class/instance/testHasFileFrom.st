@@ -2,11 +2,11 @@ tests
 testHasFileFrom
 	| input expected |
 	input := PRDocument new
-		add: ((PRScript content: '') fromFile: 'code.st' yourself);
+		add: ((PRCodeblock content: '') fromFile: 'code.st' yourself);
 		yourself.
 	expected := PRDocument new
 		add:
-				((PRScript content: self aCode)
+				((PRCodeblock content: self aCode)
 						fromFile: 'code.st';
 						yourself);
 		yourself.
