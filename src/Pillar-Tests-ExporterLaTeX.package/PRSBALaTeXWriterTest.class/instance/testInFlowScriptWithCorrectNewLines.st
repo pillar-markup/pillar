@@ -1,7 +1,7 @@
 tests
 testInFlowScriptWithCorrectNewLines
 	| item |
-	item := PRScript content: 'foo'.
+	item := PRCodeblock content: 'foo'.
 	self
 		assertWriting: item
 		includesText:

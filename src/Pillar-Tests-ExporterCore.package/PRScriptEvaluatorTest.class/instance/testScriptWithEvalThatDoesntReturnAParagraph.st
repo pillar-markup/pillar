@@ -5,7 +5,7 @@ testScriptWithEvalThatDoesntReturnAParagraph
 		add:
 			(PRParagraph new
 				add:
-						((PRScript content: 'stream nextPutAll: ''-test''')
+						((PRCodeblock content: 'stream nextPutAll: ''-test''')
 								eval: true;
 								yourself);
 				yourself) yourself.

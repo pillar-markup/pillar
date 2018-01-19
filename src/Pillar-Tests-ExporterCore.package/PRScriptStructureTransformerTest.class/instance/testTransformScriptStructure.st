@@ -3,7 +3,7 @@ testTransformScriptStructure
 	| input expected |
 	input := PRDocument new
 		add:
-			((PRScript 
+			((PRCodeblock 
 				content:'{"postCode":"59000","name":"Lille"}')
 				structureName:'city';
 				yourself).

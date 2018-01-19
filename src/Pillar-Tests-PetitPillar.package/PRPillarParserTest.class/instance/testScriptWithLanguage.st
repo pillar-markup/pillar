@@ -4,6 +4,6 @@ testScriptWithLanguage
 	self
 		assert: result
 		equals:
-			((PRScript content: 'foo')
+			((PRCodeblock content: 'foo')
 				language: PRSmalltalkScriptLanguage default;
 				yourself)

@@ -5,5 +5,5 @@ defaultEndMarkups
 	markups
 		at: PRAbstractAnnotation put: '}$';
 		at: PRRaw put: '}}}';
-		at: PRScript put: ']]]'.
+		at: PRCodeblock put: ']]]'.
 	^ markups

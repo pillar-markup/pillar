@@ -1,7 +1,7 @@
 tests
 testScriptWithBothLabelAndCaption
 	| script |
-	script := (PRScript content: 'foo')
+	script := (PRCodeblock content: 'foo')
 					label: 'myScript';
 					caption: 'a caption';
 					language: PRHTMLScriptLanguage default;

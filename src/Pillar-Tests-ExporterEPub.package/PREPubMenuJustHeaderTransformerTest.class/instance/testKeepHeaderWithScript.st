@@ -2,7 +2,7 @@ tests
 testKeepHeaderWithScript
 	| input expected |
 	input := PRDocument new
-		add: (PRScript content: 'hello');
+		add: (PRCodeblock content: 'hello');
 		add:
 			(PRHeader new
 				level: 1;

@@ -1,7 +1,7 @@
 tests
 testScriptWithFormattedCaption
 	| item |
-	item := (PRScript content: 'bar')
+	item := (PRCodeblock content: 'bar')
 		caption: '""foo""';
 		yourself.
 	self assertWriting: item includesText: self boldFoo

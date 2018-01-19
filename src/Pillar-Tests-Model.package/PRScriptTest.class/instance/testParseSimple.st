@@ -5,7 +5,7 @@ testParseSimple
 	wiki := '[[[' , nLine , 'foo' , nLine , ']]]'.
 	text := 'foo'.
 	tree := PRDocument new
-		add: (PRScript content: 'foo');
+		add: (PRCodeblock content: 'foo');
 		yourself.
 	self assertWiki: wiki equalsTree: tree.
 	self assertTree: tree equalsWiki: wiki.

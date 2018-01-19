@@ -5,7 +5,7 @@
 		"parameters",
 		"caption"
 	],
-	"name" : "PRScript",
+	"name" : "PRCodeblock",
 	"commentStamp" : "StephaneDucasse 10/3/2017 21:57",
 	"super" : "PRText",
 	"traitcomposition" : "PRTParametrizable",

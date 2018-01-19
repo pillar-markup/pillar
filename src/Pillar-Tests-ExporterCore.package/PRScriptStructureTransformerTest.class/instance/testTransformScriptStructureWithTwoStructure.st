@@ -3,11 +3,11 @@ testTransformScriptStructureWithTwoStructure
 	| input expected |
 	input := PRDocument new
 		add:
-			((PRScript content: '{"name":"Zimbabwe"}')
+			((PRCodeblock content: '{"name":"Zimbabwe"}')
 				structureName: 'country';
 				yourself);
 		add:
-			((PRScript content: '{"name":"Bidon", "postCode":"07034"}')
+			((PRCodeblock content: '{"name":"Bidon", "postCode":"07034"}')
 				structureName: 'city';
 				yourself).
 	expected := PRDocument new

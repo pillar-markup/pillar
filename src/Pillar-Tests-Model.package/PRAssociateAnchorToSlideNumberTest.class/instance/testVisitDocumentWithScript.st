@@ -3,7 +3,7 @@ testVisitDocumentWithScript
 	| item dictionary config |
 	item := PRDocument new
 		add:
-				((PRScript content: '|test| test := test')
+				((PRCodeblock content: '|test| test := test')
 						label: 'foo';
 						yourself);
 		yourself.

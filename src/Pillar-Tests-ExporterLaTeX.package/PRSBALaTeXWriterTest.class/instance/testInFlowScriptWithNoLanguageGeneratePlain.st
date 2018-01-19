@@ -1,5 +1,5 @@
 tests
 testInFlowScriptWithNoLanguageGeneratePlain
 	| script |
-	script := PRScript content: 'foo'.
+	script := PRCodeblock content: 'foo'.
 	self assertWriting: script includesTexts: #('\begin{displaycode}{plain}' 'foo')

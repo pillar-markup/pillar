@@ -1,7 +1,7 @@
 tests
 testScriptLabelGenerateAnchor
 	| item |
-	item := (PRScript content: 'foo')
+	item := (PRCodeblock content: 'foo')
 		label: 'myScript';
 		yourself.
 	self

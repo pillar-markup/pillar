@@ -2,7 +2,7 @@ tests
 testScriptWhenHideable
 	| input expected |
 	input := PRDocument new 
-		add: ((PRScript content: 'Object') 
+		add: ((PRCodeblock content: 'Object') 
 					hideable: true;
 					yourself);
 				yourself.

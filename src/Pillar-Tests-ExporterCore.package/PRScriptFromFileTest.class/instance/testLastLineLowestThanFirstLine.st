@@ -3,7 +3,7 @@ testLastLineLowestThanFirstLine
 	| input |
 	input := PRDocument new
 		add:
-				((PRScript content: '')
+				((PRCodeblock content: '')
 						fromFile: 'code.st';
 						firstLine: 5;
 						lastLine: 0 yourself);

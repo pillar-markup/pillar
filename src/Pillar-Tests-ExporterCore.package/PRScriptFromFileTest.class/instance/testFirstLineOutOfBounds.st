@@ -3,7 +3,7 @@ testFirstLineOutOfBounds
 	| input |
 	input := PRDocument new
 		add:
-				((PRScript content: '')
+				((PRCodeblock content: '')
 						fromFile: 'code.st';
 						firstLine: 500 yourself);
 		yourself.
