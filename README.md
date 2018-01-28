@@ -43,16 +43,27 @@ export PILLAR_HOME="$HOME/.pillar/build"
 export PATH="$PATH:$PILLAR_HOME"
 ```
 
+
 ## To compile a book in booklet format
+Now you should be ready compile the default 
 
 ```
 pillar archetype book
 pillar build pdf
 ```
+It will build a book in the folder _result. Pay attention for the moment 
+running it twice break and you should remove the _result to regenerate a book pdf. 
 
-## Usage in Developement
+## Manage your own book
+Now you can copy the following files and folder to your own repository. 
+Chapters, figures, pillar.conf, book.pillar, and _support
+These are the files that you should versionned. 
 
-Once built, you can use the artifact in the `build` directory to work. To finish setting up the development environment, do the following:
+
+
+## Usage for Pillar Developement
+Once built, you can use the artifacts (images, vm, scripts....) in the `build` directory to work.
+To finish setting up the development environment, do the following:
 - configure the iceberg repository (using the `add local repository` option pointing to your git root)
 - open your environment using `cd build && ./pharo-ui Pharo.image`
 
