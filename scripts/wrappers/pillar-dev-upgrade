@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Bash3 Boilerplate. Copyright (c) 2014, kvz.io
+
+set -o errexit
+set -o pipefail
+set -o nounset
+set -o xtrace
+
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# This script upgrades the current pillar installation to latest stable version published in the stable branch
+
+rm -rf /tmp/pillar && mkdir -p /tmp/pillar
+git clone git@github.com:pillar-markup/pillar.git -b newpipeline /tmp/pillar
+
+cd /tmp/pillar
+./scripts/build.sh
+
+rm -rf ${__dir}
+mv build ${__dir}
+rm -rf /tmp/pillar
