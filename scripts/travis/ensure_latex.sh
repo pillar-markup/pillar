@@ -14,13 +14,13 @@ cd install-tl-*
 
 BASE_PROFILE=$(cat << EOS
 selected_scheme scheme-small
-TEXDIR $HOME/texlive/2018
+TEXDIR $HOME/texlive/2017
 TEXMFCONFIG $HOME/.texlive2018/texmf-config
 TEXMFHOME $HOME/texmf
 TEXMFLOCAL $HOME/texlive/texmf-local
-TEXMFSYSCONFIG $HOME/texlive/2018/texmf-config
-TEXMFSYSVAR $HOME/texlive/2018/texmf-var
-TEXMFVAR $HOME/.texlive2018/texmf-var
+TEXMFSYSCONFIG $HOME/texlive/2017/texmf-config
+TEXMFSYSVAR $HOME/texlive/2017/texmf-var
+TEXMFVAR $HOME/.texlive2017/texmf-var
 option_doc 0
 option_src 0
 EOS
@@ -34,7 +34,7 @@ else
   export PATH=$PATH:$HOME/texlive/2017/bin/x86_64-linux
 fi
 
-./install-tl -profile ./small.profile -repository http://ctan.sharelatex.com/tex-archive/systems/texlive/tlnet
+./install-tl -profile ./small.profile
 tlmgr init-usertree
 tlmgr install latexmk
 tlmgr install luatex85
