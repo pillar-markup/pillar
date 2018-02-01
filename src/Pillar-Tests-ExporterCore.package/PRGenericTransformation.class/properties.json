@@ -1,13 +1,14 @@
 {
 	"commentStamp" : "",
 	"super" : "Object",
-	"category" : "Pillar-Project-Core",
+	"category" : "Pillar-Tests-ExporterCore",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"pluginName"
+		"block",
+		"goal"
 	],
-	"name" : "PRPlugin",
+	"name" : "PRGenericTransformation",
 	"type" : "normal"
 }

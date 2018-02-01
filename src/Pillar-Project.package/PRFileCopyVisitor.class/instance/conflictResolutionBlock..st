@@ -1,4 +1,0 @@
-accessing
-conflictResolutionBlock: aConflictResolutionBlock
-
-	conflictResolutionBlock := aConflictResolutionBlock

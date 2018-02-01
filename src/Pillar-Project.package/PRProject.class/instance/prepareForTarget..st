@@ -1,4 +1,4 @@
-building
+private-building
 prepareForTarget: target
 
 	target prepareForExecutionOn: self.

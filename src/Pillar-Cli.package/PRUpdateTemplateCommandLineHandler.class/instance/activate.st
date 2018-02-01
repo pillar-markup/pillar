@@ -1,5 +1,5 @@
 activation
 activate
 
-	self project installTemplate: self requestedTemplate.
+	self project installTemplateNamed: self requestedTemplate.
 	self exitSuccess

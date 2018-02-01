@@ -1,5 +1,5 @@
-actions
-archetype: archetypeName
+archetypes
+installArchetypeNamed: archetypeName
 	
 	| archetype |
 	archetype := self archetypeNamed: archetypeName.

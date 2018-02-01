@@ -1,5 +1,5 @@
-templates
-installTemplate: archetypeName 
+archetypes
+installTemplateNamed: archetypeName 
 	
 	| archetype |
 	archetype := self archetypeNamed: archetypeName.

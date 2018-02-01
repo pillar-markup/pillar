@@ -1,0 +1,1 @@
+I am an abstract build target that writes the build output to a file.

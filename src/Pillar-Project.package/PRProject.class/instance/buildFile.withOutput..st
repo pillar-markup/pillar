@@ -1,4 +1,4 @@
-building
+private-building
 buildFile: inputDocument withOutput: buildTarget
 
 	| goal |

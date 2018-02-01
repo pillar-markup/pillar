@@ -1,0 +1,1 @@
+I am a Pillar archetype. I know how to install myself or my template inside a project's base directory.
