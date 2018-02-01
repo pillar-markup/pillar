@@ -14,13 +14,13 @@ cd install-tl-*
 
 BASE_PROFILE=$(cat << EOS
 selected_scheme scheme-small
-TEXDIR $HOME/texlive/2017
-TEXMFCONFIG $HOME/.texlive2017/texmf-config
+TEXDIR $HOME/texlive/2018
+TEXMFCONFIG $HOME/.texlive2018/texmf-config
 TEXMFHOME $HOME/texmf
 TEXMFLOCAL $HOME/texlive/texmf-local
-TEXMFSYSCONFIG $HOME/texlive/2017/texmf-config
-TEXMFSYSVAR $HOME/texlive/2017/texmf-var
-TEXMFVAR $HOME/.texlive2017/texmf-var
+TEXMFSYSCONFIG $HOME/texlive/2018/texmf-config
+TEXMFSYSVAR $HOME/texlive/2018/texmf-var
+TEXMFVAR $HOME/.texlive2018/texmf-var
 option_doc 0
 option_src 0
 EOS
