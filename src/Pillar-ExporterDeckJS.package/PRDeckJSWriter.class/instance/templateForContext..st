@@ -1,3 +1,3 @@
 templating
 templateForContext: aPillarContext
-	^ 'support/templates/presentation.deckjs.template'
+	^ '_support/templates/presentation.deckjs.template'

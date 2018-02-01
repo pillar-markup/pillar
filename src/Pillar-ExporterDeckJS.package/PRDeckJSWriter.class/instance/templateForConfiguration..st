@@ -1,3 +1,3 @@
 templating
 templateForConfiguration: aConfiguration
-	^ 'support/templates/presentation.deckjs.template'
+	^ '_support/templates/presentation.deckjs.template'

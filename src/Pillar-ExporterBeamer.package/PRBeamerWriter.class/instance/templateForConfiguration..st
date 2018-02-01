@@ -1,3 +1,3 @@
 templating
 templateForConfiguration: aConfiguration
-	^ 'support/templates/presentation.beamer.template'
+	^ '_support/templates/presentation.beamer.template'
