@@ -1,1 +1,0 @@
-I am a pillar tree transformer that transforms all pillar references (file inclusions or figure links) to be relative to the output directory. I am used by the Pdf Output Target because pdf->latex compilation requires pathes to be relative to the output directory.

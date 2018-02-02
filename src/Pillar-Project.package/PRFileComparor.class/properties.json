@@ -1,14 +1,16 @@
 {
-	"commentStamp" : "",
+	"commentStamp" : "StephaneDucasse 2/2/2018 21:06",
 	"super" : "PRObject",
 	"category" : "Pillar-Project-Core",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"name",
-		"project"
+		"origin",
+		"target",
+		"targetFiles",
+		"originFiles"
 	],
-	"name" : "PRArchetype",
+	"name" : "PRFileComparor",
 	"type" : "normal"
 }

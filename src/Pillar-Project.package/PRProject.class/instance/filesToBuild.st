@@ -1,4 +1,4 @@
-private-building
+building
 filesToBuild
 	
 	^ self buildStrategy filesToBuild collect: [ :file |

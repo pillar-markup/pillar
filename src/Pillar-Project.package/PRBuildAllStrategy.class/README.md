@@ -1,1 +1,0 @@
-I am a pillar project build strategy that decides to build all available pillar files.

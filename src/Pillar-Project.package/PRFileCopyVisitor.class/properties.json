@@ -1,11 +1,13 @@
 {
 	"commentStamp" : "",
-	"super" : "PRTarget",
+	"super" : "CopyVisitor",
 	"category" : "Pillar-Project-Core",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
-	"name" : "PRWritingTarget",
+	"instvars" : [
+		"conflictResolutionBlock"
+	],
+	"name" : "PRFileCopyVisitor",
 	"type" : "normal"
 }
