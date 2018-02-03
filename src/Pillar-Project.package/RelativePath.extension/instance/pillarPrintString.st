@@ -5,7 +5,7 @@ pillarPrintString
 		str nextPutAll: (self at: 1) asString.
 		2 to: self size do: [:i |
 			str
-				nextPutAll: self delimiter;
+				nextPut: self delimiter;
 				nextPutAll: (self at: i) ] ]
 					
 			
