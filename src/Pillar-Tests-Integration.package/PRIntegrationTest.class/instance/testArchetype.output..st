@@ -1,5 +1,5 @@
 tests
 testArchetype: archetype output: output
 
-	project installArchetypeNamed: archetype.
+	project archetype: archetype.
 	project build: output

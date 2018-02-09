@@ -1,4 +1,4 @@
-as yet unclassified
+tests
 testPresentationHtml
 
 	self testArchetype: self archetypePresentation output: self outputHtml
