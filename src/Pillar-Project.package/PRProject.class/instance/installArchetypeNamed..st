@@ -1,9 +1,7 @@
-templates
+archetypes
 installArchetypeNamed: archetypeName
-
-	| archetypeReference |
-	archetypeReference := FileLocator imageDirectory / 'archetypes' / archetypeName.
-	archetypeReference exists ifFalse: [
-		self error: 'Archetype ', archetypeName, ' does not exist'
-	].
-	archetypeReference copyAllTo: self baseDirectory
+	
+	| archetype |
+	archetype := self archetypeNamed: archetypeName.
+	archetype validateExists.
+	archetype installIn: self baseDirectory
