@@ -1,3 +1,5 @@
+! Edition and Templates
+
 There is also a template system, you can find template in the folder ''_support/template''.
 Some template are already written, but if you want to have your own, you had two solutions:
 -edit the existing template related to the format you want to change (recommanded)
@@ -14,3 +16,6 @@ so you can use this rule when you want to.
 
 Output directory's default name is ''book-result'' but you can change it in the Makefile by editing the
 ==OUTPUTDIRECTORY== variable
+
++>figures/pharo.png|width=30+
++>figures/rmod.png|width=30+
