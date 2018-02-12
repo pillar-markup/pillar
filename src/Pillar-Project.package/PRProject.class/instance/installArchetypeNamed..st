@@ -1,4 +1,4 @@
-actions
+templates
 installArchetypeNamed: archetypeName
 
 	| archetypeReference |
@@ -6,4 +6,4 @@ installArchetypeNamed: archetypeName
 	archetypeReference exists ifFalse: [
 		self error: 'Archetype ', archetypeName, ' does not exist'
 	].
-	archetypeReference copyAllTo: workingDirectory
+	archetypeReference copyAllTo: self baseDirectory
