@@ -1,5 +1,5 @@
 actions
-installArchetype: archetypeName
+installArchetypeNamed: archetypeName
 
 	| archetypeReference |
 	archetypeReference := FileLocator imageDirectory / 'archetypes' / archetypeName.
