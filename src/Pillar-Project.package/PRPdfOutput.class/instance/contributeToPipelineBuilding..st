@@ -24,4 +24,3 @@ contributeToPipelineBuilding: aPRPipelineBuilder
 		outputDirectory: goal targetOutputDirectory;
 		outputFile: goal outputDirectory / goal inputDocument file basename , 'pdf';
 		yourself).
-	aPRPipelineBuilder addPostSaveTransformation: PRPDFLatexCompilationPhase new
