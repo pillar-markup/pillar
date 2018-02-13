@@ -26,7 +26,7 @@ install:
   - ps: Start-FileDownload "https://github.com/hpi-swa/SMALLTALKCI/archive/master.zip" "C:\SMALLTALKCI.zip"
   - 7z x C:\SMALLTALKCI.zip -oC:\ -y > NULL
   # Install miktex to get pdflatex, if we don't get it from the cache
-  - if not exist c:\miktex\texmfs\install\miktex\bin\pdflatex.exe appveyor DownloadFile http://mirrors.ctan.org/systems/win32/miktex/setup/miktex-portable.exe
+  - if not exist c:\miktex\texmfs\install\miktex\bin\pdflatex.exe appveyor DownloadFile http://mirrors.ctan.org/systems/windows-x86/miktex/setup/miktex-portable.exe
   - if not exist c:\miktex\texmfs\install\miktex\bin\pdflatex.exe 7z x miktex-portable.exe -oc:\miktex >NUL
   - set "PATH=%PATH%;c:\miktex\texmfs\install\miktex\bin"
   # autoinstall latex packages (0=no, 1=autoinstall, 2=ask)
