@@ -61,19 +61,28 @@ These are the files that you should versionned.
 
 
 
-## Usage for Pillar Developement
-Once built, you can use the artifacts (images, vm, scripts....) in the `build` directory to work.
-To finish setting up the development environment, do the following:
-- configure the iceberg repository (using the `add local repository` option pointing to your git root)
-- open your environment using `cd build && ./pharo-ui Pharo.image`
+## Contributing to Pillar
 
-If you want to debug the pillar command line handlers you can invoke pillar using the `pillar-db` command that is right next to the `pillar` one. This command will open a graphical IDE that will allow you to debug and test properly.
+The current pillar version is being developped using [Pharo6.1](www.pharo.org). To contribute, you should set-up a development environment as follows:
+
+1. Download Pharo6.1, either 32 or 64 bits, from Pharo's website. You can also use the handy zeroconf scripts as follows:
 
 ```bash
-$ pillar-db introspect something
+$ wget get.pharo.org/61+vm | bash     #32bit version
+$ wget get.pharo.org/64/61+vm | bash  #64bit version
 ```
 
-## Dependencies
+2. Open Pharo
+
+```bash
+$ ./pharo-ui Pharo.image
+```
+
+3. Check that you have your ssh keys in-sync with github (You can follow github instructions from here https://help.github.com/articles/connecting-to-github-with-ssh/). If you skip this, you'll have problems fetching and pushing your commits.
+
+4. Clone pillar using iceberg.
+
+## Notes about dependencies
 
 Producing pdf documents with pillar requires a `LaTeX` with the following packages:
 
