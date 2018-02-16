@@ -1,7 +1,7 @@
 accessing
 allTransformers
-	| configuration |
-	configuration := PRPillarConfiguration new
-		disabledPhases: {};
-		yourself.
-	^ PRTransformPipeline allPipeClasses: configuration
+	
+	^ PRTPipe users asArray
+		flatCollect: [ :klass | 
+			klass withAllConcreteClasses select: [ :e |
+				e key = #transform ] ]
