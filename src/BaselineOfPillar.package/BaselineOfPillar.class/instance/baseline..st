@@ -33,9 +33,6 @@ baseline: spec
 		do: [ spec blessing: #baseline.
 			spec repository: 'http://smalltalkhub.com/mc/Pier/Pillar/main/'.
 			spec
-				baseline: 'OSSubprocess'
-					with: [ spec
-						repository: 'github://marianopeck/OSSubprocess:v0.2.5/repository' ];
 				baseline: 'Mustache'
 					with: [ spec
 						repository: 'github://noha/mustache:v1.0/repository' ];
@@ -49,17 +46,7 @@ baseline: spec
 						className: #ConfigurationOfJSON;
 						versionString: #stable;
 						repository: 'http://smalltalkhub.com/mc/PharoExtras/JSON/main/' ];
-				project: 'LightPhaser'
-					with: [ spec
-						className: #ConfigurationOfLightPhaser;
-						versionString: '1.0.2';
-						repository: 'http://smalltalkhub.com/mc/Pier/LightPhaser/main/' ];
-				project: 'PetitParser'
-					with: [ spec
-						className: #ConfigurationOfPetitParser;
-						versionString: #stable;
-						loads: #('Tests');
-						repository: 'http://www.smalltalkhub.com/mc/Moose/PetitParser/main' ];
+	
 				project: 'PetitParserTest'
 					with: [ spec
 						className: #ConfigurationOfPetitParser;
@@ -73,7 +60,7 @@ baseline: spec
 					with: [ spec requires: #('Pillar-ExporterCore') ];
 				package: 'Pillar-ExporterBeamer' with: [ spec requires: #('Pillar-ExporterLaTeX') ];
 				package: 'Pillar-ExporterCore'
-					with: [ spec requires: #('Pillar-Model' 'Cocoon' 'JSON' 'LightPhaser') ];
+					with: [ spec requires: #('Pillar-Model' 'Cocoon' 'JSON') ];
 				package: 'Pillar-ExporterDeckJS' with: [ spec requires: #('Pillar-ExporterHTML') ];
 				package: #'Pillar-ExporterEPub'
 					with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-ExporterHTML') ];

@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "PRPhase",
+	"super" : "Object",
 	"category" : "Pillar-Project-Pdf",
 	"classinstvars" : [ ],
 	"pools" : [ ],

@@ -1,5 +1,5 @@
 actions
-actionOn: aPRDocument
+executeOn: aPRDocument
 
 	PRUpdateFileInclusionReference
 		start: aPRDocument

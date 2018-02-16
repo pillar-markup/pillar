@@ -10,7 +10,7 @@ build
 		pillarDocumentDependency: pipeline.
 	
 	pipeline := PRTransformTask new
-		transformations: (LPPipeline pipes: self pillarDocumentTransformations) sort pipes;
+		transformations: self pillarDocumentTransformations;
 		pillarDocumentDependency: pipeline.
 		
 	pipeline := PROutputFormatterTask new
