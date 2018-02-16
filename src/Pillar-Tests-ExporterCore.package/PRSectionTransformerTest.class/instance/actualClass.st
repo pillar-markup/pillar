@@ -1,3 +1,4 @@
 private
 actualClass
+
 	^ PRSectionTransformer

@@ -1,1 +1,0 @@
-I apply a template to a PROutputDocument's #outputText. I check if the converted file is the main document in the conversion and if so, I use the configured #mainDocumentTemplate.
