@@ -1,6 +1,11 @@
 visiting
 start: aDocumentItem
 	| object |
+	
+	"Execute clean annotation before"
+	PRCleanAnnotationInParagraphTransfomer new
+		start: aDocumentItem.
+	
 	object := super start: aDocumentItem.
 	currentColumns notNil | currentColumn notNil
 		ifTrue: [ PRError
