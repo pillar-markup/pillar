@@ -1,4 +1,4 @@
 execution
 ensureDependencies
 
-	self dependencies do: #execute
+	self dependencies do: [ :each | each execute ]
