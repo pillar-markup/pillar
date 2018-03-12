@@ -1,6 +1,8 @@
 #!/bin/bash
 # From https://github.com/y-yu/install-tex-travis/blob/master/install-tex.sh
-set -o errexit
+
+#Do not use -e to avoid problems in osx
+#set -o errexit
 set -o xtrace
 
 DIRNAME=tl-`date +%Y_%m_%d_%H_%M_%S`
