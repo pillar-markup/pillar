@@ -14,6 +14,7 @@ Read the documentation at [https://ci.inria.fr/pharo-contribution/job/Enterprise
 Take a version from the github releases and download it.
 
 You can get the latest release from [here](https://github.com/pillar-markup/pillar/releases).
+Pay attention the latest release is 6.0.7 (and not 5.0). 
 
 Otherwise, these are other possible downloads:
 - [V6.0.7](https://github.com/pillar-markup/pillar/archive/v6.0.7.zip)
