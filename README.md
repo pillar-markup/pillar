@@ -24,6 +24,8 @@ Otherwise, these are other possible downloads:
 To install this version of pillar, clone this repository and call the `build.sh` script in it:
 
 ```bash
+$ mkdir Pillar
+$ cd Pillar
 $ git clone git@github.com:pillar-markup/pillar.git -b newpipeline
 $ ./pillar/scripts/build.sh
 ```
@@ -32,7 +34,7 @@ That will create a `build` directory in the working directory and build pillar i
 Here we place it as .pillar. 
 
 ```bash
-$ mv pillar ~/.pillar
+$ mv Pillar ~/.pillar
 ```
 ### Setting up your environment
 
