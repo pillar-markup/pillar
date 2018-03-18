@@ -1,4 +1,4 @@
-tests
+tests ok in chrysal too
 testReadingTitle
 	| dictionary config |
 	dictionary := Dictionary with: 'title' -> 'foo'.

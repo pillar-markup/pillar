@@ -1,4 +1,4 @@
-tests
+tests ok in chrysal too
 testReadingNewLine
 	| dictionary config |
 	dictionary := Dictionary with: 'newLine' -> #unix.

@@ -1,4 +1,4 @@
-tests
+tests ok in chrysal too
 testReadingVerbose
 	| dictionary config |
 	dictionary := Dictionary with: 'verbose' -> false.

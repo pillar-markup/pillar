@@ -1,3 +1,6 @@
 printing
 printOn: aStream
-	aStream nextPutAll: self originalName
+	super printOn: aStream.
+	aStream nextPutAll: ' ('.
+	aStream nextPutAll: self originalName.
+	aStream nextPutAll: ')'.

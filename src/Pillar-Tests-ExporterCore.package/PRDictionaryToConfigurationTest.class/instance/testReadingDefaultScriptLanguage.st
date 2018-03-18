@@ -1,4 +1,4 @@
-tests
+tests ok in chrysal too
 testReadingDefaultScriptLanguage
 	| dictionary config |
 	dictionary := Dictionary with: 'defaultScriptLanguage' -> 'smalltalk'.

@@ -1,4 +1,4 @@
-tests
+tests ok in chrysal too
 testReadingSeparateOutputFiles
 	| dictionary config |
 	dictionary := Dictionary with: 'separateOutputFiles' -> false.

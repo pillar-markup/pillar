@@ -1,4 +1,4 @@
-tests
+tests ok in chrysal too
 testReadingRenderStructureAsSlide
 	| dictionary config |
 	dictionary := Dictionary with: 'renderStructureAsSlide' -> false.

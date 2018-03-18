@@ -1,4 +1,4 @@
-tests
+tests ok in chrysal too
 testReadingScrambledEmailAddresses
 	| dictionary config |
 	dictionary := Dictionary with: 'scrambledEmailAddresses' -> false.
