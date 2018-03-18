@@ -1,5 +1,5 @@
 visiting-document
-visitScript: aScript
+visitCodeblock: aCodeBlock
 	canvas tag
 		name: 'figure';
 		with: [ 
@@ -10,17 +10,17 @@ visitScript: aScript
 									code := canvas tag
 										name: 'code';
 										yourself.
-									language := self languageForScript: aScript.
+									language := self languageForScript: aCodeBlock.
 									language isSyntaxHighlightingPossible
 										ifTrue: [ code parameterAt: 'class' put: language printString ].
-									code with: [ canvas lines: aScript text ] ].
+									code with: [ canvas lines: aCodeBlock text ] ].
 					canvas tag
 						name: 'figcaption';
 						with: [ 
-									aScript hasLabel
+									aCodeBlock hasLabel
 										ifTrue: [ 
-											self createAnchorWith: aScript label.
-											self writeCounterForScript: aScript ].
-									aScript hasCaption
-										ifTrue: [ self visitAll: aScript caption children ] ] ].
+											self createAnchorWith: aCodeBlock label.
+											self writeCounterForScript: aCodeBlock ].
+									aCodeBlock hasCaption
+										ifTrue: [ self visitAll: aCodeBlock caption children ] ] ].
 	canvas newLine

@@ -1,3 +1,3 @@
 visiting
 accept: aVisitor
-	aVisitor visitScript: self
+	aVisitor visitCodeblock: self
