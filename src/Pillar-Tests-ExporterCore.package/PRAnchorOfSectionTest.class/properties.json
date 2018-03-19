@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "PRNodeTransformerTest",
-	"category" : "Pillar-Tests-ExporterCore-Feature",
+	"category" : "Pillar-Tests-ExporterCore-Transformers",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "Object",
-	"category" : "Pillar-Tests-ExporterCore",
+	"category" : "Pillar-Tests-ExporterCore-Tasks",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
@@ -9,6 +9,6 @@
 		"block",
 		"goal"
 	],
-	"name" : "PRGenericTransformation",
+	"name" : "PRMockTransformation",
 	"type" : "normal"
 }

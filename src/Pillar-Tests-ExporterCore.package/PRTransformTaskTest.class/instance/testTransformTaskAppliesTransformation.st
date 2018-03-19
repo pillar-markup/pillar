@@ -6,7 +6,7 @@ testTransformTaskAppliesTransformation
 	task := PRTransformTask new.
 	task pillarDocumentDependency: (PRGenericObjectTask result: PRDocument new).
 	
-	task addTransformation: (PRGenericTransformation doing: [ :document | transformationExecuted := true ]).
+	task addTransformation: (PRMockTransformation doing: [ :document | transformationExecuted := true ]).
 	
 	task execute.
 	

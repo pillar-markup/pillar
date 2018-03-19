@@ -7,8 +7,8 @@ testTransformTaskAppliesTransformationInOrder
 	task := PRTransformTask new.
 	task pillarDocumentDependency: (PRGenericObjectTask result: PRDocument new).
 	
-	task addTransformation: (PRGenericTransformation doing: [ :document | result add: 1 ]).
-	task addTransformation: (PRGenericTransformation doing: [ :document | result add: 2 ]).
+	task addTransformation: (PRMockTransformation doing: [ :document | result add: 1 ]).
+	task addTransformation: (PRMockTransformation doing: [ :document | result add: 2 ]).
 	
 	task execute.
 	

@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "DamienCassou 7/20/2016 16:30",
 	"super" : "PRVisitorTest",
-	"category" : "Pillar-Tests-ExporterCore",
+	"category" : "Pillar-Tests-ExporterCore-Transformers",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
