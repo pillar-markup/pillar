@@ -1,4 +1,4 @@
-descriptions
+descriptions transcripted to chrysal
 descriptionHeadingLevelOffset
 	<magritteDescription>
 	^ MANumberDescription new

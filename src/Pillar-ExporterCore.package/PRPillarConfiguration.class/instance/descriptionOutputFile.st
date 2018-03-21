@@ -1,4 +1,4 @@
-descriptions
+descriptions transcripted to chrysal
 descriptionOutputFile
 	<magritteDescription>
 	^ PRMagrittePathOrStreamDescription new
