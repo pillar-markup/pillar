@@ -1,4 +1,4 @@
 accessing
 filesToBuildOn: aProject
 
-	^ files
+	^ files collect: [ :each | aProject baseDirectory resolve: each ]
