@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "PRBuildStrategy",
+	"super" : "Object",
 	"category" : "Pillar-Project-Core",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "PRBuildAllStrategy",
+	"name" : "PRBuildStrategy",
 	"type" : "normal"
 }

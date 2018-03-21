@@ -5,7 +5,9 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"buildStrategy"
+	],
 	"name" : "PRTarget",
 	"type" : "normal"
 }

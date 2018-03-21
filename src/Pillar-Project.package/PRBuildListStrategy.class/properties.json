@@ -5,7 +5,9 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
-	"name" : "PRBuildAllStrategy",
+	"instvars" : [
+		"files"
+	],
+	"name" : "PRBuildListStrategy",
 	"type" : "normal"
 }
