@@ -11,5 +11,5 @@ sbaString
 	\begin{displaycode}{a PRBashScriptLanguage[635751168] (bash)}
 	Let us try with standardName
 	"
-	^ self standardName
+	^ self class standardName
 	
