@@ -1,4 +1,4 @@
-as yet unclassified
+building
 buildOnly: aListOfFileReferences
 
 	buildStrategy := PRBuildListStrategy list: aListOfFileReferences
