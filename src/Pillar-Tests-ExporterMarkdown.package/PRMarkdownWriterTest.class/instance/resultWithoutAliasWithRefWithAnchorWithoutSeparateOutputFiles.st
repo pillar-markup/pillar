@@ -1,3 +1,3 @@
 requirements
 resultWithoutAliasWithRefWithAnchorWithoutSeparateOutputFiles
-	^ '(#foo)'
+	^ '#foo'

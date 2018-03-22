@@ -1,0 +1,6 @@
+requirements
+scriptAnchorForMyScript
+	
+	^ '```
+myscript
+```'

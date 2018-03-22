@@ -1,0 +1,4 @@
+requirements
+tableCellWithFoo
+	
+	^ 'foo'

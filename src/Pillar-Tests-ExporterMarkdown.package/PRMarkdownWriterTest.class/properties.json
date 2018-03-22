@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "PRHTMLWriterTest",
+	"super" : "PRDocumentWriterTest",
 	"category" : "Pillar-Tests-ExporterMarkdown",
 	"classinstvars" : [ ],
 	"pools" : [ ],
