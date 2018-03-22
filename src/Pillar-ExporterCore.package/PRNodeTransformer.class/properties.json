@@ -1,5 +1,5 @@
 {
-	"classtraitcomposition" : "PRTPipe classTrait",
+	"classtraitcomposition" : "PRTPipe classTrait - {#key}",
 	"classvars" : [ ],
 	"instvars" : [
 		"replacement",
