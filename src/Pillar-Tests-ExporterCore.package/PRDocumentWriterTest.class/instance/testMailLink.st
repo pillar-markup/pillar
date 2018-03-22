@@ -1,7 +1,7 @@
 tests
 testMailLink
 	| item |
-	configuration scrambledEmailAddresses: false.
+	configuration propertyAt: #scrambledEmailAddresses put: false.
 	item := self addText: 'Foo Bar' to: (PRMailLink reference: 'foo@bar.com').
 	self
 		assertWriting: item
