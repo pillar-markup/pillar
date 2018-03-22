@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "TestCase",
-	"category" : "Pillar-Tests-ExporterCore",
+	"category" : "Pillar-Tests-ExporterCore-LevelPrinter",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

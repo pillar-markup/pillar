@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "DamienCassou 2/28/2014 09:35",
 	"super" : "PRVisitorTest",
-	"category" : "Pillar-Tests-ExporterCore",
+	"category" : "Pillar-Tests-ExporterCore-LevelPrinter",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
