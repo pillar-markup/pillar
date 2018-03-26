@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRTitlePrinterSpecification",
+	"category" : "Pillar-ExporterCore-Configuration",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRLevelUpperLetterPrinter",
+	"type" : "normal"
+}

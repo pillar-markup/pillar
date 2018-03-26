@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "StephaneDucasse 3/23/2018 21:17",
+	"super" : "Object",
+	"category" : "Pillar-ExporterCore-Configuration",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"StrategyMapping"
+	],
+	"instvars" : [
+		"levels"
+	],
+	"name" : "PRTitlePrinter",
+	"type" : "normal"
+}

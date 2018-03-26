@@ -1,4 +1,4 @@
-helper
+descriptions
 levelDescriptionCocoonDocumentation: levelNumber
 	|  level |
 	level := levelNumber asString.

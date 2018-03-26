@@ -1,0 +1,4 @@
+accessing
+levelIndex: wishedLevel
+	
+	^ wishedLevel
