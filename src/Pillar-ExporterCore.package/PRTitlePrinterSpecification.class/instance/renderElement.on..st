@@ -1,3 +1,3 @@
 rendering-element
-renderElement: aNumber
+renderElement: aNumber on: stream
 	^ self subclassResponsibility

@@ -1,3 +1,3 @@
 rendering
 printCounter: aCollection
-	^ self printCounter: aCollection withMaxSize: self size
+	^ String streamContents: [ :s | self printCounter: aCollection withMaxSize: self size on: s ]

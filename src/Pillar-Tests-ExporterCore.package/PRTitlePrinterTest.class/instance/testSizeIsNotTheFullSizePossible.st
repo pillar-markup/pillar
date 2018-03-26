@@ -1,14 +1,15 @@
 tests
 testSizeIsNotTheFullSizePossible
-	| config |
-	config := self configurationClass new.
-	self
-		addHeader: (Dictionary with: 'numbering' -> true with: 'size' -> 1 with: 'renderAs' -> 'roman')
-		ofLevel: 1
-		to: config.
-	self
-		addHeader: (Dictionary with: 'numbering' -> true with: 'size' -> 1 with: 'renderAs' -> 'number')
-		ofLevel: 2
-		to: config.
-	self assert: (config level1 printCounter: #(1)) equals: 'I'.
-	self assert: (config level2 printCounter: #(1 1)) equals: '1'
+	
+	| printer spec |
+	printer := PRTitlePrinter new.
+	spec := printer printerSpecFor: 'roman'.
+	spec size: 1.
+	printer level1: spec. 	
+		
+	spec := printer printerSpecFor: 'number' .
+	spec size: 1.
+	printer level2: spec. 	
+		
+	self assert: (printer level1 printCounter: #(1)) equals: 'I'.
+	self assert: (printer level2 printCounter: #(1 1)) equals: '1'
