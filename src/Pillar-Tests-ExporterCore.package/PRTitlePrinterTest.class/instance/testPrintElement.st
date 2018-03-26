@@ -1,8 +1,8 @@
 tests
 testPrintElement
-	| headerConfig |
-	headerConfig := self newDefaultConfiguration.
-	self assert: (headerConfig printElement: -1) equals: ''.
-	self assert: (headerConfig printElement: 1) equals: self representationOfOne.
-	self assert: (headerConfig printElement: 26) equals: self representationOf26.
-	self assert: (headerConfig printElement: 27) equals: self representationOf27
+	| printer |
+	printer := self newDefaultConfiguration.
+	self assert: (printer printElement: -1) equals: ''.
+	self assert: (printer printElement: 1) equals: self representationOfOne.
+	self assert: (printer printElement: 26) equals: self representationOf26.
+	self assert: (printer printElement: 27) equals: self representationOf27
