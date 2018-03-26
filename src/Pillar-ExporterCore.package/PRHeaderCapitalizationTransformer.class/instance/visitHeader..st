@@ -1,5 +1,4 @@
 visiting-document
-visitHeader: aGroup
-
-	headerCapitalization := (self configuration levelConfigurationFor: aGroup) capitalization.
-	super visitHeader: aGroup.
+visitHeader: aHeader
+	headerCapitalization := (self configuration levelConfigurationFor: aHeader) capitalization.
+	super visitHeader: aHeader
