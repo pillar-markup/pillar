@@ -1,0 +1,4 @@
+accessing
+baseDirectory
+	
+	^ project baseDirectory

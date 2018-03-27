@@ -7,6 +7,12 @@ exportImgFor: aFigure
 		yourself.
 	aFigure parameters
 		at: 'width'
-		ifPresent:
-			[ :width | img parameterAt: 'width' put: width greaseString , '%' ].
+		ifPresent: [ :width | img parameterAt: 'width' put: width greaseString , '%' ].
+	aFigure hasLabel ifTrue:[
+		img
+			parameterAt: 'id'
+			put: aFigure label ].
+	img
+		parameterAt: 'alt'
+		put: (aFigure hasChildren ifTrue: [ aFigure text ] ifFalse: [ '' ]).
 	img closeTag

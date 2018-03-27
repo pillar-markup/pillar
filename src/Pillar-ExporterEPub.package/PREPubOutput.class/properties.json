@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRWritingTarget",
+	"category" : "Pillar-ExporterEPub",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PREPubOutput",
+	"type" : "normal"
+}

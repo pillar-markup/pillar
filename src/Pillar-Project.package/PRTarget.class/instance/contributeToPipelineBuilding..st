@@ -1,4 +1,0 @@
-building
-contributeToPipelineBuilding: aPRPipelineBuilder
-
-	self subclassResponsibility

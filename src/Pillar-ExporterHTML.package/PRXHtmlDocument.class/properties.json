@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRHtmlDocument",
+	"category" : "Pillar-ExporterHTML",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRXHtmlDocument",
+	"type" : "normal"
+}

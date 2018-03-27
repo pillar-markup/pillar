@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Pillar-ExporterCore",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"project",
+		"file",
+		"target",
+		"outputDirectory"
+	],
+	"name" : "PRAbstractOutputDocument",
+	"type" : "normal"
+}

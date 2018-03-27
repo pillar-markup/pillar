@@ -1,0 +1,4 @@
+parameters
+outputEPub
+
+	^ PREPubOutput new

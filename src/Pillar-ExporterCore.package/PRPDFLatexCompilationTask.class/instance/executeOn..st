@@ -7,7 +7,7 @@ executeOn: aPRCompilationContext
 		file"
 	
 	
-	| extension relativePath outputFileReference outputFormat outputDirectory |
+	| extension relativePath outputFileReference outputFormat configuration |
 	
 	configuration := aPRCompilationContext configuration.
 	outputFormat := configuration propertyAt: #_outputFormat.

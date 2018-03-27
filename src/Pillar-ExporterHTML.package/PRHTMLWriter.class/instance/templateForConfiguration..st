@@ -5,7 +5,7 @@ templateForConfiguration: aConfiguration
 	inputFile := configuration inputFile.
 	
 	(configuration hasProperty: #mainDocument)
-		ifFalse: [ ^ configuration propertyAt: self mainDocumentTemplateName ].	
+		ifFalse: [ ^ configuration propertyAt: self mainDocumentTemplateName ].
 	
 	templateName := inputFile fullName
 		= ((configuration baseDirectory resolve: configuration mainDocument) , 'pillar') fullName

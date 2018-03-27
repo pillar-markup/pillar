@@ -1,0 +1,4 @@
+accessing
+basename
+	
+	^ file basename

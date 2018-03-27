@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Pillar-ExporterLaTeX",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"inputFile",
+		"baseDirectory",
+		"outputDirectory"
+	],
+	"name" : "PRRelativeReferenceTransformer",
+	"type" : "normal"
+}

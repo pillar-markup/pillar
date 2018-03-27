@@ -1,0 +1,4 @@
+accessing
+inputFile
+	
+	^ file file

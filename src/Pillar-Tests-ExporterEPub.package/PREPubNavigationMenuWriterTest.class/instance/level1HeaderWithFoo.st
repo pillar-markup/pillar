@@ -1,3 +1,3 @@
 requirements
 level1HeaderWithFoo
-	^'<li><a href="chapter.xhtml#foo">foo'
+	^'<li><a href="contents.xhtml#foo">foo'

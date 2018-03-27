@@ -1,3 +1,3 @@
 private
 refFor: aHeader
-	^ 'chapter.xhtml#',aHeader text asValidSelector 
+	^ 'contents.xhtml#',aHeader text asValidSelector 

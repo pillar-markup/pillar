@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRBuildStrategy",
+	"category" : "Pillar-ExporterCore",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRBuildAllStrategy",
+	"type" : "normal"
+}
