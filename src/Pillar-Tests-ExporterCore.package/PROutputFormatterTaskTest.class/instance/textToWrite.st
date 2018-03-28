@@ -1,4 +1,0 @@
-writing
-textToWrite
-
-	^ 'test'

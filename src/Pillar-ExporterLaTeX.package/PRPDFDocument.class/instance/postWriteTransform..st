@@ -5,11 +5,9 @@ postWriteTransform: aFile
 		-latexoption=""--file-line-error --halt-on-error"" \
 		-deps-out=""$*.d"" \
 		file"	
-	| relativePath outputFileReference outputDirectory |
-	outputDirectory := project outputDirectory  / target outputDirectoryName.
+	| relativePath outputFileReference |
 	relativePath := file file relativeTo: project baseDirectory asAbsolute.
 	outputFileReference := outputDirectory resolve: relativePath parent.
-	
 	self
 		executeCommand: 'latexmk'
 		arguments: { 
@@ -17,6 +15,6 @@ postWriteTransform: aFile
 			'-pdf' .
 			'-ps-' .
 			'-interaction=nonstopmode' .
-			'-outdir=', outputFileReference parent fullName.
+			'-outdir=', outputFileReference fullName.
 			aFile fullName }
 		workingDirectory: outputDirectory fullName
