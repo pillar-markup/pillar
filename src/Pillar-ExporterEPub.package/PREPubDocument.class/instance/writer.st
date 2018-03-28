@@ -1,4 +1,0 @@
-writing
-writer
-	
-	^ PRXHTMLWriter new

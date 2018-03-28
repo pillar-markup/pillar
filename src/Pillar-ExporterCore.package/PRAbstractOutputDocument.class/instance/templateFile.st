@@ -1,4 +1,6 @@
 writing
 templateFile
 	
-	^ project baseDirectory / (self writer templateForConfiguration: project configuration)
+	| epubTemplatePath |
+	epubTemplatePath := project configuration propertyAt: 'epubTemplate' ifAbsent: [ '_support/templates/xhtml.mustache' ].
+	^ project baseDirectory / epubTemplatePath
