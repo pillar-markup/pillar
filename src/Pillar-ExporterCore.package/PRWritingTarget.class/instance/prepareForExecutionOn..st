@@ -7,7 +7,7 @@ prepareForExecutionOn: aPRProject
 	This should be replaced by a smarter solution replacing only modified files"
 	aPRProject wipeout.
 	
-	configuration := (PRPillarConfiguration newFromDictionary: {
+	configuration := (aPRProject configuration class newFromDictionary: {
 		#_outputFormat -> self.
 	} asDictionary)
 		parent: aPRProject configuration;
