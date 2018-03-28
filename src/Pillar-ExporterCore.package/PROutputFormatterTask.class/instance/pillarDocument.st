@@ -1,3 +1,0 @@
-accessing
-pillarDocument
-	^ pillarDocumentDependency result

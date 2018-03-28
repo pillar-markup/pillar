@@ -1,3 +1,0 @@
-accessing
-formattedDocument
-	^ formattedDocumentDependency result

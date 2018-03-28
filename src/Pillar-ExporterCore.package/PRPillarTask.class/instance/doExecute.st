@@ -1,4 +1,0 @@
-execution
-doExecute
-	
-	self subclassResponsibility

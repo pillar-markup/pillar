@@ -6,5 +6,4 @@ SystemOrganization addCategory: 'Pillar-ExporterCore-Exceptions'!
 SystemOrganization addCategory: 'Pillar-ExporterCore-Export'!
 SystemOrganization addCategory: 'Pillar-ExporterCore-Features'!
 SystemOrganization addCategory: 'Pillar-ExporterCore-Manifest'!
-SystemOrganization addCategory: 'Pillar-ExporterCore-Pipeline'!
 SystemOrganization addCategory: 'Pillar-ExporterCore-Utilities'!

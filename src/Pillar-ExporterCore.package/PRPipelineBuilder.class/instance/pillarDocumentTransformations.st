@@ -1,4 +1,0 @@
-accessing
-pillarDocumentTransformations
-	
-	^ pillarDocumentTransformations

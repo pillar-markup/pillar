@@ -1,4 +1,0 @@
-accessing
-inputFile
-	
-	^ inputDocumentDependency result

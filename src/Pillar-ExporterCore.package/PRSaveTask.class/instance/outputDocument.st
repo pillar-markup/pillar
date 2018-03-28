@@ -1,4 +1,0 @@
-accessing
-outputDocument
-	
-	^ outputDocumentDependency result

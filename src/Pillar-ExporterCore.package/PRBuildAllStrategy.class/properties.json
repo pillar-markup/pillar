@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "PRBuildStrategy",
-	"category" : "Pillar-ExporterCore",
+	"category" : "Pillar-ExporterCore-Base",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

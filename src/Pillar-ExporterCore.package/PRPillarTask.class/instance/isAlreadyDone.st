@@ -1,4 +1,0 @@
-testing
-isAlreadyDone
-	
-	^ result isDone

@@ -1,4 +1,0 @@
-testing
-modificationTime
-
-	^ file modificationTime

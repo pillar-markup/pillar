@@ -1,1 +1,0 @@
-I am a task whose result is an object. A resulting object is cached in memory with a creation timestamp.

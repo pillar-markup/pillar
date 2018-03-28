@@ -1,4 +1,0 @@
-accessing
-inputStream
-	
-	^ inputStreamDependency result
