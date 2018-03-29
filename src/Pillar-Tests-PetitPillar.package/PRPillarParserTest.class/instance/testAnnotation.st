@@ -3,7 +3,7 @@ testAnnotation
 	super testAnnotation.
 	self
 		assert: result
-		equals: (PRInputFileAnnotation parameters: 
+		equals: (PRInputFileAnnotation withParameters: 
 						((SmallDictionary new
 						at: 'value' put: 'Foo';
 						yourself)))

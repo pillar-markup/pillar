@@ -6,7 +6,7 @@ testParse
 	tree := PRDocument new
 		add:
 			(PRParagraph new
-				add: (self actualClass parameters: self referenceParameters);
+				add: (self actualClass withParameters: self referenceParameters);
 				yourself);
 		yourself.
 	self assertWiki: wiki equalsTree: tree.

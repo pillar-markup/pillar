@@ -5,7 +5,7 @@ testTransformationTwoColumns
 		add: PRColumnsAnnotation new;
 		add:
 			(PRColumnAnnotation
-				parameters:
+				withParameters:
 					(SmallDictionary new
 						at: 'width' put: '50';
 						yourself) yourself);
@@ -15,7 +15,7 @@ testTransformationTwoColumns
 				yourself);
 		add:
 			(PRColumnAnnotation
-				parameters:
+				withParameters:
 					(SmallDictionary new
 						at: 'width' put: '50';
 						yourself) yourself);

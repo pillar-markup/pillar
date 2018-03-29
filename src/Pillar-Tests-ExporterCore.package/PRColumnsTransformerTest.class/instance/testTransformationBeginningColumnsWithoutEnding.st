@@ -5,7 +5,7 @@ testTransformationBeginningColumnsWithoutEnding
 		withAll:
 			{PRColumnsAnnotation new.
 			(PRColumnAnnotation
-				parameters:
+				withParameters:
 					(SmallDictionary new
 						at: 'width' put: '100';
 						yourself)).

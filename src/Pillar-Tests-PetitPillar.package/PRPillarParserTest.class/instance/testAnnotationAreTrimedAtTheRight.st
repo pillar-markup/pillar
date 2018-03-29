@@ -5,7 +5,7 @@ testAnnotationAreTrimedAtTheRight
 		assert: result
 		equals:
 			(PRInputFileAnnotation
-				parameters:
+				withParameters:
 					(SmallDictionary new
 						at: 'value' put: 'Foo';
 						yourself))

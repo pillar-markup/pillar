@@ -1,5 +1,5 @@
 instance creation
-parameters: aCollection
+withParameters: aCollection
 	| parameters |
 	parameters := self checkKeysOf: aCollection.
 	^ self new

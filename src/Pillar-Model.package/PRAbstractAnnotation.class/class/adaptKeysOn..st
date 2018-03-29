@@ -1,4 +1,4 @@
-protected
+testing
 adaptKeysOn: aCollection
 	| newDictionary |
 	newDictionary := SmallDictionary new.
