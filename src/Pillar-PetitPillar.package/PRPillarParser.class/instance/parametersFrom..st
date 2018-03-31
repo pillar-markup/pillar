@@ -1,7 +1,7 @@
 grammar - Paragraph
 parametersFrom: array
 	| result |
-	result := SmallDictionary new.
+	result := OrderedDictionary new.
 	array first first
 		ifNotEmpty:
 			[ :string | 

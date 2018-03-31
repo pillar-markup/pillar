@@ -1,4 +1,4 @@
 initialization
 initialize
 	super initialize.
-	parameters := SmallDictionary new
+	parameters := OrderedDictionary new

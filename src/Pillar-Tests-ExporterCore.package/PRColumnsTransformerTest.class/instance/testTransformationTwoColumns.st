@@ -6,7 +6,7 @@ testTransformationTwoColumns
 		add:
 			(PRColumnAnnotation
 				withParameters:
-					(SmallDictionary new
+					(OrderedDictionary new
 						at: 'width' put: '50';
 						yourself) yourself);
 		add:
@@ -16,7 +16,7 @@ testTransformationTwoColumns
 		add:
 			(PRColumnAnnotation
 				withParameters:
-					(SmallDictionary new
+					(OrderedDictionary new
 						at: 'width' put: '50';
 						yourself) yourself);
 		add:

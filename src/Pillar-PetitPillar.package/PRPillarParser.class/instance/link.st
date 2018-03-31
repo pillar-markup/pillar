@@ -6,5 +6,5 @@ link
 			| linkRes |
 			linkRes := PRLink fromReference: array third.
 			array second ifNotNil: [ :aliasChildren | linkRes addAll: aliasChildren ].
-			linkRes parameters: (array fourth ifNil: [ SmallDictionary new ]).
+			linkRes parameters: (array fourth ifNil: [ OrderedDictionary new ]).
 			linkRes ]

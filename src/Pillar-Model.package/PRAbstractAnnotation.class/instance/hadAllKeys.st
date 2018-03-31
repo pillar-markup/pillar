@@ -1,3 +1,3 @@
 accessing
 hadAllKeys
-	^ hadAllKeys ifNil: [ true ]
+	^ hadAllKeys ifNil: [ hadAllKeys := true ]

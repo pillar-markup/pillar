@@ -2,7 +2,7 @@ tests
 testAnnotation
 	| item |
 	item := PRMockAnnotation withParameters:
-				(SmallDictionary new
+				(OrderedDictionary new
 					add: 'value' -> 'Foo';
 					add: 'number' -> '5';
 					yourself).

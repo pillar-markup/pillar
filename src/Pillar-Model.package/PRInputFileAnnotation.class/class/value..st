@@ -1,6 +1,6 @@
 protected
 value: aValue
 
-	^ self withParameters: (SmallDictionary new
+	^ self withParameters: (OrderedDictionary new
 			at: 'value' put: aValue;
 			yourself)

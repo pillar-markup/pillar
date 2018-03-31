@@ -11,7 +11,7 @@ testParseParameters
 										add: (PRText content: 'Alias');
 										reference: self referenceString;
 										parameters:
-												(SmallDictionary new
+												(OrderedDictionary new
 														add: 'a' -> '1';
 														add: 'b' -> '2';
 														add: 'c' -> nil;

@@ -1,6 +1,6 @@
 helpers
 referenceParameters
-	^ SmallDictionary new
+	^ OrderedDictionary new
 		add: 'depthLevel' -> '2';
 		add: 'level' -> '3';
 		yourself

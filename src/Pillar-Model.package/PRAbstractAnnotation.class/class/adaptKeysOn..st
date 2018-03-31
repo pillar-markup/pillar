@@ -1,7 +1,7 @@
 testing
 adaptKeysOn: aCollection
 	| newDictionary |
-	newDictionary := SmallDictionary new.
+	newDictionary := OrderedDictionary new.
 	aCollection
 		keysDo: [ :key | 
 			(aCollection at: key) isNil

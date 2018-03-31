@@ -4,6 +4,6 @@ testScriptParameters
 	self
 		assert: result
 		equals:
-			(SmallDictionary new
+			(OrderedDictionary new
 				at: 'value' put: 'foo';
 				yourself)

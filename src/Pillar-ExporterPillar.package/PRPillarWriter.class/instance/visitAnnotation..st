@@ -1,3 +1,4 @@
 visiting-document
-visitAnnotation: anAnnotation
-	canvas raw: (PRMagritteAnnotationWriter write: anAnnotation)
+visitAnnotation: anAnnotation 
+	
+	canvas raw: anAnnotation asPillar

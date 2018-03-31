@@ -6,6 +6,6 @@ testAnnotationAreTrimedAtTheRight
 		equals:
 			(PRInputFileAnnotation
 				withParameters:
-					(SmallDictionary new
+					(OrderedDictionary new
 						at: 'value' put: 'Foo';
 						yourself))

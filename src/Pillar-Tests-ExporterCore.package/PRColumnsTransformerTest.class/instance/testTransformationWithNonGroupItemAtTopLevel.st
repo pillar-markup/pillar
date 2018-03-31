@@ -7,7 +7,7 @@ testTransformationWithNonGroupItemAtTopLevel
 		add:
 			(PRColumnAnnotation
 				withParameters:
-					(SmallDictionary new
+					(OrderedDictionary new
 						at: 'width' put: '100';
 						yourself) yourself);
 		add: PRHorizontalRule new;

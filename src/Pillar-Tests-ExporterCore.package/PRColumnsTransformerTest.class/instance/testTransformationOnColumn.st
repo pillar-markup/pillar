@@ -5,7 +5,7 @@ testTransformationOnColumn
 		add:
 				PRColumnsAnnotation new;
 		add:
-				(PRColumnAnnotation withParameters: (SmallDictionary new
+				(PRColumnAnnotation withParameters: (OrderedDictionary new
 								at: 'width' put: '100';
 								yourself) yourself);
 		add:	(PRParagraph new

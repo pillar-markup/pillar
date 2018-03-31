@@ -1,5 +1,5 @@
 helpers
 referenceParameters
-	^ SmallDictionary new
+	^ OrderedDictionary new
 		add: 'width' -> '50';
 		yourself

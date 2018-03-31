@@ -6,7 +6,7 @@ testTransformationWithContentInsideColumnsBeforeColumn
 				PRColumnsAnnotation new;
 		add: (PRParagraph with: (PRText content: 'Foo') yourself);
 		add:
-				(PRColumnAnnotation withParameters: ((SmallDictionary new
+				(PRColumnAnnotation withParameters: ((OrderedDictionary new
 								at: 'width' put: '100';
 								yourself)) yourself);
 		add: (PRParagraph with: (PRText content: 'Bar') yourself);

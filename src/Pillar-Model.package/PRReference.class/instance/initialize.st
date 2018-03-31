@@ -1,4 +1,4 @@
 initialization
 initialize
 	super initialize.
-	self parameters: SmallDictionary new
+	self parameters: OrderedDictionary new

@@ -11,7 +11,7 @@ testParseParametersEscaped
 										add: (PRText content: 'Alias');
 										reference: self referenceString;
 										parameters:
-												(SmallDictionary new
+												(OrderedDictionary new
 														add: '2' -> '|=';
 														add: '|=' -> '1';
 														yourself);
