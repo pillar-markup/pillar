@@ -1,9 +1,5 @@
 printing
 asPillarParametersOn: aStream
-
 	self parameters keys
-		do: [ :each | 
-				aStream nextPutAll: each.
-				aStream nextPutAll: '='.
-				aStream nextPutAll: (self parameters at: each)  ]
-		separatedBy: [ aStream nextPutAll: '|' ]
+		do: [ :each | self asPillarKey: each value:  (self parameters at: each) on: aStream ]
+		separatedBy: [ aStream nextPut: self class parameterSeparator ]

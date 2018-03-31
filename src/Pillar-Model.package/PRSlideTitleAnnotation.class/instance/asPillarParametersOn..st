@@ -1,4 +1,5 @@
 printing
 asPillarParametersOn: aStream
-
-	self parameters at: 'title' ifPresent: [ :v | aStream nextPutAll: 'title='; nextPutAll: v].
+	self parameters
+		at: 'title'
+		ifPresent: [ :v | self asPillarKey: 'title' value: v on: aStream]
