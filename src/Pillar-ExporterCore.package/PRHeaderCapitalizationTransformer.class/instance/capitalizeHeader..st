@@ -2,6 +2,6 @@ visiting-document
 capitalizeHeader: aString
 	
 	^ String streamContents: [ :s | 
-		(aString substrings
+		aString substrings
 			do: [ : each |  s << each capitalized]
-			separatedBy: [ s  <<' ' ]) ]
+			separatedBy: [ s  <<' ' ] ]
