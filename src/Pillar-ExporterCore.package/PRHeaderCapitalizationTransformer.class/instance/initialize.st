@@ -1,4 +1,4 @@
-visiting-document
+initialization
 initialize
 	super initialize.
 	headerCapitalization := 'raw'
