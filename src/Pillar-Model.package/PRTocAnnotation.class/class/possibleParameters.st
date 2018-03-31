@@ -1,3 +1,3 @@
 accessing
-possibleParameters 
-	^ #(depthLevel highligth levels)
+possibleParameters
+	^ #(depthLevel highligth level)
