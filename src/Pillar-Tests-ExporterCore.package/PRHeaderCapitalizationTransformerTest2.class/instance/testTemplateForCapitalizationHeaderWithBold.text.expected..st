@@ -1,10 +1,13 @@
 helpers
 testTemplateForCapitalizationHeaderWithBold: aType text: aString expected: anotherString
-	| input printer spec expected |
+	| input printer spec expected configuration |
+	configuration := self configuration. 
 	printer := PRTitlePrinter new.
 	spec := printer printerSpecFor: 'roman'.
 	spec capitalization: aType.
 	printer level2: spec.
+	configuration printer: printer. 
+	
 	input := PRDocument new
 		add:
 			(PRHeader new
@@ -18,6 +21,4 @@ testTemplateForCapitalizationHeaderWithBold: aType text: aString expected: anoth
 				add: (PRBoldFormat new add: (PRText content: anotherString)));
 		yourself.
 		
-	self assert: ((self actualClass new printer: printer) start: input) equals: expected.
-	self flag: #guille	
-	"self assert: (self executePhase: input with: printer) equals: expected"
+	self assert: (self executePhase: input with: configuration) equals: expected
