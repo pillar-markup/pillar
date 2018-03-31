@@ -11,7 +11,8 @@
 		"verbose",
 		"separateOutputFiles",
 		"disabledPhases",
-		"newLine"
+		"newLine",
+		"printer"
 	],
 	"name" : "PRPillarConfiguration",
 	"type" : "normal"
