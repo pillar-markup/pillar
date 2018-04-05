@@ -12,7 +12,8 @@
 		"autoAnchor",
 		"configuration",
 		"capitalization",
-		"printer"
+		"printer",
+		"renderAs"
 	],
 	"name" : "PRTitlePrinterSpecification",
 	"type" : "normal"
