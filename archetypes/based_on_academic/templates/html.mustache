@@ -55,8 +55,7 @@
 
 
 	<div class="article-header">
-    <img src="_support/html/img/bubbles-wide.jpg" class="article-banner" itemprop="image">
-	<span class="article-header-caption">{{title}}</span>
+	<span class="article-header-caption">{{site_name}}</span>
 </div>
 
 	<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
@@ -72,7 +71,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        {{title}}
+        {{site_name}}
       </a>
     </div>
 
@@ -100,7 +99,7 @@
 <div class="row">
   <div class="col-xs-12 col-md-4 section-heading">
     <h1>{{title}}</h1>
-    <p>{{title}}</p>
+    {{#subtitle}}<p>{{subtitle}}</p>{{/subtitle}}
   </div>
   <div class="col-xs-12 col-md-8">
 

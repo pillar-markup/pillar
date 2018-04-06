@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{{title}}}</title>
+    <title>{{site_name}}</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
@@ -19,7 +19,7 @@
   <body>
     <header>
   <div class="logo">
-    <a class="baselink" href="{{{baseurl}}}">{{title}}</a>
+    <a class="baselink" href="{{baseurl}}">{{site_name}}</a>
   </div>
   <div class="burger"><a href="javascript:void(0);" style="font-size:15px;">&#9776;</a></div>
   
@@ -34,10 +34,20 @@
           </li>
 
 {{# menu}}
-    <li class="dd-item alwaysopen">
+    <li class="dd-item {{# has_subfiles}} haschildren {{/ has_subfiles}}">
       <div>
-      <i class="fa fa-angle-down fa-lg category-icon"></i>
-      <a href="">{{name}}</a>
+      <a href="{{url}}">
+	  		{{# has_subfiles }}<i class="fa fa-angle-down fa-lg category-icon"></i>{{/ has_subfiles }}
+	  		{{title}}
+	  </a>
+      
+      {{# has_subfiles }}
+                 <ul class="dd-item">
+                        {{# submenu }}
+                            <li><a href="{{url}}">{{title}}</a></li>
+                        {{/ submenu }}
+                 </ul>
+       {{/ has_subfiles }}
 
       </div>
   
