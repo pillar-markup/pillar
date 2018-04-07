@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "ChrysalItem",
+	"category" : "Pillar-Chrysal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "CodeBlockDefaultLanguageItem",
+	"type" : "normal"
+}

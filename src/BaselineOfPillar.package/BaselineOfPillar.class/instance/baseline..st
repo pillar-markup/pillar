@@ -27,6 +27,15 @@ baseline: spec
 				package: 'Pillar-Project'
 				with: [ spec requires: 'OSSubprocess' ]
 	].
+
+	spec
+		for:  #common
+		do: [
+			spec
+				baseline: 'Chrysal'
+					with: [ spec
+						repository: 'github://Ducasse/Chrysal' ]
+	].
 	
 	spec
 		for: #common
@@ -66,7 +75,7 @@ baseline: spec
 					with: [ spec requires: #('Pillar-ExporterCore') ];
 				package: 'Pillar-ExporterBeamer' with: [ spec requires: #('Pillar-ExporterLaTeX') ];
 				package: 'Pillar-ExporterCore'
-					with: [ spec requires: #('Pillar-Model' 'Cocoon' 'JSON') ];
+					with: [ spec requires: #('Pillar-Model' 'Cocoon' 'JSON' 'Chrysal') ];
 				package: 'Pillar-ExporterDeckJS' with: [ spec requires: #('Pillar-ExporterHTML') ];
 				package: #'Pillar-ExporterEPub'
 					with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-ExporterHTML') ];

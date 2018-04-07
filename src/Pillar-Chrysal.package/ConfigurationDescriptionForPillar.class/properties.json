@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "StephaneDucasse 4/5/2018 15:54",
+	"super" : "Object",
+	"category" : "Pillar-Chrysal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "ConfigurationDescriptionForPillar",
+	"type" : "normal"
+}

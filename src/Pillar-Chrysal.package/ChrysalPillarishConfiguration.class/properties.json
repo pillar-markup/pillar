@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "ChrysalConfiguration",
+	"category" : "Pillar-Chrysal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"printer"
+	],
+	"name" : "ChrysalPillarishConfiguration",
+	"type" : "normal"
+}
