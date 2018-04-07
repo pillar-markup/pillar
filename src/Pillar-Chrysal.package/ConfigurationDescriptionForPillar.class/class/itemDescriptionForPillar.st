@@ -89,7 +89,7 @@ itemDescriptionForPillar
 	.
 	(CompositeConfigurationItem new
 		propertyName: #levelSpecification;
-		default: #ChrysalCompositeDomain;
+		default: #PRTitlePrinterSpecification;
 		fields: #(level renderAs capitalization numbering headerSize);
 		yourself)
 	.

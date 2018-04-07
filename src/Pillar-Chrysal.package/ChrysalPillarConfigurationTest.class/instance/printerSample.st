@@ -6,13 +6,15 @@ printerSample
 			''renderAs'' : ''letter'',
 			''capitalization'' : ''uppercase'',
 			''numbering'' : true,
-			''size'' : 2
+			''size'' : 2,
+			''headerSize'' : 2
 		],
 		[	''level'' : 2,
 			''renderAs'' : ''number'',
 			''capitalization'' : ''uppercase'',
 			''numbering'' : true,
-			''size'' : 3
+			''size'' : 3,
+			''headerSize'' : 3
 		]
 	]
 }'

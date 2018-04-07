@@ -1,3 +1,3 @@
 accessing
 size
-	^ size
+	^ self headerSize
