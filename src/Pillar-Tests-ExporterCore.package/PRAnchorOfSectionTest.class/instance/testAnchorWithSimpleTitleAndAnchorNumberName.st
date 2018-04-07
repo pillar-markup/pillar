@@ -2,7 +2,7 @@ tests
 testAnchorWithSimpleTitleAndAnchorNumberName
 	| input expected config |
 	config := self configuration.
-	self addHeader: (Dictionary with: 'autoAnchor' -> true) ofLevel: 2 to: config.
+	config printer level2 autoAnchor: true. 
 	input := PRDocument new
 		add:
 				(PRHeader new	level: 2;
