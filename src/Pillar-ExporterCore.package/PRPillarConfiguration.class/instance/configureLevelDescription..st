@@ -1,4 +1,4 @@
-descriptions
+private
 configureLevelDescription: levelNumber
 	^ PRMagritteHeaderLevelDescription new
 		accessor: ('level' , levelNumber asString) asSymbol;

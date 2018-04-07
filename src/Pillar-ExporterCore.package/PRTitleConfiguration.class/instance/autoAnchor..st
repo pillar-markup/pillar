@@ -1,3 +1,3 @@
 accessing
 autoAnchor: anObject 
-	^ autoAnchor := anObject 
+	autoAnchor := anObject 
