@@ -4,5 +4,5 @@ I'm just holding some descriptions that are used to generate the configurationFo
 ChrysalConfigurationBuilder new 
 	configurationRootClass: ChrysalPillarishConfiguration;
 	defineConfigurationClassNamed: #ConfigurationForPillar 
-	packagedIn: 'Chrysal-Pillar'; 
+	packagedIn: 'Pillar-Chrysal'; 
 	withDescriptionItems: ConfigurationDescriptionForPillar itemDescriptionForPillar

@@ -1,11 +1,11 @@
 {
-	"commentStamp" : "StephaneDucasse 4/7/2018 21:24",
-	"super" : "Object",
+	"commentStamp" : "",
+	"super" : "ChrysalPillarishConfiguration",
 	"category" : "Pillar-Chrysal",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "ConfigurationDescriptionForPillar",
+	"name" : "ConfigurationForPillar",
 	"type" : "normal"
 }
