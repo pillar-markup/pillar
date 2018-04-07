@@ -68,8 +68,7 @@ baseline: spec
 						repository: 'http://www.smalltalkhub.com/mc/Moose/PetitParser/main' ].
 			spec
 				package: 'Pillar-Cli' with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-Chrysal') ];
-				package: 'Pillar-Chrysal' with: [ spec requires: #('Pillar-Chrysal' 'Pillar-ExporterCore') ];
-				package: 'Pillar-Cli-PillarVersion' with: [ spec requires: #('Pillar-Cli') ];
+				package: 'Pillar-Chrysal' with: [ spec requires: #('Pillar-Chrysal') ];
 				package: #'Pillar-ExporterAsciiDoc'
 					with: [ spec requires: #('Pillar-ExporterCore') ];
 				package: 'Pillar-ExporterBeamer' with: [ spec requires: #('Pillar-ExporterLaTeX') ];
