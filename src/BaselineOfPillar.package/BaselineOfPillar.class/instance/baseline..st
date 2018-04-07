@@ -28,14 +28,7 @@ baseline: spec
 				with: [ spec requires: 'OSSubprocess' ]
 	].
 
-	spec
-		for:  #common
-		do: [
-			spec
-				baseline: 'Chrysal'
-					with: [ spec
-						repository: 'github://Ducasse/Chrysal/src' ]
-	].
+
 	
 	spec
 		for: #common
@@ -48,6 +41,11 @@ baseline: spec
 						versionString: #stable;
 						loads: #('Tests');
 						repository: 'http://www.smalltalkhub.com/mc/Moose/PetitParser/main' ];
+			
+				baseline: 'Chrysal'
+					with: [ spec
+						repository: 'github://Ducasse/Chrysal/src' ];	
+							
 				baseline: 'Mustache'
 					with: [ spec
 						repository: 'github://noha/mustache:v1.0/repository' ];
