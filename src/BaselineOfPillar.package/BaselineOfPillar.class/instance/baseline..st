@@ -34,7 +34,7 @@ baseline: spec
 			spec
 				baseline: 'Chrysal'
 					with: [ spec
-						repository: 'github://Ducasse/Chrysal' ]
+						repository: 'github://Ducasse/Chrysal/src' ]
 	].
 	
 	spec
