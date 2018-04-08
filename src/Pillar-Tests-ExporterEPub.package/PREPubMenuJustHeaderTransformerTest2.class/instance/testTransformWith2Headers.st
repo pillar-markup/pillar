@@ -26,14 +26,4 @@ testTransformWith2Headers
 							(PRHeader new
 								level: 2;
 								add: (PRText content: 'Bar2') yourself))) yourself.
-	self
-		assert:
-			(self
-				executePhase: input
-				with:
-					(self configuration
-						outputType: self actualWriterClass;
-						propertyAt: #_outputFormat put: self actualWriterClass new;
-						disabledPhases: { #templating };
-						yourself))
-		equals: expected
+	self expected: expected withInput: input
