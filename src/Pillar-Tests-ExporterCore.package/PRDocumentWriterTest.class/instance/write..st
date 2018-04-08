@@ -1,7 +1,8 @@
 helpers
 write: aDocumentItem
-	| writer |
+
 	^ String
 		streamContents: [ :stream | 
+			| writer |
 			writer := self createWriterOn: stream.
 			writer start: aDocumentItem ]

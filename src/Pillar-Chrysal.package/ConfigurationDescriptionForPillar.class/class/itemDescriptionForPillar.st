@@ -57,7 +57,7 @@ itemDescriptionForPillar
 		propertyName: #renderStructureAsSlide;
 		explanation:
 			'When true (the default), Pillar will create a dedicated slide for each Pillar header. This parameter is meaningless when generating a written document';
-		beFalseAsDefault).
+		beTrueAsDefault).
 	(StringConfigurationItem new
 		propertyName: #latexChapterTemplate;
 		default: '_support/templates/chapter.latex.mustache').

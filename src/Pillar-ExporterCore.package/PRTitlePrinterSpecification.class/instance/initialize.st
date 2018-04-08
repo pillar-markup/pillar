@@ -4,4 +4,5 @@ initialize
 	super initialize.
 	numbering := true. 
 	autoAnchor := false.
-	capitalization := 'raw'
+	capitalization := 'raw'.
+	level := 1. 

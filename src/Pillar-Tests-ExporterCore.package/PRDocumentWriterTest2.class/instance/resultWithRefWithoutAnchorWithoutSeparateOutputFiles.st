@@ -1,0 +1,3 @@
+requirement-InternalLinks
+resultWithRefWithoutAnchorWithoutSeparateOutputFiles
+	self subclassResponsibility

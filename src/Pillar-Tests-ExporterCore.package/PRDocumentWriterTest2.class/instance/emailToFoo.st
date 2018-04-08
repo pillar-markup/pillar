@@ -1,0 +1,3 @@
+requirements
+emailToFoo
+	^ self subclassResponsibility

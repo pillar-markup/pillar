@@ -59,7 +59,7 @@ chrysalDescriptions
 	},
 	BooleanConfigurationItem {
 		#propertyName : #renderStructureAsSlide,
-		#default : ''false'',
+		#default : ''true'',
 		#explanation : ''When true (the default), Pillar will create a dedicated slide for each Pillar header. This parameter is meaningless when generating a written document''
 	},
 	StringConfigurationItem {
@@ -95,7 +95,6 @@ chrysalDescriptions
 	},
 	CodeBlockDefaultLanguageItem {
 		#propertyName : #defaultScriptLanguage,
-		#default : ''smalltalk'',
 		#explanation : ''Indicate the language in scripts when none is specified. This language is used for syntax highlighting. The currently supported languages are bash, css, html, http, json, javascript, pillar, sql, ston, shellcommands and smalltalk''
 	},
 	CompositeConfigurationItem {

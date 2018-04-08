@@ -1,0 +1,13 @@
+{
+	"classtraitcomposition" : "PRTSliderWriterTest classTrait",
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRDeckJSWriterTest2",
+	"commentStamp" : "",
+	"super" : "PRHTMLWriterTest2",
+	"traitcomposition" : "PRTSliderWriterTest",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "Pillar-Tests-ExporterDeckJS"
+}

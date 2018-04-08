@@ -1,5 +1,6 @@
 visiting-document
 visitHeader: aHeader
+
 	self configuration renderStructureAsSlide
 		ifTrue: [ 
 			canvas tag
