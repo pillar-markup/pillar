@@ -2,11 +2,10 @@ helpers
 testTemplateForCapitalizationHeaderWithBold: aType text: aString expected: anotherString
 	| input printer spec expected configuration |
 	configuration := self configuration. 
-	printer := PRTitlePrinter new.
+	printer := configuration printer.
 	spec := printer printerSpecFor: 'roman'.
 	spec capitalization: aType.
 	printer level2: spec.
-	configuration printer: printer. 
 	
 	input := PRDocument new
 		add:

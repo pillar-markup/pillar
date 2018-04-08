@@ -1,13 +1,11 @@
 tests
 testCapitalizeHeaderShouldntCapitalizeAllText
-	| input printer spec newInstance expected configuration |
+	| input printer spec  expected configuration |
 	configuration := self configuration. 
-	printer := PRTitlePrinter new.
+	printer := configuration printer.
 	spec := printer printerSpecFor: 'roman'.
 	spec capitalization: 'upper case'.
 	printer level2: spec.
-	configuration printer: printer.
-	newInstance := self actualInstance printer: printer.
 	
 	input := PRDocument new
 		add: (PRParagraph new add: (PRText content: 'should not be capitalized'));

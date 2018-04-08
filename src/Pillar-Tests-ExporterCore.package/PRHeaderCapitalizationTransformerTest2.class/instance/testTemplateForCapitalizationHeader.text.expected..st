@@ -6,7 +6,6 @@ testTemplateForCapitalizationHeader: aType text: aString expected: anotherString
 	spec := printer printerSpecFor: 'roman'.
 	spec capitalization: aType.
 	printer level2: spec.
-	configuration printer: printer. 
 	
 	input := PRDocument new
 		add:
