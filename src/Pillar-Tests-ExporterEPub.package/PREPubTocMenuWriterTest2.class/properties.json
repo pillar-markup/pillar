@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "PRHTMLWriterTest",
+	"super" : "PRHTMLWriterTest2",
 	"category" : "Pillar-Tests-ExporterEPub",
 	"classinstvars" : [ ],
 	"pools" : [ ],

@@ -1,6 +1,6 @@
 tests
 testFigureReference
-	| item resultString indexOfReference referenceString |
+	| item resultString |
 	item := PRParagraph new
 		add:
 				(PRFigure new
