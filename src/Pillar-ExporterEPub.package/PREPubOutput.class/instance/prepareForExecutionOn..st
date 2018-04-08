@@ -6,11 +6,7 @@ prepareForExecutionOn: aPRProject
 	| configuration |
 	aPRProject wipeout.
 	
-	configuration := (PRPillarConfiguration newFromDictionary: {
-		#_outputFormat -> self.
-	} asDictionary)
-		parent: aPRProject configuration;
-		yourself.
+	configuration :=  self createConfigurationFrom: aPRProject.
 	
 	(PRCopyPhase directory: '_support')
 		configuration: configuration;
