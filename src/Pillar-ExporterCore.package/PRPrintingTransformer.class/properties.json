@@ -8,6 +8,6 @@
 	"instvars" : [
 		"printer"
 	],
-	"name" : "PRPrintingTransformer2",
+	"name" : "PRPrintingTransformer",
 	"type" : "normal"
 }

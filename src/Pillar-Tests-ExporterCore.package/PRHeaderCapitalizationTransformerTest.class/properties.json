@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "PRHeaderCapitalizationTransformerTest2",
+	"name" : "PRHeaderCapitalizationTransformerTest",
 	"type" : "normal"
 }

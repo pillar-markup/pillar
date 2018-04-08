@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "PRPrintingTransformer2",
+	"super" : "PRPrintingTransformer",
 	"category" : "Pillar-ExporterCore-Export",
 	"classinstvars" : [ ],
 	"pools" : [ ],
@@ -8,6 +8,6 @@
 	"instvars" : [
 		"headerCapitalization"
 	],
-	"name" : "PRHeaderCapitalizationTransformer2",
+	"name" : "PRHeaderCapitalizationTransformer",
 	"type" : "normal"
 }
