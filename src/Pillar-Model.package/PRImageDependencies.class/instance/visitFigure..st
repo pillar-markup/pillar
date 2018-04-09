@@ -1,4 +1,4 @@
 visiting-document
-visitFigure: anObject
+visitFigure: anObject 
 	cachedDependencies add: anObject localFileOrExternalReference.
 	super visitFigure: anObject.

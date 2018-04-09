@@ -1,3 +1,0 @@
-*Pillar-ExporterCore
-visitHeaderLevelDescription: aHeaderLevelDescription
-	self visitToOneRelationDescription: aHeaderLevelDescription

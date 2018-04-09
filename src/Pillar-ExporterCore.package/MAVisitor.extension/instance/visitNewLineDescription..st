@@ -1,3 +1,0 @@
-*Pillar-ExporterCore
-visitNewLineDescription: aNewLineDescription
-	self visitStringDescription: aNewLineDescription
