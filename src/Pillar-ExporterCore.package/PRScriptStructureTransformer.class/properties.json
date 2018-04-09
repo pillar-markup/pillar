@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "StephaneDucasse 9/17/2017 22:13",
 	"super" : "PRNodeTransformer",
-	"category" : "Pillar-ExporterCore-Export",
+	"category" : "Pillar-ExporterCore-StructureToBeRemoved",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
