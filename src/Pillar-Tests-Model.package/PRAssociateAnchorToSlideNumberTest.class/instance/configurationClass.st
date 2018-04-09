@@ -1,3 +1,4 @@
-accessing
+tests
 configurationClass
+
 	^ ConfigurationForPillar

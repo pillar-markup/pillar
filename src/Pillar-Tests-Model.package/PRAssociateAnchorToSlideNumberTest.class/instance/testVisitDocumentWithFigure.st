@@ -3,13 +3,15 @@ testVisitDocumentWithFigure
 	| item dictionary config |
 	item := PRDocument new
 		add:
-				(PRFigure new
-						reference: 'file://picture.png';
-						parameterAt: 'label' put: 'foo';
-						yourself);
+			(PRFigure new
+				reference: 'file://picture.png';
+				parameterAt: 'label' put: 'foo';
+				yourself);
 		yourself.
 	dictionary := Dictionary with: 'foo' -> 1.
-	config := PRPillarConfiguration new renderStructureAsSlide: false; yourself.
+	config := self configurationClass new
+		renderStructureAsSlide: false;
+		yourself.
 	self
 		assert:
 			(self actualInstance

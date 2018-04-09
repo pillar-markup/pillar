@@ -10,6 +10,6 @@ configuration
 	extension at: '_project' put: self.
 	
 	readConfiguration := self configurationFileReference exists
-		ifFalse: [ PRPillarConfiguration newFromDictionary: extension ]
-		ifTrue: [ PRPillarConfiguration newFromFile: self configurationFileReference extendedWith: extension ].
+		ifFalse: [ ConfigurationForPillar newFromDictionary: extension ]
+		ifTrue: [ ConfigurationForPillar newFromFile: self configurationFileReference extendedWith: extension ].
 	^ readConfiguration

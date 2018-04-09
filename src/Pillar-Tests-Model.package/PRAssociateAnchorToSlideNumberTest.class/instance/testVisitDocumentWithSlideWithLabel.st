@@ -5,7 +5,9 @@ testVisitDocumentWithSlideWithLabel
 		add: (PRSlide new label: 'foo');
 		yourself.
 	dictionary := Dictionary with: 'foo' -> 2.
-	config := PRPillarConfiguration new renderStructureAsSlide: false; yourself.
+	config := self configurationClass new
+		renderStructureAsSlide: false;
+		yourself.
 	self
 		assert:
 			(self actualInstance
