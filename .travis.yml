@@ -6,8 +6,8 @@ os:
   - osx
 
 smalltalk:
+  - Pharo-7.0
   - Pharo-6.1
-  - Pharo-5.0
 
 # Unit tests run the normal pillar tests
 # Integration tests test that pillar itself can interact with generated files, pdf generation, etc.
