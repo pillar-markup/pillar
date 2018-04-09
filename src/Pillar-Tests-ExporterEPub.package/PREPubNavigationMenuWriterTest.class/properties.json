@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "PRHTMLWriterTest2",
+	"super" : "PRHTMLWriterTest",
 	"category" : "Pillar-Tests-ExporterEPub",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "PREPubTocMenuWriterTest2",
+	"name" : "PREPubNavigationMenuWriterTest",
 	"type" : "normal"
 }
