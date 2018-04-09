@@ -1,3 +1,3 @@
 accessing
 configuration
-	^ configuration ifNil: [ configuration := PRPillarConfiguration new ]
+	^ configuration ifNil: [ configuration := ConfigurationForPillar new ]

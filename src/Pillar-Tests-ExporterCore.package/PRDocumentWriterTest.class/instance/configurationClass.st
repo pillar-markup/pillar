@@ -1,3 +1,3 @@
 helpers
 configurationClass
-	^ PRPillarConfiguration 
+	^ ConfigurationForPillar
