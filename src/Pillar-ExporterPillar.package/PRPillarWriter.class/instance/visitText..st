@@ -12,7 +12,7 @@ visitText: anObject
 		ifTrue:
 			[ 
 			| markup |
-			markup := PRPillarParser lineMarkups values detect: [ :each | string beginsWithSubCollection: each ] ifNone: [ nil ].
+			markup := PRPillarParser lineMarkups values detect: [ :each | string beginsWith: each ] ifNone: [ nil ].
 			markup isNil
 				ifFalse: [ 
 					canvas

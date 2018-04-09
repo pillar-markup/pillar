@@ -4,5 +4,5 @@ searchParam: aString in: aFigure
 	^
 		aFigure parameters
 			at: aString
-			ifPresent: [ :param |  aString, '="', param greaseString, '"']
+			ifPresent: [ :param |  aString, '="', param asString, '"']
 			ifAbsent: [ '' ]

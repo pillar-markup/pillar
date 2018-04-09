@@ -15,7 +15,7 @@ visitParametersOf: objectWithParams
 							[ :value | 
 							canvas
 								raw: PRPillarParser defaultMarkupParameterValue;
-								nextPutAll: value greaseString ] ] ]
+								nextPutAll: value asString ] ] ]
 		separatedBy: [ canvas raw: PRPillarParser defaultMarkupParameter ].
 	objectWithParams parameters at: 'caption'
 		ifPresent:

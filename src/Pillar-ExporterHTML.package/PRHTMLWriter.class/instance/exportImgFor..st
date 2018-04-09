@@ -7,7 +7,7 @@ exportImgFor: aFigure
 		yourself.
 	aFigure parameters
 		at: 'width'
-		ifPresent: [ :width | img parameterAt: 'width' put: width greaseString , '%' ].
+		ifPresent: [ :width | img parameterAt: 'width' put: width asString , '%' ].
 	aFigure hasLabel ifTrue:[
 		img
 			parameterAt: 'id'
