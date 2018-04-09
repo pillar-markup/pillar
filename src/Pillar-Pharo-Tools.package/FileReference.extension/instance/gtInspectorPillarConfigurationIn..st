@@ -4,7 +4,7 @@ gtInspectorPillarConfigurationIn: composite
 	| pillarConfiguration |
 	(self basename = 'pillar.conf')
 		ifFalse: [ ^ self ].
-	pillarConfiguration := (PRPillarConfiguration newFromFile: self) baseDirectory: self parent.
+	pillarConfiguration := (ConfigurationForPillar newFromFile: self) baseDirectory: self parent.
 	(pillarConfiguration
 			gtInspectorInputFilesIn: composite)
 			title: 'Pillar'

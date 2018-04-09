@@ -6,7 +6,7 @@ gtInspectorPillarProjectIn: composite
 	pillarFile := self files 
 						detect: [:each | each basename = 'pillar.conf']
 						ifNone: [ ^ self ].
-	pillarConfiguration := (PRPillarConfiguration newFromFile: pillarFile) baseDirectory: self.
+	pillarConfiguration := (ConfigurationForPillar newFromFile: pillarFile) baseDirectory: self.
 	(pillarConfiguration
 			gtInspectorInputFilesIn: composite)
 			title: 'Pillar'
