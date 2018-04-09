@@ -8,10 +8,12 @@ environment:
   SCI_RUN: /cygdrive/c/SMALLTALKCI-master/run.sh
 
   matrix:
-    - SMALLTALK: Pharo-6.1
+    - SMALLTALK: Pharo-7.0
       SMALLTALK_CONFIG: .smalltalk.Unit.ston
     - SMALLTALK: Pharo-5.0
       SMALLTALK_CONFIG: .smalltalk.Unit.ston
+    - SMALLTALK: Pharo-7.0
+      SMALLTALK_CONFIG: .smalltalk.Integration.ston
     - SMALLTALK: Pharo-6.1
       SMALLTALK_CONFIG: .smalltalk.Integration.ston
     - SMALLTALK: Pharo-5.0
