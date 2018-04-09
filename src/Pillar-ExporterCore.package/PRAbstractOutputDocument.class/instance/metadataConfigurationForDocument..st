@@ -2,9 +2,6 @@ accessing
 metadataConfigurationForDocument: aDocument 
 	
 	| subConfiguration |
-	subConfiguration := project configuration class new.
+	subConfiguration := project configuration class newFromDictionary: aDocument properties.
 	subConfiguration parent: project configuration.
-	CCMagritteDictionaryReader
-		writeDictionary: aDocument properties copy
-		toConfiguration: subConfiguration.
 	^ subConfiguration

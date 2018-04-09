@@ -6,9 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"directoryName",
-		"directory",
-		"configuration"
+		"destinationDirectory",
+		"sourceDirectory"
 	],
 	"name" : "PRCopyPhase",
 	"type" : "normal"
