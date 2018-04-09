@@ -4,7 +4,7 @@
 	"instvars" : [ ],
 	"name" : "PRDeckJSWriterTest",
 	"commentStamp" : "",
-	"super" : "PRHTMLWriterTest2",
+	"super" : "PRHTMLWriterTest",
 	"traitcomposition" : "PRTSliderWriterTest",
 	"type" : "normal",
 	"classinstvars" : [ ],
