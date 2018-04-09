@@ -1,35 +1,21 @@
 baselines
 baseline: spec
 	<baseline>
-	
 	spec
 		for: #windows
-		do: [
-			spec
+		do: [ spec
 				project: 'ProcessWrapper'
-					with: [ spec
+				with: [ spec
 						className: #ConfigurationOfProcessWrapper;
 						versionString: '1.2';
 						repository: 'http://smalltalkhub.com/mc/Pharo/MetaRepoForPharo50/main' ].
-			spec
-				package: 'Pillar-Project'
-				with: [ spec requires: 'ProcessWrapper' ]
-	].
-
+			spec package: 'Pillar-Project' with: [ spec requires: 'ProcessWrapper' ] ].
 	spec
-		for: #( unix osx )
-		do: [
-			spec
+		for: #(unix osx)
+		do: [ spec
 				baseline: 'OSSubprocess'
-					with: [ spec
-						repository: 'github://marianopeck/OSSubprocess:v0.2.5/repository' ].
-			spec
-				package: 'Pillar-Project'
-				with: [ spec requires: 'OSSubprocess' ]
-	].
-
-
-	
+				with: [ spec repository: 'github://marianopeck/OSSubprocess:v0.2.5/repository' ].
+			spec package: 'Pillar-Project' with: [ spec requires: 'OSSubprocess' ] ].
 	spec
 		for: #common
 		do: [ spec blessing: #baseline.
@@ -41,25 +27,14 @@ baseline: spec
 						versionString: #stable;
 						loads: #('Tests');
 						repository: 'http://www.smalltalkhub.com/mc/Moose/PetitParser/main' ];
-			
-				baseline: 'Chrysal'
-					with: [ spec
-						repository: 'github://Ducasse/Chrysal/src' ];	
-							
+				baseline: 'Chrysal' with: [ spec repository: 'github://Ducasse/Chrysal/src' ];
 				baseline: 'Mustache'
-					with: [ spec
-						repository: 'github://noha/mustache:v1.0/repository' ];
-				project: 'Cocoon'
-					with: [ spec
-						className: #ConfigurationOfCocoon;
-						versionString: #stable;
-						repository: 'http://smalltalkhub.com/mc/PharoExtras/Cocoon/main' ];
+					with: [ spec repository: 'github://noha/mustache:v1.0/repository' ];
 				project: 'JSON'
 					with: [ spec
 						className: #ConfigurationOfJSON;
 						versionString: #stable;
 						repository: 'http://smalltalkhub.com/mc/PharoExtras/JSON/main/' ];
-	
 				project: 'PetitParserTest'
 					with: [ spec
 						className: #ConfigurationOfPetitParser;
@@ -67,13 +42,14 @@ baseline: spec
 						loads: #('Tests');
 						repository: 'http://www.smalltalkhub.com/mc/Moose/PetitParser/main' ].
 			spec
-				package: 'Pillar-Cli' with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-Chrysal') ];
+				package: 'Pillar-Cli'
+					with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-Chrysal') ];
 				package: 'Pillar-Chrysal' with: [ spec requires: #('Pillar-ExporterCore') ];
 				package: #'Pillar-ExporterAsciiDoc'
 					with: [ spec requires: #('Pillar-ExporterCore') ];
 				package: 'Pillar-ExporterBeamer' with: [ spec requires: #('Pillar-ExporterLaTeX') ];
 				package: 'Pillar-ExporterCore'
-					with: [ spec requires: #('Pillar-Model' 'Cocoon' 'JSON') ];
+					with: [ spec requires: #('Pillar-Model' 'JSON') ];
 				package: 'Pillar-ExporterDeckJS' with: [ spec requires: #('Pillar-ExporterHTML') ];
 				package: #'Pillar-ExporterEPub'
 					with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-ExporterHTML') ];
@@ -92,8 +68,7 @@ baseline: spec
 					with: [ spec requires: #('PetitParser' 'Pillar-Model') ];
 				package: 'Pillar-Pharo-Tools'
 					with: [ spec requires: #('Pillar-Model' 'All exporters') ];
-				package: 'Pillar-Project'
-					with: [ spec requires: #('Pillar-Model' 'All exporters') ];
+				package: 'Pillar-Project' with: [ spec requires: #('Pillar-Model' 'All exporters') ];
 				package: #'Pillar-Tests-Cli' with: [ spec requires: #('Pillar-Cli') ];
 				package: #'Pillar-Tests-ExporterAsciiDoc'
 					with: [ spec requires: #(#'Pillar-ExporterAsciiDoc' 'Pillar-Tests-ExporterCore') ];
@@ -120,14 +95,13 @@ baseline: spec
 					with: [ spec requires: #('Pillar-Model' 'Pillar-ExporterPillar' 'Pillar-ExporterText') ];
 				package: 'Pillar-Tests-PetitPillar'
 					with: [ spec requires: #('PetitParserTest' 'Pillar-PetitPillar') ];
-				package: 'Pillar-Tests-Project'
-					with: [ spec requires: #('Pillar-Project') ];
-				package: 'Pillar-Tests-Integration'
-					with: [ spec requires: #('Pillar-Project') ].
+				package: 'Pillar-Tests-Project' with: [ spec requires: #('Pillar-Project') ];
+				package: 'Pillar-Tests-Integration' with: [ spec requires: #('Pillar-Project') ].
 			spec
 				group: 'ALL' with: #('All tests' 'All but tests');
 				group: 'All but tests'
-					with: #('All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'Pillar-GitBook' 'parser' 'Pillar-Project');
+					with:
+					#('All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'Pillar-GitBook' 'parser' 'Pillar-Project');
 				group: 'All exporter tests'
 					with:
 					#('html exporter tests' 'latex exporter tests' 'beamer exporter tests' 'deckjs exporter tests' 'markdown exporter tests' 'pillar exporter tests' 'text exporter tests' 'asciidoc exporter tests' 'ePub exporter tests');
@@ -136,10 +110,9 @@ baseline: spec
 					#('html exporter' 'latex exporter' 'beamer exporter' 'deckjs exporter' 'markdown exporter' 'pillar exporter' 'text exporter' 'asciidoc exporter' 'ePub exporter');
 				group: 'All tests'
 					with:
-					#('All exporter tests' 'Pillar-Tests-Model' 'Pillar-Tests-ExporterCore' #'Pillar-Tests-Cli' 'parser tests' 'Pillar-Tests-Project' 'Pillar-Tests-Integration' );
+					#('All exporter tests' 'Pillar-Tests-Model' 'Pillar-Tests-ExporterCore' #'Pillar-Tests-Cli' 'parser tests' 'Pillar-Tests-Project' 'Pillar-Tests-Integration');
 				group: 'asciidoc exporter' with: #(#'Pillar-ExporterAsciiDoc');
-				group: 'asciidoc exporter tests'
-					with: #(#'Pillar-Tests-ExporterAsciiDoc' 'ePub exporter');
+				group: 'asciidoc exporter tests' with: #(#'Pillar-Tests-ExporterAsciiDoc' 'ePub exporter');
 				group: 'beamer exporter' with: #('Pillar-ExporterBeamer');
 				group: 'beamer exporter tests' with: #('Pillar-Tests-ExporterBeamer');
 				group: 'deckjs exporter' with: #('Pillar-ExporterDeckJS');
