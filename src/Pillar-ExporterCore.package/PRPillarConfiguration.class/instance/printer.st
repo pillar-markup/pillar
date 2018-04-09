@@ -1,4 +1,0 @@
-preparing transition
-printer
-
-	^ printer 
