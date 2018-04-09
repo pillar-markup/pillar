@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "ThibaultArloing 5/12/2016 10:05",
 	"super" : "PRNodeTransformer",
-	"category" : "Pillar-ExporterCore-Export",
+	"category" : "Pillar-ExporterCore-StructureToBeRemoved",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "PRStructureTransfomer",
+	"name" : "PRStructureTransformer",
 	"type" : "normal"
 }

@@ -1,5 +1,5 @@
 initialization
 initialize
-
-	super initialize. 
-	printer := PRTitlePrinter new. 
+	super initialize.
+	self flag: 'Why printer is not accessed via the configuration'.
+	printer := PRTitlePrinter new
