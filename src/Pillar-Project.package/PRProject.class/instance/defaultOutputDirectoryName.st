@@ -1,4 +1,3 @@
 accessing
 defaultOutputDirectoryName
-
-	^ '_result'
+	^ Path from: '_result'

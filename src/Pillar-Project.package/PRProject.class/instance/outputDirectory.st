@@ -1,4 +1,4 @@
 accessing
 outputDirectory
 	
-	^ self configuration outputDirectory
+	^ self configuration baseDirectory resolve: self configuration outputDirectory

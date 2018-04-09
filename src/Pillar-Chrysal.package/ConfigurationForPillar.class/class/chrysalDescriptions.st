@@ -22,7 +22,7 @@ chrysalDescriptions
 		#propertyName : #keywords,
 		#default : ''Pharo''
 	},
-	FolderConfigurationItem {
+	PathConfigurationItem {
 		#propertyName : #outputDirectory,
 		#default : ''build''
 	},
