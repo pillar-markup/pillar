@@ -41,7 +41,7 @@ baseline: spec
 				package: 'Pillar-Chrysal' with: [ spec requires: #('Pillar-ExporterCore') ];
 				package: #'Pillar-ExporterAsciiDoc' with: [ spec requires: #('Pillar-ExporterCore') ];
 				package: 'Pillar-ExporterBeamer' with: [ spec requires: #('Pillar-ExporterLaTeX') ];
-				package: 'Pillar-ExporterCore' with: [ spec requires: #('Pillar-Model' 'JSON') ];
+				package: 'Pillar-ExporterCore' with: [ spec requires: #('Pillar-Model') ];
 				package: 'Pillar-ExporterDeckJS' with: [ spec requires: #('Pillar-ExporterHTML') ];
 				package: #'Pillar-ExporterEPub' with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-ExporterHTML') ];
 				package: 'Pillar-ExporterHTML' with: [ spec requires: #('Pillar-ExporterCore') ];
