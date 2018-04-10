@@ -4,7 +4,7 @@ generateDocumentationOf: transformers
 		do: [ :transformer | 
 			stream
 				nextPutAll: ';==';
-				nextPutAll: transformer key;
+				nextPutAll: transformer class printString;
 				nextPutAll: '==';
 				nextPutAll: Smalltalk os lineEnding;
 				nextPutAll: ':';

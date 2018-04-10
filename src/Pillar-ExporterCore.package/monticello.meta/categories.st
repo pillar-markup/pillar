@@ -3,7 +3,8 @@ SystemOrganization addCategory: 'Pillar-ExporterCore-Base'!
 SystemOrganization addCategory: 'Pillar-ExporterCore-Configuration'!
 SystemOrganization addCategory: 'Pillar-ExporterCore-Exceptions'!
 SystemOrganization addCategory: 'Pillar-ExporterCore-Export'!
+SystemOrganization addCategory: 'Pillar-ExporterCore-Feature-ScriptFromFile'!
+SystemOrganization addCategory: 'Pillar-ExporterCore-Feature-Structures'!
 SystemOrganization addCategory: 'Pillar-ExporterCore-Features'!
 SystemOrganization addCategory: 'Pillar-ExporterCore-Manifest'!
-SystemOrganization addCategory: 'Pillar-ExporterCore-StructureToBeRemoved'!
 SystemOrganization addCategory: 'Pillar-ExporterCore-Utilities'!

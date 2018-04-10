@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "<historical>",
 	"super" : "PRObject",
-	"category" : "Pillar-Model-Render",
+	"category" : "Pillar-Model-Feature - structures",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

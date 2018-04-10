@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "jf 9/18/2009 15:47",
 	"super" : "PRBasicObject",
-	"category" : "Pillar-Model-Core",
+	"category" : "Pillar-Model-BasicRoots",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

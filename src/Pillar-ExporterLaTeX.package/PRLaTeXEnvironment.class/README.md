@@ -1,7 +1,7 @@
 A LaTeX environment
 
-Instance Variables
-	name:		<Object>
+To emit
 
-name
-	- xxxxx
+\begin{XXX}
+kjlkjkl
+\end{XXX}

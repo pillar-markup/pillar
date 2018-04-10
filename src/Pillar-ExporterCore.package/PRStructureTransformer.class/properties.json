@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "ThibaultArloing 5/12/2016 10:05",
 	"super" : "PRNodeTransformer",
-	"category" : "Pillar-ExporterCore-StructureToBeRemoved",
+	"category" : "Pillar-ExporterCore-Feature-Structures",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

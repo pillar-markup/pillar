@@ -1,7 +1,7 @@
 {
-	"commentStamp" : "DamienCassou 2/28/2014 09:39",
+	"commentStamp" : "StephaneDucasse 4/10/2018 22:34",
 	"super" : "Object",
-	"category" : "Pillar-Model-Core",
+	"category" : "Pillar-Model-BasicRoots",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
