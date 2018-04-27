@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "PRVisitor",
+	"category" : "Pillar-ExporterCore-Toc",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"toc",
+		"tocsStack",
+		"documentSource"
+	],
+	"name" : "PRTocBuilderVisitor",
+	"type" : "normal"
+}

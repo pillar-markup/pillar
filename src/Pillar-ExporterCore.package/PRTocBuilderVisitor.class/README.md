@@ -1,0 +1,1 @@
+Class to migrate to Stack
