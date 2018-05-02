@@ -8,8 +8,12 @@
 <link href="_support/html/css/font-awesome.min.css" rel="stylesheet">
 <link href="_support/html/css/nucleus.css" rel="stylesheet">
 <link href="_support/html/css/flex.css" rel="stylesheet">
+<link rel="stylesheet" href="_support/html/highlightjs/styles/default.css">
+<link rel="stylesheet" href="_support/html/css/highlight-commands.css">
 <link rel="stylesheet" href="_support/html/css/bootstrap.min.css">
 <script src="_support/html/js/jquery-2.x.min.js"></script>
+<script src="_support/html/highlightjs/highlight.pack.js"></script>
+<script src="_support/html/js/highlight-commands.js"></script>
 <script type="text/javascript">
       var baseurl = "/";
 </script>
@@ -36,7 +40,7 @@
 		{{# toc}}
 		  <li class="dd-item {{# hasChildren}} haschildren {{/ hasChildren}}">
 			<div>
-			  <a href="{{url}}" id="{{name}}">
+			  <a>
 					{{name}}
 			  </a>
 			  {{# hasChildren}} <i class="fa fa-angle-right fa-lg category-icon"></i> {{/ hasChildren}}
@@ -45,16 +49,16 @@
 				{{# children }}
 		   	  	<li class="dd-item {{# hasChildren}} haschildren {{/ hasChildren}}">
 					<div>
-						<a href="{{url}}" id="{{name}}">
+						<a>
 							{{name}}
 						</a>
 						{{# hasChildren}}<i class="fa fa-angle-right fa-lg category-icon"></i>{{/ hasChildren}}
 					</div>
 
 					<ul class="dd-item">
-					{{# children }}						
+					{{# children }}		
 						<li class="dd-item">
-							<a href="{{url}}" id="{{name}}">{{name}}</a>
+							<a>{{name}}</a>
 						</li>
 					{{/ children }}
 					</ul>						
@@ -90,10 +94,10 @@
 
 <link href="_support/html/css/featherlight.min.css" rel="stylesheet">
 <script src="_support/html/js/featherlight.min.js"></script>
-
-<script src="_support/html/highlightjs/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <script src="_support/html/js/flex.js"></script>
+<!-- Prettify annotated paragraphs-->
+    <script src="_support/html/js/annotated-paragraphs.js"></script>
 
   </body>
 </html>
