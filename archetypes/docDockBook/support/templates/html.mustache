@@ -27,55 +27,54 @@
 <article>
   <aside>
     <ul class="menu">
-          <li data-nav-id="123" class="dd-item">
-          <a href="/">
-            <i class="fa fa-fw fa-home"></i>
-          </a>
-          </li>
+   		<li data-nav-id="123" class="dd-item">
+    		<a href="/">
+		       <i class="fa fa-fw fa-home"></i>
+	    	</a>
+        </li>
 
-{{# toc}}
-    <li class="dd-item haschildren">
-      <div>
-      <a href="{{url}}">
-	  		<i class="fa fa-angle-down fa-lg category-icon"></i>
-	  		{{name}}
-	  </a>
-      
-      {{# children }}
-                 <ul class="dd-item">
-   		             <li class="dd-item haschildren">
-						<a href="{{url}}">
-								<i class="fa fa-angle-down fa-lg category-icon"></i>
-								{{name}}
+		{{# toc}}
+		  <li class="dd-item {{# hasChildren}} haschildren {{/ hasChildren}}">
+			<div>
+			  <a href="{{url}}" id="{{name}}">
+					{{name}}
+			  </a>
+			  {{# hasChildren}} <i class="fa fa-angle-right fa-lg category-icon"></i> {{/ hasChildren}}
+			</div>
+			  <ul class="dd-item">
+				{{# children }}
+		   	  	<li class="dd-item {{# hasChildren}} haschildren {{/ hasChildren}}">
+					<div>
+						<a href="{{url}}" id="{{name}}">
+							{{name}}
 						</a>
-						{{# children }}
-						<ul class="dd-item">
-							<li class="dd-item">
-								<a href="{{url}}">{{name}}</a>
-							</li>
-						</ul>
-						{{/ children }}						
-					</li>
-                 </ul>
-       {{/ children }}
+						{{# hasChildren}}<i class="fa fa-angle-right fa-lg category-icon"></i>{{/ hasChildren}}
+					</div>
 
-      </div>
-  
-    </li>
-{{/ toc}}
-
+					<ul class="dd-item">
+					{{# children }}						
+						<li class="dd-item">
+							<a href="{{url}}" id="{{name}}">{{name}}</a>
+						</li>
+					{{/ children }}
+					</ul>						
+				</li>
+				{{/ children }}
+			  </ul>
+		  
+		  </li>
+		{{/ toc}}
     </ul>
   </aside>
+
   <section class="page">
-
-
     
-
-<h1>{{title}}</h1>
-    
-    {{{content}}}
+	<h1>{{title}}</h1>
+		
+	{{{content}}}
 
   </section>
+
 </article>
 
 <footer>
