@@ -7,5 +7,5 @@ getMustacheTemplateValuesFromDocument: aDocument
 	templates := super getMustacheTemplateValuesFromDocument: aDocument.
 	tocBuilder := PRTocBuilderVisitor new.
 	toc := tocBuilder visit: aDocument.
-	templates at: #toc put: toc.
+	templates at: #toc put: (toc children collect: [ :each | each asDictionary ]).
 	^ templates
