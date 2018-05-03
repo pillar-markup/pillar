@@ -54,5 +54,5 @@ testDocumentWithInputAnnotationContainsMultipleTocs
 								name: 'TestFile15';
 								level: 3;
 								fileRef: 'input1.pillar'))).
-	builder visit: advancedDocument.
+	builder documentSource: (FileSystem workingDirectory / 'document.pillar'); visit: advancedDocument.
 	self assert: builder toc equals: expectedToc

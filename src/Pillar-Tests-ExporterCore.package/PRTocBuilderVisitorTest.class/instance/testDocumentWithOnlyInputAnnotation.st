@@ -9,5 +9,5 @@ testDocumentWithOnlyInputAnnotation
 				name: 'TestFile21';
 				level: 2;
 				fileRef: 'input2.pillar').
-	builder visit: document.
+	builder documentSource: (FileSystem workingDirectory / 'document.pillar'); visit: document.
 	self assert: builder toc equals: expectedToc

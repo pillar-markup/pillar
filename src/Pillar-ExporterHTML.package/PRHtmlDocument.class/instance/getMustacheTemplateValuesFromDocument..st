@@ -1,11 +1,9 @@
 building
 getMustacheTemplateValuesFromDocument: aDocument
-	| templates tocBuilder toc |
+	| templates |
 	"We get the flattened meta-data obtained from the file header and the pillar configuration
 	We add the text contents to the dictionary.
 	This dictionary will be used by the mustache"
 	templates := super getMustacheTemplateValuesFromDocument: aDocument.
-	tocBuilder := PRTocBuilderVisitor new.
-	toc := tocBuilder visit: aDocument.
-	templates at: #toc put: (toc children collect: [ :each | each asDictionary ]).
+	self toc ifNotNil: [ templates at: #toc put: (self toc children collect: [ :each | each asDictionary ]) ].
 	^ templates
