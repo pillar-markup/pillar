@@ -1,0 +1,3 @@
+rendering
+closingAnnotationString
+	^ self class closingAnnotationString

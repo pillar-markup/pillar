@@ -1,6 +1,16 @@
 rendering
 asPillarParametersOn: aStream
+	| nonDefaultParameters |
+	nonDefaultParameters := self parameters keys asOrderedCollection.
+	nonDefaultParameters remove: self defaultParameterName ifAbsent: [  ].
 
-	"by default do nothing. Each on the subclass should output its parameters in pillar format."
-	
-	"self parameters at: 'title' ifPresent: [ :v | aStream nextPutAll: 'title='; nextPutAll: v]."
+	"first handle the case of the defaultParameter (which btw can be absent)"
+	self parameters
+		at: self defaultParameterName
+		ifPresent: [ :v | 
+			aStream nextPutAll: v.
+			aStream nextPut: self parameterSeparator ].
+	"Then the rest"
+	nonDefaultParameters
+		do: [ :each | self asPillarKey: each value: (self parameters at: each) on: aStream ]
+		separatedBy: [ aStream nextPut: self parameterSeparator ]

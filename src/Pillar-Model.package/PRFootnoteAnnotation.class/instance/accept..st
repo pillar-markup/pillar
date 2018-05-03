@@ -1,3 +1,3 @@
-as yet unclassified
+visiting
 accept: aVisitor
 	aVisitor visitFootnoteAnnotation: self
