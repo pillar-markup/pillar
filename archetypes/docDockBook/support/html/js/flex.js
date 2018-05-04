@@ -52,6 +52,7 @@ jQuery(document).ready(function() {
     var text, clip = new Clipboard('.anchor');
     $("h1~h2,h1~h3,h1~h4,h1~h5,h1~h6").append(function (index, html) {
         var element = $(this);
+		element[0].setAttribute("id", element[0].innerHTML.toLowerCase());
         var url = document.location.origin + document.location.pathname;
         var link = url + "#" + element[0].id;
         return " <span class='anchor' data-clipboard-text='" + link + "'>" +
@@ -276,3 +277,9 @@ $('.burger').on('click', function(e){
     e.preventDefault();
 });
 
+var url = document.location.origin + document.location.pathname;
+var menu = document.getElementsByClassName("menu");
+var a = menu[0].getElementsByTagName("a");
+for (i = 1; i < a.length; i++) {
+	a[i].setAttribute("href", url + "#" + a[i].innerHTML.toLowerCase());
+}
