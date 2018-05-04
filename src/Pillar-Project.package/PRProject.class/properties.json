@@ -6,8 +6,7 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"baseDirectory",
-		"toc"
+		"baseDirectory"
 	],
 	"name" : "PRProject",
 	"type" : "normal"
