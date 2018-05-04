@@ -8,7 +8,8 @@
 	"instvars" : [
 		"toc",
 		"tocsStack",
-		"documentSource"
+		"documentSource",
+		"currentFile"
 	],
 	"name" : "PRTocBuilderVisitor",
 	"type" : "normal"
