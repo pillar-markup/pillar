@@ -1,8 +1,7 @@
 tests
 testParse
-	| wiki text tree |
+	| wiki tree |
 	wiki := '${' , self referenceString , '}$'.
-	text := ''.
 	tree := PRDocument new
 		add:
 			(PRParagraph new
@@ -11,4 +10,4 @@ testParse
 		yourself.
 	self assertWiki: wiki equalsTree: tree.
 	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	

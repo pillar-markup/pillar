@@ -1,3 +1,3 @@
 tests-comparing
-testEquealNil
+testEqualNil
 	self deny: self instance isNil

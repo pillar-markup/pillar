@@ -2,9 +2,7 @@ tests
 testParseWithInterpretation
 	| input expected |
 	input := '${mock:Foo|number=5}$'.
-	expected := PRMockAnnotation new
-		hadAllKeys: false;
-		yourself.
+	expected := PRMockAnnotation new.
 	expected parameters
 		at: 'value' put: 'Foo';
 		at: 'number' put: 5.
