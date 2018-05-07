@@ -277,8 +277,3 @@ $('.burger').on('click', function(e){
     e.preventDefault();
 });
 
-var menu = document.getElementsByClassName("menu");
-var a = menu[0].getElementsByTagName("a");
-for (i = 1; i < a.length; i++) {
-	a[i].setAttribute("href", a[i].href.replace(".pillar", ".html") + "#" + a[i].innerHTML.toLowerCase());
-}
