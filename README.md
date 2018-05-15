@@ -2,10 +2,10 @@
 
 [![Build Status](https://travis-ci.org/pillar-markup/pillar.svg?branch=stable)](https://travis-ci.org/pillar-markup/pillar)
 
-Pillar is a markup syntax and tool-suite to generate documentation, books and slides.
+Pillar is a markup syntax and tool-suite to generate documentation, books, websites and slides.
 
-Read the documentation at [https://ci.inria.fr/pharo-contribution/job/EnterprisePharoBook/lastSuccessfulBuild/artifact/book-result/PillarChap/Pillar.html](https://ci.inria.fr/pharo-contribution/job/EnterprisePharoBook/lastSuccessfulBuild/artifact/book-result/PillarChap/Pillar.html).
-[Other formats](https://ci.inria.fr/pharo-contribution/job/EnterprisePharoBook/lastSuccessfulBuild/artifactbook-result/PillarChap/)
+Read the documentation at https://github.com/SquareBracketAssociates/Booklet-PublishingAPillarBooklet.
+Please note that chapter on Pharo a web Perspective is obsolete since it refers to Pharo 60.
 
 ## Installation
 
@@ -14,10 +14,10 @@ Read the documentation at [https://ci.inria.fr/pharo-contribution/job/Enterprise
 Take a version from the github releases and download it.
 
 You can get the latest release from [here](https://github.com/pillar-markup/pillar/releases).
-Pay attention the latest release is 6.0.7 (and not 5.0). 
+Pay attention the latest release is 7.0.0. 
 
 Otherwise, these are other possible downloads:
-- [V6.0.7](https://github.com/pillar-markup/pillar/archive/v6.0.7.zip)
+- [V6.0.7](https://github.com/pillar-markup/pillar/archive/v7.0.0.zip)
 
 ### Building from sources
 
@@ -31,7 +31,7 @@ $ ./pillar/scripts/build.sh
 ```
 
 That will create a `build` directory in the working directory and build pillar in there. You can then proceed to install pillar where you want in your home directory.
-Here we place it as .pillar. 
+Here we place it as .pillar in our home directory. 
 
 ```bash
 $ mv Pillar ~/.pillar
@@ -64,7 +64,7 @@ These are the files that you should versionned.
 
 
 
-## Contributing to Pillar
+# Contributing to Pillar
 
 The current pillar version is being developped using [Pharo6.1](www.pharo.org). To contribute, you should set-up a development environment as follows:
 
