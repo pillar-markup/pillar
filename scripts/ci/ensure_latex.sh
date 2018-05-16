@@ -1,9 +1,11 @@
 #!/bin/bash
 # From https://github.com/y-yu/install-tex-travis/blob/master/install-tex.sh
 
-#Do not use -e to avoid problems in osx
+#Enable to not exit on error
 #set -o errexit
-set -o xtrace
+
+#Enable to trace bash execution
+#set -o xtrace
 
 DIRNAME=tl-`date +%Y_%m_%d_%H_%M_%S`
 
