@@ -9,7 +9,8 @@
 		"toc",
 		"tocsStack",
 		"documentSource",
-		"currentFile"
+		"currentFile",
+		"inProcessFiles"
 	],
 	"name" : "PRTocBuilderVisitor",
 	"type" : "normal"
