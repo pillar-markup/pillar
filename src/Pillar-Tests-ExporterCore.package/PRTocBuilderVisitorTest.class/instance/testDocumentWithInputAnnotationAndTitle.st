@@ -54,6 +54,10 @@ ${inputFile:input1.pillar}$
 					(PRToc new
 						name: 'Test3';
 						level: 2)).
-	builder documentSource: (FileSystem workingDirectory / 'document.pillar'); visit: document.
+	builder
+		documentSource: FileSystem workingDirectory / 'document.pillar';
+		currentFile: 'document.pillar';
+		inProcessFiles: (Array with: FileSystem workingDirectory / 'document.pillar');
+		visit: document.
 	self assert: builder toc children size equals: 1.
 	self assert: builder toc equals: expectedToc

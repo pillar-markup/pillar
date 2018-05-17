@@ -41,4 +41,5 @@ ${inputFile:input1.pillar}$
 ! Test3'.
 	self createPillarFile1.
 	self createPillarFile2.
-	self createPillarFile3
+	self createPillarFile3.
+	self createCyclicPillarFile1.

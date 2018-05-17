@@ -46,5 +46,9 @@ testDocumentWithInputAnnotationHasTocs
 						name: 'TestFile21';
 						level: 2;
 						fileRef: 'input2.pillar')).
-	builder documentSource: (FileSystem workingDirectory / 'document.pillar'); visit: inputDocument.
+	builder
+		documentSource: FileSystem workingDirectory / 'document.pillar';
+		currentFile: 'document.pillar';
+		inProcessFiles: (Array with: FileSystem workingDirectory / 'document.pillar');
+		visit: inputDocument.
 	self assert: builder toc equals: expectedToc
