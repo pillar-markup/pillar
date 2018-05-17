@@ -4,8 +4,7 @@ testBookEpub
 	self testArchetype: self archetypeBook output: self outputEPub.
 	self assert: (project outputDirectory / 'epub' / 'index.epub') exists.
 	
-	(project outputDirectory / 'epub' / 'index.epub') readStreamDo: [ :stream | | archive |
-		stream binary.
+	(project outputDirectory / 'epub' / 'index.epub') binaryReadStreamDo: [ :stream | | archive |
 		archive := ZipArchive new.
 		archive readFrom: stream.
 		

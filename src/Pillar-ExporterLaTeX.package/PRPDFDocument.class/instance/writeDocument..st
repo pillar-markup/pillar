@@ -15,6 +15,5 @@ writeDocument: aDocument
 	outputFile ensureDelete.
 	outputFile parent ensureCreateDirectory.
 	outputFile writeStreamDo: [ :stream | 
-		stream binary.
-		(ZnCharacterWriteStream on: stream) nextPutAll: templatedOutput ].
+		stream nextPutAll: templatedOutput ].
 	^ outputFile

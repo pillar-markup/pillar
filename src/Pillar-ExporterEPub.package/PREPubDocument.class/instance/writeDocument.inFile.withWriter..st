@@ -14,5 +14,4 @@ writeDocument: aDocument inFile: aFileReference withWriter: aWriter
 	aFileReference ensureDelete.
 	aFileReference parent ensureCreateDirectory.
 	aFileReference writeStreamDo: [ :stream | 
-		stream binary.
-		(ZnCharacterWriteStream on: stream) nextPutAll: templatedOutput ]
+		stream nextPutAll: templatedOutput ]

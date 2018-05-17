@@ -14,7 +14,5 @@ writeDocument: aDocument
 	outputFile := (self outputDirectory resolve: (file file relativeTo: project baseDirectory asAbsolute)) withoutExtension , self extension.
 	outputFile ensureDelete.
 	outputFile parent ensureCreateDirectory.
-	outputFile writeStreamDo: [ :stream | 
-		stream binary.
-		(ZnCharacterWriteStream on: stream) nextPutAll: templatedOutput ].
+	outputFile writeStreamDo: [ :stream | stream nextPutAll: templatedOutput ].
 	^ outputFile
