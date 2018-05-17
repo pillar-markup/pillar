@@ -1,4 +1,4 @@
 building
 parseInputFile: anInputFile
 
-	^ PRPillarParser parse: anInputFile file
+	^ PRDocument parser parse: anInputFile file
