@@ -26,9 +26,9 @@ build pillar
 #### Getting an older version
 
 - *v5.0:* Pillar 5 is released for Pharo5 and versionned on [SmalltalkHub](http://smalltalkhub.com/#!/~Pier/Pillar).
- - You can get an already built image of that version from [here](https://github.com/pillar-markup/pillar/releases/tag/v5.0).
- - You can check the scripts in the (dev-5 branch)[https://github.com/pillar-markup/pillar/tree/dev-5]
- - The root of this branch still contains for backwards compatibility purposes a _deprecated_ copy of the old `download.sh` script.
+  - You can get an already built image of that version from [here](https://github.com/pillar-markup/pillar/releases/tag/v5.0).
+  - You can check the scripts in the (dev-5 branch)[https://github.com/pillar-markup/pillar/tree/dev-5]
+  - The root of this branch still contains for backwards compatibility purposes a _deprecated_ copy of the old `download.sh` script.
 
 
 ### 2. Setting up the environment
