@@ -109,20 +109,28 @@ VM: 201708271955 https://github.com/OpenSmalltalk/opensmalltalk-vm.git $ Date: S
 
 ## Getting started
 
-Now you should be ready compile the default 
+To create a book, you can start by installing the book archetype in a directory where you want to manage it:
 
 ```
-pillar archetype book
-pillar build pdf
+$ mkdir my-new-book
+$ cd my-new-book
+$ pillar archetype book
 ```
-It will build a book in the folder _result. Pay attention for the moment 
-running it twice break and you should remove the _result to regenerate a book pdf. 
 
-### Manage your own book
-Now you can copy the following files and folder to your own repository. 
-Chapters, figures, pillar.conf, book.pillar, and _support
-These are the files that you should versionned. 
+You can then edit the pillar files and the pillar configuration file `pillar.conf`.
+Finally, you can generate your book in pdf using.
 
+```
+$ pillar build pdf
+```
+
+Or in html:
+
+```
+$ pillar build html
+```
+
+The resulting pdf or html site will be written into the `_result` directory.
 
 ## Contributing to Pillar
 
