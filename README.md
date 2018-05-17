@@ -3,7 +3,7 @@
 Pillar is a markup syntax and tool-suite to generate documentation, books, websites and slides.
 
 [![Build Status](https://travis-ci.org/pillar-markup/pillar.svg?branch=stable)](https://travis-ci.org/pillar-markup/pillar)
-[![Documentation](https://img.shields.io/badge/Documentation-download-green.svg)](https://github.com/SquareBracketAssociates/Booklet-PublishingAPillarBooklet)
+[![Documentation](https://img.shields.io/badge/Documentation-download-green.svg)](https://bintray.com/squarebracketassociates/wip/download_file?file_path=DistributingPillar-wip.pdf)
 
 ## Installation
 
