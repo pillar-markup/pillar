@@ -20,7 +20,7 @@ The script will create a `build` directory in your current working directory wit
 
 ```bash
 $ ls
-**build** pillar
+build pillar
 ```
 
 #### Getting an older version
