@@ -37,13 +37,13 @@ You can then proceed to install that pillar build where you want.
 For example, you can place it in a hidden directory in your home directory:
 
 ```bash
-$ mv Pillar ~/.pillar
+$ mv build ~/.pillar
 ```
 
 Then add that directory to the `PILLAR_HOME` and `HOME` environment variables, for example, by modifying your `.bashrc` with
 
 ```bash
-export PILLAR_HOME="$HOME/.pillar/build"
+export PILLAR_HOME="$HOME/.pillar"
 export PATH="$PATH:$PILLAR_HOME"
 ```
 
