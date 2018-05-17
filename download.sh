@@ -8,8 +8,6 @@
 
 PHARO_VM=${PHARO_VM:-./pharo}
 
-pillar_version="stable"
-pharo_version="50"
 vm_enable=0
 img_enable=0
 
@@ -97,8 +95,8 @@ if [[ $vm_enable == 0 && $img_enable == 0 ]]; then
     img_enable=1
 fi
 
-IMAGE_URL="https://github.com/pillar-markup/pillar/releases/download/$pharo_version/Pillar-deployment$pharo_version.zip";
-VM_INSTALL_URL="http://get.pharo.org/vm$pharo_version"
+IMAGE_URL="https://github.com/pillar-markup/pillar/releases/download/v5.0/Pillar-deployment50.zip";
+VM_INSTALL_URL="http://get.pharo.org/vm50"
 
 if [[ $vm_enable == 1 || $img_enable == 0 ]]; then
     get_vm
