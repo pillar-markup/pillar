@@ -34,7 +34,7 @@
 	    	</a>
         </li>
 
-		{{# toc}}
+		{{# toc}}{{# children}}
 		  <li class="dd-item {{# hasChildren}} haschildren {{/ hasChildren}}">
 			<div>
 			  <a href="{{href}}">
@@ -64,7 +64,7 @@
 			  </ul>
 		  
 		  </li>
-		{{/ toc}}
+		{{/ children}}{{/ toc}}
     </ul>
   </aside>
 
