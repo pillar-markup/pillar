@@ -1,0 +1,3 @@
+accessing
+top
+	^ tocsStack top
