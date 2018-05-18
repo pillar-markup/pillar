@@ -16,4 +16,4 @@ testTocHasOneChildren
 						name: 'Test2';
 						level: 2)).
 	builder visit: document.
-	self assert: builder toc equals: expectedToc
+	self assert: builder tableOfContents equals: expectedToc

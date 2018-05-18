@@ -59,5 +59,5 @@ ${inputFile:input1.pillar}$
 		currentFile: 'document.pillar';
 		inProcessFiles: (Array with: FileSystem workingDirectory / 'document.pillar');
 		visit: document.
-	self assert: builder toc children size equals: 1.
-	self assert: builder toc equals: expectedToc
+	self assert: builder tableOfContents children size equals: 1.
+	self assert: builder tableOfContents equals: expectedToc

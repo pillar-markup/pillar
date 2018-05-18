@@ -1,3 +1,3 @@
 accessing
-toc
+tableOfContents
 	^ toc

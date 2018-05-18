@@ -26,4 +26,4 @@ testTocHasGoodLevelOfChildren
 				name: 'Test4';
 				level: 1).
 	builder visit: document.
-	self assert: builder toc equals: expectedToc
+	self assert: builder tableOfContents equals: expectedToc

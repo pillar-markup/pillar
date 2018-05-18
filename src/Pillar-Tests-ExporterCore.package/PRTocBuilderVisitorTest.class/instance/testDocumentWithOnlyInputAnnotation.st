@@ -14,4 +14,4 @@ testDocumentWithOnlyInputAnnotation
 		currentFile: 'document.pillar';
 		inProcessFiles: (Array with: FileSystem workingDirectory / 'document.pillar');
 		visit: document.
-	self assert: builder toc equals: expectedToc
+	self assert: builder tableOfContents equals: expectedToc

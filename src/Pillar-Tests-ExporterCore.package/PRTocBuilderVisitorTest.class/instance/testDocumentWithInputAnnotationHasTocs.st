@@ -51,4 +51,4 @@ testDocumentWithInputAnnotationHasTocs
 		currentFile: 'document.pillar';
 		inProcessFiles: (Array with: FileSystem workingDirectory / 'document.pillar');
 		visit: inputDocument.
-	self assert: builder toc equals: expectedToc
+	self assert: builder tableOfContents equals: expectedToc
