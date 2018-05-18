@@ -8,8 +8,8 @@
 	"instvars" : [
 		"name",
 		"level",
-		"fileRef",
-		"children"
+		"children",
+		"fileReference"
 	],
 	"name" : "PRToc",
 	"type" : "normal"

@@ -8,7 +8,7 @@ testDocumentWithOnlyInputAnnotation
 			(PRToc new
 				name: 'TestFile21';
 				level: 2;
-				fileRef: 'input2.pillar').
+				fileReference: 'input2.pillar').
 	builder
 		documentSource: FileSystem workingDirectory / 'document.pillar';
 		currentFile: 'document.pillar';
