@@ -33,7 +33,7 @@ install:
   - if [[ ${TYPE} == "Integration" ]]; then cp -r archetypes $SMALLTALK_CI_BUILD; fi
   
 script:
-  - if [[ ${TYPE} == "Integration" ]]; then "$SMALLTALK_CI_HOME/run.sh" ".smalltalk.${TYPE}.ston"; fi
+  - if [[ ${JOB} == "test" ]] && [[ ${TYPE} != "System" ]]; then "$SMALLTALK_CI_HOME/run.sh" ".smalltalk.${TYPE}.ston"; fi
   - if [[ ${TYPE} == "System" ]]; then "scripts/system-tests/testarchetype.sh" ${ARCHETYPE} ${OUTPUT}; fi
   - if [[ ${JOB} == "build" ]]; then "scripts/build.sh"; zip -ry9 pillar.zip build; fi
 
