@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "ChrysalItem",
-	"category" : "Pillar-Chrysal",
+	"category" : "Pillar-Chrysal-Generator",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
