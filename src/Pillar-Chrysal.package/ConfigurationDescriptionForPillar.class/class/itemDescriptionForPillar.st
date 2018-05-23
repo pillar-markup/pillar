@@ -23,7 +23,7 @@ itemDescriptionForPillar
 		propertyName: #keywords;
 		default: 'Pharo';
 		yourself).
-	(FolderConfigurationItem new
+	(PathConfigurationItem new
 		propertyName: #outputDirectory;
 		default: 'build').
 	(FolderConfigurationItem new
@@ -97,5 +97,10 @@ itemDescriptionForPillar
 		propertyName: #levels;
 		default: #OrderedCollection;
 		element: #levelSpecification;
+		yourself)
+	.
+	(PathConfigurationItem new
+		propertyName: #tocFile;
+		explanation: 'Identify the file to be taken as input for the root of the table of contents. When it is not specified, the table of contents will not be computed and displayed';
 		yourself)
 	}

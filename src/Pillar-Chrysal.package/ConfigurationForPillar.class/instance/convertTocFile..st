@@ -1,4 +1,4 @@
 conversion
-convertOutputDirectory: aValue
+convertTocFile: aValue
 	"generated code"
 	^ Path from: aValue
