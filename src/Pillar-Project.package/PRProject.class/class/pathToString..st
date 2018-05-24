@@ -1,3 +1,3 @@
 accessing
 pathToString: aPath
-	^ aPath pathString
+	^ aPath pillarPrintString
