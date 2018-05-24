@@ -155,7 +155,7 @@ $ ./pharo-ui Pharo.image
 
 5. Clone pillar using iceberg and install the baseline using the metacello plugin.
 
-## More documetation
+## More documentation
 
 Read the documentation at https://github.com/SquareBracketAssociates/Booklet-PublishingAPillarBooklet.
 Please note that chapter on Pharo a web Perspective is obsolete since it refers to Pharo 60.
