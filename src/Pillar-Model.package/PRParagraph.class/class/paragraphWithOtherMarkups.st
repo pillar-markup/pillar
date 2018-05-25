@@ -2,7 +2,7 @@ testing
 paragraphWithOtherMarkups
 	<sampleInstance>
 	
-	^ PRPillarParserMain parse: 'Here is a list of publications
+	^ PRPillarParser parse: 'Here is a list of publications
 	
 ${publications:Ducasse|bibFile=rmod.bib}$
 The paragraph continues here.
