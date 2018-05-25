@@ -1,6 +1,6 @@
 # Pillar
 
-Pillar is a markup syntax and tool-suite to generate documentation, books, websites and slides.
+Pillar is a markup syntax and tool-suite to generate documentation, books, websites and slides. Pillar is not new. It has been invented around 2000 as supporting language for the SmallWiki wiki. Its ancestor was the markup for the Pier CMS. We extracted it from Pier to make it more applicable to different domains.
 
 [![Build Status](https://travis-ci.org/pillar-markup/pillar.svg?branch=stable)](https://travis-ci.org/pillar-markup/pillar)
 [![Documentation](https://img.shields.io/badge/Documentation-download-green.svg)](https://github.com/SquareBracketAssociates/Booklet-PublishingAPillarBooklet)
