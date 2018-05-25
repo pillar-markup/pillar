@@ -1,3 +1,3 @@
 visiting
 write: aDocumentItem
-	^ self write: aDocumentItem to: self defaultStream
+	^ self start: aDocumentItem; contents
