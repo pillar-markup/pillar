@@ -1,3 +1,3 @@
 protected
 tag
-	^ #tableOfContents
+	^ #toc

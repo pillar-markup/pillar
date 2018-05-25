@@ -1,8 +1,9 @@
 accessing
 tableOfContents
-	| tocFileName inputDoc |
-	tocFileName := self configuration propertyAt: 'tocFile' ifAbsent: [ ^ PRToc new ].
-	inputDoc := PRPillarParser parse: (self baseDirectory / tocFileName) asFileReference readStream.
+	| tocFilePath tocFileName inputDoc |
+	tocFilePath := self configuration propertyAt: 'tocFile' ifAbsent: [ ^ PRToc new ].
+	tocFileName := self class pathToString: tocFilePath.
+	inputDoc := PRPillarParser parse: (self baseDirectory / tocFileName) contents.
 	^ PRTocBuilderVisitor new
 		documentSource: self baseDirectory / tocFileName;
 		currentFile: tocFileName;
