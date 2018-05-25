@@ -1,16 +1,17 @@
 parsing
 parse: aStringOrStream
-	| hasProperties properties doc |
-	aStringOrStream readStreamDo: [ :stream  |
-		stream atEnd
+	| stream hasProperties properties doc |
+	stream := aStringOrStream readStream.
+	[ stream atEnd
 			ifTrue: [ ^ PRDocument new ].
-		hasProperties := stream next = ${ and: [ stream next ~~ ${ ] ].
+		hasProperties := stream next = ${ and: [ stream next ~~ ${ ] ]
+			ensure: [ stream close ].
 	
-	aStringOrStream readStreamDo: [ :stream |
-		properties := hasProperties
+	stream := aStringOrStream readStream.
+	[ properties := hasProperties
 			ifTrue: [ (STON reader on: stream) next ]
 			ifFalse: [ Dictionary new ].
 		doc := self parseDocument: stream upToEnd.
 		properties
 			keysAndValuesDo: [ :key :value | doc propertyAt: key put: value ].
-		^ doc ]
+		^ doc ] ensure: [ stream close ]
