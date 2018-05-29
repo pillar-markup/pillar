@@ -10,5 +10,8 @@ asDictionary
 			put: '/', (self changeFileExtension: fileReference) , '#' , self name asLowercase.
 	].
 	dictionary at: #hasChildren put: self children isNotEmpty.
-	dictionary at: #children put: (self children collect: [ :each | each asDictionary ]).
+	dictionary at: #children put: (self children collect: [ :each | 
+		each asDictionary
+			at: #parent put: dictionary;
+			yourself ]).
 	^ dictionary
