@@ -1,1 +1,0 @@
-I update all reference of figures and internal links for file inclusion 

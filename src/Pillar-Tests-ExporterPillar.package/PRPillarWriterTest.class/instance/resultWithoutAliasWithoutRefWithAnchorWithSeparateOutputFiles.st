@@ -1,3 +1,0 @@
-requirement-InternalLinks
-resultWithoutAliasWithoutRefWithAnchorWithSeparateOutputFiles
-	^ '@foo'

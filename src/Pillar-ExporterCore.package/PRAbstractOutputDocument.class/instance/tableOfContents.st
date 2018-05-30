@@ -1,4 +1,0 @@
-accessing
-tableOfContents
-	
-	^ project tableOfContents

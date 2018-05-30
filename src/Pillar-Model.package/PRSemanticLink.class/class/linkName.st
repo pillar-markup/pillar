@@ -1,3 +1,0 @@
-accessing
-linkName
-	self subclassResponsibility 

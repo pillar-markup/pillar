@@ -1,3 +1,0 @@
-testing
-isResponsibleFor: aCommandLineArguments
-	^ aCommandLineArguments includesSubCommand: self commandName

@@ -1,3 +1,0 @@
-private
-actualWriterClass
-	^ PREPubTocMenuWriter

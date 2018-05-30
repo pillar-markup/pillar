@@ -1,4 +1,0 @@
-private
-actualClass
-
-	^ PRSectionTransformer

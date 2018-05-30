@@ -1,3 +1,0 @@
-helpers
-firstLine
-	^ 5

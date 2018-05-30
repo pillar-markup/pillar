@@ -1,3 +1,0 @@
-grammar - Paragraph
-emptyParagraph
-	^ newline

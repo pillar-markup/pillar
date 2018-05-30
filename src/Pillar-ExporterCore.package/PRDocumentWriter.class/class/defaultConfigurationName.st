@@ -1,3 +1,0 @@
-accessing
-defaultConfigurationName
-	^ self writerName

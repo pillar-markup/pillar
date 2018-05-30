@@ -1,3 +1,0 @@
-rendering
-openingAnnotationString
-	^ self class openingAnnotationString

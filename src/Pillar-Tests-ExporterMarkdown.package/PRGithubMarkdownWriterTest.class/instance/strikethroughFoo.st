@@ -1,3 +1,0 @@
-requirements
-strikethroughFoo
-	^ '~foo~'

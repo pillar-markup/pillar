@@ -1,3 +1,0 @@
-api
-doIt
-	self printDependencies

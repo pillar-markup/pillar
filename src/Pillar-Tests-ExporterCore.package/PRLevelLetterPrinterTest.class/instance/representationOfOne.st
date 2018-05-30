@@ -1,3 +1,0 @@
-requirement
-representationOfOne
-	^ 'a'

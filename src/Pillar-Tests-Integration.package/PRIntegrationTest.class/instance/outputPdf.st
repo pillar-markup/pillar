@@ -1,4 +1,0 @@
-parameters
-outputPdf
-
-	^ PRPdfOutput new

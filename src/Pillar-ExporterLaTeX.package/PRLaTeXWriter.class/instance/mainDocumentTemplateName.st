@@ -1,4 +1,0 @@
-templating
-mainDocumentTemplateName
-	
-	^ 'latexTemplate'

@@ -1,1 +1,0 @@
-I support the use of a printer to print title and sections related transformations.

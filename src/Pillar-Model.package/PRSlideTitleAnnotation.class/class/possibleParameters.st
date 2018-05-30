@@ -1,4 +1,0 @@
-accessing
-possibleParameters
-
-	^ #(label title)

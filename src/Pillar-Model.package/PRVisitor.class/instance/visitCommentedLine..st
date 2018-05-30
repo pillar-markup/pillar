@@ -1,2 +1,0 @@
-visiting-document
-visitCommentedLine: aCommentedLine

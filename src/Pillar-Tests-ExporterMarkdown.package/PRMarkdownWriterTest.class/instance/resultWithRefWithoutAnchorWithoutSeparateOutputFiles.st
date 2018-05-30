@@ -1,4 +1,0 @@
-requirement-InternalLinks
-resultWithRefWithoutAnchorWithoutSeparateOutputFiles
-	
-	^ ''

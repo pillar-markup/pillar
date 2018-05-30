@@ -1,3 +1,0 @@
-requirements
-preformattedFooBegin
-	^ '\begin{verbatim}'

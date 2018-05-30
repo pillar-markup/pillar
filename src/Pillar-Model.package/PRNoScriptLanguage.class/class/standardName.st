@@ -1,3 +1,0 @@
-protected
-standardName
-	^ 'no language'

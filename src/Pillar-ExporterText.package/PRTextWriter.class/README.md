@@ -1,2 +1,0 @@
-A writer for text
- 

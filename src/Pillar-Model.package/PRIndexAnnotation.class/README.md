@@ -1,1 +1,0 @@
-Add a word to the document index.

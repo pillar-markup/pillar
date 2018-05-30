@@ -1,3 +1,0 @@
-helpers
-writeCounterElementSeparator
-	canvas nextPut: $.

@@ -1,1 +1,0 @@
-When a paragraph only contains an annotation, I remove the paragraph so the annotation becomes a top-level child of the document.

@@ -1,4 +1,0 @@
-accessing
-writerFor: aConfiguration
-
-	^ self

@@ -1,1 +1,0 @@
-A PRBashScriptLanguage is xxxxxxxxx.
