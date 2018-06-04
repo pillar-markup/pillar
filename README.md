@@ -1,6 +1,6 @@
 # Pillar
 
-Pillar is a markup syntax and tool-suite to generate documentation, books, websites and slides.
+Pillar is a markup syntax and tool-suite to generate documentation, books, websites and slides. Pillar is not new. It has been invented around 2000 as supporting language for the SmallWiki wiki. Its ancestor was the markup for the Pier CMS. We extracted it from Pier to make it more applicable to different domains.
 
 [![Build Status](https://travis-ci.org/pillar-markup/pillar.svg?branch=stable)](https://travis-ci.org/pillar-markup/pillar)
 [![Documentation](https://img.shields.io/badge/Documentation-download-green.svg)](https://bintray.com/squarebracketassociates/wip/download_file?file_path=DistributingPillar-wip.pdf)
@@ -13,14 +13,15 @@ Execute the `build.sh` script found in the `scripts` directory:
 
 ```bash
 $ git clone git@github.com:pillar-markup/pillar.git
-$ ./pillar/scripts/build.sh
+$ cd pillar
+$ ./scripts/build.sh
 ```
 
 The script will create a `build` directory in your current working directory with the pillar installation.
 
 ```bash
 $ ls
-build pillar
+LICENSE  README.md  appveyor.yml  archetypes  ==>>build<<==  download.sh  scripts  src
 ```
 
 #### Getting an older version
@@ -37,7 +38,9 @@ You can then proceed to install that pillar build where you want.
 For example, you can place it in a hidden directory in your home directory:
 
 ```bash
-$ mv build ~/.pillar
+# Go back to the previous directory and move the pillar directory to your HOME
+$ cd ..
+$ mv pillar ~/.pillar
 ```
 
 Then add that directory to the `PILLAR_HOME` and `HOME` environment variables, for example, by modifying your `.bashrc` with
@@ -155,7 +158,7 @@ $ ./pharo-ui Pharo.image
 
 5. Clone pillar using iceberg and install the baseline using the metacello plugin.
 
-## More documetation
+## More documentation
 
 Read the documentation at https://github.com/SquareBracketAssociates/Booklet-PublishingAPillarBooklet.
 Please note that chapter on Pharo a web Perspective is obsolete since it refers to Pharo 60.
