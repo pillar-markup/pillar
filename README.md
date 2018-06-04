@@ -13,14 +13,15 @@ Execute the `build.sh` script found in the `scripts` directory:
 
 ```bash
 $ git clone git@github.com:pillar-markup/pillar.git
-$ ./pillar/scripts/build.sh
+$ cd pillar
+$ ./scripts/build.sh
 ```
 
 The script will create a `build` directory in your current working directory with the pillar installation.
 
 ```bash
 $ ls
-**build** pillar
+LICENSE  README.md  appveyor.yml  archetypes  ==>>build<<==  download.sh  scripts  src
 ```
 
 #### Getting an older version
@@ -37,7 +38,9 @@ You can then proceed to install that pillar build where you want.
 For example, you can place it in a hidden directory in your home directory:
 
 ```bash
-$ mv Pillar ~/.pillar
+# Go back to the previous directory and move the pillar directory to your HOME
+$ cd ..
+$ mv pillar ~/.pillar
 ```
 
 Then add that directory to the `PILLAR_HOME` and `HOME` environment variables, for example, by modifying your `.bashrc` with
