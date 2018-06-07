@@ -1,3 +1,3 @@
 meta-data
 dependencies
-	^ { PRCleanAnnotationInParagraphTransfomer . PRColumnsTransformer }
+	^ { PRCleanAnnotationInParagraphTransformer . PRColumnsTransformer }

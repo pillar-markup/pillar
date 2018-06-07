@@ -3,7 +3,7 @@ start: aDocumentItem
 	| object |
 	
 	"Execute clean annotation before"
-	object := super start: (PRCleanAnnotationInParagraphTransfomer new start: aDocumentItem).
+	object := super start: (PRCleanAnnotationInParagraphTransformer new start: aDocumentItem).
 	currentColumns notNil | currentColumn notNil
 		ifTrue: [ PRError
 				signal:

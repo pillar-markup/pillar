@@ -1,1 +1,0 @@
-In flux, right now there is no user of this class.

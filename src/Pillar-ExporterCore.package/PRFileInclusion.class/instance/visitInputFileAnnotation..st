@@ -7,7 +7,7 @@ visitInputFileAnnotation: anInputFileAnnotation
 	
 	includedPillarAST := PRDocument parser parse: includedFile.
 	
-	cleanPillarAST := (PRCleanAnnotationInParagraphTransfomer new
+	cleanPillarAST := (PRCleanAnnotationInParagraphTransformer new
 		configuration: self configuration;
 		start: includedPillarAST).
 	

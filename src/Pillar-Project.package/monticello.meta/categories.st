@@ -1,2 +1,2 @@
 SystemOrganization addCategory: #'Pillar-Project'!
-SystemOrganization addCategory: 'Pillar-Project-Core'!
+SystemOrganization addCategory: #'Pillar-Project-Core'!
