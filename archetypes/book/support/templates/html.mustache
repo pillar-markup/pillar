@@ -37,7 +37,7 @@
 		{{# toc.children}}
 		  <li class="dd-item {{# hasChildren}} haschildren {{/ hasChildren}}">
 			<div>
-			  <a href="{{parent.parent.base_url}}{{href}}">
+			  <a href="{{base_url}}{{href}}">
 					{{name}}
 			  </a>
 			  {{# hasChildren}} <i class="fa fa-angle-right fa-lg category-icon"></i> {{/ hasChildren}}
@@ -46,7 +46,7 @@
 				{{# children }}
 		   	  	<li class="dd-item {{# hasChildren}} haschildren {{/ hasChildren}}">
 					<div>
-						<a href="{{parent.parent.parent.base_url}}{{href}}">
+						<a href="{{base_url}}{{href}}">
 							{{name}}
 						</a>
 						{{# hasChildren}}<i class="fa fa-angle-right fa-lg category-icon"></i>{{/ hasChildren}}
@@ -55,7 +55,7 @@
 					<ul class="dd-item">
 					{{# children }}		
 						<li class="dd-item">
-							<a href="{{parent.parent.parent.parent.base_url}}{{href}}">{{name}}</a>
+							<a href="{{base_url}}{{href}}">{{name}}</a>
 						</li>
 					{{/ children }}
 					</ul>						
