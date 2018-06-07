@@ -6,4 +6,4 @@ plugins
 				plugin := Smalltalk globals
 					at: each asSymbol
 					ifAbsent: [ self error: 'Could not resolve plugin: ', each ].
-				plugin new ]
+				plugin withContext: self ]
