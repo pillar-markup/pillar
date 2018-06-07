@@ -1,3 +1,0 @@
-*pillar-exportercore
-isSyntaxHighlightingPossible
-	^ false

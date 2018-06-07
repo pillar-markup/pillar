@@ -1,3 +1,0 @@
-private
-referenceString
-	^ 'Page'

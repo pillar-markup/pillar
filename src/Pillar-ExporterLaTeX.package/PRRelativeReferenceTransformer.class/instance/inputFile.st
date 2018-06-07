@@ -1,3 +1,0 @@
-accessing
-inputFile
-	^ inputFile

@@ -1,3 +1,0 @@
-helpers
-writeCounterElement: aCounterElement
-	canvas nextPutAll: aCounterElement asString

@@ -1,3 +1,0 @@
-testing
-hasAnchor
-	^ false

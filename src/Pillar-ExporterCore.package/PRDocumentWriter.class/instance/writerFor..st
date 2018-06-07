@@ -1,4 +1,0 @@
-compatibility
-writerFor: aPRPillarConfiguration 
-	
-	^ self

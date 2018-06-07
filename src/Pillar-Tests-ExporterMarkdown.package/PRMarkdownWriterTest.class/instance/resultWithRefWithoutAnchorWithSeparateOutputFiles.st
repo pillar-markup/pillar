@@ -1,3 +1,0 @@
-requirements
-resultWithRefWithoutAnchorWithSeparateOutputFiles
-	^ '(ref.html)'

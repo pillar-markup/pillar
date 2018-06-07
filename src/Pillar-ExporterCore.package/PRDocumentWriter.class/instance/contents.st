@@ -1,3 +1,0 @@
-streaming
-contents
-	^ stream contents

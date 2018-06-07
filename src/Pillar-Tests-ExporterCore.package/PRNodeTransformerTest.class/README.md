@@ -1,1 +1,0 @@
-Abstract class that should be subclassed for all subclasses of PRNodeTransformer.

@@ -1,3 +1,0 @@
-accessing
-pop
-	^ tocsStack pop

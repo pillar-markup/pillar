@@ -1,4 +1,0 @@
-visiting
-key
-
-	^ #latexPathUpdate

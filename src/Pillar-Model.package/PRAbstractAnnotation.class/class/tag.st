@@ -1,3 +1,0 @@
-protected
-tag
-	^ self subclassResponsibility

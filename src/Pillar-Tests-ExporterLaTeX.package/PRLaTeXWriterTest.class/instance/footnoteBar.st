@@ -1,3 +1,0 @@
-requirements
-footnoteBar
-	^ '\footnote{Bar}'

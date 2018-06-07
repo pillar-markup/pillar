@@ -1,4 +1,0 @@
-pipeline
-prepareForExecutionOn: aPRProject 
-	
-	"Nothing"

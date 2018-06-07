@@ -1,1 +1,0 @@
-I'm a pillar specific class to manage code not generated for the configuration class. Pillar code should not use me but my subclass.

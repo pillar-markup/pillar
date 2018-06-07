@@ -1,3 +1,0 @@
-requirement-InternalLinks
-resultWithRefWithoutAnchorWithoutSeparateOutputFiles
-	^ self resultWithRefWithoutAnchorWithSeparateOutputFiles 

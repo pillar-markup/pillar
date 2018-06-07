@@ -1,3 +1,0 @@
-rendering
-markupParameterSeparator
-	^ self class markupParameterSeparator

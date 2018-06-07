@@ -1,3 +1,0 @@
-testing
-hasFileReference
-	^ fileReference notNil

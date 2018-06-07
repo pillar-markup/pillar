@@ -41,7 +41,7 @@ if [ "$OS" == "win" ]; then
     REPOSITORY_PATH=$(cygpath $REPOSITORY_PATH --windows)
 fi
 
-${PHARO} eval --save "Metacello new baseline: 'Pillar'; repository: 'filetree://${REPOSITORY_PATH}'; load"
+${PHARO} eval --save "Metacello new baseline: 'Pillar'; repository: 'gitlocal://${REPOSITORY_PATH}'; load"
 
 ${PHARO} eval --save "Deprecation raiseWarning: false."
 ${PHARO} eval --save "Deprecation showWarning: false."

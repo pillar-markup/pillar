@@ -1,3 +1,0 @@
-requirement-InternalLinks
-resultWithoutAliasWithRefWithAnchorWithoutSeparateOutputFiles
-	^ 'ref.pillar@foo'

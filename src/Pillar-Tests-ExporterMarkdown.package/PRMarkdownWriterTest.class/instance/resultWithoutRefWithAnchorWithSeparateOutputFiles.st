@@ -1,3 +1,0 @@
-requirements
-resultWithoutRefWithAnchorWithSeparateOutputFiles
-	^ '(#foo)'

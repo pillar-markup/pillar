@@ -1,1 +1,0 @@
-I am an external link pointing to a mail address. I encode my URL to prevent spam bots collecting the address.

@@ -1,3 +1,0 @@
-accessing
-lastIsNewLine
-	^lastIsNewLine
