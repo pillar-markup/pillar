@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "PRObjectTest",
+	"super" : "PRBasicObjectTest",
 	"category" : "Pillar-Tests-Model-Visitor",
 	"classinstvars" : [ ],
 	"pools" : [ ],

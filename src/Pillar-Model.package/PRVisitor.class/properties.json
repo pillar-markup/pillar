@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "lr 6/2/2006 11:55",
-	"super" : "PRObject",
+	"super" : "PRBasicObject",
 	"category" : "Pillar-Model-Visitor",
 	"classinstvars" : [ ],
 	"pools" : [ ],

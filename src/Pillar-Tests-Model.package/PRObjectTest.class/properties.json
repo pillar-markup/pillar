@@ -1,13 +1,11 @@
 {
 	"commentStamp" : "DamienCassou 4/3/2015 14:53",
-	"super" : "TestCase",
+	"super" : "PRBasicObjectTest",
 	"category" : "Pillar-Tests-Model-Core",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"instance"
-	],
+	"instvars" : [ ],
 	"name" : "PRObjectTest",
 	"type" : "normal"
 }
