@@ -1,6 +1,5 @@
-visiting
+initialization
 initialize
 
 	super initialize.
-	allTests := OrderedCollection new.
-	failedTests := OrderedCollection new.
+	allTestResults := OrderedCollection new.

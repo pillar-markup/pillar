@@ -1,7 +1,13 @@
 visiting
 visitCodeblock: aCodeBlock
 
-	(aCodeBlock hasParameter: 'testable')
-		ifTrue: [ Transcript show: aCodeBlock text; cr .
-					Transcript show: (Compiler evaluate: aCodeBlock text) isOk; cr ]
+	
+	aCodeBlock hasTestable
+		ifTrue: [ 
+			| result |
+			result := PRBookTestResult new.
+			result text: aCodeBlock text.
+			allTestResults add: result. 
+			self executeAndReport: result.
+			]
 		

@@ -1,13 +1,14 @@
 {
 	"commentStamp" : "",
-	"super" : "PRVisitor",
+	"super" : "Object",
 	"category" : "Pillar-BookTester",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"allTestResults"
+		"text",
+		"status"
 	],
-	"name" : "PRBookTesterVisitor",
+	"name" : "PRBookTestResult",
 	"type" : "normal"
 }
