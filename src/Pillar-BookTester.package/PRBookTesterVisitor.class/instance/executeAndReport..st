@@ -4,6 +4,10 @@ executeAndReport: result
 	isCorrect := false.
 	[ isCorrect := (Compiler evaluate: result text) isOk ]
 		on: Error
-		do: [ :ex | ].
+		do: [ :ex | result explanation: ex ].
 	result status: isCorrect.
+	isCorrect
+		ifTrue: [ result explanation: 'Test passed' ]
+	
+	
 		

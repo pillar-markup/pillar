@@ -7,7 +7,8 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"text",
-		"status"
+		"status",
+		"explanation"
 	],
 	"name" : "PRBookTestResult",
 	"type" : "normal"

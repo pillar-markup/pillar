@@ -1,8 +1,7 @@
 visiting
 visitCodeblock: aCodeBlock
 
-	
-	aCodeBlock hasTestable
+	(checkAll or: [ aCodeBlock hasTestable ])
 		ifTrue: [ 
 			| result |
 			result := PRBookTestResult new.
