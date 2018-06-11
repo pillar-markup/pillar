@@ -1,7 +1,7 @@
 tests
 testBook
 
-	| docText doc |
+	| docText doc bTester |
 	docText := '! A test 
 	
 [[[testable=true 
@@ -10,4 +10,6 @@ testBook
 ]]]
 '.
 	doc := PRPillarParser new parse: docText.
-	PRBookTesterVisitor new start: doc.
+	bTester := PRBookTesterVisitor new.
+	(bTester testBook: doc) do: [ :t | self assert: t shouldPass ]
+
