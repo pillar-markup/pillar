@@ -1,9 +1,10 @@
 test - virtual file
-testVirtualFileSystem
+testEverythingVirtualFileSystem
 
 	| bTester |
 	bTester := PRBookTesterVisitor new.
 	bTester workingDirectory: testingFileSystem.
+	bTester reportAllCodeBlocks.
 	bTester checkAndReportFileNamed: self class pillarFileNameForTest.
-	self assert: bTester failedTests size equals: 4.
-	self assert: bTester validTests size equals: 2.
+	self assert: bTester failedTests size equals: 6.
+	self assert: bTester validTests size equals: 3.

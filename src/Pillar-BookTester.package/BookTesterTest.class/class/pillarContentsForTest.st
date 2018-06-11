@@ -6,7 +6,7 @@ pillarContentsForTest
 !!Some tests that should pass
 
 A first testable test
-[[[testable  
+[[[testable
 3 + 7
 >>>10
 ]]]
@@ -38,7 +38,7 @@ A second test without testable this time
 ]]]
 
 A third testable test
-[[[
+[[[testable
 4 + 5
 >>>12
 ]]]
@@ -52,7 +52,7 @@ A first testable test
 ]]]
 
 A second test without testable
-[[[  
+[[[
 3 - ''14''
 >>>10
 ]]]

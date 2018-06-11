@@ -1,4 +1,4 @@
-tests
+tests - explanation
 testExplanationIsTestPassed
 	
 	| docText doc bTester |

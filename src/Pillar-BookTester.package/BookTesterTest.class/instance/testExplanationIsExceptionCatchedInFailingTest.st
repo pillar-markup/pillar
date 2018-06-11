@@ -1,4 +1,4 @@
-tests
+tests - explanation
 testExplanationIsExceptionCatchedInFailingTest
 	
 	| docText doc bTester |
