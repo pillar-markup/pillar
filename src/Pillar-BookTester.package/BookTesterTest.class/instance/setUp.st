@@ -1,9 +1,9 @@
 running
 setUp
 	"Hooks that subclasses may override to define the fixture of test."
-	| testingFileSystem |
+	
 	super setUp.
 	testingFileSystem := FileSystem memory workingDirectory.
-	(testingFileSystem / self class bibFileNameForTest)
+	(testingFileSystem / self class pillarFileNameForTest)
 		writeStreamDo: [ :stream |
-			stream nextPutAll: self class bibContentsForTest ]
+			stream nextPutAll: self class pillarContentsForTest ]
