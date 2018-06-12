@@ -1,5 +1,5 @@
 *Pillar-BookTester
-isOk
+isPaired
 	"
 	7+3 >>> 10
 	"
