@@ -1,5 +1,5 @@
 tests - Script
-testScriptParameterNil
+testScriptParameterTrueByDefault
 	self
 		parse:
 			'[[[foo
