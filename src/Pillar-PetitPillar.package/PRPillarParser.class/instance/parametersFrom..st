@@ -6,8 +6,8 @@ parametersFrom: array
 	array first first
 		ifNotEmpty:
 			[ :string | 
-			result at: string trimBoth put: array first second.
+			result at: string trimBoth put: (self parametersConvertToPharoObject: array first second).
 			array second
 				do:
-					[ :each | each first ifNotEmpty: [ result at: each first put: each second ] ] ].
+					[ :each | each first ifNotEmpty: [ result at: each first trimBoth put: (self parametersConvertToPharoObject: each second) ] ] ].
 	^ result
