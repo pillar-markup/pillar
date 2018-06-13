@@ -5,6 +5,7 @@ parametersConvertToPharoObject: aString
 
 	aString ifNil: [ ^ true ]. 
 	"This is for the case where for example we have [[[foo, its value is nil and it should be true"
-	^ (Object readFrom: aString)
-		ifNil: [ aString trimBoth ]
+	^ [(Object readFrom: aString)
+			ifNil: [ aString trimBoth ]
 		ifNotNil: [ :e | e ]
+		] on: OCAbortCompilation, SyntaxErrorNotification	do: [ :e | aString ]
