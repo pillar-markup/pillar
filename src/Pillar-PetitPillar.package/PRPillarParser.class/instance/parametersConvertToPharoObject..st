@@ -8,4 +8,6 @@ parametersConvertToPharoObject: aString
 	^ [(Object readFrom: aString)
 			ifNil: [ aString trimBoth ]
 		ifNotNil: [ :e | e ]
-		] on: OCAbortCompilation, SyntaxErrorNotification	do: [ :e | aString ]
+		] on: OCAbortCompilation, SyntaxErrorNotification	do: [ :e | "PRSyntaxError signal: aString, ' is not a valid value'
+			We should decide if we raise an error or not"
+			aString ]
