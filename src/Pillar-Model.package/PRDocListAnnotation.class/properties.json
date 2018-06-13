@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRAbstractAnnotation",
+	"category" : "Pillar-Model-List",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRDocListAnnotation",
+	"type" : "normal"
+}

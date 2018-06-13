@@ -1,7 +1,5 @@
 {
+	"name" : "PRTParametrizable",
 	"commentStamp" : "DamienCassou 4/3/2015 14:12",
-	"classinstvars" : [ ],
-	"category" : "Pillar-Model-BasicRoots",
-	"instvars" : [ ],
-	"name" : "PRTParametrizable"
+	"category" : "Pillar-Model-BasicRoots"
 }

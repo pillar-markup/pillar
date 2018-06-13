@@ -1,0 +1,4 @@
+protected
+defaultParameterName
+	
+	^ 'directory'

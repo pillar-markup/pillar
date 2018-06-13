@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "PRNodeTransformer",
+	"category" : "Pillar-Model-List",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"workingDirectory"
+	],
+	"name" : "PRDocListTransformer",
+	"type" : "normal"
+}

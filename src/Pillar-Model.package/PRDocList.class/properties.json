@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "PRDocumentItem",
+	"category" : "Pillar-Model-List",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"directory",
+		"limit",
+		"sort"
+	],
+	"name" : "PRDocList",
+	"type" : "normal"
+}
