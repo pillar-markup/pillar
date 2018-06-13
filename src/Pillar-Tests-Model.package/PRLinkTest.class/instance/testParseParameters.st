@@ -12,9 +12,9 @@ testParseParameters
 										reference: self referenceString;
 										parameters:
 												(OrderedDictionary new
-														add: 'a' -> '1';
-														add: 'b' -> '2';
-														add: 'c' -> nil;
+														add: 'a' -> 1;
+														add: 'b' -> 2;
+														add: 'c' -> true;
 														yourself);
 										yourself);
 						yourself);

@@ -7,9 +7,10 @@ parametersConvertToPharoObject: aString
 	aString ifNil: [ ^ true ]. 
 	"This is for the case where for example we have [[[foo, its value is nil and it should be true"
 	parsed := (RBParser parseFaultyExpression: aString).
-	^ parsed isLiteral 	
-		ifTrue: [ parsed value ]
-		ifFalse: [ parsed  ]
+
+	^ parsed isLiteralNode 	
+		ifTrue: [ parsed value]
+		ifFalse: [ aString ]
 
 	"^ [(Object readFrom: aString)
 			ifNil: [ aString trimBoth ]
