@@ -8,9 +8,9 @@ asPillarParametersOn: aStream
 	self parameters
 		at: self defaultParameterName
 		ifPresent: [ :v | 
-			aStream nextPutAll: v.
+			aStream nextPutAll: v asString.
 			aStream nextPut: self parameterSeparator ].
 	"Then the rest"
 	nonDefaultParameters
-		do: [ :each | self asPillarKey: each value: (self parameters at: each) on: aStream ]
+		do: [ :each | self asPillarKey: each value: ((self parameters at: each) asString) on: aStream ]
 		separatedBy: [ aStream nextPut: self parameterSeparator ]

@@ -5,8 +5,8 @@ testScriptWithEvalThatDoesntReturnAParagraph
 		add:
 			(PRParagraph new
 				add:
-						((PRCodeblock content: 'stream nextPutAll: ''-test''') 
-								eval: 'true';
+						((PRCodeblock content: '-test')
+								eval: true; 
 								yourself);
 				yourself) yourself.
 	expected := PRDocument new
