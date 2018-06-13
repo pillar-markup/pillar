@@ -12,8 +12,8 @@ testParseParametersEmpty
 										reference: self referenceString;
 										parameters:
 												(OrderedDictionary new
-														add: 'a' -> nil;
-														add: 'b' -> nil;
+														add: 'a' -> true;
+														add: 'b' -> true;
 														yourself);
 										yourself);
 						yourself);
