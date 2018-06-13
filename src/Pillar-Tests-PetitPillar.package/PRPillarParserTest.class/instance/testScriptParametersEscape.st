@@ -1,6 +1,5 @@
 tests - Script
 testScriptParametersEscape
-	self halt.
 	super testScriptParametersEscape.
 	self
 		assert: result

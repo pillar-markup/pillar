@@ -1,13 +1,14 @@
 {
 	"commentStamp" : "",
-	"super" : "BookTestEnvironment",
+	"super" : "TestCase",
 	"category" : "Pillar-BookTester",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"testingFileSystem"
+		"text",
+		"result"
 	],
-	"name" : "BookTesterTest",
+	"name" : "PRBookTestTemplate",
 	"type" : "normal"
 }
