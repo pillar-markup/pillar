@@ -1,4 +1,4 @@
 visiting
 sort
 
-	^ self parameters at: #sort
+	^ self parameters at: #sort ifAbsent: [ '' ]

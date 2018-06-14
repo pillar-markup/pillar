@@ -1,19 +1,17 @@
 as yet unclassified
 createDocList: aPRDocListAnnotation
 
-	| files document |
+	| files document sortedFiles |
 
 	document := PRDocumentGroup new.
 	
 	files := (workingDirectory resolve: aPRDocListAnnotation directory) children.
-
-	1 to: aPRDocListAnnotation limit asInteger do: [ :index |
-			document add: (self parseFile: (files at: index))].
 	
-	1 halt.
-
-	^ PRDocList new
-				directory: aPRDocListAnnotation directory;
-				limit: aPRDocListAnnotation limit;
-				sort: aPRDocListAnnotation sort
+	sortedFiles := self sort: files by: aPRDocListAnnotation sort.
+	
+	1 to: (aPRDocListAnnotation limit asInteger min: sortedFiles size) do: [ :index |
+			self addAbstractOf: (sortedFiles at: index) to: document.
+			self addLink: (sortedFiles at: index) to: document ].
+	
+	^ document
 			

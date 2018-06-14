@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "AsbathBiyalouSama 6/14/2018 12:37",
+	"super" : "Object",
+	"category" : "Pillar-Model-List",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"direction",
+		"files"
+	],
+	"name" : "PRDocListDateSorter",
+	"type" : "normal"
+}

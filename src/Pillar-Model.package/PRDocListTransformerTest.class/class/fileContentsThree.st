@@ -1,7 +1,6 @@
 private
 fileContentsThree
 
-	^ '
-!! And the third
+	^ '!! And the third
 
 one for testing annotations'

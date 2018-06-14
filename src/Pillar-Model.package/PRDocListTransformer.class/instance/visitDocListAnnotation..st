@@ -1,5 +1,6 @@
 visiting
 visitDocListAnnotation: aPRDocListAnnotation
 
-	self replace: { (self createDocList: aPRDocListAnnotation) }
-	"(workingDirectory / 'directoryFiles.pillar') ensureCreateFile"
+
+	self replace: { (self createDocList: aPRDocListAnnotation) }.
+	

@@ -1,7 +1,6 @@
 private
 fileContentsOne
 
-	^ '
-!! Okay
+	^ '!! Okay
 
 We gonna test annotations'

@@ -1,8 +1,5 @@
 parsing
-parseFile: aFileReference
-
+getFirstElementsOf: aFileReference
 	| doc |
-	
 	doc := PRPillarParser parse: aFileReference readStream.
-
-	^ doc children first: 4
+	^ doc children first: 3
