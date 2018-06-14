@@ -1,5 +1,5 @@
 private
-testFilesAreSortedByBaseName
+testDocListWithOnlySortParameter
 	| doc documentGroup sections |
 	doc := PRDocument new 
 				add: 
@@ -8,7 +8,6 @@ testFilesAreSortedByBaseName
 				add:
 				(PRDocListAnnotation new 
 					parameterAt: 'directory' put: 'blogs';
-					parameterAt: 'limit' put: '3';
 					parameterAt: 'sort' put: 'name';
 					yourself);
 				yourself.
