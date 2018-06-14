@@ -7,7 +7,7 @@ testFilesAreSortedByBaseName
 					text: 'You');
 				add:
 				(PRDocListAnnotation new 
-					parameterAt: 'directory' put: 'blogs';
+					parameterAt: 'directory' put: 'der';
 					parameterAt: 'limit' put: '3';
 					parameterAt: 'sort' put: 'name';
 					yourself);
