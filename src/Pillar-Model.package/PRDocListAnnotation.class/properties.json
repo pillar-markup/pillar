@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "AsbathBiyalouSama 6/14/2018 12:43",
 	"super" : "PRAbstractAnnotation",
-	"category" : "Pillar-Model-List",
+	"category" : "Pillar-Model-DirectoryList-annotation",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

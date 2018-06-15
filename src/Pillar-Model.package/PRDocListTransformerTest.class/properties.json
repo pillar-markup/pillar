@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "PRNodeTransformerTest",
-	"category" : "Pillar-Model-List",
+	"category" : "Pillar-Model-DirectoryList-annotation",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

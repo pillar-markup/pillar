@@ -1,4 +1,4 @@
 visiting
 directory
 
-	^ self parameters at: #directory ifAbsent: [ 'blogs' ]
+	^ self parameters at: #directory

@@ -1,6 +1,6 @@
 private
-testWrongDirectoryShouldRaiseError
-	| doc |
+testWrongDirectoryShouldReturnEmptyDocumentGroup
+	| doc documentGroup sections |
 	doc := PRDocument new 
 				add: 
 				(PRText new 
@@ -14,5 +14,10 @@ testWrongDirectoryShouldRaiseError
 				yourself.
 				
 				
-	self should: [((PRDocListTransformer withContext: (PRProject on: testingFileSystem)) start: doc)]
-	raise: PRDirectoryError.
+	((PRDocListTransformer withContext: (PRProject on: testingFileSystem)) start: doc).
+	
+	documentGroup := doc children second.
+	
+	sections := documentGroup children.
+	
+	self assert: sections isEmpty

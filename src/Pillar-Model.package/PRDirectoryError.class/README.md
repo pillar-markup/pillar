@@ -1,1 +1,0 @@
-I am  a class use to display an error when the directory of docList annotation doesn't  exist.
