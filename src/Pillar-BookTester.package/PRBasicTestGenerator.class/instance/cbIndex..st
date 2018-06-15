@@ -1,0 +1,4 @@
+accessing
+cbIndex: aCodeblockCounter
+
+	^ aCodeblockCounter

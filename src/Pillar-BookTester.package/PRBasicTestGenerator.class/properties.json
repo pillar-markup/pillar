@@ -5,7 +5,11 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"fileName",
+		"className",
+		"cbIndex"
+	],
 	"name" : "PRBasicTestGenerator",
 	"type" : "normal"
 }

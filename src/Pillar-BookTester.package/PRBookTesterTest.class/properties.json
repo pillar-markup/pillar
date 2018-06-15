@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "BookTestEnvironment",
+	"super" : "PRBookTestEnvironment",
 	"category" : "Pillar-BookTester",
 	"classinstvars" : [ ],
 	"pools" : [ ],
@@ -8,6 +8,6 @@
 	"instvars" : [
 		"testingFileSystem"
 	],
-	"name" : "BookTesterTest",
+	"name" : "PRBookTesterTest",
 	"type" : "normal"
 }

@@ -1,0 +1,4 @@
+accessing
+fileName: aName
+
+	^ aName
