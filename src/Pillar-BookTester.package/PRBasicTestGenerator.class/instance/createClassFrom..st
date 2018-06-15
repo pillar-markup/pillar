@@ -1,9 +1,8 @@
 visiting
 createClassFrom: aFileName
 
-	self className: aFileName asSymbol.
-	(TestCase subclass: className
+	TestCase subclass: fileName
    		instanceVariableNames: ''
     	classVariableNames: ''
-    	package: 'Pillar-BookTesterResults').
+    	package: 'Pillar-BookTesterResults'.
 		
