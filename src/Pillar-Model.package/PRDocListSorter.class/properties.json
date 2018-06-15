@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "Object",
+	"category" : "Pillar-Model-List",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"direction",
+		"files"
+	],
+	"name" : "PRDocListSorter",
+	"type" : "normal"
+}

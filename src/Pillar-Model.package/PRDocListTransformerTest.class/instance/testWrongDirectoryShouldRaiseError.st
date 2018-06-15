@@ -15,4 +15,4 @@ testWrongDirectoryShouldRaiseError
 				
 				
 	self should: [((PRDocListTransformer withContext: (PRProject on: testingFileSystem)) start: doc)]
-	raise: Error.
+	raise: PRDirectoryError.
