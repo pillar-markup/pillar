@@ -2,7 +2,7 @@ tests
 testTestableCodeblockWithFailingTest
 	
 	| docText doc bTester |
-	docText := '[[[testable
+	docText := '[[[testcase
 3 + ''12''
 >>> 8		
 ]]]

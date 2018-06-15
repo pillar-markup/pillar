@@ -2,7 +2,7 @@ tests
 testTestableCodeblockWithTwoBrackets
 	
 	| docText doc bTester |
-	docText := '[[[testable
+	docText := '[[[testcase
 3 + 12
 >> 15
 ]]]
