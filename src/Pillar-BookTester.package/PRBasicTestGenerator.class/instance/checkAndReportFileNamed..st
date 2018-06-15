@@ -1,7 +1,9 @@
 visiting
 checkAndReportFileNamed: aPath
-
-	self fileName: aPath asFileReference basename.
+	
+	| path |
+	path := aPath asFileReference.
+	self fileName: (self prettyRename: path).
 	self createClassFrom: fileName.
 	super checkAndReportFileNamed: aPath.
 	

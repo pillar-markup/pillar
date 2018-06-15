@@ -1,5 +1,5 @@
 visiting
-createClassFrom: aFileName
+createClassFrom: aPrettyFileName
 
 	TestCase subclass: fileName
    		instanceVariableNames: ''

@@ -1,4 +1,4 @@
 accessing
-fileName: aName
+fileName: aFileName
 
-	^ aName
+	^ aFileName
