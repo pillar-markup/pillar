@@ -5,5 +5,5 @@ testClassCreation
 	bTester := PRBasicTestGenerator new.
 	bTester workingDirectory: testingFileSystem.
 	bTester checkAndReportFileNamed: self class pillarFileNameForTest.
-	self assert: 'Pillar-BookTesterResult' asPackage exists.
-	self assert: 'test.pillar' asClass exists
+	self assert: 'Pillar-BookTesterResults' asPackage exists.
+	self assert: (self class environment at: #Test) exists

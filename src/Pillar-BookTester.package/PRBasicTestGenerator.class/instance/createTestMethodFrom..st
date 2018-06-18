@@ -1,6 +1,6 @@
 visiting
 createTestMethodFrom: aCodeblock
 	
-	fileName asClass compile: 'test' , cbIndex asString,'
+	(self class environment at: fileName asSymbol) compile: 'test' , cbIndex asString,'
 	
 	self assert: ' , aCodeblock text , ' evaluate isPaired'

@@ -1,4 +1,4 @@
 accessing
 fileName: aFileName
 
-	^ aFileName
+	fileName := aFileName
