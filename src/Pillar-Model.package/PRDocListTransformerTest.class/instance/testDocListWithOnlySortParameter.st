@@ -7,7 +7,7 @@ testDocListWithOnlySortParameter
 					text: 'You');
 				add:
 				(PRDocListAnnotation new 
-					parameterAt: 'directory' put: 'blogs';
+					parameterAt: 'path' put: 'blogs';
 					parameterAt: 'sort' put: 'name';
 					yourself);
 				yourself.

@@ -1,5 +1,5 @@
 protected
 defaultParameterName
-	"So that we can define ${docList:blogs}$ instead of ${publications:directory=blogs}$ "
+	"So that we can define ${docList:blogs}$ instead of ${publications:path=blogs}$ "
 	
-	^ 'directory'
+	^ 'path'

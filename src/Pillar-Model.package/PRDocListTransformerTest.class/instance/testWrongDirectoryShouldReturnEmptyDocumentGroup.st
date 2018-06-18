@@ -7,7 +7,7 @@ testWrongDirectoryShouldReturnEmptyDocumentGroup
 					text: 'You');
 				add:
 				(PRDocListAnnotation new 
-					parameterAt: 'directory' put: 'wrongDirectory';
+					parameterAt: 'path' put: 'wrongDirectory';
 					parameterAt: 'limit' put: '3';
 					parameterAt: 'sort' put: 'name';
 					yourself);

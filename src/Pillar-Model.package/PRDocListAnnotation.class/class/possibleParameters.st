@@ -1,4 +1,4 @@
 protected
 possibleParameters
 	
-	^ #(directory limit sort)
+	^ #(path limit sort)

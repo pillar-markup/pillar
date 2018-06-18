@@ -1,7 +1,7 @@
 helpers
 referenceParameters
 	^ OrderedDictionary new 
-		add: 'directory' -> 'blogs';
+		add: 'path' -> 'blogs';
 		add: 'limit' -> '10';
 		add: 'sort' -> 'date';
 		yourself

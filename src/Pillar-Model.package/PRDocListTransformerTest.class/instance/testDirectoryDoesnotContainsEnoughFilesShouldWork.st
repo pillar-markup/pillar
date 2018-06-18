@@ -7,7 +7,7 @@ testDirectoryDoesnotContainsEnoughFilesShouldWork
 					text: 'You');
 				add:
 				(PRDocListAnnotation new 
-					parameterAt: 'directory' put: 'blogs';
+					parameterAt: 'path' put: 'blogs';
 					parameterAt: 'limit' put: '5';
 					yourself);
 				yourself.
