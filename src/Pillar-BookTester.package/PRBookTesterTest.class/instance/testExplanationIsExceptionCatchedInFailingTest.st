@@ -12,4 +12,5 @@ testExplanationIsExceptionCatchedInFailingTest
 	bTester start: doc. 
 	self assert: bTester validTests isEmpty.
 	self assert: bTester failedTests size equals: 1.
-	self assert: bTester failedTests first explanation messageText equals: 'Character>>adaptToNumber:andSend:'.
+	self assert: bTester failedTests first explanation 
+		  equals: 'MessageNotUnderstood: Character>>adaptToNumber:andSend:'.

@@ -1,7 +1,7 @@
 visiting
 createClassFrom: aPrettyFileName
 
-	TestCase subclass: fileName
+	TestCase subclass: aPrettyFileName 
    		instanceVariableNames: ''
     	classVariableNames: ''
     	package: 'Pillar-BookTesterResults'.
