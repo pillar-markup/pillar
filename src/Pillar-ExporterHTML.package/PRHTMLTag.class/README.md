@@ -1,9 +1,15 @@
-I'm a helper class to generate HTML code. For example, to generate: 
+I'm a helper class to generate HTML code.
 
+!! Example 
+
+For example, to generate: 
+
+[[[
     <p>foo <a href="url">bar</a></b>
+]]]
+You can write something like this:
 
-you can write something like this:
-
+[[[
 String streamContents: [ :stream | | canvas |
 	stream := PROutputStream on: stream.
 	canvas := PRHTMLCanvas on: stream.
@@ -14,3 +20,21 @@ String streamContents: [ :stream | | canvas |
 	     		      name: 'a';
 	    			parameterAt: 'href' put: 'url';
 	                  with: 'bar' ]	 ]
+]]]
+!! About with: argument 
+
+Pay attention there is a difference between a block and a string as argument of the with: message.
+
+Using a string	simply puts the string as body of the tag.
+[[[
+	canvas tag 	
+		name: 'xx';
+		with: 'foo'.
+]]]
+
+While when the argument is a block the block result is not used, just executed. 
+[[[ 
+	canvas tag 	
+		name: 'xx';
+		with: [ self foo ] 
+]]]

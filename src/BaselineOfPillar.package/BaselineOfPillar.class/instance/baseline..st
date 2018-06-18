@@ -17,7 +17,6 @@ baseline: spec
 	spec
 		for: #common
 		do: [ spec blessing: #baseline.
-			spec repository: 'http://smalltalkhub.com/mc/Pier/Pillar/main/'.
 			spec
 				project: 'PetitParser'
 					with: [ spec
@@ -25,7 +24,9 @@ baseline: spec
 						versionString: #stable;
 						loads: #('Tests');
 						repository: 'http://www.smalltalkhub.com/mc/Moose/PetitParser/main' ];
+					
 				baseline: 'Chrysal' with: [ spec repository: 'github://Ducasse/Chrysal/src' ];
+				
 				baseline: 'Mustache'
 					with: [ spec
 						repository: 'github://noha/mustache:v1.0/repository';
@@ -37,13 +38,20 @@ baseline: spec
 						loads: #('Tests');
 						repository: 'http://www.smalltalkhub.com/mc/Moose/PetitParser/main' ].
 			spec
+				package: 'Pillar-Chrysal-Generator' with: [ spec requires: #('Chrysal') ];
+				"Only needed to regenerate the pillar configuration: it depends on Chrysal and Chrysal-Runtime"
+				
 				package: 'Pillar-Cli' with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-Chrysal') ];
+				
 				package: 'Pillar-Chrysal' with: [ spec requires: #('Pillar-ExporterCore') ];
-				package: #'Pillar-ExporterAsciiDoc' with: [ spec requires: #('Pillar-ExporterCore') ];
+				"Pillar-Chrysal should only depend on Chrysal-Runtime but right now I do not know how to express that the
+				Chrysal (builder) is different from Chrysal-Runtime"
+				
+				package: 'Pillar-ExporterAsciiDoc' with: [ spec requires: #('Pillar-ExporterCore') ];
 				package: 'Pillar-ExporterBeamer' with: [ spec requires: #('Pillar-ExporterLaTeX') ];
 				package: 'Pillar-ExporterCore' with: [ spec requires: #('Pillar-Model') ];
 				package: 'Pillar-ExporterDeckJS' with: [ spec requires: #('Pillar-ExporterHTML') ];
-				package: #'Pillar-ExporterEPub' with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-ExporterHTML') ];
+				package: 'Pillar-ExporterEPub' with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-ExporterHTML') ];
 				package: 'Pillar-ExporterHTML' with: [ spec requires: #('Pillar-ExporterCore') ];
 				package: 'Pillar-ExporterLaTeX' with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-ExporterPillar') ];
 				package: 'Pillar-ExporterMarkdown' with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-ExporterHTML') ];
@@ -54,9 +62,9 @@ baseline: spec
 				package: 'Pillar-PetitPillar' with: [ spec requires: #('PetitParser' 'Pillar-Model') ];
 				package: 'Pillar-Pharo-Tools' with: [ spec requires: #('Pillar-Model' 'All exporters') ];
 				package: 'Pillar-Project' with: [ spec requires: #('Pillar-Model' 'All exporters') ];
-				package: #'Pillar-Tests-Cli' with: [ spec requires: #('Pillar-Cli') ];
-				package: #'Pillar-Tests-ExporterAsciiDoc'
-					with: [ spec requires: #(#'Pillar-ExporterAsciiDoc' 'Pillar-Tests-ExporterCore') ];
+				package: 'Pillar-Tests-Cli' with: [ spec requires: #('Pillar-Cli') ];
+				package: 'Pillar-Tests-ExporterAsciiDoc'
+					with: [ spec requires: #('Pillar-ExporterAsciiDoc' 'Pillar-Tests-ExporterCore') ];
 				package: 'Pillar-Tests-ExporterBeamer'
 					with: [ spec requires: #('Pillar-ExporterBeamer' 'Pillar-Tests-ExporterLaTeX') ];
 				package: 'Pillar-Tests-ExporterCore' with: [ spec requires: #('Pillar-Tests-Model' 'Pillar-ExporterCore') ];
