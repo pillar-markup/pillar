@@ -12,6 +12,8 @@ buildOn: aPRProject
 		nextPutAll: bTester failedTests size asString;
 	   nextPutAll: 'Passed: ';
 		nextPutAll: (bTester allTestResults size - bTester failedTests) size asString.
-	bTester failedTests do: [ :each | cLineHandler stdout nextPutAll: each;
+	bTester failedTests do: [ :each | cLineHandler stdout nextPutAll: each explanation;
+																		  nextPutAll: each text;
 																		  nextPutAll: '---'].
+	cLineHandler quit.
 
