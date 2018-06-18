@@ -46,6 +46,7 @@ body {
   padding-top: 0;
   counter-reset: captions;
 }
+
 @media screen and (max-width: 1200px) { /* Match max-width of .nav-bar query. */
   body {
     margin-top: 51px; /* Offset body content by navbar height. */
@@ -69,6 +70,7 @@ body {
 p {
   margin-top: 0;
   margin-bottom: 1rem;
+  text-align: justify;
 }
 
 /* Lists */
@@ -964,8 +966,10 @@ article .article-metadata {
 
 footer {
   margin: 4rem 0 0;
-  padding: 2rem 0;
-  width: 100%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
 }
 
 footer p {

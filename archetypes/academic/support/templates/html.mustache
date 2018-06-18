@@ -79,13 +79,13 @@
     <div class="collapse navbar-collapse">
 
       <ul class="nav navbar-nav navbar-right">
-		{{# menu}}
+		{{# toc.children}}
         <li class="nav-item">
-          <a href="{{baseurl}}">
-            <span>{{title}}</span>
+          <a href="{{baseurl}}{{href}}">
+            <span>{{name}}</span>
           </a>
         </li>
-		{{/ menu}}
+		{{/ toc.children}}
       
       </ul>
       
@@ -96,29 +96,31 @@
 
 
 <!-- Projects widget -->
+<section>
+<div class="container">
 <div class="row">
   <div class="col-xs-12 col-md-4 section-heading">
-    <h1>{{title}}</h1>
-    {{#subtitle}}<p>{{subtitle}}</p>{{/subtitle}}
+	<h1>{{page_title}}</h1>
+
+    {{# profile}}
+	<div id="profile">
+		<div class="portrait" style="background-image: url('{{avatar}}');"></div>
+	
+		<h1>{{name}}</h1>
+		<h3>{{post}}</h3>
+		<p class="center-text">{{firm}}</p>
+	</div>
+	{{/ profile}}
   </div>
   <div class="col-xs-12 col-md-8">
 
 	{{{content}}}
-    
-
-
 
   </div>
 </div>
+</div>
+</section>
 	
-    <!--<div class="container text-justify">
-      <section>
-        <h1>{{title}}</h1>
-        <div class="attribution">{{attribution}}</div>
-
-        {{{content}}}
-      </section>
-    </div>-->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>

@@ -1,0 +1,6 @@
+
+${inputFile:index.pillar}$
+${inputFile:projects.pillar}$
+${inputFile:research.pillar}$
+${inputFile:publications.pillar}$
+${inputFile:coordinates.pillar}$

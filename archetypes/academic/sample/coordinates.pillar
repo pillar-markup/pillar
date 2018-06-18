@@ -1,0 +1,31 @@
+{
+	"profile" : [
+		{
+			"name": "John Doe",
+	 		"avatar": "avatar.png",
+     			"post": "Research Engineer",
+     			"firm": "Space Laboratory"
+		}
+	]
+
+}
+
+!Coordinates
+
+Contact me. I'm open for collaborations.
+All that you need about lost people.
+I will help you find them
+
+!!Email
+
+johndoe@mail.com
+
+!!Snail mail / Visits
+
+{{{html:
+Space Laboratory - J. Doe, 1500, avenue des Disparus,<br/>
+Parc d'Attraction,<br/>
+France<br/>
+Tel:33 (0)0 00 00 00 00<br/>
+Fax:33 (0)8 88 88 88 88<br/>
+}}}
