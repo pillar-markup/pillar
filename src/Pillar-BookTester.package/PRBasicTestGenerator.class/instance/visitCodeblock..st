@@ -2,5 +2,5 @@ visiting
 visitCodeblock: aCodeblock
 
 	(checkAll or: [ aCodeblock hasTestcase ])
-		ifTrue: [ self createTestMethodFrom: aCodeblock.
-				    self cbIndex: cbIndex+1].
+		ifTrue: [ self cbIndex: cbIndex+1.
+				 	 self createTestMethodFrom: aCodeblock].

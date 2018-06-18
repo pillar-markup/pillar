@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRSubCommandLineHandler",
+	"category" : "Pillar-Cli-Handlers",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRCreateTestsCommandLineHandler",
+	"type" : "normal"
+}

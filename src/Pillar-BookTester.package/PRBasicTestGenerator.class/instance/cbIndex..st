@@ -1,4 +1,4 @@
 accessing
 cbIndex: aCodeblockCounter
 
-	^ aCodeblockCounter
+	cbIndex := aCodeblockCounter
