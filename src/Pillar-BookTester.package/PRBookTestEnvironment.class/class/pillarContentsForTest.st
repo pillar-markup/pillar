@@ -6,7 +6,7 @@ pillarContentsForTest
 !!Some tests that should pass
 
 A first testable test
-[[[testcase
+[[[testcase=true
 3 + 7
 >>>10
 ]]]
@@ -18,7 +18,7 @@ A second test without testable this time
 ]]]
 
 A third test with testable
-[[[testcase
+[[[testcase=true
 3 + 4
 >>>7
 ]]]
@@ -26,7 +26,7 @@ A third test with testable
 !!Some tests that should fail
 
 A first testable test
-[[[testcase  
+[[[testcase=true
 3 + 4
 >>>10
 ]]]
@@ -38,7 +38,7 @@ A second test without testable this time
 ]]]
 
 A third testable test
-[[[testcase
+[[[testcase=true
 4 + 5
 >>>12
 ]]]
@@ -46,7 +46,7 @@ A third testable test
 !!Tests that should raise an exception
 
 A first testable test
-[[[testcase
+[[[testcase=true
 3 + ''12''
 >>>10			
 ]]]
@@ -58,7 +58,7 @@ A second test without testable
 ]]]
 
 A third testable test
-[[[testcase
+[[[testcase=true
 ''1'' + 2
 >>>14
 ]]]

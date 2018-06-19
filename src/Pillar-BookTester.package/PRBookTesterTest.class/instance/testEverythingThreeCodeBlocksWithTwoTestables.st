@@ -3,12 +3,12 @@ testEverythingThreeCodeBlocksWithTwoTestables
 
 	| docText doc bTester |
 	docText := 
-'[[[testable
+'[[[testable=true
 3 + 4 
 >>> 7		
 ]]]
 
-[[[testable
+[[[testable=true
 3 + 4 
 >>> 8
 ]]]
