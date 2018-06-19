@@ -7,7 +7,7 @@ testDocumentWithInputAnnotationAndTitle
 ! Test1
 !! Test2
 
-${inputFile:input1.pillar}$
+${inputFile:value=input1.pillar}$
 
 !! Test3'.
 	expectedToc := PRToc new

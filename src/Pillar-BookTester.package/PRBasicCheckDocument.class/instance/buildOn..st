@@ -2,7 +2,6 @@ building
 buildOn: aPRProject 
 	
 	| parsedDocument transformedDocument bTester |
-	self halt.
 	parsedDocument := self parseInputFile: file.
 	transformedDocument := self transformDocument: parsedDocument.
 	bTester := PRBookTesterVisitor new.

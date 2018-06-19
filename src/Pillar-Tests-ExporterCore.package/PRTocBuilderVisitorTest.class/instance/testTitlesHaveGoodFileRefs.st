@@ -5,7 +5,7 @@ testTitlesHaveGoodFileRefs
 		parse:
 			'!! Test1
 !!! Test2
-${inputFile:input1.pillar}$
+${inputFile:value=input1.pillar}$
 !! Test3
 ! Test4'.
 	expectedToc := PRToc new
@@ -34,7 +34,7 @@ ${inputFile:input1.pillar}$
 					(PRToc new
 						name: 'TestFile13';
 						level: 3;
-						fileReference: 'input1.pillar');
+						fileReference: 'nput1.pillar');
 				addChildren:
 					(PRToc new
 						name: 'TestFile14';

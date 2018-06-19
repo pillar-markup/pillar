@@ -3,5 +3,5 @@ testPrettyRename
 
 	| testGenerator |
 	testGenerator := PRBasicTestGenerator new.
-	self assert: (testGenerator prettyRename: '/usr/Users/Library/test.pillar' asFileReference) 
+	self assert: (testGenerator prettyRename: '/usr/Users/Library/test.pillar') 
 		  equals: 'Test'.
