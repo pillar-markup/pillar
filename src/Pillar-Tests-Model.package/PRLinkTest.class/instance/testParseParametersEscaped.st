@@ -13,7 +13,7 @@ testParseParametersEscaped
 										parameters:
 												(OrderedDictionary new
 														add: '2' -> '|=';
-														add: '|=' -> '1';
+														add: '|=' -> 1;
 														yourself);
 										yourself);
 						yourself);

@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "Asbathou 5/17/2018 15:10",
+	"super" : "PRDocumentItem",
+	"category" : "Pillar-Model-Toc",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"name",
+		"level",
+		"children",
+		"fileReference"
+	],
+	"name" : "PRToc",
+	"type" : "normal"
+}

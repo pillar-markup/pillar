@@ -1,0 +1,3 @@
+accessing
+documentSource
+	^ documentSource

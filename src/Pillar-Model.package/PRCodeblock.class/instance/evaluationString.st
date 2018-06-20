@@ -6,7 +6,11 @@ evaluationString
 			evaluator := PRScriptEvaluationEnvironment new
 				setStream: stream;
 				yourself.
-			[ Compiler evaluate: self text for: evaluator logged: false ]
+			[ self class compiler
+				source: self text;
+				logged: false;
+				receiver: evaluator;
+				evaluate ]
 				on: Error
 				do: [ :e | 
 					stream

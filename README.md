@@ -3,7 +3,7 @@
 Pillar is a markup syntax and tool-suite to generate documentation, books, websites and slides. Pillar is not new, it was invented around 2000 as a supporting language for [SmallWiki](https://www.slideshare.net/esug/smallwiki-smalltalk-wiki-towards-cms). Its ancestor was the markup for the Pier CMS amd we extracted it from Pier to make it more applicable to different domains. The [Pillar syntax]() is similar to markdown but its emphasis is on publishing and how it handles different types of links.
 
 [![Build Status](https://travis-ci.org/pillar-markup/pillar.svg?branch=stable)](https://travis-ci.org/pillar-markup/pillar)
-[![Documentation](https://img.shields.io/badge/Documentation-download-green.svg)](https://github.com/SquareBracketAssociates/Booklet-PublishingAPillarBooklet)
+[![Documentation](https://img.shields.io/badge/Documentation-download-green.svg)](https://bintray.com/squarebracketassociates/wip/download_file?file_path=DistributingPillar-wip.pdf)
 
 ## Installation
 
@@ -27,9 +27,9 @@ LICENSE  README.md  appveyor.yml  archetypes  ==>>build<<==  download.sh  script
 #### Getting an older version
 
 - *v5.0:* Pillar 5 is released for Pharo5 and versionned on [SmalltalkHub](http://smalltalkhub.com/#!/~Pier/Pillar).
- - You can get an already built image of that version from [here](https://github.com/pillar-markup/pillar/releases/tag/v5.0).
- - You can check the scripts in the (dev-5 branch)[https://github.com/pillar-markup/pillar/tree/dev-5]
- - The root of this branch still contains for backwards compatibility purposes a _deprecated_ copy of the old `download.sh` script.
+  - You can get an already built image of that version from [here](https://github.com/pillar-markup/pillar/releases/tag/v5.0).
+  - You can check the scripts in the [dev-5 branch](https://github.com/pillar-markup/pillar/tree/dev-5)
+  - The root of this branch still contains for backwards compatibility purposes a _deprecated_ copy of the old `download.sh` script.
 
 
 ### 2. Setting up the environment
@@ -46,7 +46,7 @@ $ mv pillar ~/.pillar
 Then add that directory to the `PILLAR_HOME` and `HOME` environment variables, for example, by modifying your `.bashrc` with
 
 ```bash
-export PILLAR_HOME="$HOME/.pillar/build"
+export PILLAR_HOME="$HOME/.pillar"
 export PATH="$PATH:$PILLAR_HOME"
 ```
 

@@ -1,0 +1,3 @@
+accessing
+fullName
+	^ file fullName

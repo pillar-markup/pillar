@@ -7,4 +7,5 @@ SystemOrganization addCategory: 'Pillar-ExporterCore-Feature-ScriptFromFile'!
 SystemOrganization addCategory: 'Pillar-ExporterCore-Feature-Structures'!
 SystemOrganization addCategory: 'Pillar-ExporterCore-Features'!
 SystemOrganization addCategory: 'Pillar-ExporterCore-Manifest'!
+SystemOrganization addCategory: 'Pillar-ExporterCore-Toc'!
 SystemOrganization addCategory: 'Pillar-ExporterCore-Utilities'!

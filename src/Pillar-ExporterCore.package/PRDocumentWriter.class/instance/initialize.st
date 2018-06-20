@@ -1,4 +1,5 @@
 initialization
 initialize
 	super initialize.
-	writingRaw := false
+	writingRaw := false.
+	self setStream: self defaultStream

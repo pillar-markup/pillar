@@ -29,11 +29,11 @@ function get_platform_identifier() {
 # Set magic variables for current file & dir
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 __builddir="$(pwd)/build"
-PHARO_VERSION=61+vm
+PHARO_VERSION="${PHARO_VERSION:-61}"
 PHARO="./pharo Pharo.image"
 
 rm -rf "${__builddir}" && mkdir -p "${__builddir}" && cd "${__builddir}"
-wget -O - get.pharo.org/61+vm | bash
+wget -O - get.pharo.org/${PHARO_VERSION}+vm | bash
 
 REPOSITORY_PATH=${__dir}/../src
 OS=$(get_platform_identifier)

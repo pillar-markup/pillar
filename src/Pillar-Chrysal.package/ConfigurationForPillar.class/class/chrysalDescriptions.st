@@ -1,6 +1,7 @@
 description
 chrysalDescriptions
- ^ STON fromString: '[
+	"I'm a generated method. I'm just here to help remembering how the class was generated. I should only be executed in presence of the configurationBuilder contained in the Chrysal package. Indeed the item objects only exist at compile-time and STON will recreate them."
+	 ^ STON fromString: '[
 	StringConfigurationItem {
 		#propertyName : #title,
 		#default : ''my super cool book''
@@ -112,5 +113,10 @@ chrysalDescriptions
 		#propertyName : #levels,
 		#default : #OrderedCollection,
 		#element : #levelSpecification
+	},
+	PathConfigurationItem {
+		#propertyName : #tocFile,
+		#default : ''.'',
+		#explanation : ''Identify the file to be taken as input for the root of the table of contents. When it is not specified, the table of contents will not be computed and displayed''
 	}
 ]'
