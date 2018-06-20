@@ -1,7 +1,7 @@
 adding
-addLink: aFileReference to: aDocument
+addLink: aString to: aDocument
 	aDocument
 		add:
-			((PRInternalLink reference: aFileReference pathString)
+			((PRInternalLink reference: aString)
 				addAll: {(PRText content: 'See more')};
 				yourself)

@@ -1,5 +1,5 @@
 private
-testDocListAnnotationIsReplacedByFilesContents
+testDocumentListWithOnlySortParameter
 	| doc documentGroup sections |
 	doc := PRDocument new 
 				add: 
@@ -8,7 +8,7 @@ testDocListAnnotationIsReplacedByFilesContents
 				add:
 				(PRDocumentListAnnotation new 
 					parameterAt: 'path' put: 'blogs';
-					parameterAt: 'limit' put: '3';
+					parameterAt: 'sort' put: 'name';
 					yourself);
 				yourself.
 				
