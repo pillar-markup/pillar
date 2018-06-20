@@ -1,13 +1,13 @@
 {
 	"commentStamp" : "",
 	"super" : "PRNodeTransformerTest",
-	"category" : "Pillar-Model-DirectoryList-annotation",
+	"category" : "Pillar-Tests-ExporterCore-Document-List",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
 		"testingFileSystem"
 	],
-	"name" : "PRDocListTransformerTest",
+	"name" : "PRDocumentListTransformerTest",
 	"type" : "normal"
 }

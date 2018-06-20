@@ -6,14 +6,14 @@ testDocListAnnotationIsReplacedByFilesContents
 				(PRText new 
 					text: 'You');
 				add:
-				(PRDocListAnnotation new 
+				(PRDocumentListAnnotation new 
 					parameterAt: 'path' put: 'blogs';
 					parameterAt: 'limit' put: '3';
 					yourself);
 				yourself.
 				
 				
-	((PRDocListTransformer withContext: (PRProject on: testingFileSystem)) start: doc).
+	((PRDocumentListTransformer withContext: (PRProject on: testingFileSystem)) start: doc).
 	
 	documentGroup := doc children second.
 	

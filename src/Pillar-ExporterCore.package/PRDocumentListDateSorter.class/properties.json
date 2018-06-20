@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "AsbathBiyalouSama 6/14/2018 12:37",
-	"super" : "PRDocListSorter",
-	"category" : "Pillar-Model-DirectoryList-annotation",
+	"super" : "PRDocumentListSorter",
+	"category" : "Pillar-ExporterCore-Document-List",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "PRDocListDateSorter",
+	"name" : "PRDocumentListDateSorter",
 	"type" : "normal"
 }

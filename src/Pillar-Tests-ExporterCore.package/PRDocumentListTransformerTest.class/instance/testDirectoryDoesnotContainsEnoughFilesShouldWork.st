@@ -1,19 +1,19 @@
 private
-testDocListWithOnlySortParameter
+testDirectoryDoesnotContainsEnoughFilesShouldWork
 	| doc documentGroup sections |
 	doc := PRDocument new 
 				add: 
 				(PRText new 
 					text: 'You');
 				add:
-				(PRDocListAnnotation new 
+				(PRDocumentListAnnotation new 
 					parameterAt: 'path' put: 'blogs';
-					parameterAt: 'sort' put: 'name';
+					parameterAt: 'limit' put: '5';
 					yourself);
 				yourself.
 				
 				
-	((PRDocListTransformer withContext: (PRProject on: testingFileSystem)) start: doc).
+	((PRDocumentListTransformer withContext: (PRProject on: testingFileSystem)) start: doc).
 	
 	documentGroup := doc children second.
 	

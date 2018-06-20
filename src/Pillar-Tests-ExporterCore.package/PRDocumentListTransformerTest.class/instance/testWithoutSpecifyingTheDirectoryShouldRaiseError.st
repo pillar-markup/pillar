@@ -6,11 +6,11 @@ testWithoutSpecifyingTheDirectoryShouldRaiseError
 				(PRText new 
 					text: 'You');
 				add:
-				(PRDocListAnnotation new 
+				(PRDocumentListAnnotation new 
 					parameterAt: 'limit' put: '5';
 					parameterAt: 'sort' put: 'name';
 					yourself);
 				yourself.
 				
 				
-	self should: [((PRDocListTransformer withContext: (PRProject on: testingFileSystem)) start: doc)] raise: Error
+	self should: [((PRDocumentListTransformer withContext: (PRProject on: testingFileSystem)) start: doc)] raise: Error
