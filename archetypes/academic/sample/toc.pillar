@@ -1,6 +1,6 @@
 
-${inputFile:index.pillar}$
-${inputFile:projects.pillar}$
-${inputFile:research.pillar}$
-${inputFile:publications.pillar}$
-${inputFile:coordinates.pillar}$
+${inputFile:path=index.pillar}$
+${inputFile:path=projects.pillar}$
+${inputFile:path=research.pillar}$
+${inputFile:path=publications.pillar}$
+${inputFile:path=coordinates.pillar}$

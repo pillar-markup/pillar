@@ -1,12 +1,12 @@
-${slide:First slide}$
+${slide:title=First slide}$
 
 ${columns}$
 
-${column:50}$
+${column:width=50}$
 
 - First column
 
-${column:50}$
+${column:width=50}$
 
 - Second column
 
