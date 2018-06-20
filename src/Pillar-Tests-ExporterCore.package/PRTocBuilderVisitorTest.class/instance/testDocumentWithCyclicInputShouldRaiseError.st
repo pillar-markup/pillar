@@ -7,7 +7,7 @@ testDocumentWithCyclicInputShouldRaiseError
 ! Test1
 !! Test2
 
-${inputFile:cyclic1.pillar}$
+${inputFile:path=cyclic1.pillar}$
 
 !! Test3'.
 

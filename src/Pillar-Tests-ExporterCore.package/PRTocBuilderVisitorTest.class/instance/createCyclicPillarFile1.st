@@ -6,7 +6,7 @@ createCyclicPillarFile1
 	pillarFile writeStreamDo: [ :stream |
 		stream nextPutAll: '!! TestCyclicFile1
 
-${inputFile:cyclic1.pillar}$
+${inputFile:path=cyclic1.pillar}$
 
 Look at my eyes'
 		 ]

@@ -2,7 +2,7 @@ visiting-document
 visitInputFileAnnotation: anInputFileAnnotation
 	"I load the file and if the file exist I replace the node of the annotation by the content of the file."
 	| includedFile includedPillarAST cleanPillarAST |
-	includedFile := topFile parent resolve: anInputFileAnnotation value.
+	includedFile := topFile parent resolve: anInputFileAnnotation path.
 	self validateInclusionOfFile: includedFile.
 	
 	includedPillarAST := PRDocument parser parse: includedFile.

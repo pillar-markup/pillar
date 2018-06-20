@@ -5,7 +5,7 @@ testTitlesHaveGoodFileRefs
 		parse:
 			'!! Test1
 !!! Test2
-${inputFile:input1.pillar}$
+${inputFile:path=input1.pillar}$
 !! Test3
 ! Test4'.
 	expectedToc := PRToc new

@@ -1,3 +1,3 @@
 helpers
 referenceString
-	^ 'inputFile:value=foo/myFile.pillar'
+	^ 'inputFile:path=foo/myFile.pillar'

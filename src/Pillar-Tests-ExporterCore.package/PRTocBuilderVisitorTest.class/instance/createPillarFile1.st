@@ -27,7 +27,7 @@ For example, for the first chapter in LaTeX: ==make book-result/Chapters/Chapter
 
 !!! TestFile14
 
-${inputFile:input3.pillar}$
+${inputFile:path=input3.pillar}$
 
 !!! TestFile15'
 		 ]
