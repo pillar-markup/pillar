@@ -11,9 +11,9 @@ setUp
 			'! test1
 ! test2
 
-${inputFile:input1.pillar}$
+${inputFile:path=input1.pillar}$
 
-${inputFile:input2.pillar}$
+${inputFile:path=input2.pillar}$
 '.
 	advancedDocument := PRPillarParser
 		parse:
@@ -22,11 +22,11 @@ ${inputFile:input2.pillar}$
 
 ! test3
 
-${inputFile:input2.pillar}$
+${inputFile:path=input2.pillar}$
 
 ! test4
 
-${inputFile:input1.pillar}$
+${inputFile:path=input1.pillar}$
 
 '.
 	complexToc := PRPillarParser

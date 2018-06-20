@@ -1,7 +1,7 @@
 tests
 testDocumentWithOnlyInputAnnotation
 	| document expectedToc |
-	document := PRPillarParser parse: '${inputFile:input2.pillar}$'.
+	document := PRPillarParser parse: '${inputFile:path=input2.pillar}$'.
 	expectedToc := PRToc new
 		level: 0;
 		addChildren:
