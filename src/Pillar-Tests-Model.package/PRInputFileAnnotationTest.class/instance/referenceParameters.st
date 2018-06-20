@@ -1,5 +1,5 @@
 helpers
 referenceParameters
 	^ OrderedDictionary new
-		add: 'value' -> 'foo/myFile.pillar';
+		add: 'path' -> 'foo/myFile.pillar';
 		yourself

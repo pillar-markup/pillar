@@ -1,3 +1,3 @@
 tests - Annotation
 testAnnotationAreTrimedAtTheRight
-	self parse: '${inputFile:value=Foo}$  ' rule: #annotation
+	self parse: '${inputFile:path=Foo}$  ' rule: #annotation

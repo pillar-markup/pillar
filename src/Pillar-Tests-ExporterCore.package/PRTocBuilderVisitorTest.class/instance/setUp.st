@@ -12,9 +12,9 @@ setUp
 			'! test1
 ! test2
 
-${inputFile:value=input1.pillar}$
+${inputFile:path=input1.pillar}$
 
-${inputFile:value=input2.pillar}$
+${inputFile:path=input2.pillar}$
 '.
 
 	advancedDocument := PRPillarParser
@@ -24,11 +24,11 @@ ${inputFile:value=input2.pillar}$
 
 ! test3
 
-${inputFile:value=input2.pillar}$
+${inputFile:path=input2.pillar}$
 
 ! test4
 
-${inputFile:value=input1.pillar}$
+${inputFile:path=input1.pillar}$
 
 '.
 

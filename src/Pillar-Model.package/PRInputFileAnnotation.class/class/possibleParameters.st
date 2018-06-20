@@ -1,4 +1,4 @@
 protected
 possibleParameters
 
-	^ #(value)
+	^ #(path)
