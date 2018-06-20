@@ -1,3 +1,3 @@
 helpers
 referenceString
-	^ 'slide:Foo|label=Tintin'
+	^ 'slide:title=Foo|label=Tintin'

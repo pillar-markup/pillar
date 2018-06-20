@@ -34,7 +34,7 @@ ${inputFile:value=input1.pillar}$
 					(PRToc new
 						name: 'TestFile13';
 						level: 3;
-						fileReference: 'nput1.pillar');
+						fileReference: 'input1.pillar');
 				addChildren:
 					(PRToc new
 						name: 'TestFile14';
