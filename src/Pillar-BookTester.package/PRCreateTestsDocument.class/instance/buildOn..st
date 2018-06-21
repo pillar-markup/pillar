@@ -2,9 +2,11 @@ accessing
 buildOn: aPRProject 
 	
 	| parsedDocument transformedDocument testGen |
+	testGen := PRBookTestGenerator new.
+	testGen fileName: (testGen prettyRename: file file).
+	testGen createClassFrom: testGen fileName.
 	parsedDocument := self parseInputFile: file.
 	transformedDocument := self transformDocument: parsedDocument.
-	testGen := PRBookTestGenerator new.
 	testGen start: transformedDocument.
 	Stdio stdout crlf;
 		nextPutAll: file fullName;crlf;
