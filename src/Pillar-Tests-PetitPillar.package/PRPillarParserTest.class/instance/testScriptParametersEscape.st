@@ -6,5 +6,5 @@ testScriptParametersEscape
 		equals:
 			(OrderedDictionary new
 				at: 'value' put: 'foo|';
-				at: 'bar' put: nil;
+				at: 'bar' put: true;
 				yourself)
