@@ -2,6 +2,6 @@ running
 testPrettyRename
 
 	| testGenerator |
-	testGenerator := PRBasicTestGenerator new.
+	testGenerator := PRBookTestGenerator new.
 	self assert: (testGenerator prettyRename: '/usr/Users/Library/test.pillar') 
 		  equals: 'Test'.
