@@ -12,7 +12,7 @@ createTestMethodFrom: aCodeblock
 		
 	[ (self class environment at: fileName asSymbol) compile: 'test' , cbIndex asString,'
 	
-	self assert: (' , aCodeblock text withSeparatorsCompacted, ') isPaired' ]
+	self assert: (' , aCodeblock textForTests withSeparatorsCompacted, ') isPaired' ]
 		on: Exception 
 		do: [ :e |(self class environment at: fileName asSymbol) compile: 
 			
@@ -21,6 +21,8 @@ createTestMethodFrom: aCodeblock
 				s cr; cr; tab.	
 				s << 'self assert: false description: ''A code block failed''. '.
 				s cr; tab. 
-				s << '"' << e class name << ' was raised with: ' << e messageText << '"'.
+				s << '"' << e class name << ' was raised with: ' << (e messageText copyWithout:$") << '"'.
 				s cr; tab.
-				s << '"' << 'by the codeblock:' << aCodeblock text withSeparatorsCompacted << '"'])]
+				s << '"' << 'by the codeblock:' << (aCodeblock textForTests withSeparatorsCompacted copyWithout:$") << '"'])]
+		
+	
