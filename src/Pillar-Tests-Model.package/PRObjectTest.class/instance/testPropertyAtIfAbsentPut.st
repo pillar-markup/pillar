@@ -1,8 +1,8 @@
 tests-properties
 testPropertyAtIfAbsentPut
-	self assert: (self instance propertyAt: #foo put: 'bar') = 'bar'.
-	self assert: (self instance propertyAt: #foo ifAbsentPut: [ 'baz' ]) = 'bar'.
-	self assert: (self instance propertyAt: #foo) = 'bar'.
+	self assert: (self instance propertyAt: #foo put: 'bar') equals: 'bar'.
+	self assert: (self instance propertyAt: #foo ifAbsentPut: [ 'baz' ]) equals: 'bar'.
+	self assert: (self instance propertyAt: #foo) equals: 'bar'.
 
-	self assert: (self instance propertyAt: #bar ifAbsentPut: [ 'baz' ]) = 'baz'.
-	self assert: (self instance propertyAt: #bar) = 'baz'
+	self assert: (self instance propertyAt: #bar ifAbsentPut: [ 'baz' ]) equals: 'baz'.
+	self assert: (self instance propertyAt: #bar) equals: 'baz'

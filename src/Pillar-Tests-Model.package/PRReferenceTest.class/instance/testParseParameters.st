@@ -1,7 +1,7 @@
 tests-parsing
 testParseParameters
 	| wiki text tree |
-	wiki := self markup , 'Alias>' , self referenceString , '|a=1|b=2|c' , self markup .
+	wiki := self markup , 'Alias>' , self referenceString , '|a=1|b=2|c=true' , self markup .
 	text := 'Alias'.
 	tree := PRDocument new
 		add:
@@ -12,9 +12,9 @@ testParseParameters
 										reference: self referenceString;
 										parameters:
 												(OrderedDictionary new
-														add: 'a' -> '1';
-														add: 'b' -> '2';
-														add: 'c' -> nil;
+														add: 'a' -> 1;
+														add: 'b' -> 2;
+														add: 'c' -> true;
 														yourself);
 										yourself);
 						yourself);
