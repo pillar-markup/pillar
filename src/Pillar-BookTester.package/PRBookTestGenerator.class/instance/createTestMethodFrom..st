@@ -14,7 +14,7 @@ createTestMethodFrom: aCodeblock
 	
 	self assert: (' , aCodeblock text withSeparatorsCompacted, ') isPaired' ]
 		on: Exception 
-		do: [ :e |self halt. (self class environment at: fileName asSymbol) compile: 
+		do: [ :e |(self class environment at: fileName asSymbol) compile: 
 			
 			(String streamContents: [ :s | 
 				s << 'test' << cbIndex asString.

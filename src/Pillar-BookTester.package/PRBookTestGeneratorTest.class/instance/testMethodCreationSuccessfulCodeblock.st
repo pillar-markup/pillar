@@ -11,5 +11,6 @@ testMethodCreationSuccessfulCodeblock
 	self assert: (TestMethodCreationSuccess methodDict includesKey: #test1).
 	self assert: (TestMethodCreationSuccess methodDict at: #test1) sourceCode equals: 'test1
 	
-	self assert: (3+4>>>7) isPaired'
+	self assert: (3+4>>>7) isPaired'.
+	
 	
