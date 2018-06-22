@@ -8,7 +8,7 @@ buildOn: aPRProject
 	parsedDocument := self parseInputFile: file.
 	transformedDocument := self transformDocument: parsedDocument.
 	testGen start: transformedDocument.
-	Stdio stdout crlf;
+	Stdio stdout crlf; crlf;
 		nextPutAll: file fullName;crlf;
-		nextPutAll: 'Tests created under the package ''Pillar-BookTesterResults'' with the name of the file'.
+		nextPutAll: 'Tests created under the package ''Pillar-BookTesterResults'' with the name of the file'; crlf.
 	

@@ -23,6 +23,6 @@ createTestMethodFrom: aCodeblock
 				s cr; tab. 
 				s << '"' << e class name << ' was raised with: ' << (e messageText copyWithout:$") << '"'.
 				s cr; tab.
-				s << '"' << 'by the codeblock:' << (aCodeblock textForTests withSeparatorsCompacted copyWithout:$") << '"'])]
+				s << '"' << 'by the codeblock: ' << (aCodeblock textForTests withSeparatorsCompacted copyWithout:$") << '"'])]
 		
 	
