@@ -6,5 +6,5 @@ testEverythingVirtualFileSystem
 	bTester workingDirectory: testingFileSystem.
 	bTester reportAllCodeBlocks.
 	bTester checkAndReportFileNamed: self class pillarFileNameForTest.
-	self assert: bTester failedTests size equals: 6.
+	self assert: bTester failedTests size equals: 7.
 	self assert: bTester validTests size equals: 3.

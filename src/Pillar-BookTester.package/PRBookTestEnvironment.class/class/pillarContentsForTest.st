@@ -4,7 +4,6 @@ pillarContentsForTest
 	^ 
 '!A Pillar document test
 !!Some tests that should pass
-
 A first testable test
 [[[testcase=true
 3 + 7
@@ -61,5 +60,21 @@ A third testable test
 [[[testcase=true
 ''1'' + 2
 >>>14
+]]]
+
+Finally, codeblocks using eval
+[[[eval=true
+PRBookTesterTest subclass: #PRBookTesterTestResults
+instanceVariableNames: ''''
+classVariableNames: ''''
+package: ''Pillar-BookTester''
+]]]
+
+[[[eval=true
+
+]]]
+
+[[[eval=true
+
 ]]]
 '
