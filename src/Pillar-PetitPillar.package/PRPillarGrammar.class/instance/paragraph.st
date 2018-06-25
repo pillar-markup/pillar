@@ -1,3 +1,6 @@
 grammar - Paragraph
 paragraph
-	^ contents , lineEnd
+	^ 	epsilonToken ,
+		contents , 
+		lineEnd ,
+		epsilonToken

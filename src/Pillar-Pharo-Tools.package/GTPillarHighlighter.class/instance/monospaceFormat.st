@@ -1,7 +1,7 @@
 accessing
 monospaceFormat
-	^ super monospaceFormat token 
-	==> [ :token | 
+	^ super monospaceFormat 
+	==> [ :aNode | 
 		self commands add: (GTMonospaceFormatHighlightingCommand new 
-			start: token start;
-			stop: token stop)]
+			start: aNode start;
+			stop: aNode stop)]

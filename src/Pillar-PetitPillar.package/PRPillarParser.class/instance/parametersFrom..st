@@ -1,4 +1,4 @@
-grammar - Paragraph
+grammar - Parameter
 parametersFrom: array
 	| result |
 	result := OrderedDictionary new.
