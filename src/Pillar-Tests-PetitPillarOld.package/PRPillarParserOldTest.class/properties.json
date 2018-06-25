@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRPillarGrammarOldTest",
+	"category" : "Pillar-Tests-PetitPillarOld",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRPillarParserOldTest",
+	"type" : "normal"
+}
