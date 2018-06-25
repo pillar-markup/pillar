@@ -1,3 +1,3 @@
 grammar - Reference
 referenceAliasMarkup
-	^ self class defaultMarkupReferenceAlias asParser
+	^ self class defaultMarkupReferenceAlias asPParser

@@ -1,3 +1,3 @@
 grammar - Format
 italicMarkup
-	^ (Markups at: PRItalicFormat) asParser
+	^ (Markups at: PRItalicFormat) asPParser

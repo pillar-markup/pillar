@@ -6,4 +6,5 @@ testScriptWithSpacedParameters
 									 parameters: (OrderedDictionary new 
 															at: 'foo' put: true;
 															at: 'bar' put: 2;
-															yourself))
+															yourself)).
+	self assertStart: 1 stop: 33.

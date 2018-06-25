@@ -1,3 +1,3 @@
 grammar - Raw
 rawEndMarkup
-	^ (EndMarkups at: PRRaw) asParser
+	^ (EndMarkups at: PRRaw) asPParser

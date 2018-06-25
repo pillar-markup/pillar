@@ -1,3 +1,5 @@
 from markdown
 formatContent
-	^ (escapedCharacter / specialFormatMarkups negate) plus
+	^ 	epsilonToken ,
+		(escapedCharacter / specialFormatMarkups negate) plus ,
+		epsilonToken

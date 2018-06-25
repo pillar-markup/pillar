@@ -1,6 +1,6 @@
 {
-	"commentStamp" : "CyrilFerlicot 7/16/2015 15:06",
-	"super" : "PPCompositeParser",
+	"commentStamp" : "JurajKubelka 6/25/2018 10:29",
+	"super" : "PP2CompositeNode",
 	"category" : "Pillar-PetitPillar",
 	"classinstvars" : [ ],
 	"pools" : [ ],
@@ -123,7 +123,8 @@
 		"specialFormatMarkups",
 		"referenceContent",
 		"linkAlias",
-		"figureAlias"
+		"figureAlias",
+		"epsilonToken"
 	],
 	"name" : "PRPillarGrammar",
 	"type" : "normal"

@@ -1,3 +1,3 @@
 grammar - Document
 escapedCharacter
-	^ ($\ asParser , #any asParser) ==> #second
+	^ ($\ asPParser , #any asPParser) ==> #second

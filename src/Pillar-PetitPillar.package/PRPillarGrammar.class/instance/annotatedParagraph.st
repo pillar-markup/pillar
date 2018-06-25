@@ -1,3 +1,7 @@
 grammar - Paragraph
 annotatedParagraph
-	^ (Markups at: PRAnnotatedParagraph) asParser , ($  asParser / newline) negate star flatten , ($  asParser , oneLineContent) optional
+	^	epsilonToken , 
+		(Markups at: PRAnnotatedParagraph) asPParser , 
+		($  asPParser / newline) negate star flatten , 
+		($  asPParser , oneLineContent) optional ,
+		epsilonToken 

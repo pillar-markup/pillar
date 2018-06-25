@@ -1,3 +1,3 @@
 grammar - Table
 tableRightMarkup
-	^ self class defaultMarkupTableRight asParser
+	^ self class defaultMarkupTableRight asPParser

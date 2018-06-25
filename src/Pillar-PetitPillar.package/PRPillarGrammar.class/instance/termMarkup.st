@@ -1,3 +1,3 @@
 grammar - List
 termMarkup
-	^ (Markups at: PRTermItem) asParser
+	^ (Markups at: PRTermItem) asPParser

@@ -1,3 +1,3 @@
 grammar - Annotation
 annotationMarkupSeparator
-	^ self class defaultMarkupAnnotationSeparator asParser
+	^ self class defaultMarkupAnnotationSeparator asPParser

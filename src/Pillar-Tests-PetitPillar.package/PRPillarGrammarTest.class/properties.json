@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "PPCompositeParserTest",
+	"super" : "PP2CompositeNodeTest",
 	"category" : "Pillar-Tests-PetitPillar",
 	"classinstvars" : [ ],
 	"pools" : [ ],

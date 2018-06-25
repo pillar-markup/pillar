@@ -1,3 +1,5 @@
 grammar - List
 unorderedList
-	^ unorderedListItem plus
+	^ 	epsilonToken , 
+		unorderedListItem plus , 
+		epsilonToken

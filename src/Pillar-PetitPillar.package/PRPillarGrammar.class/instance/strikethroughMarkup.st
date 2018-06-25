@@ -1,3 +1,3 @@
 grammar - Format
 strikethroughMarkup
-	^ (Markups at: PRStrikethroughFormat) asParser
+	^ (Markups at: PRStrikethroughFormat) asPParser

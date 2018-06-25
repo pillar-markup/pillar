@@ -1,3 +1,3 @@
 grammar - HorizontalRule
 horizontalRule
-	^ (Markups at: PRHorizontalRule) asParser , #blank asParser star
+	^ (Markups at: PRHorizontalRule) asPParser , #blank asPParser star

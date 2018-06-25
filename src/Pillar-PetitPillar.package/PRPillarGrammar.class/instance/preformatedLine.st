@@ -1,3 +1,3 @@
 grammar - Text
 preformatedLine
-	^ (Markups at: PRPreformatted) asParser , lineEnd negate star flatten , lineEnd
+	^ (Markups at: PRPreformatted) asPParser , lineEnd negate star flatten , lineEnd

@@ -1,3 +1,3 @@
 grammar - Format
 underlineMarkup
-	^ (Markups at: PRUnderlineFormat) asParser
+	^ (Markups at: PRUnderlineFormat) asPParser

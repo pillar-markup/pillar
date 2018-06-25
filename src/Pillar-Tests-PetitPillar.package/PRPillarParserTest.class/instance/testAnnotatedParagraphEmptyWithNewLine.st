@@ -6,4 +6,5 @@ testAnnotatedParagraphEmptyWithNewLine
 		equals:
 			(PRAnnotatedParagraph new
 				annotation: 'foo';
-				yourself)
+				yourself).
+	self assertStart: 1 stop: 5.

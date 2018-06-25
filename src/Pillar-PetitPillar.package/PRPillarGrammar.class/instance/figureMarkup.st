@@ -1,3 +1,3 @@
 grammar - Reference
 figureMarkup
-	^ (Markups at: PRFigure) asParser
+	^ (Markups at: PRFigure) asPParser

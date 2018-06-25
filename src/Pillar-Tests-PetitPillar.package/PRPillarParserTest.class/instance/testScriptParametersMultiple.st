@@ -6,5 +6,5 @@ testScriptParametersMultiple
 		equals:
 			(OrderedDictionary new
 				at: 'value' put: 'foo';
-				at: 'bar' put: true;
+				at: 'bar' put: nil;
 				yourself)

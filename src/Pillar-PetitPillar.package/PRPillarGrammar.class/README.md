@@ -1,1 +1,1 @@
-I am a grammar to parse Pillar files with PetitParser.
+I am a grammar to parse Pillar files with PetitParser
