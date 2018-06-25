@@ -1,0 +1,3 @@
+visiting
+acceptName: aTag 
+	^ false

@@ -1,4 +1,8 @@
 grammar - Annotation
 annotationTag
 	^ super annotationTag
-		==> [ :array | PRAbstractAnnotation findClassAcceptingTag: (self stringFrom: array) ]
+		==> [ :array | | aTagName |
+				aTagName := self stringFrom: array.
+				PRAbstractAnnotation 
+					findClassAcceptingTag: aTagName
+					ifNone: [ self annotationStrategy missingAnnotationSupport: aTagName ] ]
