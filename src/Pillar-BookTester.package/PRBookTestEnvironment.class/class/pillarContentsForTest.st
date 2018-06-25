@@ -64,10 +64,10 @@ A third testable test
 
 Finally, codeblocks using eval
 [[[eval=true
-PRBookTesterTest subclass: #PRBookTesterTestResults
+TestCase subclass: #PRBookTesterTestResults
 instanceVariableNames: ''''
 classVariableNames: ''''
-package: ''Pillar-BookTester''
+package: ''Pillar-BookTesterResults''
 ]]]
 
 [[[eval=true
