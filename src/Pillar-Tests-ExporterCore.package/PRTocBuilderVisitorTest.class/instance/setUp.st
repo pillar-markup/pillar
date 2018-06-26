@@ -6,6 +6,7 @@ setUp
 		parse:
 			'! test1
 ! test2'.
+
 	inputDocument := PRPillarParser
 		parse:
 			'! test1
@@ -15,6 +16,7 @@ ${inputFile:path=input1.pillar}$
 
 ${inputFile:path=input2.pillar}$
 '.
+
 	advancedDocument := PRPillarParser
 		parse:
 			'! test1
@@ -29,6 +31,7 @@ ${inputFile:path=input2.pillar}$
 ${inputFile:path=input1.pillar}$
 
 '.
+
 	complexToc := PRPillarParser
 		parse:
 			'!! Test1

@@ -1,8 +1,8 @@
 tests - Script
-testScriptParameterNil
+testScriptParameterWithFloat
 	self
 		parse:
-			'[[[foo
+			'[[[ratio=0.8
 bar
 ]]]'
 		rule: #script
