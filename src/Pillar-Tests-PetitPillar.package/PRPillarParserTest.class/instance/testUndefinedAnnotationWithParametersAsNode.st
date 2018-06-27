@@ -4,7 +4,13 @@ testUndefinedAnnotationWithParametersAsNode
 	super testUndefinedAnnotationWithParameters.
 	self
 		assert: result
-		equals: (PRUndefinedAnnotation new withParameters: { 
-			#param1 -> 'a'. #param2 -> 'b' } asOrderedDictionary ).
+		equals: (PRUndefinedAnnotation new parameters: (
+			PRParameters withAll: { 
+				(PRParameter 
+					keyNode: (PRParameterKey named: #param1) 
+					valueNode: (PRParameterValue value: 'a')).
+				(PRParameter 
+					keyNode: (PRParameterKey named: #param2) 
+					valueNode: (PRParameterValue value: 'b')) })).
 	self assertStart: 1 stop: 41.
 	self assert: result hadAllKeys.

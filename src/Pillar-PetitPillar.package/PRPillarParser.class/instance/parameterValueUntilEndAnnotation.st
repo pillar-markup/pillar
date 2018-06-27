@@ -1,3 +1,3 @@
 grammar - Parameter
 parameterValueUntilEndAnnotation
-	^ super parameterValueUntilEndAnnotation ==> [ :array | self stringFrom: array ]
+	^ super parameterValueUntilEndAnnotation ==> [ :array | self parameterValueFrom: array ]

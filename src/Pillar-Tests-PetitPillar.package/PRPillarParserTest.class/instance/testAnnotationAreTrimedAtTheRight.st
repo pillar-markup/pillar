@@ -6,7 +6,8 @@ testAnnotationAreTrimedAtTheRight
 		equals:
 			(PRInputFileAnnotation
 				withParameters:
-					(OrderedDictionary new
-						at: 'path' put: 'Foo';
-						yourself)).
+					(PRParameters withAll: { 
+							(PRParameter 
+								keyNode: (PRParameterKey named: #path) 
+								valueNode: (PRParameterValue value: 'Foo')) })).
 	self assertStart: 1 stop: 22.

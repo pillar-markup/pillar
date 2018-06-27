@@ -1,6 +1,3 @@
 grammar - Parameter
 parameterKeyUntilNewline
-	^ super parameterKeyUntilNewline ==> [ :array | 
-		(PRParameterKey named: (self stringFrom: array second))
-			start: array first start;
-			stop: array last stop ]
+	^ super parameterKeyUntilNewline ==> [ :array | self stringFrom: array second ]
