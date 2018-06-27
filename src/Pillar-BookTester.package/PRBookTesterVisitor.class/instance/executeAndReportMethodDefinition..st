@@ -4,7 +4,8 @@ executeAndReportMethodDefinition: result
 	
 	result explanation: 'Method did not compile without raising an exception'.
 	isCorrect := false.
-	[ isCorrect := self class compiler evaluate: result text ]
+	[ isCorrect := result text first compile: result text second,'
+	', result text third ]
 		on: Exception
 		do: [ :ex | result explanation: ex asString ].
 	result status: isCorrect.
