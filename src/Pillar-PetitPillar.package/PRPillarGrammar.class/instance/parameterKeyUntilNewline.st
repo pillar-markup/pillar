@@ -1,3 +1,5 @@
 grammar - Parameter
 parameterKeyUntilNewline
-	^ self parameterKeyUntilParser: newline
+	^	epsilonToken ,
+		(self parameterKeyUntilParser: newline) , 
+		epsilonToken

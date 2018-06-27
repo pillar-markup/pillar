@@ -1,3 +1,6 @@
 grammar - Parameter
 parameterUntilNewline
-	^ parameterKeyUntilNewline , parameterValueUntilNewline optional
+	^ 	epsilonToken ,
+		parameterKeyUntilNewline , 
+		parameterValueUntilNewline optional ,
+		epsilonToken

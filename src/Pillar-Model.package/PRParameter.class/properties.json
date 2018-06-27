@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "PRDocumentItem",
+	"category" : "Pillar-Model-Document",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"keyNode",
+		"valueNode"
+	],
+	"name" : "PRParameter",
+	"type" : "normal"
+}
