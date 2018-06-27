@@ -12,6 +12,6 @@ testParametersUntilNewline
 	self assertStart: 1 stop: 7 ofNode: result children first.
 	self assertStart: 9 stop: 16 ofNode: result children second.
 	self assertStart: 1 stop: 3 ofNode: result children first keyNode.
-	self assertStart: 4 stop: 7 ofNode: result children first valueNode.
+	self assertStart: 5 stop: 7 ofNode: result children first valueNode.
 	self assertStart: 9 stop: 11 ofNode: result children second keyNode.
-	self assertStart: 12 stop: 16 ofNode: result children second valueNode.
+	self assertStart: 13 stop: 16 ofNode: result children second valueNode.
