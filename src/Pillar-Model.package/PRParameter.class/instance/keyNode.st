@@ -1,3 +1,3 @@
 accessing
 keyNode
-	^ keyNode
+	^ self children first

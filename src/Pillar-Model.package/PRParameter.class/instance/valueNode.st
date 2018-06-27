@@ -1,3 +1,3 @@
 accessing
 valueNode
-	^ valueNode
+	^ self children second
