@@ -1,10 +1,10 @@
 *Pillar-BookTester
 textForTestcaseParameter
 	"returns a preformated text for codeblock testing"
-	"(PRCodeblock content: '3+4>>>7' parameters: nil) textForTests >>> '(3+4)>>>7'"
+	"(PRCodeblock content: ' 3+4 >>> 7 ' parameters: nil) textForTestcaseParameter >>> '(3+4)>>>7'"
 	
 	('*>>>*' match: self text)
-			ifTrue: [ ^ '(', (self text splitOn: '>>>') first , 
-				         ')','>>>', (self text splitOn: '>>>') second ]
+			ifTrue: [ ^ '(', (self text splitOn: '>>>') first trimBoth, 
+				         ')','>>>', (self text splitOn: '>>>') second trimBoth ]
 			ifFalse: [ ^ self text ]
 	 
