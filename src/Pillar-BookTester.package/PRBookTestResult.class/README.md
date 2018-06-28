@@ -14,3 +14,14 @@ Given this codeblock, the associated PRBookTestResult's instance variable would 
 text: ''3+4'
 result: true 
 explanation: 'Test passed'
+
+The fragmentedText instance variable is used by method or test definitions in order to keep class and method names. For example:
+[[[methodDefinition
+Plop >> plop1
+^ '1'
+]]]
+
+text: 'Plop >> plop1
+		 ^ ''1'''
+fragmentedText: #('Plop' 'plop1' '^ ''1''')
+

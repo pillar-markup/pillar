@@ -1,3 +1,4 @@
 accessing
 executedTests
-	^ allTestResults 
+	"Returns all test executed and reported by the visitor"
+	^ allTestResults

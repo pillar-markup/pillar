@@ -8,6 +8,6 @@
 	"instvars" : [
 		"testingFileSystem"
 	],
-	"name" : "PRBookTesterTest",
+	"name" : "PRBookTesterVisitorTest",
 	"type" : "normal"
 }
