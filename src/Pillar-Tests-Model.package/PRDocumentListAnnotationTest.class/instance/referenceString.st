@@ -1,3 +1,3 @@
 helpers
 referenceString
-	^ 'docList:blogs|limit=10|sort=date'
+	^ 'docList:path=blogs|limit=10|sort=date'
