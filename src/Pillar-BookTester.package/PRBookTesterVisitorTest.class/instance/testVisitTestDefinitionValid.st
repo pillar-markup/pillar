@@ -3,7 +3,7 @@ testVisitTestDefinitionValid
 	
   | docText doc bTester |
 	docText := '[[[testDefinition=true
-PRBookTesterVisitorTestDefinitionTest >> testCreated
+PRBookTesterVisitorTestDefinitionTest >> testTestDefinitionCreatesTest
 self assert: 3+4 equals: 7
 ]]]
 '.

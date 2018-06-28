@@ -3,7 +3,7 @@ testVisitMethodDefinitionValid
 	
   | docText doc bTester |
 	docText := '[[[methodDefinition=true
-PRBookTestDummyMethodDefinition >> methodCreated
+PRBookTestDummyMethodDefinition >> methodTestDefinitionCreatesTest
 ^ ''I am a method of the class'', self class asString
 ]]]
 '.
