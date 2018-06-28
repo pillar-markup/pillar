@@ -14,7 +14,8 @@ executeAndReportMethodDefinition: result
 	', result fragmentedText third).
 	  isCorrect := true ]
 		on: Exception
-		do: [ :ex | result explanation: ex asString ].
+		do: [ :ex | result explanation: ex asString.
+						isCorrect := false ].
 	isCorrect
 		ifTrue: [ result explanation: 'Method compiled' ]
 	
