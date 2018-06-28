@@ -2,7 +2,7 @@ tests
 testVisitTestDefinitionCodeblock
 	
 "  | docText doc bTester |
-	docText := '[[[testcase=true
+	docText := '[[[testDefinition=true
 3 + 4 
 >>> 7		
 ]]]
