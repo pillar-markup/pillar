@@ -1,5 +1,5 @@
 *Pillar-BookTester
-textForTestDefinitionParameter
+textForTestDefinition
 	"Same as MethodDefinition?"
 	"returns an Array of preformated text for TestDefinition testing
 	The Array contains: 

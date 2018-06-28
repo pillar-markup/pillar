@@ -1,5 +1,5 @@
 *Pillar-BookTester
-textForTestcaseParameter
+textForTestcase
 	"returns a preformated text for codeblock testing"
 	"(PRCodeblock content: ' 3+4 >>> 7 ' parameters: nil) textForTestcaseParameter >>> '(3+4)>>>7'"
 	

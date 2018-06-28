@@ -1,5 +1,5 @@
 *Pillar-BookTester
-textForMethodDefinitionParameter
+textForMethodDefinition
 	"returns an Array of preformated text for MethodDefinition testing
 	The Array contains: 
 		-Class Name

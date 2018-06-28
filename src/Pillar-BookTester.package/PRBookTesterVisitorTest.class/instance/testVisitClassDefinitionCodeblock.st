@@ -1,7 +1,7 @@
 tests
-testTestableCodeblock
+testVisitClassDefinitionCodeblock
 	
-	| docText doc bTester |
+"  | docText doc bTester |
 	docText := '[[[testcase=true
 3 + 4 
 >>> 7		
@@ -11,4 +11,4 @@ testTestableCodeblock
 	bTester := PRBookTesterVisitor new.
 	bTester start: doc. 
 	self assert: bTester failedTests isEmpty.
-	self assert: bTester validTests size equals: 1.
+	self assert: bTester validTests size equals: 1."

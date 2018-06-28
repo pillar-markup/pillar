@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRTextTest",
+	"category" : "Pillar-BookTester",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRCodeblockTest",
+	"type" : "normal"
+}

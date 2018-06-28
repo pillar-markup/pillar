@@ -7,6 +7,6 @@ visitCodeblockTestDefinition: aCodeBlock
 	| result |
 	result := PRBookTestResult new.
 	result text: aCodeBlock text.
-	result fragmentedText: aCodeBlock textForTestDefinitionParameter.
+	result fragmentedText: aCodeBlock textForTestDefinition.
 	allTestResults add: result.
 	self executeAndReportTestDefinition: result 

@@ -8,6 +8,6 @@ visitCodeblockTestcase: aCodeBlock
 	and is the equivalent of  Playground execution"
 	| result |
 	result := PRBookTestResult new.
-	result text: aCodeBlock textForTestcaseParameter.
+	result text: aCodeBlock textForTestcase.
 	allTestResults add: result.
 	self executeAndReportTestCase: result 

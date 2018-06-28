@@ -1,5 +1,5 @@
 tests
-testTestableCodeblockWithFalseTest
+testTestcaseCodeblockWithFalseTest
 	
 	| docText doc bTester |
 	docText := '[[[testcase=true
