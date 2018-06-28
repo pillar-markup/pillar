@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "PRAbstractOutputDocument",
-	"category" : "Pillar-BookTester",
+	"category" : "Pillar-BookTester-CommandLine",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

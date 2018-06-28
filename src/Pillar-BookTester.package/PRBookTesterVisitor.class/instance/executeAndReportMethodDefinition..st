@@ -10,11 +10,11 @@ executeAndReportMethodDefinition: result
 	
 	result explanation: 'Method did not compile without raising an exception'.
 	isCorrect := false.
-	[ isCorrect := result fragmentedText first compile: result fragmentedText second,'
-	', result fragmentedText third ]
+	[ (self class environment at: (result fragmentedText first) asSymbol) compile: (result fragmentedText second,'
+	', result fragmentedText third).
+	  isCorrect := true ]
 		on: Exception
 		do: [ :ex | result explanation: ex asString ].
-	result status: isCorrect.
 	isCorrect
 		ifTrue: [ result explanation: 'Method compiled' ]
 	

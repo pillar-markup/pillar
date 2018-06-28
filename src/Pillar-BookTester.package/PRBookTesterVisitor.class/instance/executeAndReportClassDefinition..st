@@ -12,10 +12,10 @@ executeAndReportClassDefinition: result
 	| isCorrect |
 	result explanation: 'Class did not compile without raising an exception'.
 	isCorrect := false.
-	[ isCorrect := (self class compiler evaluate: result text)]
+	[ self class compiler evaluate: result text.
+	  isCorrect := true ]
 		on: Exception
 		do: [ :ex | result explanation: ex asString ].
-	result status: isCorrect.
 	isCorrect
 		ifTrue: [ result explanation: 'Class created' ]
 	

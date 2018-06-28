@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "PRTextTest",
-	"category" : "Pillar-BookTester",
+	"category" : "Pillar-BookTester-Tests",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

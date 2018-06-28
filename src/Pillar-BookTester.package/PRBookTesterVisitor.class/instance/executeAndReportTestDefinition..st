@@ -10,11 +10,11 @@ executeAndReportTestDefinition: result
 	"Todo: assert test passed"
 	result explanation: 'Test compilation failed'.
 	isCorrect := false.
-	[ isCorrect := result text first compile: result text second,'
-	', result text third ]
+	[ (self class environment at: (result fragmentedText first) asSymbol) compile: (result fragmentedText second,'
+	', result fragmentedText third).
+	  isCorrect := true ]
 		on: Exception
 		do: [ :ex | result explanation: ex asString ].
-	result status: isCorrect.
 	isCorrect
 		ifTrue: [ result explanation: 'Test compiled and green' ]
 	
