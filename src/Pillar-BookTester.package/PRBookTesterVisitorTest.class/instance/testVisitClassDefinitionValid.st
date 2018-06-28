@@ -3,10 +3,10 @@ testVisitClassDefinitionValid
 	
   | docText doc bTester |
 	docText := '[[[classDefinition=true
-Object subclass: #PRBookTesterVisitorMethodDefinitionTest
+PRBookTestDummyClass subclass: #PRBookTestDummyClassCreation
 	instanceVariableNames: ''''
 	classVariableNames: ''''
-	package: ''Pillar-BookTesterResults''
+	package: ''Pillar-BookTester-Tests''
 ]]]
 '.
 	doc := PRPillarParser new parse: docText.
