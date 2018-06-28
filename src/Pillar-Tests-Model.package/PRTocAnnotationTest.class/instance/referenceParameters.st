@@ -1,6 +1,9 @@
 helpers
 referenceParameters
-	^ OrderedDictionary new
-		add: 'depthLevel' -> 2;
-		add: 'level' -> 3;
-		yourself
+	^ PRParameters withAll: { 
+		PRParameter 
+			keyNode: (PRParameterKey named: 'depthLevel')
+			valueNode: (PRParameterValue value: 2).
+		PRParameter 
+			keyNode: (PRParameterKey named: 'level')
+			valueNode: (PRParameterValue value: 3) }

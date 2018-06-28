@@ -6,7 +6,10 @@ testParseWithoutFirstKey
 
 	| input expected |
 	input := '${mock:value=Foo}$'.
-	expected := PRMockAnnotation new.
+	expected := PRMockAnnotation withParameters: (
+		PRParameters withAll: { 
+			PRParameter 
+				keyNode: (PRParameterKey named: 'value')
+				valueNode: (PRParameterValue value: 'Foo') }).
 	expected hadAllKeys: false.
-	expected parameters at: 'value' put: 'Foo'.
 	self assert: (PRDocument parser parse: input startingAt: #annotation) equals: expected

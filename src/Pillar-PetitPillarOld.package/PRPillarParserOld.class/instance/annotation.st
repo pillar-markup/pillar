@@ -2,4 +2,4 @@ grammar - Annotation
 annotation
 	^ super annotation
 		==>
-			[ :array | array second withParameters: (array third ifNil: [ OrderedDictionary new ]) ]
+			[ :array | array second withParametersInCollection: (array third ifNil: [ OrderedDictionary new ]) ]

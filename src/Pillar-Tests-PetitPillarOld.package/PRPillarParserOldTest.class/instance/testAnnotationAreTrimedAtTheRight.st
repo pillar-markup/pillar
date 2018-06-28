@@ -5,7 +5,7 @@ testAnnotationAreTrimedAtTheRight
 		assert: result
 		equals:
 			(PRInputFileAnnotation
-				withParameters:
+				withParametersInCollection:
 					(OrderedDictionary new
 						at: 'path' put: 'Foo';
 						yourself))

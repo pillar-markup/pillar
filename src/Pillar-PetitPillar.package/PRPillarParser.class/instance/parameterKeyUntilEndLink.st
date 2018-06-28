@@ -1,3 +1,3 @@
 grammar - Parameter
 parameterKeyUntilEndLink
-	^ super parameterKeyUntilEndLink ==> [ :array | self stringFrom: array ]
+	^ super parameterKeyUntilEndLink ==> [ :array | self stringFrom: array second ]

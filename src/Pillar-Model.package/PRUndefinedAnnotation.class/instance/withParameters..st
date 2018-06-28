@@ -1,3 +1,4 @@
 initialization
-withParameters: aCollection 
-	self parameters: aCollection.
+withParameters: aPRParameters 
+	self add: aPRParameters.
+	self parameters: (PRParametersToOrderedDictionary of: aPRParameters).

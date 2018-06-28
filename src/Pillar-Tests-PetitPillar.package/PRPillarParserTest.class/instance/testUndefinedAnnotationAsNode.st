@@ -4,6 +4,7 @@ testUndefinedAnnotationAsNode
 	super testUndefinedAnnotation.
 	self
 		assert: result
-		equals: PRUndefinedAnnotation new.
+		equals: ((PRUndefinedAnnotation withParameters: PRParameters new)
+			tag: #undefinedAnnotation).
 	self assertStart: 1 stop: 23.
 	self assert: result hadAllKeys.

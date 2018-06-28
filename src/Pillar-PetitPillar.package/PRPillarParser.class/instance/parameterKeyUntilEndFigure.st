@@ -1,3 +1,3 @@
 grammar - Parameter
 parameterKeyUntilEndFigure
-	^ super parameterKeyUntilEndFigure ==> [ :array | self stringFrom: array ]
+	^ super parameterKeyUntilEndFigure ==> [ :array | self stringFrom: array second ]

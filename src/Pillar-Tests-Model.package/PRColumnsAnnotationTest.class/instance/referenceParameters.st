@@ -1,3 +1,3 @@
 helpers
 referenceParameters
-	^ OrderedDictionary new
+	^ PRParameters new

@@ -1,12 +1,12 @@
 instance creation
-withParameters: aCollection
+withParameters: aPRParameters
 
 	| parameters |
 	self flag: 'checkKeysOf: does not make sense anymore, right?'.
-	"parameters := self checkKeysOf: aCollection."
-	parameters := aCollection.
+	parameters := PRParametersToOrderedDictionary of: aPRParameters.
+	parameters := self checkKeysOf: parameters.
 	self validateParameters: parameters.
-	^ self new
-		hadAllKeys: (self possibleParameters difference: (aCollection keys collect: #asSymbol)) isEmpty  ;
+	^ (self with: aPRParameters)
+		hadAllKeys: (self possibleParameters difference: (parameters keys collect: #asSymbol)) isEmpty;
 		parameters: parameters;
 		yourself

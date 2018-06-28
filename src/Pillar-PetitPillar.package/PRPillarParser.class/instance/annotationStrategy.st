@@ -1,4 +1,4 @@
-as yet unclassified
+accessing
 annotationStrategy
 	^ self 
 			propertyAt: self class annotationStrategy 
