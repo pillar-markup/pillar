@@ -1,3 +1,3 @@
 tests - Annotation
 testAnnotationWithUnknownKey
-	self parse: '${inputFile:path=Foo|unknownKey}$' rule: #annotation
+	self parse: '${inputFile:path=Foo|unknownKey=Bar}$' rule: #annotation

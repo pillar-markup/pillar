@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRValidationStrategy",
+	"category" : "Pillar-Model-ValidationStrategies",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRSilentValidationStrategy",
+	"type" : "normal"
+}

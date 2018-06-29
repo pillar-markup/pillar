@@ -1,3 +1,3 @@
-as yet unclassified
+error handling
 missingAnnotationSupport: aString 
 	^ self subclassResponsibility

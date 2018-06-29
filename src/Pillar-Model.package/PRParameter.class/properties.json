@@ -5,7 +5,9 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"isValid"
+	],
 	"name" : "PRParameter",
 	"type" : "normal"
 }

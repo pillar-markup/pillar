@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "Object",
-	"category" : "Pillar-PetitPillar",
+	"super" : "DynamicVariable",
+	"category" : "Pillar-Model-ValidationStrategies",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "PRParserStrategy",
+	"name" : "PRValidation",
 	"type" : "normal"
 }

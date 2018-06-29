@@ -1,7 +1,7 @@
 tests - Annotation
 testUndefinedAnnotationWithParametersAsNode
-	self parserInstance annotationStrategy: PRErrorSilentStrategy new.
-	super testUndefinedAnnotationWithParameters.
+	PRValidation beSilentDuring: [ 
+		super testUndefinedAnnotationWithParameters ].
 	self
 		assert: result
 		equals: (PRUndefinedAnnotation withParameters: (

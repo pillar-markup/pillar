@@ -5,4 +5,4 @@ annotationTag
 				aTagName := self stringFrom: array.
 				PRAbstractAnnotation 
 					findClassAcceptingTag: aTagName
-					ifNone: [ self annotationStrategy missingAnnotationSupport: aTagName ] ]
+					ifNone: [ PRValidation strategy missingAnnotationSupport: aTagName ] ]

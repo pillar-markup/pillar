@@ -1,0 +1,3 @@
+accessing
+defaultStrategy
+	^ PRValidationStrategy shouting
