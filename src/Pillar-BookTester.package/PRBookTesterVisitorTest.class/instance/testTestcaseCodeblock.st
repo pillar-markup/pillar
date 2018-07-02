@@ -4,7 +4,7 @@ testTestcaseCodeblock
 	| docText doc bTester |
 	docText := '[[[testcase=true
 3 + 4 
->>> 7		
+>>> 7
 ]]]
 '.
 	doc := PRPillarParser new parse: docText.
