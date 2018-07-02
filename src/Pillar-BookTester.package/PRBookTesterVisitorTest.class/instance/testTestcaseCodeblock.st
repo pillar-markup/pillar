@@ -9,7 +9,6 @@ testTestcaseCodeblock
 '.
 	doc := PRPillarParser new parse: docText.
 	bTester := PRBookTesterVisitor new.
-	self halt.
 	bTester start: doc.
 	self assert: bTester failedTests isEmpty.
 	self assert: bTester validTests size equals: 1.
