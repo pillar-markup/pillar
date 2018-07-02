@@ -1,14 +1,9 @@
 visiting
 visitCodeblock: aCodeBlock
 	
-	| result |
-	(aCodeBlock isEvaluated)
-		ifTrue: (super visitCodeblock: aCodeBlock)
-		ifFalse: ( (checkAll or: [ aCodeBlock isTestcase ])
-							ifTrue: [ result := PRBookTestResult new.
-								 result text: aCodeBlock textForTestcase.
-								 allTestResults add: result.
-								 self executeAndReportTestCase: result ]).
+	codeblockDict keys anySatisfy: [ :k | 
+						  (aCodeBlock perform: k) 
+								ifTrue: [ self perform: (codeblockDict at: k) with: aCodeBlock] ]
 	
 	"possibleCodeblocks keys do: [ :any | (aCodeBlock any)
 														ifTrue: [ (self possibleCodeblocks at: any) aCodeBlock ] ]"

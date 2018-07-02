@@ -9,7 +9,7 @@
 		"allTestResults",
 		"checkAll",
 		"workingDirectory",
-		"possibleCodeblocks"
+		"codeblockDict"
 	],
 	"name" : "PRBookTesterVisitor",
 	"type" : "normal"

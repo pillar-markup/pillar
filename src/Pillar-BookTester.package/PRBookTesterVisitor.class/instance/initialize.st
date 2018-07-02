@@ -2,7 +2,7 @@ initialization
 initialize
 
 	super initialize.
-	possibleCodeblocks := Dictionary newFromKeys: #(isEvaluated isTestDefinition isMethodDefinition isClassDefinition)
+	codeblockDict := Dictionary newFromKeys: #(isEvaluated isTestDefinition isMethodDefinition isClassDefinition)
 							      	 		  andValues:#( ([ :x | x evaluate ])
 															  ([ :x | self visitCodeblockTestDefinition: x ])														                                                 ([ :x | self visitCodeblockMethodDefinition: x ])	
 															  ([ :x | self visitCodeblockClassDefinition:x ])).
