@@ -1,4 +1,0 @@
-accessing
-reportAllCodeBlocks
-
-	checkAll := true
