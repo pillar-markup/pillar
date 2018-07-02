@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "<historical>",
 	"super" : "Object",
-	"category" : "Pillar-Model-DirectoryList-annotation",
+	"category" : "Pillar-ExporterCore-Document-List",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
@@ -9,6 +9,6 @@
 		"direction",
 		"files"
 	],
-	"name" : "PRDocListSorter",
+	"name" : "PRDocumentListSorter",
 	"type" : "normal"
 }
