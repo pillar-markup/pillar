@@ -2,10 +2,14 @@ initialization
 initialize
 
 	super initialize.
-	codeblockDict := Dictionary newFromKeys: #(#isEvaluated #isTestcase #isTestDefinition #isMethodDefinition #isClassDefinition)
+	codeblockDict := Dictionary newFromKeys: #(#isEvaluated 
+															#isTestcase 
+															#isTestDefinition 
+															#isMethodDefinition 
+															#isClassDefinition)
 							      	 		  andValues:#(#evaluate:
-															  #visitCodeBlockTestcase:
-															  #visitCodeblockTestDefinition:														                                        												                                                 #visitCodeblockMethodDefinition:
+															  #visitCodeblockTestcase:
+															  #visitCodeblockTestDefinition:														                                      		     #visitCodeblockMethodDefinition:
 															  #visitCodeblockClassDefinition:).
 	allTestResults := OrderedCollection new.
 	checkAll := false.
