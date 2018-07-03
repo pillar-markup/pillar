@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "PRNodeTransformerTest",
+	"category" : "Pillar-Tests-ExporterCore-Document-List",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"testingFileSystem"
+	],
+	"name" : "PRDocumentListTransformerTest",
+	"type" : "normal"
+}
