@@ -2,9 +2,8 @@ instance creation
 withParameters: aPRParameters
 	| parameters anInstance |
 	anInstance := self with: aPRParameters.
-	self flag: 'checkKeysOf: does not make sense anymore, right?'.
+	PRParserUtility fixFirstParameter: aPRParameters for: anInstance.
 	parameters := PRParametersToOrderedDictionary of: aPRParameters.
-	parameters := self checkKeysOf: parameters.
 	self validateParameters: aPRParameters dictionary: parameters in: anInstance.
 	^ anInstance
 		hadAllKeys:

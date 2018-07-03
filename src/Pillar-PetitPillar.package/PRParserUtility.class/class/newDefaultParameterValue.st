@@ -1,0 +1,3 @@
+parameters
+newDefaultParameterValue
+	^ PRParameterValue value: self defaultParameterValue

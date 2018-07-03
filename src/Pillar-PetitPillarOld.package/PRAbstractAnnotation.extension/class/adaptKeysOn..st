@@ -1,4 +1,4 @@
-testing
+*Pillar-PetitPillarOld
 adaptKeysOn: aCollection
 	| newDictionary |
 	newDictionary := OrderedDictionary new.

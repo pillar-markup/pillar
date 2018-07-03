@@ -1,4 +1,4 @@
-protected
+*Pillar-PetitPillarOld
 checkKeysOf: aCollection
 	"aCollection may be a SmallDictionary('Foo'->nil 'number'->'5')"
 		
