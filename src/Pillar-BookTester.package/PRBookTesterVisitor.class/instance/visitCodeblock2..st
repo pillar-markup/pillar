@@ -4,7 +4,7 @@ visitCodeblock2: aCodeBlock
 	| result |
 	(aCodeBlock isEvaluated)
 		ifTrue: (super visitCodeblock: aCodeBlock)
-		ifFalse: ( (checkAll or: [ aCodeBlock isTestcase ])
+		ifFalse: ( ([ aCodeBlock isTestcase ])
 							ifTrue: [ result := PRBookTestResult new.
 								 result text: aCodeBlock textForTestcase.
 								 allTestResults add: result.

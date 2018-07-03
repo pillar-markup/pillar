@@ -17,6 +17,7 @@ executeAndReportClassDefinition: result
 		on: Exception
 		do: [ :ex | result explanation: ex asString.
 						isCorrect := false ].
+	result status: isCorrect.
 	isCorrect
 		ifTrue: [ result explanation: 'Class created' ]
 	

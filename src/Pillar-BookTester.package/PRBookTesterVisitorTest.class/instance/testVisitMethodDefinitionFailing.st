@@ -1,9 +1,9 @@
 tests
-testVisitMethodDefinitionOneBracket
+testVisitMethodDefinitionFailing
 	
   | docText doc bTester |
 	docText := '[[[methodDefinition=true
-PRBookTestDummyMethodDefinition > methodTestDefinitionCreatesTest
+PRUnexistingClass >> methodTestDefinitionCreatesTest
 ^ ''I am a method of the class'', self class asString
 ]]]
 '.

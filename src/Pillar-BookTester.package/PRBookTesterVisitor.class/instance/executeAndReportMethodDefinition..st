@@ -1,6 +1,6 @@
 compiling
 executeAndReportMethodDefinition: result
-	| isCorrect |
+	| isCorrect className |
 	"Executes the method definition in the given class with the right name
 	[[[methodDefinition
 	Plop >> plop1
@@ -16,8 +16,9 @@ executeAndReportMethodDefinition: result
 		on: Exception
 		do: [ :ex | result explanation: ex asString.
 						isCorrect := false ].
-	isCorrect
-		ifTrue: [ result explanation: 'Method compiled' ]
+	result status: isCorrect.
+	isCorrect ifTrue: [ result explanation: 'Method compiled' ]
+	
 	
 	
 		

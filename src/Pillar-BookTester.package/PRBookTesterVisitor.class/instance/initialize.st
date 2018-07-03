@@ -3,14 +3,11 @@ initialize
 
 	super initialize.
 	codeblockDict := Dictionary newFromKeys: #(#isEvaluated 
-															#isTestcase 
-															#isTestDefinition 
+															#isTestcase  
 															#isMethodDefinition 
 															#isClassDefinition)
 							      	 		  andValues:#(#evaluate:
-															  #visitCodeblockTestcase:
-															  #visitCodeblockTestDefinition:														                                      		     #visitCodeblockMethodDefinition:
+															  #visitCodeblockTestcase:														                                      		     #visitCodeblockMethodDefinition:
 															  #visitCodeblockClassDefinition:).
 	allTestResults := OrderedCollection new.
-	checkAll := false.
 	workingDirectory := FileLocator home.
