@@ -9,3 +9,4 @@ SystemOrganization addCategory: #'Pillar-ExporterCore-Features'!
 SystemOrganization addCategory: #'Pillar-ExporterCore-Manifest'!
 SystemOrganization addCategory: #'Pillar-ExporterCore-Toc'!
 SystemOrganization addCategory: #'Pillar-ExporterCore-Utilities'!
+Organization addCategory: 'Pillar-ExporterCore-Utilities'!
