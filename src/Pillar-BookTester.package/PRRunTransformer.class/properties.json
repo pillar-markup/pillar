@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRNodeTransformer",
+	"category" : "Pillar-BookTester-Annotations",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRRunTransformer",
+	"type" : "normal"
+}
