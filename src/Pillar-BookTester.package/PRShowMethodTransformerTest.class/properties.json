@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "PRTransformerEnvironmentTest",
+	"category" : "Pillar-BookTester-Annotations-Tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"testingFileSystem"
+	],
+	"name" : "PRShowMethodTransformerTest",
+	"type" : "normal"
+}

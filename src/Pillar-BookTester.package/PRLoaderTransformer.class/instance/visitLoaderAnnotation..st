@@ -12,7 +12,7 @@ IceLibgitRepository registry
 
 Metacello new
 	baseline: aPRLoaderAnnotation project;
-	repository: 'http://www.github.com/', accountName, projectName,':', tagName, '/src';
+	repository: 'github://', accountName, projectName,':', tagName, '/src';
    onUpgrade: [ :ex | ex useIncoming ];
 	load.
 	

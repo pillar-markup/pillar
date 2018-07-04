@@ -1,5 +1,5 @@
 helpers
 referenceString
 
-	^ 'loader:account=QDucasse|project=MetacelloTestBook|tag=Chapter1'
+	^ 'loader:account=QDucasse|project=MetacelloTestBook-Code|tag=Chapter1'
 	

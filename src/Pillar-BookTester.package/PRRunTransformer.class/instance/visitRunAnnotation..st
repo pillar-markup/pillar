@@ -7,13 +7,15 @@ visitRunAnnotation: aPRRunAnnotation
 								do: [ :each |visitor allTestsResults add:
 													(PRBookTestResult new 
 													 explanation: 'Test failed';
-													 text: 'How to obtain that text?';
+													 text: testClass asString, '>>', 
+															 (((self class environment) at: testClass) methodDict at: each) definition;
 													 status: false; yourself)].
-	((self class environment) at: testClass) suite run failures 
+	((self class environment) at: testClass) suite run errors 
 								do: [ :each |visitor allTestsResults add:
 													(PRBookTestResult new 
 													 explanation: 'Test errored';
-													 text: 'How to obtain that text?';
+													 text: testClass asString, '>>', 
+															 (((self class environment) at: testClass) methodDict at: each) definition;
 													 status: false; yourself)].
 	
 	
