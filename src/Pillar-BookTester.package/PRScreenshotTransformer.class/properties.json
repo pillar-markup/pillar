@@ -8,6 +8,6 @@
 	"instvars" : [
 		"workingDirectory"
 	],
-	"name" : "PRShowClassTransformer",
+	"name" : "PRScreenshotTransformer",
 	"type" : "normal"
 }
