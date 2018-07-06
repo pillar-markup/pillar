@@ -1,4 +1,4 @@
 visiting
 width
 
-	^ self parameters at: #width
+	^ self parameters at: #width ifAbsent: [ 50 ]

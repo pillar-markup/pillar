@@ -1,4 +1,4 @@
 visiting
 caption
 
-	^ self parameters at: #caption
+	^ self parameters at: #caption ifAbsent: [ nil ]
