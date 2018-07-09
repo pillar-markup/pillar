@@ -5,9 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"testingFileSystem"
-	],
+	"instvars" : [ ],
 	"name" : "PRLoaderTransformerTest",
 	"type" : "normal"
 }

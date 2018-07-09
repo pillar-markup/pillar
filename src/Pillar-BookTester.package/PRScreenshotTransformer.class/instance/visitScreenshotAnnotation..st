@@ -16,6 +16,6 @@ visitScreenshotAnnotation: aPRShowMethodAnnotation
 	fileName := browser exportAsPNGForPillar.
 	"Transformation of the annotation into a figureReference"
 	"We want to obtain the reference as follows: +Caption .>file://figures/figureTitle|width=50|label=someLabel"
-	self replace: { '+' , aPRShowMethodAnnotation caption, '.>file://figures/', 
+	self replace: { '+' , aPRShowMethodAnnotation caption, '.>file://figures/', fileName,
 								'width=', aPRShowMethodAnnotation width,
 								'label=', aPRShowMethodAnnotation label, '+' } "False, I need the object itself not the annotation"

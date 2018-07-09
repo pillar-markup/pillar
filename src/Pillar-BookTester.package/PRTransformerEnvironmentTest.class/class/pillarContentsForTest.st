@@ -4,7 +4,7 @@ pillarContentsForTest
 	^ 
 '!A Pillar document test for annotation transformers
 
-${loader:account=QDucasse|project=|tag=}$
+${loader:account=QDucasse|project=MetacelloTestBook-Code|tag=Chapter3}$
 
 Definition of a class and a method within it
 [[[classDefinition=true

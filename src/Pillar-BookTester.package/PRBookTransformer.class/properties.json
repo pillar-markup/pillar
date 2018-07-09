@@ -1,11 +1,13 @@
 {
 	"commentStamp" : "",
-	"super" : "PRBookTransformer",
+	"super" : "PRNodeTransformer",
 	"category" : "Pillar-BookTester-Annotations",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
-	"name" : "PRScreenshotTransformer",
+	"instvars" : [
+		"workingDirectory"
+	],
+	"name" : "PRBookTransformer",
 	"type" : "normal"
 }
