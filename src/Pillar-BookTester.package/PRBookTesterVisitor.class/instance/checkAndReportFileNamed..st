@@ -1,4 +1,4 @@
-visiting
+visiting-codeblock
 checkAndReportFileNamed: aPath
 	"The API we want to be using: 
 	Visitor checkAndReportFileNamed: path"
