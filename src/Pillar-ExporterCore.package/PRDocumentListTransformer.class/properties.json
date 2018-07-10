@@ -3,13 +3,15 @@
 	"super" : "PRNodeTransformer",
 	"category" : "Pillar-ExporterCore-Document-List",
 	"classinstvars" : [
-		"context"
+		"context",
+		"withTemplate"
 	],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
 		"workingDirectory",
-		"context"
+		"context",
+		"withTemplate"
 	],
 	"name" : "PRDocumentListTransformer",
 	"type" : "normal"
