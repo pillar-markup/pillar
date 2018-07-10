@@ -1,4 +1,4 @@
 test file creation
-pillarFileNameForTest
+pillarAnnotationsFileNameForTest
 	
 	^'test.pillar'

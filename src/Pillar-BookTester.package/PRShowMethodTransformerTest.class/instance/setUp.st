@@ -3,6 +3,6 @@ setUp
 
 	super setUp.
 	testingFileSystem := FileSystem memory workingDirectory.
-	(testingFileSystem / PRTransformerEnvironmentTest pillarFileNameForTest)
+	(testingFileSystem / PRTransformerEnvironmentTest pillarAnnotationsFileNameForTest)
 		writeStreamDo: [ :stream | 
-			stream nextPutAll: PRTransformerEnvironmentTest pillarContentsForTest ]
+			stream nextPutAll: PRTransformerEnvironmentTest pillarAnnotationsContentsForTest ]

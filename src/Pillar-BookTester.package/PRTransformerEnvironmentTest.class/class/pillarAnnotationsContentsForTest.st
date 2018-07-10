@@ -1,5 +1,5 @@
 test file creation
-pillarContentsForTest
+pillarAnnotationsContentsForTest
 "Needs completion"
 	^ 
 '!A Pillar document test for annotation transformers

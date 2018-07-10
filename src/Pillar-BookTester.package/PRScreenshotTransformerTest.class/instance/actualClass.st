@@ -1,0 +1,3 @@
+running
+actualClass
+	^ PRScreenshotTransformer 

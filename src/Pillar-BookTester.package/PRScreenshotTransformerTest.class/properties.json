@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "PRLoaderTransformerTest",
+	"name" : "PRScreenshotTransformerTest",
 	"type" : "normal"
 }
