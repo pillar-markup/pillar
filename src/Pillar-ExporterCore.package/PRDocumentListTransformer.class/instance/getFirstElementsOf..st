@@ -11,4 +11,4 @@ getFirstElementsOf: aFileReference
 	
 	finalFile := (MustacheTemplate on: (self workingDirectory resolve: self defaultTemplateFile) readStream contents ) value: conf.
 	
-	^ doc children first: 3
+	^ finalFile

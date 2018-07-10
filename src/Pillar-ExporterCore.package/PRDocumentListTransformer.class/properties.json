@@ -2,7 +2,9 @@
 	"commentStamp" : "AsbathBiyalouSama 6/14/2018 09:26",
 	"super" : "PRNodeTransformer",
 	"category" : "Pillar-ExporterCore-Document-List",
-	"classinstvars" : [ ],
+	"classinstvars" : [
+		"context"
+	],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
