@@ -3,6 +3,7 @@ testMethodCreationSuccessfulCodeblock
 
 	| testGenerator codeBlock |
 	testGenerator := PRBookTestGenerator new.
+	testGenerator resultPackage: 'Pillar-BookTesterResults-TestResults'.
 	testGenerator fileName: 'PRTTestMethodCreationSuccess'.
 	testGenerator createClassFrom: testGenerator fileName.
 	testGenerator cbIndex: 1.

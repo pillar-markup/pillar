@@ -4,5 +4,5 @@ createClassFrom: aPrettyFileName
 	TestCase subclass: aPrettyFileName 
    		instanceVariableNames: ''
     	classVariableNames: ''
-    	package: resultPackage,'-',fileName.
+    	package: resultPackage.
 		

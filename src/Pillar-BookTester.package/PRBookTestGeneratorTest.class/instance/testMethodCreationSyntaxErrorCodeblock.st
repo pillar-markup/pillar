@@ -4,6 +4,7 @@ testMethodCreationSyntaxErrorCodeblock
 	| testGenerator codeBlock |
 	testGenerator := PRBookTestGenerator new.
 	testGenerator fileName: 'PRTTestMethodCreationError'.
+	testGenerator resultPackage: 'Pillar-BookTesterResults-TestResults'.
 	testGenerator createClassFrom: testGenerator fileName.
 	testGenerator cbIndex: 1.
 	codeBlock := PRCodeblock content: '(a1 at: 1) at: 1 put: ''sally''. a1 >>> #(#(''sally''))' parameters: 'testcase=true'.
