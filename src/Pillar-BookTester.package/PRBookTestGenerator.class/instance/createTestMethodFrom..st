@@ -19,7 +19,7 @@ createTestMethodFrom: aCodeblock
 			(String streamContents: [ :s | 
 				s << 'test' << cbIndex asString.
 				s cr; cr; tab.	
-				s << 'self assert: false description: ''A code block failed''. '.
+				s << 'self assert: Error signal description: ''A code block failed''. '.
 				s cr; tab. 
 				s << '"' << e class name << ' was raised with: ' << (e messageText copyWithout:$") << '"'.
 				s cr; tab.

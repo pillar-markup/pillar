@@ -1,7 +1,4 @@
 running
 setUp
-	super setUp.
-	Object subclass: #PRCodeblockTestResults
-	instanceVariableNames: ''
-	classVariableNames: ''
-	package: 'Pillar-BookTesterResults'
+	"Hooks that subclasses may override to define the fixture of test."
+	super setUp

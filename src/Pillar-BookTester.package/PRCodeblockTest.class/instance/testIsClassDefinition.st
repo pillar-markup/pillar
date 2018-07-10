@@ -1,7 +1,7 @@
 tests
 testIsClassDefinition
 
-	| cb1 cb2 |
+	| cb1 |
 	cb1 := PRCodeblock content:'SuperClass name subclass: #ClassName
 instanceVariableNames: ''''
 classVariableNames: ''''
