@@ -1,4 +1,4 @@
-testing
+evaluating
 evaluate: aCodeBlock
 
 	^ aCodeBlock evaluate

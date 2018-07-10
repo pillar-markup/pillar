@@ -61,20 +61,4 @@ A third testable test
 ''1'' + 2
 >>>14
 ]]]
-
-Finally, codeblocks using eval
-[[[eval=true
-TestCase subclass: #PRBookTesterTestResults
-instanceVariableNames: ''''
-classVariableNames: ''''
-package: ''Pillar-BookTesterResults''
-]]]
-
-[[[eval=true
-
-]]]
-
-[[[eval=true
-
-]]]
 '

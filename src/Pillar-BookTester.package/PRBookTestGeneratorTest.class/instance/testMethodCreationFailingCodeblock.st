@@ -12,4 +12,8 @@ testMethodCreationFailingCodeblock
 	self assert: (PRTTestMethodCreationFail methodDict at: #test1) sourceCode equals: 'test1
 	
 	self assert: ((3+7)>>>11) isPaired'.
+	self assert: (self class environment at: #PRTTestMethodCreationFail) suite run failures size equals:1.
+	self assert: (self class environment at: #PRTTestMethodCreationFail) suite run errors isEmpty.
+	self assert: (self class environment at: #PRTTestMethodCreationFail) suite run passed isEmpty.
+	
 	
