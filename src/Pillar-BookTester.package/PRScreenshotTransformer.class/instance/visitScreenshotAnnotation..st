@@ -2,7 +2,7 @@ accessing
 visitScreenshotAnnotation: aPRShowMethodAnnotation
 	
 	"Todo: Redefine export so that the .png goes into the folder /figures"
-	| className methodName packageName  browser fileName |
+	| className methodName packageName  browser fileName figure |
 	className := self class environment at: (aPRShowMethodAnnotation className asSymbol).
 	methodName := className methodDict at: (aPRShowMethodAnnotation method asSymbol).
 	packageName := aPRShowMethodAnnotation package asPackage.
@@ -14,8 +14,10 @@ visitScreenshotAnnotation: aPRShowMethodAnnotation
 	browser selectClass: className.
 	browser selectMethod: methodName.
 	fileName := browser exportAsPNGForPillar.
-	"Transformation of the annotation into a figureReference"
-	"We want to obtain the reference as follows: +Caption .>file://figures/figureTitle|width=50|label=someLabel"
-	self replace: { '+' , aPRShowMethodAnnotation caption, '.>file://figures/', fileName,
+	"Transformation of the annotation into a PRFigure"
+	figure := PRPillarParser new parse:('+' , aPRShowMethodAnnotation caption, '.>file://figures/', fileName,
 								'width=', aPRShowMethodAnnotation width,
-								'label=', aPRShowMethodAnnotation label, '+' } "False, I need the object itself not the annotation"
+								'label=', aPRShowMethodAnnotation label, '+').
+	figure := (figure children first) children first.
+	"returns aPRDocument (> children first >) aPRParagraph (>children first >) aPRFigure"
+	self replace: {figure}
