@@ -13,7 +13,7 @@ visitScreenshotAnnotation: aPRShowMethodAnnotation
 	browser selectPackage: packageName.
 	browser selectClass: className.
 	browser selectMethod: methodName.
-	fileName := browser.
+	fileName := browser exportAsPNGForPillar.
 	"Transformation of the annotation into a PRFigure"
 	figure := PRPillarParser new parse:('+' , aPRShowMethodAnnotation caption, '.>file://figures/', fileName,
 								'width=', aPRShowMethodAnnotation width,
