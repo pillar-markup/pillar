@@ -1,4 +1,4 @@
 helpers
 referenceString
-	^ 'screenshot:package=Pillar-BookTester|class=PRScreenshotAnnotationTest|method=referenceString|caption=''The referenceString method''|width=50|label=refStr'
+	^ 'screenshot:packageName=Pillar-BookTester|className=PRScreenshotAnnotationTest|methodName=referenceString|caption=The referenceString method|width=50|label=refStr'
 		
