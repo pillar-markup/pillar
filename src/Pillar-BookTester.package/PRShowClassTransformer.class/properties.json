@@ -1,11 +1,13 @@
 {
 	"commentStamp" : "QuentinDucasse 7/10/2018 11:28",
-	"super" : "PRBookTransformer",
+	"super" : "PRNodeTransformer",
 	"category" : "Pillar-BookTester-Annotations",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"workingDirectory"
+	],
 	"name" : "PRShowClassTransformer",
 	"type" : "normal"
 }

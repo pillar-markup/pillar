@@ -34,7 +34,7 @@ PRTClassTest >> testBla
 
 We can now check that everything is working:
 
-${run:}$
+${run:testClass=PRTClassTest}$
 
 [[[testcase=true 
 PRTClass new bla >>> ''bla''
