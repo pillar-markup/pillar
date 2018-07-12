@@ -17,8 +17,8 @@ visitScreenshotAnnotation: aPRShowMethodAnnotation
 	fileName := browser exportAsPNGForPillarWithClass: aPRShowMethodAnnotation className andMethod: aPRShowMethodAnnotation methodName.
 	"Transformation of the annotation into a PRFigure"
 	figure := PRPillarParser new parse:('+' , aPRShowMethodAnnotation caption, '.>file://figures/', fileName,
-								'width=', aPRShowMethodAnnotation width,
-								'label=', aPRShowMethodAnnotation label, '+').
+								'|width=', aPRShowMethodAnnotation width,
+								'|label=', aPRShowMethodAnnotation label, '+').
 	figure := (figure children first) children first.
 	"returns aPRDocument (> children first >) aPRParagraph (>children first >) aPRFigure"
 	self replace: {figure}
