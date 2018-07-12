@@ -1,6 +1,6 @@
 running
 testTransformerIsWorking
-	| doc documentGroup sections |
+	| doc documentGroup |
 	doc := PRDocument new
 				add:
 				(PRScreenshotAnnotation new
@@ -12,13 +12,11 @@ testTransformerIsWorking
 					parameterAt: 'label' put: 'add';
 				yourself).
 	"Pay attention that here the values should really be the values as created by the ${publications:... parser}$"
-	self halt.
 	((PRScreenshotTransformer withContext: (PRProject on: testingFileSystem )) start: doc).
 	documentGroup := doc children first.
-	sections := documentGroup children. 
 	
-	self assert: sections size equals: 2.
-	self assert: sections first children second children size equals: 3.
-	self assert: sections second children second children size equals: 2.
-	self assert: sections first children first text equals: 'Refereed Articles in International Conferences'
+	"Let's first test that the png file has been created following the correct template"
+	self assert: (FileSystem workingDirectory / 'figures' / ((FileSystem workingDirectory basename), '-Integer>>+.png')) isFile.
+	"Then, let's test that a figure reference has been added to the document"
+	
 	
