@@ -1,0 +1,24 @@
+tests-annotations
+testLoaderAnnotationLoadsPackageChapter1
+	| doc bookTester|
+	doc := PRDocument new
+				add:
+				(PRLoaderAnnotation new
+					parameterAt: 'account' put: 'QDucasse';
+					parameterAt: 'project' put: 'MetacelloTestBook-Code';
+					parameterAt: 'tag' put: 'Chapter1';
+				yourself); 
+			yourself.
+	"Pay attention that here the values should really be the values as created by the ${publications:... parser}$"
+	bookTester := PRBookTesterVisitor new.
+	1halt.
+	bookTester start: doc.
+	"The loaded code contains a new class Plop with the method chapterOne returning 'chapterOne'"
+	self assert: (self class environment includes: #Plop).
+	self assert: Plop new chapterOneMethod equals: 'chapterOne'
+
+
+	
+	
+	
+	

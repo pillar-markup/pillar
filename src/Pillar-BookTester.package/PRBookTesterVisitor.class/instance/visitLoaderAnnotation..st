@@ -11,8 +11,8 @@ visitLoaderAnnotation: aPRLoaderAnnotation
 		ifFound: #delete.
 
 	Metacello new
-		baseline: aPRLoaderAnnotation project;
-		repository: 'github://', accountName, projectName,':', tagName, '/src';
+		baseline: projectName;
+		repository: 'github://', accountName,'/', projectName,':', tagName, '/src';
 		onUpgrade: [ :ex | ex useIncoming ];
 		load.
 	

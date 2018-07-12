@@ -1,4 +1,4 @@
-tests
+tests-class/method definition
 testVisitMethodDefinitionCreatesMethod
 	
   | docText doc bTester |

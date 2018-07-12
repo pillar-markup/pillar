@@ -1,4 +1,4 @@
-tests
+tests-class/method definition
 testVisitMethodDefinitionOneBracket
 	
   | docText doc bTester |
