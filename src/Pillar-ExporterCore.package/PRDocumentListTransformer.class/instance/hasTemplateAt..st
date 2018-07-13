@@ -1,3 +1,3 @@
-as yet unclassified
-lookForTemplate: aReference
+testing
+hasTemplateAt: aReference
 	^ (self workingDirectory resolve: self defaultTemplateFile) exists 
