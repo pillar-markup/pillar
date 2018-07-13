@@ -1,4 +1,4 @@
 accessing
 builderName
 	
-	^ #basicCheck
+	^ #checkBook

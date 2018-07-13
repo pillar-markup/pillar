@@ -3,7 +3,6 @@ visitRunAnnotation: aPRRunAnnotation
 	"Todo visitor specification + exception handling"
 	| testClass |
 	testClass := ((aPRRunAnnotation parameters)at: #testClass) asSymbol.
-	1halt.
 	((self class environment) at: testClass) suite run passed 
 								do: [ :each | |methodName| 
 												  methodName := (each asString splitOn: '>>#') second.

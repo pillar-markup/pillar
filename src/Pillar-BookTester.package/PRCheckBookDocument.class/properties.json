@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "PRTarget",
+	"super" : "PRAbstractOutputDocument",
 	"category" : "Pillar-BookTester-CommandLine",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "PRBasicCheckTarget",
+	"name" : "PRCheckBookDocument",
 	"type" : "normal"
 }

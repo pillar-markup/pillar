@@ -1,7 +1,7 @@
 building
 documentFor: aFile
 
-	^ PRBasicCheckDocument new
+	^ PRCheckBookDocument new
 		project: aFile project;
 		file: aFile;
 		target: self;
