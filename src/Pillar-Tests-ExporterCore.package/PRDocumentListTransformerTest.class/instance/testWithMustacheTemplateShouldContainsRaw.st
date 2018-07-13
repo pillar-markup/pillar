@@ -15,5 +15,4 @@ testWithMustacheTemplateShouldContainsRaw
 				
 	((PRDocumentListTransformer withContext: (PRProject on: testingFileSystem)) start: doc).
 	
-	
 	self assert: (doc children anySatisfy: [ :each | each class = PRRaw ])
