@@ -14,7 +14,8 @@ testTransformerCreatesFigureReference
 	"Pay attention that here the values should really be the values as created by the ${publications:... parser}$"
 	((PRScreenshotTransformer withContext: (PRProject on: testingFileSystem )) start: doc).
 	figure := doc children first.
-	"Then, let's test that a figure reference has been added to the document"
+	"Let's test that a figure reference has been added to the document with the correct parameters"
+	self assert: figure class equals: PRFigure.
 	self assert: figure hasCaption.
 	self assert: figure hasLabel.
 	self assert: figure parameters equals: 

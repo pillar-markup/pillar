@@ -1,4 +1,4 @@
-tests
+tests - examples
 testTestcaseCodeblock
 	
 	| docText doc bTester |

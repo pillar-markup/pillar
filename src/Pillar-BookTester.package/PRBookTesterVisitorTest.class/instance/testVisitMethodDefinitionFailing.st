@@ -1,4 +1,4 @@
-tests
+tests-class/method definition
 testVisitMethodDefinitionFailing
 	
   | docText doc bTester |

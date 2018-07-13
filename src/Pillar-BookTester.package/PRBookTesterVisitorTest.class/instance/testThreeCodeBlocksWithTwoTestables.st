@@ -1,4 +1,4 @@
-tests
+tests - examples
 testThreeCodeBlocksWithTwoTestables
 
 	| docText doc bTester |
