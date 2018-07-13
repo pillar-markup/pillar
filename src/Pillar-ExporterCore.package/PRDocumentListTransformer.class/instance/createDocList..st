@@ -12,7 +12,6 @@ createDocList: aPRDocListAnnotation
 			ifTrue: [ document := PRRaw new text: '' ].
 		1 to: (aPRDocListAnnotation limit asInteger min: sortedFiles size) do: [ :index | 
 				self addAbstractOf: (sortedFiles at: index) to: document.
-				
-				self addLink: (aPRDocListAnnotation path asFileReference / (sortedFiles at: index) basename) path pillarPrintString to: document ]
+				self addLink: (aPRDocListAnnotation path , '/', (sortedFiles at: index) basename) to: document ]
 			].
 	^ document
