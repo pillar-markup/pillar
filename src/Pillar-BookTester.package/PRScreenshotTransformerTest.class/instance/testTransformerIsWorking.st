@@ -1,6 +1,6 @@
 running
 testTransformerIsWorking
-	| doc documentGroup sections |
+	| doc documentGroup sections pictureName |
 	doc := PRDocument new
 				add:
 				(PRScreenshotAnnotation new
@@ -15,10 +15,7 @@ testTransformerIsWorking
 	self halt.
 	((PRScreenshotTransformer withContext: (PRProject on: testingFileSystem )) start: doc).
 	documentGroup := doc children first.
-	sections := documentGroup children. 
 	
-	self assert: sections size equals: 2.
+	self assert: (FileSystem workingDirectory / 'figures' / 'images-Integer>>+.png') isFile.
 	self assert: sections first children second children size equals: 3.
-	self assert: sections second children second children size equals: 2.
-	self assert: sections first children first text equals: 'Refereed Articles in International Conferences'
 	
