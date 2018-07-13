@@ -5,7 +5,7 @@ createDocList: aPRDocListAnnotation
 	document := PRDocumentGroup new.
 	
 	(workingDirectory resolve: aPRDocListAnnotation path) exists
-		ifTrue: [ files := self getPillarFilesFrom: aPRDocListAnnotation path.
+		ifTrue: [ files := (workingDirectory resolve: aPRDocListAnnotation path) files.
 			sortedFiles := self sort: files limit: (aPRDocListAnnotation limit asInteger min: files size) by: aPRDocListAnnotation sort.
 
 			(self hasTemplateAt: (workingDirectory resolve: aPRDocListAnnotation path))

@@ -7,6 +7,6 @@ addLink: aString to: aDocument
 		aDocument
 		add:
 			((PRInternalLink reference: aString)
-				addAll: {(PRText content: 'See more')};
+				addAll: {(PRText content: 'Read more')};
 				yourself)
 		 ]

@@ -2,16 +2,11 @@
 	"commentStamp" : "AsbathBiyalouSama 6/14/2018 09:26",
 	"super" : "PRNodeTransformer",
 	"category" : "Pillar-ExporterCore-Document-List",
-	"classinstvars" : [
-		"context",
-		"withTemplate"
-	],
+	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"workingDirectory",
-		"context",
-		"withTemplate"
+		"workingDirectory"
 	],
 	"name" : "PRDocumentListTransformer",
 	"type" : "normal"
