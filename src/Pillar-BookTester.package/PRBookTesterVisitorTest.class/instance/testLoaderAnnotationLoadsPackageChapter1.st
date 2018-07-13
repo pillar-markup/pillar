@@ -12,7 +12,6 @@ testLoaderAnnotationLoadsPackageChapter1
 			yourself.
 	"Pay attention that here the values should really be the values as created by the ${publications:... parser}$"
 	bookTester := PRBookTesterVisitor new.
-	1halt.
 	bookTester start: doc.
 	"The loaded code contains a new class Plop with the method chapterOne returning 'chapterOne'"
 	self assert: (self class environment keys includes: #Plop).
