@@ -1,5 +1,5 @@
 parsing
-getFirstElementsOf: aFileReference
+getFirstElements
 	| doc finalFile |
 	doc := PRPillarParserMain parse: self currentFile contents.
 	
@@ -9,6 +9,12 @@ getFirstElementsOf: aFileReference
 		]
 	ifFalse: [ 
 		finalFile := doc children first: 3.
+		1 halt.
+		finalFile
+		add:
+			((PRInternalLink reference: (self directoryName , '/', self currentFile basename))
+				addAll: {(PRText content: 'Read more')};
+				yourself)
 		].
 	
 	^ finalFile

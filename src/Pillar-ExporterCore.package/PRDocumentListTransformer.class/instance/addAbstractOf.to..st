@@ -4,5 +4,5 @@ addAbstractOf: aFileReference to: aDocument
 	ifTrue: [ 
 		| previousContent |
 		previousContent := aDocument text.
-		aDocument text: previousContent , (self getFirstElementsOf: aFileReference) ] 
-	ifFalse: [ (self getFirstElementsOf: aFileReference) do: [ :each | aDocument add: each ] ]
+		aDocument text: previousContent , (self getFirstElements) ] 
+	ifFalse: [ self getFirstElements do: [ :each | aDocument add: each ] ]
