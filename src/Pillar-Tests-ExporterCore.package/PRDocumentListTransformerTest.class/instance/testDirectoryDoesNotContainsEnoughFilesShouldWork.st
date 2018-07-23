@@ -1,5 +1,5 @@
 private
-testDirectoryDoesnotContainsEnoughFilesShouldWork
+testDirectoryDoesNotContainsEnoughFilesShouldWork
 	| doc documentGroup sections |
 	doc := PRDocument new 
 				add: 
