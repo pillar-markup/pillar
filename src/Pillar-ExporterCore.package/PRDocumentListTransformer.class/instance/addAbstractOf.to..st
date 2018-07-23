@@ -8,6 +8,6 @@ addAbstractOf: aFileReference to: aDocument
 	ifFalse: [ 
 		self getFirstElements do: [ :each | aDocument add: each ].
 		aDocument add:
-			((PRInternalLink reference: (self directoryName , '/', self currentFile basename))
+			((PRInternalLink reference: (self filesDirectory , '/' , self currentFile basename))
 				addAll: {(PRText content: 'Read more')};
 				yourself) ]

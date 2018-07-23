@@ -3,7 +3,7 @@ createDocList: aPRDocListAnnotation
 	| files document sortedFiles |
 	
 	document := PRDocumentGroup new.
-	
+	self filesDirectory: aPRDocListAnnotation path.
 	(workingDirectory resolve: aPRDocListAnnotation path) exists
 		ifTrue: [ 
 			files := (workingDirectory resolve: aPRDocListAnnotation path) files.
