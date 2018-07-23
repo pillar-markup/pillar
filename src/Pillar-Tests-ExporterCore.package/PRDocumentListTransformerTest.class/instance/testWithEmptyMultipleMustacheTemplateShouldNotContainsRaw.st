@@ -1,5 +1,5 @@
 private
-testWithMustacheTemplateShouldContainsRaw
+testWithEmptyMultipleMustacheTemplateShouldNotContainsRaw
 	| doc |
 	self createTemplateFile.
 	doc := PRDocument new 
@@ -15,4 +15,4 @@ testWithMustacheTemplateShouldContainsRaw
 				
 	((PRDocumentListTransformer withContext: (PRProject on: testingFileSystem)) start: doc).
 	
-	self assert: (doc children anySatisfy: [ :each | each class = PRRaw ])
+	self assert: (doc children anySatisfy: [ :each | each class = PRDocumentGroup ])

@@ -1,11 +1,11 @@
 adding
 addAbstractOf: aFileReference to: aDocument
-	^ (self hasTemplateAt: (self workingDirectory resolve: self defaultTemplateFile))
-	ifTrue: [ 
+	^ self availableTemplates
+	ifNotEmpty: [ 
 		| previousContent |
 		previousContent := aDocument text.
 		aDocument text: previousContent , self getFirstElements ] 
-	ifFalse: [ 
+	ifEmpty: [ 
 		self getFirstElements do: [ :each | aDocument add: each ].
 		aDocument add:
 			((PRInternalLink reference: (self filesDirectory , '/' , self currentFile basename))

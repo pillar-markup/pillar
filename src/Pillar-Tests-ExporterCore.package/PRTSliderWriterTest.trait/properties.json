@@ -1,5 +1,7 @@
 {
-	"name" : "PRTSliderWriterTest",
 	"commentStamp" : "CyrilFerlicot 6/4/2015 18:19",
-	"category" : "Pillar-Tests-ExporterCore"
+	"classinstvars" : [ ],
+	"category" : "Pillar-Tests-ExporterCore",
+	"instvars" : [ ],
+	"name" : "PRTSliderWriterTest"
 }

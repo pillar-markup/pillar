@@ -3,11 +3,11 @@ getFirstElements
 	| doc finalFile |
 	doc := PRPillarParserMain parse: self currentFile contents.
 	
-	(self hasTemplateAt: (self workingDirectory resolve: self defaultTemplateFile))
-	ifTrue: [ 
+	self availableTemplates
+	ifNotEmpty: [ 
 		finalFile := self generateFileUsingTemplateFromDocument: doc
 		]
-	ifFalse: [ 
+	ifEmpty: [ 
 		finalFile := doc children first: 3.
 		"finalFile
 		add:
