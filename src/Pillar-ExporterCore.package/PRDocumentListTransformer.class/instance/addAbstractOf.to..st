@@ -4,5 +4,10 @@ addAbstractOf: aFileReference to: aDocument
 	ifTrue: [ 
 		| previousContent |
 		previousContent := aDocument text.
-		aDocument text: previousContent , (self getFirstElements) ] 
-	ifFalse: [ self getFirstElements do: [ :each | aDocument add: each ] ]
+		aDocument text: previousContent , self getFirstElements ] 
+	ifFalse: [ 
+		self getFirstElements do: [ :each | aDocument add: each ].
+		aDocument add:
+			((PRInternalLink reference: (self directoryName , '/', self currentFile basename))
+				addAll: {(PRText content: 'Read more')};
+				yourself) ]

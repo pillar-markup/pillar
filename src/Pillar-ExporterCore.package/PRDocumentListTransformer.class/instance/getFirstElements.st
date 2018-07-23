@@ -9,12 +9,11 @@ getFirstElements
 		]
 	ifFalse: [ 
 		finalFile := doc children first: 3.
-		1 halt.
-		finalFile
+		"finalFile
 		add:
 			((PRInternalLink reference: (self directoryName , '/', self currentFile basename))
 				addAll: {(PRText content: 'Read more')};
-				yourself)
+				yourself)"
 		].
 	
 	^ finalFile
