@@ -5,7 +5,7 @@ createDocList: aPRDocListAnnotation
 	filesDirectory := aPRDocListAnnotation path.
 	(workingDirectory resolve: self filesDirectory) exists
 		ifTrue: [ 
-			files := (workingDirectory resolve: aPRDocListAnnotation path) files.
+			files := (workingDirectory resolve: aPRDocListAnnotation path) files select: [ :each | each extension = 'pillar' ].
 			sortedFiles := self sort: files limit: (aPRDocListAnnotation limit asInteger min: files size) by: aPRDocListAnnotation sort.
 			availableTemplates := self lookForAvailableTemplates: aPRDocListAnnotation templates.
 			
