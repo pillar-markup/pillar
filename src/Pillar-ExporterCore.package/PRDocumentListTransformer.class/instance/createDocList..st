@@ -4,7 +4,6 @@ createDocList: aPRDocListAnnotation
 	
 	document := PRDocumentGroup new.
 	self filesDirectory: aPRDocListAnnotation path.
-	
 	availableTemplates := self lookForTemplatesLocation: aPRDocListAnnotation templates.
 	
 	(workingDirectory resolve: aPRDocListAnnotation path) exists

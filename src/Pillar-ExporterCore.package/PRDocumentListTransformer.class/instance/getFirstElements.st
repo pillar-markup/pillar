@@ -9,11 +9,6 @@ getFirstElements
 		]
 	ifEmpty: [ 
 		finalFile := doc children first: 3.
-		"finalFile
-		add:
-			((PRInternalLink reference: (self directoryName , '/', self currentFile basename))
-				addAll: {(PRText content: 'Read more')};
-				yourself)"
 		].
 	
 	^ finalFile
