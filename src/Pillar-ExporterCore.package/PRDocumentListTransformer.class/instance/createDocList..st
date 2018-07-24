@@ -12,6 +12,6 @@ createDocList: aPRDocListAnnotation
 			self availableTemplates ifNotEmpty: [ document := PRRaw new text: '' ].
 			1 to: (aPRDocListAnnotation limit asInteger min: sortedFiles size) do: [ :index | 
 				currentFile := (sortedFiles at: index).
-				self addAbstractOf: self currentFile to: document ] 
+				self addAbstractOfFile: self currentFile toDocument: document ] 
 		].
 	^ document
