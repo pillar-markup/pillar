@@ -23,3 +23,5 @@ testFilesAreSortedByBaseName
 	self assert: sections size equals: 12.
 	
 	self assert: sections first children first text equals: 'Okay'.
+	self assert: (sections at: 5) children first text equals: 'That''s the second'.
+	self assert: (sections at: 9) children first text equals: 'And the third'.

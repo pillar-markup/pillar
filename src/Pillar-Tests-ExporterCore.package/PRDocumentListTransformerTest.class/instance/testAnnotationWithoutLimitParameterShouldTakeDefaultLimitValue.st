@@ -1,6 +1,6 @@
 private
-testDocumentListWithOnlySortParameterShouldWorkFine
-	| doc documentGroup sections |
+testAnnotationWithoutLimitParameterShouldTakeDefaultLimitValue
+	| doc documentGroup sections links |
 	doc := PRDocument new 
 				add: 
 				(PRText new 
@@ -19,6 +19,11 @@ testDocumentListWithOnlySortParameterShouldWorkFine
 	
 	sections := documentGroup children.
 
+	links := sections select: [ :each | each class = PRInternalLink ].
+
 	self assert: sections size equals: 12.
 	
 	self assert: sections first children first text equals: 'Okay'.
+	
+	"default value of limit 3"
+	self assert: links size equals: 3

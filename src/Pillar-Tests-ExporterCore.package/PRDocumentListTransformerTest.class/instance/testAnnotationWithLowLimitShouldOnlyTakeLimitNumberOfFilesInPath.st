@@ -1,6 +1,6 @@
 private
-testDirectoryDoesNotContainsEnoughFilesShouldWork
-	| doc documentGroup sections |
+testAnnotationWithLowLimitShouldOnlyTakeLimitNumberOfFilesInPath
+	| doc documentGroup links |
 	doc := PRDocument new 
 				add: 
 				(PRText new 
@@ -8,7 +8,7 @@ testDirectoryDoesNotContainsEnoughFilesShouldWork
 				add:
 				(PRDocumentListAnnotation new 
 					parameterAt: 'path' put: 'blogs';
-					parameterAt: 'limit' put: '5';
+					parameterAt: 'limit' put: '2';
 					yourself);
 				yourself.
 				
@@ -17,8 +17,8 @@ testDirectoryDoesNotContainsEnoughFilesShouldWork
 	
 	documentGroup := doc children second.
 	
-	sections := documentGroup children.
-
-	self assert: sections size equals: 12.
+	links := documentGroup children select: [ :each | each class = PRInternalLink ].
 	
-	self assert: sections first children first text equals: 'Okay'.
+	self deny: links size = 3.
+	
+	self assert: links size equals: 2.

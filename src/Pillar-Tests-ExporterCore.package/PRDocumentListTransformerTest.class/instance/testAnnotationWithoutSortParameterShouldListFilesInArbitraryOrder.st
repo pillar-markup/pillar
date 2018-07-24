@@ -1,5 +1,5 @@
 private
-testDocumentListWithOnlySortParameter
+testAnnotationWithoutSortParameterShouldListFilesInArbitraryOrder
 	| doc documentGroup sections |
 	doc := PRDocument new 
 				add: 
@@ -8,7 +8,7 @@ testDocumentListWithOnlySortParameter
 				add:
 				(PRDocumentListAnnotation new 
 					parameterAt: 'path' put: 'blogs';
-					parameterAt: 'sort' put: 'name';
+					parameterAt: 'limit' put: '2';
 					yourself);
 				yourself.
 				
@@ -16,9 +16,7 @@ testDocumentListWithOnlySortParameter
 	((PRDocumentListTransformer withContext: (PRProject on: testingFileSystem)) start: doc).
 	
 	documentGroup := doc children second.
-	
 	sections := documentGroup children.
-
-	self assert: sections size equals: 12.
 	
+	self assert: sections size equals: 8.
 	self assert: sections first children first text equals: 'Okay'.
