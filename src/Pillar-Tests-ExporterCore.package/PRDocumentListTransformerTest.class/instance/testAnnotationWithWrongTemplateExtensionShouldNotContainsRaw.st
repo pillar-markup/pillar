@@ -1,6 +1,7 @@
 private
-testDocumentListAnnotationCreateGoodLinks
-	| doc documentGroup sections |
+testAnnotationWithWrongTemplateExtensionShouldNotContainsRaw
+	| doc |
+	self createTemplateFile.
 	doc := PRDocument new 
 				add: 
 				(PRText new 
@@ -8,17 +9,13 @@ testDocumentListAnnotationCreateGoodLinks
 				add:
 				(PRDocumentListAnnotation new 
 					parameterAt: 'path' put: 'blogs';
+					parameterAt: 'sort' put: 'name';
 					parameterAt: 'limit' put: '3';
+					parameterAt: 'templates' put: #('templates/docArticle.avi');
 					yourself);
 				yourself.
 				
 				
 	((PRDocumentListTransformer withContext: (PRProject on: testingFileSystem)) start: doc).
 	
-	documentGroup := doc children second.
-	
-	sections := documentGroup children.
-
-	self assert: sections size equals: 12.
-	
-	self assert: (sections at: 4) reference  equals: 'blogs/blog1.pillar'.
+	self deny: (doc children allSatisfy: [ :each | each class = PRRaw ])

@@ -4,4 +4,4 @@ createTemplateFile
 	dir := (testingFileSystem / 'templates') ensureCreateDirectory.
 	templateFile := (dir / 'docArticle.mustache') ensureCreateFile.
 	templateFile writeStreamDo: [ :stream |
-			stream nextPutAll: PRDocumentListTransformerTest fileContentsOne ].
+			stream nextPutAll: self class templateFileContents ].

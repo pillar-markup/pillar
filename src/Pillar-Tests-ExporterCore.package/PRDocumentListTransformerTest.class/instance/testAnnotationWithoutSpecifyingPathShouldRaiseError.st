@@ -1,5 +1,5 @@
 private
-testWithoutSpecifyingTheDirectoryShouldRaiseError
+testAnnotationWithoutSpecifyingPathShouldRaiseError
 	| doc |
 	doc := PRDocument new 
 				add: 

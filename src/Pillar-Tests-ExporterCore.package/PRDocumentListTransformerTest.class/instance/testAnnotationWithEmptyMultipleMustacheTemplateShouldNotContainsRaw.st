@@ -1,5 +1,5 @@
 private
-testWithEmptyMultipleMustacheTemplateShouldNotContainsRaw
+testAnnotationWithEmptyMultipleMustacheTemplateShouldNotContainsRaw
 	| doc |
 	self createTemplateFile.
 	doc := PRDocument new 

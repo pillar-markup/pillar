@@ -1,5 +1,5 @@
 private
-testWrongDirectoryShouldReturnEmptyDocumentGroup
+testAnnotationIsReplacedByFilesContents
 	| doc documentGroup sections |
 	doc := PRDocument new 
 				add: 
@@ -7,9 +7,8 @@ testWrongDirectoryShouldReturnEmptyDocumentGroup
 					text: 'You');
 				add:
 				(PRDocumentListAnnotation new 
-					parameterAt: 'path' put: 'wrongDirectory';
+					parameterAt: 'path' put: 'blogs';
 					parameterAt: 'limit' put: '3';
-					parameterAt: 'sort' put: 'name';
 					yourself);
 				yourself.
 				
@@ -19,5 +18,7 @@ testWrongDirectoryShouldReturnEmptyDocumentGroup
 	documentGroup := doc children second.
 	
 	sections := documentGroup children.
+
+	self assert: sections size equals: 12.
 	
-	self assert: sections isEmpty
+	self assert: sections first children first text equals: 'Okay'.

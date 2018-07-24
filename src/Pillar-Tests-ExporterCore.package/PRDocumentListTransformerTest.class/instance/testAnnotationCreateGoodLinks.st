@@ -1,5 +1,5 @@
 private
-testDocumentListAnnotationIsReplacedByFilesContents
+testAnnotationCreateGoodLinks
 	| doc documentGroup sections |
 	doc := PRDocument new 
 				add: 
@@ -9,6 +9,7 @@ testDocumentListAnnotationIsReplacedByFilesContents
 				(PRDocumentListAnnotation new 
 					parameterAt: 'path' put: 'blogs';
 					parameterAt: 'limit' put: '3';
+					parameterAt: 'sort' put: 'name';
 					yourself);
 				yourself.
 				
@@ -20,5 +21,5 @@ testDocumentListAnnotationIsReplacedByFilesContents
 	sections := documentGroup children.
 
 	self assert: sections size equals: 12.
-	
-	self assert: sections first children first text equals: 'Okay'.
+	self assert: (sections at: 4) reference  equals: 'blogs/blog1.pillar'.
+	self assert: (sections at: 12) reference  equals: 'blogs/blog3.pillar'.

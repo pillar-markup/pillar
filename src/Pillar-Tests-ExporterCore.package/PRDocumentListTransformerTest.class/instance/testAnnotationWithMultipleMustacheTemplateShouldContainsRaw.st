@@ -1,5 +1,5 @@
 private
-testWithMultipleMustacheTemplateShouldContainsRaw
+testAnnotationWithMultipleMustacheTemplateShouldContainsRaw
 	| doc |
 	self createTemplateFile.
 	doc := PRDocument new 
@@ -9,6 +9,8 @@ testWithMultipleMustacheTemplateShouldContainsRaw
 				add:
 				(PRDocumentListAnnotation new 
 					parameterAt: 'path' put: 'blogs';
+					parameterAt: 'sort' put: 'name';
+					parameterAt: 'limit' put: '3';
 					parameterAt: 'templates' put: #('templates/docArticle.mustache' 'templates/me.mustache');
 					yourself);
 				yourself.
