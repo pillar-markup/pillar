@@ -5,11 +5,7 @@ generateFileUsingTemplateFromDocument: aDocument
 	conf := ConfigurationForPillar newFromDictionary: aDocument properties.
 	conf parent: self configuration.
 	
-	aDocument
-		add:
-			((PRInternalLink reference: self filesDirectory , '/' , self currentFile basename)
-				addAll: {(PRText content: 'Read more')};
-				yourself).
+	self addLinkToDocument: aDocument.
 
 	"Write the  document in HTML, It means that this template is only for HTML generation"
 	conf at: #content put: (PRHTMLWriter write: aDocument).

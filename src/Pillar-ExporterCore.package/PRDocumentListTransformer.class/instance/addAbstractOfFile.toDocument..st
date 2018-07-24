@@ -11,8 +11,4 @@ addAbstractOfFile: aFileReference toDocument: aDocument
 			aDocument text: previousContent , (self generateFileUsingTemplateFromDocument: abstractDoc) ]
 		ifEmpty: [ 
 			aDocument addAll: abstractDoc children.
-			aDocument
-				add:
-					((PRInternalLink reference: self filesDirectory , '/' , self currentFile basename)
-						addAll: {(PRText content: 'Read more')};
-						yourself) ]
+			self addLinkToDocument: aDocument ]
