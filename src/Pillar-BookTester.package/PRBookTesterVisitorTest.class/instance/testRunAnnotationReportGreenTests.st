@@ -1,7 +1,6 @@
 tests-annotations
 testRunAnnotationReportGreenTests
 	| doc docText bookTester|
-	PRBookTestDummyRunAnnotation methodDict removeAll.
 	docText := '
 [[[methodDefinition=true
 PRBookTestDummyRunAnnotation>>test1
@@ -29,7 +28,6 @@ ${run:testClass=PRBookTestDummyRunAnnotation}$'.
 	self assert: bookTester failedTests isEmpty.
 	"Three methodDefinition checking the compilation of those three methods + two test methods running"
 	self assert: bookTester validTests size equals: 5.
-
 
 	
 	

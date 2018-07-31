@@ -1,5 +1,6 @@
 running
 testTransformerCreatesFigureReference
+"It is needed to create the subfolder image/YourImage/figures as if it was a book in order for these tests to work"
 	| doc figure |
 	doc := PRDocument new
 				add:
@@ -10,7 +11,7 @@ testTransformerCreatesFigureReference
 					parameterAt: 'caption' put: 'The method determining if an integer is a power of two';
 					parameterAt: 'width' put: '50';
 					parameterAt: 'label' put: 'times2';
-				yourself).
+				yourself); yourself.
 	"Pay attention that here the values should really be the values as created by the ${publications:... parser}$"
 	((PRScreenshotTransformer withContext: (PRProject on: testingFileSystem )) start: doc).
 	figure := doc children first.

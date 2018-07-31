@@ -10,4 +10,4 @@ PRBookTestDummyMethodDefinition >> methodTestDefinitionCreatesTest
 	doc := PRPillarParser new parse: docText.
 	bTester := PRBookTesterVisitor new.
 	bTester visitCodeblockMethodDefinition: doc children first. 
-	self assert: (PRBookTestDummyMethodDefinition methodDict includesKey: #methodTestDefinitionCreatesTest)
+	self assert: (PRBookTestDummyMethodDefinition methodDict includesKey: #methodTestDefinitionCreatesTest).

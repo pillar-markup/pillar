@@ -1,7 +1,7 @@
 tests-annotations
 testRunAnnotationReportFailingTests
 	| doc docText bookTester|
-	PRBookTestDummyRunAnnotation methodDict removeAll.
+
 	docText := '
 [[[methodDefinition=true
 PRBookTestDummyRunAnnotation>>test1
@@ -37,7 +37,6 @@ ${run:testClass=PRBookTestDummyRunAnnotation}$'.
 	"Two failed tests"
 	self assert: bookTester failedTests size equals: 2.
 
-	
 	
 	
 	
