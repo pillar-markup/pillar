@@ -13,6 +13,7 @@ testTransformerCreatesFigureReference
 					parameterAt: 'label' put: 'times2';
 				yourself); yourself.
 	"Pay attention that here the values should really be the values as created by the ${publications:... parser}$"
+	self halt.
 	((PRScreenshotTransformer withContext: (PRProject on: testingFileSystem )) start: doc).
 	figure := doc children first.
 	"Let's test that a figure reference has been added to the document with the correct parameters"
