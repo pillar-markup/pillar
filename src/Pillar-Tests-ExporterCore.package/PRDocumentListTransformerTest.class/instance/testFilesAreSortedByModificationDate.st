@@ -1,6 +1,7 @@
 private
 testFilesAreSortedByModificationDate
 	| doc documentGroup sections |
+	"${docList:path=blogs|limit=3|sort=date}$"
 	doc := PRDocument new 
 				add: 
 				(PRText new 
@@ -23,3 +24,5 @@ testFilesAreSortedByModificationDate
 	self assert: sections size equals: 12.
 	
 	self assert: sections first children first text equals: 'And the third'.
+	self assert: (sections at: 5) children first text equals: 'That''s the second'.
+	self assert: (sections at: 9) children first text equals: 'Okay'.

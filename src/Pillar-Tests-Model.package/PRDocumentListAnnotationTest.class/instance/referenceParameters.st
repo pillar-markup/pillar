@@ -10,3 +10,7 @@ referenceParameters
 		PRParameter 
 			keyNode: (PRParameterKey named: 'sort')
 			valueNode: (PRParameterValue value: 'date') }
+		PRParameter 
+			keyNode: (PRParameterKey named: 'templates')
+			valueNode: (PRParameterValue value: #('templates/docArticle.mustache')) }
+	

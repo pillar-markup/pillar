@@ -1,7 +1,7 @@
 private
-testFilesAreSortedByBaseName
-	| doc documentGroup sections |
-	"${docList:path=blogs|sort=name|limit=3}$"
+testAnnotationWithoutLimitParameterShouldTakeDefaultLimitValue
+	| doc documentGroup sections links |
+	"${docList:path=blogs|sort=name}$"
 	doc := PRDocument new 
 				add: 
 				(PRText new 
@@ -9,7 +9,6 @@ testFilesAreSortedByBaseName
 				add:
 				(PRDocumentListAnnotation new 
 					parameterAt: 'path' put: 'blogs';
-					parameterAt: 'limit' put: '3';
 					parameterAt: 'sort' put: 'name';
 					yourself);
 				yourself.
@@ -21,8 +20,11 @@ testFilesAreSortedByBaseName
 	
 	sections := documentGroup children.
 
+	links := sections select: [ :each | each class = PRInternalLink ].
+
 	self assert: sections size equals: 12.
 	
 	self assert: sections first children first text equals: 'Okay'.
-	self assert: (sections at: 5) children first text equals: 'That''s the second'.
-	self assert: (sections at: 9) children first text equals: 'And the third'.
+	
+	"default value of limit 3"
+	self assert: links size equals: 3
