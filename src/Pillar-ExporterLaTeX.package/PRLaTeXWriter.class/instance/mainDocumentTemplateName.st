@@ -1,4 +1,4 @@
 templating
 mainDocumentTemplateName
 	
-	^ 'latexTemplate'
+	^ 'template'
