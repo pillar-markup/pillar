@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "QuentinDucasse 7/10/2018 14:56",
+	"super" : "PRVisitor",
+	"category" : "Pillar-BookTester-Visitor",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"allTestResults",
+		"workingDirectory",
+		"codeblockDict"
+	],
+	"name" : "PRBookTesterVisitor",
+	"type" : "normal"
+}

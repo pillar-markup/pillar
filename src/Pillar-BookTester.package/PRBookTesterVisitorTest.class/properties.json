@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "PRBookTestEnvironment",
+	"category" : "Pillar-BookTester-Tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"testingFileSystem"
+	],
+	"name" : "PRBookTesterVisitorTest",
+	"type" : "normal"
+}

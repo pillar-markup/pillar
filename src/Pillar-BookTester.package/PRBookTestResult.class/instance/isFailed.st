@@ -1,0 +1,4 @@
+testing
+isFailed
+
+	^ status not

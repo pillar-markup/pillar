@@ -1,0 +1,4 @@
+accessing
+defaultParameterName
+
+	^ 'class'
