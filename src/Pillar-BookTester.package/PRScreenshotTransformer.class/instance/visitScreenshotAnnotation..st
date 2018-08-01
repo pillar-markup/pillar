@@ -13,10 +13,10 @@ visitScreenshotAnnotation: aPRShowMethodAnnotation
 	browser selectPackage: packageName.
 	browser selectClass: className.
 	browser selectMethod: methodName.
-	"Note that we want the textual names of class and method and not the real objects"
-	fileName := browser exportAsPNGForPillarWithClass: aPRShowMethodAnnotation className andMethod: aPRShowMethodAnnotation methodName.
+	fileName := browser exportAsPNGSilentlyForPillarWithClass: aPRShowMethodAnnotation className andMethod: aPRShowMethodAnnotation methodName. 
+	"We want the names and not the objects in order to to generate the png file name"
 	"Transformation of the annotation into a PRFigure NOTE: it wont work if you want to screenshot a method/class with a + in it"
-	figure := PRPillarParser new parse:('+' , aPRShowMethodAnnotation caption, '.>file://figures/', fileName,
+	figure := PRPillarParser new parse:('+' , aPRShowMethodAnnotation caption, '.>file://figures/screenshots', fileName,
 								'|width=', aPRShowMethodAnnotation width,
 								'|label=', aPRShowMethodAnnotation label, '+').
 	figure := (figure children first) children first.
