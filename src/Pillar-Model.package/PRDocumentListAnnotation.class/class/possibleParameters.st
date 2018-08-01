@@ -1,4 +1,4 @@
 protected
 possibleParameters
 	
-	^ #(path limit sort)
+	^ #(path limit sort templates)

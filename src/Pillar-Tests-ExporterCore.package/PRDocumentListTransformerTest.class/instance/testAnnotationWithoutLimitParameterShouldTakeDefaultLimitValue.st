@@ -1,6 +1,7 @@
 private
-testDocumentListAnnotationCreateGoodLinks
-	| doc documentGroup sections |
+testAnnotationWithoutLimitParameterShouldTakeDefaultLimitValue
+	| doc documentGroup sections links |
+	"${docList:path=blogs|sort=name}$"
 	doc := PRDocument new 
 				add: 
 				(PRText new 
@@ -8,7 +9,7 @@ testDocumentListAnnotationCreateGoodLinks
 				add:
 				(PRDocumentListAnnotation new 
 					parameterAt: 'path' put: 'blogs';
-					parameterAt: 'limit' put: '3';
+					parameterAt: 'sort' put: 'name';
 					yourself);
 				yourself.
 				
@@ -19,6 +20,11 @@ testDocumentListAnnotationCreateGoodLinks
 	
 	sections := documentGroup children.
 
+	links := sections select: [ :each | each class = PRInternalLink ].
+
 	self assert: sections size equals: 12.
 	
-	self assert: (sections at: 4) reference  equals: 'blogs/blog1.pillar'.
+	self assert: sections first children first text equals: 'Okay'.
+	
+	"default value of limit 3"
+	self assert: links size equals: 3

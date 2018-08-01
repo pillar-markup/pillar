@@ -1,15 +1,15 @@
 private
-testWrongDirectoryShouldReturnEmptyDocumentGroup
+testAnnotationWithoutSortParameterShouldListFilesInArbitraryOrder
 	| doc documentGroup sections |
+	"${docList:path=blogs|limit=2}$"
 	doc := PRDocument new 
 				add: 
 				(PRText new 
 					text: 'You');
 				add:
 				(PRDocumentListAnnotation new 
-					parameterAt: 'path' put: 'wrongDirectory';
-					parameterAt: 'limit' put: '3';
-					parameterAt: 'sort' put: 'name';
+					parameterAt: 'path' put: 'blogs';
+					parameterAt: 'limit' put: '2';
 					yourself);
 				yourself.
 				
@@ -17,7 +17,7 @@ testWrongDirectoryShouldReturnEmptyDocumentGroup
 	((PRDocumentListTransformer withContext: (PRProject on: testingFileSystem)) start: doc).
 	
 	documentGroup := doc children second.
-	
 	sections := documentGroup children.
 	
-	self assert: sections isEmpty
+	self assert: sections size equals: 8.
+	self assert: sections first children first text equals: 'Okay'.
