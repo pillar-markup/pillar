@@ -1,6 +1,7 @@
 private
 testFilesAreSortedByBaseName
 	| doc documentGroup sections |
+	"${docList:path=blogs|sort=name|limit=3}$"
 	doc := PRDocument new 
 				add: 
 				(PRText new 

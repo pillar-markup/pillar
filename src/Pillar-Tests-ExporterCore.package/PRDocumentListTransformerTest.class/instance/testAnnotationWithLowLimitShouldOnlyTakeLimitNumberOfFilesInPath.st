@@ -1,6 +1,7 @@
 private
 testAnnotationWithLowLimitShouldOnlyTakeLimitNumberOfFilesInPath
 	| doc documentGroup links |
+	"${docList:path=blogs|limit=2}$"
 	doc := PRDocument new 
 				add: 
 				(PRText new 

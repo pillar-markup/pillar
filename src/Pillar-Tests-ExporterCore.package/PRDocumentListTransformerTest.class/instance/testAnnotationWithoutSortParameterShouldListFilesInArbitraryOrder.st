@@ -1,6 +1,7 @@
 private
 testAnnotationWithoutSortParameterShouldListFilesInArbitraryOrder
 	| doc documentGroup sections |
+	"${docList:path=blogs|limit=2}$"
 	doc := PRDocument new 
 				add: 
 				(PRText new 

@@ -1,6 +1,7 @@
 private
 testAnnotationWithoutSpecifyingPathShouldRaiseError
 	| doc |
+	"${docList:sort=name|limit=5}$"
 	doc := PRDocument new 
 				add: 
 				(PRText new 

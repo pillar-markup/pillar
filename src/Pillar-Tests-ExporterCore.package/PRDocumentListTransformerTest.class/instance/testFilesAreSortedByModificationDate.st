@@ -1,6 +1,7 @@
 private
 testFilesAreSortedByModificationDate
 	| doc documentGroup sections |
+	"${docList:path=blogs|limit=3|sort=date}$"
 	doc := PRDocument new 
 				add: 
 				(PRText new 

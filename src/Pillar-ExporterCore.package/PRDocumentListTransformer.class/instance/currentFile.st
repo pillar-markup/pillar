@@ -1,3 +1,3 @@
-accessing
+visiting
 currentFile
 	^ currentFile

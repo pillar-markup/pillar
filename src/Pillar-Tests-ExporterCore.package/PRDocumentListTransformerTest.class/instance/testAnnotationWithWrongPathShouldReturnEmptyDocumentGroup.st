@@ -1,6 +1,7 @@
 private
 testAnnotationWithWrongPathShouldReturnEmptyDocumentGroup
 	| doc documentGroup sections |
+	"${docList:path=wrongDirectory|limit=3|sort=name}$"
 	doc := PRDocument new 
 				add: 
 				(PRText new 

@@ -1,6 +1,7 @@
 private
 testAnnotationWithMultipleMustacheTemplateShouldContainsRaw
 	| doc |
+	"${docList:path=blogs|sort=name|limit=3|templates=#('templates/docArticle.mustache' 'templates/me.mustache')}$"
 	self createTemplateFile.
 	doc := PRDocument new 
 				add: 

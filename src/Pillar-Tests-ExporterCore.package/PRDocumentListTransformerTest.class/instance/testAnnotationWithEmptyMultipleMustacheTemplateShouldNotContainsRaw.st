@@ -1,6 +1,7 @@
 private
 testAnnotationWithEmptyMultipleMustacheTemplateShouldNotContainsRaw
 	| doc |
+	"${docList:path=blogs}$"
 	self createTemplateFile.
 	doc := PRDocument new 
 				add: 

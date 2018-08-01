@@ -1,6 +1,7 @@
 private
 testAnnotationWithWrongTemplateExtensionShouldNotContainsRaw
 	| doc |
+	"${docList:path=blogs|sort=name|limit=3|templates=#('templates/docArticle.avi')}$"
 	self createTemplateFile.
 	doc := PRDocument new 
 				add: 

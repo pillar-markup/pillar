@@ -1,6 +1,7 @@
 private
 testAnnotationCreateGoodLinks
 	| doc documentGroup sections |
+	"${docList:path=blogs|limit=3|sort=name}$"
 	doc := PRDocument new 
 				add: 
 				(PRText new 

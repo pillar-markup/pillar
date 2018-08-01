@@ -1,6 +1,7 @@
 private
 testAnnotationWithoutLimitParameterShouldTakeDefaultLimitValue
 	| doc documentGroup sections links |
+	"${docList:path=blogs|sort=name}$"
 	doc := PRDocument new 
 				add: 
 				(PRText new 
