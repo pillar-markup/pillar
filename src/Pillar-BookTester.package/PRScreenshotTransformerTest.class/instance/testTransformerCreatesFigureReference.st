@@ -5,7 +5,6 @@ testTransformerCreatesFigureReference
 	doc := PRDocument new
 				add:
 				(PRScreenshotAnnotation new
-					parameterAt: 'packageName' put: 'Kernel';
 					parameterAt: 'className' put: 'Integer';
 					parameterAt: 'methodName' put: 'isPowerOfTwo';
 					parameterAt: 'caption' put: 'The method determining if an integer is a power of two';
@@ -13,7 +12,6 @@ testTransformerCreatesFigureReference
 					parameterAt: 'label' put: 'times2';
 				yourself); yourself.
 	"Pay attention that here the values should really be the values as created by the ${publications:... parser}$"
-	self halt.
 	((PRScreenshotTransformer withContext: (PRProject on: testingFileSystem )) start: doc).
 	figure := doc children first.
 	"Let's test that a figure reference has been added to the document with the correct parameters"
