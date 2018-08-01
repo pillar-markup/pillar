@@ -1,6 +1,7 @@
 private
-testDocumentListWithOnlySortParameter
-	| doc documentGroup sections |
+testAnnotationWithLowLimitShouldOnlyTakeLimitNumberOfFilesInPath
+	| doc documentGroup links |
+	"${docList:path=blogs|limit=2}$"
 	doc := PRDocument new 
 				add: 
 				(PRText new 
@@ -8,7 +9,7 @@ testDocumentListWithOnlySortParameter
 				add:
 				(PRDocumentListAnnotation new 
 					parameterAt: 'path' put: 'blogs';
-					parameterAt: 'sort' put: 'name';
+					parameterAt: 'limit' put: '2';
 					yourself);
 				yourself.
 				
@@ -17,8 +18,8 @@ testDocumentListWithOnlySortParameter
 	
 	documentGroup := doc children second.
 	
-	sections := documentGroup children.
-
-	self assert: sections size equals: 12.
+	links := documentGroup children select: [ :each | each class = PRInternalLink ].
 	
-	self assert: sections first children first text equals: 'Okay'.
+	self deny: links size = 3.
+	
+	self assert: links size equals: 2.

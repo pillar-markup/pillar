@@ -6,7 +6,10 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"workingDirectory"
+		"workingDirectory",
+		"currentFile",
+		"filesDirectory",
+		"availableTemplates"
 	],
 	"name" : "PRDocumentListTransformer",
 	"type" : "normal"

@@ -1,6 +1,7 @@
 private
-testDocumentListAnnotationIsReplacedByFilesContents
+testAnnotationIsReplacedByFilesContents
 	| doc documentGroup sections |
+	"${docList:path=blogs|limit=3}$"
 	doc := PRDocument new 
 				add: 
 				(PRText new 
