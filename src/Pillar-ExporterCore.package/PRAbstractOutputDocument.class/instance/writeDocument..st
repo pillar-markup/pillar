@@ -6,7 +6,7 @@ writeDocument: aDocument
 	templateValues := self getMustacheTemplateValuesFromDocument: aDocument.
 
 	templatedOutput := (MustacheTemplate on: (self templateFile: aDocument) readStream contents) value: templateValues.
-	
+
 	outputFile := (self outputDirectory resolve: (file file relativeTo: project baseDirectory asAbsolute)) withoutExtension , self extension.
 	outputFile ensureDelete.
 	outputFile parent ensureCreateDirectory.
