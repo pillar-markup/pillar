@@ -1,4 +1,4 @@
 writing
 templateFile
 	
-	^ "project baseDirectory / "(self writer templateForConfiguration: project configuration)
+	^ project baseDirectory / (self writer templateForConfiguration: project configuration)
