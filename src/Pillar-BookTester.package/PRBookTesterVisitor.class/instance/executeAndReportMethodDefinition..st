@@ -1,6 +1,6 @@
 compiling
 executeAndReportMethodDefinition: result
-	| isCorrect className |
+	| isCorrect |
 	"Executes the method definition in the given class with the right name
 	[[[methodDefinition
 	Plop >> plop1
@@ -10,6 +10,7 @@ executeAndReportMethodDefinition: result
 	
 	result explanation: 'Method did not compile without raising an exception'.
 	isCorrect := false.
+	"fragmented text is composed of: 1) className 2) methodName 3) method definition"
 	[ (self class environment at: (result fragmentedText first) asSymbol) compile: (result fragmentedText second,'
 	', result fragmentedText third).
 	  isCorrect := true ]
@@ -18,7 +19,3 @@ executeAndReportMethodDefinition: result
 						isCorrect := false ].
 	result status: isCorrect.
 	isCorrect ifTrue: [ result explanation: 'Method compiled' ]
-	
-	
-	
-		

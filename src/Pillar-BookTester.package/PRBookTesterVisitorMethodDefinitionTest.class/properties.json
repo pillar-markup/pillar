@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRBookTesterVisitorTest",
+	"category" : "Pillar-BookTester-Tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRBookTesterVisitorMethodDefinitionTest",
+	"type" : "normal"
+}
