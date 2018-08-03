@@ -4,3 +4,4 @@ setUp
 	
 	super setUp.
 	"PRBookTestDummyMethodDefinition methodDict removeAll."
+	"PRBookTestDummyMethodDefinition methodDict removeKey: #methodTestDefinitionCreatesTest ifAbsent: [ nil ]"
