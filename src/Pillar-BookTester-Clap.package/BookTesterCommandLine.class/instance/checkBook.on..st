@@ -4,16 +4,14 @@ checkBook: aBookPath on: aStream
 	| bTester |
 	bTester := PRBookTesterVisitor new.
 	bTester checkAndReportFileNamed: aBookPath.
-	aStream streamContents: 
-				 [ :s |
-					s << aBookPath fullName.
-					s crlf.
-					s << 'Passed: ' << (bTester allTestResults size - bTester failedTests size) asString.
-					s crlf.
-					s << 'Failed: ' << bTester failedTests size asString.
-					s crlf;crlf. 
-			bTester failedTests do: [ :each | 
-												s << each explanation.
-												s crlf.
-											   s << each text.
-											   s crlf; crlf ]].
+	aStream << aBookPath fullName.
+			  aStream cr;lf.
+			  aStream << 'Passed: ' << (bTester allTestResults size - bTester failedTests size) asString.
+			  aStream cr; lf.
+			  aStream << 'Failed: ' << bTester failedTests size asString.
+			  aStream cr;lf;cr;lf. 
+			  bTester failedTests do: [ :each | 
+												aStream << each explanation.
+												aStream cr;lf.
+											   aStream << each text.
+											   aStream cr;lf; cr;lf ].
