@@ -1,12 +1,12 @@
 running
-checkBook: aBook on: aStream
+checkBook: aBookPath on: aStream
 
 	| bTester |
 	bTester := PRBookTesterVisitor new.
-	bTester start: aBook.
+	bTester checkAndReportFileNamed: aBookPath.
 	aStream streamContents: 
 				 [ :s |
-					s << aBook fullName.
+					s << aBookPath fullName.
 					s crlf.
 					s << 'Passed: ' << (bTester allTestResults size - bTester failedTests size) asString.
 					s crlf.

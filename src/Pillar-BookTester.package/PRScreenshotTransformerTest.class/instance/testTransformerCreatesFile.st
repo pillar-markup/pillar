@@ -5,8 +5,8 @@ testTransformerCreatesFile
 	doc := PRDocument new
 				add:
 				(PRScreenshotAnnotation new
-					parameterAt: 'className' put: 'Integer';
-					parameterAt: 'methodName' put: 'isPowerOfTwo';
+					parameterAt: 'class' put: 'Integer';
+					parameterAt: 'method' put: 'isPowerOfTwo';
 					parameterAt: 'caption' put: 'The method determining if an integer is a power of two';
 					parameterAt: 'width' put: '50';
 					parameterAt: 'label' put: 'times2';

@@ -1,4 +1,4 @@
 accessing
 possibleParameters
 
-	^ #(className methodName caption width label)
+	^ #(class method caption width label)

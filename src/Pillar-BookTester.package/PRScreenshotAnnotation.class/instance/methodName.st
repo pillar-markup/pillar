@@ -1,4 +1,4 @@
 visiting
 methodName
 
-	^ self parameters at: #methodName
+	^ self parameters at: #method

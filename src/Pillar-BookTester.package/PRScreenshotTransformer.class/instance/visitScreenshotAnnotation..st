@@ -2,12 +2,15 @@ accessing
 visitScreenshotAnnotation: aPRShowMethodAnnotation
 	
 	"Todo: Redefine export so that the .png goes into the folder /figures"
-	| className methodName browser fileName figure |
+	| className methodName browser fileName figure time |
 	className := self class environment at: (aPRShowMethodAnnotation className asSymbol).
 	methodName := aPRShowMethodAnnotation methodName asSymbol.
-	"Creation of the browser and exportation of the figure"
+	"naming the file as follows: className>>methodName-date.png"
+	time := (((DateAndTime now asString copyReplaceAll: ':' with: '-') copyReplaceAll: '.' with: '-') splitOn: '+') first.
+	fileName := (aPRShowMethodAnnotation className, '>>',aPRShowMethodAnnotation methodName),'-', time,'.png'.
 	browser := ClyFullBrowser openOnMethod: className>>methodName.
-	fileName := browser exportAsPNGSilentlyForPillarWithClass: aPRShowMethodAnnotation className andMethod: aPRShowMethodAnnotation methodName.
+	[1 seconds wait.
+	browser window exportAsPNGSilentlyForPillarFileNamed: fileName] fork.
 	browser close. 
 	figure := PRPillarParser new parse:('+' , aPRShowMethodAnnotation caption, '.>file://figures/screenshots/', fileName,
 								'|width=', aPRShowMethodAnnotation width,

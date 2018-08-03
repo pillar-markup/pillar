@@ -1,4 +1,4 @@
 visiting
 className
 
-	^ self parameters at: #className
+	^ self parameters at: #class
