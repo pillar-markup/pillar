@@ -1,7 +1,7 @@
 running
 testTransformerCreatesFile
 "It is needed to create the subfolder image/YourImage/figures as if it was a book in order for these tests to work"
-	| doc |
+	| doc dateStamp |
 	doc := PRDocument new
 				add:
 				(PRScreenshotAnnotation new
@@ -15,6 +15,15 @@ testTransformerCreatesFile
 	((PRScreenshotTransformer withContext: (PRProject on: testingFileSystem )) start: doc).
 	"Let's test that the png file has been created and follows the correct template"
 	self assert: (FileSystem workingDirectory / 'figures' / 'screenshots')  hasChildren.
-	self assert: ((FileSystem workingDirectory / 'figures' / 'screenshots')  allFiles detect: 
-							[:any |any basename match: 'Integer>>isPowerOfTwo','-',(DateAndTime now hour asString),'-',(DateAndTime now minute asString)])
+	dateStamp := (String streamContents:
+					[ :s | s << 'Integer>>isPowerOfTwo'. 
+						    s << ('-', ((DateAndTime year: (DateAndTime now year) 
+											       month: (DateAndTime now month) 
+											       day: (DateAndTime now dayOfMonth)) 
+										asString splitOn:'T') first).
+						    s << ('T',(DateAndTime now hour asString)).
+						    s	<< ('-',(DateAndTime now minute asString)).
+							 s << '*'	]). 
+	self assert: ((FileSystem workingDirectory / 'figures' / 'screenshots')  allFiles 
+	     anySatisfy: [:any | dateStamp match: any basename ])
 	
