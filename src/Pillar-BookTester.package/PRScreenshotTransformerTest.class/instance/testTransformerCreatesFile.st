@@ -14,5 +14,7 @@ testTransformerCreatesFile
 	"Pay attention that here the values should really be the values as created by the ${publications:... parser}$"
 	((PRScreenshotTransformer withContext: (PRProject on: testingFileSystem )) start: doc).
 	"Let's test that the png file has been created and follows the correct template"
-	self assert: (FileSystem workingDirectory / 'figures' / 'screenshots' / 'Integer>>isPowerOfTwo',(((DateAndTime now asString copyReplaceAll: ':' with: '-') copyReplaceAll: '.' with: '-') splitOn: '+') first,'.png') isFile.
+	self assert: (FileSystem workingDirectory / 'figures' / 'screenshots')  hasChildren.
+	self assert: ((FileSystem workingDirectory / 'figures' / 'screenshots')  allFiles detect: 
+							[:any |any basename match: 'Integer>>isPowerOfTwo','-',(DateAndTime now hour asString),'-',(DateAndTime now minute asString)])
 	

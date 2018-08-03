@@ -1,7 +1,6 @@
 accessing
 visitScreenshotAnnotation: aPRShowMethodAnnotation
 	
-	"Todo: Redefine export so that the .png goes into the folder /figures"
 	| className methodName browser fileName figure time |
 	className := self class environment at: (aPRShowMethodAnnotation className asSymbol).
 	methodName := aPRShowMethodAnnotation methodName asSymbol.
@@ -9,9 +8,9 @@ visitScreenshotAnnotation: aPRShowMethodAnnotation
 	time := (((DateAndTime now asString copyReplaceAll: ':' with: '-') copyReplaceAll: '.' with: '-') splitOn: '+') first.
 	fileName := (aPRShowMethodAnnotation className, '>>',aPRShowMethodAnnotation methodName),'-', time,'.png'.
 	browser := ClyFullBrowser openOnMethod: className>>methodName.
+	"this is needed in another process due to the way Calypso renders the text"
 	[1 seconds wait.
-	browser window exportAsPNGSilentlyForPillarFileNamed: fileName] fork.
-	browser close. 
+	UIManager default defer: [browser window exportAsPNGSilentlyForPillarFileNamed: fileName]] fork.
 	figure := PRPillarParser new parse:('+' , aPRShowMethodAnnotation caption, '.>file://figures/screenshots/', fileName,
 								'|width=', aPRShowMethodAnnotation width,
 								'|label=', aPRShowMethodAnnotation label, '+').
