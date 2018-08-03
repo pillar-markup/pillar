@@ -3,5 +3,4 @@ setUp
 	"Hooks that subclasses may override to define the fixture of test."
 	
 	super setUp.
-	"PRBookTestDummyMethodDefinition methodDict removeAll."
-	"PRBookTestDummyMethodDefinition methodDict removeKey: #methodTestDefinitionCreatesTest ifAbsent: [ nil ]"
+	PRBookTestDummyMethodDefinition methods do: [ :each | each removeFromSystem ]
