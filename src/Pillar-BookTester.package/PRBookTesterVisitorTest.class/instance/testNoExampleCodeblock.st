@@ -1,14 +1,15 @@
 tests - examples
-testTestcaseCodeblock
-	
+testNoExampleCodeblock
+
 	| docText doc bTester |
-	docText := '[[[testcase=true
+	docText := 
+'[[[
 3 + 4 
->>> 7
+>>> 7		
 ]]]
 '.
 	doc := PRPillarParser new parse: docText.
 	bTester := PRBookTesterVisitor new.
-	bTester start: doc.
+	bTester start: doc. 
 	self assert: bTester failedTests isEmpty.
-	self assert: bTester validTests size equals: 1.
+	self assert: bTester validTests isEmpty.

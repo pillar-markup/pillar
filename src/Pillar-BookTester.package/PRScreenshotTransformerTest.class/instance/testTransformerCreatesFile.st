@@ -11,11 +11,6 @@ testTransformerCreatesFile
 					parameterAt: 'width' put: '50';
 					parameterAt: 'label' put: 'times2';
 				yourself); yourself.
-	"Pay attention that here the values should really be the values as created by the ${publications:... parser}$"
-	((PRScreenshotTransformer withContext: (PRProject on: testingFileSystem )) start: doc).
-	"Let's test that the png file has been created and follows the correct template"
-	self assert: (FileSystem workingDirectory / 'figures' / 'screenshots')  hasChildren.
-	"Note that the dateStamp we are defining is defined at a given minute and can be imprecise"
 	dateStamp := (String streamContents:
 					[ :s | s << 'Integer>>isPowerOfTwo'. 
 						    s << ('-', ((DateAndTime year: (DateAndTime now year) 
@@ -23,8 +18,8 @@ testTransformerCreatesFile
 											       day: (DateAndTime now dayOfMonth)) 
 										asString splitOn:'T') first).
 						    s << ('T',(DateAndTime now hour asString)).
-						    s	<< ('-',(DateAndTime now minute asString)).
 							 s << '*'	]). 
-	self assert: ((FileSystem workingDirectory / 'figures' / 'screenshots')  allFiles 
-	     anySatisfy: [:any | dateStamp match: any basename ])
+	((PRScreenshotTransformer withContext: (PRProject on: testingFileSystem )) start: doc).
+	self assert: (FileSystem workingDirectory / 'figures' / 'screenshots')  hasChildren.
+	self deny: ((FileSystem workingDirectory / 'figures' / 'screenshots')  childrenMatching: dateStamp,'*') isEmpty.
 	

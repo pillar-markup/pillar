@@ -1,9 +1,10 @@
 tests - examples
-testTestcaseCodeblockWithNoBrakets
+testExampleCodeblockWithTwoBrackets
 	
 	| docText doc bTester |
-	docText := '[[[testcase=true
-3 + 12	
+	docText := '[[[example=true
+3 + 12
+>> 15
 ]]]
 '.
 	doc := PRPillarParser new parse: docText.

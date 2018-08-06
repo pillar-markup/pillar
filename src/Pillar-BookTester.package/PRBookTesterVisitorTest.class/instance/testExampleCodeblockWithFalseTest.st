@@ -1,8 +1,8 @@
 tests - examples
-testTestcaseCodeblockWithFalseTest
+testExampleCodeblockWithFalseTest
 	
 	| docText doc bTester |
-	docText := '[[[testcase=true
+	docText := '[[[example=true
 3 + 4 
 >>> 8		
 ]]]

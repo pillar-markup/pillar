@@ -2,7 +2,7 @@ tests - explanation
 testExplanationIsTestPassed
 	
 	| docText doc bTester |
-	docText := '[[[testcase=true
+	docText := '[[[example=true
 3 + 12
 >>> 15		
 ]]]

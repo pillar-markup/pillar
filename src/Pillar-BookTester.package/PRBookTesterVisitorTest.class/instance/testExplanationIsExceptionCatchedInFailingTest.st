@@ -2,7 +2,7 @@ tests - explanation
 testExplanationIsExceptionCatchedInFailingTest
 	
 	| docText doc bTester |
-	docText := '[[[testcase=true
+	docText := '[[[example=true
 3 + ''12''
 >>> 8		
 ]]]

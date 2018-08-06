@@ -1,6 +1,6 @@
 compiling
-executeAndReportTestCase: result
-	"Executes a codeblock with parameter testcase=true.
+executeAndReportExample: result
+	"Executes a codeblock with parameter example=true.
 	To determine whether or not the test passed, this method creates an association as follows:
 	[[[testcase
 	3+4

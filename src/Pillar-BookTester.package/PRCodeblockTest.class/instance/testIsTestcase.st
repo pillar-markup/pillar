@@ -5,7 +5,7 @@ testIsTestcase
 	cb1 := PRCodeblock content:'3+4
 >>>7'
 						   parameters: (OrderedDictionary newFromKeys: #('testcase') andValues: #(true)).
-	self assert: cb1 isTestcase.
+	self assert: cb1 isExample.
 	
 	
 

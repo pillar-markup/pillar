@@ -1,14 +1,14 @@
 tests - examples
-testThreeCodeBlocksWithTwoTestables
+testThreeCodeBlocksWithTwoExamples
 
 	| docText doc bTester |
 	docText := 
-'[[[testcase=true
+'[[[example=true
 3 + 4 
 >>> 7		
 ]]]
 
-[[[testcase=true
+[[[example=true
 3 + 4 
 >>> 8
 ]]]

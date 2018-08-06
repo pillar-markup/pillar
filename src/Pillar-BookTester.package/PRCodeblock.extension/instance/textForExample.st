@@ -1,5 +1,5 @@
 *Pillar-BookTester
-textForTestcase
+textForExample
 	"returns a preformated text for codeblock testing"
 	"(PRCodeblock content: ' 3+4 >>> 7 ' parameters: (OrderedDictionary newFromKeys: #('testcase') andValues: #(true))) textForTestcase 
 	  >>> '(3+4)>>>7'"
