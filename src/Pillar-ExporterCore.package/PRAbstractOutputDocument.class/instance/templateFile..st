@@ -1,4 +1,4 @@
 writing
 templateFile: aDocument
 	
-	^ project baseDirectory / (aDocument propertyAt: 'template' ifAbsent: [self writer templateForConfiguration: project configuration])
+	^ project baseDirectory / ('_support/templates/', self writer class writerName, '/', (aDocument propertyAt: 'template' ifAbsent: [self writer templateForConfiguration: project configuration]))
