@@ -1,4 +1,4 @@
 templating
 templateForContext: aPillarContext
 	
-	^ '_support/templates/presentation.beamer.template'
+	^ '_support/templates/beamer/presentation.template'
