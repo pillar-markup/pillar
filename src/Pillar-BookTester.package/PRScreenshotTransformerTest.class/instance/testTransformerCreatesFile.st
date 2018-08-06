@@ -15,6 +15,7 @@ testTransformerCreatesFile
 	((PRScreenshotTransformer withContext: (PRProject on: testingFileSystem )) start: doc).
 	"Let's test that the png file has been created and follows the correct template"
 	self assert: (FileSystem workingDirectory / 'figures' / 'screenshots')  hasChildren.
+	"Note that the dateStamp we are defining is defined at a given minute and can be imprecise"
 	dateStamp := (String streamContents:
 					[ :s | s << 'Integer>>isPowerOfTwo'. 
 						    s << ('-', ((DateAndTime year: (DateAndTime now year) 

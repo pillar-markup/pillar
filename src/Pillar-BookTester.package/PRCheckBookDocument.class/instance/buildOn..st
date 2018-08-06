@@ -5,7 +5,7 @@ buildOn: aPRProject
 	parsedDocument := self parseInputFile: file.
 	transformedDocument := self transformDocument: parsedDocument.
 	bTester := PRBookTesterVisitor new.
-	bTester start: transformedDocument.
+	bTester start:  transformedDocument.
 	stream := String streamContents: 
 				 [ :s |
 					s << file fullName.
@@ -18,6 +18,8 @@ buildOn: aPRProject
 												s << each explanation.
 												s crlf.
 											   s << each text.
-											   s crlf; crlf ]].
+											   s crlf; crlf ]
+				   s << 'Book Checked!'.
+					s crlf.].
 	Stdio stdout 
 		nextPutAll: stream contents.

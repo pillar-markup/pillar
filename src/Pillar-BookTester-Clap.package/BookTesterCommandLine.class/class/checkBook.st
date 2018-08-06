@@ -4,9 +4,9 @@ checkBook
 
 	^ (ClapCommand withName: 'checkBook')
 		description: 'Checks the examples and the correct compilation of methods and classes defined in the book/chapter';
-		addPositional: ((ClapPositional withName: 'path') defaultMeaning: [ FileSystem workingDirectory / 'index.pillar' ]);
-			description: 'Path to the targetted book/chapter. Default: current directory';
-		"the default positional is the current directory"
+		addPositional: ((ClapPositional withName: 'path') defaultMeaning: [ FileSystem workingDirectory "/ [:any | '*.pillar' match: any]"]);
+			description: 'Path to the targetted book/chapter. Default: index.pillar in the current directory';
+		"the default positional is index/pillar in the current directory"
 		meaning: [ :args | 
 			args atName: 'help' ifFound: [ :help |
 				help value; exitSuccess ].
