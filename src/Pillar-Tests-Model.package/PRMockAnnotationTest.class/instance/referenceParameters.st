@@ -1,6 +1,9 @@
 helpers
 referenceParameters
-	^ OrderedDictionary new
-		add: 'value' -> 'Foo';
-		add: 'number' -> 5;
-		yourself
+	^ PRParameters withAll: { 
+		PRParameter 
+			keyNode: (PRParameterKey named: 'value')
+			valueNode: (PRParameterValue value: 'Foo').
+		PRParameter 
+			keyNode: (PRParameterKey named: 'number')
+			valueNode: (PRParameterValue value: 5) }

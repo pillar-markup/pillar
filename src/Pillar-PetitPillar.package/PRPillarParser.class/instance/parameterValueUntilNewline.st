@@ -1,3 +1,3 @@
 grammar - Parameter
 parameterValueUntilNewline
-	^ super parameterValueUntilNewline ==> [ :array | self stringFrom: array ]
+	^ super parameterValueUntilNewline ==> [ :array | self stringFrom: array third ]

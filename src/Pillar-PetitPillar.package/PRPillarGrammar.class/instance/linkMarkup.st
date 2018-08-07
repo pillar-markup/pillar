@@ -1,3 +1,3 @@
 grammar - Reference
 linkMarkup
-	^ (Markups at: PRLink) asParser
+	^ (Markups at: PRLink) asPParser

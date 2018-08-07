@@ -2,7 +2,11 @@ tests - Annotation
 testAnnotationParameters
 	| expected |
 	super testAnnotationParameters.
-	expected := OrderedDictionary new.
-	expected at: 'foo' put: 'bar'.
-	expected at: 'timo' put: 'leon'.
+	expected := PRParameters withAll: { 
+		(PRParameter 
+			keyNode: (PRParameterKey named: #foo) 
+			valueNode: (PRParameterValue value: 'bar')).
+		(PRParameter 
+			keyNode: (PRParameterKey named: #timo) 
+			valueNode: (PRParameterValue value: 'leon')) }.
 	self assert: result equals:  expected

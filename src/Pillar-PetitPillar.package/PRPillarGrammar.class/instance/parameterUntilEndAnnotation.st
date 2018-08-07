@@ -1,3 +1,6 @@
 grammar - Parameter
 parameterUntilEndAnnotation
-	^ parameterKeyUntilEndAnnotation , parameterValueUntilEndAnnotation optional
+	^ 	epsilonToken ,
+		parameterKeyUntilEndAnnotation , 
+		parameterValueUntilEndAnnotation optional , 
+		epsilonToken 

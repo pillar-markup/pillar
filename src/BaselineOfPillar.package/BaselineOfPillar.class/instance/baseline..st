@@ -21,23 +21,14 @@ baseline: spec
 				baseline: 'ContainersPropertyEnvironment'
 				with: [ spec repository: 'github://Ducasse/Containers-PropertyEnvironment' ].
 			spec
-				project: 'PetitParser'
-					with: [ spec
-						className: #ConfigurationOfPetitParser;
-						versionString: #stable;
-						loads: #('Tests');
-						repository: 'http://www.smalltalkhub.com/mc/Moose/PetitParser/main' ];
+				baseline: 'PetitParser2Core' with: [
+					spec
+					 	repository: 'github://kursjan/petitparser2' ];
 				baseline: 'Chrysal' with: [ spec repository: 'github://Ducasse/Chrysal/src' ];
 				baseline: 'Mustache'
 					with: [ spec
 						repository: 'github://noha/mustache:v1.0/repository';
-						loads: #('Core' 'Tests') ];
-				project: 'PetitParserTest'
-					with: [ spec
-						className: #ConfigurationOfPetitParser;
-						versionString: #stable;
-						loads: #('Tests');
-						repository: 'http://www.smalltalkhub.com/mc/Moose/PetitParser/main' ].
+						loads: #('Core' 'Tests') ].
 			spec
 				package: 'Pillar-Chrysal-Generator' with: [ spec requires: #('Chrysal') ];
 				"Only needed to regenerate the pillar configuration: it depends on Chrysal and Chrysal-Runtime"
@@ -57,7 +48,7 @@ baseline: spec
 				package: 'Pillar-ExporterText' with: [ spec requires: #('Pillar-ExporterCore') ];
 				package: 'Pillar-GitBook' with: [ spec requires: #('Pillar-Cli' 'markdown exporter' 'text exporter') ];
 				package: 'Pillar-Model';
-				package: 'Pillar-PetitPillar' with: [ spec requires: #('PetitParser' 'Pillar-Model') ];
+				package: 'Pillar-PetitPillar' with: [ spec requires: #('PetitParser2Core' 'Pillar-Model') ];
 				package: 'Pillar-Pharo-Tools' with: [ spec requires: #('Pillar-Model' 'All exporters') ];
 				package: 'Pillar-Project' with: [ spec requires: #('Pillar-Model' 'All exporters') ];
 				package: 'Pillar-Tests-Cli' with: [ spec requires: #('Pillar-Cli') ];
@@ -74,7 +65,7 @@ baseline: spec
 				package: 'Pillar-Tests-ExporterPillar' with: [ spec requires: #('Pillar-ExporterPillar' 'Pillar-Tests-ExporterCore') ];
 				package: 'Pillar-Tests-ExporterText' with: [ spec requires: #('Pillar-ExporterText' 'Pillar-Tests-ExporterCore') ];
 				package: 'Pillar-Tests-Model' with: [ spec requires: #('Pillar-Model' 'Pillar-ExporterPillar' 'Pillar-ExporterText') ];
-				package: 'Pillar-Tests-PetitPillar' with: [ spec requires: #('PetitParserTest' 'Pillar-PetitPillar') ];
+				package: 'Pillar-Tests-PetitPillar' with: [ spec requires: #('PetitParser2Core' 'Pillar-PetitPillar') ];
 				package: 'Pillar-Tests-Project' with: [ spec requires: #('Pillar-Project') ];
 				package: 'Pillar-Tests-Integration' with: [ spec requires: #('Pillar-Project') ].
 			spec
@@ -109,4 +100,24 @@ baseline: spec
 				group: 'pillar exporter' with: #('Pillar-ExporterPillar');
 				group: 'pillar exporter tests' with: #('Pillar-Tests-ExporterPillar');
 				group: 'text exporter' with: #('Pillar-ExporterText');
-				group: 'text exporter tests' with: #('Pillar-Tests-ExporterText') ]
+				group: 'text exporter tests' with: #('Pillar-Tests-ExporterText').
+
+		"Petit Parse One packages"			
+		spec
+				project: 'PetitParser'
+					with: [ spec
+						className: #ConfigurationOfPetitParser;
+						versionString: #stable;
+						loads: #('Tests');
+						repository: 'http://www.smalltalkhub.com/mc/Moose/PetitParser/main' ];
+				project: 'PetitParserTest'
+					with: [ spec
+						className: #ConfigurationOfPetitParser;
+						versionString: #stable;
+						loads: #('Tests');
+						repository: 'http://www.smalltalkhub.com/mc/Moose/PetitParser/main' ];
+				package: 'Pillar-PetitPillarOld' with: [ spec requires: #('PetitParser' 'Pillar-Model') ];
+				package: 'Pillar-Tests-PetitPillarOld' with: [ 
+					spec requires: #('PetitParserTest' 'Pillar-PetitPillarOld') ];
+				group: 'old' with: #( 'Pillar-PetitPillarOld' 'Pillar-Tests-PetitPillarOld' ) 
+	]

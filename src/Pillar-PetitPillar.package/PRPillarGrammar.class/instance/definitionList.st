@@ -1,3 +1,5 @@
 grammar - List
 definitionList
-	^ (termListItem / dataListItem) plus
+	^ 	epsilonToken ,
+		(termListItem / dataListItem) plus , 
+		epsilonToken

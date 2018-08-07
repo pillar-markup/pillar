@@ -1,5 +1,10 @@
 grammar - Script
 script
 	| endParser |
-	endParser := newline asParser , (EndMarkups at: PRCodeblock) asParser , space star , lineEnd.
-	^ (Markups at: PRCodeblock) asParser , scriptParameters , endParser negate plus flatten , endParser
+	endParser := newline asPParser , (EndMarkups at: PRCodeblock) asPParser , space star , lineEnd.
+	^	epsilonToken, 
+		(Markups at: PRCodeblock) asPParser , 
+		scriptParameters , 
+		endParser negate plus flatten , 
+		endParser,
+		epsilonToken

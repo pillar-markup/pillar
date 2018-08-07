@@ -1,5 +1,6 @@
 helpers
 referenceParameters
-	^ OrderedDictionary new
-		add: 'width' -> 50;
-		yourself
+	^ PRParameters withAll: { 
+		PRParameter 
+			keyNode: (PRParameterKey named: 'width')
+			valueNode: (PRParameterValue value: 50) }

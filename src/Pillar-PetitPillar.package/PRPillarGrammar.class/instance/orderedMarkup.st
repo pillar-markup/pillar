@@ -1,3 +1,3 @@
 grammar - List
 orderedMarkup
-	^ (Markups at: PROrderedList) asParser
+	^ (Markups at: PROrderedList) asPParser

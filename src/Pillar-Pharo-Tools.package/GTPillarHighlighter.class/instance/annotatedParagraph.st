@@ -1,7 +1,7 @@
 accessing
 annotatedParagraph
-	^ super annotatedParagraph token
-	==> [ :t | 
+	^ super annotatedParagraph
+	==> [ :aNode | 
 		self commands add: (GTNoteHighlightingCommand new 
-			start: t start;
-			stop: t stop) ]
+			start: aNode start;
+			stop: aNode stop) ]

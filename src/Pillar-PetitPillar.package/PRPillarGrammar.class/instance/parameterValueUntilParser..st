@@ -1,3 +1,6 @@
 grammar - Parameter
 parameterValueUntilParser: aParser
-	^ (parameterValueMarkup , (escapedCharacter / (aParser / parameterMarkup) negate) star) ==> [ :array | array second ]
+	^ 	(parameterValueMarkup , 
+		epsilonToken ,
+		(escapedCharacter / (aParser / parameterMarkup) negate) star , 
+		epsilonToken)

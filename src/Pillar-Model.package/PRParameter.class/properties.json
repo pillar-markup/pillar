@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "PRDocumentGroup",
+	"category" : "Pillar-Model-Document",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"isValid"
+	],
+	"name" : "PRParameter",
+	"type" : "normal"
+}

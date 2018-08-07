@@ -1,3 +1,5 @@
 grammar - List
 orderedList
-	^ orderedListItem plus
+	^ 	epsilonToken , 
+		orderedListItem plus , 
+		epsilonToken

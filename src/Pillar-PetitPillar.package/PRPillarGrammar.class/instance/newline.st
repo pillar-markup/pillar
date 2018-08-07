@@ -1,3 +1,3 @@
 grammar - Document
 newline
-	^ String crlf asParser / String lf asParser / String cr asParser
+	^ String crlf asPParser / String lf asPParser / String cr asPParser

@@ -1,3 +1,3 @@
 grammar - Raw
 rawTypeMarkup
-	^ self class defaultMarkupRawType asParser
+	^ self class defaultMarkupRawType asPParser

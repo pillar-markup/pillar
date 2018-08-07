@@ -1,3 +1,3 @@
 grammar - Annotation
 annotationEndMarkup
-	^ (EndMarkups at: PRAbstractAnnotation) asParser
+	^ (EndMarkups at: PRAbstractAnnotation) asPParser

@@ -1,3 +1,3 @@
 grammar - Document
 lineEnd
-	^ newline / #eof asParser
+	^ newline / #eoi asPParser

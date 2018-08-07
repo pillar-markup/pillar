@@ -1,7 +1,7 @@
 accessing
 header
-	^ super header token
-	==> [ :t | 
+	^ super header
+	==> [ :aNode | 
 		self commands add: (GTHeadingHighlightingCommand new 
-				start: t start;
-				stop: t stop) ]
+				start: aNode start;
+				stop: aNode stop) ]

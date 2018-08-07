@@ -1,4 +1,4 @@
 grammar - Raw
 raw
-	^ (Markups at: PRRaw) asParser , rawType optional
+	^ (Markups at: PRRaw) asPParser , rawType optional
 		, rawEndMarkup negate star flatten , rawEndMarkup

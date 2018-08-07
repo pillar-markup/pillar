@@ -6,10 +6,11 @@ testTransformationWithNonGroupItemAtTopLevel
 		add: PRColumnsAnnotation new;
 		add:
 			(PRColumnAnnotation
-				withParameters:
-					(OrderedDictionary new
-						at: 'width' put: '100';
-						yourself) yourself);
+				withParameters: (
+					PRParameters withAll: { 
+						PRParameter 
+							keyNode: (PRParameterKey named: 'width')
+							valueNode: (PRParameterValue value: '100') }));
 		add: PRHorizontalRule new;
 		add: PREndColumnsAnnotation new;
 		yourself.

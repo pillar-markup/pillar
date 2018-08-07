@@ -1,4 +1,5 @@
 initialization
 initialize
 	super initialize.
-	parameters := OrderedDictionary new
+	parameters := OrderedDictionary new.
+	isValid := true.

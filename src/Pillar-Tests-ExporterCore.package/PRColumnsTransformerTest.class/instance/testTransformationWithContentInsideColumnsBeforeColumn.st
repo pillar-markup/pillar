@@ -6,9 +6,11 @@ testTransformationWithContentInsideColumnsBeforeColumn
 				PRColumnsAnnotation new;
 		add: (PRParagraph with: (PRText content: 'Foo') yourself);
 		add:
-				(PRColumnAnnotation withParameters: ((OrderedDictionary new
-								at: 'width' put: '100';
-								yourself)) yourself);
+				(PRColumnAnnotation withParameters: (
+					PRParameters withAll: { 
+						PRParameter 
+							keyNode: (PRParameterKey named: 'width')
+							valueNode: (PRParameterValue value: '100') }));
 		add: (PRParagraph with: (PRText content: 'Bar') yourself);
 		add:
 				PREndColumnsAnnotation new;

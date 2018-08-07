@@ -1,3 +1,3 @@
 protected
 tag
-	^ self subclassResponsibility
+	^ self possibleParameters first

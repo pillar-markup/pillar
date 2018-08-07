@@ -1,4 +1,4 @@
 accessing
 possibleParameters
 
-	^ #(label title)
+	^ #(title label)

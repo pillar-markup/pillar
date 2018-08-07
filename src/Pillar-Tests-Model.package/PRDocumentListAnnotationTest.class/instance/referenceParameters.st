@@ -1,8 +1,16 @@
 helpers
 referenceParameters
-	^ OrderedDictionary new 
-		add: 'path' -> 'blogs';
-		add: 'limit' -> 10;
-		add: 'sort' -> 'date';
-		add: 'templates' -> #('templates/docArticle.mustache');
-		yourself
+	^ PRParameters withAll: { 
+		PRParameter 
+			keyNode: (PRParameterKey named: 'path')
+			valueNode: (PRParameterValue value: 'blogs').
+		PRParameter 
+			keyNode: (PRParameterKey named: 'limit')
+			valueNode: (PRParameterValue value: 10).
+		PRParameter 
+			keyNode: (PRParameterKey named: 'sort')
+			valueNode: (PRParameterValue value: 'date').
+		PRParameter 
+			keyNode: (PRParameterKey named: 'templates')
+			valueNode: (PRParameterValue value: #('templates/docArticle.mustache')) }
+	

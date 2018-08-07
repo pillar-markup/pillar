@@ -1,3 +1,3 @@
 grammar - Annotation
 annotationParameters
-	^ super annotationParameters ==> [ :array | self parametersFrom: array ]
+	^ super annotationParameters ==> [ :array | self parametersObjectFrom: array ]

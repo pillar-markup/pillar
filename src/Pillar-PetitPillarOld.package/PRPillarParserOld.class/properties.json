@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "CyrilFerlicot 8/12/2015 15:18",
+	"super" : "PRPillarGrammarOld",
+	"category" : "Pillar-PetitPillarOld",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRPillarParserOld",
+	"type" : "normal"
+}

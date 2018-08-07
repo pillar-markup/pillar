@@ -6,4 +6,5 @@ testScriptWithLanguage
 		equals:
 			((PRCodeblock content: 'foo')
 				language: PRSmalltalkScriptLanguage default;
-				yourself)
+				yourself).
+	self assertStart: 1 stop: 29.

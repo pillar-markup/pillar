@@ -3,11 +3,12 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"parameters",
-		"hadAllKeys"
+		"hadAllKeys",
+		"isValid"
 	],
 	"name" : "PRAbstractAnnotation",
 	"commentStamp" : "StephaneDucasse 3/31/2018 11:35",
-	"super" : "PRDocumentItem",
+	"super" : "PRDocumentGroup",
 	"traitcomposition" : "PRTParametrizable",
 	"type" : "normal",
 	"classinstvars" : [ ],

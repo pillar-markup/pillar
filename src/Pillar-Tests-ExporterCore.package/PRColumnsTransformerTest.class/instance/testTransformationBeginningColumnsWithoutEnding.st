@@ -5,9 +5,10 @@ testTransformationBeginningColumnsWithoutEnding
 		withAll:
 			{PRColumnsAnnotation new.
 			(PRColumnAnnotation
-				withParameters:
-					(OrderedDictionary new
-						at: 'width' put: '100';
-						yourself)).
+				withParameters: (
+					PRParameters withAll: { 
+						PRParameter 
+							keyNode: (PRParameterKey named: 'width')
+							valueNode: (PRParameterValue value: 100) })).
 			(PRText content: 'Foo')}.
 	self should: [ self executePhase: input ] raise: PRError whoseDescriptionIncludes: 'Missing end' description: 'Code must detect the absence of end annotation'

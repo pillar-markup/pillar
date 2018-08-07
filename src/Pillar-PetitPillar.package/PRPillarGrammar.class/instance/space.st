@@ -1,3 +1,3 @@
 from markdown
 space
-	^ #blank asParser
+	^ #blank asPParser

@@ -1,3 +1,3 @@
 grammar - Parameter
 parameterMarkup
-	^ self class defaultMarkupParameter asParser
+	^ self class defaultMarkupParameter asPParser

@@ -1,3 +1,3 @@
 grammar - List
 dataMarkup
-	^ (Markups at: PRDataItem) asParser
+	^ (Markups at: PRDataItem) asPParser

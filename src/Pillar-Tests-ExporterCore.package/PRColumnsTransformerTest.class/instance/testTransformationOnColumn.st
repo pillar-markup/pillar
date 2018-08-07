@@ -5,9 +5,11 @@ testTransformationOnColumn
 		add:
 				PRColumnsAnnotation new;
 		add:
-				(PRColumnAnnotation withParameters: (OrderedDictionary new
-								at: 'width' put: '100';
-								yourself) yourself);
+				(PRColumnAnnotation withParameters: (
+					PRParameters withAll: { 
+						PRParameter 
+							keyNode: (PRParameterKey named: 'width')
+							valueNode: (PRParameterValue value: '100') }));
 		add:	(PRParagraph new
 						add: (PRText content: 'Foo');
 						yourself);

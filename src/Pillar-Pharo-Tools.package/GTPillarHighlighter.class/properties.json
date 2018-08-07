@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "TudorGirba 10/5/2016 13:32",
-	"super" : "PRPillarGrammar",
+	"super" : "PRPillarParser",
 	"category" : "Pillar-Pharo-Tools-Editor",
 	"classinstvars" : [ ],
 	"pools" : [ ],

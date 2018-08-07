@@ -1,3 +1,5 @@
 grammar - Parameter
 parameterKeyUntilParser: aParser
-	^ (escapedCharacter / (aParser / parameterMarkup / parameterValueMarkup) negate) star
+	^ 	epsilonToken ,
+		(escapedCharacter / (aParser / parameterMarkup / parameterValueMarkup) negate) star,
+		epsilonToken

@@ -1,0 +1,3 @@
+initialization
+beInvalid
+	isValid := false.

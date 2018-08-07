@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "PRVisitor",
+	"category" : "Pillar-Model-Visitor",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"dictionary"
+	],
+	"name" : "PRParametersToOrderedDictionary",
+	"type" : "normal"
+}

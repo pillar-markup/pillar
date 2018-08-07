@@ -1,5 +1,6 @@
 helpers
 referenceParameters
-	^ OrderedDictionary new
-		add: 'path' -> 'foo/myFile.pillar';
-		yourself
+	^ PRParameters withAll: { 
+		PRParameter 
+			keyNode: (PRParameterKey named: 'path')
+			valueNode: (PRParameterValue value: 'foo/myFile.pillar') }

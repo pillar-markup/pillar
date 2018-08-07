@@ -1,3 +1,3 @@
 grammar - Table
 tableCenterMarkup
-	^ self class defaultMarkupTableCenter asParser
+	^ self class defaultMarkupTableCenter asPParser

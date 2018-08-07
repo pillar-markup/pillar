@@ -4,7 +4,7 @@ header
 
 	^ super header ==> [ :array | 
 		(PRHeader 
-			withAll: (array second ifNil: [ {} ]) 
-			level: array first size)
+			withAll: (array third ifNil: [ {} ]) 
+			level: array second size)
 			start: array first start;
-			stop: array first start + array first size + (array second ifNil: [ 0 ] ifNotNil: [ array second size ]) ]
+			stop: array last stop ]

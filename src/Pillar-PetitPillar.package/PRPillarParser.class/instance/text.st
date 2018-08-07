@@ -2,9 +2,7 @@ grammar - Text
 text
 	"A text is a PRText with a string that contains any character inside."
 
-	^ super text
-		==> [ :array | 
-			| stream |
-			stream := '' writeStream.
-			array do: [ :letter | stream nextPut: letter ].
-			PRText content: stream contents ]
+	^ super text ==> [ :array | 
+			(PRText content: (self stringFrom: array second))
+				start: array first start;
+				stop: array third stop ]

@@ -1,9 +1,9 @@
 accessing
 figure
 	^ super figure 
-	==> [ :tokens | 
+	==> [ :aNode | 
 		self commands add: (
 			GTPillarFileHighlightingCommand new 
-				start: tokens first start;
-				stop: tokens last stop;
-				fileName: tokens third) ]
+				start: aNode start;
+				stop: aNode stop;
+				fileName: aNode reference) ]
