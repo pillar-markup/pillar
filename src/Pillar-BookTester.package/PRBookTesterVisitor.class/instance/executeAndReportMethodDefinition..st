@@ -13,11 +13,16 @@ executeAndReportMethodDefinition: result
 											  2) methodName 
 											  3) method definition"
 	((result fragmentedText first) size = 1)
-		ifTrue: [ currentClass := (self class environment at: 
-												((result fragmentedText first) first trimBoth) asSymbol) ]
-		ifFalse: [ currentClass :=(self class environment at: 
-												((result fragmentedText first) first trimBoth) asSymbol) class ].
-	[currentClass compile: (result fragmentedText second,'
+		ifTrue: [ currentClass := (self class environment 
+				at: ((result fragmentedText first) first trimBoth) asSymbol 
+				ifAbsent: [result explanation: 'Class is not defined'. 
+							  isCorrect := false] )] 
+		ifFalse: [ currentClass := (self class environment 
+				at: (((result fragmentedText first) first trimBoth) asSymbol) class
+				ifAbsent: [result explanation: 'Class is not defined'. 
+							  isCorrect := false] )].
+
+	[ currentClass compile: (result fragmentedText second,'
 	', result fragmentedText third).
 	  isCorrect := true ]
 		on: Exception

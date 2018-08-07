@@ -11,3 +11,4 @@ initialize
 															  #visitCodeblockClassDefinition:).
 	allTestResults := OrderedCollection new.
 	workingDirectory := FileLocator home.
+	finalStatus := true.

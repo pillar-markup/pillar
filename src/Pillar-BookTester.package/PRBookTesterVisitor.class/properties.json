@@ -8,7 +8,8 @@
 	"instvars" : [
 		"allTestResults",
 		"workingDirectory",
-		"codeblockDict"
+		"codeblockDict",
+		"finalStatus"
 	],
 	"name" : "PRBookTesterVisitor",
 	"type" : "normal"

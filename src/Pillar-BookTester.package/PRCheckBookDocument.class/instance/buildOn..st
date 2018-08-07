@@ -6,6 +6,7 @@ buildOn: aPRProject
 	transformedDocument := self transformDocument: parsedDocument.
 	bTester := PRBookTesterVisitor new.
 	bTester start:  transformedDocument.
+	bTester allTestResults do: [:each | bTester finalStatus: (bTester finalStatus and: each status) ].
 	stream := String streamContents: 
 				 [ :s |
 					s << file fullName.
