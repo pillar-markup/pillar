@@ -7,7 +7,7 @@ initialize
 															#isMethodDefinition 
 															#isClassDefinition)
 							      	 		  andValues:#(#evaluate:
-															  #visitCodeblockExample:														                                      		     							  #visitCodeblockMethodDefinition:
+															  #visitCodeblockExample:														                                      		     #visitCodeblockMethodDefinition:
 															  #visitCodeblockClassDefinition:).
 	allTestResults := OrderedCollection new.
 	workingDirectory := FileLocator home.
