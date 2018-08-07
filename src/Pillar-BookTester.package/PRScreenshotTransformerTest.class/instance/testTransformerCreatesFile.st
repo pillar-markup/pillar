@@ -18,8 +18,8 @@ testTransformerCreatesFile
 											       day: (DateAndTime now dayOfMonth)) 
 										asString splitOn:'T') first).
 						    s << ('T',(DateAndTime now hour asString)).
-							 s << '*'	]). 
+							 s << '*'	]).
 	((PRScreenshotTransformer withContext: (PRProject on: testingFileSystem )) start: doc).
 	self assert: (FileSystem workingDirectory / 'figures' / 'screenshots')  hasChildren.
-	self deny: ((FileSystem workingDirectory / 'figures' / 'screenshots')  childrenMatching: dateStamp,'*') isEmpty.
+	self deny: ((FileSystem workingDirectory / 'figures' / 'screenshots')  childrenMatching: dateStamp) isEmpty.
 	

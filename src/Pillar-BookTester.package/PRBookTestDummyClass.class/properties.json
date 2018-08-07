@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "QuentinDucasse 7/10/2018 16:51",
 	"super" : "TestCase",
-	"category" : "Pillar-BookTester-Tests",
+	"category" : "Pillar-BookTester-Visitor-Tests",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
