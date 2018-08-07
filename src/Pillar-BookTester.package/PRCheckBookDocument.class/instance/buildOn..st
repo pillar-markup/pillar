@@ -14,12 +14,12 @@ buildOn: aPRProject
 					s crlf.
 					s << 'Failed: ' << bTester failedTests size asString.
 					s crlf;crlf. 
-			bTester failedTests do: [ :each | 
-												s << each explanation.
-												s crlf.
-											   s << each text.
-											   s crlf; crlf ]
-				   s << 'Book Checked!'.
+					bTester failedTests do: [ :each | 
+														s << each explanation.
+														s crlf.
+											  			s << each text.
+											  		 	s crlf; crlf. ].
+				   s << 'File Checked!'.
 					s crlf.].
 	Stdio stdout 
 		nextPutAll: stream contents.

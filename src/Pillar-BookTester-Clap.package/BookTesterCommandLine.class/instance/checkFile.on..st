@@ -1,5 +1,5 @@
 running
-checkBook: aBookPath on: aStream
+checkFile: aBookPath on: aStream
 
 	| bTester |
 	bTester := PRBookTesterVisitor new.

@@ -1,6 +1,6 @@
 running
-checkBook
+checkFile
 	
 	self 
-		checkBook: (arguments atName: 'path') value
+		checkFile: (arguments atName: 'path') value
 		on: (VTermOutputDriver on: arguments context stdout)
