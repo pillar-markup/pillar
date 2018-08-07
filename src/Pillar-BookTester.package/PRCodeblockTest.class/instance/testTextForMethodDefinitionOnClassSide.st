@@ -1,8 +1,8 @@
 tests
-testTextForMethodDefinition
+testTextForMethodDefinitionOnClassSide
 
 	| cb collection |
-	collection := (OrderedCollection with: 'PRCodeblockTestResults').
-	cb  := PRCodeblock content:'PRCodeblockTestResults >> testTextForMethodDefinition
+	collection := (OrderedCollection with: 'PRCodeblockTestResults' with: 'class').
+	cb  := PRCodeblock content:'PRCodeblockTestResults class>> testTextForMethodDefinition
 ^ ''testTextForMethodDefinition'''parameters: (OrderedDictionary newFromKeys: #('methodDefinition') andValues: #(true)).
 	self assert: cb textForMethodDefinition equals: (Array with: collection with: 'testTextForMethodDefinition' with: '^ ''testTextForMethodDefinition''')

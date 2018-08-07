@@ -4,7 +4,7 @@ testVisitMethodDefinitionFailing
   | docText doc bTester |
 	docText := '[[[methodDefinition=true
 PRUnexistingClass >> methodTestDefinitionCreatesTest
-^ ''I am a method of the class'', self class asString
+^ ''I am a method of the class '', self class asString
 ]]]
 '.
 	doc := PRPillarParser new parse: docText.

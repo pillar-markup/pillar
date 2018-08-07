@@ -20,6 +20,6 @@ buildOn: aPRProject
 											  			s << each text.
 											  		 	s crlf; crlf. ].
 				   s << 'File Checked!'.
-					s crlf.].
+					s crlf;crlf.].
 	Stdio stdout 
 		nextPutAll: stream contents.

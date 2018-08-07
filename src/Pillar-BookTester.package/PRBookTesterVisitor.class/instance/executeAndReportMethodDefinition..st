@@ -1,17 +1,23 @@
 compiling
 executeAndReportMethodDefinition: result
-	| isCorrect |
+	| isCorrect currentClass |
 	"Executes the method definition in the given class with the right name
 	[[[methodDefinition
 	Plop >> plop1
 	^1
 	]]]
 	will define the method plop1 that returns 1 in the class Plop"
-	
 	result explanation: 'Method did not compile without raising an exception'.
 	isCorrect := false.
-	"fragmented text is composed of: 1) className 2) methodName 3) method definition"
-	[ (self class environment at: (result fragmentedText first) asSymbol) compile: (result fragmentedText second,'
+	"fragmented text is composed of: 1) #(className 'class'(optional)) 
+											  2) methodName 
+											  3) method definition"
+	((result fragmentedText first) size = 1)
+		ifTrue: [ currentClass := (self class environment at: 
+												((result fragmentedText first) first trimBoth) asSymbol) ]
+		ifFalse: [ currentClass :=(self class environment at: 
+												((result fragmentedText first) first trimBoth) asSymbol) class ].
+	[currentClass compile: (result fragmentedText second,'
 	', result fragmentedText third).
 	  isCorrect := true ]
 		on: Exception

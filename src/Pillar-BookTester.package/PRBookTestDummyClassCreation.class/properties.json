@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "PRBookTestDummyClass",
-	"category" : "Pillar-BookTester-Visitor-Tests",
+	"category" : "Pillar-BookTester-Tests",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

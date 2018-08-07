@@ -11,7 +11,7 @@ blabla' parameters: nil) textForMethodDefinitionParameter >>>  #('classname' 'me
 blabla') "
 		
 	('*>>*' match: self text)
-			ifTrue: [ ^ Array with: (self text splitOn: '>>') first trimBoth
+			ifTrue: [ ^ Array with: ((self text splitOn: '>>') first trimBoth splitOn: ' ')
 		 						   with: (((self text splitOn: '>>') second) splitOn: '
 ') first trimBoth
 		 							with: ('
