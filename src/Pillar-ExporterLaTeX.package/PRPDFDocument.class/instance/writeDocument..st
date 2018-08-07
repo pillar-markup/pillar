@@ -9,7 +9,7 @@ writeDocument: aDocument
 	This dictionary will be used by the mustache"
 	templateValues := (self metadataConfigurationForDocument: aDocument) allProperties.
 	templateValues at: #content put: content.
-	templatedOutput := (MustacheTemplate on: self templateFile readStream contents) value: templateValues.
+	templatedOutput := (MustacheTemplate on: (self templateFile: aDocument) readStream contents) value: templateValues.
 
 	outputFile := (self outputDirectory resolve: (file file relativeTo: project baseDirectory asAbsolute)) withoutExtension , 'tex'.
 	outputFile ensureDelete.

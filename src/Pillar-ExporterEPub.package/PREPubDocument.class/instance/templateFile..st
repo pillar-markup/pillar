@@ -1,6 +1,6 @@
 writing
-templateFile
+templateFile: aDocument
 	
 	| epubTemplatePath |
 	epubTemplatePath := project configuration propertyAt: 'epubTemplate' ifAbsent: [ '_support/templates/epub/xhtml.mustache' ].
-	^ project baseDirectory / epubTemplatePath
+	^ project baseDirectory / (aDocument propertyAt: 'epubTemplate' ifAbsent: [ epubTemplatePath ])

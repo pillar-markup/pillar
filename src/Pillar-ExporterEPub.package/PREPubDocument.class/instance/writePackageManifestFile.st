@@ -16,6 +16,6 @@ writePackageManifestFile
 		<itemref idref="navigation" linear="yes" />
 		<itemref idref="contents" linear="yes" />'.
 
-	contentsOpfTemplate := (project baseDirectory / '_support' / 'templates' / 'contents.opf.mustache') asMustacheTemplate.
+	contentsOpfTemplate := (project baseDirectory / '_support' / 'templates' / 'epub' / 'contents.opf.mustache') asMustacheTemplate.
 	self epubContentsGenerationDirectory / 'contents', 'opf' writeStreamDo: [:stream |
 		stream nextPutAll: (contentsOpfTemplate value: configuration) ]
