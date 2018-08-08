@@ -2,9 +2,6 @@ tests-class/method definition
 testVisitClassDefinitionValid
 	
   | docText doc bTester |
-
-	(PRBookTestDummyClass allSubclasses includes: PRBookTestDummyClassCreation)
-		ifTrue: (PRBookTestDummyClass allSubclasses remove: PRBookTestDummyClassCreation).
 		
 	docText := '[[[classDefinition=true
 PRBookTestDummyClass subclass: #PRBookTestDummyClassCreation

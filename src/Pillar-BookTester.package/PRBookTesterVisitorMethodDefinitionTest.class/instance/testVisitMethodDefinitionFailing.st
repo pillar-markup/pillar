@@ -9,7 +9,6 @@ PRUnexistingClass >> methodTestDefinitionCreatesTest
 '.
 	doc := PRPillarParser new parse: docText.
 	bTester := PRBookTesterVisitor new.
-	self halt.
 	bTester visitCodeblockMethodDefinition: doc children first. 
 	self assert: bTester failedTests size equals: 1.
 	self assert: bTester validTests isEmpty.
