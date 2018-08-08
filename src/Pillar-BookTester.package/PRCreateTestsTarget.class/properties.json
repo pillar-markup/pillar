@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRTarget",
+	"category" : "Pillar-BookTester-CommandLine",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRCreateTestsTarget",
+	"type" : "normal"
+}
