@@ -6,4 +6,7 @@ visitCodeblockClassDefinition: aCodeBlock
 	result := PRBookTestResult new.
 	result text: aCodeBlock text.
 	allTestResults add: result.
-	self executeAndReportClassDefinition: result 
+	self executeAndReportClassDefinition: result.
+	(aCodeBlock isExpectedFailure)
+		ifTrue: [ result status: (result status) not]
+	

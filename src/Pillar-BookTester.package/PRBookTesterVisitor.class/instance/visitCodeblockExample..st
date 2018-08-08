@@ -10,4 +10,6 @@ visitCodeblockExample: aCodeBlock
 	result := PRBookTestResult new.
 	result text: aCodeBlock textForExample.
 	allTestResults add: result.
-	self executeAndReportExample: result 
+	self executeAndReportExample: result.
+	(aCodeBlock isExpectedFailure)
+		ifTrue: [ result status: (result status) not] 

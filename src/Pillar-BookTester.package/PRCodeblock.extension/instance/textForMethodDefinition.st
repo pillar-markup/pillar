@@ -17,5 +17,5 @@ blabla') "
 		 							with: ('
 ' join: (((self text splitOn: '>>') second) splitOn: '
 ') allButFirst) trimBoth ]
-			ifFalse: [ ^ self text ]
+			ifFalse: [ ^ Array with: 'Method definition syntax not respected. Please use: YourClass>>yourMethod ...' ]
 	 

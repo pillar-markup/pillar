@@ -9,4 +9,6 @@ visitCodeblockMethodDefinition: aCodeBlock
 	result text: aCodeBlock text.
 	result fragmentedText: aCodeBlock textForMethodDefinition.
 	allTestResults add: result.
-	self executeAndReportMethodDefinition: result 
+	self executeAndReportMethodDefinition: result.
+	(aCodeBlock isExpectedFailure)
+		ifTrue: [ result status: (result status) not]
