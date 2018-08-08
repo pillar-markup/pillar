@@ -1,5 +1,7 @@
 helpers
 referenceParameters
-	^ OrderedDictionary new
-			add: 'class' -> 'PRBookTestDummyShowClassAnnotation';
-			yourself.
+	^ PRParameters withAll: { 
+		PRParameter 
+			keyNode: (PRParameterKey named: 'class')
+			valueNode: (PRParameterValue value: 'PRBookTestDummyShowClassAnnotation').
+		}

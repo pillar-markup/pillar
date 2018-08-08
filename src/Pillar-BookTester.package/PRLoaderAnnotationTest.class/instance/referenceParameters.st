@@ -1,8 +1,17 @@
 helpers
 referenceParameters
-	^ OrderedDictionary new
-			add: 'account' -> 'QDucasse';
-			add: 'project' -> 'MetacelloTestBook-Code';
-			add: 'tag' -> 'Chapter1';
-			add: 'baseline' -> 'MetacelloTestBook';
-			yourself.
+	
+	^ PRParameters withAll: { 
+		PRParameter 
+			keyNode: (PRParameterKey named: 'account')
+			valueNode: (PRParameterValue value: 'QDucasse').
+		PRParameter 
+			keyNode: (PRParameterKey named: 'project')
+			valueNode: (PRParameterValue value: 'MetacelloTestBook-Code').
+		PRParameter 
+			keyNode: (PRParameterKey named: 'tag')
+			valueNode: (PRParameterValue value: 'Chapter1').
+		PRParameter 
+			keyNode: (PRParameterKey named: 'baseline')
+			valueNode: (PRParameterValue value: 'MetacelloTestBook') 
+		}

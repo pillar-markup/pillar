@@ -1,6 +1,6 @@
 running
 testTransformerCreatesFile
-"It is needed to create the subfolder image/YourImage/figures as if it was a book in order for these tests to work"
+"The test may fail if launched at whatever hour and 59 minutes if you are unlucky"
 	| doc dateStamp |
 	doc := PRDocument new
 				add:
