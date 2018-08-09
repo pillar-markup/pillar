@@ -7,4 +7,4 @@ setUp
 		writeStreamDo: [ :stream | 
 			stream nextPutAll: PRTransformerEnvironmentTest pillarAnnotationsContentsForTest ].
 	((FileLocator image / 'figures') isFile)
-		ifFalse: [ (FileLocator imageDirectory / 'figures') ensureCreateDirectory ]
+		ifFalse: [ (FileLocator imageDirectory / 'figures') ensureCreateDirectory ].
