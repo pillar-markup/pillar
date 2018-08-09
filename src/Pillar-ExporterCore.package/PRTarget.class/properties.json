@@ -7,7 +7,8 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"buildStrategy",
-		"transformations"
+		"transformations",
+		"status"
 	],
 	"name" : "PRTarget",
 	"type" : "normal"

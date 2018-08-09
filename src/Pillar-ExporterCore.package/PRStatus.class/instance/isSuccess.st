@@ -1,0 +1,4 @@
+controlling
+isSuccess
+
+	self subclassResponsibility 

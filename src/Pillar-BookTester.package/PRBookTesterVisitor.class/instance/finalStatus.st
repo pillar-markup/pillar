@@ -1,0 +1,3 @@
+accessing
+finalStatus
+	^ finalStatus

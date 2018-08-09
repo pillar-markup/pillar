@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRStatus",
+	"category" : "Pillar-ExporterCore-Base",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PRFailure",
+	"type" : "normal"
+}

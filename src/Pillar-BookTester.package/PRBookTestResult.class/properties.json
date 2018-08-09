@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "QuentinDucasse 6/28/2018 09:49",
+	"super" : "Object",
+	"category" : "Pillar-BookTester-Visitor",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"text",
+		"fragmentedText",
+		"status",
+		"explanation"
+	],
+	"name" : "PRBookTestResult",
+	"type" : "normal"
+}
