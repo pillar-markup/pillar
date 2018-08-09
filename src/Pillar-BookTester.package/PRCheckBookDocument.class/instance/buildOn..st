@@ -6,7 +6,6 @@ buildOn: aPRProject
 	transformedDocument := self transformDocument: parsedDocument.
 	bTester := PRBookTesterVisitor new.
 	bTester start:  transformedDocument.
-	bTester allTestResults do: [:each | bTester finalStatus: (bTester finalStatus and: each status) ].
 	stream := String streamContents: 
 				 [ :s |
 					s << file fullName.
@@ -24,4 +23,5 @@ buildOn: aPRProject
 					s crlf;crlf.].
 	Stdio stdout 
 		nextPutAll: stream contents.
+	bTester allTestResults do: [:each | bTester finalStatus: (bTester finalStatus and: each status) ].	
 	^ PRStatus withStatus: bTester finalStatus
