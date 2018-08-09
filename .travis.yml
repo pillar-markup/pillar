@@ -24,6 +24,7 @@ env:
   - JOB=test TYPE=System ARCHETYPE=welcome OUTPUT=html
   - JOB=test TYPE=System ARCHETYPE=basic-latex OUTPUT=pdf
   - JOB=test TYPE=System ARCHETYPE=basic-latex OUTPUT=html
+  - JOB=test TYPE=System ARCHETYPE=tester-example OUTPUT=checkBook
   - JOB=build
 
 install:

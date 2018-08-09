@@ -1,0 +1,7 @@
+!!Pillar Test Book
+
+Testing Metacello inputs with tagged commits
+Chapter 1 defines chapterOneMethods >>> ^ 'chapterOne'
+Chapter 2 defines chapterTwoMethods >>> ^ 'chapterTwo'
+Chapter 3 defines chapterThreeMethod >>> ^ 'chapterThree'
+----------------- chapterOneMethod >>> ^ 'chapterThree'

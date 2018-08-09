@@ -1,0 +1,27 @@
+!!Chapter2
+
+[[[eval=true|hidden=true
+(IceLibgitRepository registry detect: [ :any | any name = 'MetacelloTestBook-Code'])
+	delete.
+
+Metacello new
+	baseline: 'MetacelloTestBook';
+	repository: 'github://QDucasse/MetacelloTestBook-Code:Chapter2/src';
+   onUpgrade: [ :ex | ex useIncoming ];
+	load: #('Pillar-MetacelloTestBook').
+]]]
+
+[[[example=true
+Plop new chapterOneMethod
+>>> 'chapterOne'
+]]]
+
+[[[example=true
+Plop new chapterTwoMethod
+>>> 'chapterTwo'
+]]]
+
+[[[example=true|expectedFailure=true
+Plop new chapterThreeMethod
+>>> Error
+]]]

@@ -1,0 +1,11 @@
+!My First book
+
+${inputFile:path=Chapters/Introduction/introduction.pillar}$
+
+${inputFile:path=Chapters/Chapter1/chapter1.pillar}$
+
+${inputFile:path=Chapters/Chapter2/chapter2.pillar}$
+
+${inputFile:path=Chapters/Chapter3/chapter3.pillar}$
+
+
