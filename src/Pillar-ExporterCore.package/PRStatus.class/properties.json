@@ -5,11 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"buildStrategy",
-		"transformations",
-		"status"
-	],
-	"name" : "PRTarget",
+	"instvars" : [ ],
+	"name" : "PRStatus",
 	"type" : "normal"
 }

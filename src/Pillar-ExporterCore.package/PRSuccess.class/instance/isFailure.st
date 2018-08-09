@@ -1,0 +1,4 @@
+controlling
+isFailure
+
+	^ false

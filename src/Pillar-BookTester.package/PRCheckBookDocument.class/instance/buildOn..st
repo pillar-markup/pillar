@@ -24,3 +24,4 @@ buildOn: aPRProject
 					s crlf;crlf.].
 	Stdio stdout 
 		nextPutAll: stream contents.
+	^ PRStatus withStatus: bTester finalStatus

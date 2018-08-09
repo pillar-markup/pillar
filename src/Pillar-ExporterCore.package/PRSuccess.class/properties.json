@@ -1,15 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "Object",
+	"super" : "PRStatus",
 	"category" : "Pillar-ExporterCore-Base",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"buildStrategy",
-		"transformations",
-		"status"
-	],
-	"name" : "PRTarget",
+	"instvars" : [ ],
+	"name" : "PRSuccess",
 	"type" : "normal"
 }
