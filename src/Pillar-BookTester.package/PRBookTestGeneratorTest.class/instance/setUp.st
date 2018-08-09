@@ -6,4 +6,5 @@ setUp
 	testingFileSystem := FileSystem memory workingDirectory.
 	(testingFileSystem / self class pillarFileNameForTest)
 		writeStreamDo: [ :stream |
-			stream nextPutAll: self class pillarContentsForTest ]. 
+			stream nextPutAll: self class pillarContentsForTest ].
+	"[ 'Pillar-BookTesterResults-TestResults' asPackage removeFromSystem ] ifCurtailed: [ nil ]"
