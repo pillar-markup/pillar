@@ -12,5 +12,5 @@ checkFile: aBookPath on: aStream
 	bTester failedTests do: [ :each | 
 								    	aStream << (each explanation);lf.
 									   aStream << (each text);lf;lf ].
-	aStream << 'Book tested!';lf;lf
+	aStream << 'File tested!';lf;lf
 			  

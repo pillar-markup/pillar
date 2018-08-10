@@ -6,5 +6,5 @@ setUp
 	PRBookTestDummyMethodDefinition methods do: [ :each | each removeFromSystem ].
 	(PRBookTestDummyMethodDefinition class) methods do: [ :each | each removeFromSystem ].
 	(PRBookTestDummyClass allSubclasses includes: PRBookTestDummyClassCreation)
-		ifTrue: [SystemDictionary new removeClassNamed: PRBookTestDummyClassCreation].
+		ifTrue: [SystemDictionary new removeClassNamed: #PRBookTestDummyClassCreation].
 
