@@ -9,7 +9,8 @@ visitScreenshotAnnotation: aPRShowMethodAnnotation
 	fileName := (aPRShowMethodAnnotation className, '>>',aPRShowMethodAnnotation methodName),'-', time,'.png'.
 	browser := ClyFullBrowser openOnMethod: className>>methodName.
 	
-	UIManager default defer: [browser window exportAsPNGSilentlyForPillarFileNamed: fileName.
+	UIManager default defer: [1 second wait.
+									 browser window exportAsPNGSilentlyForPillarFileNamed: fileName.
 									 browser close].
 	
 	doc := PRPillarParser new parse:('+' , aPRShowMethodAnnotation caption, '.>file://figures/screenshots/', fileName,
