@@ -6,4 +6,4 @@ buildOn: aPRProject
 	transformedDocument := self transformDocument: parsedDocument.
 	writtenFile := self writeDocument: transformedDocument.
 	self postWriteTransform: writtenFile.
-	^ PRSuccess.
+	^ PRSuccess new.

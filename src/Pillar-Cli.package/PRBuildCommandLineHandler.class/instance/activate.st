@@ -1,10 +1,10 @@
 activation
 activate
 	
-	| target |
+	| target result |
 	target := PRTarget builderForName: self requestedBuilder.
 	self requestedFiles
 		ifEmpty: [ target buildAll ]
 		ifNotEmpty: [ :files | target buildOnly: files ].
-	self project build: target.
-	self exitSuccess
+	result := self project build: target.
+	result exitProcess

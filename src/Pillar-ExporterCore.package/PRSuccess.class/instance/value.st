@@ -1,4 +1,4 @@
 controlling
 value
 	
-	^ 1
+	^ 0

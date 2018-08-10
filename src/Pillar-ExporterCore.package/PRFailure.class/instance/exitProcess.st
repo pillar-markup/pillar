@@ -1,0 +1,4 @@
+controlling
+exitProcess
+
+	Exit signalFailure
