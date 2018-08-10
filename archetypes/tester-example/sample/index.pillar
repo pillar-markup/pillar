@@ -1,11 +1,124 @@
-!My First book
+!!Superheroes
 
-${inputFile:path=Chapters/Introduction/introduction.pillar}$
+Sameple of a book that could be real, other examples later in the book
 
-${inputFile:path=Chapters/Chapter1/chapter1.pillar}$
+Let's define a class, one of its methods and test it.
 
-${inputFile:path=Chapters/Chapter2/chapter2.pillar}$
+[[[classDefinition=true
+Object subclass: #Superhero
+	instanceVariableNames: 'name powers currentCity vilain'
+	classVariableNames: ''
+	package: 'Superheroes'
+]]]
 
-${inputFile:path=Chapters/Chapter3/chapter3.pillar}$
+[[[methodDefinition=true
+Superhero >> defendCity: aCity against: aSuperVilain
+	self currentCity: aCity.
+	self vilain: aSuperVilain.
+]]]
+
+by defining the accessors:
+
+[[[methodDefinition=true
+Superhero >> currentCity: aCity
+	currentCity := aCity
+]]]
+
+[[[methodDefinition=true
+Superhero >> currentCity
+	^ currentCity
+]]]
+
+%In order to avoid overflowing the reader with all the accessors, we define them but hide them
+%name
+
+[[[hidden=true|methodDefinition=true
+Superhero >> name: aName
+	name := aName
+]]]
+[[[hidden=true|methodDefinition=true
+Superhero >> name
+	^ name
+]]]
+
+%vilain
+
+[[[hidden=true|methodDefinition=true
+Superhero >> vilain: aVilain
+	vilain := aVilain
+]]]
+[[[hidden=true|methodDefinition=true
+Superhero >> vilain
+	^ vilain
+]]]
+
+%powers
+
+[[[hidden=true|methodDefinition=true
+Superhero >> powers: aPowerList
+	powers := aPowerList
+]]]
+[[[hidden=true|methodDefinition=true
+Superhero >> powers
+	^ powers
+]]]
+(same for ==vilain== and all the other instance variable)
+
+We will now define tests around this method.
+
+[[[classDefinition=true
+TestCase subclass: #SuperheroTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'Superheroes-Tests'
+]]]
+
+[[[methodDefinition=true
+SuperheroTest >> testDefendCityAgainstJoker
+	| batman |
+	batman := Superhero new.
+	batman defendCity: 'Gotham' against: 'The Joker'.
+	self assert: batman currentCity equals: 'Gotham'.
+	self assert: batman vilain equals: 'The Joker'.
+]]]
+
+Our test should be green!
+
+${run:testClass=SuperheroTest}$
+
+!!Other tests
+
+Examples:
+
+[[[example=true
+1+1
+>>>2
+]]]
+
+[[[example=true|expectedFailure=true
+1+1
+>>>3
+]]]
+
+[[[example=true|expectedFailure=true
+1+'1'
+>>>2
+]]]
+
+Method Definition:
+[[[methodDefinition|expectedFailure
+Bla>>bla
+	hmm ^'bla'
+]]]
+
+Class definition:
+[[[classDefinition=true|expectedFailure=true
+Object subclass: #Foo
+	instanceVariableNames: ''
+	classVariableNames: ''
+	"package: 'Superheroes-Tests'" 
+	"failing due to the lack of the key package"
+]]]
+
 
 
