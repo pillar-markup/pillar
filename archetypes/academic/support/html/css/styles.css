@@ -29,6 +29,8 @@ html {
   font-size: 16px;
   color: rgba(0,0,0,0.8);
   line-height: 1.65;
+  position: relative;
+  min-height: 100%;
 }
 @media screen and (min-width: 58em) {
   html {
@@ -45,6 +47,7 @@ body {
   margin-top: 71px; /* Offset body content by navbar height. */
   padding-top: 0;
   counter-reset: captions;
+  margin-bottom: 20px;
 }
 
 @media screen and (max-width: 1200px) { /* Match max-width of .nav-bar query. */
@@ -147,7 +150,7 @@ video {
 figcaption:before {
   font-weight: 700;
   text-transform: uppercase;
-  content: "Figure " counter(captions) ": ";
+  /* content: "Figure " counter(captions) ": "; */
 }
 
 figcaption {
@@ -969,7 +972,7 @@ footer {
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 1rem;
+  position: absolute;
 }
 
 footer p {
