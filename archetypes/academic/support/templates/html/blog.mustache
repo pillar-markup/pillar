@@ -97,28 +97,26 @@
 
 <!-- Projects widget -->
 <section>
-<div class="container">
-<div class="row">
-  <div class="col-xs-12 col-md-4 section-heading">
-	<h1>{{page_title}}</h1>
-
-    {{# profile}}
-	<div id="profile">
-		<div class="portrait" style="background-image: url('{{avatar}}');"></div>
-	
-		<h1>{{name}}</h1>
-		<h3>{{post}}</h3>
-		<p class="center-text">{{firm}}</p>
+	<div class="container">
+		<div class="row">
+  		<div class="col-xs-12 col-md-12">
+			{{{content}}}
+  		</div>
+		</div>
+		<div class="row justify-content-md-center">
+    	<div id="disqus_thread"></div>
+  	</div>
+  
+		<script>
+			var disqus_shortname='{{disqus_shortname}}';
+ 			(function() { // DON'T EDIT BELOW THIS LINE
+ 			var d = document, s = d.createElement('script');
+    	s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    	s.setAttribute('data-timestamp', +new Date());
+   		(d.head || d.body).appendChild(s);})();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 	</div>
-	{{/ profile}}
-  </div>
-  <div class="col-xs-12 col-md-8">
-
-	{{{content}}}
-
-  </div>
-</div>
-</div>
 </section>
 	
 
