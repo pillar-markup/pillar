@@ -451,6 +451,10 @@ a[data-fancybox] img {
   position: relative;
 }
 
+#profile .profile-fixed {
+  position: fixed;
+}
+
 #profile .portrait {
   background-image: url('../img/portrait.jpg');
   width: 200px;
