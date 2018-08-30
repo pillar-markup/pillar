@@ -1,11 +1,14 @@
 {
-	"commentStamp" : "",
+	"commentStamp" : "AsbathBiyalouSama 8/30/2018 10:38",
 	"super" : "Object",
 	"category" : "Pillar-Cli-Handlers",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"process",
+		"project"
+	],
 	"name" : "PRWatcher",
 	"type" : "normal"
 }
