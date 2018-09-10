@@ -6,7 +6,7 @@ visitInputFileAnnotation: anAnnotation
 	currentSave := self currentFile.
 	newSource := self documentSource parent resolve: anAnnotation path.
 	self validateInclusionOfFile: newSource.
-	document := PRPillarParser new optimize parse: newSource contents.
+	document := PRPillarParserMain parse: newSource contents.
 	self documentSource: newSource.
 	self currentFile: anAnnotation path.
 
