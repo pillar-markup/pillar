@@ -67,7 +67,6 @@ Producing pdf documents with pillar requires a `LaTeX` installation with at leas
 - multirow
 - listings
 - url
-- import
 
 #### *nix specificities
 
