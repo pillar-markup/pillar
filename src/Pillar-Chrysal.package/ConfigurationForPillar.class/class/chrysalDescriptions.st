@@ -118,5 +118,10 @@ chrysalDescriptions
 		#propertyName : #tocFile,
 		#default : ''.'',
 		#explanation : ''Identify the file to be taken as input for the root of the table of contents. When it is not specified, the table of contents will not be computed and displayed''
+	},
+	PathConfigurationItem {
+		#propertyName : #bibFile,
+		#default : ''book.bib'',
+		#explanation : ''Identify the file to be taken as input as bibliography. This is the .bib file used to resolve the \\ref commands in latex.''
 	}
 ]'
