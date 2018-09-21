@@ -6,5 +6,6 @@ getMustacheTemplateValuesFromDocument: aDocument
 	This dictionary will be used by the mustache"
 	content := self writer write: aDocument.
 	templates := (self metadataConfigurationForDocument: aDocument).
+	self halt.
 	templates at: #content put: content.
 	^ templates
