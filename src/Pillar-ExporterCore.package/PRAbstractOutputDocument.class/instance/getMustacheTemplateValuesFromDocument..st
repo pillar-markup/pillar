@@ -6,6 +6,7 @@ getMustacheTemplateValuesFromDocument: aDocument
 	| templates content |
 	content := self writer write: aDocument.
 	" templates := (self metadataConfigurationForDocument: aDocument)."
-	templates := aDocument properties allProperties.
+
+	templates := aDocument properties "allProperties".
 	templates at: #content put: content.
 	^ templates
