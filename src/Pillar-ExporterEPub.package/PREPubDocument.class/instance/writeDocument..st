@@ -7,6 +7,8 @@ writeDocument: aDocument
 	  - then traversing their headings and sections
 	
 	Then, If you want o generate a big epub file, create a pillar file including all the other pillar files"
+	self flag: #SD. "Why there is no call to super? How do we manage
+	mustache variables in ePub"
 	self writeNavigationFileForDocument: aDocument.
 	self writeContentsFileForDocument: aDocument.
 	self writePackageManifestFile.
