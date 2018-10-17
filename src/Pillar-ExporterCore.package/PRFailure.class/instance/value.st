@@ -1,0 +1,4 @@
+controlling
+value
+
+	^ 1
