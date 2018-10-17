@@ -9,8 +9,8 @@ testMethodCreationSyntaxErrorCodeblock
 	testGenerator cbIndex: 1.
 	codeBlock := PRCodeblock content: '(a1 at: 1) at: 1 put: ''sally''. a1 >>> #(#(''sally''))' parameters: 'testcase=true'.
 	testGenerator createTestMethodFrom: codeBlock.
-	self assert: (PRTTestMethodCreationError methodDict includesKey: #test1).
-	self assert: (PRTTestMethodCreationError methodDict at: #test1) sourceCode equals: 'test1
+	self assert: ((self class environment at: #PRTTestMethodCreationError) methodDict includesKey: #test1).
+	self assert: ((self class environment at: #PRTTestMethodCreationError) methodDict at: #test1) sourceCode equals: 'test1
 
 	self assert: Error signal description: ''A code block failed''. 
 	"SyntaxErrorNotification was raised with: '')'' expected"

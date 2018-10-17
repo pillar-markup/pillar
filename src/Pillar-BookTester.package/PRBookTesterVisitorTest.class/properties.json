@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "PRBookTestEnvironment",
+	"super" : "PRBookTestEnvironmentTest",
 	"category" : "Pillar-BookTester-Visitor-Tests",
 	"classinstvars" : [ ],
 	"pools" : [ ],

@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "PRBookTestEnvironment",
+	"name" : "PRBookTestEnvironmentTest",
 	"type" : "normal"
 }
