@@ -1,11 +1,10 @@
 building
 writeDocument: aDocument
 
-	| templateValues templatedOutput outputFile |
+	| environment templatedOutput outputFile |
 	
-	templateValues := self getMustacheTemplateValuesFromDocument: aDocument.
-
-	templatedOutput := (MustacheTemplate on: (self templateFile: aDocument) readStream contents) value: templateValues.
+	environment := self getMustacheTemplateValuesFromDocument: aDocument.
+	templatedOutput := (MustacheTemplate on: (self templateFile: aDocument) readStream contents) value: environment.
 
 	outputFile := (self outputDirectory resolve: (file file relativeTo: project baseDirectory asAbsolute)) withoutExtension , self extension.
 	outputFile ensureDelete.
