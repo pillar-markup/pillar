@@ -1,6 +1,13 @@
 sample
 itemDescriptionForPillar
-	^ {(StringConfigurationItem new
+	^ {
+	(PathConfigurationItem new
+ 		propertyName: #bibFile;
+ 		default: 'book.bib';
+ 		explanation: 'Identify the file to be taken as input for the bibliography. This is the .bib file used to resolve the ${cite:ref=Key}$ annotation.';
+ 		yourself)
+	.
+	(StringConfigurationItem new
 		propertyName: #title;
 		default: 'my super cool book';
 		yourself).

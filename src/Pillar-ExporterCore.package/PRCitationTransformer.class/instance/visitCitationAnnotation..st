@@ -1,6 +1,5 @@
 visiting-annotations
 visitCitationAnnotation: aCitationAnnotation
 
-	self createNewCitationWith: aCitationAnnotation.
-	self replace: (OrderedCollection with: tmpCitation).
+	self replace: (OrderedCollection with: (self createNewCitationWith: aCitationAnnotation)).
 	super visitCitationAnnotation: aCitationAnnotation 
