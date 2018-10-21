@@ -1,6 +1,6 @@
 running
 testTransformerCreatesFile
-"The test may fail if launched at a when changing minutes if you are unlucky"
+	"The test may fail if launched at a when changing minutes if you are unlucky"
 	| doc dateStamp |
 	doc := PRDocument new
 				add:
