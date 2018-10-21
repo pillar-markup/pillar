@@ -5,9 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"workingDirectory"
-	],
+	"instvars" : [ ],
 	"name" : "PRShowMethodTransformer",
 	"type" : "normal"
 }

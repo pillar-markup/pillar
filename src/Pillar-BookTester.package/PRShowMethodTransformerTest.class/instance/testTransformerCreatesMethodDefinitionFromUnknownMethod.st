@@ -1,11 +1,11 @@
 running
-testTransformerCreatesMethodDefinitionCodeblock
+testTransformerCreatesMethodDefinitionFromUnknownMethod
 	| doc codeblock |
 	doc := PRDocument new
 				add:
 				(PRShowMethodAnnotation new
 					parameterAt: 'class' put: 'Integer';
-					parameterAt: 'method' put: 'isPowerOfTwo';
+					parameterAt: 'method' put: 'isPowerOfTweuuu';
 				yourself); 
 			yourself.
 	"Pay attention that here the values should really be the values as created by the ${publications:... parser}$"
@@ -17,7 +17,7 @@ testTransformerCreatesMethodDefinitionCodeblock
 				(OrderedDictionary new
 					add: 'methodDefinition' -> true;
 					yourself).
-	self assert: codeblock text equals:'Integer >> ',(Integer compiledMethodAt: #isPowerOfTwo) sourceCode.
+	self assert: codeblock text equals: 'The system was looking for Integer but did not find the method isPowerOfTweuuu'
 
 	
 	

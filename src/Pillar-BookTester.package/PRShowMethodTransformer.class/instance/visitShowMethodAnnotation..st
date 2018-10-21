@@ -1,8 +1,17 @@
 visiting
 visitShowMethodAnnotation: aPRShowMethodAnnotation
 	
-	| className methodName |
-	className := self class environment at: (aPRShowMethodAnnotation parameters at: #class) asSymbol.
-	methodName := (aPRShowMethodAnnotation parameters at: #method) asSymbol.
-	self replace: {(PRCodeblock content: (className  asString, '>>', (className methodDict at: methodName asSymbol) sourceCode) 
-					  					parameters: (OrderedDictionary new add: 'methodDefinition' -> true; yourself))}
+	| shownClass methodName methodDefinition |
+	shownClass := self class environment at: aPRShowMethodAnnotation shownClassName ifAbsent: [nil].
+	methodName := aPRShowMethodAnnotation shownMethodName.
+
+	shownClass isNil
+		ifTrue: [ methodDefinition := 'The system was looking for ', aPRShowMethodAnnotation shownClassName, ' but did not find it' ]
+		ifFalse: [
+	methodDefinition := (shownClass canUnderstand: methodName)
+		ifFalse: [ 'The system was looking for ', aPRShowMethodAnnotation shownClassName, ' but did not find the method ', methodName ]
+		ifTrue: [ (shownClass asString, ' >> ', (shownClass compiledMethodAt: methodName) sourceCode) ]].
+	
+	self replace: {(PRCodeblock 
+								content: methodDefinition 
+					  			parameters: (OrderedDictionary new add: 'methodDefinition' -> true; yourself))}
