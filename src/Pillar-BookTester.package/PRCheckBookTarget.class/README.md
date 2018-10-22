@@ -1,0 +1,1 @@
+Looks like a little hack to be able to pass extra parameters during the documentFor: invocation?

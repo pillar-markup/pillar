@@ -1,6 +1,7 @@
 accessing
 characterizeMethodDefinition
-	"the fragmentedText should be filled in before using this method"
+	"Precondition: fragmentedText should be filled in before using this method"
+	
 	((self fragmentedText) isString)
 		ifTrue: [ ^ 'wrongSyntax' ].
 
