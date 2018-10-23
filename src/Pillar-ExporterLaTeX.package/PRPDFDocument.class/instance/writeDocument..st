@@ -1,13 +1,19 @@
 writing
 writeDocument: aDocument
 
-	| content templateValues templatedOutput outputFile |
-	content := self writer write: aDocument.
-	templateValues := aDocument properties allProperties.
-	templateValues at: #content put: content.
+	| content environment templatedOutput outputFile |
 	
-	templatedOutput := (MustacheTemplate on: (self templateFile: aDocument) readStream contents) value: templateValues.
+	environment := self getMustacheTemplateValuesFromDocument: aDocument.
+	content := self writer write: aDocument.
+	environment at: #content put: content.
 
+	"so that we can force to have book.bib in the environment"
+	"we will have to fix that"
+	environment at: #bibFile put: (environment bibFile).
+	templatedOutput := (MustacheTemplate on: (self templateFile: aDocument) readStream contents) value: environment.
+
+
+	self flag: #DuplicatedInSuperclass.
 	outputFile := (self outputDirectory resolve: (file file relativeTo: project baseDirectory asAbsolute)) withoutExtension , 'tex'.
 	outputFile ensureDelete.
 	outputFile parent ensureCreateDirectory.
