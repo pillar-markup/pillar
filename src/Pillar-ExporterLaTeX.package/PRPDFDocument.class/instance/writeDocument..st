@@ -9,7 +9,7 @@ writeDocument: aDocument
 
 	"so that we can force to have book.bib in the environment"
 	"we will have to fix that"
-	environment at: #bibFile put: (environment bibFile).
+	"environment at: #bibFile put: (environment bibFile)."
 	templatedOutput := (MustacheTemplate on: (self templateFile: aDocument) readStream contents) value: environment.
 
 
