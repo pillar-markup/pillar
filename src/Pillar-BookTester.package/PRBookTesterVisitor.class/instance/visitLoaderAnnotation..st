@@ -7,7 +7,7 @@ visitLoaderAnnotation: aPRLoaderAnnotation
 	tagName := aPRLoaderAnnotation gitTag asString.
 	baselineName := aPRLoaderAnnotation baseline asString.
 	
-	self environment at: #IceLibgitRepository ifPresent: [ :class |
+	self class environment at: #IceLibgitRepository ifPresent: [ :class |
 		class registry
 			detect: [ :any | any name = projectName ]
 			ifFound: #delete. ].
