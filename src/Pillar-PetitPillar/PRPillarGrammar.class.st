@@ -298,7 +298,11 @@ PRPillarGrammar >> annotationMarkupSeparator [
 
 { #category : #'grammar - Annotation' }
 PRPillarGrammar >> annotationParameters [
-	^ (annotationMarkupSeparator , parametersUntilEndAnnotation) ==> [ :array | array second ]
+	^	epsilonToken , 	
+		annotationMarkupSeparator ,
+		epsilonToken , 
+		parametersUntilEndAnnotation, 
+		epsilonToken
 ]
 
 { #category : #'grammar - Annotation' }

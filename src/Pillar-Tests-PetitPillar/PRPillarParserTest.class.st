@@ -178,7 +178,9 @@ PRPillarParserTest >> testAnnotationParameters [
 		(PRParameter 
 			keyNode: (PRParameterKey named: #timo) 
 			valueNode: (PRParameterValue value: 'leon')) }.
-	self assert: result equals:  expected
+	self assert: result equals:  expected.
+	self assert: result start equals: 2.
+	self assert: result stop equals: 18.
 ]
 
 { #category : #'tests - Annotation' }

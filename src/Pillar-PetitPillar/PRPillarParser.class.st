@@ -429,7 +429,9 @@ PRPillarParser >> parametersLink [
 
 { #category : #'grammar - Parameter' }
 PRPillarParser >> parametersObjectFrom: array [
-	^ PRParameters with: array first withAll: array second
+	^ (PRParameters with: array fourth first withAll: array fourth second)
+			start: array third start;
+			stop: array fifth stop
 ]
 
 { #category : #'grammar - Parameter' }
