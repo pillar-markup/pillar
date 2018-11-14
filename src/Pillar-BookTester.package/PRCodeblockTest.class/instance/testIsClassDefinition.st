@@ -6,5 +6,5 @@ testIsClassDefinition
 instanceVariableNames: ''''
 classVariableNames: ''''
 package: ''PackageName'''
-						   parameters: (OrderedDictionary newFromKeys: #('classDefinition') andValues: #(true)).
+						   parameters: (OrderedDictionary newFromPairs: { 'classDefinition' . true }).
 	self assert: cb1 isClassDefinition.	
