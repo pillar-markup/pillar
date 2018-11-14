@@ -121,4 +121,10 @@ baseline: spec
 				package: 'Pillar-Tests-PetitPillarOld' with: [ 
 					spec requires: #('PetitParserTest' 'Pillar-PetitPillarOld') ];
 				group: 'old' with: #( 'Pillar-PetitPillarOld' 'Pillar-Tests-PetitPillarOld' ) 
-	]
+	].
+
+	spec for: #'pharo6.x' do: [	
+		spec
+			package: 'Pillar-Model' with: [ 
+				spec requires: #( 'Pillar-Pharo6' ) ];
+			package: 'Pillar-Pharo6' ]
