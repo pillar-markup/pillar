@@ -7,9 +7,10 @@ visitLoaderAnnotation: aPRLoaderAnnotation
 	tagName := aPRLoaderAnnotation gitTag asString.
 	baselineName := aPRLoaderAnnotation baseline asString.
 	
-	IceLibgitRepository registry
-		detect: [ :any | any name = projectName ]
-		ifFound: #delete.
+	self environment at: #IceLibgitRepository ifPresent: [ :class |
+		class registry
+			detect: [ :any | any name = projectName ]
+			ifFound: #delete. ].
 
 	Metacello new
 		baseline: baselineName;
