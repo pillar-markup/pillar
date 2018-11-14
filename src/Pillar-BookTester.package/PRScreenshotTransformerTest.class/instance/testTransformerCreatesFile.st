@@ -2,6 +2,9 @@ running
 testTransformerCreatesFile
 	"The test may fail if launched at a when changing minutes if you are unlucky"
 	| doc dateStamp |
+	
+	SystemVersion current major < 7 ifTrue: [ ^ self skip ].
+	
 	doc := PRDocument new
 				add:
 				(PRScreenshotAnnotation new

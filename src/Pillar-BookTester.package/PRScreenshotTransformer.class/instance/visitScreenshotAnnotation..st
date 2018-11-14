@@ -7,11 +7,12 @@ visitScreenshotAnnotation: aPRShowMethodAnnotation
 	"naming the file as follows: className>>methodName-date.png"
 	time := (((DateAndTime now asString copyReplaceAll: ':' with: '-') copyReplaceAll: '.' with: '-') splitOn: '+') first.
 	fileName := (aPRShowMethodAnnotation className, '>>',aPRShowMethodAnnotation methodName),'-', time,'.png'.
-	browser := ClyFullBrowser openOnMethod: className>>methodName.
+	browser := Smalltalk tools browser openOnMethod: className>>methodName.
 	
-	UIManager default defer: [1 second wait.
-									 browser window exportAsPNGSilentlyForPillarFileNamed: fileName.
-									 browser close].
+	UIManager default defer: [
+		1 second wait.
+		browser window exportAsPNGSilentlyForPillarFileNamed: fileName.
+		browser close].
 	
 	doc := PRPillarParser new parse:('+' , aPRShowMethodAnnotation caption, '.>file://figures/screenshots/', fileName,
 								'|width=', aPRShowMethodAnnotation width,

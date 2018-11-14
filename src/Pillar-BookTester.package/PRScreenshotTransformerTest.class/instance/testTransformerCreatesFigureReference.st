@@ -2,6 +2,9 @@ running
 testTransformerCreatesFigureReference
 	"It is needed to create the subfolder image/YourImage/figures as if it was a book in order for these tests to work"
 	| doc figure |
+	
+	SystemVersion current major < 7 ifTrue: [ ^ self skip ].
+	
 	doc := PRDocument new
 				add:
 				(PRScreenshotAnnotation new

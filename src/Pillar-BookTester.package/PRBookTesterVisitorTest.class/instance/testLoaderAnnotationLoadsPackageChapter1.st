@@ -1,6 +1,9 @@
 tests-annotations
 testLoaderAnnotationLoadsPackageChapter1
 	| doc bookTester|
+	
+	SystemVersion current major < 7 ifTrue: [ ^ self skip ].
+	
 	doc := PRDocument new
 				add:
 				(PRLoaderAnnotation new
