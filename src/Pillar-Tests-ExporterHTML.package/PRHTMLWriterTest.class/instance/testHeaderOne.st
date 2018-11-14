@@ -11,5 +11,4 @@ testHeaderOne
 			PRHTMLWriter new write: aNode to: writeStream ];
 		contents.
 		
-	self assert: aContents equals: '<h1>Header One</h1>
-'
+	self assert: aContents trimBoth equals: '<h1>Header One</h1>' trimBoth
