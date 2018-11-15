@@ -1,3 +1,3 @@
-as yet unclassified
+accessing
 lookForAvailableTemplates: aCollection
 	^ (aCollection select: [ :each | (self workingDirectory resolve: each) exists and: [ each asFileReference extension = 'mustache' ] ]) asOrderedCollection

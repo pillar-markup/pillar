@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Pillar-ExporterCore-Base",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"outputDocument",
+		"defaultWriter"
+	],
+	"name" : "PRTemplatedWriter",
+	"type" : "normal"
+}

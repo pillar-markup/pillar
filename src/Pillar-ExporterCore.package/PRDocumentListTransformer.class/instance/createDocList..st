@@ -1,4 +1,4 @@
-as yet unclassified
+transforming
 createDocList: aPRDocListAnnotation
 	| files document sortedFiles |
 	"Check if the specified path exist and get pillar files from it.
@@ -19,6 +19,6 @@ createDocList: aPRDocListAnnotation
 				currentFile := (sortedFiles at: index).
 				
 				"Parse current file and add an abstract to the general document"
-				self addAbstractOfCurrentFileToDocument: document ] 
+				self addAbstractOfCurrentFileToDocument: document inAnnotation: aPRDocListAnnotation ] 
 		].
 	^ document
