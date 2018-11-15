@@ -232,7 +232,11 @@ PRPillarParser >> linkAlias [
 			anArray second
 				ifEmpty: [ { (PRText content: '') start: anArray first start; stop: anArray first start } ]
 				ifNotEmpty: [ 
-					self parse: anArray second startingAt: #oneLineContent ] ]
+					| aCollection |
+					aCollection := (self parse: anArray second startingAt: #oneLineContent).
+					aCollection do: [ :each | 
+						each start: each start + anArray first start - 1.
+						each stop: each start + anArray second size - 1 ] ] ]
 ]
 
 { #category : #helpers }
