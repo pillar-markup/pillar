@@ -1,0 +1,4 @@
+templates
+italicTemplateFileName
+	
+	^ 'italic.mustache'

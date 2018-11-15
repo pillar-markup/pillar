@@ -1,0 +1,4 @@
+templates
+boldTemplateFileName
+	
+	^ 'bold.mustache'

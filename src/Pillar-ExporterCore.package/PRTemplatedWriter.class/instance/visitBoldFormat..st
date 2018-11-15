@@ -2,7 +2,7 @@ visiting
 visitBoldFormat: aPRBoldFormat
 
 	| templateFile |
-	templateFile := outputDocument templateDirectory / 'bold.mustache'.
+	templateFile := outputDocument templateDirectory / self boldTemplateFileName.
 	templateFile exists
 		ifTrue: [ | subWriter contents result |
 			subWriter := outputDocument writer.
