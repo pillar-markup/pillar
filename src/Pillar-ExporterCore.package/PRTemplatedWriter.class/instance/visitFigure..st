@@ -2,7 +2,7 @@ visiting
 visitFigure: aFigure
 	
 	| templateFile |
-	templateFile := outputDocument templateDirectory / 'figure.mustache'.
+	templateFile := outputDocument templateDirectory / self figureTemplateFileName.
 	templateFile exists
 		ifTrue: [ | result |	
 			result := templateFile asMustacheTemplate value: {

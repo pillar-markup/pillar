@@ -2,9 +2,9 @@ visiting
 visitCodeblock: aPRCodeblock 
 	
 	| templateFile |
-	templateFile := outputDocument templateDirectory / 'codeBlock.mustache'.
+	templateFile := outputDocument templateDirectory / self codeBlockTemplateFileName.
 	templateFile exists
-		ifTrue: [  | contents result |
+		ifTrue: [ | result |
 			result := templateFile asMustacheTemplate value: {
 				'language' -> (defaultWriter languageForScript: aPRCodeblock).
 				'contents' -> aPRCodeblock text } asDictionary.

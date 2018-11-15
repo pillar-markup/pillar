@@ -2,7 +2,7 @@ visiting
 visitHeader: aHeader
 
 	| templateFile |
-	templateFile := outputDocument templateDirectory / 'header.mustache'.
+	templateFile := outputDocument templateDirectory / self headerTemplateFileName.
 	templateFile exists
 		ifTrue: [ | subWriter level contents result |
 			subWriter := outputDocument writer.

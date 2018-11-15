@@ -2,7 +2,7 @@ visiting
 visitUnorderedList: aPRUnorderedList 
 
 	| templateFile |
-	templateFile := outputDocument templateDirectory / 'unorderedList.mustache'.
+	templateFile := outputDocument templateDirectory / self unorderedListTemplateFileName.
 	templateFile exists
 		ifTrue: [ | subWriter contents result |
 			subWriter := outputDocument writer.

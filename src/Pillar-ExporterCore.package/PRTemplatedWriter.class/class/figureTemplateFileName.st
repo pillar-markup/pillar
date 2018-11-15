@@ -1,0 +1,4 @@
+templates
+figureTemplateFileName
+
+	^ 'figure.mustache'

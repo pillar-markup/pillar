@@ -1,8 +1,10 @@
 visiting
-visitEmptyParagraph: anObject
+visitEmptyParagraph: anEmptyParagraph
 	
 	| templateFile |
-	templateFile := outputDocument templateDirectory / 'emptyParagraph.mustache'.
+	templateFile := outputDocument templateDirectory / self emptyParagraphTemplateFileName.
 	templateFile exists
-		ifTrue: [ self halt ]
-		ifFalse: [ defaultWriter visitEmptyParagraph: anObject ].
+		ifTrue: [ | result |
+			result := templateFile asMustacheTemplate value: { 'contents' -> anEmptyParagraph text } asDictionary.
+			self visitRaw: (PRRaw content: result type: defaultWriter writerName) ]
+		ifFalse: [ defaultWriter visitEmptyParagraph: anEmptyParagraph ].

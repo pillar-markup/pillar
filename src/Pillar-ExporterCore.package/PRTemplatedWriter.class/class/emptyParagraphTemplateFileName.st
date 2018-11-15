@@ -1,0 +1,4 @@
+templates
+emptyParagraphTemplateFileName
+
+	^ 'emptyParagraph.mustache'

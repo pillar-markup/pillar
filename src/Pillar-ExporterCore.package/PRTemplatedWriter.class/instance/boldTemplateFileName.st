@@ -1,4 +1,4 @@
-visiting
+accessing
 boldTemplateFileName
 
 	^ self class boldTemplateFileName

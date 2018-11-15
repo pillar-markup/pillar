@@ -2,7 +2,14 @@ visiting
 visitMonospaceFormat: aPRMonospaceFormat 
 	
 	| templateFile |
-	templateFile := outputDocument templateDirectory / 'monospace.mustache'.
+	templateFile := outputDocument templateDirectory / self monospaceTemplateFileName.
 	templateFile exists
-		ifTrue: [ self halt ]
+		ifTrue: [ | subWriter contents result |
+			subWriter := outputDocument writer.
+			subWriter visitDocumentGroup: aPRMonospaceFormat.
+			
+			contents := subWriter contents.
+			result := templateFile asMustacheTemplate value: {
+				'contents' -> contents } asDictionary.
+			self visitRaw: (PRRaw content: result type: defaultWriter writerName) ]
 		ifFalse: [ defaultWriter visitMonospaceFormat: aPRMonospaceFormat ].

@@ -1,4 +1,4 @@
-visiting
+accessing
 italicTemplateFileName
 		
 	^ self class italicTemplateFileName
