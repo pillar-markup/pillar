@@ -1,4 +1,4 @@
 writing
-writer
+basicWriter
 	
 	^ target writerFor: project configuration

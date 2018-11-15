@@ -1,6 +1,5 @@
 visiting-document
 visitFigure: aFigure
-	1halt.
 	(aFigure hasLabel not and: [ aFigure hasCaption not ])
 		ifTrue: [ 
 			self exportImgFor: aFigure.

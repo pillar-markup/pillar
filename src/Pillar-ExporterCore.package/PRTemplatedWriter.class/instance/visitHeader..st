@@ -5,7 +5,7 @@ visitHeader: aHeader
 	templateFile := outputDocument templateDirectory / 'header.mustache'.
 	templateFile exists
 		ifTrue: [ | subWriter level contents result |
-			subWriter := outputDocument templatedWriter.
+			subWriter := outputDocument writer.
 			subWriter visitDocumentGroup: aHeader.
 			level := aHeader level min: 7 max: 1.
 			

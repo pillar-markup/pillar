@@ -4,7 +4,7 @@ getMustacheTemplateValuesFromDocument: aDocument
 	We add the text contents to it. This dictionarylike structure will be used by the mustache."
 
 	| templates content |
-	content := self templatedWriter write: aDocument.
+	content := self writer write: aDocument.
 	templates := aDocument properties.
 	templates at: #content put: content.
 	^ templates

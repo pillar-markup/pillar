@@ -1,0 +1,4 @@
+writing
+basicWriter
+	
+	self subclassResponsibility

@@ -1,5 +1,5 @@
 accessing
-writer
+basicWriter
 	
 	^ (PRDocumentWriter allSubclasses detect: [ :each | 
 		each isAbstract not

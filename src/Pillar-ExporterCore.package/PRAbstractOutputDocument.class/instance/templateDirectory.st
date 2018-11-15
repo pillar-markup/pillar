@@ -1,4 +1,4 @@
 templating
 templateDirectory
 
-	^ project baseDirectory / '_support' / 'templates' / self writer class folderName
+	^ project baseDirectory / '_support' / 'templates' / self writer folderName

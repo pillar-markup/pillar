@@ -1,4 +1,4 @@
 accessing
 project
 
-	^ PRProject on: self workingDirectory
+	^ project ifNil: [ project := PRProject on: self workingDirectory ]

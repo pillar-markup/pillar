@@ -1,0 +1,4 @@
+templates
+beTemplatable
+
+	templatable := true

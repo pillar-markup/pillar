@@ -5,7 +5,7 @@ visitBoldFormat: aPRBoldFormat
 	templateFile := outputDocument templateDirectory / 'bold.mustache'.
 	templateFile exists
 		ifTrue: [ | subWriter contents result |
-			subWriter := outputDocument templatedWriter.
+			subWriter := outputDocument writer.
 			subWriter visitDocumentGroup: aPRBoldFormat.
 			
 			contents := subWriter contents.

@@ -4,8 +4,8 @@ visitUnorderedList: aPRUnorderedList
 	| templateFile |
 	templateFile := outputDocument templateDirectory / 'unorderedList.mustache'.
 	templateFile exists
-		ifTrue: [ | subWriter level contents result |
-			subWriter := outputDocument templatedWriter.
+		ifTrue: [ | subWriter contents result |
+			subWriter := outputDocument writer.
 			subWriter visitDocumentGroup: aPRUnorderedList.
 			
 			contents := subWriter contents.
