@@ -1,0 +1,4 @@
+accessing
+defaultAnnotatedParagraphTemplateFileName
+
+	^ self class defaultAnnotatedParagraphTemplateFileName

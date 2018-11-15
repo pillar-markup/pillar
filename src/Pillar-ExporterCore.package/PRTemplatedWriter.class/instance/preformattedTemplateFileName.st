@@ -1,0 +1,4 @@
+accessing
+preformattedTemplateFileName
+
+	^ self class preformattedTemplateFileName

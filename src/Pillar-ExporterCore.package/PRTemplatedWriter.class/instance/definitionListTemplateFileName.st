@@ -1,0 +1,4 @@
+accessing
+definitionListTemplateFileName
+
+	^ self class definitionListTemplateFileName

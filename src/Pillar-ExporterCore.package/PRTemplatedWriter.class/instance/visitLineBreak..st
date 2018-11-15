@@ -1,4 +1,7 @@
-delegating
+visiting
 visitLineBreak: aPRLineBreak
 
-	defaultWriter visitLineBreak: aPRLineBreak
+	self
+		writeRawText: ''
+		withTemplateFileName: self lineBreakTemplateFileName
+		ifAbsent: [ defaultWriter visitLineBreak: aPRLineBreak ]

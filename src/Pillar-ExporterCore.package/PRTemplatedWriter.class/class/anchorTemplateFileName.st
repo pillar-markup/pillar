@@ -1,0 +1,4 @@
+templates
+anchorTemplateFileName
+	
+	^ 'anchor.mustache'

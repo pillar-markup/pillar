@@ -1,0 +1,4 @@
+templates
+mailLinkTemplateFileName
+	
+	^ 'mailLink.mustache'

@@ -1,0 +1,4 @@
+templates
+sectionTemplateFileName
+	
+	^ 'section.mustache'

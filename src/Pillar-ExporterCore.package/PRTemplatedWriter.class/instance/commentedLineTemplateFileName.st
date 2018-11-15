@@ -1,0 +1,4 @@
+accessing
+commentedLineTemplateFileName
+
+	^ self class commentedLineTemplateFileName

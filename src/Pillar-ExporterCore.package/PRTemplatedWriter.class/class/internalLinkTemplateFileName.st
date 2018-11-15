@@ -1,0 +1,4 @@
+templates
+internalLinkTemplateFileName
+	
+	^ 'internalLink.mustache'
