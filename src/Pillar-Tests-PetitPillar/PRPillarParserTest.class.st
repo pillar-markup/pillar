@@ -745,14 +745,16 @@ bar')
 
 { #category : #'tests - Reference' }
 PRPillarParserTest >> testReference [
-	super testReference.
+	super testReference. "'*foo>@bar*'"
 	self
 		assert: result
 		equals:
 			(PRInternalLink new
 				add: (PRText content: 'foo');
 				anchor: 'bar';
-				yourself)
+				yourself).
+	self assertStart: 1 stop: 10.
+	self assertStart: 2 stop: 4 ofNode: result children first.
 ]
 
 { #category : #'tests - Reference' }

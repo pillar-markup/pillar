@@ -228,12 +228,11 @@ PRPillarParser >> link [
 
 { #category : #'grammar - Reference' }
 PRPillarParser >> linkAlias [
-	^ super linkAlias
-		==>
-			[ :string | 
-			string
-				ifEmpty: [ {(PRText content: '')} ]
-				ifNotEmpty: [ self parse: string startingAt: #oneLineContent ] ]
+	^ super linkAlias ==> [ :anArray | 
+			anArray second
+				ifEmpty: [ { (PRText content: '') start: anArray first start; stop: anArray first start } ]
+				ifNotEmpty: [ 
+					self parse: anArray second startingAt: #oneLineContent ] ]
 ]
 
 { #category : #helpers }
@@ -633,7 +632,7 @@ PRPillarParser >> text [
 	^ super text ==> [ :array | 
 			(PRText content: (self stringFrom: array second))
 				start: array first start;
-				stop: array third stop ]
+				stop: array third start ]
 ]
 
 { #category : #'grammar - Format' }
