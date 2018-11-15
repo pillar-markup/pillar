@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "Object",
+	"super" : "PRVisitor",
 	"category" : "Pillar-ExporterCore-Base",
 	"classinstvars" : [ ],
 	"pools" : [ ],
