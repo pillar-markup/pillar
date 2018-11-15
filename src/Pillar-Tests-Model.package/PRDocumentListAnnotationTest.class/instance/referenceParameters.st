@@ -12,5 +12,7 @@ referenceParameters
 			valueNode: (PRParameterValue value: 'date').
 		PRParameter 
 			keyNode: (PRParameterKey named: 'templates')
-			valueNode: (PRParameterValue value: #('templates/docArticle.mustache')) }
-	
+			valueNode: (PRParameterValue value: #('templates/docArticle.mustache')).
+		PRParameter
+			keyNode: (PRParameterKey named: 'summaryMaxSize')
+			valueNode: (PRParameterValue value: 500) }
