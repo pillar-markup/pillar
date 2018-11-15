@@ -19,5 +19,5 @@ testAnnotationWithoutSortParameterShouldListFilesInArbitraryOrder
 	documentGroup := doc children second.
 	sections := documentGroup children.
 	
-	self assert: sections size equals: 8.
-	self assert: sections first children first text equals: 'Okay'.
+	self assert: sections size equals: 4.
+	self assert: sections first text equals: 'OkayWe gonna test annotations'.

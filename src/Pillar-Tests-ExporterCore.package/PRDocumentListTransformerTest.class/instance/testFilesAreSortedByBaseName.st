@@ -21,8 +21,8 @@ testFilesAreSortedByBaseName
 	
 	sections := documentGroup children.
 
-	self assert: sections size equals: 12.
+	self assert: sections size equals: 6.
 	
-	self assert: sections first children first text equals: 'Okay'.
-	self assert: (sections at: 5) children first text equals: 'That''s the second'.
-	self assert: (sections at: 9) children first text equals: 'And the third'.
+	self assert: (sections at: 1) text equals: 'OkayWe gonna test annotations'.
+	self assert: (sections at: 3) text equals: 'That''s the secondone for testing annotations'.
+	self assert: (sections at: 5) text equals: 'And the thirdone for testing annotations'.

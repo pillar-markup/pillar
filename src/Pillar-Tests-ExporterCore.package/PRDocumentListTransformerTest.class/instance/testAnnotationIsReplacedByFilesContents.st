@@ -20,6 +20,6 @@ testAnnotationIsReplacedByFilesContents
 	
 	sections := documentGroup children.
 
-	self assert: sections size equals: 12.
+	self assert: sections size equals: 6.
 	
-	self assert: sections first children first text equals: 'Okay'.
+	self assert: sections first text equals: 'OkayWe gonna test annotations'.

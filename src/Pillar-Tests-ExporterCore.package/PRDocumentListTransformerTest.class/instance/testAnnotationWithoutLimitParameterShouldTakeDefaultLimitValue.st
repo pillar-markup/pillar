@@ -22,9 +22,9 @@ testAnnotationWithoutLimitParameterShouldTakeDefaultLimitValue
 
 	links := sections select: [ :each | each class = PRInternalLink ].
 
-	self assert: sections size equals: 12.
+	self assert: sections size equals: 6.
 	
-	self assert: sections first children first text equals: 'Okay'.
-	
+	self assert: sections first text equals: 'OkayWe gonna test annotations'.
+
 	"default value of limit 3"
 	self assert: links size equals: 3

@@ -21,6 +21,6 @@ testAnnotationCreateGoodLinks
 	
 	sections := documentGroup children.
 
-	self assert: sections size equals: 12.
-	self assert: (sections at: 4) reference  equals: 'blogs/blog1.pillar'.
-	self assert: (sections at: 12) reference  equals: 'blogs/blog3.pillar'.
+	self assert: sections size equals: 6.
+	self assert: (sections at: 2) reference  equals: 'blogs/blog1.pillar'.
+	self assert: (sections at: 6) reference  equals: 'blogs/blog3.pillar'.
