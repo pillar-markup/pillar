@@ -1,3 +1,3 @@
 writing text
 nextPut: aCharacter
-	stream << aCharacter
+	stream nextPut: aCharacter

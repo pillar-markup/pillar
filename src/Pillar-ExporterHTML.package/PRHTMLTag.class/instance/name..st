@@ -1,4 +1,4 @@
 accessing
 name: aString
 	name := aString.
-	stream << $< << aString
+	stream nextPut: $<; << aString

@@ -2,5 +2,5 @@
 mustacheLookup: aString
 	(aString = '.') ifTrue: [ ^ self ].
 	^ self propertyAt: aString asSymbol
-		ifPresent: [ :elem | elem ]
-		ifAbsent: [  self mustacheLookupComplex: aString ]
+		ifPresent: [ :elem | elem asMustachableValue ]
+		ifAbsent: [ (super mustacheLookup: aString) asMustachableValue ]

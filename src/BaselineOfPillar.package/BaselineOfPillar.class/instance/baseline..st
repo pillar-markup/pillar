@@ -51,6 +51,7 @@ baseline: spec
 				package: 'Pillar-PetitPillar' with: [ spec requires: #('PetitParser2Core' 'Pillar-Model') ];
 				package: 'Pillar-Pharo-Tools' with: [ spec requires: #('Pillar-Model' 'All exporters') ];
 				package: 'Pillar-Project' with: [ spec requires: #('Pillar-Model' 'All exporters') ];
+				package: 'Pillar-BookTester' with: [ spec requires: #('Pillar-Project') ];
 				package: 'Pillar-Tests-Cli' with: [ spec requires: #('Pillar-Cli') ];
 				package: 'Pillar-Tests-ExporterAsciiDoc'
 					with: [ spec requires: #('Pillar-ExporterAsciiDoc' 'Pillar-Tests-ExporterCore') ];
@@ -71,7 +72,7 @@ baseline: spec
 			spec
 				group: 'ALL' with: #('All tests' 'All but tests');
 				group: 'All but tests'
-					with: #('All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'Pillar-GitBook' 'parser' 'Pillar-Project');
+					with: #('All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'Pillar-GitBook' 'parser' 'Pillar-Project' 'Pillar-BookTester');
 				group: 'All exporter tests'
 					with:
 					#('html exporter tests' 'latex exporter tests' 'beamer exporter tests' 'deckjs exporter tests' 'markdown exporter tests' 'pillar exporter tests' 'text exporter tests' 'asciidoc exporter tests' 'ePub exporter tests');
@@ -120,4 +121,10 @@ baseline: spec
 				package: 'Pillar-Tests-PetitPillarOld' with: [ 
 					spec requires: #('PetitParserTest' 'Pillar-PetitPillarOld') ];
 				group: 'old' with: #( 'Pillar-PetitPillarOld' 'Pillar-Tests-PetitPillarOld' ) 
-	]
+	].
+
+	spec for: #'pharo6.x' do: [	
+		spec
+			package: 'Pillar-Model' with: [ 
+				spec requires: #( 'Pillar-Pharo6' ) ];
+			package: 'Pillar-Pharo6' ]

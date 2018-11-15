@@ -1,3 +1,8 @@
 accessing
 with: aString
-	stream << $> << aString << '</' << name << $>
+	stream 
+		nextPut: $>; 
+		<< aString;
+		<< '</'; 
+		<< name;
+		nextPut: $>

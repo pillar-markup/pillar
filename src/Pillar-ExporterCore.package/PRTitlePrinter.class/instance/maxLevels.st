@@ -1,3 +1,3 @@
 initialization
 maxLevels
-	^ 5
+	^ 7

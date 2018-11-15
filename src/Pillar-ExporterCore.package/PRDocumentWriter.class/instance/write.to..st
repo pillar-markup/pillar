@@ -1,3 +1,3 @@
 visiting
 write: aDocumentItem to: aStream
-	^ self setStream: aStream; start: aDocumentItem; contents
+	^ self setStream: aStream; start: aDocumentItem

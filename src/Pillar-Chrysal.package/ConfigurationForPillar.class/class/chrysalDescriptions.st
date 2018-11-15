@@ -2,6 +2,11 @@ description
 chrysalDescriptions
 	"I'm a generated method. I'm just here to help remembering how the class was generated. I should only be executed in presence of the configurationBuilder contained in the Chrysal package. Indeed the item objects only exist at compile-time and STON will recreate them."
 	 ^ STON fromString: '[
+	PathConfigurationItem {
+		#propertyName : #bibFile,
+		#default : ''book.bib'',
+		#explanation : ''Identify the file to be taken as input for the bibliography. This is the .bib file used to resolve the ${cite:ref=Key}$ annotation.''
+	},
 	StringConfigurationItem {
 		#propertyName : #title,
 		#default : ''my super cool book''

@@ -8,10 +8,8 @@ testEqualScriptWithLanguage
 		at: 'language' put: 'html';
 		yourself.
 	self
-		deny:
-			(self actualClass content: 'foo' parameters: param1)
-				= (self actualClass content: 'foo' parameters: param2).
+		assert: (self actualClass content: 'foo' parameters: param1) ~= (self actualClass content: 'foo' parameters: param2).
 	self
 		assert:
 			(self actualClass content: 'foo' parameters: param1)
-				= (self actualClass content: 'foo' parameters: param1)
+				equals: (self actualClass content: 'foo' parameters: param1)

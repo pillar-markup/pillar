@@ -1,0 +1,5 @@
+controlling
+value
+
+	self subclassResponsibility
+	

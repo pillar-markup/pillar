@@ -1,10 +1,10 @@
-building
+metadata
 getMustacheTemplateValuesFromDocument: aDocument
+	"aDocument already has a conifguration holding potential metadata. 
+	We add the text contents to it. This dictionarylike structure will be used by the mustache."
+
 	| templates content |
-	"We get the flattened meta-data obtained from the file header and the pillar configuration
-	We add the text contents to the dictionary.
-	This dictionary will be used by the mustache"
-	content := self templatedWriter write: aDocument.
-	templates := (self metadataConfigurationForDocument: aDocument).
+	content := self writer write: aDocument.
+	templates := aDocument properties.
 	templates at: #content put: content.
 	^ templates

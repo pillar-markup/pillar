@@ -1,16 +1,19 @@
 writing
 writeDocument: aDocument
 
-	| content templateValues templatedOutput outputFile |
-	content := self writer write: aDocument.
+	| content environment templatedOutput outputFile |
 	
-	"We get the flattened meta-data obtained from the file header and the pillar configuration
-	We add the text contents to the dictionary.
-	This dictionary will be used by the mustache"
-	templateValues := (self metadataConfigurationForDocument: aDocument) allProperties.
-	templateValues at: #content put: content.
-	templatedOutput := (MustacheTemplate on: (self templateFile: aDocument) readStream contents) value: templateValues.
+	environment := self getMustacheTemplateValuesFromDocument: aDocument.
+	content := self writer write: aDocument.
+	environment at: #content put: content.
 
+	"so that we can force to have book.bib in the environment"
+	"we will have to fix that"
+	"environment at: #bibFile put: (environment bibFile)."
+	templatedOutput := (MustacheTemplate on: (self templateFile: aDocument) readStream contents) value: environment.
+
+
+	self flag: #DuplicatedInSuperclass.
 	outputFile := (self outputDirectory resolve: (file file relativeTo: project baseDirectory asAbsolute)) withoutExtension , 'tex'.
 	outputFile ensureDelete.
 	outputFile parent ensureCreateDirectory.
