@@ -1,3 +1,0 @@
-error handling
-missingAnnotationParametersIn: anAnnotation
-	^ self subclassResponsibility

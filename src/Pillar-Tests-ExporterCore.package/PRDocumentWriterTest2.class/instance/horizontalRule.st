@@ -1,3 +1,0 @@
-requirements
-horizontalRule
-	^ self subclassResponsibility

@@ -1,4 +1,0 @@
-accessing
-templateForConfiguration: aConfiguration
-
-	^ defaultWriter templateForConfiguration: aConfiguration

@@ -1,4 +1,0 @@
-templates
-preformattedTemplateFileName
-	
-	^ 'preformatted.mustache'

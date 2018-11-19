@@ -1,4 +1,0 @@
-accessing
-path
-	
-	^ file path

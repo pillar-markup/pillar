@@ -1,1 +1,0 @@
-I am a class of trait used to test different exporter of slide. (e.g. Beamer exporter, DeckJS exporter etc...)

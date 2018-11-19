@@ -1,4 +1,0 @@
-controlling
-isFailure
-
-	self subclassResponsibility 

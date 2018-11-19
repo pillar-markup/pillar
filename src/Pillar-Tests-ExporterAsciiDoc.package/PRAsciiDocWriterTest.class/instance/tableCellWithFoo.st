@@ -1,3 +1,0 @@
-requirements
-tableCellWithFoo
-	^ '|foo'

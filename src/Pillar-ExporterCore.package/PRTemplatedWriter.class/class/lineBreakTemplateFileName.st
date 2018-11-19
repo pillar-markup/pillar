@@ -1,4 +1,0 @@
-templates
-lineBreakTemplateFileName
-	
-	^ 'lineBreak.mustache'

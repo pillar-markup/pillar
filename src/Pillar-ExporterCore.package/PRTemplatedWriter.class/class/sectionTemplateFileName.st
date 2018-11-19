@@ -1,4 +1,0 @@
-templates
-sectionTemplateFileName
-	
-	^ 'section.mustache'

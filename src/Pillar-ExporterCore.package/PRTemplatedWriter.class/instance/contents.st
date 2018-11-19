@@ -1,4 +1,0 @@
-accessing
-contents
-	
-	^ defaultWriter contents

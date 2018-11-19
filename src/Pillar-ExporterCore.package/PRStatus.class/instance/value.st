@@ -1,5 +1,0 @@
-controlling
-value
-
-	self subclassResponsibility
-	

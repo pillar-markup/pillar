@@ -1,4 +1,0 @@
-accessing
-basicWriter
-	
-	^ PRTextWriter new

@@ -1,4 +1,0 @@
-templates
-codeBlockTemplateFileName
-	
-	^ 'codeBlock.mustache'

@@ -1,4 +1,0 @@
-accessing
-horizontalRuleTemplateFileName
-
-	^ self class horizontalRuleTemplateFileName

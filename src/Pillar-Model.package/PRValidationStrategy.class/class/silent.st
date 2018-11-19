@@ -1,3 +1,0 @@
-accessing
-silent
-	^ PRSilentValidationStrategy uniqueInstance

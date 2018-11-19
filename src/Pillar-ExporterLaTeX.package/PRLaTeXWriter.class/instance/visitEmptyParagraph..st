@@ -1,3 +1,0 @@
-visiting-document
-visitEmptyParagraph: aParagraph
-	

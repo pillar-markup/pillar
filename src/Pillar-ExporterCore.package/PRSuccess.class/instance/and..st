@@ -1,4 +1,0 @@
-controlling
-and: aPRStatus
-
-	^ aPRStatus

@@ -1,4 +1,0 @@
-accessing
-possibleParameters
-
-	^ #(method class)

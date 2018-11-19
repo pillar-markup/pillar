@@ -1,1 +1,0 @@
-A canvas for writing text

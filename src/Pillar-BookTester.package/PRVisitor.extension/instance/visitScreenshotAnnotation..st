@@ -1,3 +1,0 @@
-*Pillar-BookTester
-visitScreenshotAnnotation: aScreenshotAnnotation 
-	self visitAnnotation: aScreenshotAnnotation

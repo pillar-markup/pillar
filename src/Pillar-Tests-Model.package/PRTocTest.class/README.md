@@ -1,1 +1,0 @@
-Test hash properties

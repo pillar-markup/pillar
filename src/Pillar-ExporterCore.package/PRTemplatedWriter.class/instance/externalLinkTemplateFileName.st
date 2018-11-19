@@ -1,4 +1,0 @@
-accessing
-externalLinkTemplateFileName
-
-	^ self class externalLinkTemplateFileName

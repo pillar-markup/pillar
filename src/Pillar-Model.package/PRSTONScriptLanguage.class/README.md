@@ -1,1 +1,0 @@
-STON (Smalltalk Object Notation)

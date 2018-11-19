@@ -1,5 +1,0 @@
-accessing
-workingDirectory
-	
-	^ workingDirectory
-	

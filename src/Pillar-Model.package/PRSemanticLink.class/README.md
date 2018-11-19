@@ -1,1 +1,0 @@
-I am an abstract class of some that represents a link to a well known web site such as Wikipedia or Youtube.

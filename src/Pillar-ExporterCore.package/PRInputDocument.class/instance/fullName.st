@@ -1,3 +1,0 @@
-accessing
-fullName
-	^ file fullName

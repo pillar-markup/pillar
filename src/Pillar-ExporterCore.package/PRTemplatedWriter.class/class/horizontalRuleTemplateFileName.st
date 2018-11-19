@@ -1,4 +1,0 @@
-templates
-horizontalRuleTemplateFileName
-	
-	^ 'horizontalRule.mustache'

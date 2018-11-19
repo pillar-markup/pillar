@@ -1,3 +1,0 @@
-private
-simpleReferenceString
-	self subclassResponsibility 

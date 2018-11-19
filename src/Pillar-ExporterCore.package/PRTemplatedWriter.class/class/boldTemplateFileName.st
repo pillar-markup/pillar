@@ -1,4 +1,0 @@
-templates
-boldTemplateFileName
-	
-	^ 'bold.mustache'

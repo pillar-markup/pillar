@@ -1,3 +1,0 @@
-initialization
-maxLevels
-	^ 7

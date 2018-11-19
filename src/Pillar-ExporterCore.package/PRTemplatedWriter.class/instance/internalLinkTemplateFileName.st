@@ -1,4 +1,0 @@
-accessing
-internalLinkTemplateFileName
-
-	^ self class internalLinkTemplateFileName

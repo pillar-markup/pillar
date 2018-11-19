@@ -1,4 +1,0 @@
-accessing
-emptyParagraphTemplateFileName
-
-	^ self class emptyParagraphTemplateFileName

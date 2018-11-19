@@ -1,3 +1,0 @@
-helpers
-writeCounterDefinitionSeparator
-	canvas nextPutAll: '. '

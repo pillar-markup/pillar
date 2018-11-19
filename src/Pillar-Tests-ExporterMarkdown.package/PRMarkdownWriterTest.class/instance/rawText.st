@@ -1,4 +1,0 @@
-requirements
-rawText
-	
-	^ 'raw text'

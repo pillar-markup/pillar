@@ -1,4 +1,0 @@
-accessing
-orderedListTemplateFileName
-
-	^ self class orderedListTemplateFileName

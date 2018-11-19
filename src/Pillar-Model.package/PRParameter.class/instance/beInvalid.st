@@ -1,3 +1,0 @@
-initialization
-beInvalid
-	isValid := false

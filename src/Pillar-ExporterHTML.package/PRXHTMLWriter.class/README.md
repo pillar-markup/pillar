@@ -1,1 +1,0 @@
-I write a document as XHTML for ePub

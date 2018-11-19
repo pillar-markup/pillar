@@ -1,3 +1,0 @@
-visiting
-acceptName: aTag 
-	^ false

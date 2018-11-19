@@ -1,4 +1,0 @@
-accessing
-configuration
-	
-	^ project configuration

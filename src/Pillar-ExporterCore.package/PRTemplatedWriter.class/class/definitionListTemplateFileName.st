@@ -1,4 +1,0 @@
-templates
-definitionListTemplateFileName
-	
-	^ 'definitionList.mustache'

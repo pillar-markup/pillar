@@ -1,4 +1,0 @@
-accessing
-writerName
-
-	^ #templatedWriter

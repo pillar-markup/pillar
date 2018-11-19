@@ -1,3 +1,0 @@
-requirements
-slideRepresentation
-	^ self explicitRequirement

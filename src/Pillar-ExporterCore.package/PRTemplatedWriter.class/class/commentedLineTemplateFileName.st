@@ -1,4 +1,0 @@
-templates
-commentedLineTemplateFileName
-	
-	^ 'commentedLine.mustache'

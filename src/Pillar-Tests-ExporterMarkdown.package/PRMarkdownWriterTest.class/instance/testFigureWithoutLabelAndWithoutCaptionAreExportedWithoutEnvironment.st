@@ -1,3 +1,0 @@
-tests
-testFigureWithoutLabelAndWithoutCaptionAreExportedWithoutEnvironment
-	self skip "Figures are no environnement in Markdown"

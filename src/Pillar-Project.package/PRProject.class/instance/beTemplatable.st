@@ -1,4 +1,0 @@
-templates
-beTemplatable
-
-	templatable := true

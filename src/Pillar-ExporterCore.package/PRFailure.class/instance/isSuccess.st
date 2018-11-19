@@ -1,4 +1,0 @@
-controlling
-isSuccess
-
-	^ false

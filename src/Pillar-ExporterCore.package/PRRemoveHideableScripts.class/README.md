@@ -1,1 +1,0 @@
-I visit a document and I hide scripts with ==hideable== parameter at ==true==.

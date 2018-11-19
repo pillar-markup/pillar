@@ -1,3 +1,0 @@
-accessing
-shouting
-	^ PRShoutingValidationStrategy uniqueInstance

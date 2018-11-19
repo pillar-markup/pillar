@@ -1,1 +1,0 @@
-Check ChrysalConfigurationBuilder >> #itemDescriptionForXX for the

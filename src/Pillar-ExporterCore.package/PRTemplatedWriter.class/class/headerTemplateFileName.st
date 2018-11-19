@@ -1,4 +1,0 @@
-templates
-headerTemplateFileName
-	
-	^ 'header.mustache'

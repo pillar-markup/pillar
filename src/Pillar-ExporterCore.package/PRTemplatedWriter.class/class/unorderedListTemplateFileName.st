@@ -1,4 +1,0 @@
-templates
-unorderedListTemplateFileName
-
-	^ 'unorderedList.mustache'

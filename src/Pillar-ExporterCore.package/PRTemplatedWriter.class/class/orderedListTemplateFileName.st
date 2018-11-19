@@ -1,4 +1,0 @@
-templates
-orderedListTemplateFileName
-	
-	^ 'orderedList.mustache'

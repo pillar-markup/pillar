@@ -1,4 +1,0 @@
-templates
-defaultAnnotatedParagraphTemplateFileName
-	
-	^ 'defaultAnnotatedParagraph.mustache'

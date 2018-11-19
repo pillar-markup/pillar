@@ -1,3 +1,0 @@
-*Pillar-BookTester
-visitShowClassAnnotation: aShowClassAnnotation 
-	self visitAnnotation: aShowClassAnnotation

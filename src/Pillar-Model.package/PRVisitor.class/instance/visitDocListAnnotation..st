@@ -1,3 +1,0 @@
-visiting-annotations
-visitDocListAnnotation: aPRDocListAnnotation 
-	self visitAnnotation: aPRDocListAnnotation

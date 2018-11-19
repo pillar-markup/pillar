@@ -1,4 +1,0 @@
-templates
-externalLinkTemplateFileName
-	
-	^ 'externalLink.mustache'

@@ -1,4 +1,0 @@
-controlling
-exitProcess
-
-	Exit signalSuccess

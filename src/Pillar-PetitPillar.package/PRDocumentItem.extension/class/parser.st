@@ -1,3 +1,0 @@
-*Pillar-PetitPillar
-parser
-	^ PRPillarParserMain

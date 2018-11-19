@@ -1,4 +1,0 @@
-accessing
-folderName
-
-	^ defaultWriter folderName

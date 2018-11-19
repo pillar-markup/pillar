@@ -1,4 +1,0 @@
-templates
-italicTemplateFileName
-	
-	^ 'italic.mustache'

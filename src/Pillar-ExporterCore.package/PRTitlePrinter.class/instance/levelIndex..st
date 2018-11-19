@@ -1,4 +1,0 @@
-accessing
-levelIndex: wishedLevel
-	
-	^ wishedLevel

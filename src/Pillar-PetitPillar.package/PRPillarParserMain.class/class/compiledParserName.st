@@ -1,3 +1,0 @@
-compiled parser
-compiledParserName
-	^ 'PRPillarCompiled'

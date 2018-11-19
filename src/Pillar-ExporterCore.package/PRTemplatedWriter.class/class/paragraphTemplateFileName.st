@@ -1,4 +1,0 @@
-templates
-paragraphTemplateFileName
-	
-	^ 'paragraph.mustache'

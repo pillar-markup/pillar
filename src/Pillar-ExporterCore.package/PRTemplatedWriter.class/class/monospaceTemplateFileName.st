@@ -1,4 +1,0 @@
-templates
-monospaceTemplateFileName
-
-	^ 'monospace.mustache'

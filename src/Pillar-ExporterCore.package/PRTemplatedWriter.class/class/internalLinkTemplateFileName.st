@@ -1,4 +1,0 @@
-templates
-internalLinkTemplateFileName
-	
-	^ 'internalLink.mustache'

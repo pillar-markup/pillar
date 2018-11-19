@@ -1,1 +1,0 @@
-A class for representing a gloabl sorter for different kind of sorting
