@@ -13,7 +13,7 @@ BaselineOfPillarExporter >> baseline: spec [
 		do: [ spec blessing: #baseline.
 			spec 
 				baseline: 'PillarCore' with: [ spec 
-					repository: 'github://feenkcom/pillar:feenk/src' ];
+					repository: 'github://pillar-markup/pillar:dev-7/src' ];
 				baseline: 'Chrysal' with: [ spec 
 					repository: 'github://Ducasse/Chrysal/src' ];
 				baseline: 'Mustache' with: [ spec
