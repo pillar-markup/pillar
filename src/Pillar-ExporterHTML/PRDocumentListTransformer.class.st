@@ -16,7 +16,7 @@ Class {
 		'filesDirectory',
 		'availableTemplates'
 	],
-	#category : 'Pillar-ExporterCore-Document-List'
+	#category : #'Pillar-ExporterHTML'
 }
 
 { #category : #'instance-creation' }

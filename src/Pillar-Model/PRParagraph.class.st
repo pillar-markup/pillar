@@ -14,22 +14,6 @@ PRParagraph class >> isAbstract [
 	^ false
 ]
 
-{ #category : #testing }
-PRParagraph class >> paragraphWithOtherMarkups [
-	<sampleInstance>
-	
-	^ PRPillarParser parse: 'Here is a list of publications
-	
-${publications:Ducasse|bibFile=rmod.bib}$
-The paragraph continues here.
-- a
-- b
-[[[
-a test  
-]]]
-You can contact me if you want.'
-]
-
 { #category : #visiting }
 PRParagraph >> accept: aVisitor [
 	aVisitor visitParagraph: self

@@ -1,7 +1,7 @@
 Class {
 	#name : #PRTemplatedWriterTest,
 	#superclass : #TestCase,
-	#category : 'Pillar-Tests-ExporterCore-LevelPrinter'
+	#category : #'Pillar-Tests-ExporterText'
 }
 
 { #category : #'tests-templatefiles' }
