@@ -37,7 +37,7 @@ BaselineOfPillarExporter >> baseline: spec [
 				package: 'Pillar-ExporterHTML' with: [ spec requires: #('Pillar-ExporterCore') ];
 				package: 'Pillar-ExporterLaTeX' with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-ExporterPillar') ];
 				package: 'Pillar-ExporterMarkdown' with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-ExporterHTML') ];
-				package: 'Pillar-ExporterPillar' with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-PetitPillar') ];
+				package: 'Pillar-ExporterPillar' with: [ spec requires: #('Pillar-ExporterCore' 'PillarCore') ];
 				package: 'Pillar-ExporterText' with: [ spec requires: #('Pillar-ExporterCore') ];
 
 				package: 'Pillar-Tests-ExporterAsciiDoc'
@@ -75,8 +75,6 @@ BaselineOfPillarExporter >> baseline: spec [
 				group: 'latex exporter tests' with: #('Pillar-Tests-ExporterLaTeX');
 				group: 'markdown exporter' with: #('Pillar-ExporterMarkdown' 'parser');
 				group: 'markdown exporter tests' with: #('Pillar-Tests-ExporterMarkdown');
-				group: 'parser' with: #('Pillar-PetitPillar');
-				group: 'parser tests' with: #('Pillar-Tests-PetitPillar');
 				group: 'pillar exporter' with: #('Pillar-ExporterPillar');
 				group: 'pillar exporter tests' with: #('Pillar-Tests-ExporterPillar');
 				group: 'text exporter' with: #('Pillar-ExporterText');
