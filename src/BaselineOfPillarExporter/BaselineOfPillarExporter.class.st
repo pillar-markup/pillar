@@ -73,7 +73,7 @@ BaselineOfPillarExporter >> baseline: spec [
 				group: 'html exporter tests' with: #('Pillar-Tests-ExporterHTML');
 				group: 'latex exporter' with: #('Pillar-ExporterLaTeX');
 				group: 'latex exporter tests' with: #('Pillar-Tests-ExporterLaTeX');
-				group: 'markdown exporter' with: #('Pillar-ExporterMarkdown' 'parser');
+				group: 'markdown exporter' with: #('Pillar-ExporterMarkdown' 'PillarCore');
 				group: 'markdown exporter tests' with: #('Pillar-Tests-ExporterMarkdown');
 				group: 'pillar exporter' with: #('Pillar-ExporterPillar');
 				group: 'pillar exporter tests' with: #('Pillar-Tests-ExporterPillar');
