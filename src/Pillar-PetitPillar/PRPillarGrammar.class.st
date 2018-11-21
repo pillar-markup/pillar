@@ -417,7 +417,11 @@ PRPillarGrammar >> figure [
 
 { #category : #'grammar - Reference' }
 PRPillarGrammar >> figureAlias [
-	^ ((escapedCharacter / (figureMarkup / referenceAliasMarkup) negate) star flatten, referenceAliasMarkup) ==> #first
+	^ 	epsilonToken ,
+		(escapedCharacter / 
+			(figureMarkup / referenceAliasMarkup) negate) star flatten , 
+		epsilonToken ,
+		referenceAliasMarkup
 ]
 
 { #category : #'grammar - Reference' }

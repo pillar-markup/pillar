@@ -158,12 +158,15 @@ PRPillarParser >> figure [
 
 { #category : #'grammar - Reference' }
 PRPillarParser >> figureAlias [
-	^ super figureAlias
-		==>
-			[ :string | 
-			string
-				ifEmpty: [ {(PRText content: '')} ]
-				ifNotEmpty: [ self parse: string startingAt: #oneLineContent ] ]
+	^ super figureAlias ==> [ :anArray | 
+			anArray second
+				ifEmpty: [ { (PRText content: '') start: anArray first start; stop: anArray first start } ]
+				ifNotEmpty: [ 
+					| aCollection |
+					aCollection := (self parse: anArray second startingAt: #oneLineContent).
+					aCollection do: [ :each | 
+						each start: each start + anArray first start - 1.
+						each stop: each stop + anArray first start - 1 ] ] ]
 ]
 
 { #category : #'from markdown' }
@@ -236,7 +239,7 @@ PRPillarParser >> linkAlias [
 					aCollection := (self parse: anArray second startingAt: #oneLineContent).
 					aCollection do: [ :each | 
 						each start: each start + anArray first start - 1.
-						each stop: each start + anArray second size - 1 ] ] ]
+						each stop: each stop + anArray first start - 1 ] ] ]
 ]
 
 { #category : #helpers }
@@ -638,7 +641,7 @@ PRPillarParser >> text [
 	^ super text ==> [ :array | 
 			(PRText content: (self stringFrom: array second))
 				start: array first start;
-				stop: array third start ]
+				stop: array third start - 1 ]
 ]
 
 { #category : #'grammar - Format' }
