@@ -391,7 +391,9 @@ PRPillarGrammar >> elementsAtLineBeginning [
 
 { #category : #'grammar - Paragraph' }
 PRPillarGrammar >> emptyParagraph [
-	^ newline
+	^ epsilonToken , 
+		newline , 
+		epsilonToken 
 ]
 
 { #category : #'grammar - Helper' }

@@ -142,7 +142,8 @@ PRPillarParser >> document [
 
 { #category : #'grammar - Paragraph' }
 PRPillarParser >> emptyParagraph [
-	^ super emptyParagraph ==> [ :array | PREmptyParagraph new ]
+	^ super emptyParagraph ==> [ :array |
+		PREmptyParagraph new start: array first start; stop: array third stop ]
 ]
 
 { #category : #'grammar - Reference' }

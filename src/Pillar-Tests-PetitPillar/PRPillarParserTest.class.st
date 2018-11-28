@@ -335,7 +335,8 @@ PRPillarParserTest >> testDefinitionList [
 { #category : #'tests - Paragraph' }
 PRPillarParserTest >> testEmptyParagraph [
 	super testEmptyParagraph.
-	self assert: result equals: PREmptyParagraph new
+	self assert: result equals: PREmptyParagraph new.
+	self assertStart: 1 stop: 1
 ]
 
 { #category : #'tests - Reference' }
