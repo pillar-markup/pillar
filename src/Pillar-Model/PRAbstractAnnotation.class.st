@@ -144,21 +144,6 @@ PRAbstractAnnotation class >> validateParameters: aPRParameters dictionary: para
 				ifTrue: [ PRValidation strategy unexpectedParameterIn: anAnnotation ] ]
 ]
 
-{ #category : #'instance creation' }
-PRAbstractAnnotation class >> withParameters: aPRParameters [
-	| parameters anInstance |
-	anInstance := self with: aPRParameters.
-	PRParserUtility fixFirstParameter: aPRParameters for: anInstance.
-	parameters := PRParametersToOrderedDictionary of: aPRParameters.
-	self validateParameters: aPRParameters dictionary: parameters in: anInstance.
-	^ anInstance
-		hadAllKeys:
-			(self possibleParameters
-				difference: (parameters keys collect: #asSymbol)) isEmpty;
-		parameters: parameters;
-		yourself
-]
-
 { #category : #comparing }
 PRAbstractAnnotation >> = anObject [
 	^ super = anObject and: [ 

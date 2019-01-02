@@ -1,6 +1,6 @@
 Extension { #name : #RelativePath }
 
-{ #category : #'*Pillar-Project' }
+{ #category : #'*Pillar-ExporterCore' }
 RelativePath >> pillarPrintString [
 	self isEmpty ifTrue: [ ^ '' ].
 	^ String streamContents: [ :str |

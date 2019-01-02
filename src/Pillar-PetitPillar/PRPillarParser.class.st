@@ -142,7 +142,8 @@ PRPillarParser >> document [
 
 { #category : #'grammar - Paragraph' }
 PRPillarParser >> emptyParagraph [
-	^ super emptyParagraph ==> [ :array | PREmptyParagraph new ]
+	^ super emptyParagraph ==> [ :array |
+		PREmptyParagraph new start: array first start; stop: array third stop ]
 ]
 
 { #category : #'grammar - Reference' }
@@ -158,12 +159,15 @@ PRPillarParser >> figure [
 
 { #category : #'grammar - Reference' }
 PRPillarParser >> figureAlias [
-	^ super figureAlias
-		==>
-			[ :string | 
-			string
-				ifEmpty: [ {(PRText content: '')} ]
-				ifNotEmpty: [ self parse: string startingAt: #oneLineContent ] ]
+	^ super figureAlias ==> [ :anArray | 
+			anArray second
+				ifEmpty: [ { (PRText content: '') start: anArray first start; stop: anArray first start } ]
+				ifNotEmpty: [ 
+					| aCollection |
+					aCollection := (self parse: anArray second startingAt: #oneLineContent).
+					aCollection do: [ :each | 
+						each start: each start + anArray first start - 1.
+						each stop: each stop + anArray first start - 1 ] ] ]
 ]
 
 { #category : #'from markdown' }
@@ -228,12 +232,15 @@ PRPillarParser >> link [
 
 { #category : #'grammar - Reference' }
 PRPillarParser >> linkAlias [
-	^ super linkAlias
-		==>
-			[ :string | 
-			string
-				ifEmpty: [ {(PRText content: '')} ]
-				ifNotEmpty: [ self parse: string startingAt: #oneLineContent ] ]
+	^ super linkAlias ==> [ :anArray | 
+			anArray second
+				ifEmpty: [ { (PRText content: '') start: anArray first start; stop: anArray first start } ]
+				ifNotEmpty: [ 
+					| aCollection |
+					aCollection := (self parse: anArray second startingAt: #oneLineContent).
+					aCollection do: [ :each | 
+						each start: each start + anArray first start - 1.
+						each stop: each stop + anArray first start - 1 ] ] ]
 ]
 
 { #category : #helpers }
@@ -426,7 +433,9 @@ PRPillarParser >> parametersLink [
 
 { #category : #'grammar - Parameter' }
 PRPillarParser >> parametersObjectFrom: array [
-	^ PRParameters with: array first withAll: array second
+	^ (PRParameters with: array fourth first withAll: array fourth second)
+			start: array third start;
+			stop: array fifth stop
 ]
 
 { #category : #'grammar - Parameter' }
@@ -633,7 +642,7 @@ PRPillarParser >> text [
 	^ super text ==> [ :array | 
 			(PRText content: (self stringFrom: array second))
 				start: array first start;
-				stop: array third stop ]
+				stop: array third start - 1 ]
 ]
 
 { #category : #'grammar - Format' }

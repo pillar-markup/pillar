@@ -178,7 +178,9 @@ PRPillarParserTest >> testAnnotationParameters [
 		(PRParameter 
 			keyNode: (PRParameterKey named: #timo) 
 			valueNode: (PRParameterValue value: 'leon')) }.
-	self assert: result equals:  expected
+	self assert: result equals:  expected.
+	self assert: result start equals: 2.
+	self assert: result stop equals: 18.
 ]
 
 { #category : #'tests - Annotation' }
@@ -333,7 +335,8 @@ PRPillarParserTest >> testDefinitionList [
 { #category : #'tests - Paragraph' }
 PRPillarParserTest >> testEmptyParagraph [
 	super testEmptyParagraph.
-	self assert: result equals: PREmptyParagraph new
+	self assert: result equals: PREmptyParagraph new.
+	self assertStart: 1 stop: 1
 ]
 
 { #category : #'tests - Reference' }
@@ -745,14 +748,16 @@ bar')
 
 { #category : #'tests - Reference' }
 PRPillarParserTest >> testReference [
-	super testReference.
+	super testReference. "'*foo>@bar*'"
 	self
 		assert: result
 		equals:
 			(PRInternalLink new
 				add: (PRText content: 'foo');
 				anchor: 'bar';
-				yourself)
+				yourself).
+	self assertStart: 1 stop: 10.
+	self assertStart: 2 stop: 4 ofNode: result children first.
 ]
 
 { #category : #'tests - Reference' }

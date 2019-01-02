@@ -30,7 +30,7 @@ PRHTMLEmptyTag >> closeTag [
 { #category : #accessing }
 PRHTMLEmptyTag >> name: aString [
 	name := aString.
-	stream << $< << aString
+	stream nextPut: $<; << aString
 ]
 
 { #category : #accessing }

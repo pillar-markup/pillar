@@ -17,7 +17,7 @@ ${docList:path=wrongDirectory|limit=3|sort=date|templates=#('templates/docArticl
 Class {
 	#name : #PRDocumentListAnnotation,
 	#superclass : #PRAbstractAnnotation,
-	#category : 'Pillar-Model-Document-List'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #protected }

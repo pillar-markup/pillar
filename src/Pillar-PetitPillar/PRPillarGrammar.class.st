@@ -298,7 +298,11 @@ PRPillarGrammar >> annotationMarkupSeparator [
 
 { #category : #'grammar - Annotation' }
 PRPillarGrammar >> annotationParameters [
-	^ (annotationMarkupSeparator , parametersUntilEndAnnotation) ==> [ :array | array second ]
+	^	epsilonToken , 	
+		annotationMarkupSeparator ,
+		epsilonToken , 
+		parametersUntilEndAnnotation, 
+		epsilonToken
 ]
 
 { #category : #'grammar - Annotation' }
@@ -387,7 +391,9 @@ PRPillarGrammar >> elementsAtLineBeginning [
 
 { #category : #'grammar - Paragraph' }
 PRPillarGrammar >> emptyParagraph [
-	^ newline
+	^ epsilonToken , 
+		newline , 
+		epsilonToken 
 ]
 
 { #category : #'grammar - Helper' }
@@ -413,7 +419,11 @@ PRPillarGrammar >> figure [
 
 { #category : #'grammar - Reference' }
 PRPillarGrammar >> figureAlias [
-	^ ((escapedCharacter / (figureMarkup / referenceAliasMarkup) negate) star flatten, referenceAliasMarkup) ==> #first
+	^ 	epsilonToken ,
+		(escapedCharacter / 
+			(figureMarkup / referenceAliasMarkup) negate) star flatten , 
+		epsilonToken ,
+		referenceAliasMarkup
 ]
 
 { #category : #'grammar - Reference' }
@@ -496,7 +506,11 @@ PRPillarGrammar >> link [
 
 { #category : #'grammar - Reference' }
 PRPillarGrammar >> linkAlias [
-	^ ((escapedCharacter / (linkMarkup / referenceAliasMarkup) negate) star flatten, referenceAliasMarkup) ==> #first
+	^ 	epsilonToken , 
+		(escapedCharacter / 
+			(linkMarkup / referenceAliasMarkup) negate) star flatten , 
+		epsilonToken ,
+		referenceAliasMarkup
 ]
 
 { #category : #'grammar - Reference' }
