@@ -36,7 +36,7 @@ script:
   fi
   
 before_deploy:
-  - mv pillar.zip pillar-${TRAVIS_TAG}-${os}.zip
+  - mv pillar.zip pillar-${TRAVIS_TAG}-${os}-${smalltalk}.zip
 deploy:
   provider: releases
   api_key:
