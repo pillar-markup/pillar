@@ -9,12 +9,10 @@ BaselineOfPillar >> baseline: spec [
 	<baseline>
 	spec
 		for: #windows
-		do: [ spec
-				project: 'ProcessWrapper'
+		do: [ spec configuration: 'ProcessWrapper' 
 				with: [ spec
-						className: #ConfigurationOfProcessWrapper;
-						versionString: '1.2';
-						repository: 'http://smalltalkhub.com/mc/Pharo/MetaRepoForPharo50/main' ].
+					versionString: '1.2';
+					repository: 'http://smalltalkhub.com/mc/hernan/ProcessWrapper/main' ].
 			spec package: 'Pillar-Project' with: [ spec requires: 'ProcessWrapper' ] ].
 	spec
 		for: #(unix osx)
