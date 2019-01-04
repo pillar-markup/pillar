@@ -92,7 +92,7 @@ ConfigurationDescriptionForPillar class >> itemDescriptionForPillar [
 		default: '_support/templates/html.mustache').
 	(NewLineConfigurationItem new
 		propertyName: #newLine;
-		defaultIsUnix).
+		defaultIsPlatform).
 	(StringConfigurationItem new
 		propertyName: #latexWriter;
 		default: #latex:sbabook;

@@ -115,9 +115,9 @@ ConfigurationForPillar class >> chrysalDescriptions [
 	},
 	NewLineConfigurationItem {
 		#propertyName : #newLine,
-		#default : #unix,
-		#explanation : ''The string that separates lines in the exported document. This is often either LF or CR\\+LF but any string is possible. Values are #(#cr #lf #crlf #unix #mac #dos)'',
-		#defaultKey : #unix
+		#default : #platform,
+		#explanation : ''The string that separates lines in the exported document. This is often either LF or CR\\+LF but any string is possible. Values are #(#cr #lf #crlf #unix #mac #dos #platform)'',
+		#defaultKey : #platform
 	},
 	StringConfigurationItem {
 		#propertyName : #latexWriter,
@@ -543,7 +543,7 @@ ConfigurationForPillar >> mainDocument: aValue [
 { #category : #accessing }
 ConfigurationForPillar >> newLine [
 	"generated code"
-	^ self propertyAt: #newLine ifAbsent: [UnixPlatform new lineEnding]
+	^ self propertyAt: #newLine ifAbsent: [Smalltalk os lineEnding]
 ]
 
 { #category : #accessing }
