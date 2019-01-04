@@ -37,6 +37,31 @@ PRPDFDocument >> executeOnUnixCommand: command arguments: arguments workingDirec
 		self error: 'command ', command ,' failed' ]
 ]
 
+{ #category : #compiling }
+PRPDFDocument >> executeOnWindowsCommand: command arguments: arguments workingDirectory: aWorkingDirectory [
+	| process success commandString |
+	commandString := 'cd "', aWorkingDirectory, '" && ', command, ' ', (' ' join: arguments).
+	
+	process := ProcessWrapper new.
+	process useStderr; useStdout.
+	success := process startWithShellCommand: commandString.
+	success ifFalse: [
+		self error: 'command ', commandString ,' failed' ].
+
+	success := process waitForExit.
+	success ifFalse: [
+		self error: 'command ', commandString ,' failed' ].
+	
+	Transcript show: process stdoutStream upToEnd.
+	Transcript show: process stderrStream upToEnd.
+
+	process closeStdin.
+	process closeStderr.
+
+	process exitCode = 0 ifFalse: [
+		self error: 'command ', commandString ,' failed' ].
+]
+
 { #category : #accessing }
 PRPDFDocument >> extension [
 	
@@ -59,10 +84,11 @@ PRPDFDocument >> postWriteTransform: aFile [
 			'-pdflatex=lualatex' .
 			'-pdf' .
 			'-ps-' .
+			'-f' .
 			'-interaction=nonstopmode' .
-			'-outdir=', outputFileReference fullName.
-			aFile fullName }
-		workingDirectory: outputDirectory fullName
+			'-outdir="', outputFileReference fullName, '"'.
+			'"', (PRLaTeXWriter toLatexPath: (aFile relativeTo: outputDirectory) fullName), '"' }
+		workingDirectory: (outputDirectory fullName)
 ]
 
 { #category : #accessing }

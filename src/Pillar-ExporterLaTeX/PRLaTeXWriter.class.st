@@ -18,6 +18,22 @@ PRLaTeXWriter class >> folderName [
 ]
 
 { #category : #accessing }
+PRLaTeXWriter class >> toLatexPath: aString [
+	"Replace all (windows style) back slashes in paths by (unix style) forward slashes.
+	This is required as path in latex only support unix style pathes like
+	
+	  /home/xxx
+	
+	or
+	
+	  C:/home/xxx
+	
+	See https://tex.stackexchange.com/questions/9363/how-does-one-insert-a-backslash-or-a-tilde-into-latex
+	"
+	^ aString copyReplaceAll: '\' with: '/'
+]
+
+{ #category : #accessing }
 PRLaTeXWriter class >> writerName [
 	^ #latex
 ]

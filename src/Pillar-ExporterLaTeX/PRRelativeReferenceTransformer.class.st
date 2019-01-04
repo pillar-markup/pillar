@@ -30,10 +30,9 @@ PRRelativeReferenceTransformer >> destinationDirectoryFor: aDocument [
 
 { #category : #actions }
 PRRelativeReferenceTransformer >> executeOn: aPRDocument [
-
 	PRUpdateFileInclusionReference
 		start: aPRDocument
-		with: (self destinationDirectoryFor: aPRDocument) fullName.
+		with: (PRLaTeXWriter toLatexPath: (self destinationDirectoryFor: aPRDocument) fullName).
 	^ aPRDocument
 ]
 
