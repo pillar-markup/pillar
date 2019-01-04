@@ -86,9 +86,18 @@ PRPDFDocument >> postWriteTransform: aFile [
 			'-ps-' .
 			'-f' .
 			'-interaction=nonstopmode' .
-			'-outdir="', outputFileReference fullName, '"'.
-			'"', (PRLaTeXWriter toLatexPath: (aFile relativeTo: outputDirectory) fullName), '"' }
-		workingDirectory: (outputDirectory fullName)
+			'-outdir=', (self toCommandPath: outputFileReference fullName).
+			self toCommandPath: (PRLaTeXWriter toLatexPath: (aFile relativeTo: outputDirectory) fullName) }
+		workingDirectory: outputDirectory fullName
+]
+
+{ #category : #compiling }
+PRPDFDocument >> toCommandPath: aPathString [
+
+	OSPlatform current isWindows ifTrue: [ 
+		^ aPathString surroundedBy: '"'
+	].
+	^ aPathString
 ]
 
 { #category : #accessing }
