@@ -72,7 +72,7 @@ PRScreenshotTransformerTest >> testTransformerCreatesFile [
 					parameterAt: 'label' put: 'times2';
 				yourself); yourself.
 	dateStamp := (String streamContents:
-					[ :s | s << 'Integer>>isPowerOfTwo'. 
+					[ :s | s << 'Integer_isPowerOfTwo'. 
 						    s << (('-', ((DateAndTime year: (DateAndTime now year) 
 											       month: (DateAndTime now month) 
 											       day: (DateAndTime now dayOfMonth)

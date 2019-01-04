@@ -40,7 +40,7 @@ PRScreenshotTransformer >> visitScreenshotAnnotation: aPRShowMethodAnnotation [
 	methodName := aPRShowMethodAnnotation methodName asSymbol.
 	"naming the file as follows: className>>methodName-date.png"
 	time := (((DateAndTime now asString copyReplaceAll: ':' with: '-') copyReplaceAll: '.' with: '-') splitOn: '+') first.
-	fileName := (aPRShowMethodAnnotation className, '>>',aPRShowMethodAnnotation methodName),'-', time,'.png'.
+	fileName := (aPRShowMethodAnnotation className, '_',aPRShowMethodAnnotation methodName),'-', time,'.png'.
 	browser := Smalltalk tools browser openOnMethod: className>>methodName.
 	
 	UIManager default defer: [
