@@ -70,5 +70,6 @@ deploy:
   auth_token:
     secure: jGFy6wHCCZ+MlfochnuWpKfjuBXhGUCNUrBDwAYezdYlwyrF1ciAPMP5zJrKVqR8
   artifact: /pillar.*.zip/
+  tag: $(APPVEYOR_REPO_TAG_NAME)
   on:
     APPVEYOR_REPO_TAG: true        # deploy on tag push only
