@@ -542,11 +542,6 @@ PRPillarGrammar >> monospaceMarkup [
 ]
 
 { #category : #'grammar - Document' }
-PRPillarGrammar >> newline [
-	^ #newline asPParser
-]
-
-{ #category : #'grammar - Document' }
 PRPillarGrammar >> oneLineContent [
 	^ (otherContent / text) plus
 ]
