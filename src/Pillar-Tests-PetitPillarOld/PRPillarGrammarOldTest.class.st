@@ -297,26 +297,6 @@ PRPillarGrammarOldTest >> testMonospaceFormatWithEscaped [
 	self parse: '==\=\===' rule: #format
 ]
 
-{ #category : #'tests - Document' }
-PRPillarGrammarOldTest >> testNewline [
-	self parse: Smalltalk os lineEnding rule: #newline
-]
-
-{ #category : #'tests - Document' }
-PRPillarGrammarOldTest >> testNewlineCR [
-	self parse: String cr rule: #newline
-]
-
-{ #category : #'tests - Document' }
-PRPillarGrammarOldTest >> testNewlineCRLF [
-	self parse: String crlf rule: #newline
-]
-
-{ #category : #'tests - Document' }
-PRPillarGrammarOldTest >> testNewlineLF [
-	self parse: String lf rule: #newline
-]
-
 { #category : #'tests - List' }
 PRPillarGrammarOldTest >> testOrderedList [
 	self parse: '#Foo' rule: #orderedList

@@ -6,7 +6,6 @@ Class {
 	#superclass : #PP2CompositeNode,
 	#instVars : [
 		'document',
-		'newline',
 		'lineEnd',
 		'elementsAtLineBeginning',
 		'paragraph',
@@ -126,7 +125,7 @@ Class {
 		'EndMarkups',
 		'Markups'
 	],
-	#category : 'Pillar-PetitPillar'
+	#category : #'Pillar-PetitPillar'
 }
 
 { #category : #accessing }
@@ -269,7 +268,7 @@ PRPillarGrammar >> anchor [
 PRPillarGrammar >> annotatedParagraph [
 	^	epsilonToken , 
 		(Markups at: PRAnnotatedParagraph) asPParser , 
-		($  asPParser / newline) negate star flatten , 
+		($  asPParser / #newline asPParser) negate star flatten , 
 		($  asPParser , oneLineContent) optional ,
 		epsilonToken 
 ]
@@ -350,7 +349,7 @@ PRPillarGrammar >> dataListItem [
 	^	epsilonToken , 
 		dataMarkup and , 
 		dataBasicListItem optional , 
-		((commentedLine , newline) ==> [ :array | array first ]) star , 
+		((commentedLine , #newline asPParser) ==> [ :array | array first ]) star , 
 		dataSubListItem optional , 
 		epsilonToken
 ]
@@ -362,7 +361,7 @@ PRPillarGrammar >> dataMarkup [
 
 { #category : #'grammar - List' }
 PRPillarGrammar >> dataSubListItem [
-	^ ((dataMarkup , subList) / (commentedLine , newline) flatten) plus
+	^ ((dataMarkup , subList) / (commentedLine , #newline asPParser) flatten) plus
 ]
 
 { #category : #'grammar - List' }
@@ -391,9 +390,7 @@ PRPillarGrammar >> elementsAtLineBeginning [
 
 { #category : #'grammar - Paragraph' }
 PRPillarGrammar >> emptyParagraph [
-	^ epsilonToken , 
-		newline , 
-		epsilonToken 
+	^ epsilonToken , #newline asPParser , epsilonToken
 ]
 
 { #category : #'grammar - Helper' }
@@ -485,12 +482,12 @@ PRPillarGrammar >> italicMarkup [
 
 { #category : #'grammar - Text' }
 PRPillarGrammar >> lineBreak [
-	^ newline , elementsAtLineBeginning not
+	^ #newline asPParser , elementsAtLineBeginning not
 ]
 
 { #category : #'grammar - Document' }
 PRPillarGrammar >> lineEnd [
-	^ newline / #eoi asPParser
+	^ #newline asPParser / #eoi asPParser
 ]
 
 { #category : #'grammar - Reference' }
@@ -546,7 +543,7 @@ PRPillarGrammar >> monospaceMarkup [
 
 { #category : #'grammar - Document' }
 PRPillarGrammar >> newline [
-	^ String crlf asPParser / String lf asPParser / String cr asPParser
+	^ #newline asPParser
 ]
 
 { #category : #'grammar - Document' }
@@ -573,7 +570,7 @@ PRPillarGrammar >> orderedListItem [
 	^	epsilonToken , 
 		orderedMarkup and , 
 		orderedBasicListItem optional , 
-		((commentedLine , newline) ==> [ :array | array first ]) star , 
+		((commentedLine , #newline asPParser) ==> [ :array | array first ]) star , 
 		orderedSubListItem optional ,
 		epsilonToken
 ]
@@ -585,7 +582,7 @@ PRPillarGrammar >> orderedMarkup [
 
 { #category : #'grammar - List' }
 PRPillarGrammar >> orderedSubListItem [
-	^ ((orderedMarkup , subList) / (commentedLine , newline) flatten) plus
+	^ ((orderedMarkup , subList) / (commentedLine , #newline asPParser) flatten) plus
 ]
 
 { #category : #'grammar - Document' }
@@ -618,7 +615,7 @@ PRPillarGrammar >> parameterKeyUntilEndLink [
 
 { #category : #'grammar - Parameter' }
 PRPillarGrammar >> parameterKeyUntilNewline [
-	^ self parameterKeyUntilParser: newline
+	^ self parameterKeyUntilParser: #newline asPParser
 ]
 
 { #category : #'grammar - Parameter' }
@@ -683,7 +680,7 @@ PRPillarGrammar >> parameterValueUntilEndLink [
 
 { #category : #'grammar - Parameter' }
 PRPillarGrammar >> parameterValueUntilNewline [
-	^ self parameterValueUntilParser: newline
+	^ self parameterValueUntilParser: #newline asPParser
 ]
 
 { #category : #'grammar - Parameter' }
@@ -784,13 +781,13 @@ PRPillarGrammar >> referenceLink [
 
 { #category : #'grammar - Reference' }
 PRPillarGrammar >> referenceUntil: aParser [
-	^ (escapedCharacter / (aParser / parameterMarkup / newline) negate) plus
+	^ (escapedCharacter / (aParser / parameterMarkup / #newline asPParser) negate) plus
 ]
 
 { #category : #'grammar - Script' }
 PRPillarGrammar >> script [
 	| endParser |
-	endParser := newline asPParser , (EndMarkups at: PRCodeblock) asPParser , space star , lineEnd.
+	endParser := #newline asPParser , (EndMarkups at: PRCodeblock) asPParser , space star , lineEnd.
 	^	epsilonToken, 
 		(Markups at: PRCodeblock) asPParser , 
 		scriptParameters , 
@@ -801,7 +798,7 @@ PRPillarGrammar >> script [
 
 { #category : #'grammar - Script' }
 PRPillarGrammar >> scriptParameters [
-	^ parametersUntilNewline , newline ==> [ :array | array first ]
+	^ parametersUntilNewline , #newline asPParser ==> [ :array | array first ]
 ]
 
 { #category : #'from markdown' }
@@ -922,7 +919,7 @@ PRPillarGrammar >> termListItem [
 	^	epsilonToken , 
 		termMarkup and , 
 		termBasicListItem optional , 
-		((commentedLine , newline) ==> [ :array | array first ]) star , 
+		((commentedLine , #newline asPParser) ==> [ :array | array first ]) star , 
 		termSubListItem optional , 
 		epsilonToken 
 ]
@@ -934,14 +931,14 @@ PRPillarGrammar >> termMarkup [
 
 { #category : #'grammar - List' }
 PRPillarGrammar >> termSubListItem [
-	^ ((termMarkup , subList) / (commentedLine , newline) flatten) plus
+	^ ((termMarkup , subList) / (commentedLine , #newline asPParser) flatten) plus
 ]
 
 { #category : #'grammar - Text' }
 PRPillarGrammar >> text [
 	"Everything that is a pure text and nothing else (not a format, not a link, ...)"
 	^  epsilonToken, 
-		(escapedCharacter / ((newline , elementsAtLineBeginning) / otherContent / lineEnd) negate) plus, 
+		(escapedCharacter / ((#newline asPParser , elementsAtLineBeginning) / otherContent / lineEnd) negate) plus, 
 		epsilonToken
 ]
 
@@ -974,7 +971,7 @@ PRPillarGrammar >> unorderedListItem [
 	^	epsilonToken , 
 		unorderedMarkup and , 
 		unorderedBasicListItem optional , 
-		((commentedLine , newline) ==> [ :array | array first ]) star , 
+		((commentedLine , #newline asPParser) ==> [ :array | array first ]) star , 
 		unorderedSubListItem optional ,
 		epsilonToken
 ]
@@ -986,5 +983,5 @@ PRPillarGrammar >> unorderedMarkup [
 
 { #category : #'grammar - List' }
 PRPillarGrammar >> unorderedSubListItem [
-	^ ((unorderedMarkup , subList) / (commentedLine , newline) flatten) plus
+	^ ((unorderedMarkup , subList) / (commentedLine , #newline asPParser) flatten) plus
 ]

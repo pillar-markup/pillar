@@ -6,7 +6,6 @@ Class {
 	#superclass : #PPCompositeParser,
 	#instVars : [
 		'document',
-		'newline',
 		'lineEnd',
 		'elementsAtLineBeginning',
 		'paragraph',
@@ -125,7 +124,7 @@ Class {
 		'EndMarkups',
 		'Markups'
 	],
-	#category : 'Pillar-PetitPillarOld'
+	#category : #'Pillar-PetitPillarOld'
 }
 
 { #category : #accessing }
@@ -266,7 +265,7 @@ PRPillarGrammarOld >> anchor [
 
 { #category : #'grammar - Paragraph' }
 PRPillarGrammarOld >> annotatedParagraph [
-	^ (Markups at: PRAnnotatedParagraph) asParser , ($  asParser / newline) negate star flatten , ($  asParser , oneLineContent) optional
+	^ (Markups at: PRAnnotatedParagraph) asParser , ($  asParser / #newline asParser) negate star flatten , ($  asParser , oneLineContent) optional
 ]
 
 { #category : #'grammar - Annotation' }
@@ -330,7 +329,7 @@ PRPillarGrammarOld >> dataBasicListItem [
 { #category : #'grammar - List' }
 PRPillarGrammarOld >> dataListItem [
 	self flag: #todo.	"This and the overriden method of the parser are REALLY bad. We parse several times the same input, this is bad."
-	^ dataMarkup and , dataBasicListItem optional , ((commentedLine , newline) ==> [ :array | array first ]) star , dataSubListItem optional
+	^ dataMarkup and , dataBasicListItem optional , ((commentedLine , #newline asParser) ==> [ :array | array first ]) star , dataSubListItem optional
 ]
 
 { #category : #'grammar - List' }
@@ -340,7 +339,7 @@ PRPillarGrammarOld >> dataMarkup [
 
 { #category : #'grammar - List' }
 PRPillarGrammarOld >> dataSubListItem [
-	^ ((dataMarkup , subList) / (commentedLine , newline) flatten) plus
+	^ ((dataMarkup , subList) / (commentedLine , #newline asParser) flatten) plus
 ]
 
 { #category : #'grammar - List' }
@@ -367,7 +366,7 @@ PRPillarGrammarOld >> elementsAtLineBeginning [
 
 { #category : #'grammar - Paragraph' }
 PRPillarGrammarOld >> emptyParagraph [
-	^ newline
+	^ #newline asParser
 ]
 
 { #category : #'grammar - Document' }
@@ -435,12 +434,12 @@ PRPillarGrammarOld >> italicMarkup [
 
 { #category : #'grammar - Text' }
 PRPillarGrammarOld >> lineBreak [
-	^ newline , elementsAtLineBeginning not
+	^ #newline asParser , elementsAtLineBeginning not
 ]
 
 { #category : #'grammar - Document' }
 PRPillarGrammarOld >> lineEnd [
-	^ newline / #eof asParser
+	^ #newline asParser / #eof asParser
 ]
 
 { #category : #'grammar - Reference' }
@@ -486,7 +485,7 @@ PRPillarGrammarOld >> monospaceMarkup [
 
 { #category : #'grammar - Document' }
 PRPillarGrammarOld >> newline [
-	^ String crlf asParser / String lf asParser / String cr asParser
+	^ #newline asParser
 ]
 
 { #category : #'grammar - Document' }
@@ -508,7 +507,7 @@ PRPillarGrammarOld >> orderedList [
 { #category : #'grammar - List' }
 PRPillarGrammarOld >> orderedListItem [
 	self flag: #todo.	"This and the overriden method of the parser are REALLY bad. We parse several times the same input, this is bad."
-	^ orderedMarkup and , orderedBasicListItem optional , ((commentedLine , newline) ==> [ :array | array first ]) star , orderedSubListItem optional
+	^ orderedMarkup and , orderedBasicListItem optional , ((commentedLine , #newline asParser) ==> [ :array | array first ]) star , orderedSubListItem optional
 ]
 
 { #category : #'grammar - List' }
@@ -518,7 +517,7 @@ PRPillarGrammarOld >> orderedMarkup [
 
 { #category : #'grammar - List' }
 PRPillarGrammarOld >> orderedSubListItem [
-	^ ((orderedMarkup , subList) / (commentedLine , newline) flatten) plus
+	^ ((orderedMarkup , subList) / (commentedLine , #newline asParser) flatten) plus
 ]
 
 { #category : #'grammar - Document' }
@@ -548,7 +547,7 @@ PRPillarGrammarOld >> parameterKeyUntilEndLink [
 
 { #category : #'grammar - Parameter' }
 PRPillarGrammarOld >> parameterKeyUntilNewline [
-	^ self parameterKeyUntilParser: newline
+	^ self parameterKeyUntilParser: #newline asParser
 ]
 
 { #category : #'grammar - Parameter' }
@@ -608,7 +607,7 @@ PRPillarGrammarOld >> parameterValueUntilEndLink [
 
 { #category : #'grammar - Parameter' }
 PRPillarGrammarOld >> parameterValueUntilNewline [
-	^ self parameterValueUntilParser: newline
+	^ self parameterValueUntilParser: #newline asParser
 ]
 
 { #category : #'grammar - Parameter' }
@@ -706,19 +705,19 @@ PRPillarGrammarOld >> referenceLink [
 
 { #category : #'grammar - Reference' }
 PRPillarGrammarOld >> referenceUntil: aParser [
-	^ (escapedCharacter / (aParser / parameterMarkup / newline) negate) plus
+	^ (escapedCharacter / (aParser / parameterMarkup / #newline asParser) negate) plus
 ]
 
 { #category : #'grammar - Script' }
 PRPillarGrammarOld >> script [
 	| endParser |
-	endParser := newline asParser , (EndMarkups at: PRCodeblock) asParser , space star , lineEnd.
+	endParser := #newline asParser , (EndMarkups at: PRCodeblock) asParser , space star , lineEnd.
 	^ (Markups at: PRCodeblock) asParser , scriptParameters , endParser negate plus flatten , endParser
 ]
 
 { #category : #'grammar - Script' }
 PRPillarGrammarOld >> scriptParameters [
-	^ parametersUntilNewline , newline ==> [ :array | array first ]
+	^ parametersUntilNewline , #newline asParser ==> [ :array | array first ]
 ]
 
 { #category : #'from markdown' }
@@ -836,7 +835,7 @@ PRPillarGrammarOld >> termBasicListItem [
 { #category : #'grammar - List' }
 PRPillarGrammarOld >> termListItem [
 	self flag: #todo.	"This and the overriden method of the parser are REALLY bad. We parse several times the same input, this is bad."
-	^ termMarkup and , termBasicListItem optional , ((commentedLine , newline) ==> [ :array | array first ]) star , termSubListItem optional
+	^ termMarkup and , termBasicListItem optional , ((commentedLine , #newline asParser) ==> [ :array | array first ]) star , termSubListItem optional
 ]
 
 { #category : #'grammar - List' }
@@ -846,13 +845,13 @@ PRPillarGrammarOld >> termMarkup [
 
 { #category : #'grammar - List' }
 PRPillarGrammarOld >> termSubListItem [
-	^ ((termMarkup , subList) / (commentedLine , newline) flatten) plus
+	^ ((termMarkup , subList) / (commentedLine , #newline asParser) flatten) plus
 ]
 
 { #category : #'grammar - Text' }
 PRPillarGrammarOld >> text [
 	"Everything that is a pure text and nothing else (not a format, not a link, ...)"
-	^  (escapedCharacter / ((newline , elementsAtLineBeginning) / otherContent / lineEnd) negate) plus
+	^  (escapedCharacter / ((#newline asParser , elementsAtLineBeginning) / otherContent / lineEnd) negate) plus
 ]
 
 { #category : #'grammar - Format' }
@@ -879,7 +878,7 @@ PRPillarGrammarOld >> unorderedList [
 { #category : #'grammar - List' }
 PRPillarGrammarOld >> unorderedListItem [
 	self flag: #todo.	"This and the overriden method of the parser are REALLY bad. We parse several times the same input, this is bad."
-	^ unorderedMarkup and , unorderedBasicListItem optional , ((commentedLine , newline) ==> [ :array | array first ]) star , unorderedSubListItem optional
+	^ unorderedMarkup and , unorderedBasicListItem optional , ((commentedLine , #newline asParser) ==> [ :array | array first ]) star , unorderedSubListItem optional
 ]
 
 { #category : #'grammar - List' }
@@ -889,5 +888,5 @@ PRPillarGrammarOld >> unorderedMarkup [
 
 { #category : #'grammar - List' }
 PRPillarGrammarOld >> unorderedSubListItem [
-	^ ((unorderedMarkup , subList) / (commentedLine , newline) flatten) plus
+	^ ((unorderedMarkup , subList) / (commentedLine , #newline asParser) flatten) plus
 ]
