@@ -1,12 +1,17 @@
 "
 here is a typical example of the use of this command line
 
-./pharo-ui Pillar.image pillar export --to=""latex"" Chapters/Chapter1/chapter1.pillar
+To build a book pdf
+./pharo-ui Pillar.image pillar build pdf
+
+
+To use a template
+./pharo-ui Pillar.image pillar build --templatable html
 "
 Class {
 	#name : #PRBuildCommandLineHandler,
 	#superclass : #PRSubCommandLineHandler,
-	#category : 'Pillar-Cli-Handlers'
+	#category : #'Pillar-Cli-Handlers'
 }
 
 { #category : #accessing }

@@ -49,6 +49,12 @@ PRVisitor >> visitAnnotation: anAnnotation [
 	self visitDocumentGroup: anAnnotation
 ]
 
+{ #category : #'visiting-annotations' }
+PRVisitor >> visitBeginEnvironmentAnnotation: aBeginEnvironmentAnnotation [
+	"Visiting an annotation means that we visit the textual representation of an annotation. Such annotations will be transformed into annotation object. The corresponding visit method will be invoked on such object : visitBeginEnvironmentAnnotation vs visitBeginEnvironment."
+	self visitAnnotation: aBeginEnvironmentAnnotation
+]
+
 { #category : #'visiting-document' }
 PRVisitor >> visitBoldFormat: anObject [
 	self visitFormat: anObject
@@ -136,6 +142,11 @@ PRVisitor >> visitEmptyParagraph: anObject [
 { #category : #'visiting-annotations' }
 PRVisitor >> visitEndColumnsAnnotation: aEndColumnsAnnotation [
 	self visitAnnotation: aEndColumnsAnnotation
+]
+
+{ #category : #'visiting-annotations' }
+PRVisitor >> visitEnvironment: anEnvironment [
+	self visitDocumentGroup: anEnvironment
 ]
 
 { #category : #'visiting-document' }

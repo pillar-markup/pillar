@@ -1,15 +1,23 @@
 "
-I am an annotation that mark the end of a columns environement.
+I am an annotation that mark the end of a 'columns' environment.
 
 My tag is: 'endColumns'.
 
-!! Example
-Check example in PRColumnAnnotation.
+Example: ${endColumns}$ in
+
+${columns}$
+
+   ${column:width=60}$
+      bla
+   ${column:40}$
+      bla
+
+${endColumns}$
 "
 Class {
 	#name : #PREndColumnsAnnotation,
 	#superclass : #PRAbstractAnnotation,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #testing }

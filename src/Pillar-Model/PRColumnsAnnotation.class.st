@@ -3,14 +3,21 @@ I am an annotation that mark the beginning of a columns environement.
 
 My tag is: 'columns''.
 
-Example: 
+Example: ${columns}$ in
 
 ${columns}$
+
+   ${column:width=60}$
+      bla
+   ${column:40}$
+      bla
+
+${endColumns}$
 "
 Class {
 	#name : #PRColumnsAnnotation,
 	#superclass : #PRAbstractAnnotation,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #testing }
