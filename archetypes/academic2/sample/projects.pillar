@@ -1,0 +1,11 @@
+
+
+! Projects
+
+I participate in many software projects, that are of value from a research point of view, as well as open source communities and companies:
+
+-*Pharo>https://www.pharo.org* : an object-oriented language. I'am contributing by proposing some fix to bugs found in the implementation.
+-*Pillar>https://github.com/pillar-markup/pillar* : a Pharo tool used to generate documents in different formats Pdf, Html, Epub. With Pillar, we wrote a document one time in pillar syntax and generate as you want. It provides a list of mustache templates which can be used to design our documents.
+
+-*Ecstatic>https://guillep.github.io/* :  an extension of Pillar just for generating web sites. It is a small tool with can serve static html pages.
+
