@@ -33,3 +33,10 @@ PREnvironment >> name: aString [
 	
 	name := aString
 ]
+
+{ #category : #visiting }
+PREnvironment >> printOn: aStream [
+	
+	super printOn: aStream.
+	aStream nextPut: $(; print: self name; nextPut: $)
+]

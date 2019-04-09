@@ -68,6 +68,23 @@ PREnvironmentTransformerTest >> testEndEnvironmentWithoutBegin [
 ]
 
 { #category : #'tests environment' }
+PREnvironmentTransformerTest >> testMismatchEnvironments [
+	| input |
+	input := PRDocument new
+		add: (PRBeginEnvironmentAnnotation named: 'card');
+		add: (PRParagraph with: (PRText content: 'First paragraph inside environment') yourself);
+		add: (PRParagraph with: (PRText content: 'Second paragraph inside environment') yourself);
+		add: (PREndEnvironmentAnnotation named: 'magic');
+		yourself.
+	
+	self
+		should: [ (self executePhase: input with: self configuration) ]
+		raise: PRError
+		whoseDescriptionIncludes: 'Mismatching environments: closing ''magic'' while ''card'' environment is open'
+		description: 'Mismatch Environments'
+]
+
+{ #category : #'tests environment' }
 PREnvironmentTransformerTest >> testMissingNameInBeginAnnotationFails [
 	| input |
 	input := PRDocument new
@@ -93,11 +110,67 @@ PREnvironmentTransformerTest >> testMissingNameInEndAnnotationFails [
 	self should: [ self executePhase: input ] raise: PREnvironmentMissedNamed
 ]
 
-{ #category : #tests }
-PREnvironmentTransformerTest >> testTransformationEndColumnsWithoutBeginning [
-	| input |
-	input := PRDocument with: PREndColumnsAnnotation new.
-	self should: [ (self executePhase: input with: self configuration) ] raise: PRError whoseDescriptionIncludes: 'out of a column environment' description: 'Code should detect a missing annotation'
+{ #category : #'tests environment' }
+PREnvironmentTransformerTest >> testNestedEnvironments [
+	| input expected |
+	input := PRDocument new
+		add: (PRBeginEnvironmentAnnotation named: 'cards');
+		add: (PRBeginEnvironmentAnnotation named: 'card');
+		add: (PREndEnvironmentAnnotation named: 'card');
+		add: (PREndEnvironmentAnnotation named: 'cards');
+		yourself.
+		
+	expected := PRDocument new
+		add: ((PREnvironment named: 'cards')
+			add: (PREnvironment named: 'card');
+			yourself).
+			
+	self assert: (self executePhase: input) equals: expected
+]
+
+{ #category : #'tests environment' }
+PREnvironmentTransformerTest >> testNestedEnvironmentsWithTextInsideDeepest [
+	| input expected |
+	input := PRDocument new
+		add: (PRBeginEnvironmentAnnotation named: 'cards');
+		add: (PRBeginEnvironmentAnnotation named: 'card');
+		add: (PRParagraph with: (PRText content: 'First paragraph inside environment') yourself);
+		add: (PREndEnvironmentAnnotation named: 'card');
+		add: (PREndEnvironmentAnnotation named: 'cards');
+		yourself.
+		
+	expected := PRDocument new
+		add: ((PREnvironment named: 'cards')
+			add: ((PREnvironment named: 'card')
+				add: (PRParagraph with: (PRText content: 'First paragraph inside environment'));
+				yourself);
+			yourself);
+		yourself.
+
+	self assert: (self executePhase: input) equals: expected
+]
+
+{ #category : #'tests environment' }
+PREnvironmentTransformerTest >> testNestedEnvironmentsWithTextSiblingOfEnvironment [
+	| input expected |
+	input := PRDocument new
+		add: (PRBeginEnvironmentAnnotation named: 'cards');
+		add: (PRParagraph with: (PRText content: 'First paragraph inside environment') yourself);
+		add: (PRBeginEnvironmentAnnotation named: 'card');
+		add: (PREndEnvironmentAnnotation named: 'card');
+		add: (PRParagraph with: (PRText content: 'Second paragraph inside environment') yourself);
+		add: (PREndEnvironmentAnnotation named: 'cards');
+		yourself.
+		
+	expected := PRDocument new
+		add: ((PREnvironment named: 'cards')
+			add: (PRParagraph with: (PRText content: 'First paragraph inside environment'));
+			add: (PREnvironment named: 'card');
+			add: (PRParagraph with: (PRText content: 'Second paragraph inside environment'));
+			yourself);
+		yourself.
+
+	self assert: (self executePhase: input) equals: expected
 ]
 
 { #category : #tests }
@@ -110,12 +183,12 @@ PREnvironmentTransformerTest >> testTransformationOnColumn [
 						PRParameter 
 							keyNode: (PRParameterKey named: 'width')
 							valueNode: (PRParameterValue value: '100') }));
-		add:	(PRParagraph new
+		add: (PRParagraph new
 						add: (PRText content: 'Foo');
 						yourself);
-		add:
-				PREndColumnsAnnotation new;
+		add: PREndColumnsAnnotation new;
 		yourself.
+
 	expected := PRDocument new
 		add:
 				(PRColumnEnvironment new

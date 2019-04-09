@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'currentColumn',
 		'goal',
-		'currentEnvironment'
+		'environmentStack'
 	],
 	#category : #'Pillar-ExporterCore-Transformers'
 }
@@ -16,12 +16,18 @@ PREnvironmentTransformer class >> dependencies [
 
 { #category : #protected }
 PREnvironmentTransformer >> add: anObject toCurrentEnvironmentOr: aBlock [
-	currentColumn isNil & currentEnvironment isNil
+	currentColumn isNil & self hasEnvironment not
 		ifTrue: [ ^ aBlock value ].
 	self delete.
 	currentColumn
 		ifNotNil: [ currentColumn add: anObject ]
-		ifNil: [ currentEnvironment add: anObject ]
+		ifNil: [ self currentEnvironment add: anObject ]
+]
+
+{ #category : #environment }
+PREnvironmentTransformer >> currentEnvironment [
+
+	^ environmentStack first
 ]
 
 { #category : #accessing }
@@ -30,9 +36,46 @@ PREnvironmentTransformer >> goal: aPRBuildGoal [
 	goal := aPRBuildGoal
 ]
 
+{ #category : #environment }
+PREnvironmentTransformer >> hasEnvironment [
+	
+	^ environmentStack notEmpty
+]
+
+{ #category : #initialization }
+PREnvironmentTransformer >> initialize [
+
+	super initialize.
+	environmentStack := OrderedCollection new.
+]
+
+{ #category : #environment }
+PREnvironmentTransformer >> popEnvironment [
+
+	^ environmentStack removeFirst
+]
+
 { #category : #plugin }
 PREnvironmentTransformer >> prepareForExecutionOn: aPRProject [ 
 	"None"
+]
+
+{ #category : #environment }
+PREnvironmentTransformer >> pushEnvironment: anEnvironment [
+
+	"If it is the root environment (i.e., the first environment found in this document's structure)
+	we replace the annotation with the environment node.
+	
+	Otherwise add the environment to the current environment and delete the current node.
+	
+	This is required because environment annotations are in a flat world and we have to translate that to a nester treeish world"
+	self hasEnvironment
+		ifFalse: [ self replace: { anEnvironment } ]
+		ifTrue: [ 
+			self currentEnvironment add: anEnvironment.
+			self delete. ].
+
+	environmentStack addFirst: anEnvironment.
 ]
 
 { #category : #visiting }
@@ -41,43 +84,18 @@ PREnvironmentTransformer >> start: aDocumentItem [
 	
 	"Execute clean annotation before"
 	object := super start: (PRCleanAnnotationInParagraphTransformer new start: aDocumentItem).
-	currentEnvironment notNil | currentColumn notNil
+	self hasEnvironment | currentColumn notNil
 		ifTrue: [ 
 			PRError
 				signal: ('Missing end of environment ''{name}'''
-					format: { 'name' -> currentEnvironment name } asDictionary) ].
+					format: { 'name' -> self currentEnvironment name } asDictionary) ].
 	^ object
 ]
 
 { #category : #'visiting-annotations' }
 PREnvironmentTransformer >> visitBeginEnvironmentAnnotation: anAnnotation [
-	currentEnvironment notNil
-		ifTrue: [ PRError
-				signal:
-					'You have to close a columns environment before you open an other. Use the ${endColumns}$ tag please.' ].
-	currentEnvironment := PREnvironment named: anAnnotation name.
-	self delete
-]
 
-{ #category : #'visiting-annotations' }
-PREnvironmentTransformer >> visitColumnAnnotation: anAnnotation [
-	currentEnvironment isNil
-		ifTrue: [ PRError
-				signal:
-					'You can''t create a new column if you are not inside a column environment. Please use ${columns}$ before the beginning of a column.' ].
-	currentColumn := PRColumn width: (anAnnotation parameters at: 'width').
-	currentEnvironment add: currentColumn.
-	self delete
-]
-
-{ #category : #'visiting-annotations' }
-PREnvironmentTransformer >> visitColumnsAnnotation: anAnnotation [
-	currentEnvironment notNil
-		ifTrue: [ PRError
-				signal:
-					'You have to close a columns environment before you open an other. Use the ${endColumns}$ tag please.' ].
-	currentEnvironment := PRColumnEnvironment new.
-	self delete
+	self pushEnvironment: (PREnvironment named: anAnnotation name)
 ]
 
 { #category : #'visiting-annotations' }
@@ -92,18 +110,20 @@ PREnvironmentTransformer >> visitDocumentItem: anItem [
 
 { #category : #'visiting-annotations' }
 PREnvironmentTransformer >> visitEndEnvironmentAnnotation: anAnnotation [
-	currentEnvironment isNil
+	self hasEnvironment not
 		ifTrue: [ PRError signal: ('Missing begin of environment ''{name}'''
 					format: { 'name' -> anAnnotation name } asDictionary) ].
 	
-	currentEnvironment name = anAnnotation name
+	self currentEnvironment name = anAnnotation name
 		ifFalse: [
 			PRError signal: ('Mismatching environments: closing ''{closing}'' while ''{open}'' environment is open'
 					format: { 
 					'closing' -> anAnnotation name.
-					'open' -> currentEnvironment name } asDictionary) ]. 
+					'open' -> self currentEnvironment name } asDictionary) ]. 
 	
-	self replace: {currentEnvironment}.
-	currentEnvironment := nil.
-	currentColumn := nil
+	self popEnvironment.
+	
+	"Remove the end annotation from the tree.
+	The end annotation marks the end of a scope and is replaced by a recursive environment structure."
+	self delete
 ]
