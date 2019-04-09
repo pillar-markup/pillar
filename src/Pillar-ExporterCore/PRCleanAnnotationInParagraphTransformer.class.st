@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'goal'
 	],
-	#category : 'Pillar-ExporterCore-Export'
+	#category : #'Pillar-ExporterCore-Transformers'
 }
 
 { #category : #accessing }

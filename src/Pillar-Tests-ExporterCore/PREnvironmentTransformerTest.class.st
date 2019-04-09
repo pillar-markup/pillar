@@ -13,13 +13,13 @@ PREnvironmentTransformerTest >> actualClass [
 PREnvironmentTransformerTest >> testTransformationBasicTextInsideAnEnvironment [
 	| input expected |
 	input := PRDocument new
-		add: PRBeginEnvironmentAnnotation new;
+		add: (PRBeginEnvironmentAnnotation named: 'card');
 		add: (PRParagraph with: (PRText content: 'First paragraph inside environment') yourself);
 		add: (PRParagraph with: (PRText content: 'Second paragraph inside environment') yourself);
-		add: PREndEnvironmentAnnotation new;
+		add: (PREndEnvironmentAnnotation named: 'card');
 		yourself.
 	expected := PRDocument new
-		add: (PREnvironment new
+		add: ((PREnvironment named: 'card')
 						add: (PRParagraph with: (PRText content: 'First paragraph inside environment') yourself);
 						add: (PRParagraph with: (PRText content: 'Second paragraph inside environment') yourself);
 						yourself);
@@ -32,7 +32,7 @@ PREnvironmentTransformerTest >> testTransformationBeginningColumnsWithoutEnding 
 	| input |
 	input := PRDocument
 		withAll:
-			{PRColumnsAnnotation new.
+			{PRBeginColumnsAnnotation new.
 			(PRColumnAnnotation
 				withParameters: (
 					PRParameters withAll: { 
@@ -67,7 +67,7 @@ PREnvironmentTransformerTest >> testTransformationInAbsenceOfEnvironment [
 PREnvironmentTransformerTest >> testTransformationOnColumn [
 	| input expected |
 	input := PRDocument new
-		add: PRColumnsAnnotation new;
+		add: PRBeginColumnsAnnotation new;
 		add: (PRColumnAnnotation withParameters: (
 					PRParameters withAll: { 
 						PRParameter 
@@ -81,7 +81,7 @@ PREnvironmentTransformerTest >> testTransformationOnColumn [
 		yourself.
 	expected := PRDocument new
 		add:
-				(PRColumns new
+				(PRColumnEnvironment new
 						add:
 							((PRColumn width: '100')
 								add:
@@ -97,7 +97,7 @@ PREnvironmentTransformerTest >> testTransformationOnColumn [
 PREnvironmentTransformerTest >> testTransformationTwoColumns [
 	| input expected |
 	input := PRDocument new
-		add: PRColumnsAnnotation new;
+		add: PRBeginColumnsAnnotation new;
 		add:
 			(PRColumnAnnotation
 				withParameters: (
@@ -124,7 +124,7 @@ PREnvironmentTransformerTest >> testTransformationTwoColumns [
 		yourself.
 	expected := PRDocument new
 		add:
-			(PRColumns new
+			(PRColumnEnvironment new
 				add:
 					((PRColumn width: '50')
 						add:
@@ -165,9 +165,9 @@ PREnvironmentTransformerTest >> testTransformationWithColumnsInColumns [
 	| input |
 	input := PRDocument new
 		add:
-				PRColumnsAnnotation new;
+				PRBeginColumnsAnnotation new;
 		add:
-				PRColumnsAnnotation new;
+				PRBeginColumnsAnnotation new;
 		add:
 				PREndColumnsAnnotation new;
 		add:
@@ -181,7 +181,7 @@ PREnvironmentTransformerTest >> testTransformationWithContentInsideColumnsBefore
 	| input expected |
 	input := PRDocument new
 		add:
-				PRColumnsAnnotation new;
+				PRBeginColumnsAnnotation new;
 		add: (PRParagraph with: (PRText content: 'Foo') yourself);
 		add:
 				(PRColumnAnnotation withParameters: (
@@ -195,7 +195,7 @@ PREnvironmentTransformerTest >> testTransformationWithContentInsideColumnsBefore
 		yourself.
 	expected := PRDocument new
 		add:
-				(PRColumns new
+				(PRColumnEnvironment new
 						add: (PRParagraph with: (PRText content: 'Foo') yourself);
 						add: ((PRColumn width: '100') add: (PRParagraph with: (PRText content: 'Bar') yourself) yourself);
 						yourself);
@@ -208,7 +208,7 @@ PREnvironmentTransformerTest >> testTransformationWithNonGroupItemAtTopLevel [
 	| input expected |
 	"This test makes sure that a document item which is not a document group can be a direct child of a column"
 	input := PRDocument new
-		add: PRColumnsAnnotation new;
+		add: PRBeginColumnsAnnotation new;
 		add:
 			(PRColumnAnnotation
 				withParameters: (
@@ -221,7 +221,7 @@ PREnvironmentTransformerTest >> testTransformationWithNonGroupItemAtTopLevel [
 		yourself.
 	expected := PRDocument new
 		add:
-			(PRColumns new
+			(PRColumnEnvironment new
 				add:
 					((PRColumn width: '100')
 						add: PRHorizontalRule new;

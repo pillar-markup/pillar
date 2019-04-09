@@ -2,11 +2,11 @@ Class {
 	#name : #PREnvironmentTransformer,
 	#superclass : #PRNodeTransformer,
 	#instVars : [
-		'currentColumns',
 		'currentColumn',
-		'goal'
+		'goal',
+		'currentEnvironment'
 	],
-	#category : #'Pillar-ExporterCore-Export'
+	#category : #'Pillar-ExporterCore-Transformers'
 }
 
 { #category : #'meta-data' }
@@ -16,12 +16,12 @@ PREnvironmentTransformer class >> dependencies [
 
 { #category : #protected }
 PREnvironmentTransformer >> add: anObject toCurrentEnvironmentOr: aBlock [
-	currentColumn isNil & currentColumns isNil
+	currentColumn isNil & currentEnvironment isNil
 		ifTrue: [ ^ aBlock value ].
 	self delete.
 	currentColumn
 		ifNotNil: [ currentColumn add: anObject ]
-		ifNil: [ currentColumns add: anObject ]
+		ifNil: [ currentEnvironment add: anObject ]
 ]
 
 { #category : #accessing }
@@ -32,7 +32,6 @@ PREnvironmentTransformer >> goal: aPRBuildGoal [
 
 { #category : #plugin }
 PREnvironmentTransformer >> prepareForExecutionOn: aPRProject [ 
-	
 	"None"
 ]
 
@@ -42,7 +41,7 @@ PREnvironmentTransformer >> start: aDocumentItem [
 	
 	"Execute clean annotation before"
 	object := super start: (PRCleanAnnotationInParagraphTransformer new start: aDocumentItem).
-	currentColumns notNil | currentColumn notNil
+	currentEnvironment notNil | currentColumn notNil
 		ifTrue: [ PRError
 				signal:
 					'Missing ending columns annotation. Please use ${endColumns}$ at the end of the columns environment.' ].
@@ -52,32 +51,32 @@ PREnvironmentTransformer >> start: aDocumentItem [
 { #category : #'visiting-annotations' }
 PREnvironmentTransformer >> visitBeginEnvironmentAnnotation: anAnnotation [
 	self halt.
-	currentColumns notNil
+	currentEnvironment notNil
 		ifTrue: [ PRError
 				signal:
 					'You have to close a columns environment before you open an other. Use the ${endColumns}$ tag please.' ].
-	currentColumns := PRColumns new.
+	currentEnvironment := PREnvironment named: (anAnnotation parameters at: 'name' ifAbsent: [ PREnvironmentMissedNamed signal ]).
 	self delete
 ]
 
 { #category : #'visiting-annotations' }
 PREnvironmentTransformer >> visitColumnAnnotation: anAnnotation [
-	currentColumns isNil
+	currentEnvironment isNil
 		ifTrue: [ PRError
 				signal:
 					'You can''t create a new column if you are not inside a column environment. Please use ${columns}$ before the beginning of a column.' ].
 	currentColumn := PRColumn width: (anAnnotation parameters at: 'width').
-	currentColumns add: currentColumn.
+	currentEnvironment add: currentColumn.
 	self delete
 ]
 
 { #category : #'visiting-annotations' }
 PREnvironmentTransformer >> visitColumnsAnnotation: anAnnotation [
-	currentColumns notNil
+	currentEnvironment notNil
 		ifTrue: [ PRError
 				signal:
 					'You have to close a columns environment before you open an other. Use the ${endColumns}$ tag please.' ].
-	currentColumns := PRColumns new.
+	currentEnvironment := PRColumnEnvironment new.
 	self delete
 ]
 
@@ -92,10 +91,10 @@ PREnvironmentTransformer >> visitDocumentItem: anItem [
 ]
 
 { #category : #'visiting-annotations' }
-PREnvironmentTransformer >> visitEndColumnsAnnotation: anAnnotation [
-	currentColumns isNil
+PREnvironmentTransformer >> visitEndEnvironmentAnnotation: anAnnotation [
+	currentEnvironment isNil
 		ifTrue: [ PRError signal: 'Column environement ending encounter out of a column environment.' ].
-	self replace: {currentColumns}.
-	currentColumns := nil.
+	self replace: {currentEnvironment}.
+	currentEnvironment := nil.
 	currentColumn := nil
 ]

@@ -9,7 +9,7 @@ Class {
 		'currentColumn',
 		'goal'
 	],
-	#category : 'Pillar-ExporterCore-Export'
+	#category : #'Pillar-ExporterCore-Transformers'
 }
 
 { #category : #'meta-data' }
@@ -69,7 +69,7 @@ PRColumnsTransformer >> visitColumnsAnnotation: anAnnotation [
 		ifTrue: [ PRError
 				signal:
 					'You have to close a columns environment before you open an other. Use the ${endColumns}$ tag please.' ].
-	currentColumns := PRColumns new.
+	currentColumns := PRColumnEnvironment new.
 	self delete
 ]
 

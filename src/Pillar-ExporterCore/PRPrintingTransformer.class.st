@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'printer'
 	],
-	#category : 'Pillar-ExporterCore-Export'
+	#category : #'Pillar-ExporterCore-Transformers'
 }
 
 { #category : #initialization }

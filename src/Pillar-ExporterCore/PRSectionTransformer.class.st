@@ -10,7 +10,7 @@ Class {
 	#classVars : [
 		'MaxDepthLevel'
 	],
-	#category : 'Pillar-ExporterCore-Export'
+	#category : #'Pillar-ExporterCore-Transformers'
 }
 
 { #category : #'class initialization' }

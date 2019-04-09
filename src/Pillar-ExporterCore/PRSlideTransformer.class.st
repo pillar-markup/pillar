@@ -8,7 +8,7 @@ Class {
 		'currentSlide',
 		'goal'
 	],
-	#category : 'Pillar-ExporterCore-Export'
+	#category : #'Pillar-ExporterCore-Transformers'
 }
 
 { #category : #'meta-data' }

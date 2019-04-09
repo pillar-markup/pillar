@@ -6,7 +6,7 @@ Class {
 
 { #category : #helpers }
 PRColumnsAnnotationTest >> actualClass [
-	^ PRColumnsAnnotation
+	^ PRBeginColumnsAnnotation
 ]
 
 { #category : #helpers }

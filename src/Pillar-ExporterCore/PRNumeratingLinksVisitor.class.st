@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'anchorsMapping'
 	],
-	#category : 'Pillar-ExporterCore-Export'
+	#category : #'Pillar-ExporterCore-Transformers'
 }
 
 { #category : #'meta-data' }

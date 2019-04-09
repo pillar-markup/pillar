@@ -4,13 +4,13 @@ I am a transformer which will replace the citation annotations  by a real citati
 Class {
 	#name : #PRCitationTransformer,
 	#superclass : #PRNodeTransformer,
-	#category : 'Pillar-ExporterCore-Export'
+	#category : #'Pillar-ExporterCore-Transformers'
 }
 
 { #category : #helper }
-PRCitationTransformer >> createNewCitationWith: documentItem [
+PRCitationTransformer >> createNewCitationWith: aCitationAnnotation [
 
-	^ PRCitation ref: (documentItem parameters at: 'ref' ifAbsent:[ PRCitation defaultRef ])
+	^ PRCitation ref: (aCitationAnnotation parameters at: 'ref' ifAbsent:[ PRCitation defaultRef ])
 ]
 
 { #category : #'visiting-annotations' }

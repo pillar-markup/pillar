@@ -28,7 +28,7 @@ Class {
 		'configuration',
 		'input'
 	],
-	#category : 'Pillar-ExporterCore-Export'
+	#category : #'Pillar-ExporterCore-Transformers'
 }
 
 { #category : #'instance creation' }

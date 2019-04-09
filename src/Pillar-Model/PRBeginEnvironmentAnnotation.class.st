@@ -4,23 +4,28 @@ Class {
 	#category : #'Pillar-Model-Document'
 }
 
-{ #category : #testing }
-PRBeginEnvironmentAnnotation class >> hasParameters [
-
-	^ false
+{ #category : #'instance creation' }
+PRBeginEnvironmentAnnotation class >> named: aString [ 
+	^ self new name: aString; yourself
 ]
 
 { #category : #testing }
 PRBeginEnvironmentAnnotation class >> possibleParameters [
-	^ #()
+	^ #(name)
 ]
 
 { #category : #protected }
 PRBeginEnvironmentAnnotation class >> tag [
-	^ #columns
+	^ #begin
 ]
 
 { #category : #visiting }
 PRBeginEnvironmentAnnotation >> accept: aVisitor [
 	aVisitor visitBeginEnvironmentAnnotation: self
+]
+
+{ #category : #accessing }
+PRBeginEnvironmentAnnotation >> name: aString [ 
+	
+	self parameters at: 'name' put: aString
 ]

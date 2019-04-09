@@ -1,7 +1,7 @@
 Class {
 	#name : #PRCustomTagTransformer,
 	#superclass : #PRNodeTransformer,
-	#category : #'Pillar-ExporterCore-Export'
+	#category : #'Pillar-ExporterCore-Transformers'
 }
 
 { #category : #helper }

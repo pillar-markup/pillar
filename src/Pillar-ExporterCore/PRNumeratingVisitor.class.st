@@ -11,7 +11,7 @@ Class {
 		'headerCounter',
 		'anchorsMapping'
 	],
-	#category : 'Pillar-ExporterCore-Export'
+	#category : #'Pillar-ExporterCore-Transformers'
 }
 
 { #category : #'instance creation' }

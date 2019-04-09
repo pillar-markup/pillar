@@ -33,10 +33,10 @@ PREndColumnsAnnotation class >> possibleParameters [
 
 { #category : #protected }
 PREndColumnsAnnotation class >> tag [ 
-	^ #endColumns
+	^ #end
 ]
 
 { #category : #visiting }
 PREndColumnsAnnotation >> accept: aVisitor [
-	aVisitor visitEndEnvironmentAnnotation: self
+	aVisitor visitEndColumnsAnnotation: self
 ]

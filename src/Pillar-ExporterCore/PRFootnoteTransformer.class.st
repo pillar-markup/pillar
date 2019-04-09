@@ -4,7 +4,7 @@ I replace each ==footnote== annotation with a structure of footnote.
 Class {
 	#name : #PRFootnoteTransformer,
 	#superclass : #PRNodeTransformer,
-	#category : 'Pillar-ExporterCore-Export'
+	#category : #'Pillar-ExporterCore-Transformers'
 }
 
 { #category : #testing }

@@ -12,7 +12,7 @@ Class {
 		'pillarDocument',
 		'outputText'
 	],
-	#category : 'Pillar-ExporterCore-Export'
+	#category : #'Pillar-ExporterCore-Transformers'
 }
 
 { #category : #testing }

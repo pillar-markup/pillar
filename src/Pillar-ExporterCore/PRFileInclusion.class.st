@@ -12,7 +12,7 @@ Class {
 		'expansionTask',
 		'inProcessFiles'
 	],
-	#category : 'Pillar-ExporterCore-Export'
+	#category : #'Pillar-ExporterCore-Transformers'
 }
 
 { #category : #configuration }

@@ -14,7 +14,7 @@ PRColumnsTransformerTest >> testTransformationBeginningColumnsWithoutEnding [
 	| input |
 	input := PRDocument
 		withAll:
-			{PRColumnsAnnotation new.
+			{PRBeginColumnsAnnotation new.
 			(PRColumnAnnotation
 				withParameters: (
 					PRParameters withAll: { 
@@ -37,7 +37,7 @@ PRColumnsTransformerTest >> testTransformationOnColumn [
 	| input expected |
 	input := PRDocument new
 		add:
-				PRColumnsAnnotation new;
+				PRBeginColumnsAnnotation new;
 		add:
 				(PRColumnAnnotation withParameters: (
 					PRParameters withAll: { 
@@ -52,7 +52,7 @@ PRColumnsTransformerTest >> testTransformationOnColumn [
 		yourself.
 	expected := PRDocument new
 		add:
-				(PRColumns new
+				(PRColumnEnvironment new
 						add:
 							((PRColumn width: '100')
 								add:
@@ -68,7 +68,7 @@ PRColumnsTransformerTest >> testTransformationOnColumn [
 PRColumnsTransformerTest >> testTransformationTwoColumns [
 	| input expected |
 	input := PRDocument new
-		add: PRColumnsAnnotation new;
+		add: PRBeginColumnsAnnotation new;
 		add:
 			(PRColumnAnnotation
 				withParameters: (
@@ -95,7 +95,7 @@ PRColumnsTransformerTest >> testTransformationTwoColumns [
 		yourself.
 	expected := PRDocument new
 		add:
-			(PRColumns new
+			(PRColumnEnvironment new
 				add:
 					((PRColumn width: '50')
 						add:
@@ -136,9 +136,9 @@ PRColumnsTransformerTest >> testTransformationWithColumnsInColumns [
 	| input |
 	input := PRDocument new
 		add:
-				PRColumnsAnnotation new;
+				PRBeginColumnsAnnotation new;
 		add:
-				PRColumnsAnnotation new;
+				PRBeginColumnsAnnotation new;
 		add:
 				PREndColumnsAnnotation new;
 		add:
@@ -152,7 +152,7 @@ PRColumnsTransformerTest >> testTransformationWithContentInsideColumnsBeforeColu
 	| input expected |
 	input := PRDocument new
 		add:
-				PRColumnsAnnotation new;
+				PRBeginColumnsAnnotation new;
 		add: (PRParagraph with: (PRText content: 'Foo') yourself);
 		add:
 				(PRColumnAnnotation withParameters: (
@@ -166,7 +166,7 @@ PRColumnsTransformerTest >> testTransformationWithContentInsideColumnsBeforeColu
 		yourself.
 	expected := PRDocument new
 		add:
-				(PRColumns new
+				(PRColumnEnvironment new
 						add: (PRParagraph with: (PRText content: 'Foo') yourself);
 						add: ((PRColumn width: '100') add: (PRParagraph with: (PRText content: 'Bar') yourself) yourself);
 						yourself);
@@ -179,7 +179,7 @@ PRColumnsTransformerTest >> testTransformationWithNonGroupItemAtTopLevel [
 	| input expected |
 	"This test makes sure that a document item which is not a document group can be a direct child of a column"
 	input := PRDocument new
-		add: PRColumnsAnnotation new;
+		add: PRBeginColumnsAnnotation new;
 		add:
 			(PRColumnAnnotation
 				withParameters: (
@@ -192,7 +192,7 @@ PRColumnsTransformerTest >> testTransformationWithNonGroupItemAtTopLevel [
 		yourself.
 	expected := PRDocument new
 		add:
-			(PRColumns new
+			(PRColumnEnvironment new
 				add:
 					((PRColumn width: '100')
 						add: PRHorizontalRule new;

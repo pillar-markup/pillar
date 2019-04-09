@@ -2,17 +2,17 @@
 I am a columns environment.
 "
 Class {
-	#name : #PRColumns,
+	#name : #PRColumnEnvironment,
 	#superclass : #PRDocumentGroup,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #testing }
-PRColumns class >> isAbstract [
+PRColumnEnvironment class >> isAbstract [
 	^ false
 ]
 
 { #category : #visiting }
-PRColumns >> accept: aVisitor [
+PRColumnEnvironment >> accept: aVisitor [
 	aVisitor visitColumns: self
 ]

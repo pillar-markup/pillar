@@ -10,7 +10,7 @@ Class {
 		'replacement',
 		'configuration'
 	],
-	#category : 'Pillar-ExporterCore-Export'
+	#category : #'Pillar-ExporterCore-Transformers'
 }
 
 { #category : #'instance-creation' }

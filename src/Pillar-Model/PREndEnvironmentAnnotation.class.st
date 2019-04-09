@@ -4,15 +4,15 @@ Class {
 	#category : #'Pillar-Model-Document'
 }
 
-{ #category : #testing }
-PREndEnvironmentAnnotation class >> hasParameters [
-
-	^ false
+{ #category : #'instance creation' }
+PREndEnvironmentAnnotation class >> named: aString [ 
+	
+	^ self new name: aString; yourself
 ]
 
 { #category : #protected }
 PREndEnvironmentAnnotation class >> possibleParameters [
-	^ #()
+	^ #(name)
 ]
 
 { #category : #protected }
@@ -22,5 +22,11 @@ PREndEnvironmentAnnotation class >> tag [
 
 { #category : #visiting }
 PREndEnvironmentAnnotation >> accept: aVisitor [
-	aVisitor visitEndColumnsAnnotation: self
+	aVisitor visitEndEnvironmentAnnotation: self
+]
+
+{ #category : #accessing }
+PREndEnvironmentAnnotation >> name: aString [ 
+	
+	self parameters at: 'name' put: aString
 ]

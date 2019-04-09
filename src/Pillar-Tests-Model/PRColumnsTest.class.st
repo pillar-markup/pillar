@@ -11,5 +11,5 @@ PRColumnsTest class >> isAbstract [
 
 { #category : #private }
 PRColumnsTest >> actualClass [
-	^ PRColumns
+	^ PRColumnEnvironment
 ]

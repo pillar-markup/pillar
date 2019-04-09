@@ -17,7 +17,7 @@ Class {
 	#instVars : [
 		'stream'
 	],
-	#category : 'Pillar-ExporterCore-Export'
+	#category : #'Pillar-ExporterCore-Transformers'
 }
 
 { #category : #adding }

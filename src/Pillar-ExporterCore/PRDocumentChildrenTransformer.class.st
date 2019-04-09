@@ -9,7 +9,7 @@ Class {
 	#instVars : [
 		'newChildren'
 	],
-	#category : 'Pillar-ExporterCore-Export'
+	#category : #'Pillar-ExporterCore-Transformers'
 }
 
 { #category : #testing }

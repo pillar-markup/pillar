@@ -4,7 +4,7 @@ Convert from the level of a Pillar heading to the level of heading in the export
 Class {
 	#name : #PRHeadingLevelOffsetTransformer,
 	#superclass : #PRNodeTransformer,
-	#category : 'Pillar-ExporterCore-Export'
+	#category : #'Pillar-ExporterCore-Transformers'
 }
 
 { #category : #visiting }
