@@ -22,5 +22,5 @@ PRBeginEnvironmentAnnotation class >> tag [
 
 { #category : #visiting }
 PRBeginEnvironmentAnnotation >> accept: aVisitor [
-	aVisitor visitColumnsAnnotation: self
+	aVisitor visitBeginEnvironmentAnnotation: self
 ]

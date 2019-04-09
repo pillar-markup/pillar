@@ -145,6 +145,12 @@ PRVisitor >> visitEndColumnsAnnotation: aEndColumnsAnnotation [
 ]
 
 { #category : #'visiting-annotations' }
+PRVisitor >> visitEndEnvironmentAnnotation: aEndEnvironmentAnnotation [
+	"Visiting an annotation means that we visit the textual representation of an annotation. Such annotations will be transformed into annotation object. The corresponding visit method will be invoked on such object : visitBeginEnvironmentAnnotation vs visitBeginEnvironment."
+	self visitAnnotation: aEndEnvironmentAnnotation
+]
+
+{ #category : #'visiting-annotations' }
 PRVisitor >> visitEnvironment: anEnvironment [
 	self visitDocumentGroup: anEnvironment
 ]

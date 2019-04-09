@@ -9,6 +9,24 @@ PREnvironmentTransformerTest >> actualClass [
 	^ PREnvironmentTransformer
 ]
 
+{ #category : #'tests environment' }
+PREnvironmentTransformerTest >> testTransformationBasicTextInsideAnEnvironment [
+	| input expected |
+	input := PRDocument new
+		add: PRBeginEnvironmentAnnotation new;
+		add: (PRParagraph with: (PRText content: 'First paragraph inside environment') yourself);
+		add: (PRParagraph with: (PRText content: 'Second paragraph inside environment') yourself);
+		add: PREndEnvironmentAnnotation new;
+		yourself.
+	expected := PRDocument new
+		add: (PREnvironment new
+						add: (PRParagraph with: (PRText content: 'First paragraph inside environment') yourself);
+						add: (PRParagraph with: (PRText content: 'Second paragraph inside environment') yourself);
+						yourself);
+		yourself.
+	self assert: (self executePhase: input) equals: expected
+]
+
 { #category : #tests }
 PREnvironmentTransformerTest >> testTransformationBeginningColumnsWithoutEnding [
 	| input |
@@ -30,6 +48,19 @@ PREnvironmentTransformerTest >> testTransformationEndColumnsWithoutBeginning [
 	| input |
 	input := PRDocument with: PREndColumnsAnnotation new.
 	self should: [ (self executePhase: input with: self configuration) ] raise: PRError whoseDescriptionIncludes: 'out of a column environment' description: 'Code should detect a missing annotation'
+]
+
+{ #category : #'tests environment' }
+PREnvironmentTransformerTest >> testTransformationInAbsenceOfEnvironment [
+	"there is not environment so nothing happens."
+	| input |
+	input := PRDocument new
+		add: (PRParagraph new
+						add: (PRText content: 'Foo');
+						yourself);
+		add: (PRParagraph with: (PRText content: 'Bar') yourself);
+		yourself.
+	self assert: (self executePhase: input with: self configuration) equals: input
 ]
 
 { #category : #tests }
@@ -197,17 +228,4 @@ PREnvironmentTransformerTest >> testTransformationWithNonGroupItemAtTopLevel [
 						yourself));
 		yourself.
 	self assert: (self executePhase: input) equals: expected
-]
-
-{ #category : #tests }
-PREnvironmentTransformerTest >> testTransformationWithoutColumns [
-	| input |
-	input := PRDocument new
-		add:
-				(PRParagraph new
-						add: (PRText content: 'Foo');
-						yourself);
-		add: (PRParagraph with: (PRText content: 'Bar') yourself);
-		yourself.
-	self assert: (self executePhase: input with: self configuration) equals: input
 ]
