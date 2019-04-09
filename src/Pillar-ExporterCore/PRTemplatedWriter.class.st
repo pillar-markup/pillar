@@ -10,7 +10,8 @@ Class {
 	#superclass : #PRVisitor,
 	#instVars : [
 		'outputDocument',
-		'defaultWriter'
+		'defaultWriter',
+		'environmentStack'
 	],
 	#category : #'Pillar-ExporterCore-Transformers'
 }
@@ -189,6 +190,12 @@ PRTemplatedWriter >> contents [
 	^ defaultWriter contents
 ]
 
+{ #category : #environment }
+PRTemplatedWriter >> currentEnvironmentPath [
+	
+	^ RelativePath withAll: (environmentStack collect: #name) reversed
+]
+
 { #category : #accessing }
 PRTemplatedWriter >> dataItemTemplateFileName [
 
@@ -254,6 +261,12 @@ PRTemplatedWriter >> horizontalRuleTemplateFileName [
 ]
 
 { #category : #accessing }
+PRTemplatedWriter >> initialize [
+	super initialize.
+	environmentStack := OrderedCollection new.
+]
+
+{ #category : #accessing }
 PRTemplatedWriter >> internalLinkTemplateFileName [
 
 	^ self class internalLinkTemplateFileName
@@ -311,10 +324,22 @@ PRTemplatedWriter >> paragraphTemplateFileName [
 	^ self class paragraphTemplateFileName
 ]
 
+{ #category : #environment }
+PRTemplatedWriter >> popEnvironment [
+	
+	environmentStack removeFirst
+]
+
 { #category : #accessing }
 PRTemplatedWriter >> preformattedTemplateFileName [
 
 	^ self class preformattedTemplateFileName
+]
+
+{ #category : #environment }
+PRTemplatedWriter >> pushEnvironment: aPREnvironment [ 
+	
+	environmentStack addFirst: aPREnvironment
 ]
 
 { #category : #accessing }
@@ -415,6 +440,14 @@ PRTemplatedWriter >> visitEmptyParagraph: anEmptyParagraph [
 		writeRawText: anEmptyParagraph text
 		withTemplateFileName: self emptyParagraphTemplateFileName
 		ifAbsent: [ defaultWriter visitEmptyParagraph: anEmptyParagraph ]
+]
+
+{ #category : #visiting }
+PRTemplatedWriter >> visitEnvironment: anEnvironment [
+
+	self pushEnvironment: anEnvironment.
+	self visitDocumentGroup: anEnvironment.
+	self popEnvironment.
 ]
 
 { #category : #visiting }
@@ -604,10 +637,15 @@ PRTemplatedWriter >> write: aDocumentItem withTemplateFileName: templateFileName
 { #category : #writing }
 PRTemplatedWriter >> writeRawText: aText withTemplateFileName: templateFileName extraArguments: arguments ifAbsent: aBlock [
 
-	| templateFile result |
-	templateFile := outputDocument templateDirectory / templateFileName.
-	templateFile exists ifFalse: [ ^ aBlock value ].
-
+	| templateFile result environmentPath foundPath |
+	environmentPath := self currentEnvironmentPath.
+	
+	foundPath := environmentPath
+		lookup: [ :path | ((outputDocument templateDirectory resolve: path) / templateFileName) exists ]
+		ifNone: [ ^ aBlock value ].
+	
+	templateFile := outputDocument templateDirectory resolve: foundPath / templateFileName.
+		
 	result := templateFile asMustacheTemplate value: ({ 'contents' -> aText value }, arguments) asDictionary.
 	self visitRaw: (PRRaw content: result type: defaultWriter writerName)
 ]

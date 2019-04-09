@@ -33,7 +33,7 @@ PREndColumnsAnnotation class >> possibleParameters [
 
 { #category : #protected }
 PREndColumnsAnnotation class >> tag [ 
-	^ #end
+	^ #endColumns
 ]
 
 { #category : #visiting }

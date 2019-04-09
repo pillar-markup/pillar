@@ -150,9 +150,10 @@ PRVisitor >> visitEndEnvironmentAnnotation: aEndEnvironmentAnnotation [
 	self visitAnnotation: aEndEnvironmentAnnotation
 ]
 
-{ #category : #'visiting-annotations' }
-PRVisitor >> visitEnvironment: anEnvironment [
-	self visitDocumentGroup: anEnvironment
+{ #category : #'visiting-document' }
+PRVisitor >> visitEnvironment: anObject [
+
+	self visitDocumentGroup: anObject
 ]
 
 { #category : #'visiting-document' }

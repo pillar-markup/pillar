@@ -7,6 +7,12 @@ Class {
 { #category : #'tests-templatefiles' }
 PRTemplatedWriterTest >> assertTemplate: template writesValue: value forNode: node [
 
+	self assertTemplatePath: Path * template writesValue: value forNode: node 
+]
+
+{ #category : #'tests-templatefiles' }
+PRTemplatedWriterTest >> assertTemplatePath: templatePath writesValue: value forNode: node [
+
 	| document result writer textDocument templateFileReference |
 	
 	textDocument := PRTextDocument new
@@ -19,7 +25,7 @@ PRTemplatedWriterTest >> assertTemplate: template writesValue: value forNode: no
 		defaultWriter: PRTextWriter new;
 		yourself.
 
-	templateFileReference := textDocument templateDirectory / template.
+	templateFileReference := textDocument templateDirectory resolve: templatePath.
 	templateFileReference parent ensureCreateDirectory.
 	templateFileReference writeStreamDo: [ :stream | stream nextPutAll: value ].
 
@@ -209,9 +215,9 @@ PRTemplatedWriterTest >> testWriteOrderedListUsesOrderedListTemplate [
 PRTemplatedWriterTest >> testWriteParagraphUsesParagraphTemplate [
 
 	self
-		assertTemplate: PRTemplatedWriter unorderedListTemplateFileName
+		assertTemplate: PRTemplatedWriter paragraphTemplateFileName
 		writesValue: 'unorderedList'
-		forNode: PRUnorderedList new
+		forNode: PRParagraph new
 ]
 
 { #category : #'tests-templatefiles' }
@@ -230,4 +236,30 @@ PRTemplatedWriterTest >> testWriteSectionUsesSectionTemplate [
 		assertTemplate: PRTemplatedWriter sectionTemplateFileName
 		writesValue: 'section'
 		forNode: PRSection new
+]
+
+{ #category : #'tests-templatefiles' }
+PRTemplatedWriterTest >> testWriteTextInsideEnvironmentLooksUpOutsideEnvironment [
+
+	self
+		assertTemplate: 'paragraph.mustache'
+		writesValue: 'Paragraph outside card'
+		forNode: ((PREnvironment named: 'card')
+			add: (PRParagraph new
+				add: (PRText content: 'Foo');
+				yourself);
+			yourself)
+]
+
+{ #category : #'tests-templatefiles' }
+PRTemplatedWriterTest >> testWriteTextInsideEnvironmentUsesTemplateInsideEnvironment [
+
+	self
+		assertTemplatePath: (Path * 'card' / 'paragraph.mustache')
+		writesValue: 'Paragraph in card'
+		forNode: ((PREnvironment named: 'card')
+			add: (PRParagraph new
+				add: (PRText content: 'Foo');
+				yourself);
+			yourself)
 ]
