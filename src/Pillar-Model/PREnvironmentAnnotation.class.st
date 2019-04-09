@@ -15,6 +15,13 @@ PREnvironmentAnnotation class >> possibleParameters [
 	^ #(name)
 ]
 
+{ #category : #testing }
+PREnvironmentAnnotation class >> validateParameters: aPRParameters dictionary: parameters in: anInstance [
+
+	"I do not do any validations.
+	I allow arbitrary parameters that will be used by my transformers."
+]
+
 { #category : #accessing }
 PREnvironmentAnnotation >> name [
 
