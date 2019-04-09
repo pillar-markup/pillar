@@ -10,7 +10,20 @@ PREnvironmentTransformerTest >> actualClass [
 ]
 
 { #category : #'tests environment' }
-PREnvironmentTransformerTest >> testTransformationBasicTextInsideAnEnvironment [
+PREnvironmentTransformerTest >> testAbsenceOfEnvironment [
+	"there is not environment so nothing happens."
+	| input |
+	input := PRDocument new
+		add: (PRParagraph new
+						add: (PRText content: 'Foo');
+						yourself);
+		add: (PRParagraph with: (PRText content: 'Bar') yourself);
+		yourself.
+	self assert: (self executePhase: input with: self configuration) equals: input
+]
+
+{ #category : #'tests environment' }
+PREnvironmentTransformerTest >> testBasicTextInsideAnEnvironment [
 	| input expected |
 	input := PRDocument new
 		add: (PRBeginEnvironmentAnnotation named: 'card');
@@ -27,20 +40,57 @@ PREnvironmentTransformerTest >> testTransformationBasicTextInsideAnEnvironment [
 	self assert: (self executePhase: input) equals: expected
 ]
 
-{ #category : #tests }
-PREnvironmentTransformerTest >> testTransformationBeginningColumnsWithoutEnding [
+{ #category : #'tests environment' }
+PREnvironmentTransformerTest >> testBeginEnvironmentWithoutEnd [
 	| input |
 	input := PRDocument
-		withAll:
-			{PRBeginColumnsAnnotation new.
-			(PRColumnAnnotation
-				withParameters: (
-					PRParameters withAll: { 
-						PRParameter 
-							keyNode: (PRParameterKey named: 'width')
-							valueNode: (PRParameterValue value: 100) })).
-			(PRText content: 'Foo')}.
-	self should: [ self executePhase: input ] raise: PRError whoseDescriptionIncludes: 'Missing end' description: 'Code must detect the absence of end annotation'
+		withAll: {
+			PRBeginEnvironmentAnnotation named: 'card'.
+			(PRParagraph with: (PRText content: 'First paragraph inside environment') yourself) }.
+
+	self
+		should: [ self executePhase: input ]
+		raise: PRError
+		whoseDescriptionIncludes: 'Missing end of environment ''card'''
+		description: 'Missing end of environment ''card'''
+]
+
+{ #category : #'tests environment' }
+PREnvironmentTransformerTest >> testEndEnvironmentWithoutBegin [
+	| input |
+	input := PRDocument with: (PREndEnvironmentAnnotation named: 'card').
+
+	self
+		should: [ (self executePhase: input with: self configuration) ]
+		raise: PRError
+		whoseDescriptionIncludes: 'Missing begin of environment ''card'''
+		description: 'Missing begin environment'
+]
+
+{ #category : #'tests environment' }
+PREnvironmentTransformerTest >> testMissingNameInBeginAnnotationFails [
+	| input |
+	input := PRDocument new
+		add: (PRBeginEnvironmentAnnotation new);
+		add: (PRParagraph with: (PRText content: 'First paragraph inside environment') yourself);
+		add: (PRParagraph with: (PRText content: 'Second paragraph inside environment') yourself);
+		add: (PREndEnvironmentAnnotation named: 'card');
+		yourself.
+
+	self should: [ self executePhase: input ] raise: PREnvironmentMissedNamed
+]
+
+{ #category : #'tests environment' }
+PREnvironmentTransformerTest >> testMissingNameInEndAnnotationFails [
+	| input |
+	input := PRDocument new
+		add: (PRBeginEnvironmentAnnotation named: 'card');
+		add: (PRParagraph with: (PRText content: 'First paragraph inside environment') yourself);
+		add: (PRParagraph with: (PRText content: 'Second paragraph inside environment') yourself);
+		add: (PREndEnvironmentAnnotation new);
+		yourself.
+
+	self should: [ self executePhase: input ] raise: PREnvironmentMissedNamed
 ]
 
 { #category : #tests }
@@ -48,19 +98,6 @@ PREnvironmentTransformerTest >> testTransformationEndColumnsWithoutBeginning [
 	| input |
 	input := PRDocument with: PREndColumnsAnnotation new.
 	self should: [ (self executePhase: input with: self configuration) ] raise: PRError whoseDescriptionIncludes: 'out of a column environment' description: 'Code should detect a missing annotation'
-]
-
-{ #category : #'tests environment' }
-PREnvironmentTransformerTest >> testTransformationInAbsenceOfEnvironment [
-	"there is not environment so nothing happens."
-	| input |
-	input := PRDocument new
-		add: (PRParagraph new
-						add: (PRText content: 'Foo');
-						yourself);
-		add: (PRParagraph with: (PRText content: 'Bar') yourself);
-		yourself.
-	self assert: (self executePhase: input with: self configuration) equals: input
 ]
 
 { #category : #tests }

@@ -24,6 +24,11 @@ PREnvironment >> accept: aVisitor [
 ]
 
 { #category : #accessing }
+PREnvironment >> name [
+	^ name
+]
+
+{ #category : #accessing }
 PREnvironment >> name: aString [ 
 	
 	name := aString

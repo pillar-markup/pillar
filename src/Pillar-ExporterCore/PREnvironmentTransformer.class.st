@@ -42,20 +42,20 @@ PREnvironmentTransformer >> start: aDocumentItem [
 	"Execute clean annotation before"
 	object := super start: (PRCleanAnnotationInParagraphTransformer new start: aDocumentItem).
 	currentEnvironment notNil | currentColumn notNil
-		ifTrue: [ PRError
-				signal:
-					'Missing ending columns annotation. Please use ${endColumns}$ at the end of the columns environment.' ].
+		ifTrue: [ 
+			PRError
+				signal: ('Missing end of environment ''{name}'''
+					format: { 'name' -> currentEnvironment name } asDictionary) ].
 	^ object
 ]
 
 { #category : #'visiting-annotations' }
 PREnvironmentTransformer >> visitBeginEnvironmentAnnotation: anAnnotation [
-	self halt.
 	currentEnvironment notNil
 		ifTrue: [ PRError
 				signal:
 					'You have to close a columns environment before you open an other. Use the ${endColumns}$ tag please.' ].
-	currentEnvironment := PREnvironment named: (anAnnotation parameters at: 'name' ifAbsent: [ PREnvironmentMissedNamed signal ]).
+	currentEnvironment := PREnvironment named: anAnnotation name.
 	self delete
 ]
 
@@ -93,7 +93,16 @@ PREnvironmentTransformer >> visitDocumentItem: anItem [
 { #category : #'visiting-annotations' }
 PREnvironmentTransformer >> visitEndEnvironmentAnnotation: anAnnotation [
 	currentEnvironment isNil
-		ifTrue: [ PRError signal: 'Column environement ending encounter out of a column environment.' ].
+		ifTrue: [ PRError signal: ('Missing begin of environment ''{name}'''
+					format: { 'name' -> anAnnotation name } asDictionary) ].
+	
+	currentEnvironment name = anAnnotation name
+		ifFalse: [
+			PRError signal: ('Mismatching environments: closing ''{closing}'' while ''{open}'' environment is open'
+					format: { 
+					'closing' -> anAnnotation name.
+					'open' -> currentEnvironment name } asDictionary) ]. 
+	
 	self replace: {currentEnvironment}.
 	currentEnvironment := nil.
 	currentColumn := nil
