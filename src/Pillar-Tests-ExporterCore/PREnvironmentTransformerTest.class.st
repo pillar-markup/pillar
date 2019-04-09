@@ -68,6 +68,34 @@ PREnvironmentTransformerTest >> testEndEnvironmentWithoutBegin [
 ]
 
 { #category : #'tests environment' }
+PREnvironmentTransformerTest >> testEnvironmentWithManyNestedEnvironments [
+	| input expected |
+	input := PRDocument new
+		add: (PRBeginEnvironmentAnnotation named: 'cards');
+		add: (PRBeginEnvironmentAnnotation named: 'card');
+		add: (PRParagraph with: (PRText content: 'First paragraph inside environment') yourself);
+		add: (PREndEnvironmentAnnotation named: 'card');
+		add: (PRBeginEnvironmentAnnotation named: 'card');
+		add: (PRParagraph with: (PRText content: 'Second paragraph inside environment') yourself);
+		add: (PREndEnvironmentAnnotation named: 'card');
+		add: (PREndEnvironmentAnnotation named: 'cards');
+		yourself.
+		
+	expected := PRDocument new
+		add: ((PREnvironment named: 'cards')
+			add: ((PREnvironment named: 'card')
+				add: (PRParagraph with: (PRText content: 'First paragraph inside environment'));
+				yourself);
+			add: ((PREnvironment named: 'card')
+				add: (PRParagraph with: (PRText content: 'Second paragraph inside environment'));
+				yourself);
+			yourself);
+		yourself.
+
+	self assert: (self executePhase: input) equals: expected
+]
+
+{ #category : #'tests environment' }
 PREnvironmentTransformerTest >> testMismatchEnvironments [
 	| input |
 	input := PRDocument new
