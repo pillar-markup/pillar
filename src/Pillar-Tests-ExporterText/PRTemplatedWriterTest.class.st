@@ -1,6 +1,9 @@
 Class {
 	#name : #PRTemplatedWriterTest,
 	#superclass : #TestCase,
+	#instVars : [
+		'textDocument'
+	],
 	#category : #'Pillar-Tests-ExporterText'
 }
 
@@ -11,31 +14,44 @@ PRTemplatedWriterTest >> assertTemplate: template writesValue: value forNode: no
 ]
 
 { #category : #'tests-templatefiles' }
-PRTemplatedWriterTest >> assertTemplatePath: templatePath writesValue: value forNode: node [
+PRTemplatedWriterTest >> assertTemplatePath: templatePath writesValue: contents forNode: node [
 
-	| document result writer textDocument templateFileReference |
-	
-	textDocument := PRTextDocument new
-			project: (PRProject new
-				baseDirectory: FileSystem memory;
-				yourself);
-			yourself.
-	writer := PRTemplatedWriter new
-		outputDocument: textDocument;
-		defaultWriter: PRTextWriter new;
-		yourself.
+	self createTemplateFileAt: templatePath withContents: contents.
+	self assertWritingNode: node writes: contents.
+]
 
-	templateFileReference := textDocument templateDirectory resolve: templatePath.
-	templateFileReference parent ensureCreateDirectory.
-	templateFileReference writeStreamDo: [ :stream | stream nextPutAll: value ].
+{ #category : #'tests-templatefiles' }
+PRTemplatedWriterTest >> assertWritingNode: node writes: contents [
 
+	| document result writer |
 	document := PRDocument new
 		add: node;
 		yourself.
 
-	result := writer write: document.
+	result := textDocument writer write: document.
 		
-	self assert: result equals: value
+	self assert: result equals: contents
+]
+
+{ #category : #'tests-templatefiles' }
+PRTemplatedWriterTest >> createTemplateFileAt: aPath withContents: contents [
+
+	| templateFileReference |
+	templateFileReference := textDocument templateDirectory resolve: aPath.
+	templateFileReference parent ensureCreateDirectory.
+	templateFileReference writeStreamDo: [ :stream | stream nextPutAll: contents ].
+]
+
+{ #category : #'tests-templatefiles' }
+PRTemplatedWriterTest >> setUp [
+
+	super setUp.
+	textDocument := PRTextDocument new
+			project: (PRProject new
+				baseDirectory: FileSystem memory;
+				beTemplatable;
+				yourself);
+			yourself.
 ]
 
 { #category : #'tests-templatefiles' }
@@ -108,6 +124,33 @@ PRTemplatedWriterTest >> testWriteEmptyParagraphsUsesEmptyParagraphTemplate [
 		assertTemplate: PRTemplatedWriter emptyParagraphTemplateFileName
 		writesValue: 'emptyParagraph'
 		forNode: PREmptyParagraph new
+]
+
+{ #category : #'tests-templatefiles' }
+PRTemplatedWriterTest >> testWriteEnvironmentItselfUsesMainTemplate [
+
+	self
+		assertTemplatePath: RelativePath * 'cards' / 'main.mustache'
+		writesValue: 'Template for cards itself'
+		forNode: ((PREnvironment named: 'cards')
+						add: (PRParagraph new
+							add: (PRText content: 'Foo');
+							yourself);
+			yourself)
+]
+
+{ #category : #'tests-templatefiles' }
+PRTemplatedWriterTest >> testWriteEnvironmentUsesArguments [
+
+	self
+		createTemplateFileAt: RelativePath * 'card' / 'main.mustache'
+		withContents: 'before {{{someArgument}}} after'.
+
+	self
+		assertWritingNode: ((PREnvironment named: 'card')
+			propertyAt: 'someArgument' put: 'test';
+			yourself)
+		writes: 'before test after'
 ]
 
 { #category : #'tests-templatefiles' }
@@ -200,6 +243,39 @@ PRTemplatedWriterTest >> testWriteMonospaceUsesMonospaceTemplate [
 		assertTemplate: PRTemplatedWriter monospaceTemplateFileName
 		writesValue: 'monospace'
 		forNode: (PRMonospaceFormat with: (PRText content: 'Bar'))
+]
+
+{ #category : #'tests-templatefiles' }
+PRTemplatedWriterTest >> testWriteNestedEnvironmentItselfUsesMainTemplate [
+
+	self
+		assertTemplatePath: RelativePath * 'cards' / 'card' / 'main.mustache'
+		writesValue: 'Template for the card itself'
+		forNode: ((PREnvironment named: 'cards')
+						add: ((PREnvironment named: 'card')
+									add: (PRParagraph new add: (PRText content: 'Foo');
+							yourself));
+					yourself)
+]
+
+{ #category : #'tests-templatefiles' }
+PRTemplatedWriterTest >> testWriteNestedEnvironmentWithChilds [
+
+	self
+		createTemplateFileAt: RelativePath * 'cards' / 'main.mustache'
+		withContents: '{{{contents}}}'.
+	self
+		createTemplateFileAt: RelativePath * 'cards' / 'card' / 'main.mustache'
+		withContents: '{{{contents}}}'.
+
+	self
+		assertTemplatePath: RelativePath * 'cards' / 'card' / 'paragraph.mustache'
+		writesValue: 'Paragraph definition in cards/card'
+		forNode: ((PREnvironment named: 'cards')
+						add: ((PREnvironment named: 'card')
+									add: (PRParagraph new add: (PRText content: 'Foo');
+							yourself));
+					yourself)
 ]
 
 { #category : #'tests-templatefiles' }

@@ -231,6 +231,11 @@ PRTemplatedWriter >> emptyParagraphTemplateFileName [
 ]
 
 { #category : #accessing }
+PRTemplatedWriter >> environmentStack: aCollection [ 
+	environmentStack := aCollection
+]
+
+{ #category : #accessing }
 PRTemplatedWriter >> externalLinkTemplateFileName [
 
 	^ self class externalLinkTemplateFileName
@@ -446,7 +451,11 @@ PRTemplatedWriter >> visitEmptyParagraph: anEmptyParagraph [
 PRTemplatedWriter >> visitEnvironment: anEnvironment [
 
 	self pushEnvironment: anEnvironment.
-	self visitDocumentGroup: anEnvironment.
+	self
+		write: anEnvironment
+		withTemplateFileName: 'main.mustache'
+		extraArguments: anEnvironment properties associations
+		ifAbsent: [ self visitDocumentGroup: anEnvironment ].
 	self popEnvironment.
 ]
 
@@ -617,6 +626,7 @@ PRTemplatedWriter >> write: aDocumentItem withTemplateFileName: templateFileName
 	self
 		writeRawText: [ | subWriter |
 			subWriter := outputDocument writer.
+			subWriter environmentStack: environmentStack. 
 			subWriter visitDocumentGroup: aDocumentItem.
 			subWriter contents ]
 		withTemplateFileName: templateFileName

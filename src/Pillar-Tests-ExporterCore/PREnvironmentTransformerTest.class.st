@@ -84,6 +84,23 @@ PREnvironmentTransformerTest >> testEndEnvironmentWithoutBeginAfterCorrectEnviro
 ]
 
 { #category : #'tests environment' }
+PREnvironmentTransformerTest >> testEnvironmentHasBeginAnnotationProperties [
+	| input node |
+	input := PRDocument new
+		add: ((PRBeginEnvironmentAnnotation named: 'cards')
+			parameterAt: 'boolean' put: true;
+			parameterAt: 'string' put: 'a string';
+			yourself);
+		add: (PREndEnvironmentAnnotation named: 'cards');
+		yourself.
+		
+	node := self executePhase: input.
+	
+	self assert: (node children first propertyAt: 'boolean').
+	self assert: (node children first propertyAt: 'string') equals: 'a string'.
+]
+
+{ #category : #'tests environment' }
 PREnvironmentTransformerTest >> testEnvironmentWithManyNestedEnvironments [
 	| input expected |
 	input := PRDocument new

@@ -95,7 +95,11 @@ PREnvironmentTransformer >> start: aDocumentItem [
 { #category : #'visiting-annotations' }
 PREnvironmentTransformer >> visitBeginEnvironmentAnnotation: anAnnotation [
 
-	self pushEnvironment: (PREnvironment named: anAnnotation name)
+	| environment |
+	environment := PREnvironment named: anAnnotation name.
+	anAnnotation parameters keysAndValuesDo: [ :key :value |
+		environment propertyAt: key put: value ].
+	self pushEnvironment: environment
 ]
 
 { #category : #'visiting-annotations' }
