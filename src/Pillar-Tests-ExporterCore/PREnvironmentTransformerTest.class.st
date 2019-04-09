@@ -68,6 +68,22 @@ PREnvironmentTransformerTest >> testEndEnvironmentWithoutBegin [
 ]
 
 { #category : #'tests environment' }
+PREnvironmentTransformerTest >> testEndEnvironmentWithoutBeginAfterCorrectEnvironment [
+	| input |
+	input := PRDocument new
+		add: (PRBeginEnvironmentAnnotation named: 'card');
+		add: (PREndEnvironmentAnnotation named: 'card');
+		add: (PREndEnvironmentAnnotation named: 'anotherCard');
+		yourself.
+
+	self
+		should: [ (self executePhase: input with: self configuration) ]
+		raise: PRError
+		whoseDescriptionIncludes: 'Missing begin of environment ''anotherCard'''
+		description: 'Missing begin environment'
+]
+
+{ #category : #'tests environment' }
 PREnvironmentTransformerTest >> testEnvironmentWithManyNestedEnvironments [
 	| input expected |
 	input := PRDocument new
@@ -80,7 +96,7 @@ PREnvironmentTransformerTest >> testEnvironmentWithManyNestedEnvironments [
 		add: (PREndEnvironmentAnnotation named: 'card');
 		add: (PREndEnvironmentAnnotation named: 'cards');
 		yourself.
-		
+
 	expected := PRDocument new
 		add: ((PREnvironment named: 'cards')
 			add: ((PREnvironment named: 'card')
@@ -136,6 +152,23 @@ PREnvironmentTransformerTest >> testMissingNameInEndAnnotationFails [
 		yourself.
 
 	self should: [ self executePhase: input ] raise: PREnvironmentMissedNamed
+]
+
+{ #category : #'tests environment' }
+PREnvironmentTransformerTest >> testMixedEnvironments [
+	| input |
+	input := PRDocument new
+		add: (PRBeginEnvironmentAnnotation named: 'card');
+		add: (PRBeginEnvironmentAnnotation named: 'anotherCard');
+		add: (PREndEnvironmentAnnotation named: 'card');
+		add: (PREndEnvironmentAnnotation named: 'anotherCard');
+		yourself.
+
+	self
+		should: [ (self executePhase: input with: self configuration) ]
+		raise: PRError
+		whoseDescriptionIncludes: 'Mismatching environments: closing ''card'' while ''anotherCard'' environment is open'
+		description: 'Mismatch Environments'
 ]
 
 { #category : #'tests environment' }
@@ -198,172 +231,5 @@ PREnvironmentTransformerTest >> testNestedEnvironmentsWithTextSiblingOfEnvironme
 			yourself);
 		yourself.
 
-	self assert: (self executePhase: input) equals: expected
-]
-
-{ #category : #tests }
-PREnvironmentTransformerTest >> testTransformationOnColumn [
-	| input expected |
-	input := PRDocument new
-		add: PRBeginColumnsAnnotation new;
-		add: (PRColumnAnnotation withParameters: (
-					PRParameters withAll: { 
-						PRParameter 
-							keyNode: (PRParameterKey named: 'width')
-							valueNode: (PRParameterValue value: '100') }));
-		add: (PRParagraph new
-						add: (PRText content: 'Foo');
-						yourself);
-		add: PREndColumnsAnnotation new;
-		yourself.
-
-	expected := PRDocument new
-		add:
-				(PRColumnEnvironment new
-						add:
-							((PRColumn width: '100')
-								add:
-										(PRParagraph new
-												add: (PRText content: 'Foo');
-												yourself);
-								yourself));
-		yourself.
-	self assert: (self executePhase: input) equals: expected
-]
-
-{ #category : #tests }
-PREnvironmentTransformerTest >> testTransformationTwoColumns [
-	| input expected |
-	input := PRDocument new
-		add: PRBeginColumnsAnnotation new;
-		add:
-			(PRColumnAnnotation
-				withParameters: (
-					PRParameters withAll: { 
-						PRParameter 
-							keyNode: (PRParameterKey named: 'width')
-							valueNode: (PRParameterValue value: '50') }));
-		add:
-			(PRParagraph new
-				add: (PRText content: 'Foo');
-				yourself);
-		add:
-			(PRColumnAnnotation
-				withParameters: (
-					PRParameters withAll: { 
-						PRParameter 
-							keyNode: (PRParameterKey named: 'width')
-							valueNode: (PRParameterValue value: '50') }) yourself);
-		add:
-			(PRParagraph new
-				add: (PRText content: 'Bar');
-				yourself);
-		add: PREndColumnsAnnotation new;
-		yourself.
-	expected := PRDocument new
-		add:
-			(PRColumnEnvironment new
-				add:
-					((PRColumn width: '50')
-						add:
-							(PRParagraph new
-								add: (PRText content: 'Foo');
-								yourself));
-				add:
-					((PRColumn width: '50')
-						add:
-							(PRParagraph new
-								add: (PRText content: 'Bar');
-								yourself);
-						yourself));
-		yourself.
-	self assert: (self executePhase: input with: self configuration) equals: expected
-]
-
-{ #category : #tests }
-PREnvironmentTransformerTest >> testTransformationWithColumnWithoutColumns [
-	| input |
-	input := PRDocument new
-		add: PRColumnAnnotation new;
-		add:
-			(PRParagraph new
-				add: (PRText content: 'Foo');
-				yourself);
-		add: PREndColumnsAnnotation new;
-		yourself.
-	self
-		should: [ self executePhase: input ]
-		raise: PRError
-		whoseDescriptionIncludes: 'not inside a column environment'
-		description: 'Code is missing a check'
-]
-
-{ #category : #tests }
-PREnvironmentTransformerTest >> testTransformationWithColumnsInColumns [
-	| input |
-	input := PRDocument new
-		add:
-				PRBeginColumnsAnnotation new;
-		add:
-				PRBeginColumnsAnnotation new;
-		add:
-				PREndColumnsAnnotation new;
-		add:
-				PREndColumnsAnnotation new;
-		yourself.
-	self should: [ self executePhase: input ] raise: PRError whoseDescriptionIncludes: 'close a columns environment' description: 'Code is missing a check'
-]
-
-{ #category : #tests }
-PREnvironmentTransformerTest >> testTransformationWithContentInsideColumnsBeforeColumn [
-	| input expected |
-	input := PRDocument new
-		add:
-				PRBeginColumnsAnnotation new;
-		add: (PRParagraph with: (PRText content: 'Foo') yourself);
-		add:
-				(PRColumnAnnotation withParameters: (
-					PRParameters withAll: { 
-						PRParameter 
-							keyNode: (PRParameterKey named: 'width')
-							valueNode: (PRParameterValue value: '100') }));
-		add: (PRParagraph with: (PRText content: 'Bar') yourself);
-		add:
-				PREndColumnsAnnotation new;
-		yourself.
-	expected := PRDocument new
-		add:
-				(PRColumnEnvironment new
-						add: (PRParagraph with: (PRText content: 'Foo') yourself);
-						add: ((PRColumn width: '100') add: (PRParagraph with: (PRText content: 'Bar') yourself) yourself);
-						yourself);
-		yourself.
-	self assert: (self executePhase: input) equals: expected
-]
-
-{ #category : #tests }
-PREnvironmentTransformerTest >> testTransformationWithNonGroupItemAtTopLevel [
-	| input expected |
-	"This test makes sure that a document item which is not a document group can be a direct child of a column"
-	input := PRDocument new
-		add: PRBeginColumnsAnnotation new;
-		add:
-			(PRColumnAnnotation
-				withParameters: (
-					PRParameters withAll: { 
-						PRParameter 
-							keyNode: (PRParameterKey named: 'width')
-							valueNode: (PRParameterValue value: '100') }));
-		add: PRHorizontalRule new;
-		add: PREndColumnsAnnotation new;
-		yourself.
-	expected := PRDocument new
-		add:
-			(PRColumnEnvironment new
-				add:
-					((PRColumn width: '100')
-						add: PRHorizontalRule new;
-						yourself));
-		yourself.
 	self assert: (self executePhase: input) equals: expected
 ]
