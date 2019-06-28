@@ -8,8 +8,30 @@ Class {
 }
 
 { #category : #accessing }
+PPMarkdownParserTest >> multiLineSentence [
+	^ 'A sentence.
+
+Another sentence.
+
+ '
+]
+
+{ #category : #accessing }
 PPMarkdownParserTest >> parserClass [
 	^ PPMarkdownParser
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testAsteriskIsEscaped [
+    self parse: '\*escaped\*'.
+    self assert: result first isBlock.
+    self assert: result first inlines first text equals: '*escaped*'.
+]
+
+{ #category : #'as yet unclassified' }
+PPMarkdownParserTest >> testAutoLinkMail [ 
+	super testAutoLinkMail.
+	self assert: result url equals: 'foo@bar.com'
 ]
 
 { #category : #tests }
@@ -53,6 +75,34 @@ PPMarkdownParserTest >> testEmphasis2 [
 	self assert: result isEmphasis.
 	self assert: result inlines size equals: 1.
 	self assert: result inlines first text equals: 'subtly suggested'.
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testEscapedCharacters [
+	#('\\' '\`' '\*' '\_' '\{' '\}' '\[' '\]' '\(' '\)' '\>' '\#' '\.' '\!' '\+' '\-') do:
+		[:each |
+			self parse: each rule: #escapedCharacter.
+			self assert: result equals: each second asString ]
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testExclamationMark [
+	| str inlines |
+	str := 'Surprise! This should work'.
+	self parse: str.
+	inlines := result first inlines.
+	self assert: str equals: inlines first text.
+
+]
+
+{ #category : #'testing-markdowntest' }
+PPMarkdownParserTest >> testExplicitLink [
+	| inlines |
+	super testExplicitLink.
+	self assert: result isLink description: 'Node should be link'.
+	self assert: result text equals: 'example link'.
+	self assert: result label equals: ''.
+	self assert: result url equals: 'http://example.com/'.
 ]
 
 { #category : #'as yet unclassified' }
@@ -108,6 +158,15 @@ PPMarkdownParserTest >> testHeadingSetext2 [
 ]
 
 { #category : #tests }
+PPMarkdownParserTest >> testImageParsing [
+	| paragraphWithImage firstInlineOfParagraph |
+	self parse: '![Environment](/img/greenfoot_visual.png)'.
+	paragraphWithImage := result first.
+	firstInlineOfParagraph := paragraphWithImage inlines first.
+	self assert: firstInlineOfParagraph isImage description: 'Node should be image'
+]
+
+{ #category : #tests }
 PPMarkdownParserTest >> testInlineLinkEmpty [
 	super testInlineLinkEmpty.
 	self assert: result isLink.
@@ -120,27 +179,27 @@ PPMarkdownParserTest >> testInlineLinkEmpty [
 PPMarkdownParserTest >> testInlineLinkJustUrl [
 	super testInlineLinkJustUrl.
 	self assert: result isLink.
-	self assert: result label = ''.
-	self assert: result url = '/url/'.
-	self assert: result text = 'URL'.
+	self assert: result label equals: ''.
+	self assert: result url equals: '/url/'.
+	self assert: result text equals: 'URL'.
 ]
 
 { #category : #tests }
 PPMarkdownParserTest >> testInlineLinkSpacing1 [
 	super testInlineLinkSpacing1.
 	self assert: result isLink.
-	self assert: result label = 'title preceded by two spaces'.
-	self assert: result url = '/url/'.
-	self assert: result text = 'URL and title'.
+	self assert: result label equals: 'title preceded by two spaces'.
+	self assert: result url equals: '/url/'.
+	self assert: result text equals: 'URL and title'.
 ]
 
 { #category : #tests }
 PPMarkdownParserTest >> testInlineLinkSpacing2 [
 	super testInlineLinkSpacing2.
 	self assert: result isLink.
-	self assert: result label = 'title preceded by a tab'.
-	self assert: result url = '/url/'.
-	self assert: result text = 'URL and title'.
+	self assert: result label equals: 'title preceded by a tab'.
+	self assert: result url equals: '/url/'.
+	self assert: result text equals: 'URL and title'.
 ]
 
 { #category : #tests }
@@ -181,23 +240,62 @@ PPMarkdownParserTest >> testInlinesMultilineLineBreak [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'testing-markdowntest' }
+PPMarkdownParserTest >> testLink [
+	| inlines |
+	super testLink.
+	self assert: result isLink description: 'Node should be link'.
+	self assert: result text equals: 'http://example.com/'.
+	self assert: result label equals: ''.
+	self assert: result url equals: 'http://example.com/'.
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testLinkDefinitionAngleBracketURL [
+	super testLinkDefinitionAngleBracketURL.
+	self assert: result isLink.
+	self assert: result label equals: 'foo'.
+	self assert: result text equals: 'An optional Title'.
+	self assert: result url equals: 'http://example.com/'.
+
+]
+
+{ #category : #tests }
 PPMarkdownParserTest >> testListItemSimple1 [
 	super testListItemSimple1.
 	self assert: result isItem.
-	self assert: result label value equals: '*'.
-	self assert: result nodes first isText.
-	self assert: result nodes first text equals: 'plop'
+	self assert: result label value equals: $*.
+	self assert: result children first isText.
+	self assert: result children first text equals: 'plop'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'testing-basics' }
 PPMarkdownParserTest >> testListItemSimple2 [
 	super testListItemSimple2.
 	self assert: result isItem.
-	self assert: result label value equals: '-'.
-	self assert: result nodes size equals: 1.
-	self assert: result nodes first isText.
-	self assert: result nodes first text equals: 'plop coin pan'
+	self assert: result label value equals: $-.
+	self assert: result children size equals: 1.
+	self assert: result children first isText.
+	self assert: result children first text equals: 'plop coin pan'
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testNoOrderedCollectionInResult [
+	self parse: self multiLineSentence.
+	self
+		assert: (result allSatisfy: [ :node | node isKindOf: PPMarkdownNode ])
+		description: 'Nodes should be of kind PPMarkdownNode'
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testOnlyOneTextInline [
+	| str inlines |
+	str := 'Surprise. This should work'.
+	self parse: str.
+	inlines := result first inlines.
+	self assert: (inlines size = 1) description: 'Should have only one inline'.
+	self assert: (inlines first) isText description: 'Inline should be text'.
+
 ]
 
 { #category : #tests }
@@ -258,6 +356,23 @@ PPMarkdownParserTest >> testParagraphs [
 ]
 
 { #category : #tests }
+PPMarkdownParserTest >> testParseLinkInlines [
+	| link |
+	self parse: '[url text](http://www.hello.de/)' rule: #inlines.
+	self assert: result size equals: 1.
+	link := result first.
+	self assert: link url equals: 'http://www.hello.de/'.
+	self assert: link label equals: ''.
+	self assert: link text equals: 'url text'
+]
+
+{ #category : #'testing-markdowntest' }
+PPMarkdownParserTest >> testReferenceLink [
+	super testReferenceLink.
+	self assert: result isLink description: 'Node should be link'.	
+]
+
+{ #category : #tests }
 PPMarkdownParserTest >> testStrong1 [
 	super testStrong1.
 	self assert: result isStrong.
@@ -279,21 +394,21 @@ PPMarkdownParserTest >> testURL1 [
 	self assert: result isLink.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 PPMarkdownParserTest >> testVerbatim [
 	super testVerbatim.
 	self assert: result isVerbatim.
 	self assert: result text = 'with spaces indented'.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 PPMarkdownParserTest >> testVerbatim2 [
 	super testVerbatim2.
 	self assert: result isVerbatim.
 	self assert: result text = 'with tab indented'.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 PPMarkdownParserTest >> testVerbatim4 [
 	super testVerbatim4.
 	self assert: result isVerbatim.

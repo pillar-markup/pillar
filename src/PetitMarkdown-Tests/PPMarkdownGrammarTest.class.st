@@ -1223,6 +1223,30 @@ PPMarkdownGrammarTest >> parserClass [
 	^ PPMarkdownGrammar
 ]
 
+{ #category : #'testing-basics' }
+PPMarkdownGrammarTest >> testAngleBracketSource [
+	self parse: '<http://foo.com/bar?q=b>' rule: #angleBracketSource.
+	self parse: '< http://foo.com/bar?q=b >' rule: #angleBracketSource.
+	self fail: '< http:// foo.com/bar?q=b >' rule: #angleBracketSource.
+	self fail: '<http://foo.com/bar?q=b' rule: #angleBracketSource.
+]
+
+{ #category : #'testing-basics' }
+PPMarkdownGrammarTest >> testAutoLink [
+	self parse: '<http://foo.bar.com/baz?q=plotz>' rule: #autoLink.
+	self parse: '<foo@bar.com>' rule: #autoLink.
+]
+
+{ #category : #'testing-basics' }
+PPMarkdownGrammarTest >> testAutoLinkMail [
+	self parse: '<foo@bar.com>' rule: #autoLink.
+]
+
+{ #category : #'testing-basics' }
+PPMarkdownGrammarTest >> testAutoLinkUrl [
+	self parse: '<http://foo.bar.com/baz?q=plotz>' rule: #autoLink.
+]
+
 { #category : #'testing-markdowntest' }
 PPMarkdownGrammarTest >> testBlockQuote [
 	self
@@ -1360,6 +1384,11 @@ PPMarkdownGrammarTest >> testEscapedCharacters [
 		[:each | self parse: each rule: #escapedCharacter ]
 ]
 
+{ #category : #'testing-markdowntest' }
+PPMarkdownGrammarTest >> testExplicitLink [
+	self parse: '[example link](http://example.com/)' rule: #explicitLink.
+]
+
 { #category : #'testing-basics' }
 PPMarkdownGrammarTest >> testHeadingAtx1 [
 	self
@@ -1462,10 +1491,60 @@ four' rule: #inlines
 ]
 
 { #category : #'testing-basics' }
+PPMarkdownGrammarTest >> testLabel [
+	self parse: '[ff]' rule: #label.
+	self parse: '[http://foo.bar.com]' rule: #label.
+]
+
+{ #category : #'testing-basics' }
 PPMarkdownGrammarTest >> testLabel1 [
 	self parse: '[label]' rule: #label.
 	self parse: '[ label]' rule: #label.
 	self parse: '[ label ]' rule: #label.
+]
+
+{ #category : #'testing-markdowntest' }
+PPMarkdownGrammarTest >> testLink [
+	self parse: '[example link](http://example.com/)' rule: #link.
+	self parse: '[http://example.com/](http://example.com/)' rule: #link.
+]
+
+{ #category : #'testing-markdowntest' }
+PPMarkdownGrammarTest >> testLinkDefinitionAngleBracketURL [
+	self parse: '[foo]: <http://example.com/> "An optional Title"' rule: #linkDefinition.
+]
+
+{ #category : #'testing-markdowntest' }
+PPMarkdownGrammarTest >> testLinkDefinitionAngleBracketURLWithoutTitle [
+	self parse: '[foo]: <http://example.com/>' rule: #linkDefinition.
+]
+
+{ #category : #'testing-markdowntest' }
+PPMarkdownGrammarTest >> testLinkDefinitionDoubleQuoteLabel [
+	self parse: '[foo]: http://example.com/  "Optional Title Here"' rule: #linkDefinition.
+]
+
+{ #category : #'testing-markdowntest' }
+PPMarkdownGrammarTest >> testLinkDefinitionParenthesisLabel [
+	self parse: '[foo]: http://example.com/  (Optional Title Here)' rule: #linkDefinition.
+]
+
+{ #category : #'testing-markdowntest' }
+PPMarkdownGrammarTest >> testLinkDefinitionSingleQuoteLabel [
+	self parse: '[foo]: http://example.com/ ''Optional Title Here''' rule: #linkDefinition.
+]
+
+{ #category : #'testing-basics' }
+PPMarkdownGrammarTest >> testLinkDefinitionTitle [
+	self parse: '"title"' rule: #linkDefinitionTitle.
+	self parse: '" title foo "' rule: #linkDefinitionTitle.
+	self parse: '( title foo )' rule: #linkDefinitionTitle.
+	self parse: ''' title foo''' rule: #linkDefinitionTitle.
+]
+
+{ #category : #'testing-markdowntest' }
+PPMarkdownGrammarTest >> testLinkDefinitionWithoutTitle [
+	self parse: '[foo]: http://example.com/' rule: #linkDefinition.
 ]
 
 { #category : #'testing-basics' }
@@ -1655,59 +1734,79 @@ ddd'
 
 { #category : #'testing-markdowntest' }
 PPMarkdownGrammarTest >> testReferenceLink [
-	self parse: '[foo][1]' rule: #link.
-	self parse: '[foo] [1]' rule: #link.
+	self parse: '[foo][1]' rule: #referenceLink.
+	self parse: '[foo] [1]' rule: #referenceLink.
 	self
 		parse: '[foo]
 [1]'
-		rule: #link
+		rule: #referenceLink
 
 ]
 
 { #category : #'testing-markdowntest' }
 PPMarkdownGrammarTest >> testReferenceLinkBrackets [
-	self parse: '[foo [bar]][1]' rule: #link.
-	self parse: '[[foo][1]]' rule: #link
+	self parse: '[foo [bar]][1]' rule: #referenceLink.
+	self parse: '[[foo][1]]' rule: #referenceLink
 ]
 
 { #category : #'testing-markdowntest' }
 PPMarkdownGrammarTest >> testReferenceLinkEmpty [
-	self parse: '[foo][]' rule: #link.
-	self parse: '[foo] []' rule: #link.
+	self parse: '[foo][]' rule: #referenceLink.
+	self parse: '[foo] []' rule: #referenceLink.
 	self
 		parse: '[foo]
 []'
-		rule: #link
+		rule: #referenceLink
 
 ]
 
 { #category : #'testing-markdowntest' }
 PPMarkdownGrammarTest >> testReferenceLinkLabelOnly [
-	self parse: '[foo]' rule: #link.
+	self parse: '[foo]' rule: #referenceLink.
 	self
 		parse: '[line
 break]'
-		rule: #link.
+		rule: #referenceLink.
 	self
 		parse: '[space 
 break]'
-		rule: #link.
+		rule: #referenceLink.
 ]
 
 { #category : #'testing-markdowntest' }
 PPMarkdownGrammarTest >> testReferenceLinkMultiline [
 	self parse: '[foo
-bar][baz]' rule: #link.
+bar][baz]' rule: #referenceLink.
 	self parse: '[foo
-bar][]' rule: #link.
+bar][]' rule: #referenceLink.
 	self parse: '[foo
-bar]' rule: #link.
+bar]' rule: #referenceLink.
 	self parse: '[foo 
 bar][baz]' rule: #link.
 	self parse: '[foo 
-bar][]' rule: #link.
+bar][]' rule: #referenceLink.
 	self parse: '[foo 
-bar]' rule: #link
+bar]' rule: #referenceLink
+]
+
+{ #category : #tests }
+PPMarkdownGrammarTest >> testSource [
+	self parse: 'foo' rule: #source.
+	self parse: '/foo' rule: #source.
+	self parse: '/foo/bar.html' rule: #source.
+	self parse: 'http://foo' rule: #source.
+	self parse: 'http://foo.com/bar.php?q=grml' rule: #source.
+	
+	self fail: '>bar.php?q=grml' rule: #angleBracketSource.
+	self fail: ')bar.php?q=grml' rule: #parenthesisSource.
+	self fail: '<bar.php?q=grml' rule: #angleBracketSource.
+	
+	self fail: 'foo bar' rule: #source.
+	self fail: ' foo bar ' rule: #source.
+	 "source trims white spaces at the start and end"
+	self parse: ' foo' rule: #source.
+	self parse: '	foo' rule: #source.
+	self parse: 'foo ' rule: #source. 
 ]
 
 { #category : #'testing-basics' }
@@ -1728,6 +1827,11 @@ PPMarkdownGrammarTest >> testURL1 [
 { #category : #'testing-basics' }
 PPMarkdownGrammarTest >> testURL2 [
 	self parse: 'ftp://bla.com/1/2/3' rule: #url.
+]
+
+{ #category : #'testing-basics' }
+PPMarkdownGrammarTest >> testURL3 [
+	self parse: 'mailto://foo@bar.com' rule: #url.
 ]
 
 { #category : #'testing-basics' }
