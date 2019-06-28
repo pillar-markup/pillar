@@ -8,6 +8,13 @@ Class {
 	#category : #'PetitMarkdown-Nodes'
 }
 
+{ #category : #'as yet unclassified' }
+PPMarkdownLink >> initialize [
+	super initialize.
+	label := ''.
+	url := ''.
+]
+
 { #category : #testing }
 PPMarkdownLink >> isLink [
 	^ true

@@ -5,15 +5,14 @@ Class {
 	#name : #PPMarkdownInlinesNode,
 	#superclass : #PPMarkdownBlockNode,
 	#instVars : [
-		'contents',
 		'inlines'
 	],
-	#category : #'PetitMarkdown-Nodes'
+	#category : 'PetitMarkdown-Nodes'
 }
 
-{ #category : #accessing }
-PPMarkdownInlinesNode >> contents [
-	^ contents
+{ #category : #'instance creation' }
+PPMarkdownInlinesNode class >> inlines: aCollection [
+	^ self new inlines: aCollection
 ]
 
 { #category : #initialization }

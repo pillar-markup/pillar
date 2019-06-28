@@ -24,6 +24,11 @@ PPMarkdownNode >> isEmphasis [
 ]
 
 { #category : #testing }
+PPMarkdownNode >> isImage [
+	^ false.
+]
+
+{ #category : #testing }
 PPMarkdownNode >> isLinebreak [
 	^ false
 ]

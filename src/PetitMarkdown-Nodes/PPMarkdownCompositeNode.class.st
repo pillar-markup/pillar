@@ -10,6 +10,16 @@ Class {
 	#category : #'PetitMarkdown-Nodes'
 }
 
+{ #category : #adding }
+PPMarkdownCompositeNode >> addAll: aCollection [
+	children addAll: aCollection
+]
+
+{ #category : #accessing }
+PPMarkdownCompositeNode >> children [
+	^ children
+]
+
 { #category : #initialization }
 PPMarkdownCompositeNode >> initialize [
 	super initialize.

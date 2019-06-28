@@ -7,9 +7,24 @@ Class {
 	#category : #'PetitMarkdown-Nodes'
 }
 
+{ #category : #'instance creation' }
+PPMarkdownBlockQuote class >> text: aString [
+	^ self new text: aString
+]
+
 { #category : #'document building' }
 PPMarkdownBlockQuote >> appendBlankLine: line in: parentNode [ 
 	parentNode newBlock
+]
+
+{ #category : #accessing }
+PPMarkdownBlockQuote >> text [
+	^ children
+]
+
+{ #category : #accessing }
+PPMarkdownBlockQuote >> text: aString [
+	children := aString
 ]
 
 { #category : #visiting }

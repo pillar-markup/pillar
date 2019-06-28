@@ -4,6 +4,16 @@ Class {
 	#category : #'PetitMarkdown-Core'
 }
 
+{ #category : #parsing }
+PPMarkdownParser class >> parse: aString [
+	^ self new parse: aString
+]
+
+{ #category : #'grammar-secondary' }
+PPMarkdownParser >> angleBracketSource [
+	^ super angleBracketSource ==> [ :nodes| nodes second ]
+]
+
 { #category : #'grammar-secondary' }
 PPMarkdownParser >> atxHeading [
 	^ super atxHeading ==> [ :nodes | |titleInlines last|
@@ -14,6 +24,14 @@ PPMarkdownParser >> atxHeading [
 		PPMarkdownHeading new
 			level: nodes first size;
 			inlines: titleInlines;
+			yourself]
+]
+
+{ #category : #'grammar-block' }
+PPMarkdownParser >> autoLink [
+	^ super autoLink ==> [ :node| 
+		PPMarkdownLink new 
+			url: node;
 			yourself]
 ]
 
@@ -58,13 +76,37 @@ PPMarkdownParser >> entity [
 
 { #category : #'grammar-secondary' }
 PPMarkdownParser >> enumerator [
-	^ super enumerator ==> [ :nodes | nodes third ]
+	^ super enumerator ==> [ :nodes |  nodes second ]
 ]
 
 { #category : #'grammar-secondary' }
 PPMarkdownParser >> escapedCharacter [
-	^ super escapedCharacter ==> [ :nodes | 
-		PPMarkdownText with: '\', nodes last asString ].
+	^ super escapedCharacter ==> [ :nodes | nodes last asString ].
+]
+
+{ #category : #'grammar-block' }
+PPMarkdownParser >> explicitImage [ 
+	^ super explicitImage ==> [ :nodes |
+		nodes size = 2
+			ifTrue: [ PPMarkdownImage newFromLinkNode: nodes second ]
+			ifFalse: [ self halt. PPFailure  ]]
+]
+
+{ #category : #'grammar-block' }
+PPMarkdownParser >> explicitLink [
+	^ super explicitLink ==> [ :nodes | |urlAndLabel|
+			urlAndLabel := nodes third.
+			urlAndLabel isString
+				ifTrue: [
+					PPMarkdownLink new 
+						text: nodes first;
+						yourself]
+				ifFalse: [
+					PPMarkdownLink new 
+						text: nodes first;
+						url: urlAndLabel third;
+						label: ((urlAndLabel at: 5) ifNil: [ '' ]);
+						yourself ]]
 ]
 
 { #category : #grammar }
@@ -78,25 +120,30 @@ PPMarkdownParser >> inlines [
 	^ super inlines ==> [ :nodes | self mergeInlines: nodes first].
 ]
 
+{ #category : #'grammar-secondary' }
+PPMarkdownParser >> label [
+	^ super label ==> [ :nodes | 
+		nodes second ].
+]
+
 { #category : #token }
 PPMarkdownParser >> linebreak [
 	^ super linebreak ==> [:nodes| PPMarkdownLinebreak new]
 ]
 
 { #category : #'grammar-block' }
-PPMarkdownParser >> link [
-	^ super link ==> [ :nodes |
-		nodes size = 4 
-			ifTrue: [ PPMarkdownText with: nodes second ]
-			ifFalse: [
-				nodes size >= 7 
-					ifFalse: [ self halt. PPFailure  ]
-					ifTrue: [
-						PPMarkdownLink new
-							text: nodes first second;
-							label: ((nodes at: 7) ifNil: [''] ifNotNil:[:el| el second]);
-							url: (nodes at: 5);
-							yourself ]]]
+PPMarkdownParser >> linkDefinition [
+	^ super linkDefinition ==> [ :nodes |
+		PPMarkdownLink new
+			label: nodes first;
+			url: (nodes at: 4);
+			text: (nodes at: 6) ;
+			yourself ]
+]
+
+{ #category : #grammar }
+PPMarkdownParser >> linkDefinitionTitle [
+	^ super linkDefinitionTitle ==> [ :nodes| nodes second ]
 ]
 
 { #category : #'grammar-secondary' }
@@ -114,13 +161,13 @@ PPMarkdownParser >> listItem [
 	^ super listItem ==> [ :nodes | |textNodes spaceText|
 		
 		spaceText := {nil. PPMarkdownText with: ' '}.
-	
+		
 		textNodes := nodes second asOrderedCollection.
 		nodes third do: [ :each| 
 			textNodes add: spaceText; addAll: each ].
 		
 		 PPMarkdownListItem new
-			label: nodes first inputValue;
+			label: nodes first parsedValue;
 			addAll: (self mergeInlines: textNodes) ]
 
 ]
@@ -129,13 +176,13 @@ PPMarkdownParser >> listItem [
 PPMarkdownParser >> listItemTight [
 	^ super listItemTight ==> [ :nodes | |textNodes spaceText|
 		spaceText := {nil. PPMarkdownText with: ' '}.
-	
+		
 		textNodes := nodes second asOrderedCollection.
 		nodes third do: [ :each| 
 			textNodes add: spaceText; addAll: each second].
 		
 		 PPMarkdownListItem new
-			label: nodes first inputValue;
+			label: nodes first parsedValue;
 			addAll: (self mergeInlines: textNodes) ]
 
 ]
@@ -150,7 +197,7 @@ PPMarkdownParser >> listTight [
 	^ super listTight ==> [ :nodes | nodes first ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #convenience }
 PPMarkdownParser >> mergeInlines: nodes [
 	
 	| elements inlineList break|
@@ -159,7 +206,7 @@ PPMarkdownParser >> mergeInlines: nodes [
 	
 	elements := nodes collect: [:each| 
 		(each first isNil and: [each second isArray not])
-			ifTrue: [ each second]
+			ifTrue: [ each second ]
 			ifFalse: [ 
 				break := each first.
 				(break isKindOf: PPMarkdownLinebreak)
@@ -196,11 +243,22 @@ PPMarkdownParser >> paragraph [
 			yourself ]
 ]
 
+{ #category : #'grammar-block' }
+PPMarkdownParser >> referenceLink [
+	^ super referenceLink ==> [ :nodes | |reference|
+		reference := nodes second.
+		PPMarkdownLink new
+			text: nodes first;
+			label: (reference ifNil: [ nodes first ] ifNotNil: [ reference second ]);
+			url: nil;
+			yourself ]
+]
+
 { #category : #'grammar-secondary' }
 PPMarkdownParser >> setextHeading [
 	^ super setextHeading ==> [ :nodes | |titleInlines last level|
 		titleInlines := self mergeInlines: nodes first.
-		level :=  nodes third inputValue first = $=
+		level :=  nodes third parsedValue first = $=
 			ifTrue: [ 1 ]
 			ifFalse: [ 2 ].
 		PPMarkdownHeading new
@@ -221,6 +279,11 @@ PPMarkdownParser >> strong [
 PPMarkdownParser >> text [
 	^ super text ==> [ :nodes |
 		PPMarkdownText with: nodes]
+]
+
+{ #category : #grammar }
+PPMarkdownParser >> title [
+	^ super title ==> [ :nodes | nodes second ]
 ]
 
 { #category : #'grammar-secondary' }

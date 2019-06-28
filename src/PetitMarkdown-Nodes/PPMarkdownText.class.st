@@ -6,7 +6,7 @@ Class {
 
 { #category : #concatenating }
 PPMarkdownText >> , aText [ 
-	^ self class new text: self text, aText text
+	^ self class new text: self text asString, aText text asString
 ]
 
 { #category : #testing }

@@ -68,10 +68,22 @@ Class {
 		'text',
 		'verbatim',
 		'url',
-		'listItemTight'
+		'listItemTight',
+		'explicitImage',
+		'linkDefinition',
+		'linkDefinitionTitle',
+		'angleBracketSource',
+		'parenthesisSource',
+		'autoLink',
+		'labelInline'
 	],
-	#category : #'PetitMarkdown-Core'
+	#category : 'PetitMarkdown-Core'
 }
+
+{ #category : #grammar }
+PPMarkdownGrammar >> angleBracketSource [
+	^ self delimitedSource: '<>'
+]
 
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> atxHeading [
@@ -87,6 +99,11 @@ PPMarkdownGrammar >> atxHeading [
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> atxStart [
 	^ ($# asParser min: 1 max: 6) token
+]
+
+{ #category : #grammar }
+PPMarkdownGrammar >> autoLink [
+	^ angleBracketSource
 ]
 
 { #category : #token }
@@ -148,6 +165,14 @@ PPMarkdownGrammar >> code [
 ]
 
 { #category : #grammar }
+PPMarkdownGrammar >> delimitedSource: delimiters [
+	^ 
+		delimiters first asParser, 
+			(space / delimiters last asParser) negate plus flatten trimSpaces , 
+		delimiters last asParser
+]
+
+{ #category : #grammar }
 PPMarkdownGrammar >> document [
 	^ block star
 ]
@@ -184,12 +209,20 @@ PPMarkdownGrammar >> escapedCharacter [
 ]
 
 { #category : #grammar }
+PPMarkdownGrammar >> explicitImage [
+	^ '!' asParser, self link.
+]
+
+{ #category : #grammar }
 PPMarkdownGrammar >> explicitLink [
-	^ label , spacedNewline ,
-		$( asParser , spaces ,
+	^ label , spacedNewline , (
+		
+		'()' asParser |
+		
+		($( asParser , spaces ,
 		source , spaces ,
 		title optional , spaces ,
-		$) asParser
+		$) asParser))
 ]
 
 { #category : #'grammar-block' }
@@ -214,7 +247,7 @@ PPMarkdownGrammar >> indent [
 { #category : #grammar }
 PPMarkdownGrammar >> inline [
 	^ endline 
-		/ strong / emphasis "/ image" / link / url "
+		/ strong / emphasis / explicitImage / link / url "
 		/ noteReference / inlineNote"
 		/ code "/ rawHtml"
 		/ text
@@ -230,8 +263,19 @@ PPMarkdownGrammar >> inlines [
 PPMarkdownGrammar >> label [
 	^ $[ asParser ,
 		"notes handling here"
-		($] asParser not , inline) plus flatten trimBlanks,
+		($] asParser not, labelInline) plus flatten trimBlanks,
 		$] asParser
+]
+
+{ #category : #grammar }
+PPMarkdownGrammar >> labelInline [
+	"almost everything from label except links and urls"
+	^ endline 
+		/ strong / emphasis / explicitImage "
+		/ noteReference / inlineNote"
+		/ code "/ rawHtml"
+		/ text
+		"/ entity / escapedCharacter / smart / symbol / space"
 ]
 
 { #category : #token }
@@ -246,7 +290,26 @@ PPMarkdownGrammar >> linebreak [
 
 { #category : #grammar }
 PPMarkdownGrammar >> link [
-	^ explicitLink / referenceLink "/ autoLink"
+	^ explicitLink / linkDefinition / referenceLink / autoLink
+]
+
+{ #category : #grammar }
+PPMarkdownGrammar >> linkDefinition [
+	^ label, $: asParser, spaces,
+		(angleBracketSource / parenthesisSource / source), 
+		spaces, linkDefinitionTitle optional
+]
+
+{ #category : #grammar }
+PPMarkdownGrammar >> linkDefinitionTitle [
+	^ (self linkDefinitionTitle: '""') / (self linkDefinitionTitle: '''''') / (self linkDefinitionTitle: '()')
+]
+
+{ #category : #grammar }
+PPMarkdownGrammar >> linkDefinitionTitle: delimiters [
+	^ delimiters first asParser ,
+	((delimiters last asParser / newline) not , #any asParser ) star flatten trimBlanks,
+	delimiters last asParser
 ]
 
 { #category : #'grammar-secondary' }
@@ -333,6 +396,11 @@ PPMarkdownGrammar >> paragraph [
 ]
 
 { #category : #grammar }
+PPMarkdownGrammar >> parenthesisSource [
+	^ self delimitedSource: '()'
+]
+
+{ #category : #grammar }
 PPMarkdownGrammar >> plain [
 	^ inlines
 ]
@@ -349,11 +417,7 @@ PPMarkdownGrammar >> setextHeading [
 
 { #category : #grammar }
 PPMarkdownGrammar >> source [
-	| sourceContents |
-	sourceContents := PPUnresolvedParser new.
-	sourceContents def: (($( asParser not , $) asParser not , $> asParser not , nonSpaceCharacter) plus
-		/ ($( asParser , sourceContents , $) asParser)) star flatten trimBlanks.
-	^ ($< asParser , sourceContents , $> asParser) / sourceContents
+	^ ($( asParser not , $) asParser not , $> asParser not , nonSpaceCharacter) plus flatten trimBlanks.
 ]
 
 { #category : #token }
@@ -420,7 +484,7 @@ PPMarkdownGrammar >> terminalEndline [
 
 { #category : #token }
 PPMarkdownGrammar >> text [
-	^ (withUnderscores / entity / escapedCharacter / symbol / space) flatten
+	^ withUnderscores / entity / escapedCharacter / symbol / (space flatten)
 ]
 
 { #category : #grammar }

@@ -14,9 +14,10 @@ PPMarkdownNullBlock >> appendBlankLine: line in: parentNode [
 
 { #category : #'document building' }
 PPMarkdownNullBlock >> appendIndentLine: line in: parentNode [ 
-	parentNode
+ 	self becomeForward: (PPMarkdownVerbatim new text: line content).
+	"parentNode
 		replace: self
-		with: (PPMarkdownVerbatim new text: line content)
+		with: (PPMarkdownVerbatim new text: line content)"
 ]
 
 { #category : #'document building' }
@@ -30,5 +31,5 @@ PPMarkdownNullBlock >> appendQuoteLine: line in: parentNode [
 PPMarkdownNullBlock >> appendTextLine: line in: parentNode [ 
 	parentNode
 		replace: self
-		with: (PPMarkdownParagraph new inlines: line content)
+		with: (PPMarkdownParagraph inlines: line content)
 ]

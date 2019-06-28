@@ -7,6 +7,12 @@ Class {
 	#category : #'PetitMarkdown-Nodes'
 }
 
+{ #category : #'as yet unclassified' }
+PPMarkdownList >> initialize [
+	super initialize.
+	children add: PPMarkdownNullBlock new
+]
+
 { #category : #testing }
 PPMarkdownList >> isList [
 	^ true
@@ -18,6 +24,16 @@ PPMarkdownList >> isOrdered [
 ]
 
 { #category : #accessing }
+PPMarkdownList >> items [
+	^ children
+]
+
+{ #category : #accessing }
+PPMarkdownList >> items: aCollection [
+	children := aCollection
+]
+
+{ #category : #accessing }
 PPMarkdownList >> size [
-	^ items size
+	^ children size
 ]
