@@ -1,0 +1,303 @@
+"
+Testing PPMarkdownParser and correctness of generated documents
+"
+Class {
+	#name : #PPMarkdownParserTest,
+	#superclass : #PPMarkdownGrammarTest,
+	#category : #'PetitMarkdown-Tests'
+}
+
+{ #category : #accessing }
+PPMarkdownParserTest >> parserClass [
+	^ PPMarkdownParser
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testBulletList [
+	super testBulletList.
+	self assert: result isList.
+	self assert: result size = 3.
+	self deny: result isOrdered
+
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testCode [
+	super testCode.
+	self assert: result isCode
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testCode2 [
+	super testCode2.
+	self assert: result isCode
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testCode3 [
+	super testCode3.
+	self assert: result isCode
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testEmphasis1 [
+	super testEmphasis1.
+	self assert: result isEmphasis.
+	self assert: result inlines size = 1.
+	self assert: result inlines first text = 'subtly suggested'.
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testEmphasis2 [
+	super testEmphasis2.
+	self assert: result isEmphasis.
+	self assert: result inlines size = 1.
+	self assert: result inlines first text = 'subtly suggested'.
+]
+
+{ #category : #'as yet unclassified' }
+PPMarkdownParserTest >> testHeadingAtx1 [
+	super testHeadingAtx1.
+	self assert: result isBlock.
+	self assert: result level = 1.
+	self assert: result inlines size = 1.
+	self assert: result inlines first isText.
+	self assert: result inlines first text = 'Hello, this is an atx-style title'. 
+]
+
+{ #category : #'as yet unclassified' }
+PPMarkdownParserTest >> testHeadingAtx2 [
+	super testHeadingAtx2.
+	self assert: result isBlock.
+	self assert: result level = 2.
+	self assert: result inlines size = 1.
+	self assert: result inlines first isText.
+	self assert: result inlines first text = 'Hello, this is an atx-style title'. 
+
+]
+
+{ #category : #'as yet unclassified' }
+PPMarkdownParserTest >> testHeadingAtx3 [
+	super testHeadingAtx3.
+	self assert: result isBlock.
+	self assert: result level = 3.
+	self assert: result inlines size = 1.
+	self assert: result inlines first isText.
+	self assert: result inlines first text = 'Hello, this is an atx-style title'. 
+
+]
+
+{ #category : #'as yet unclassified' }
+PPMarkdownParserTest >> testHeadingSetext1 [
+	super testHeadingSetext1.
+	self assert: result isBlock.
+	self assert: result level = 1.
+	self assert: result inlines size = 1.
+	self assert: result inlines first text = 'Hello, this is a setext-style title'.
+
+]
+
+{ #category : #'as yet unclassified' }
+PPMarkdownParserTest >> testHeadingSetext2 [
+	super testHeadingSetext2.
+	self assert: result isBlock.
+	self assert: result level = 2.
+	self assert: result inlines size = 1.
+	self assert: result inlines first text = 'Hello, this is a setext-style title'.
+
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testInlineLinkEmpty [
+	super testInlineLinkEmpty.
+	self assert: result isLink.
+	self assert: result label = ''.
+	self assert: result url = ''.
+	self assert: result text = 'empty'.
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testInlineLinkJustUrl [
+	super testInlineLinkJustUrl.
+	self assert: result isLink.
+	self assert: result label = ''.
+	self assert: result url = '/url/'.
+	self assert: result text = 'URL'.
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testInlineLinkSpacing1 [
+	super testInlineLinkSpacing1.
+	self assert: result isLink.
+	self assert: result label = 'title preceded by two spaces'.
+	self assert: result url = '/url/'.
+	self assert: result text = 'URL and title'.
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testInlineLinkSpacing2 [
+	super testInlineLinkSpacing2.
+	self assert: result isLink.
+	self assert: result label = 'title preceded by a tab'.
+	self assert: result url = '/url/'.
+	self assert: result text = 'URL and title'.
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testInlineLinkSpacing3 [
+	super testInlineLinkSpacing3.
+	self assert: result isLink.
+	self assert: result label = 'title has spaces afterward'.
+	self assert: result url = '/url/'.
+	self assert: result text = 'URL and title'.
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testInlinesMultiline [
+	| text |
+	super testInlinesMultiline.
+	self assert: result isCollection.
+	self assert: result size = 1.
+	
+	text := result first.
+	self assert: text isText.
+	
+	self assert: text text = 'one two three four'.
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testInlinesMultilineLineBreak [
+	| text |
+	super testInlinesMultilineLineBreak.
+	self assert: result isCollection.
+	self assert: result size = 7.
+	self assert: (result at: 1) isText.
+	self assert: (result at: 2) isLinebreak.
+	self assert: (result at: 3) isText.
+	self assert: (result at: 4) isLinebreak.
+	self assert: (result at: 5) isText.
+	self assert: (result at: 6) isLinebreak.
+	self assert: (result at: 7) isText.
+	
+]
+
+{ #category : #'as yet unclassified' }
+PPMarkdownParserTest >> testListItemSimple1 [
+	super testListItemSimple1.
+	self assert: result isItem.
+	self assert: result label value = '*'.
+	self assert: result nodes first isText.
+	self assert: result nodes first text = 'plop'
+]
+
+{ #category : #'as yet unclassified' }
+PPMarkdownParserTest >> testListItemSimple2 [
+	super testListItemSimple2.
+	self assert: result isItem.
+	self assert: result label value = '-'.
+	self assert: result nodes size = 1.
+	self assert: result nodes first isText.
+	self assert: result nodes first text = 'plop coin pan'
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testOrderedList [
+	super testOrderedList.
+	self assert: result isList.
+	self assert: result size = 3.
+	self assert: result isOrdered
+
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testParagraph [
+	super testParagraph.
+	self assert: result isBlock.
+	self assert: result inlines size = 1.
+	self assert: result inlines first isText.
+	self assert: result inlines first text = 'Hello, this is a trivial Markdown paragraph with three lines.'
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testParagraph2 [
+	| text code link |
+	super testParagraph2.
+	self assert: result isBlock.
+	self assert: result inlines size = 5.
+	
+	self assert: result inlines first isText.
+	self assert: result inlines second isCode.
+	self assert: result inlines third isText.
+	self assert: result inlines fourth isLink.
+	self assert: (result inlines at: 5) isText.
+	
+	text := result inlines first.
+	self assert: text text = 'Hello, this is a more '.
+	
+	code := result inlines second.
+	self assert: code text = 'complext'.
+	
+	text := result inlines third.
+	self assert: text text = ' Markdown paragraph with three lines and a '.
+	
+	link := result inlines fourth.
+	self assert: link text = 'URL'.
+	self assert: link url = '/url/'.
+	self assert: link label = 'title preceded by two spaces'.
+	
+	text := result inlines at: 5.
+	self assert: text text = ' .'.
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testParagraphs [
+	super testParagraphs.
+	self assert: result size == 4.
+	result do: [ :node|
+		self assert: (node isKindOf: PPMarkdownParagraph) ].
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testStrong1 [
+	super testStrong1.
+	self assert: result isStrong.
+	self assert: result inlines size = 1.
+	self assert: result inlines first text = 'loud and clear'.
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testStrong2 [
+	super testStrong2.
+	self assert: result isStrong.
+	self assert: result inlines size = 1.
+	self assert: result inlines first text = 'loud and clear'.
+]
+
+{ #category : #tests }
+PPMarkdownParserTest >> testURL1 [
+	super testURL1.
+	self assert: result isLink.
+]
+
+{ #category : #'as yet unclassified' }
+PPMarkdownParserTest >> testVerbatim [
+	super testVerbatim.
+	self assert: result isVerbatim.
+	self assert: result text = 'with spaces indented'.
+]
+
+{ #category : #'as yet unclassified' }
+PPMarkdownParserTest >> testVerbatim2 [
+	super testVerbatim2.
+	self assert: result isVerbatim.
+	self assert: result text = 'with tab indented'.
+]
+
+{ #category : #'as yet unclassified' }
+PPMarkdownParserTest >> testVerbatim4 [
+	super testVerbatim4.
+	self assert: result isVerbatim.
+	self assert: result text = 'String tab, 
+with space
+indented and multiple lines'.
+]
