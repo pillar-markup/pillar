@@ -5,21 +5,10 @@ Class {
 	#name : #PPMarkdownHeading,
 	#superclass : #PPMarkdownInlinesNode,
 	#instVars : [
-		'level',
-		'inlines'
+		'level'
 	],
 	#category : #'PetitMarkdown-Nodes'
 }
-
-{ #category : #accessing }
-PPMarkdownHeading >> inlines [
-	^ inlines
-]
-
-{ #category : #accessing }
-PPMarkdownHeading >> inlines: aCollection [ 
-	inlines := aCollection
-]
 
 { #category : #accessing }
 PPMarkdownHeading >> level [

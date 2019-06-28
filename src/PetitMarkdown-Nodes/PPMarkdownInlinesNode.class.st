@@ -5,7 +5,8 @@ Class {
 	#name : #PPMarkdownInlinesNode,
 	#superclass : #PPMarkdownBlockNode,
 	#instVars : [
-		'contents'
+		'contents',
+		'inlines'
 	],
 	#category : #'PetitMarkdown-Nodes'
 }
@@ -25,4 +26,14 @@ PPMarkdownInlinesNode >> finishUp [
 PPMarkdownInlinesNode >> initializeWithContent: aNodeOrString [
 	"If initialized with a bare unparsed string, the object will be invalid for normal use until #finishUp is called" 
 	contents := aNodeOrString
+]
+
+{ #category : #accessing }
+PPMarkdownInlinesNode >> inlines [
+	^ inlines
+]
+
+{ #category : #accessing }
+PPMarkdownInlinesNode >> inlines: aCollection [ 
+	inlines := aCollection
 ]

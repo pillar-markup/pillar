@@ -14,6 +14,11 @@ Class {
 	#category : #'PetitMarkdown-Nodes'
 }
 
+{ #category : #adding }
+PPMarkdownListItem >> addAll: aCollection [ 
+	self shouldBeImplemented.
+]
+
 { #category : #testing }
 PPMarkdownListItem >> isItem [
 	^ true

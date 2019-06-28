@@ -59,20 +59,20 @@ PPMarkdownParserTest >> testEmphasis2 [
 PPMarkdownParserTest >> testHeadingAtx1 [
 	super testHeadingAtx1.
 	self assert: result isBlock.
-	self assert: result level = 1.
-	self assert: result inlines size = 1.
+	self assert: result level equals: 1.
+	self assert: result inlines size equals: 1.
 	self assert: result inlines first isText.
-	self assert: result inlines first text = 'Hello, this is an atx-style title'. 
+	self assert: result inlines first text equals: 'Hello, this is an atx-style title'. 
 ]
 
 { #category : #'as yet unclassified' }
 PPMarkdownParserTest >> testHeadingAtx2 [
 	super testHeadingAtx2.
 	self assert: result isBlock.
-	self assert: result level = 2.
-	self assert: result inlines size = 1.
+	self assert: result level equals: 2.
+	self assert: result inlines size equals: 1.
 	self assert: result inlines first isText.
-	self assert: result inlines first text = 'Hello, this is an atx-style title'. 
+	self assert: result inlines first text equals: 'Hello, this is an atx-style title'. 
 
 ]
 
@@ -80,10 +80,10 @@ PPMarkdownParserTest >> testHeadingAtx2 [
 PPMarkdownParserTest >> testHeadingAtx3 [
 	super testHeadingAtx3.
 	self assert: result isBlock.
-	self assert: result level = 3.
-	self assert: result inlines size = 1.
+	self assert: result level equals: 3.
+	self assert: result inlines size equals: 1.
 	self assert: result inlines first isText.
-	self assert: result inlines first text = 'Hello, this is an atx-style title'. 
+	self assert: result inlines first text equals: 'Hello, this is an atx-style title'. 
 
 ]
 
@@ -91,9 +91,9 @@ PPMarkdownParserTest >> testHeadingAtx3 [
 PPMarkdownParserTest >> testHeadingSetext1 [
 	super testHeadingSetext1.
 	self assert: result isBlock.
-	self assert: result level = 1.
-	self assert: result inlines size = 1.
-	self assert: result inlines first text = 'Hello, this is a setext-style title'.
+	self assert: result level equals: 1.
+	self assert: result inlines size equals: 1.
+	self assert: result inlines first text equals: 'Hello, this is a setext-style title'.
 
 ]
 
@@ -101,9 +101,9 @@ PPMarkdownParserTest >> testHeadingSetext1 [
 PPMarkdownParserTest >> testHeadingSetext2 [
 	super testHeadingSetext2.
 	self assert: result isBlock.
-	self assert: result level = 2.
-	self assert: result inlines size = 1.
-	self assert: result inlines first text = 'Hello, this is a setext-style title'.
+	self assert: result level equals: 2.
+	self assert: result inlines size equals: 1.
+	self assert: result inlines first text equals: 'Hello, this is a setext-style title'.
 
 ]
 
@@ -111,9 +111,9 @@ PPMarkdownParserTest >> testHeadingSetext2 [
 PPMarkdownParserTest >> testInlineLinkEmpty [
 	super testInlineLinkEmpty.
 	self assert: result isLink.
-	self assert: result label = ''.
-	self assert: result url = ''.
-	self assert: result text = 'empty'.
+	self assert: result label equals: ''.
+	self assert: result url equals: ''.
+	self assert: result text equals: 'empty'.
 ]
 
 { #category : #tests }
@@ -185,9 +185,9 @@ PPMarkdownParserTest >> testInlinesMultilineLineBreak [
 PPMarkdownParserTest >> testListItemSimple1 [
 	super testListItemSimple1.
 	self assert: result isItem.
-	self assert: result label value = '*'.
+	self assert: result label value equals: '*'.
 	self assert: result nodes first isText.
-	self assert: result nodes first text = 'plop'
+	self assert: result nodes first text equals: 'plop'
 ]
 
 { #category : #'as yet unclassified' }
