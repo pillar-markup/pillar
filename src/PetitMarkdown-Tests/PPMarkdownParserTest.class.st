@@ -43,16 +43,16 @@ PPMarkdownParserTest >> testCode3 [
 PPMarkdownParserTest >> testEmphasis1 [
 	super testEmphasis1.
 	self assert: result isEmphasis.
-	self assert: result inlines size = 1.
-	self assert: result inlines first text = 'subtly suggested'.
+	self assert: result inlines size equals: 1.
+	self assert: result inlines first text equals: 'subtly suggested'.
 ]
 
 { #category : #tests }
 PPMarkdownParserTest >> testEmphasis2 [
 	super testEmphasis2.
 	self assert: result isEmphasis.
-	self assert: result inlines size = 1.
-	self assert: result inlines first text = 'subtly suggested'.
+	self assert: result inlines size equals: 1.
+	self assert: result inlines first text equals: 'subtly suggested'.
 ]
 
 { #category : #'as yet unclassified' }
