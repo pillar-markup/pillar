@@ -12,5 +12,6 @@ Class {
 
 { #category : #initialization }
 PPMarkdownCompositeNode >> initialize [
+	super initialize.
 	children := OrderedCollection with: PPMarkdownNullBlock new
 ]

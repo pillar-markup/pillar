@@ -16,7 +16,7 @@ Class {
 
 { #category : #adding }
 PPMarkdownListItem >> addAll: aCollection [ 
-	self shouldBeImplemented.
+	children addAll: aCollection
 ]
 
 { #category : #testing }

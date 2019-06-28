@@ -1268,6 +1268,13 @@ PPMarkdownGrammarTest >> testBulletList [
 ]
 
 { #category : #'testing-basics' }
+PPMarkdownGrammarTest >> testBulletNested [
+	self
+		parse: ' * '
+		rule: #bullet
+]
+
+{ #category : #'testing-basics' }
 PPMarkdownGrammarTest >> testCode [
 	self parse: '` code`' rule: #code.
 	self parse: '`code < <html> *-`' rule: #code

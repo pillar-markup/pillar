@@ -194,17 +194,17 @@ PPMarkdownParserTest >> testListItemSimple1 [
 PPMarkdownParserTest >> testListItemSimple2 [
 	super testListItemSimple2.
 	self assert: result isItem.
-	self assert: result label value = '-'.
-	self assert: result nodes size = 1.
+	self assert: result label value equals: '-'.
+	self assert: result nodes size equals: 1.
 	self assert: result nodes first isText.
-	self assert: result nodes first text = 'plop coin pan'
+	self assert: result nodes first text equals: 'plop coin pan'
 ]
 
 { #category : #tests }
 PPMarkdownParserTest >> testOrderedList [
 	super testOrderedList.
 	self assert: result isList.
-	self assert: result size = 3.
+	self assert: result size equals: 3.
 	self assert: result isOrdered
 
 ]
