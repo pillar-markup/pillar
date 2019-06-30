@@ -1232,6 +1232,46 @@ PPMarkdownGrammarTest >> testAngleBracketSource [
 ]
 
 { #category : #'testing-basics' }
+PPMarkdownGrammarTest >> testAtxHeading [
+	self
+		parse:
+			'# heading
+'
+		rule: #atxHeading.
+	self
+		parse:
+			'### heading 3
+'
+		rule: #atxHeading.
+	self
+		parse:
+			'###### heading 6
+'
+		rule: #atxHeading.
+	self
+		parse:
+			'####### header level should be 1-6 and this is level 6 although led by 7 hashes. Still legal.
+'
+		rule: #atxHeading.
+	self
+		parse:
+			'# heading can be enclosed by #
+'
+		rule: #atxHeading.
+	self
+		fail:
+			' # heading
+'
+		rule: #atxHeading.
+	self
+		fail:
+			'heading
+===
+'
+		rule: #atxHeading
+]
+
+{ #category : #'testing-basics' }
 PPMarkdownGrammarTest >> testAutoLink [
 	self parse: '<http://foo.bar.com/baz?q=plotz>' rule: #autoLink.
 	self parse: '<foo@bar.com>' rule: #autoLink.
@@ -1341,7 +1381,6 @@ with several lines.
 PPMarkdownGrammarTest >> testDocumentMarkdownHelp [
 	self assert: parser parse: self markdownBasicsFile.
 	self assert: parser parse: self markdownSyntaxFile
-
 ]
 
 { #category : #'testing-basics' }
@@ -1649,7 +1688,7 @@ coin
 
     pan
 '
-	rule: #listTight
+	rule: #listLoose
 ]
 
 { #category : #'testing-markdowntest' }
@@ -1741,12 +1780,6 @@ PPMarkdownGrammarTest >> testReferenceLink [
 [1]'
 		rule: #referenceLink
 
-]
-
-{ #category : #'testing-markdowntest' }
-PPMarkdownGrammarTest >> testReferenceLinkBrackets [
-	self parse: '[foo [bar]][1]' rule: #referenceLink.
-	self parse: '[[foo][1]]' rule: #referenceLink
 ]
 
 { #category : #'testing-markdowntest' }

@@ -85,11 +85,9 @@ PPMarkdownParser >> escapedCharacter [
 ]
 
 { #category : #'grammar-block' }
-PPMarkdownParser >> explicitImage [ 
-	^ super explicitImage ==> [ :nodes |
-		nodes size = 2
-			ifTrue: [ PPMarkdownImage newFromLinkNode: nodes second ]
-			ifFalse: [ self halt. PPFailure  ]]
+PPMarkdownParser >> explicitImage [
+	^ super explicitImage
+		==> [ :nodes | PPMarkdownImage newFromLinkNode: nodes second ]
 ]
 
 { #category : #'grammar-block' }
@@ -201,7 +199,6 @@ PPMarkdownParser >> listTight [
 PPMarkdownParser >> mergeInlines: nodes [
 	
 	| elements inlineList break|
-	
 	space := PPMarkdownText with: ' '.
 	
 	elements := nodes collect: [:each| 
@@ -288,9 +285,7 @@ PPMarkdownParser >> title [
 
 { #category : #'grammar-secondary' }
 PPMarkdownParser >> underscoreOrStarLine [
-	^ super underscoreOrStarLine ==> [ :nodes|
-		self halt.
-		PPMarkdownRule new]
+	^ super underscoreOrStarLine ==> [ :nodes | PPMarkdownRule new ]
 ]
 
 { #category : #grammar }

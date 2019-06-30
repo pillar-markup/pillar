@@ -121,7 +121,7 @@ PPMarkdownGrammar >> block [
 		/ heading
 		/ orderedList / bulletList
 		"/ htmlBlock / styleBlock"
-		/ paragraph / plain
+		/ paragraph "/ plain"
 	)
 ]
 
@@ -246,8 +246,7 @@ PPMarkdownGrammar >> indent [
 
 { #category : #grammar }
 PPMarkdownGrammar >> inline [
-	^ endline 
-		/ strong / emphasis / explicitImage / link / url "
+	^ endline / strong / emphasis / explicitImage / link / url "
 		/ noteReference / inlineNote"
 		/ code "/ rawHtml"
 		/ text
@@ -387,7 +386,7 @@ PPMarkdownGrammar >> optionallyIndentedLine [
 
 { #category : #'grammar-block' }
 PPMarkdownGrammar >> orderedList [
-	^ enumerator and , (listTight / listLoose)
+	^ enumerator and , (listLoose / listTight)
 ]
 
 { #category : #'grammar-block' }
@@ -463,8 +462,7 @@ PPMarkdownGrammar >> starredStrong [
 
 { #category : #accessing }
 PPMarkdownGrammar >> start [
-	^ document end
-
+	^ document trimSpacesRight end
 ]
 
 { #category : #'grammar-inline' }
