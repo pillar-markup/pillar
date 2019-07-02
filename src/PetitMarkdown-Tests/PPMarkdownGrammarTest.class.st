@@ -1858,6 +1858,11 @@ PPMarkdownGrammarTest >> testStrong2 [
 	self parse: '__loud and clear__' rule: #strong
 ]
 
+{ #category : #tests }
+PPMarkdownGrammarTest >> testText [
+	self parse: 'this is a normal text' rule: #text
+]
+
 { #category : #'testing-basics' }
 PPMarkdownGrammarTest >> testURL1 [
 	self parse: 'http://bla.com' rule: #url.

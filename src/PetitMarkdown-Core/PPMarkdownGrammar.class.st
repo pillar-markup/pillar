@@ -22,8 +22,10 @@ Class {
 		'endline',
 		'entity',
 		'enumerator',
+		'epsilonToken',
 		'escapedCharacter',
 		'explicitLink',
+		'hash',
 		'heading',
 		'horizontalRule',
 		'indent',
@@ -65,6 +67,7 @@ Class {
 		'underscoreOrStarLine',
 		'symbol',
 		'withUnderscores',
+		'word',
 		'text',
 		'verbatim',
 		'url',
@@ -87,18 +90,22 @@ PPMarkdownGrammar >> angleBracketSource [
 
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> atxHeading [
-	|hash|
-	hash := $# asPParser star.
-	^ atxStart , spaces ,
-		"(newline not , ($# asParser star trim , newline) not , inline) plus flatten,"
-		((hash , newline) not , inline) plus,
-		spaces optional, hash optional ,
-		newline
+	^ epsilonToken
+		,
+			((atxStart , spaces
+				,
+					(((spaces optional , hash star , spaces optional , newline) not
+						, inline) ==> #second) plus , spaces optional , hash star
+				, spaces optional , newline)
+				==> [ :array | 
+					{array first.
+					array third.
+					array fifth} ]) , epsilonToken
 ]
 
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> atxStart [
-	^ ($# asPParser min: 1 max: 6) token
+	^ (hash min: 1 max: 6) token
 ]
 
 { #category : #grammar }
@@ -194,6 +201,11 @@ PPMarkdownGrammar >> enumerator [
 	^ nonIndentSpace , (#digit asPParser plus , $. asPParser) token , space plus
 ]
 
+{ #category : #token }
+PPMarkdownGrammar >> epsilonToken [
+	^ #epsilon asPParser token
+]
+
 { #category : #'grammar-inline' }
 PPMarkdownGrammar >> escapedCharacter [
 	^ $\ asPParser , newline not
@@ -220,6 +232,11 @@ PPMarkdownGrammar >> explicitLink [
 		$) asPParser))
 ]
 
+{ #category : #token }
+PPMarkdownGrammar >> hash [
+	^ $# asPParser
+]
+
 { #category : #'grammar-block' }
 PPMarkdownGrammar >> heading [
 	^ atxHeading / setextHeading
@@ -242,11 +259,8 @@ PPMarkdownGrammar >> indent [
 
 { #category : #grammar }
 PPMarkdownGrammar >> inline [
-	^ endline / strong / emphasis / explicitImage / link / url "
-		/ noteReference / inlineNote"
-		/ code "/ rawHtml"
-		/ text
-		"/ entity / escapedCharacter / smart / symbol / space"
+	^ endline / strong / emphasis / explicitImage / link / url / code
+		/ word
 ]
 
 { #category : #grammar }
@@ -265,12 +279,8 @@ PPMarkdownGrammar >> label [
 { #category : #grammar }
 PPMarkdownGrammar >> labelInline [
 	"almost everything from label except links and urls"
-	^ endline 
-		/ strong / emphasis / explicitImage "
-		/ noteReference / inlineNote"
-		/ code "/ rawHtml"
-		/ text
-		"/ entity / escapedCharacter / smart / symbol / space"
+
+	^ endline / strong / emphasis / explicitImage / code / word
 ]
 
 { #category : #token }
@@ -403,8 +413,13 @@ PPMarkdownGrammar >> referenceLink [
 
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> setextHeading [
-	^ (endline not , inline) plus , newline
-		, (($= asPParser / $- asPParser) star min: 3) token , newline
+	^ epsilonToken
+		,
+			((((endline not , inline) ==> #second) plus , newline
+				, (($= asPParser / $- asPParser) star min: 3) , newline)
+				==> [ :array | 
+					{array first.
+					array third} ]) , epsilonToken
 ]
 
 { #category : #grammar }
@@ -478,7 +493,13 @@ PPMarkdownGrammar >> terminalEndline [
 
 { #category : #token }
 PPMarkdownGrammar >> text [
-	^ withUnderscores / entity / escapedCharacter / symbol / (space flatten)
+	^ epsilonToken
+		,
+			(word plus
+				==> [ :array | 
+					String
+						streamContents: [ :stream | array do: [ :str | stream nextPutAll: str ] ] ])
+		, epsilonToken
 ]
 
 { #category : #grammar }
@@ -539,8 +560,12 @@ PPMarkdownGrammar >> withUnderscores [
 	| normalCharacter |
 	normalCharacter := (specialCharacter / space / #newline asPParser)
 		negate.
-	"withUnderscore is the Str production in peg-markdown"
-	^ (normalCharacter
-		, (normalCharacter / ($_ asPParser plus , normalCharacter and)) star)
+	^ (normalCharacter / ($_ asPParser plus , normalCharacter and)) plus
 		flatten
+]
+
+{ #category : #token }
+PPMarkdownGrammar >> word [
+	^ withUnderscores / entity / escapedCharacter / symbol
+		/ space flatten
 ]
