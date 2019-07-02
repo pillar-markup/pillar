@@ -3,7 +3,7 @@ Testing PPMarkdownGrammar
 "
 Class {
 	#name : #PPMarkdownGrammarTest,
-	#superclass : #PPCompositeParserTest,
+	#superclass : #PP2CompositeNodeTest,
 	#category : #'PetitMarkdown-Tests'
 }
 
@@ -1290,7 +1290,13 @@ PPMarkdownGrammarTest >> testAutoLinkUrl [
 { #category : #'testing-markdowntest' }
 PPMarkdownGrammarTest >> testBlockQuote [
 	self
-		parse: '> foo
+		parse:
+			'> foo
+'
+		rule: #blockQuote.
+	self
+		parse:
+			'> foo
 > bar
 > baz
 '

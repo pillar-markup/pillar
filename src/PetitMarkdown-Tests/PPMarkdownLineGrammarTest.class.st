@@ -3,7 +3,7 @@ PPMarkdownLineGrammarTest covers the linewise syntax part of Markdown
 "
 Class {
 	#name : #PPMarkdownLineGrammarTest,
-	#superclass : #PPCompositeParserTest,
+	#superclass : #PP2CompositeNodeTest,
 	#category : #'PetitMarkdown-Tests'
 }
 

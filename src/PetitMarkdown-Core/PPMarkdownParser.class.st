@@ -165,7 +165,7 @@ PPMarkdownParser >> listItem [
 			textNodes add: spaceText; addAll: each ].
 		
 		 PPMarkdownListItem new
-			label: nodes first parsedValue;
+			label: nodes first value;
 			addAll: (self mergeInlines: textNodes) ]
 
 ]
@@ -180,7 +180,7 @@ PPMarkdownParser >> listItemTight [
 			textNodes add: spaceText; addAll: each second].
 		
 		 PPMarkdownListItem new
-			label: nodes first parsedValue;
+			label: nodes first value;
 			addAll: (self mergeInlines: textNodes) ]
 
 ]
@@ -253,15 +253,17 @@ PPMarkdownParser >> referenceLink [
 
 { #category : #'grammar-secondary' }
 PPMarkdownParser >> setextHeading [
-	^ super setextHeading ==> [ :nodes | |titleInlines last level|
-		titleInlines := self mergeInlines: nodes first.
-		level :=  nodes third parsedValue first = $=
-			ifTrue: [ 1 ]
-			ifFalse: [ 2 ].
-		PPMarkdownHeading new
-			level: level;
-			inlines: titleInlines;
-			yourself]
+	^ super setextHeading
+		==> [ :nodes | 
+			| titleInlines level |
+			titleInlines := self mergeInlines: nodes first.
+			level := nodes third value first = $=
+				ifTrue: [ 1 ]
+				ifFalse: [ 2 ].
+			PPMarkdownHeading new
+				level: level;
+				inlines: titleInlines;
+				yourself ]
 ]
 
 { #category : #'grammar-block' }
