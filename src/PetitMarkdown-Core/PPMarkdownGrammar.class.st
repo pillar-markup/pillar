@@ -90,17 +90,15 @@ PPMarkdownGrammar >> angleBracketSource [
 
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> atxHeading [
-	^ epsilonToken
+	^ (atxStart , spaces
 		,
-			((atxStart , spaces
-				,
-					(((spaces optional , hash star , spaces optional , newline) not
-						, inline) ==> #second) plus , spaces optional , hash star
-				, spaces optional , newline)
-				==> [ :array | 
-					{array first.
-					array third.
-					array fifth} ]) , epsilonToken
+			(((spaces optional , hash star , spaces optional , newline) not
+				, inline) ==> #second) plus , spaces optional , hash star
+		, spaces optional , newline)
+		==> [ :array | 
+			{array first.
+			array third.
+			array fifth} ]
 ]
 
 { #category : #'grammar-secondary' }
@@ -413,13 +411,11 @@ PPMarkdownGrammar >> referenceLink [
 
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> setextHeading [
-	^ epsilonToken
-		,
-			((((endline not , inline) ==> #second) plus , newline
-				, (($= asPParser / $- asPParser) star min: 3) , newline)
-				==> [ :array | 
-					{array first.
-					array third} ]) , epsilonToken
+	^ (((endline not , inline) ==> #second) plus , newline
+		, (($= asPParser / $- asPParser) star min: 3) , newline)
+		==> [ :array | 
+			{array first.
+			array third} ]
 ]
 
 { #category : #grammar }
@@ -457,18 +453,21 @@ PPMarkdownGrammar >> starLine [
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> starredEmphasis [
 	| oneStarOpen oneStarClose |
-	oneStarOpen := starLine not , $* asPParser , space not , newline not.
-	oneStarClose := space not , newline not , $* asPParser.
-	^ oneStarOpen , (oneStarClose not , inline) plus , oneStarClose
+	oneStarOpen := (starLine not , $* asPParser , space not , newline not)
+		==> #second.
+	oneStarClose := (space not , newline not , $* asPParser) ==> #third.
+	^ oneStarOpen , ((oneStarClose not , inline) ==> #second) plus
+		, oneStarClose
 ]
 
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> starredStrong [
 	| twoStarOpen twoStarClose |
-	twoStarOpen := starLine not , '**' asPParser , space not
-		, newline not.
-	twoStarClose := space not , newline not , '**' asPParser.
-	^ twoStarOpen , (twoStarClose not , inline) plus , twoStarClose
+	twoStarOpen := (starLine not , '**' asPParser , space not
+		, newline not) ==> #second.
+	twoStarClose := (space not , newline not , '**' asPParser) ==> #third.
+	^ twoStarOpen , ((twoStarClose not , inline) ==> #second) plus
+		, twoStarClose
 ]
 
 { #category : #accessing }
@@ -493,13 +492,10 @@ PPMarkdownGrammar >> terminalEndline [
 
 { #category : #token }
 PPMarkdownGrammar >> text [
-	^ epsilonToken
-		,
-			(word plus
-				==> [ :array | 
-					String
-						streamContents: [ :stream | array do: [ :str | stream nextPutAll: str ] ] ])
-		, epsilonToken
+	^ word plus
+		==> [ :array | 
+			String
+				streamContents: [ :stream | array do: [ :str | stream nextPutAll: str ] ] ]
 ]
 
 { #category : #grammar }
@@ -515,21 +511,24 @@ PPMarkdownGrammar >> title [
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> underlinedEmphasis [
 	| oneUnderscoreOpen oneUnderscoreClose |
-	oneUnderscoreOpen := underscoreLine not , $_ asPParser , space not
-		, newline not.
-	oneUnderscoreClose := space not , newline not , underlinedStrong not
-		, $_ asPParser , #word asPParser not.
-	^ oneUnderscoreOpen , (oneUnderscoreClose not , inline) plus
+	oneUnderscoreOpen := (underscoreLine not , $_ asPParser , space not
+		, newline not) ==> #second.
+	oneUnderscoreClose := (space not , newline not , underlinedStrong not
+		, $_ asPParser , #word asPParser not) ==> #fourth.
+	^ oneUnderscoreOpen
+		, ((oneUnderscoreClose not , inline) ==> #second) plus
 		, oneUnderscoreClose
 ]
 
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> underlinedStrong [
 	| twoUlOpen twoUlClose |
-	twoUlOpen := starLine not , '__' asPParser , space not , newline not.
-	twoUlClose := space not , newline not , '__' asPParser
-		, #word asPParser not.
-	^ twoUlOpen , (twoUlClose not , inline) plus , twoUlClose
+	twoUlOpen := (starLine not , '__' asPParser , space not , newline not)
+		==> #second.
+	twoUlClose := (space not , newline not , '__' asPParser
+		, #word asPParser not) ==> #third.
+	^ twoUlOpen , ((twoUlClose not , inline) ==> #second) plus
+		, twoUlClose
 ]
 
 { #category : #'grammar-secondary' }

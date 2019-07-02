@@ -6,61 +6,74 @@ Class {
 
 { #category : #'grammar-secondary' }
 PRMarkdownParser >> atxHeading [
-	^ super atxHeading
+	^ (epsilonToken , super atxHeading , epsilonToken)
 		==> [ :triple | 
-			| level nodes content string |
-			level := triple second first size.
-			content := OrderedCollection new.
-			string := ''.
-			nodes := triple second second.
-			nodes
-				do: [ :chunk | 
-					chunk isString
-						ifTrue: [ string := string , chunk ]
-						ifFalse: [ string
-								ifNotEmpty: [ content add: (PRText content: string).
-									string := '' ] ] ].
-			string
-				ifNotEmpty: [ content add: (PRText content: string).
-					string := '' ].
-			(PRHeader withAll: content level: level)
+			(PRHeader
+				withAll: (self textize: triple second second)
+				level: triple second first size)
 				start: triple first start;
-				stop: triple last stop;
+				stop: triple third stop;
+				yourself ]
+]
+
+{ #category : #'grammar-inline' }
+PRMarkdownParser >> emphasis [
+	^ (epsilonToken , super emphasis , epsilonToken)
+		==> [ :triple | 
+			(PRItalicFormat withAll: (self textize: triple second second))
+				start: triple first start;
+				stop: triple third stop;
 				yourself ]
 ]
 
 { #category : #'grammar-secondary' }
 PRMarkdownParser >> setextHeading [
-	^ super setextHeading
+	^ (epsilonToken , super setextHeading , epsilonToken)
 		==> [ :triple | 
-			| level nodes content string |
-			level := triple second second first = $=
+			(PRHeader
+				withAll: (self textize: triple second first)
+				level:
+				(triple second second first = $=
 				ifTrue: [ 1 ]
-				ifFalse: [ 2 ].
-			content := OrderedCollection new.
-			string := ''.
-			nodes := triple second first.
-			nodes
-				do: [ :chunk | 
-					chunk isString
-						ifTrue: [ string := string , chunk ]
-						ifFalse: [ string
-								ifNotEmpty: [ content add: (PRText content: string).
-									string := '' ] ] ].
-			string
-				ifNotEmpty: [ content add: (PRText content: string).
-					string := '' ].
-			(PRHeader withAll: content level: level)
+				ifFalse: [ 2 ]))
 				start: triple first start;
-				stop: triple last stop;
+				stop: triple third stop;
+				yourself ]
+]
+
+{ #category : #'grammar-inline' }
+PRMarkdownParser >> strong [
+	^ (epsilonToken , super strong , epsilonToken)
+		==> [ :triple | 
+			(PRBoldFormat withAll: (self textize: triple second second))
+				start: triple first start;
+				stop: triple third stop;
 				yourself ]
 ]
 
 { #category : #token }
 PRMarkdownParser >> text [
-	^ super text
+	^ (epsilonToken , super text , epsilonToken)
 		==> [ :array | 
 			(PRText content: array second)
 				start: array first start;
-				stop: array third start - 1 ]
+				stop: array third stop ]
+]
+
+{ #category : #private }
+PRMarkdownParser >> textize: anArrayOfPRDocumentItemOrString [
+	| contents string |
+	contents := OrderedCollection new.
+	string := ''.
+	anArrayOfPRDocumentItemOrString
+		do: [ :chunk | 
+			chunk isString
+				ifTrue: [ string := string , chunk ]
+				ifFalse: [ string
+						ifNotEmpty: [ contents add: (PRText content: string).
+							string := '' ] ] ].
+	string
+		ifNotEmpty: [ contents add: (PRText content: string).
+			string := '' ].
+	^ contents
 ]

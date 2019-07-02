@@ -17,6 +17,22 @@ PRMarkdownParserTest >> parserClass [
 ]
 
 { #category : #tests }
+PRMarkdownParserTest >> testEmphasis1 [
+	super testEmphasis1.
+	self
+		assert: result
+		equals: (PRItalicFormat withAll: {(PRText content: 'subtly suggested')})
+]
+
+{ #category : #tests }
+PRMarkdownParserTest >> testEmphasis2 [
+	super testEmphasis2.
+	self
+		assert: result
+		equals: (PRItalicFormat withAll: {(PRText content: 'subtly suggested')})
+]
+
+{ #category : #tests }
 PRMarkdownParserTest >> testHeadingAtx1 [
 	super testHeadingAtx1.
 	self
@@ -69,6 +85,22 @@ PRMarkdownParserTest >> testHeadingSetext2 [
 			(PRHeader
 				withAll: {(PRText content: 'Hello, this is a setext-style title')}
 				level: 2)
+]
+
+{ #category : #tests }
+PRMarkdownParserTest >> testStrong1 [
+	super testStrong1.
+	self
+		assert: result
+		equals: (PRBoldFormat withAll: {(PRText content: 'loud and clear')})
+]
+
+{ #category : #tests }
+PRMarkdownParserTest >> testStrong2 [
+	super testStrong2.
+	self
+		assert: result
+		equals: (PRBoldFormat withAll: {(PRText content: 'loud and clear')})
 ]
 
 { #category : #tests }
