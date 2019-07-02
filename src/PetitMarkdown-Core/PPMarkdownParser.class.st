@@ -16,15 +16,18 @@ PPMarkdownParser >> angleBracketSource [
 
 { #category : #'grammar-secondary' }
 PPMarkdownParser >> atxHeading [
-	^ super atxHeading ==> [ :nodes | |titleInlines last|
-		titleInlines := self mergeInlines: nodes third.
-		(nodes at: 5) ifNotEmpty: [ 
-				last := titleInlines last.
-				last text: last text trimBoth].
-		PPMarkdownHeading new
-			level: nodes first size;
-			inlines: titleInlines;
-			yourself]
+	^ super atxHeading
+		==> [ :triple | 
+			| nodes titleInlines last |
+			nodes := triple second.
+			titleInlines := self mergeInlines: nodes second.
+			nodes third
+				ifNotEmpty: [ last := titleInlines last.
+					last text: last text trimBoth ].
+			PPMarkdownHeading new
+				level: nodes first size;
+				inlines: titleInlines;
+				yourself ]
 ]
 
 { #category : #'grammar-block' }
@@ -257,7 +260,7 @@ PPMarkdownParser >> setextHeading [
 		==> [ :nodes | 
 			| titleInlines level |
 			titleInlines := self mergeInlines: nodes first.
-			level := nodes third value first = $=
+			level := nodes third first = $=
 				ifTrue: [ 1 ]
 				ifFalse: [ 2 ].
 			PPMarkdownHeading new
@@ -276,8 +279,7 @@ PPMarkdownParser >> strong [
 
 { #category : #token }
 PPMarkdownParser >> text [
-	^ super text ==> [ :nodes |
-		PPMarkdownText with: nodes]
+	^ super text ==> [ :triple | PPMarkdownText with: triple second ]
 ]
 
 { #category : #grammar }
