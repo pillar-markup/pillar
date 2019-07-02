@@ -38,9 +38,8 @@ PPMarkdownParserTest >> testAutoLinkMail [
 PPMarkdownParserTest >> testBulletList [
 	super testBulletList.
 	self assert: result isList.
-	self assert: result size = 3.
+	self assert: result size equals: 3.
 	self deny: result isOrdered
-
 ]
 
 { #category : #tests }
@@ -264,7 +263,7 @@ PPMarkdownParserTest >> testLinkDefinitionAngleBracketURL [
 PPMarkdownParserTest >> testListItemSimple1 [
 	super testListItemSimple1.
 	self assert: result isItem.
-	self assert: result label value equals: $*.
+	self assert: result label value equals: '*'.
 	self assert: result children first isText.
 	self assert: result children first text equals: 'plop'
 ]
@@ -273,7 +272,7 @@ PPMarkdownParserTest >> testListItemSimple1 [
 PPMarkdownParserTest >> testListItemSimple2 [
 	super testListItemSimple2.
 	self assert: result isItem.
-	self assert: result label value equals: $-.
+	self assert: result label value equals: '-'.
 	self assert: result children size equals: 1.
 	self assert: result children first isText.
 	self assert: result children first text equals: 'plop coin pan'
