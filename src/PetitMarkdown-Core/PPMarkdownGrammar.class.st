@@ -120,10 +120,10 @@ PPMarkdownGrammar >> blankLine [
 
 { #category : #grammar }
 PPMarkdownGrammar >> block [
-	^ blankLine star
+	^ (blankLine star
 		,
-			(verbatim / horizontalRule / heading / orderedList / bulletList
-				/ paragraph)
+			(codeBlock / verbatim / horizontalRule / heading / orderedList
+				/ bulletList / paragraph)) ==> #second
 ]
 
 { #category : #grammar }
@@ -287,7 +287,8 @@ PPMarkdownGrammar >> inline [
 
 { #category : #grammar }
 PPMarkdownGrammar >> inlines [
-	^ (endline not , inline / (endline , inline and)) plus , endline optional
+	^ (((endline not , inline) ==> #second)
+		/ ((endline , inline and) ==> #first)) plus , endline optional
 ]
 
 { #category : #grammar }
