@@ -17,6 +17,41 @@ PRMarkdownParser >> atxHeading [
 ]
 
 { #category : #'grammar-inline' }
+PRMarkdownParser >> code [
+	^ (epsilonToken , super code , epsilonToken)
+		==> [ :triple | 
+			(PRMonospaceFormat withAll: (self textize: {triple second second}))
+				start: triple first start;
+				stop: triple third stop;
+				yourself ]
+]
+
+{ #category : #'grammar-inline' }
+PRMarkdownParser >> codeBlock [
+	^ (epsilonToken , super codeBlock , epsilonToken)
+		==> [ :triple | 
+			| nodes paramNodes params |
+			nodes := triple second.
+			paramNodes := nodes second.
+			params := OrderedDictionary new.
+			paramNodes
+				ifNotEmpty: [ params at: 'language' put: paramNodes first.
+					2 to: paramNodes size do: [ :index | 
+						| param eqPosition |
+						param := paramNodes at: index.
+						eqPosition := param indexOf: $=.
+						eqPosition > 0
+							ifTrue: [ params
+									at: (param copyFrom: 1 to: eqPosition - 1)
+									put: (param copyFrom: eqPosition + 1 to: param size) ]
+							ifFalse: [ params at: param put: true ] ] ].
+			(PRCodeblock content: nodes third parameters: params)
+				start: triple first start;
+				stop: triple third stop;
+				yourself ]
+]
+
+{ #category : #'grammar-inline' }
 PRMarkdownParser >> emphasis [
 	^ (epsilonToken , super emphasis , epsilonToken)
 		==> [ :triple | 
@@ -71,7 +106,8 @@ PRMarkdownParser >> textize: anArrayOfPRDocumentItemOrString [
 				ifTrue: [ string := string , chunk ]
 				ifFalse: [ string
 						ifNotEmpty: [ contents add: (PRText content: string).
-							string := '' ] ] ].
+							string := '' ].
+					contents add: chunk ] ].
 	string
 		ifNotEmpty: [ contents add: (PRText content: string).
 			string := '' ].

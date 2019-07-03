@@ -17,6 +17,7 @@ Class {
 		'bullet',
 		'bulletList',
 		'code',
+		'codeBlock',
 		'document',
 		'emphasis',
 		'endline',
@@ -78,7 +79,8 @@ Class {
 		'angleBracketSource',
 		'parenthesisSource',
 		'autoLink',
-		'labelInline'
+		'labelInline',
+		'codeBlockToken'
 	],
 	#category : #'PetitMarkdown-Core'
 }
@@ -118,16 +120,10 @@ PPMarkdownGrammar >> blankLine [
 
 { #category : #grammar }
 PPMarkdownGrammar >> block [
-	^ blankLine star , (
-		"blockQuote / verbatim
-		/ note / reference
-		/ "
-		verbatim / horizontalRule
-		/ heading
-		/ orderedList / bulletList
-		"/ htmlBlock / styleBlock"
-		/ paragraph "/ plain"
-	)
+	^ blankLine star
+		,
+			(verbatim / horizontalRule / heading / orderedList / bulletList
+				/ paragraph)
 ]
 
 { #category : #grammar }
@@ -154,10 +150,38 @@ PPMarkdownGrammar >> code [
 	| tick doubleTick |
 	tick := $` asPParser.
 	doubleTick := '``' asPParser.
-		^ (doubleTick , spaces, doubleTick negate plus flatten, spaces, doubleTick) /
-		(tick , spaces, tick negate plus flatten, spaces, tick).
-		
-	
+	^ ((doubleTick , spaces , doubleTick negate plus flatten , spaces
+		, doubleTick)
+		==> [ :array | 
+			{array first.
+			array third} ])
+		/
+			((tick , spaces , tick negate plus flatten , spaces , tick)
+				==> [ :array | 
+					{array first.
+					array third} ])
+]
+
+{ #category : #'grammar-block' }
+PPMarkdownGrammar >> codeBlock [
+	| colon |
+	colon := $: asPParser.
+	^ (codeBlockToken
+		,
+			((((codeBlockToken / newline / colon) not , #any asPParser) star
+				flatten separatedBy: colon)
+				==> [ :nodes | (1 to: nodes size by: 2) collect: [ :i | nodes at: i ] ])
+		, ((newline , codeBlockToken) not , #any asPParser) star flatten
+		, newline , codeBlockToken , spaces , newline)
+		==> [ :array | 
+			{array first.
+			array second.
+			array third copyWithoutFirst} ]
+]
+
+{ #category : #token }
+PPMarkdownGrammar >> codeBlockToken [
+	^ ('```' asPParser / '~~~' asPParser) token
 ]
 
 { #category : #grammar }
