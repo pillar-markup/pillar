@@ -11,12 +11,12 @@ PRGithubMarkdownWriterTest >> actualClass [
 
 { #category : #requirements }
 PRGithubMarkdownWriterTest >> scriptWithCaptionBegin [
-	^ '```'
+	^ self configuration newLine , '```'
 ]
 
 { #category : #requirements }
 PRGithubMarkdownWriterTest >> scriptWithoutCaptionBegin [
-	^ String cr, '```'
+	^ self configuration newLine , '```'
 ]
 
 { #category : #requirements }
