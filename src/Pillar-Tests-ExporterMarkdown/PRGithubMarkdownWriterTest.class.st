@@ -16,7 +16,7 @@ PRGithubMarkdownWriterTest >> scriptWithCaptionBegin [
 
 { #category : #requirements }
 PRGithubMarkdownWriterTest >> scriptWithoutCaptionBegin [
-	^ '```'
+	^ String cr, '```'
 ]
 
 { #category : #requirements }

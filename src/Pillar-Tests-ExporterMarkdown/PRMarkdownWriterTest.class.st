@@ -201,20 +201,21 @@ PRMarkdownWriterTest >> resultWithoutRefWithAnchorWithSeparateOutputFiles [
 
 { #category : #requirements }
 PRMarkdownWriterTest >> scriptAnchorForMyScript [
-	
-	^ '```
+	^ self configuration newLine
+		,
+			'```
 myscript
 ```'
 ]
 
 { #category : #requirements }
 PRMarkdownWriterTest >> scriptWithCaptionBegin [
-	^ '```'
+	^ self configuration newLine , '```'
 ]
 
 { #category : #requirements }
 PRMarkdownWriterTest >> scriptWithoutCaptionBegin [
-	^ '```'
+	^ self configuration newLine , '```'
 ]
 
 { #category : #requirements }
