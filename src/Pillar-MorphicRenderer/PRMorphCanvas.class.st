@@ -23,11 +23,6 @@ PRMorphCanvas >> initialize [
 ]
 
 { #category : #'instance creation' }
-PRMorphCanvas >> newLine [
-	self halt
-]
-
-{ #category : #'instance creation' }
 PRMorphCanvas >> nextPut: aCharacter [
 	text append: aCharacter
 ]

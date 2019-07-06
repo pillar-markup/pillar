@@ -65,22 +65,22 @@ PRMorphWriter2 >> canvasClass [
 	^ PRMorphCanvas
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #accessing }
 PRMorphWriter2 >> codeFont [
 	^ codeFont 
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #accessing }
 PRMorphWriter2 >> codeFont: aFont [
 	codeFont := aFont
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #initialization }
 PRMorphWriter2 >> defaultCodeFont [
 	^ (LogicalFont familyName: 'Bitmap DejaVu Sans' pointSize: 14)
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #initialization }
 PRMorphWriter2 >> initialize [
 	super initialize.
 	codeFont := self defaultCodeFont 
@@ -109,7 +109,7 @@ PRMorphWriter2 >> visitCodeblock: aCodeBlock [
 		(pillarText addAttribute: (TextFontReference toFont: codeFont) from: 1 to: pillarText size)
 ]
 
-{ #category : #visiting }
+{ #category : #'visiting-document' }
 PRMorphWriter2 >> visitDocument: anObject [
 	| numerator |
 	numerator := (PRNumeratingVisitor new configuration: self configuration).
@@ -123,7 +123,7 @@ PRMorphWriter2 >> visitEmptyParagraph: anObject [
 	canvas append: String crlf
 ]
 
-{ #category : #visiting }
+{ #category : #'visiting-document' }
 PRMorphWriter2 >> visitHeader: anObject [
 	
 	| level pillarText |
