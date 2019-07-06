@@ -16,15 +16,18 @@ PPMarkdownParser >> angleBracketSource [
 
 { #category : #'grammar-secondary' }
 PPMarkdownParser >> atxHeading [
-	^ super atxHeading ==> [ :nodes | |titleInlines last|
-		titleInlines := self mergeInlines: nodes third.
-		(nodes at: 5) ifNotEmpty: [ 
-				last := titleInlines last.
-				last text: last text trimBoth].
-		PPMarkdownHeading new
-			level: nodes first size;
-			inlines: titleInlines;
-			yourself]
+	^ super atxHeading
+		==> [ :triple | 
+			| nodes titleInlines last |
+			nodes := triple second.
+			titleInlines := self mergeInlines: nodes second.
+			nodes third
+				ifNotEmpty: [ last := titleInlines last.
+					last text: last text trimBoth ].
+			PPMarkdownHeading new
+				level: nodes first size;
+				inlines: titleInlines;
+				yourself ]
 ]
 
 { #category : #'grammar-block' }
@@ -85,11 +88,9 @@ PPMarkdownParser >> escapedCharacter [
 ]
 
 { #category : #'grammar-block' }
-PPMarkdownParser >> explicitImage [ 
-	^ super explicitImage ==> [ :nodes |
-		nodes size = 2
-			ifTrue: [ PPMarkdownImage newFromLinkNode: nodes second ]
-			ifFalse: [ self halt. PPFailure  ]]
+PPMarkdownParser >> explicitImage [
+	^ super explicitImage
+		==> [ :nodes | PPMarkdownImage newFromLinkNode: nodes second ]
 ]
 
 { #category : #'grammar-block' }
@@ -167,7 +168,7 @@ PPMarkdownParser >> listItem [
 			textNodes add: spaceText; addAll: each ].
 		
 		 PPMarkdownListItem new
-			label: nodes first parsedValue;
+			label: nodes first value;
 			addAll: (self mergeInlines: textNodes) ]
 
 ]
@@ -182,7 +183,7 @@ PPMarkdownParser >> listItemTight [
 			textNodes add: spaceText; addAll: each second].
 		
 		 PPMarkdownListItem new
-			label: nodes first parsedValue;
+			label: nodes first value;
 			addAll: (self mergeInlines: textNodes) ]
 
 ]
@@ -201,7 +202,6 @@ PPMarkdownParser >> listTight [
 PPMarkdownParser >> mergeInlines: nodes [
 	
 	| elements inlineList break|
-	
 	space := PPMarkdownText with: ' '.
 	
 	elements := nodes collect: [:each| 
@@ -256,15 +256,17 @@ PPMarkdownParser >> referenceLink [
 
 { #category : #'grammar-secondary' }
 PPMarkdownParser >> setextHeading [
-	^ super setextHeading ==> [ :nodes | |titleInlines last level|
-		titleInlines := self mergeInlines: nodes first.
-		level :=  nodes third parsedValue first = $=
-			ifTrue: [ 1 ]
-			ifFalse: [ 2 ].
-		PPMarkdownHeading new
-			level: level;
-			inlines: titleInlines;
-			yourself]
+	^ super setextHeading
+		==> [ :nodes | 
+			| titleInlines level |
+			titleInlines := self mergeInlines: nodes first.
+			level := nodes third first = $=
+				ifTrue: [ 1 ]
+				ifFalse: [ 2 ].
+			PPMarkdownHeading new
+				level: level;
+				inlines: titleInlines;
+				yourself ]
 ]
 
 { #category : #'grammar-block' }
@@ -277,8 +279,7 @@ PPMarkdownParser >> strong [
 
 { #category : #token }
 PPMarkdownParser >> text [
-	^ super text ==> [ :nodes |
-		PPMarkdownText with: nodes]
+	^ super text ==> [ :triple | PPMarkdownText with: triple second ]
 ]
 
 { #category : #grammar }
@@ -288,9 +289,7 @@ PPMarkdownParser >> title [
 
 { #category : #'grammar-secondary' }
 PPMarkdownParser >> underscoreOrStarLine [
-	^ super underscoreOrStarLine ==> [ :nodes|
-		self halt.
-		PPMarkdownRule new]
+	^ super underscoreOrStarLine ==> [ :nodes | PPMarkdownRule new ]
 ]
 
 { #category : #grammar }

@@ -7,7 +7,7 @@ http://github.com/jgm/lunamark/
 "
 Class {
 	#name : #PPMarkdownGrammar,
-	#superclass : #PPCompositeParser,
+	#superclass : #PP2CompositeNode,
 	#instVars : [
 		'atxHeading',
 		'atxStart',
@@ -17,13 +17,16 @@ Class {
 		'bullet',
 		'bulletList',
 		'code',
+		'codeBlock',
 		'document',
 		'emphasis',
 		'endline',
 		'entity',
 		'enumerator',
+		'epsilonToken',
 		'escapedCharacter',
 		'explicitLink',
+		'hash',
 		'heading',
 		'horizontalRule',
 		'indent',
@@ -65,6 +68,7 @@ Class {
 		'underscoreOrStarLine',
 		'symbol',
 		'withUnderscores',
+		'word',
 		'text',
 		'verbatim',
 		'url',
@@ -75,9 +79,10 @@ Class {
 		'angleBracketSource',
 		'parenthesisSource',
 		'autoLink',
-		'labelInline'
+		'labelInline',
+		'codeBlockToken'
 	],
-	#category : 'PetitMarkdown-Core'
+	#category : #'PetitMarkdown-Core'
 }
 
 { #category : #grammar }
@@ -87,18 +92,20 @@ PPMarkdownGrammar >> angleBracketSource [
 
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> atxHeading [
-	|hash|
-	hash := $# asParser star.
-	^ atxStart , spaces ,
-		"(newline not , ($# asParser star trim , newline) not , inline) plus flatten,"
-		((hash , newline) not , inline) plus,
-		spaces optional, hash optional ,
-		newline
+	^ (atxStart , spaces
+		,
+			(((spaces optional , hash star , spaces optional , newline) not
+				, inline) ==> #second) plus , spaces optional , hash star
+		, spaces optional , newline)
+		==> [ :array | 
+			{array first.
+			array third.
+			array fifth} ]
 ]
 
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> atxStart [
-	^ ($# asParser min: 1 max: 6) token
+	^ (hash min: 1 max: 6) token
 ]
 
 { #category : #grammar }
@@ -113,38 +120,23 @@ PPMarkdownGrammar >> blankLine [
 
 { #category : #grammar }
 PPMarkdownGrammar >> block [
-	^ blankLine star , (
-		"blockQuote / verbatim
-		/ note / reference
-		/ "
-		verbatim / horizontalRule
-		/ heading
-		/ orderedList / bulletList
-		"/ htmlBlock / styleBlock"
-		/ paragraph / plain
-	)
+	^ (blankLine star
+		,
+			(codeBlock / verbatim / horizontalRule / heading / orderedList
+				/ bulletList / paragraph)) ==> #second
 ]
 
 { #category : #grammar }
 PPMarkdownGrammar >> blockQuote [
-	"
-	> level 1
-	>> level 2
-	> level 1
-	
-	> level 1
-continuing on the next line
-	"
-	"TODO"
-	| anIndent |
-	anIndent := $> asParser.
+	^ ($> asPParser , space optional) plus , line , newline
+		, (newline not , line , newline) star
 ]
 
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> bullet [
 	^ horizontalRule not
 		, nonIndentSpace
-		, ($+ asParser / $* asParser / $- asParser) token
+		, ($+ asPParser / $* asPParser / $- asPParser) token
 		, space plus
 ]
 
@@ -156,20 +148,48 @@ PPMarkdownGrammar >> bulletList [
 { #category : #grammar }
 PPMarkdownGrammar >> code [
 	| tick doubleTick |
-	tick := $` asParser.
-	doubleTick := '``' asParser.
-		^ (doubleTick , spaces, doubleTick negate plus flatten, spaces, doubleTick) /
-		(tick , spaces, tick negate plus flatten, spaces, tick).
-		
-	
+	tick := $` asPParser.
+	doubleTick := '``' asPParser.
+	^ ((doubleTick , spaces , doubleTick negate plus flatten , spaces
+		, doubleTick)
+		==> [ :array | 
+			{array first.
+			array third} ])
+		/
+			((tick , spaces , tick negate plus flatten , spaces , tick)
+				==> [ :array | 
+					{array first.
+					array third} ])
+]
+
+{ #category : #'grammar-block' }
+PPMarkdownGrammar >> codeBlock [
+	| colon |
+	colon := $: asPParser.
+	^ (codeBlockToken
+		,
+			((((codeBlockToken / newline / colon) not , #any asPParser) star
+				flatten separatedBy: colon)
+				==> [ :nodes | (1 to: nodes size by: 2) collect: [ :i | nodes at: i ] ])
+		, ((newline , codeBlockToken) not , #any asPParser) star flatten
+		, newline , codeBlockToken , spaces , newline)
+		==> [ :array | 
+			{array first.
+			array second.
+			array third copyWithoutFirst} ]
+]
+
+{ #category : #token }
+PPMarkdownGrammar >> codeBlockToken [
+	^ ('```' asPParser / '~~~' asPParser) token
 ]
 
 { #category : #grammar }
 PPMarkdownGrammar >> delimitedSource: delimiters [
 	^ 
-		delimiters first asParser, 
-			(space / delimiters last asParser) negate plus flatten trimSpaces , 
-		delimiters last asParser
+		delimiters first asPParser, 
+			(space / delimiters last asPParser) negate plus flatten trimSpaces , 
+		delimiters last asPParser
 ]
 
 { #category : #grammar }
@@ -191,38 +211,52 @@ PPMarkdownGrammar >> endline [
 { #category : #'grammar-inline' }
 PPMarkdownGrammar >> entity [
 	| hexEntity decEntity charEntity |
-	hexEntity := '&#' asParser , $x asParser caseInsensitive , #hex asParser plus , $; asParser.
-	decEntity := '&#' asParser , #digit asParser plus , $; asParser.
-	charEntity := $& asParser , #word asParser plus , $; asParser.
+	hexEntity := '&#' asPParser , $x asPParser caseInsensitive
+		, #hex asPParser plus , $; asPParser.
+	decEntity := '&#' asPParser , #digit asPParser plus , $; asPParser.
+	charEntity := $& asPParser , #word asPParser plus , $; asPParser.
 	^ (hexEntity / decEntity / charEntity) flatten
 ]
 
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> enumerator [
-	^ nonIndentSpace , (#digit asParser plus , $. asParser) token , space plus
+	^ nonIndentSpace , (#digit asPParser plus , $. asPParser) token , space plus
+]
+
+{ #category : #token }
+PPMarkdownGrammar >> epsilonToken [
+	^ #epsilon asPParser token
 ]
 
 { #category : #'grammar-inline' }
 PPMarkdownGrammar >> escapedCharacter [
-	^ $\ asParser , newline not ,
-		(PPPredicateObjectParser chars: '-\`|*_{}[]()#+.!><' message: 'Special character expected')
+	^ $\ asPParser , newline not
+		,
+			(PP2PredicateObjectNode
+				on: [ :char | '-\`|*_{}[]()#+.!><' includes: char ]
+				message: 'Special character expected')
 ]
 
 { #category : #grammar }
 PPMarkdownGrammar >> explicitImage [
-	^ '!' asParser, self link.
+	^ '!' asPParser, self link.
 ]
 
 { #category : #grammar }
 PPMarkdownGrammar >> explicitLink [
 	^ label , spacedNewline , (
 		
-		'()' asParser |
+		'()' asPParser |
 		
-		($( asParser , spaces ,
+		($( asPParser , spaces ,
 		source , spaces ,
 		title optional , spaces ,
-		$) asParser))
+		$) asPParser))
+]
+
+{ #category : #token }
+PPMarkdownGrammar >> hash [
+	^ $# asPParser
 ]
 
 { #category : #'grammar-block' }
@@ -233,49 +267,43 @@ PPMarkdownGrammar >> heading [
 { #category : #grammar }
 PPMarkdownGrammar >> horizontalRule [
 	^ nonIndentSpace
-		, (($* asParser , (spaces , $* asParser min: 2))
-			/ ($- asParser , (spaces , $- asParser min: 2))
-			/ ($_ asParser , (spaces , $_ asParser min: 2)))
-		, spaces , newline , blankLine plus
+		,
+			(($* asPParser , ((spaces , $* asPParser) star min: 2))
+				/ ($- asPParser , ((spaces , $- asPParser) star min: 2))
+				/ ($_ asPParser , ((spaces , $_ asPParser) star min: 2))) , spaces
+		, newline , blankLine plus
 ]
 
 { #category : #token }
 PPMarkdownGrammar >> indent [
-	^ #tab asParser / '    ' asParser
+	^ Character tab asPParser / '    ' asPParser
 ]
 
 { #category : #grammar }
 PPMarkdownGrammar >> inline [
-	^ endline 
-		/ strong / emphasis / explicitImage / link / url "
-		/ noteReference / inlineNote"
-		/ code "/ rawHtml"
-		/ text
-		"/ entity / escapedCharacter / smart / symbol / space"
+	^ endline / strong / emphasis / explicitImage / link / url / code
+		/ word
 ]
 
 { #category : #grammar }
 PPMarkdownGrammar >> inlines [
-	^ (endline not , inline / (endline , inline and)) plus , endline optional
+	^ (((endline not , inline) ==> #second)
+		/ ((endline , inline and) ==> #first)) plus , endline optional
 ]
 
 { #category : #grammar }
 PPMarkdownGrammar >> label [
-	^ $[ asParser ,
-		"notes handling here"
-		($] asParser not, labelInline) plus flatten trimBlanks,
-		$] asParser
+	^ $[ asPParser
+		, ($] asPParser not , labelInline) plus flatten trimBlanks
+		, $] asPParser
+	"notes handling here"
 ]
 
 { #category : #grammar }
 PPMarkdownGrammar >> labelInline [
 	"almost everything from label except links and urls"
-	^ endline 
-		/ strong / emphasis / explicitImage "
-		/ noteReference / inlineNote"
-		/ code "/ rawHtml"
-		/ text
-		"/ entity / escapedCharacter / smart / symbol / space"
+
+	^ endline / strong / emphasis / explicitImage / code / word
 ]
 
 { #category : #token }
@@ -285,7 +313,7 @@ PPMarkdownGrammar >> line [
 
 { #category : #token }
 PPMarkdownGrammar >> linebreak [
-	^ '  ' asParser , normalEndline
+	^ '  ' asPParser , normalEndline
 ]
 
 { #category : #grammar }
@@ -295,9 +323,9 @@ PPMarkdownGrammar >> link [
 
 { #category : #grammar }
 PPMarkdownGrammar >> linkDefinition [
-	^ label, $: asParser, spaces,
-		(angleBracketSource / parenthesisSource / source), 
-		spaces, linkDefinitionTitle optional
+	^ label , $: asPParser , spaces
+		, (angleBracketSource / parenthesisSource / source) , spaces
+		, linkDefinitionTitle optional
 ]
 
 { #category : #grammar }
@@ -307,9 +335,10 @@ PPMarkdownGrammar >> linkDefinitionTitle [
 
 { #category : #grammar }
 PPMarkdownGrammar >> linkDefinitionTitle: delimiters [
-	^ delimiters first asParser ,
-	((delimiters last asParser / newline) not , #any asParser ) star flatten trimBlanks,
-	delimiters last asParser
+	^ delimiters first asPParser
+		,
+			((delimiters last asPParser / newline) not , #any asPParser) star
+				flatten trimBlanks , delimiters last asPParser
 ]
 
 { #category : #'grammar-secondary' }
@@ -354,30 +383,25 @@ PPMarkdownGrammar >> listTight [
 
 { #category : #token }
 PPMarkdownGrammar >> newline [
-	"Copied from PPToken>>newline, because it's private there.
-	#newline asParser is incorrect because it represents a class of characters."
-	^ (Character lf asParser)
-		/ (Character cr asParser , Character lf asParser optional)
-
+	^ #newline asPParser
 ]
 
 { #category : #token }
 PPMarkdownGrammar >> nonIndentSpace [
-	^ #space asParser max: 3
+	^ #space asPParser star max: 3
 ]
 
 { #category : #token }
 PPMarkdownGrammar >> nonSpaceCharacter [
-	^ space not , #newline asParser not , #any asParser
+	^ space not , #endOfLine asPParser not , #any asPParser
 ]
 
 { #category : #token }
 PPMarkdownGrammar >> normalEndline [
-	^ spaces , newline ,
-		blankLine not ,
-		$> asParser not ,
-		atxStart not ,
-		(line , (($= asParser min: 3) / ($- asParser min: 3)) , newline) not
+	^ spaces , newline , blankLine not , $> asPParser not , atxStart not
+		,
+			(line , (($= asPParser star min: 3) / ($- asPParser star min: 3))
+				, newline) not
 ]
 
 { #category : #token }
@@ -387,7 +411,7 @@ PPMarkdownGrammar >> optionallyIndentedLine [
 
 { #category : #'grammar-block' }
 PPMarkdownGrammar >> orderedList [
-	^ enumerator and , (listTight / listLoose)
+	^ enumerator and , (listLoose / listTight)
 ]
 
 { #category : #'grammar-block' }
@@ -407,22 +431,27 @@ PPMarkdownGrammar >> plain [
 
 { #category : #grammar }
 PPMarkdownGrammar >> referenceLink [
-	^ label , (spacedNewline , (label / '[]' asParser)) optional
+	^ label , (spacedNewline , (label / '[]' asPParser)) optional
 ]
 
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> setextHeading [
-	^ (endline not , inline) plus , newline , ($= asParser / $- asParser min: 3) token , newline
+	^ (((endline not , inline) ==> #second) plus , newline
+		, (($= asPParser / $- asPParser) star min: 3) , newline)
+		==> [ :array | 
+			{array first.
+			array third} ]
 ]
 
 { #category : #grammar }
 PPMarkdownGrammar >> source [
-	^ ($( asParser not , $) asParser not , $> asParser not , nonSpaceCharacter) plus flatten trimBlanks.
+	^ ($( asPParser not , $) asPParser not , $> asPParser not
+		, nonSpaceCharacter) plus flatten trimBlanks
 ]
 
 { #category : #token }
 PPMarkdownGrammar >> space [
-	^ #blank asParser
+	^ #blank asPParser
 ]
 
 { #category : #token }
@@ -437,34 +466,38 @@ PPMarkdownGrammar >> spaces [
 
 { #category : #token }
 PPMarkdownGrammar >> specialCharacter [
-	^ PPPredicateObjectParser anyOf: #( $* $_ $` $& $[ $] $< $! $\ )
+	^ PP2PredicateObjectNode anyOf: #($* $_ $` $& $[ $] $< $! $\)
 ]
 
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> starLine [
-	^ ($* asParser min: 4) / (space , $* asParser plus , space and)
+	^ ($* asPParser star min: 4)
+		/ (space , $* asPParser plus , space and)
 ]
 
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> starredEmphasis [
 	| oneStarOpen oneStarClose |
-	oneStarOpen := starLine not , $* asParser , space not , newline not.
-	oneStarClose := space not , newline not , $* asParser.
-	^  oneStarOpen , (oneStarClose not , inline) plus, oneStarClose
+	oneStarOpen := (starLine not , $* asPParser , space not , newline not)
+		==> #second.
+	oneStarClose := (space not , newline not , $* asPParser) ==> #third.
+	^ oneStarOpen , ((oneStarClose not , inline) ==> #second) plus
+		, oneStarClose
 ]
 
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> starredStrong [
 	| twoStarOpen twoStarClose |
-	twoStarOpen := starLine not , '**' asParser , space not , newline not.
-	twoStarClose := space not , newline not , '**' asParser.
-	^  twoStarOpen, (twoStarClose not , inline) plus, twoStarClose
+	twoStarOpen := (starLine not , '**' asPParser , space not
+		, newline not) ==> #second.
+	twoStarClose := (space not , newline not , '**' asPParser) ==> #third.
+	^ twoStarOpen , ((twoStarClose not , inline) ==> #second) plus
+		, twoStarClose
 ]
 
 { #category : #accessing }
 PPMarkdownGrammar >> start [
-	^ document end
-
+	^ document trimSpacesRight end
 ]
 
 { #category : #'grammar-inline' }
@@ -484,37 +517,49 @@ PPMarkdownGrammar >> terminalEndline [
 
 { #category : #token }
 PPMarkdownGrammar >> text [
-	^ withUnderscores / entity / escapedCharacter / symbol / (space flatten)
+	^ word plus
+		==> [ :array | 
+			String
+				streamContents: [ :stream | array do: [ :str | stream nextPutAll: str ] ] ]
 ]
 
 { #category : #grammar }
 PPMarkdownGrammar >> title [
 	"this is actually TitleDouble from peg-markdown"
-	^ $" asParser ,
-	(($" asParser , spaces , ($) asParser / newline)) not , #any asParser ) star flatten trimBlanks,
-	$" asParser
+
+	^ $" asPParser
+		,
+			(($" asPParser , spaces , ($) asPParser / newline)) not
+				, #any asPParser) star flatten trimBlanks , $" asPParser
 ]
 
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> underlinedEmphasis [
 	| oneUnderscoreOpen oneUnderscoreClose |
-	oneUnderscoreOpen := underscoreLine not , $_ asParser , space not , newline not.
-	oneUnderscoreClose := space not , newline not ,
-		underlinedStrong not , $_ asParser , #word asParser not.
-	^  oneUnderscoreOpen, (oneUnderscoreClose not , inline) plus, oneUnderscoreClose
+	oneUnderscoreOpen := (underscoreLine not , $_ asPParser , space not
+		, newline not) ==> #second.
+	oneUnderscoreClose := (space not , newline not , underlinedStrong not
+		, $_ asPParser , #word asPParser not) ==> #fourth.
+	^ oneUnderscoreOpen
+		, ((oneUnderscoreClose not , inline) ==> #second) plus
+		, oneUnderscoreClose
 ]
 
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> underlinedStrong [
 	| twoUlOpen twoUlClose |
-	twoUlOpen := starLine not , '__' asParser , space not , newline not.
-	twoUlClose := space not , newline not , '__' asParser , #word asParser not.
-	^  twoUlOpen, ( twoUlClose not , inline ) plus, twoUlClose
+	twoUlOpen := (starLine not , '__' asPParser , space not , newline not)
+		==> #second.
+	twoUlClose := (space not , newline not , '__' asPParser
+		, #word asPParser not) ==> #third.
+	^ twoUlOpen , ((twoUlClose not , inline) ==> #second) plus
+		, twoUlClose
 ]
 
 { #category : #'grammar-secondary' }
 PPMarkdownGrammar >> underscoreLine [
-	^ ($_ asParser min: 4) / (space , $_ asParser plus , space and)
+	^ ($_ asPParser star min: 4)
+		/ (space , $_ asPParser plus , space and)
 ]
 
 { #category : #'grammar-secondary' }
@@ -524,18 +569,27 @@ PPMarkdownGrammar >> underscoreOrStarLine [
 
 { #category : #grammar }
 PPMarkdownGrammar >> url [
-	^ ((#letter asParser plus) , '://' asParser , (#space asParser negate plus)) flatten
+	^ (#letter asPParser plus , '://' asPParser
+		, #space asPParser negate plus) flatten
 ]
 
 { #category : #grammar }
 PPMarkdownGrammar >> verbatim [
-	^ (indent, ((newline not, #any asParser) star) flatten, newline) plus.
+	^ (indent , (newline not , #any asPParser) star flatten , newline)
+		plus
 ]
 
 { #category : #token }
 PPMarkdownGrammar >> withUnderscores [
 	| normalCharacter |
-	normalCharacter := (specialCharacter / space / #newline asParser) negate.
-	"withUnderscore is the Str production in peg-markdown"
-	^ (normalCharacter , (normalCharacter / ($_ asParser plus , normalCharacter and)) star) flatten.
+	normalCharacter := (specialCharacter / space / #newline asPParser)
+		negate.
+	^ (normalCharacter / ($_ asPParser plus , normalCharacter and)) plus
+		flatten
+]
+
+{ #category : #token }
+PPMarkdownGrammar >> word [
+	^ withUnderscores / entity / escapedCharacter / symbol
+		/ space flatten
 ]

@@ -14,11 +14,6 @@ Class {
 	#category : #'PetitMarkdown-Nodes'
 }
 
-{ #category : #adding }
-PPMarkdownListItem >> addAll: aCollection [ 
-	children addAll: aCollection
-]
-
 { #category : #testing }
 PPMarkdownListItem >> isItem [
 	^ true

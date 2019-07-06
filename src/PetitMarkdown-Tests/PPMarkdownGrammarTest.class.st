@@ -3,7 +3,7 @@ Testing PPMarkdownGrammar
 "
 Class {
 	#name : #PPMarkdownGrammarTest,
-	#superclass : #PPCompositeParserTest,
+	#superclass : #PP2CompositeNodeTest,
 	#category : #'PetitMarkdown-Tests'
 }
 
@@ -1232,6 +1232,46 @@ PPMarkdownGrammarTest >> testAngleBracketSource [
 ]
 
 { #category : #'testing-basics' }
+PPMarkdownGrammarTest >> testAtxHeading [
+	self
+		parse:
+			'# heading
+'
+		rule: #atxHeading.
+	self
+		parse:
+			'### heading 3
+'
+		rule: #atxHeading.
+	self
+		parse:
+			'###### heading 6
+'
+		rule: #atxHeading.
+	self
+		parse:
+			'####### header level should be 1-6 and this is level 6 although led by 7 hashes. Still legal.
+'
+		rule: #atxHeading.
+	self
+		parse:
+			'# heading can be enclosed by #
+'
+		rule: #atxHeading.
+	self
+		fail:
+			' # heading
+'
+		rule: #atxHeading.
+	self
+		fail:
+			'heading
+===
+'
+		rule: #atxHeading
+]
+
+{ #category : #'testing-basics' }
 PPMarkdownGrammarTest >> testAutoLink [
 	self parse: '<http://foo.bar.com/baz?q=plotz>' rule: #autoLink.
 	self parse: '<foo@bar.com>' rule: #autoLink.
@@ -1250,7 +1290,13 @@ PPMarkdownGrammarTest >> testAutoLinkUrl [
 { #category : #'testing-markdowntest' }
 PPMarkdownGrammarTest >> testBlockQuote [
 	self
-		parse: '> foo
+		parse:
+			'> foo
+'
+		rule: #blockQuote.
+	self
+		parse:
+			'> foo
 > bar
 > baz
 '
@@ -1300,8 +1346,7 @@ PPMarkdownGrammarTest >> testBulletNested [
 
 { #category : #'testing-basics' }
 PPMarkdownGrammarTest >> testCode [
-	self parse: '` code`' rule: #code.
-	self parse: '`code < <html> *-`' rule: #code
+	self parse: '`f(x*2*y)`' rule: #code
 ]
 
 { #category : #'testing-basics' }
@@ -1312,6 +1357,24 @@ PPMarkdownGrammarTest >> testCode2 [
 { #category : #'testing-basics' }
 PPMarkdownGrammarTest >> testCode3 [
 	self parse: '``code with `are` esaped``' rule: #code
+]
+
+{ #category : #'testing-basics' }
+PPMarkdownGrammarTest >> testCodeBlock [
+	self parse: '```smalltalk:label=foo:caption=the source code of Foo>>#foo:method
+foo
+	^ bar
+```
+' rule: #codeBlock
+]
+
+{ #category : #'testing-basics' }
+PPMarkdownGrammarTest >> testCodeBlock2 [
+	self parse: '```unknown:label=foo:caption=the source code of Foo>>#foo:method
+foo
+	^ bar
+```
+' rule: #codeBlock
 ]
 
 { #category : #'testing-documents' }
@@ -1341,7 +1404,6 @@ with several lines.
 PPMarkdownGrammarTest >> testDocumentMarkdownHelp [
 	self assert: parser parse: self markdownBasicsFile.
 	self assert: parser parse: self markdownSyntaxFile
-
 ]
 
 { #category : #'testing-basics' }
@@ -1414,6 +1476,14 @@ PPMarkdownGrammarTest >> testHeadingAtx3 [
 ]
 
 { #category : #'testing-basics' }
+PPMarkdownGrammarTest >> testHeadingAtx4 [
+	self
+		parse: '### Hello, this is an **atx-style** title #######
+'
+		rule: #atxHeading
+]
+
+{ #category : #'testing-basics' }
 PPMarkdownGrammarTest >> testHeadingSetext1 [
 	self
 		parse: 'Hello, this is a setext-style title
@@ -1426,6 +1496,15 @@ PPMarkdownGrammarTest >> testHeadingSetext1 [
 PPMarkdownGrammarTest >> testHeadingSetext2 [
 	self
 		parse: 'Hello, this is a setext-style title
+-----
+'
+		rule: #setextHeading.
+]
+
+{ #category : #'testing-basics' }
+PPMarkdownGrammarTest >> testHeadingSetext3 [
+	self
+		parse: 'Hello, this is a *setext-style* title
 -----
 '
 		rule: #setextHeading.
@@ -1649,7 +1728,7 @@ coin
 
     pan
 '
-	rule: #listTight
+	rule: #listLoose
 ]
 
 { #category : #'testing-markdowntest' }
@@ -1744,12 +1823,6 @@ PPMarkdownGrammarTest >> testReferenceLink [
 ]
 
 { #category : #'testing-markdowntest' }
-PPMarkdownGrammarTest >> testReferenceLinkBrackets [
-	self parse: '[foo [bar]][1]' rule: #referenceLink.
-	self parse: '[[foo][1]]' rule: #referenceLink
-]
-
-{ #category : #'testing-markdowntest' }
 PPMarkdownGrammarTest >> testReferenceLinkEmpty [
 	self parse: '[foo][]' rule: #referenceLink.
 	self parse: '[foo] []' rule: #referenceLink.
@@ -1817,6 +1890,11 @@ PPMarkdownGrammarTest >> testStrong1 [
 { #category : #'testing-basics' }
 PPMarkdownGrammarTest >> testStrong2 [
 	self parse: '__loud and clear__' rule: #strong
+]
+
+{ #category : #tests }
+PPMarkdownGrammarTest >> testText [
+	self parse: 'this is a normal text' rule: #text
 ]
 
 { #category : #'testing-basics' }
