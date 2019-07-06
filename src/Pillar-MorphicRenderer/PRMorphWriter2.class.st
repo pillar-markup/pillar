@@ -1,6 +1,9 @@
 Class {
 	#name : #PRMorphWriter2,
 	#superclass : #PRDocumentWriter,
+	#instVars : [
+		'codeFont'
+	],
 	#category : #'Pillar-MorphicRenderer'
 }
 
@@ -62,11 +65,25 @@ PRMorphWriter2 >> canvasClass [
 	^ PRMorphCanvas
 ]
 
-{ #category : #initialization }
+{ #category : #'visiting-document' }
+PRMorphWriter2 >> codeFont [
+	^ codeFont 
+]
+
+{ #category : #'visiting-document' }
+PRMorphWriter2 >> codeFont: aFont [
+	codeFont := aFont
+]
+
+{ #category : #'visiting-document' }
+PRMorphWriter2 >> defaultCodeFont [
+	^ (LogicalFont familyName: 'Bitmap DejaVu Sans' pointSize: 14)
+]
+
+{ #category : #'visiting-document' }
 PRMorphWriter2 >> initialize [
 	super initialize.
-	"stream := self defaultStream."
-	"text := Text new."
+	codeFont := self defaultCodeFont 
 ]
 
 { #category : #accessing }
@@ -78,7 +95,7 @@ PRMorphWriter2 >> text [
 { #category : #'visiting-document' }
 PRMorphWriter2 >> visitBoldFormat: anObject [
 	
-	canvas append: anObject text asText allBold.	
+	canvas append: anObject text asText allBold
 
 	
 ]
@@ -89,8 +106,7 @@ PRMorphWriter2 >> visitCodeblock: aCodeBlock [
 	| pillarText | 
 	pillarText := aCodeBlock text asText.
 	canvas append: 
-		(pillarText addAttribute: (TextFontReference toFont: 
-				(LogicalFont familyName: 'Bitmap DejaVu Sans' pointSize: 14)) from: 1 to: pillarText size).
+		(pillarText addAttribute: (TextFontReference toFont: codeFont) from: 1 to: pillarText size)
 ]
 
 { #category : #visiting }
@@ -133,7 +149,7 @@ PRMorphWriter2 >> visitListItem: anObject [
 PRMorphWriter2 >> visitParagraph: anObject [
 
 	super visitParagraph: anObject.
-	canvas append: String crlf.
+	canvas append: String crlf
 ]
 
 { #category : #'visiting-document' }
