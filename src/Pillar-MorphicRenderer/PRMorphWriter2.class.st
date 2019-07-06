@@ -4,10 +4,51 @@ Class {
 	#category : #'Pillar-MorphicRenderer'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #example }
+PRMorphWriter2 class >> example [
+	"self new example"
+	<sampleInstance>
+	
+	| writer |
+	writer := PRMorphWriter2 new
+		visit: self exampleDocument.
+	writer text asMorph openInWindow.
+	^ writer
+]
+
+{ #category : #example }
+PRMorphWriter2 class >> exampleDocument [
+	
+	^ PRPillarParser new parse: self pillarInputExample
+]
+
+{ #category : #testing }
 PRMorphWriter2 class >> isAbstract [
 	<ignoreForCoverage "This method is ignored for test coverage because it is overriden in all subclasses and these subclasses don't need to do a super-send.">
 	^ false
+]
+
+{ #category : #example }
+PRMorphWriter2 class >> pillarInputExample [
+	^ '! Heading one 
+
+!!Heading Twoo 
+
+""this is bold""
+
+this is not not bold 
+
+this is a list
+- item 1 ""this is bold again my friend""
+- item 2
+
+[[[language=smalltalk 
+1 + 2 
+]]]
+
+! Heading one 
+
+'
 ]
 
 { #category : #accessing }
@@ -34,12 +75,22 @@ PRMorphWriter2 >> text [
 	^ canvas text
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'visiting-document' }
 PRMorphWriter2 >> visitBoldFormat: anObject [
 	
 	canvas append: anObject text asText allBold.	
 
 	
+]
+
+{ #category : #'visiting-document' }
+PRMorphWriter2 >> visitCodeblock: aCodeBlock [ 
+	
+	| pillarText | 
+	pillarText := aCodeBlock text asText.
+	canvas append: 
+		(pillarText addAttribute: (TextFontReference toFont: 
+				(LogicalFont familyName: 'Bitmap DejaVu Sans' pointSize: 14)) from: 1 to: pillarText size).
 ]
 
 { #category : #visiting }
@@ -50,13 +101,7 @@ PRMorphWriter2 >> visitDocument: anObject [
 	super visitDocument: anObject. 
 ]
 
-{ #category : #'as yet unclassified' }
-PRMorphWriter2 >> visitDocumentItem: anObject [ 
-
-	text append: anObject text
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #'visiting-document' }
 PRMorphWriter2 >> visitEmptyParagraph: anObject [
 
 	canvas append: String crlf
@@ -75,7 +120,7 @@ PRMorphWriter2 >> visitHeader: anObject [
 				(LogicalFont familyName: 'Source Sans Pro' pointSize: ((5 - level) max: 1) * 8)) from: 1 to: anObject text size).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'visiting-document' }
 PRMorphWriter2 >> visitListItem: anObject [
 	
 	canvas append: Character tab.
@@ -84,24 +129,14 @@ PRMorphWriter2 >> visitListItem: anObject [
 	canvas append: String crlf
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'visiting-document' }
 PRMorphWriter2 >> visitParagraph: anObject [
 
 	super visitParagraph: anObject.
 	canvas append: String crlf.
 ]
 
-{ #category : #'as yet unclassified' }
-PRMorphWriter2 >> visitScript: aScript [ 
-	
-	| level pillarText | 
-	pillarText := aScript text asText.
-	canvas append: 
-		(pillarText addAttribute: (TextFontReference toFont: 
-				(LogicalFont familyName: 'Bitmap DejaVu Sans' pointSize: 12)) from: 1 to: pillarText size).
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #'visiting-document' }
 PRMorphWriter2 >> visitText: aText [
 
 	canvas append: aText text

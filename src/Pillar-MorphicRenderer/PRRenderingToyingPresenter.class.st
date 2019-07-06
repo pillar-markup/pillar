@@ -1,5 +1,5 @@
 "
-PRMorphInterface new openWithSpec.
+PRRenderingToyingPresenter new openWithSpec.
 "
 Class {
 	#name : #PRRenderingToyingPresenter,
@@ -43,7 +43,7 @@ PRRenderingToyingPresenter >> initializePresenter [
 	parseButton action: [ 
 		document := PRPillarParser new parse: textInput text.
 		morphWriter start: document.
-		textResult text: morphWriter text ].
+		textResult text: "morphWriter text" PRMorphWriter2 new text ].
 ]
 
 { #category : #initialization }
