@@ -43,7 +43,7 @@ PRExportCanvas >> lines: aString [
 	"Output aString and take care of line ending within aString."
 	| str |
 	str := aString readStream.
-	[str atEnd] whileFalse: [ | line |
+	[ str atEnd ] whileFalse: [ | line |
 		line := str nextLine.
 		str atEnd
 			ifTrue: [ self nextPutAll: line ]
