@@ -43,7 +43,7 @@ PRRenderingToyingPresenter >> initializePresenter [
 	parseButton action: [ 
 		document := PRPillarParser new parse: textInput text.
 		morphWriter start: document.
-		textResult text: "morphWriter text" PRMorphWriter new text ].
+		textResult text: morphWriter text ].
 ]
 
 { #category : #initialization }
