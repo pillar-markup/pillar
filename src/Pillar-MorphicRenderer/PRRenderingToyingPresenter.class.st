@@ -34,7 +34,7 @@ PRRenderingToyingPresenter >> initialExtent [
 { #category : #initialization }
 PRRenderingToyingPresenter >> initialize [
 	super initialize.
-	morphWriter := PRMorphWriter2 new.
+	morphWriter := PRMorphWriter new.
 ]
 
 { #category : #initialization }
@@ -43,7 +43,7 @@ PRRenderingToyingPresenter >> initializePresenter [
 	parseButton action: [ 
 		document := PRPillarParser new parse: textInput text.
 		morphWriter start: document.
-		textResult text: "morphWriter text" PRMorphWriter2 new text ].
+		textResult text: "morphWriter text" PRMorphWriter new text ].
 ]
 
 { #category : #initialization }
@@ -58,7 +58,7 @@ PRRenderingToyingPresenter >> initializeWidgets [
 	).
 	textInput 
 		autoAccept: true;
-		text: PRMorphWriter2 pillarInputExample.
+		text: PRMorphWriter pillarInputExample.
 	
 	self instantiateModels: #(
 		parseButton ButtonModel 

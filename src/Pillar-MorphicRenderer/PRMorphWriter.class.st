@@ -11,7 +11,7 @@ t asMorph openInWorld
 
 "
 Class {
-	#name : #PRMorphWriter2,
+	#name : #PRMorphWriter,
 	#superclass : #PRDocumentWriter,
 	#instVars : [
 		'codeFont'
@@ -20,31 +20,31 @@ Class {
 }
 
 { #category : #example }
-PRMorphWriter2 class >> example [
+PRMorphWriter class >> example [
 	"self new example"
 	<sampleInstance>
 	
 	| writer |
-	writer := PRMorphWriter2 new
+	writer := PRMorphWriter new
 		visit: self exampleDocument.
 	writer text asMorph openInWindow.
 	^ writer
 ]
 
 { #category : #example }
-PRMorphWriter2 class >> exampleDocument [
+PRMorphWriter class >> exampleDocument [
 	
 	^ PRPillarParser new parse: self pillarInputExample
 ]
 
 { #category : #testing }
-PRMorphWriter2 class >> isAbstract [
+PRMorphWriter class >> isAbstract [
 	<ignoreForCoverage "This method is ignored for test coverage because it is overriden in all subclasses and these subclasses don't need to do a super-send.">
 	^ false
 ]
 
 { #category : #example }
-PRMorphWriter2 class >> pillarInputExample [
+PRMorphWriter class >> pillarInputExample [
 	^ '! Heading one 
 
 !!Heading Twoo 
@@ -67,45 +67,45 @@ this is a list
 ]
 
 { #category : #accessing }
-PRMorphWriter2 class >> writerName [
+PRMorphWriter class >> writerName [
 
 	^ 'Morph'
 ]
 
 { #category : #accessing }
-PRMorphWriter2 >> canvasClass [
+PRMorphWriter >> canvasClass [
 	^ PRMorphCanvas
 ]
 
 { #category : #accessing }
-PRMorphWriter2 >> codeFont [
+PRMorphWriter >> codeFont [
 	^ codeFont 
 ]
 
 { #category : #accessing }
-PRMorphWriter2 >> codeFont: aFont [
+PRMorphWriter >> codeFont: aFont [
 	codeFont := aFont
 ]
 
 { #category : #initialization }
-PRMorphWriter2 >> defaultCodeFont [
+PRMorphWriter >> defaultCodeFont [
 	^ (LogicalFont familyName: 'Bitmap DejaVu Sans' pointSize: 14)
 ]
 
 { #category : #initialization }
-PRMorphWriter2 >> initialize [
+PRMorphWriter >> initialize [
 	super initialize.
 	codeFont := self defaultCodeFont 
 ]
 
 { #category : #accessing }
-PRMorphWriter2 >> text [ 
+PRMorphWriter >> text [ 
 	
 	^ canvas text
 ]
 
 { #category : #'visiting-document' }
-PRMorphWriter2 >> visitBoldFormat: anObject [
+PRMorphWriter >> visitBoldFormat: anObject [
 	
 	canvas append: anObject text asText allBold
 
@@ -113,7 +113,7 @@ PRMorphWriter2 >> visitBoldFormat: anObject [
 ]
 
 { #category : #'visiting-document' }
-PRMorphWriter2 >> visitCodeblock: aCodeBlock [ 
+PRMorphWriter >> visitCodeblock: aCodeBlock [ 
 	
 	| pillarText | 
 	pillarText := aCodeBlock text asText.
@@ -122,7 +122,7 @@ PRMorphWriter2 >> visitCodeblock: aCodeBlock [
 ]
 
 { #category : #'visiting-document' }
-PRMorphWriter2 >> visitDocument: anObject [
+PRMorphWriter >> visitDocument: anObject [
 	| numerator |
 	numerator := (PRNumeratingVisitor new configuration: self configuration).
 	numerator visit: anObject.
@@ -130,13 +130,13 @@ PRMorphWriter2 >> visitDocument: anObject [
 ]
 
 { #category : #'visiting-document' }
-PRMorphWriter2 >> visitEmptyParagraph: anObject [
+PRMorphWriter >> visitEmptyParagraph: anObject [
 
 	canvas append: String crlf
 ]
 
 { #category : #'visiting-document' }
-PRMorphWriter2 >> visitHeader: anObject [
+PRMorphWriter >> visitHeader: anObject [
 	
 	| level pillarText |
 	self writeCounterForHeader: anObject.
@@ -149,7 +149,7 @@ PRMorphWriter2 >> visitHeader: anObject [
 ]
 
 { #category : #'visiting-document' }
-PRMorphWriter2 >> visitListItem: anObject [
+PRMorphWriter >> visitListItem: anObject [
 	
 	canvas append: Character tab.
 	canvas append: '- '.
@@ -158,21 +158,21 @@ PRMorphWriter2 >> visitListItem: anObject [
 ]
 
 { #category : #'visiting-document' }
-PRMorphWriter2 >> visitParagraph: anObject [
+PRMorphWriter >> visitParagraph: anObject [
 
 	super visitParagraph: anObject.
 	canvas append: String crlf
 ]
 
 { #category : #'visiting-document' }
-PRMorphWriter2 >> visitText: aText [
+PRMorphWriter >> visitText: aText [
 
 	canvas append: aText text
 	
 ]
 
 { #category : #writing }
-PRMorphWriter2 >> writeCounterForHeader: aHeader [
+PRMorphWriter >> writeCounterForHeader: aHeader [
 	| headerConf level textResult |
 	level := aHeader level.
 	headerConf := self configuration levelConfigurationFor: aHeader.
