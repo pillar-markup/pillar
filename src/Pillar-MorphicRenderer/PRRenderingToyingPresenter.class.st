@@ -58,7 +58,7 @@ PRRenderingToyingPresenter >> initializeWidgets [
 	).
 	textInput 
 		autoAccept: true;
-		text: PRRenderer pillarInputExample.
+		text: PRMorphWriter2 pillarInputExample.
 	
 	self instantiateModels: #(
 		parseButton ButtonModel 
