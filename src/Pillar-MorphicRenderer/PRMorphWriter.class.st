@@ -49,9 +49,15 @@ PRMorphWriter class >> pillarInputExample [
 
 !!Heading Twoo 
 
-""this is bold""
+""this is bold"" 
+The following code shows the definition of the method ==printOn:==
 
-this is not not bold 
+[[[  
+Point class >> new
+	self foo	
+]]] 
+
+This is not not bold 
 
 this is a list
 - item 1 ""this is bold again my friend""
@@ -88,8 +94,18 @@ PRMorphWriter >> codeFont: aFont [
 ]
 
 { #category : #initialization }
+PRMorphWriter >> codeFontName [
+	^ 'Bitmap DejaVu Sans'
+]
+
+{ #category : #initialization }
 PRMorphWriter >> defaultCodeFont [
-	^ (LogicalFont familyName: 'Bitmap DejaVu Sans' pointSize: 14)
+	^ LogicalFont familyName: self codeFontName pointSize: 14
+]
+
+{ #category : #initialization }
+PRMorphWriter >> headerFontName [
+	^ 'Source Sans Pro'
 ]
 
 { #category : #initialization }
@@ -118,7 +134,9 @@ PRMorphWriter >> visitCodeblock: aCodeBlock [
 	| pillarText | 
 	pillarText := aCodeBlock text asText.
 	canvas append: 
-		(pillarText addAttribute: (TextFontReference toFont: codeFont) from: 1 to: pillarText size)
+		(pillarText addAttribute: (TextFontReference toFont: codeFont) from: 1 to: pillarText size).
+	canvas newLine
+	
 ]
 
 { #category : #'visiting-document' }
@@ -137,15 +155,21 @@ PRMorphWriter >> visitEmptyParagraph: anObject [
 
 { #category : #'visiting-document' }
 PRMorphWriter >> visitHeader: anObject [
-	
 	| level pillarText |
 	self writeCounterForHeader: anObject.
-	
 	level := anObject level.
 	pillarText := anObject text asText.
-	canvas append: 
-		(pillarText addAttribute: (TextFontReference toFont: 
-				(LogicalFont familyName: 'Source Sans Pro' pointSize: ((5 - level) max: 1) * 8)) from: 1 to: anObject text size).
+	canvas
+		append:
+			(pillarText
+				addAttribute:
+					(TextFontReference
+						toFont:
+							(LogicalFont
+								familyName: self headerFontName
+								pointSize: (5 - level max: 1) * 8))
+				from: 1
+				to: anObject text size)
 ]
 
 { #category : #'visiting-document' }
