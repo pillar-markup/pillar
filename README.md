@@ -54,7 +54,7 @@ Then add that directory to the `PILLAR_HOME` and `HOME` environment variables, f
 
 ```bash
 export PILLAR_HOME="$HOME/.pillar"
-export PATH="$PATH:$PILLAR_HOME"
+export PATH="$PATH:$PILLAR_HOME/build"
 ```
 
 ### 3. Install external dependencies
