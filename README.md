@@ -1,6 +1,6 @@
 # Pillar
 
-Pillar is a markup syntax and tool-suite to generate documentation, books, websites and slides. Pillar is not new, it was invented around 2000 as a supporting language for [SmallWiki](https://www.slideshare.net/esug/smallwiki-smalltalk-wiki-towards-cms). Its ancestor was the markup for the Pier CMS amd we extracted it from Pier to make it more applicable to different domains. The [Pillar syntax]() is similar to markdown but its emphasis is on publishing and how it handles different types of links.
+Pillar is a markup syntax and tool-suite to generate documentation, books, websites and slides. Pillar is not new, it was invented around 2000 as a supporting language for [SmallWiki](https://www.slideshare.net/esug/smallwiki-smalltalk-wiki-towards-cms): one of the first wiki using OOP for real. Its ancestor was the markup for the Pier CMS and we extracted it from Pier to make it more applicable to different domains. The [Pillar syntax]() is similar to markdown but its emphasis is on publishing and how it handles different types of links.
 
 [![Build Status](https://travis-ci.org/pillar-markup/pillar.svg?branch=stable)](https://travis-ci.org/pillar-markup/pillar)
 [![Documentation](https://img.shields.io/badge/Documentation-download-green.svg)](https://bintray.com/squarebracketassociates/wip/download_file?file_path=DistributingPillar-wip.pdf)
@@ -23,6 +23,13 @@ The script will create a `build` directory in your current working directory wit
 $ ls
 LICENSE  README.md  appveyor.yml  archetypes  ==>>build<<==  download.sh  scripts  src
 ```
+
+
+#### Current versions
+
+- Most Pharo booklets are using 7.4.1
+- 7.5.0 is stable (most tests green except two from booktester - will be addressed soon). We have to check whether 7.5.0 supports old style columns (which where a kind of half-baked hardcoded environment).
+
 
 #### Getting an older version
 
@@ -47,7 +54,7 @@ Then add that directory to the `PILLAR_HOME` and `HOME` environment variables, f
 
 ```bash
 export PILLAR_HOME="$HOME/.pillar"
-export PATH="$PATH:$PILLAR_HOME"
+export PATH="$PATH:$PILLAR_HOME/build"
 ```
 
 ### 3. Install external dependencies
@@ -162,3 +169,20 @@ $ ./pharo-ui Pharo.image
 
 Read the documentation at https://github.com/SquareBracketAssociates/Booklet-PublishingAPillarBooklet.
 Please note that chapter on Pharo a web Perspective is obsolete since it refers to Pharo 60.
+
+## History
+
+- 7.5.0 introduces environments (${begin:card|x=12}$ ... ${end:card}$
+- 7.4.1 introduces element-based templating (templates found in a given folder are used to output one given element).
+
+## Planned features
+- Up to date documentation
+- Remodularize packaging to be able to use Pillar inside Pharo for class/package comments.
+- Integration with Citezen
+- Introduce a markdown brand (to be able to do full roundtrip pillar <-> markdown <-> pillar). It will not cover every features of markdown and it will cover pillar core features: environment, extensible tags.
+- Better templates for Web
+- More components (blog)
+- Reinitiate a small version of Pier to get live support
+
+
+
