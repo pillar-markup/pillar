@@ -133,8 +133,10 @@ PRMorphWriter >> visitCodeblock: aCodeBlock [
 	
 	| pillarText | 
 	pillarText := aCodeBlock text asText.
+	canvas newLine.
 	canvas append: 
 		(pillarText addAttribute: (TextFontReference toFont: codeFont) from: 1 to: pillarText size).
+	canvas newLine.
 	canvas newLine
 	
 ]

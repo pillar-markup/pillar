@@ -22,6 +22,11 @@ PRMorphCanvas >> initialize [
 	text := Text new
 ]
 
+{ #category : #initialization }
+PRMorphCanvas >> newLine [ 
+	text append: String cr
+]
+
 { #category : #'instance creation' }
 PRMorphCanvas >> nextPut: aCharacter [
 	text append: aCharacter
