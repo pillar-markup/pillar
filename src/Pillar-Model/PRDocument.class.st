@@ -4,7 +4,7 @@ I am the root of a document composite.
 Class {
 	#name : #PRDocument,
 	#superclass : #PRDocumentGroup,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #testing }

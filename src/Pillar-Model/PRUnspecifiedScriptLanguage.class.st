@@ -4,7 +4,7 @@ An unspecified script language
 Class {
 	#name : #PRUnspecifiedScriptLanguage,
 	#superclass : #PRAbstractScriptLanguage,
-	#category : 'Pillar-Model-ScriptLanguage'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #protected }

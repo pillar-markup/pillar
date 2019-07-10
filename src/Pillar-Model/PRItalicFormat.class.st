@@ -4,7 +4,7 @@ Italic styling format
 Class {
 	#name : #PRItalicFormat,
 	#superclass : #PRFormat,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #testing }

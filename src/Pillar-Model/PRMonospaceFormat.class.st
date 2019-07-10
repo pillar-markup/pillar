@@ -4,7 +4,7 @@ Monospace styling
 Class {
 	#name : #PRMonospaceFormat,
 	#superclass : #PRFormat,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #testing }

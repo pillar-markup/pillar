@@ -1,7 +1,7 @@
 Class {
 	#name : #PRParameters,
 	#superclass : #PRDocumentGroup,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #testing }

@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'stream'
 	],
-	#category : 'Pillar-Model-Visitor'
+	#category : #'Pillar-Model-Visitor - Non Core'
 }
 
 { #category : #'initialize-release' }

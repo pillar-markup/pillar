@@ -4,7 +4,7 @@ I'm a Figure, i can have a label in parameter. My alias (coming from the supercl
 Class {
 	#name : #PRFigure,
 	#superclass : #PRReference,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #testing }

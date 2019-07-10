@@ -288,7 +288,7 @@ PRVisitor >> visitSection: aSection [
 	self visitDocumentGroup: aSection
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting-extensions' }
 PRVisitor >> visitSlide: aSlide [
 	self visitDocumentGroup: aSlide
 ]
@@ -324,17 +324,17 @@ PRVisitor >> visitTOCAnnotation: aTOCAnnotation [
 	self visitAnnotation: aTOCAnnotation
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting-extensions' }
 PRVisitor >> visitTable: anObject [
 	self visitDocumentGroup: anObject
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting-extensions' }
 PRVisitor >> visitTableCell: anObject [
 	self visitDocumentGroup: anObject
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting-extensions' }
 PRVisitor >> visitTableRow: anObject [
 	self visitDocumentGroup: anObject
 ]

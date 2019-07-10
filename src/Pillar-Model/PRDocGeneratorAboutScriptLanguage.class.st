@@ -25,7 +25,7 @@ Class {
 	#instVars : [
 		'stream'
 	],
-	#category : 'Pillar-Model-ScriptLanguage'
+	#category : #'Pillar-Model-DocGenerator'
 }
 
 { #category : #'instance creation' }

@@ -4,7 +4,7 @@ An unsupported script language
 Class {
 	#name : #PRUnsupportedScriptLanguage,
 	#superclass : #PRAbstractScriptLanguage,
-	#category : 'Pillar-Model-ScriptLanguage'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #'instance creation' }

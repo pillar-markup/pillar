@@ -14,7 +14,7 @@ Class {
 	#instVars : [
 		'originalName'
 	],
-	#category : 'Pillar-Model-ScriptLanguage'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #protected }

@@ -4,7 +4,7 @@ I am an external link with an URL (Uniform Resource Locator) as reference.
 Class {
 	#name : #PRExternalLink,
 	#superclass : #PRLink,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #testing }

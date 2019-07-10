@@ -8,7 +8,7 @@ I am an abstract link built from an alias and a reference. The alias is the stri
 Class {
 	#name : #PRLink,
 	#superclass : #PRReference,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #'instance creation' }

@@ -4,7 +4,7 @@ I am an external link pointing to a mail address. I encode my URL to prevent spa
 Class {
 	#name : #PRMailLink,
 	#superclass : #PRExternalLink,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #testing }

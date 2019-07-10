@@ -4,7 +4,7 @@ I'm a section. I'm here to add a structure to the document.
 Class {
 	#name : #PRSection,
 	#superclass : #PRDocumentGroup,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #testing }

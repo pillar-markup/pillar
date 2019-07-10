@@ -10,7 +10,7 @@ Class {
 		'reference',
 		'parameters'
 	],
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #testing }

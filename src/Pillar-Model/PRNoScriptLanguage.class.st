@@ -4,7 +4,7 @@ I'm here for authors to specify they don't want syntax highlighting in their scr
 Class {
 	#name : #PRNoScriptLanguage,
 	#superclass : #PRAbstractScriptLanguage,
-	#category : 'Pillar-Model-ScriptLanguage'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #requirement }
