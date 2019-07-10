@@ -41,6 +41,7 @@ PRRenderingToyingPresenter >> initialize [
 PRRenderingToyingPresenter >> initializePresenter [
 	| document |
 	parseButton action: [ 
+		textResult text: ''.
 		document := PRPillarParser new parse: textInput text.
 		morphWriter start: document.
 		textResult text: morphWriter text ].
@@ -48,21 +49,13 @@ PRRenderingToyingPresenter >> initializePresenter [
 
 { #category : #initialization }
 PRRenderingToyingPresenter >> initializeWidgets [ 
-	self instantiateModels: #(
-		textResult TextModel 
-	).
+	self instantiateModels: #(textResult TextPresenter).
 	textResult text: ''.
-
-	self instantiateModels: #(
-		textInput TextModel 
-	).
+	self instantiateModels: #(textInput TextPresenter).
 	textInput 
 		autoAccept: true;
 		text: PRMorphWriter pillarInputExample.
-	
-	self instantiateModels: #(
-		parseButton ButtonModel 
-	).
+	self instantiateModels: #(parseButton ButtonPresenter).
 	parseButton label: 'Parse'.
 ]
 
