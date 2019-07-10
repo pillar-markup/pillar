@@ -1,6 +1,6 @@
 # Pillar
 
-Pillar is a markup syntax and tool-suite to generate documentation, books, websites and slides. Pillar is not new, it was invented around 2000 as a supporting language for [SmallWiki](https://www.slideshare.net/esug/smallwiki-smalltalk-wiki-towards-cms). Its ancestor was the markup for the Pier CMS amd we extracted it from Pier to make it more applicable to different domains. The [Pillar syntax]() is similar to markdown but its emphasis is on publishing and how it handles different types of links.
+Pillar is a markup syntax and tool-suite to generate documentation, books, websites and slides. Pillar is not new, it was invented around 2000 as a supporting language for [SmallWiki](https://www.slideshare.net/esug/smallwiki-smalltalk-wiki-towards-cms): one of the first wiki using OOP for real. Its ancestor was the markup for the Pier CMS amd we extracted it from Pier to make it more applicable to different domains. The [Pillar syntax]() is similar to markdown but its emphasis is on publishing and how it handles different types of links.
 
 [![Build Status](https://travis-ci.org/pillar-markup/pillar.svg?branch=stable)](https://travis-ci.org/pillar-markup/pillar)
 [![Documentation](https://img.shields.io/badge/Documentation-download-green.svg)](https://bintray.com/squarebracketassociates/wip/download_file?file_path=DistributingPillar-wip.pdf)
@@ -162,6 +162,15 @@ $ ./pharo-ui Pharo.image
 
 Read the documentation at https://github.com/SquareBracketAssociates/Booklet-PublishingAPillarBooklet.
 Please note that chapter on Pharo a web Perspective is obsolete since it refers to Pharo 60.
+
+## Planned features
+- Up to date documentation
+- Remodularize packaging to be able to use Pillar inside Pharo for class/package comments.
+- Integration with Citezen
+- Introduce a markdown brand (to be able to do full roundtrip pillar <-> markdown <-> pillar)
+- Better templates for Web
+- More components (blog)
+- Reinitiate a small version of Pier to get live support
 
 
 ## History
