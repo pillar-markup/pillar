@@ -7,7 +7,7 @@ a pillar syntax support do not subclass from this class.
 Class {
 	#name : #PRListItem,
 	#superclass : #PRDocumentGroup,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #testing }

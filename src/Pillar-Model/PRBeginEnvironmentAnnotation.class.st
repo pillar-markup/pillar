@@ -1,7 +1,7 @@
 Class {
 	#name : #PRBeginEnvironmentAnnotation,
 	#superclass : #PREnvironmentAnnotation,
-	#category : #'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #protected }

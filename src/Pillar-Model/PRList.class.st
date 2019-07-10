@@ -6,7 +6,7 @@ I am an abstract list. I represent the abstraction over ordered, unordered HTML 
 Class {
 	#name : #PRList,
 	#superclass : #PRDocumentGroup,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #visiting }

@@ -1,10 +1,16 @@
+"
+I'm a value of a key in a environment or tag. 
+For example in ${begin:card|rank=33}$ 33 is represented by one of my instance. 
+
+
+"
 Class {
 	#name : #PRParameterValue,
 	#superclass : #PRDocumentItem,
 	#instVars : [
 		'value'
 	],
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #testing }

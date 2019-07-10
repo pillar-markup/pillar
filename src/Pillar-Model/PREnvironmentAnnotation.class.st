@@ -1,7 +1,7 @@
 Class {
 	#name : #PREnvironmentAnnotation,
 	#superclass : #PRAbstractAnnotation,
-	#category : #'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #'instance creation' }

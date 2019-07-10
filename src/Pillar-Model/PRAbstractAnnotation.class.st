@@ -35,7 +35,7 @@ Class {
 		'hadAllKeys',
 		'isValid'
 	],
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #protected }

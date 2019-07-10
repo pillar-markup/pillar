@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'children'
 	],
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #testing }

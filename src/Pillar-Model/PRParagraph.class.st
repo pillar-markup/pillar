@@ -6,7 +6,7 @@ I'm close to a latex or HTML paragraph. I do not contain complex structures such
 Class {
 	#name : #PRParagraph,
 	#superclass : #PRDocumentGroup,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #testing }

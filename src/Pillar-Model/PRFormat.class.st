@@ -4,7 +4,7 @@ A styling format
 Class {
 	#name : #PRFormat,
 	#superclass : #PRDocumentGroup,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #visiting }

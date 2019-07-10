@@ -1,10 +1,16 @@
+"
+I represent a key and value pair. 
+My key is instance of PRParameterKey and its associated vaue is an instance of PRParameterValue.
+
+
+"
 Class {
 	#name : #PRParameter,
 	#superclass : #PRDocumentGroup,
 	#instVars : [
 		'isValid'
 	],
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #testing }

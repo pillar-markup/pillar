@@ -4,7 +4,7 @@ Bold styling format
 Class {
 	#name : #PRBoldFormat,
 	#superclass : #PRFormat,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #testing }
