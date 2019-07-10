@@ -304,11 +304,6 @@ PRVisitor >> visitStrikethroughFormat: anObject [
 	self visitFormat: anObject
 ]
 
-{ #category : #'visiting-annotations' }
-PRVisitor >> visitStructure: aStructure [
-	self visitDocumentItem: aStructure
-]
-
 { #category : #'visiting-document' }
 PRVisitor >> visitSubscriptFormat: anObject [
 	self visitFormat: anObject
