@@ -24,6 +24,13 @@ $ ls
 LICENSE  README.md  appveyor.yml  archetypes  ==>>build<<==  download.sh  scripts  src
 ```
 
+
+#### Current versions
+
+- Most Pharo booklets are using 7.4.1
+- 7.5.0 is stable (most tests green except two from booktester - will be addressed soon). We have to check whether 7.5.0 supports old style columns (which where a kind of half-baked hardcoded environment).
+
+
 #### Getting an older version
 
 - *v5.0:* Pillar 5 is released for Pharo5 and versionned on [SmalltalkHub](http://smalltalkhub.com/#!/~Pier/Pillar).
@@ -163,17 +170,19 @@ $ ./pharo-ui Pharo.image
 Read the documentation at https://github.com/SquareBracketAssociates/Booklet-PublishingAPillarBooklet.
 Please note that chapter on Pharo a web Perspective is obsolete since it refers to Pharo 60.
 
+## History
+
+- 7.5.0 introduces environments (${begin:card|x=12}$ ... ${end:card}$
+- 7.4.1 introduces element-based templating (templates found in a given folder are used to output one given element).
+
 ## Planned features
 - Up to date documentation
 - Remodularize packaging to be able to use Pillar inside Pharo for class/package comments.
 - Integration with Citezen
-- Introduce a markdown brand (to be able to do full roundtrip pillar <-> markdown <-> pillar)
+- Introduce a markdown brand (to be able to do full roundtrip pillar <-> markdown <-> pillar). It will not cover every features of markdown and it will cover pillar core features: environment, extensible tags.
 - Better templates for Web
 - More components (blog)
 - Reinitiate a small version of Pier to get live support
 
 
-## History
 
-- 7.5.0 introduces environments (${begin:card|x=12}$ ... ${end:card}$
-- 7.4.1 introduces element-based templating (templates found in a given folder are used to output one given element).
