@@ -5,10 +5,16 @@ Class {
 	#name : #PRBookTestGeneratorTest,
 	#superclass : #PRBookTestEnvironmentTest,
 	#instVars : [
-		'testingFileSystem'
+		'testingFileSystem',
+		'testGenerator'
 	],
-	#category : 'Pillar-BookTester-Visitor-Tests'
+	#category : #'Pillar-BookTester-Visitor-Tests'
 }
+
+{ #category : #running }
+PRBookTestGeneratorTest >> methodCreationError [
+	^ self class environment at: #PRTTestMethodCreationError
+]
 
 { #category : #running }
 PRBookTestGeneratorTest >> methodCreationFail [
@@ -25,6 +31,7 @@ PRBookTestGeneratorTest >> setUp [
 	"Hooks that subclasses may override to define the fixture of test."
 	
 	super setUp.
+	testGenerator := PRBookTestGenerator new.
 	testingFileSystem := FileSystem memory workingDirectory.
 	(testingFileSystem / self class pillarFileNameForTest)
 		writeStreamDo: [ :stream |
@@ -46,8 +53,7 @@ PRBookTestGeneratorTest >> tearDown [
 
 { #category : #running }
 PRBookTestGeneratorTest >> testMethodCreationFailingCodeblock [
-	| testGenerator codeBlock |
-	testGenerator := PRBookTestGenerator new.
+	| codeBlock run |
 	testGenerator resultPackage: 'Pillar-BookTesterResults-TestResults'.
 	testGenerator fileName: 'PRTTestMethodCreationFail'.
 	testGenerator createClassFrom: testGenerator fileName.
@@ -63,17 +69,18 @@ PRBookTestGeneratorTest >> testMethodCreationFailingCodeblock [
 			'test1
 	
 	self assert: ((3+7)>>>11) isPaired'.
+	run := self methodCreationFail suite run.
 	self
-		assert: self methodCreationFail suite run failures size
+		assert: run failures size
 		equals: 1.
-	self assert: self methodCreationFail suite run errors isEmpty.
-	self assert: self methodCreationFail suite run passed isEmpty
+	self assert: run errors isEmpty.
+	self assert: run passed isEmpty
 ]
 
 { #category : #running }
 PRBookTestGeneratorTest >> testMethodCreationSuccessfulCodeblock [
-	| testGenerator codeBlock |
-	testGenerator := PRBookTestGenerator new.
+
+	| codeBlock run |
 	testGenerator resultPackage: 'Pillar-BookTesterResults-TestResults'.
 	testGenerator fileName: 'PRTTestMethodCreationSuccess'.
 	testGenerator createClassFrom: testGenerator fileName.
@@ -89,54 +96,52 @@ PRBookTestGeneratorTest >> testMethodCreationSuccessfulCodeblock [
 			'test1
 	
 	self assert: ((3+4)>>>7) isPaired'.
-	self assert: self methodCreationSuccess suite run failures isEmpty.
-	self assert: self methodCreationSuccess suite run errors isEmpty.
+	run := self methodCreationSuccess suite run.
+	self assert: run failures isEmpty.
+	self assert: run errors isEmpty.
 	self
-		assert:
-			self methodCreationSuccess suite run passed size
+		assert: self run passed size
 		equals: 1
 ]
 
 { #category : #running }
 PRBookTestGeneratorTest >> testMethodCreationSyntaxErrorCodeblock [
 
-	| testGenerator codeBlock |
-	testGenerator := PRBookTestGenerator new.
+	| codeBlock run |
 	testGenerator fileName: 'PRTTestMethodCreationError'.
 	testGenerator resultPackage: 'Pillar-BookTesterResults-TestResults'.
 	testGenerator createClassFrom: testGenerator fileName.
 	testGenerator codeBlockIndex: 1.
 	codeBlock := PRCodeblock content: '(a1 at: 1) at: 1 put: ''sally''. a1 >>> #(#(''sally''))' parameters: 'testcase=true'.
 	testGenerator createTestMethodFrom: codeBlock.
-	self assert: ((self class environment at: #PRTTestMethodCreationError) methodDict includesKey: #test1).
-	self assert: ((self class environment at: #PRTTestMethodCreationError) methodDict at: #test1) sourceCode equals: 'test1
+	self assert: (self methodCreationError methodDict includesKey: #test1).
+	self assert: (self methodCreationError methodDict at: #test1) sourceCode equals: 'test1
 
 	self assert: Error signal description: ''A code block failed''. 
 	"SyntaxErrorNotification was raised with: '')'' expected"
 	"by the codeblock: ((a1 at: 1) at: 1 put: ''sally''. a1)>>>#(#(''sally''))"'.
-	self assert: (self class environment at: #PRTTestMethodCreationError) suite run failures isEmpty.
-	self assert: (self class environment at: #PRTTestMethodCreationError) suite run errors size equals:1.
-	self assert: (self class environment at: #PRTTestMethodCreationError) suite run passed isEmpty.
+	run := self methodCreationError suite run.
+	self assert: run failures isEmpty.
+	self assert: run errors size equals: 1.
+	self assert: run passed isEmpty.
 	
 ]
 
 { #category : #running }
 PRBookTestGeneratorTest >> testMethodsPassed [
 
-	| testGenerator |
-	testGenerator := PRBookTestGenerator new.
 	testGenerator resultPackage: 'Pillar-BookTesterResults-TestResults'.
 	testGenerator workingDirectory: testingFileSystem.
 	testGenerator checkAndReportFileNamed: self class pillarFileNameForTest.	
 	self assert: testGenerator codeBlockIndex equals: 6.
-	self assert: ((testGenerator resultPackage) asPackage definedMethodsForClass: (self class environment at: #PRTTest)) size equals: 6.
+	self 
+		assert: (testGenerator resultPackage asPackage definedMethodsForClass: (self class environment at: #PRTTest)) size 
+		equals: 6.
 ]
 
 { #category : #running }
 PRBookTestGeneratorTest >> testPrettyRename [
 
-	| testGenerator |
-	testGenerator := PRBookTestGenerator new.
 	self assert: (testGenerator prettyRename: '/usr/Users/Library/test.pillar') 
 		  equals: 'PRTTest'.
 ]
