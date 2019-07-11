@@ -9,10 +9,10 @@ PRBookTesterVisitorMethodDefinitionTest >> setUp [
 	"Hooks that subclasses may override to define the fixture of test."
 	
 	super setUp.
-	PRBookTestDummyMethodDefinition methods do: [ :each | each removeFromSystem ].
-	(PRBookTestDummyMethodDefinition class) methods do: [ :each | each removeFromSystem ].
-	(PRBookTestDummyClass allSubclasses includes: PRBookTestDummyClassCreation)
-		ifTrue: [SystemDictionary new removeClassNamed: #PRBookTestDummyClassCreation].
+	PRBookTestDummyMethodDefinitionTest methods do: [ :each | each removeFromSystem ].
+	(PRBookTestDummyMethodDefinitionTest class) methods do: [ :each | each removeFromSystem ].
+	(PRBookTestDummyClassTest allSubclasses includes: PRBookTestDummyClassCreationTest)
+		ifTrue: [SystemDictionary new removeClassNamed: #PRBookTestDummyClassCreationTest].
 
 
 ]
@@ -21,10 +21,10 @@ PRBookTesterVisitorMethodDefinitionTest >> setUp [
 PRBookTesterVisitorMethodDefinitionTest >> tearDown [
 	"Hooks that subclasses may override to define the fixture of test."
 	
-	PRBookTestDummyMethodDefinition methods do: [ :each | each removeFromSystem ].
-	(PRBookTestDummyMethodDefinition class) methods do: [ :each | each removeFromSystem ].
-	(PRBookTestDummyClass allSubclasses includes: PRBookTestDummyClassCreation)
-		ifTrue: [SystemDictionary new removeClassNamed: #PRBookTestDummyClassCreation].
+	PRBookTestDummyMethodDefinitionTest methods do: [ :each | each removeFromSystem ].
+	(PRBookTestDummyMethodDefinitionTest class) methods do: [ :each | each removeFromSystem ].
+	(PRBookTestDummyClassTest allSubclasses includes: PRBookTestDummyClassCreationTest)
+		ifTrue: [SystemDictionary new removeClassNamed: #PRBookTestDummyClassCreationTest].
 ]
 
 { #category : #'tests-class/method definition' }
@@ -33,7 +33,7 @@ PRBookTesterVisitorMethodDefinitionTest >> testVisitClassDefinitionValid [
   | docText doc bTester |
 		
 	docText := '[[[classDefinition=true
-PRBookTestDummyClass subclass: #PRBookTestDummyClassCreation
+PRBookTestDummyClassTest subclass: #PRBookTestDummyClassCreationTest
 	instanceVariableNames: ''''
 	classVariableNames: ''''
 	package: ''Pillar-BookTester-Visitor-Tests''
@@ -51,14 +51,14 @@ PRBookTesterVisitorMethodDefinitionTest >> testVisitMethodDefinitionCreatesMetho
 	
   | docText doc bTester |
 	docText := '[[[methodDefinition=true
-PRBookTestDummyMethodDefinition >> methodTestDefinitionCreatesTest
+PRBookTestDummyMethodDefinitionTest >> methodTestDefinitionCreatesTest
 ^ ''I am a method of the class'', self class asString
 ]]]
 '.
 	doc := PRPillarParser new parse: docText.
 	bTester := PRBookTesterVisitor new.
 	bTester visitCodeblockMethodDefinition: doc children first. 
-	self assert: (PRBookTestDummyMethodDefinition methodDict includesKey: #methodTestDefinitionCreatesTest).
+	self assert: (PRBookTestDummyMethodDefinitionTest methodDict includesKey: #methodTestDefinitionCreatesTest).
 ]
 
 { #category : #'tests-class/method definition' }
@@ -114,7 +114,7 @@ PRBookTesterVisitorMethodDefinitionTest >> testVisitMethodDefinitionValid [
 	
   | docText doc bTester |
 	docText := '[[[methodDefinition=true
-PRBookTestDummyMethodDefinition >> methodTestDefinitionCreatesTest
+PRBookTestDummyMethodDefinitionTest >> methodTestDefinitionCreatesTest
 ^ ''I am a method of the class'', self class asString
 ]]]
 '.
@@ -130,7 +130,7 @@ PRBookTesterVisitorMethodDefinitionTest >> testVisitMethodDefinitionValidClassSi
 	
   | docText doc bTester |
 	docText := '[[[methodDefinition=true
-PRBookTestDummyMethodDefinition class>> methodTestDefinitionCreatesTest
+PRBookTestDummyMethodDefinitionTest class>> methodTestDefinitionCreatesTest
 ^ ''I am a method of the class'', self class asString
 ]]]
 '.
@@ -146,12 +146,12 @@ PRBookTesterVisitorMethodDefinitionTest >> testVisitTestDefinitionCreatesMethod 
 	
   | docText doc bTester |
 	docText := '[[[testDefinition=true
-PRBookTestDummyMethodDefinition >> testTestDefinitionCreatesTest
+PRBookTestDummyMethodDefinitionTest >> testTestDefinitionCreatesTest
 self assert: 3+4 equals: 7
 ]]]
 '.
 	doc := PRPillarParser new parse: docText.
 	bTester := PRBookTesterVisitor new.
 	bTester visitCodeblockMethodDefinition: doc children first. 
-	self assert: (PRBookTestDummyMethodDefinition methodDict includesKey: #testTestDefinitionCreatesTest).
+	self assert: (PRBookTestDummyMethodDefinitionTest methodDict includesKey: #testTestDefinitionCreatesTest).
 ]

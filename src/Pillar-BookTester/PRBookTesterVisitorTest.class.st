@@ -112,7 +112,7 @@ PRBookTesterVisitorTest >> testExpectedFailureForAFailure [
 	bTester := PRBookTesterVisitor new.
 	bTester start: doc. 
 	self assert: bTester failedTests isEmpty.
-	self assert: (bTester validTests size) equals: 1.
+	self assert: bTester validTests size equals: 1.
 ]
 
 { #category : #'tests - examples' }
@@ -186,10 +186,8 @@ PRBookTesterVisitorTest >> testExplanationIsTestPassed [
 
 { #category : #'tests-annotations' }
 PRBookTesterVisitorTest >> testLoaderAnnotationLoadsPackageChapter1 [
-	| doc bookTester|
-	
+	| doc bookTester |
 	SystemVersion current major < 7 ifTrue: [ ^ self skip ].
-	
 	doc := PRDocument new
 				add:
 				(PRLoaderAnnotation new

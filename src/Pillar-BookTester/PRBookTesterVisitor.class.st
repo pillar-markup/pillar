@@ -62,6 +62,7 @@ PRBookTesterVisitor >> allTestResults [
 
 { #category : #accessing }
 PRBookTesterVisitor >> allTestResults: anObject [
+
 	allTestResults := anObject
 ]
 
@@ -183,7 +184,7 @@ PRBookTesterVisitor >> executeAndReportExample: result [
 	
 	| isCorrect |
 	isCorrect := false.
-	[ isCorrect := (self class compiler evaluate: result text) isPaired ]
+	[ isCorrect := self checkAssociation: result ]
 		on: Exception
 		do: [ :ex | result explanation: ex asString ].
 	result status: isCorrect.
@@ -209,11 +210,11 @@ PRBookTesterVisitor >> executeAndReportMethodDefinition: result [
 	isCorrect := false.
 	"The method definition can be either 'classSide', 'wrongSyntax' or 'normalMethodDefinition'"
 	typeString := result characterizeMethodDefinition.
-	(typeString = 'wrongSyntax')
+	typeString = 'wrongSyntax'
 		ifTrue: [ isCorrect := self compileWrongSyntaxMethodDefinition: result ].
-	(typeString = 'classSide')
+	typeString = 'classSide'
 		ifTrue: [ isCorrect := self compileClassSideMethod: result ].
-	(typeString = 'normalMethodDefinition')
+	typeString = 'normalMethodDefinition'
 		ifTrue: [ isCorrect := self compileMethod: result ].
 	result status: isCorrect.
 	isCorrect ifTrue: [ result explanation: 'Method compiled' ]
@@ -227,21 +228,23 @@ PRBookTesterVisitor >> failedTests [
 
 { #category : #accessing }
 PRBookTesterVisitor >> finalStatus [
+
 	^ finalStatus
 ]
 
 { #category : #accessing }
 PRBookTesterVisitor >> finalStatus: anObject [
+
 	finalStatus := anObject
 ]
 
 { #category : #initialization }
 PRBookTesterVisitor >> initialize [
 	super initialize.
-	codeblockDict := {(#isEvaluated -> #evaluate:).
-	(#isExample -> #visitCodeblockExample:).
-	(#isMethodDefinition -> #visitCodeblockMethodDefinition:).
-	(#isClassDefinition -> #visitCodeblockClassDefinition:)} asDictionary.
+	codeblockDict := { (#isEvaluated -> #evaluate:).
+							(#isExample -> #visitCodeblockExample:).
+							(#isMethodDefinition -> #visitCodeblockMethodDefinition:).
+							(#isClassDefinition -> #visitCodeblockClassDefinition:)} asDictionary.
 	allTestResults := OrderedCollection new.
 	workingDirectory := FileLocator home.
 	finalStatus := true
@@ -266,14 +269,15 @@ PRBookTesterVisitor >> visitCodeblock: aCodeBlock [
 PRBookTesterVisitor >> visitCodeblockClassDefinition: aCodeBlock [
 	"Creates an instance of PRBookTestResult with parameters depending of the type of the codeblock. 
 	Here it is for a class definition, it simply compiles the codeblock text"
+	
 	| result |
 	self withPillarAuthorDo: [
 		result := PRBookTestResult new.
 		result text: aCodeBlock text.
 		allTestResults add: result.
 		self executeAndReportClassDefinition: result.
-		(aCodeBlock isExpectedFailure)
-			ifTrue: [ result status: (result status) not] ]
+		aCodeBlock isExpectedFailure
+			ifTrue: [ result status: result status not] ]
 ]
 
 { #category : #'visiting-codeblock' }
@@ -282,15 +286,15 @@ PRBookTesterVisitor >> visitCodeblockExample: aCodeBlock [
 	Here it is for an example and therefore uses the specialized exmple methods
 	textForTestcase
 	executeAndReportExample:
-	Note that there is no fragmentedText here, no need for it b/ecause the codeblock text contains the whole text
-	and is the equivalent of  Playground execution"
+	Note that there is no fragmentedText here, no need for it b/ecause the codeblock text contains the whole text and is the equivalent of  Playground execution"
+	
 	| result |
 	result := PRBookTestResult new.
 	result text: aCodeBlock textForExample.
 	allTestResults add: result.
 	self executeAndReportExample: result.
-	(aCodeBlock isExpectedFailure)
-		ifTrue: [ result status: (result status) not] 
+	aCodeBlock isExpectedFailure
+		ifTrue: [ result status: result status not] 
 ]
 
 { #category : #'visiting-codeblock' }
@@ -299,16 +303,16 @@ PRBookTesterVisitor >> visitCodeblockMethodDefinition: aCodeBlock [
 	Here it is for a test definition and therefore uses the specialized test definition methods
 	textForMethodDefinition
 	executeAndReportMethodDefinition:"
-	| result |
 	
+	| result |
 	self withPillarAuthorDo: [
 		result := PRBookTestResult new.
 		result text: aCodeBlock text.
 		result fragmentedText: aCodeBlock textForMethodDefinition.
 		allTestResults add: result.
 		self executeAndReportMethodDefinition: result.
-		(aCodeBlock isExpectedFailure)
-			ifTrue: [ result status: (result status) not] ]
+		aCodeBlock isExpectedFailure
+			ifTrue: [ result status: result status not] ]
 ]
 
 { #category : #'visiting-annotations' }

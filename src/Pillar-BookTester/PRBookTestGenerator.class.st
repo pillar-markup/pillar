@@ -12,26 +12,26 @@ Class {
 	#category : 'Pillar-BookTester-Visitor'
 }
 
-{ #category : #accessing }
-PRBookTestGenerator >> cbIndex [
-
-	^ cbIndex
-]
-
-{ #category : #accessing }
-PRBookTestGenerator >> cbIndex: aCodeblockCounter [
-
-	cbIndex := aCodeblockCounter
-]
-
 { #category : #visiting }
 PRBookTestGenerator >> checkAndReportFileNamed: aPath [
 	
 	self fileName: (self prettyRename: aPath).
 	self createClassFrom: fileName.
-	super checkAndReportFileNamed: aPath.
+	super checkAndReportFileNamed: aPath
 	
 		
+]
+
+{ #category : #accessing }
+PRBookTestGenerator >> codeBlockIndex [
+
+	^ cbIndex
+]
+
+{ #category : #accessing }
+PRBookTestGenerator >> codeBlockIndex: aCodeblockCounter [
+
+	cbIndex := aCodeblockCounter
 ]
 
 { #category : #visiting }
@@ -40,7 +40,7 @@ PRBookTestGenerator >> createClassFrom: aPrettyFileName [
 	TestCase subclass: aPrettyFileName 
    		instanceVariableNames: ''
     	classVariableNames: ''
-    	package: resultPackage.
+    	package: resultPackage
 		
 ]
 
@@ -91,7 +91,7 @@ PRBookTestGenerator >> fileName: aFileName [
 PRBookTestGenerator >> initialize [
 
 	super initialize.
-	self cbIndex: 0.
+	self codeBlockIndex: 0.
 	resultPackage := 'Pillar-BookTesterResults-Books'.
 ]
 
@@ -100,7 +100,7 @@ PRBookTestGenerator >> prettyRename: aPath [
 
 	| basename |
 	basename := aPath asFileReference basename.
-	^ 'PRT',((basename first asString capitalized), basename allButFirst) withoutPeriodSuffix
+	^ 'PRT', ((basename first asString capitalized), basename allButFirst) withoutPeriodSuffix
 ]
 
 { #category : #visiting }
@@ -118,9 +118,9 @@ PRBookTestGenerator >> resultPackage: aPackageName [
 { #category : #visiting }
 PRBookTestGenerator >> visitCodeblock: aCodeblock [
 
-	(aCodeblock isEvaluated)
-		ifTrue: (self evaluate: aCodeblock)
-		ifFalse:[(aCodeblock isExample)
-							ifTrue: [ self cbIndex: cbIndex+1.
-				 			 self createTestMethodFrom: aCodeblock]]
+	aCodeblock isEvaluated
+		ifTrue: [ self evaluate: aCodeblock ]
+		ifFalse: [ aCodeblock isExample
+							ifTrue: [ self codeBlockIndex: cbIndex+1.
+				 			 self createTestMethodFrom: aCodeblock ]]
 ]
