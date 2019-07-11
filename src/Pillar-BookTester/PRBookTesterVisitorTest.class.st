@@ -216,9 +216,7 @@ PRBookTesterVisitorTest >> testLoaderAnnotationLoadsPackageChapter1 [
 { #category : #'tests-annotations' }
 PRBookTesterVisitorTest >> testLoaderAnnotationLoadsPackageChapter2 [
 	| doc bookTester|
-	
 	SystemVersion current major < 7 ifTrue: [ ^ self skip ].
-	
 	doc := PRDocument new
 				add:
 				(PRLoaderAnnotation new
