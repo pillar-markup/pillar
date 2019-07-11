@@ -341,6 +341,7 @@ PRBookTesterVisitor >> visitLoaderAnnotation: aPRLoaderAnnotation [
 		baseline: baselineName;
 		repository: 'github://', accountName,'/', projectName,':', tagName, '/src';
 		onUpgrade: [ :ex | ex useIncoming ];
+		onConflict: [ :err | err useIncoming ];
 		load.
 	
 ]
