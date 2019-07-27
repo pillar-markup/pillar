@@ -1,7 +1,12 @@
+"
+During construction of the parameters, just after parsing 
+there is an obscure validation phase. 
+And I'm the class holding a strategy of our this validation is handled.
+"
 Class {
 	#name : #PRValidation,
 	#superclass : #DynamicVariable,
-	#category : 'Pillar-Model-ValidationStrategies'
+	#category : #'Pillar-Model-ValidationStrategies'
 }
 
 { #category : #protocol }
