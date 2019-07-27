@@ -50,18 +50,23 @@ PRMorphWriter class >> pillarInputExample [
 !!Heading Twoo 
 
 ""this is bold"" 
+
+This is not bold 
+
+This is a list
+- item 1 ""this is bold again my friend""
+- item 2
+
+This is an ordered collection
+# one
+# two 
+
 The following code shows the definition of the method ==printOn:==
 
 [[[  
 Point class >> new
 	self foo	
 ]]] 
-
-This is not not bold 
-
-this is a list
-- item 1 ""this is bold again my friend""
-- item 2
 
 [[[language=smalltalk 
 1 + 2 
@@ -175,12 +180,31 @@ PRMorphWriter >> visitHeader: anObject [
 ]
 
 { #category : #'visiting-document' }
-PRMorphWriter >> visitListItem: anObject [
+PRMorphWriter >> visitList: aListOfItems [
 	
-	canvas append: Character tab.
-	canvas append: '- '.
-	self visitDocumentGroup: anObject.
-	canvas append: String crlf
+	aListOfItems children do: [ :each | 
+		canvas append: '- '.
+		self visitListItem: each.
+		canvas append: String crlf
+		]
+
+]
+
+{ #category : #visiting }
+PRMorphWriter >> visitOrderedElements: aPROrderedList startingAt: anInteger [ 
+	
+	aPROrderedList withIndexDo: [ :each :i | 
+		canvas append: i asString, ' '.
+		self visitListItem: each.
+		canvas append: String crlf
+		]
+]
+
+{ #category : #'visiting-document' }
+PRMorphWriter >> visitOrderedList: aList [
+	
+	self visitOrderedElements: aList children startingAt: 1.
+	
 ]
 
 { #category : #'visiting-document' }
