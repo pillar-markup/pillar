@@ -152,7 +152,9 @@ PRVisitor >> visitEndEnvironmentAnnotation: aEndEnvironmentAnnotation [
 
 { #category : #'visiting-document' }
 PRVisitor >> visitEnvironment: anObject [
-
+	"An environment object has been created based on the begin and end annotations.
+	My subclasses may want to introduce a preAction and postAction triggering. By default just visit all children."
+	
 	self visitDocumentGroup: anObject
 ]
 
