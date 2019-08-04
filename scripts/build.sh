@@ -33,7 +33,7 @@ PHARO_VERSION="${PHARO_VERSION:-70}"
 PHARO="./pharo Pharo.image"
 
 rm -rf "${__builddir}" && mkdir -p "${__builddir}" && cd "${__builddir}"
-wget -O - get.pharo.org/${PHARO_VERSION}+vm | bash
+wget -O - get.pharo.org/64/${PHARO_VERSION}+vm | bash
 
 REPOSITORY_PATH=${__dir}/../src
 OS=$(get_platform_identifier)
