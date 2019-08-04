@@ -27,6 +27,12 @@ PRBookTestGeneratorTest >> methodCreationSuccess [
 ]
 
 { #category : #running }
+PRBookTestGeneratorTest >> packageName [ 
+
+	^ #'Pillar-BookTesterResults-TestResults'
+]
+
+{ #category : #running }
 PRBookTestGeneratorTest >> setUp [
 	"Hooks that subclasses may override to define the fixture of test."
 	
@@ -45,7 +51,7 @@ PRBookTestGeneratorTest >> tearDown [
 	
 	| pak |
 	super tearDown.
-	pak := RPackageOrganizer default packageNamed: #'Pillar-BookTesterResults-TestResults' ifAbsent: [^ self ].
+	pak := RPackageOrganizer default packageNamed: self packageName ifAbsent: [^ self ].
 	pak removeFromSystem.
 
 
@@ -100,7 +106,7 @@ PRBookTestGeneratorTest >> testMethodCreationSuccessfulCodeblock [
 	self assert: run failures isEmpty.
 	self assert: run errors isEmpty.
 	self
-		assert: self run passed size
+		assert: run passed size
 		equals: 1
 ]
 

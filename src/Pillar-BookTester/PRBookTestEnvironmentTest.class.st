@@ -1,7 +1,10 @@
+"
+I contain on my class side some definition so that tests can run in memory.
+"
 Class {
 	#name : #PRBookTestEnvironmentTest,
 	#superclass : #TestCase,
-	#category : 'Pillar-BookTester-Visitor-Tests'
+	#category : #'Pillar-BookTester-Visitor-Tests'
 }
 
 { #category : #'test file creation' }
