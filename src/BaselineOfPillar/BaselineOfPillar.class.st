@@ -18,6 +18,7 @@ BaselineOfPillar >> baseline: spec [
 		for: #(unix osx)
 		do: [ spec baseline: 'OSSubprocess' with: [ spec repository: 'github://marianopeck/OSSubprocess:v0.2.5/repository' ].
 			spec package: 'Pillar-Project' with: [ spec requires: 'OSSubprocess' ] ].
+	
 	spec
 		for: #common
 		do: [ spec blessing: #baseline.
@@ -36,11 +37,11 @@ BaselineOfPillar >> baseline: spec [
 			spec
 				package: 'Pillar-Chrysal-Generator' with: [ spec requires: #('Chrysal') ];
 				"Only needed to regenerate the pillar configuration: it depends on Chrysal and Chrysal-Runtime"
-					package: 'Pillar-Cli' with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-Chrysal') ];
+				package: 'Pillar-Cli' with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-Chrysal') ];
 				package: 'Pillar-Chrysal' with: [ spec requires: #('Pillar-ExporterCore') ];
 				"Pillar-Chrysal should only depend on Chrysal-Runtime but right now I do not know how to express that the
 				Chrysal (builder) is different from Chrysal-Runtime"
-					package: 'Pillar-ExporterAsciiDoc' with: [ spec requires: #('Pillar-ExporterCore') ];
+				package: 'Pillar-ExporterAsciiDoc' with: [ spec requires: #('Pillar-ExporterCore') ];
 				package: 'Pillar-ExporterBeamer' with: [ spec requires: #('Pillar-ExporterLaTeX') ];
 				package: 'Pillar-ExporterCore' with: [ spec requires: #('Pillar-Model' 'ContainersPropertyEnvironment') ];
 				package: 'Pillar-ExporterDeckJS' with: [ spec requires: #('Pillar-ExporterHTML') ];
@@ -57,20 +58,19 @@ BaselineOfPillar >> baseline: spec [
 				package: 'Pillar-Project' with: [ spec requires: #('Pillar-Model' 'All exporters') ];
 				package: 'Pillar-BookTester' with: [ spec requires: #('Pillar-Project') ];
 				package: 'Pillar-Tests-Cli' with: [ spec requires: #('Pillar-Cli') ];
-				package: 'Pillar-Tests-ExporterAsciiDoc'
-					with: [ spec requires: #('Pillar-ExporterAsciiDoc' 'Pillar-Tests-ExporterCore') ];
+				package: 'Pillar-Tests-ExporterAsciiDoc' with: [ spec requires: #('Pillar-ExporterAsciiDoc' 'Pillar-Tests-ExporterCore') ];
 				package: 'Pillar-Tests-ExporterBeamer' with: [ spec requires: #('Pillar-ExporterBeamer' 'Pillar-Tests-ExporterLaTeX') ];
 				package: 'Pillar-Tests-ExporterCore' with: [ spec requires: #('Pillar-Tests-Model' 'Pillar-ExporterCore') ];
 				package: 'Pillar-Tests-ExporterDeckJS' with: [ spec requires: #('Pillar-ExporterDeckJS' 'Pillar-Tests-ExporterHTML') ];
 				package: #'Pillar-Tests-ExporterEPub' with: [ spec requires: #(#'Pillar-ExporterEPub' 'Pillar-Tests-ExporterCore') ];
 				package: 'Pillar-Tests-ExporterHTML' with: [ spec requires: #('Pillar-ExporterHTML' 'Pillar-Tests-ExporterCore') ];
 				package: 'Pillar-Tests-ExporterLaTeX' with: [ spec requires: #('Pillar-ExporterLaTeX' 'Pillar-Tests-ExporterCore') ];
-				package: 'Pillar-Tests-ExporterMarkdown'
-					with: [ spec requires: #('Pillar-ExporterMarkdown' 'Pillar-Tests-ExporterCore' 'Pillar-Tests-ExporterHTML') ];
+				package: 'Pillar-Tests-ExporterMarkdown' with: [ spec requires: #('Pillar-ExporterMarkdown' 'Pillar-Tests-ExporterCore' 'Pillar-Tests-ExporterHTML') ];
 				package: 'Pillar-Tests-ExporterPillar' with: [ spec requires: #('Pillar-ExporterPillar' 'Pillar-Tests-ExporterCore') ];
 				package: 'Pillar-Tests-ExporterText' with: [ spec requires: #('Pillar-ExporterText' 'Pillar-Tests-ExporterCore') ];
 				package: 'Pillar-Tests-Model' with: [ spec requires: #('Pillar-Model' 'Pillar-ExporterPillar' 'Pillar-ExporterText') ];
 				package: 'Pillar-Tests-PetitPillar' with: [ spec requires: #('PetitParser2Core' 'Pillar-PetitPillar') ];
+				package: 'Pillar-Tests-BookTester' with: [ spec requires: #('Pillar-BookTester') ];
 				package: 'Pillar-Tests-Project' with: [ spec requires: #('Pillar-Project') ];
 				package: 'Pillar-Tests-Integration' with: [ spec requires: #('Pillar-Project') ].
 			spec
@@ -96,6 +96,8 @@ BaselineOfPillar >> baseline: spec [
 				group: 'ePub exporter tests' with: #(#'Pillar-Tests-ExporterEPub');
 				group: 'html exporter' with: #('Pillar-ExporterHTML');
 				group: 'html exporter tests' with: #('Pillar-Tests-ExporterHTML');
+				group: 'booktester' with: #('Pillar-BookTester');
+				group: 'booktester tests' with: #('Pillar-Tests-BookTester');
 				group: 'latex exporter' with: #('Pillar-ExporterLaTeX');
 				group: 'latex exporter tests' with: #('Pillar-Tests-ExporterLaTeX');
 				group: 'markdown exporter' with: #('Pillar-ExporterMarkdown' 'parser');
