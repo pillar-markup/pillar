@@ -10,5 +10,5 @@ Pillar-BookTesterResults splits in two packages:
 Class {
 	#name : #PRBookTestDummyClassTest,
 	#superclass : #TestCase,
-	#category : #'Pillar-BookTester-Visitor-Tests'
+	#category : #'Pillar-Tests-BookTester'
 }

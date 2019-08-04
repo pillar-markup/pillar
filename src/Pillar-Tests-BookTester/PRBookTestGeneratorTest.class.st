@@ -8,7 +8,7 @@ Class {
 		'testingFileSystem',
 		'testGenerator'
 	],
-	#category : #'Pillar-BookTester-Visitor-Tests'
+	#category : #'Pillar-Tests-BookTester'
 }
 
 { #category : #running }

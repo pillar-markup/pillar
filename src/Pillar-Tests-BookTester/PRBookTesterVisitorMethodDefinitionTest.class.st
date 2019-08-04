@@ -1,7 +1,7 @@
 Class {
 	#name : #PRBookTesterVisitorMethodDefinitionTest,
 	#superclass : #PRBookTesterVisitorTest,
-	#category : 'Pillar-BookTester-Visitor-Tests'
+	#category : #'Pillar-Tests-BookTester'
 }
 
 { #category : #running }

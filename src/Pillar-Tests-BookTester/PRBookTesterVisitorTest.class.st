@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'testingFileSystem'
 	],
-	#category : 'Pillar-BookTester-Visitor-Tests'
+	#category : #'Pillar-Tests-BookTester'
 }
 
 { #category : #'tests - examples' }
