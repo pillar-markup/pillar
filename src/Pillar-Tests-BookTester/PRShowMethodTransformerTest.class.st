@@ -10,6 +10,31 @@ PRShowMethodTransformerTest >> actualClass [
 ]
 
 { #category : #running }
+PRShowMethodTransformerTest >> help: classString method: methodString result: aString [
+	| doc codeblock |
+	doc := PRDocument new
+				add:
+				(PRShowMethodAnnotation new
+					parameterAt: 'class' put: classString;
+					parameterAt: 'method' put: methodString;
+				yourself); 
+			yourself.
+	"Pay attention that here the values should really be the values as created by the ${publications:... parser}$"
+	((PRShowMethodTransformer withContext: (PRProject on: testingFileSystem )) start: doc).
+	codeblock := doc children first.
+	"Then, let's test that a codeblock has been added to the document"
+	self assert: codeblock class equals: PRCodeblock.
+	self assert: codeblock parameters equals: 
+				(OrderedDictionary new
+					add: 'methodDefinition' -> true;
+					yourself).
+	self assert: codeblock text equals: aString.
+
+	
+	
+]
+
+{ #category : #running }
 PRShowMethodTransformerTest >> setUp [
 
 	super setUp.
@@ -21,75 +46,25 @@ PRShowMethodTransformerTest >> setUp [
 
 { #category : #running }
 PRShowMethodTransformerTest >> testTransformerCreatesMethodDefinitionCodeblock [
-	| doc codeblock |
-	doc := PRDocument new
-				add:
-				(PRShowMethodAnnotation new
-					parameterAt: 'class' put: 'Integer';
-					parameterAt: 'method' put: 'isPowerOfTwo';
-				yourself); 
-			yourself.
-	"Pay attention that here the values should really be the values as created by the ${publications:... parser}$"
-	((PRShowMethodTransformer withContext: (PRProject on: testingFileSystem )) start: doc).
-	codeblock := doc children first.
-	"Then, let's test that a codeblock has been added to the document"
-	self assert: codeblock class equals: PRCodeblock.
-	self assert: codeblock parameters equals: 
-				(OrderedDictionary new
-					add: 'methodDefinition' -> true;
-					yourself).
-	self assert: codeblock text equals:'Integer >> ',(Integer compiledMethodAt: #isPowerOfTwo) sourceCode.
 
+	self help: 'Integer' method: 'isPowerOfTwo' result: 'Integer >> ',(Integer compiledMethodAt: #isPowerOfTwo) sourceCode
 	
-	
+
+
 ]
 
 { #category : #running }
 PRShowMethodTransformerTest >> testTransformerCreatesMethodDefinitionFromUnknownClass [
-	| doc codeblock |
-	doc := PRDocument new
-				add:
-				(PRShowMethodAnnotation new
-					parameterAt: 'class' put: 'IntegRR';
-					parameterAt: 'method' put: 'isPowerOfTwo';
-				yourself); 
-			yourself.
-	"Pay attention that here the values should really be the values as created by the ${publications:... parser}$"
-	((PRShowMethodTransformer withContext: (PRProject on: testingFileSystem )) start: doc).
-	codeblock := doc children first.
-	"Then, let's test that a codeblock has been added to the document"
-	self assert: codeblock class equals: PRCodeblock.
-	self assert: codeblock parameters equals: 
-				(OrderedDictionary new
-					add: 'methodDefinition' -> true;
-					yourself).
-	self assert: codeblock text equals: 'The system was looking for IntegRR but did not find it'
 
+	self help: 'IntegRR' method: 'isPowerOfTwo' result: 'The system was looking for IntegRR but did not find it'
 	
+
 	
 ]
 
 { #category : #running }
 PRShowMethodTransformerTest >> testTransformerCreatesMethodDefinitionFromUnknownMethod [
-	| doc codeblock |
-	doc := PRDocument new
-				add:
-				(PRShowMethodAnnotation new
-					parameterAt: 'class' put: 'Integer';
-					parameterAt: 'method' put: 'isPowerOfTweuuu';
-				yourself); 
-			yourself.
-	"Pay attention that here the values should really be the values as created by the ${publications:... parser}$"
-	((PRShowMethodTransformer withContext: (PRProject on: testingFileSystem )) start: doc).
-	codeblock := doc children first.
-	"Then, let's test that a codeblock has been added to the document"
-	self assert: codeblock class equals: PRCodeblock.
-	self assert: codeblock parameters equals: 
-				(OrderedDictionary new
-					add: 'methodDefinition' -> true;
-					yourself).
-	self assert: codeblock text equals: 'The system was looking for Integer but did not find the method isPowerOfTweuuu'
-
+	self help: 'Integer' method: 'isPowerOfTweuuu' result: 'The system was looking for Integer but did not find the method isPowerOfTweuuu'
 	
 	
 ]
