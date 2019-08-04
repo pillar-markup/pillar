@@ -1,3 +1,7 @@
+"
+On my class side I define pillarAnnotationsContentsForTest and pillarAnnotationsFileNameForTest 
+methods that are used by the tests to work in memory (and not to generate files on the disc).
+"
 Class {
 	#name : #PRTransformerEnvironmentTest,
 	#superclass : #PRNodeTransformerTest,
