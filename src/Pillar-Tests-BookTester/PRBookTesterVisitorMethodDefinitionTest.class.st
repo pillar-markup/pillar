@@ -36,7 +36,7 @@ PRBookTesterVisitorMethodDefinitionTest >> testVisitClassDefinitionValid [
 PRBookTestDummyClassTest subclass: #PRBookTestDummyClassCreationTest
 	instanceVariableNames: ''''
 	classVariableNames: ''''
-	package: ''Pillar-BookTester-Visitor-Tests''
+	package: ''Pillar-Tests-BookTester''
 ]]]
 '.
 	doc := PRPillarParser new parse: docText.
