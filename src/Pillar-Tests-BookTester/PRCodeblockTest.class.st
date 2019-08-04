@@ -1,7 +1,7 @@
 Class {
 	#name : #PRCodeblockTest,
 	#superclass : #PRTextTest,
-	#category : 'Pillar-BookTester-Visitor-Tests'
+	#category : #'Pillar-Tests-BookTester'
 }
 
 { #category : #running }
