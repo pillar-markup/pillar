@@ -1,11 +1,4 @@
-"
-I am an abstract visitor. I provide a default implementation of all visit messages that does not descend automatically into children of the visited graph. Subclasses should override all my messages in appropriate ways to visit the nodes they need.
-"
-Class {
-	#name : #PRVisitor,
-	#superclass : #PRBasicObject,
-	#category : 'Pillar-Model-Visitor'
-}
+Extension { #name : #PRVisitor }
 
 { #category : #'*Pillar-Model' }
 PRVisitor >> visitCitation: aCitation [
