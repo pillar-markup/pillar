@@ -32,7 +32,7 @@ Class {
 		'parameters',
 		'caption'
 	],
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Minimal'
 }
 
 { #category : #'instance creation' }
