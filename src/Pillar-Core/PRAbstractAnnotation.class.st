@@ -272,7 +272,6 @@ PRAbstractAnnotation >> parameterSeparator [
 
 { #category : #accessing }
 PRAbstractAnnotation >> parameters [
-	parameters ifNil: [ self initializeParametersFromChildren ].
 	^ parameters
 ]
 

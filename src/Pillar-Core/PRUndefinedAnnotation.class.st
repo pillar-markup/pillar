@@ -58,5 +58,5 @@ PRUndefinedAnnotation >> tag: anObject [
 { #category : #initialization }
 PRUndefinedAnnotation >> withParameters: aPRParameters [ 
 	self add: aPRParameters.
-	self parameters: (PRParametersToOrderedDictionary of: aPRParameters).
+	self parameters: aPRParameters asDictionary
 ]

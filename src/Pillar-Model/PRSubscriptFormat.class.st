@@ -4,7 +4,7 @@ Style as subscript
 Class {
 	#name : #PRSubscriptFormat,
 	#superclass : #PRFormat,
-	#category : #'Pillar-Core-Model'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #testing }

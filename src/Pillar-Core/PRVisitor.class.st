@@ -7,12 +7,6 @@ Class {
 	#category : #'Pillar-Core-Visitor'
 }
 
-{ #category : #testing }
-PRVisitor class >> isAbstract [
-	<ignoreForCoverage "This method is ignored for test coverage because it is overriden in all subclasses and these subclasses don't need to do a super-send.">
-	^ true
-]
-
 { #category : #visiting }
 PRVisitor >> start: anObject [
 	self visit: anObject

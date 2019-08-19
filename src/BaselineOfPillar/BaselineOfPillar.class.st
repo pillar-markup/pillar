@@ -64,13 +64,17 @@ BaselineOfPillar >> baseline: spec [
 				package: 'Pillar-Tests-ExporterBeamer' with: [ spec requires: #('Pillar-ExporterBeamer' 'Pillar-Tests-ExporterLaTeX') ];
 				package: 'Pillar-Tests-ExporterCore' with: [ spec requires: #('Pillar-Tests-Model' 'Pillar-ExporterCore') ];
 				package: 'Pillar-Tests-ExporterDeckJS' with: [ spec requires: #('Pillar-ExporterDeckJS' 'Pillar-Tests-ExporterHTML') ];
-				package: #'Pillar-Tests-ExporterEPub' with: [ spec requires: #(#'Pillar-ExporterEPub' 'Pillar-Tests-ExporterCore') ];
+				package: 'Pillar-Tests-ExporterEPub' with: [ spec requires: #('Pillar-ExporterEPub' 'Pillar-Tests-ExporterCore') ];
 				package: 'Pillar-Tests-ExporterHTML' with: [ spec requires: #('Pillar-ExporterHTML' 'Pillar-Tests-ExporterCore') ];
 				package: 'Pillar-Tests-ExporterLaTeX' with: [ spec requires: #('Pillar-ExporterLaTeX' 'Pillar-Tests-ExporterCore') ];
 				package: 'Pillar-Tests-ExporterMarkdown' with: [ spec requires: #('Pillar-ExporterMarkdown' 'Pillar-Tests-ExporterCore' 'Pillar-Tests-ExporterHTML') ];
 				package: 'Pillar-Tests-ExporterPillar' with: [ spec requires: #('Pillar-ExporterPillar' 'Pillar-Tests-ExporterCore') ];
 				package: 'Pillar-Tests-ExporterText' with: [ spec requires: #('Pillar-ExporterText' 'Pillar-Tests-ExporterCore') ];
 				package: 'Pillar-Tests-Model' with: [ spec requires: #('Pillar-Model' 'Pillar-ExporterPillar' 'Pillar-ExporterText') ];
+				
+				package: 'Pillar-Tests-Core' with: [ spec requires: #('Pillar-Core' 'Pillar-ExporterPillar' 'Pillar-ExporterText')];
+				"I hope that I will be able to make core test not depending on the exporter and the text exporter."
+				
 				package: 'Pillar-Tests-PetitPillar' with: [ spec requires: #('PetitParser2Core' 'Pillar-PetitPillar') ];
 				package: 'Pillar-Tests-BookTester' with: [ spec requires: #('Pillar-BookTester') ];
 				package: 'Pillar-Tests-Project' with: [ spec requires: #('Pillar-Project') ];

@@ -22,3 +22,16 @@ PRParameters class >> with: aPRParameter withAll: aCollection [
 PRParameters >> accept: aVisitor [
 	^ aVisitor visitParameters: self
 ]
+
+{ #category : #converting }
+PRParameters >> asDictionary [
+	| dict |
+	dict := OrderedDictionary new.
+	self children do: [ :each | dict at: each key put: each value ].
+	^ dict
+]
+
+{ #category : #accessing }
+PRParameters >> parameters [ 
+	^ children
+]

@@ -5,7 +5,8 @@ PRAbstractAnnotation class >> withParameters: aPRParameters [
 	| parameters anInstance |
 	anInstance := self with: aPRParameters.
 	PRParserUtility fixFirstParameter: aPRParameters for: anInstance.
-	parameters := PRParametersToOrderedDictionary of: aPRParameters.
+	parameters := aPRParameters asDictionary. 
+	"parameters := PRParametersToOrderedDictionary of: aPRParameters."
 	self validateParameters: aPRParameters dictionary: parameters in: anInstance.
 	^ anInstance
 		hadAllKeys:
