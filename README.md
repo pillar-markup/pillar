@@ -84,7 +84,7 @@ The simplest way to install `LaTeX` is to install texlive-full in your system. A
 https://github.com/cdlm/docker-texlive
 ```
 
-Otherwise, you can do a manual `LaTeX` install in both linux and osx, as we do in our travis builds. Check our [ensure_latex](scripts/travis/ensure_latex.sh) and [ensure_book_dependencies](scripts/travis/ensure_book_dependencies.sh) scripts.
+Otherwise, you can do a manual `LaTeX` install in both linux and osx, as we do in our travis builds. Check our [ensure_latex](scripts/ci/ensure_latex.sh) and [ensure_book_dependencies](scripts/ci/ensure_book_dependencies.sh) scripts.
 
 #### Windows specificities
 
