@@ -82,11 +82,6 @@ PRPillarParserMain class >> useCompiled [
 ]
 
 { #category : #configuration }
-PRPillarParserMain class >> usePetitParserOne [
-	UsedParser := PRPillarParserOld new 
-]
-
-{ #category : #configuration }
 PRPillarParserMain class >> usePetitParserTwo [
 	UsedParser := PRPillarParser new optimize 
 ]

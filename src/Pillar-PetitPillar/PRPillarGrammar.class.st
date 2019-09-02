@@ -276,7 +276,7 @@ PRPillarGrammar >> annotatedParagraph [
 
 { #category : #'grammar - Annotation' }
 PRPillarGrammar >> annotation [
-	self flag: #todo.	"An annotation should have the possibility to be outside of a paragraph."
+	"Todo: An annotation should have the possibility to be outside of a paragraph."
 	^	epsilonToken , 	
 		(Markups at: PRAbstractAnnotation) asPParser , 
 		annotationTag , 
@@ -346,7 +346,7 @@ PRPillarGrammar >> dataBasicListItem [
 
 { #category : #'grammar - List' }
 PRPillarGrammar >> dataListItem [
-	self flag: #todo.	"This and the overriden method of the parser are REALLY bad. We parse several times the same input, this is bad."
+	"This and the overriden method of the parser are REALLY bad. We parse several times the same input, this is bad."
 	^	epsilonToken , 
 		dataMarkup and , 
 		dataBasicListItem optional , 
@@ -438,7 +438,8 @@ PRPillarGrammar >> figureReference [
 
 { #category : #'grammar - Format' }
 PRPillarGrammar >> format [
-	self flag: 'Now a format can be empty (use of star instead of plus in these parsers). Do we really want this ? Some unit tests specify that a format can be empty but we can remove them'.
+	"Now a format can be empty (use of star instead of plus in these parsers). Do we really want this ? Some unit tests specify that a format can be empty but we can remove them'."
+	
 	^ monospaceFormat / boldFormat / italicFormat / underlineFormat / strikethroughFormat / subscriptFormat / superscriptFormat
 ]
 
@@ -520,7 +521,7 @@ PRPillarGrammar >> linkMarkup [
 
 { #category : #'grammar - List' }
 PRPillarGrammar >> list [
-	self flag: #todo.	"The list elements should be trim."
+	"The list elements should be trim."
 	^ (unorderedList / orderedList / definitionList) memoize
 ]
 
@@ -569,7 +570,7 @@ PRPillarGrammar >> orderedList [
 
 { #category : #'grammar - List' }
 PRPillarGrammar >> orderedListItem [
-	self flag: #todo.	"This and the overriden method of the parser are REALLY bad. We parse several times the same input, this is bad."
+	"This and the overriden method of the parser are REALLY bad. We parse several times the same input, this is bad."
 	^	epsilonToken , 
 		orderedMarkup and , 
 		orderedBasicListItem optional , 
@@ -861,7 +862,7 @@ PRPillarGrammar >> superscriptMarkup [
 
 { #category : #'grammar - Table' }
 PRPillarGrammar >> table [
-	self flag: #todo. "Add the possibility to have comment inside a table. See PRPillarGrammarTest>>testTableWithComment."
+	"Todo: Add the possibility to have comment inside a table. See PRPillarGrammarTest>>testTableWithComment."
 	^ tableRow plus
 ]
 
@@ -895,7 +896,6 @@ PRPillarGrammar >> tableLeftMarkup [
 { #category : #'grammar - Table' }
 PRPillarGrammar >> tableMarkups [
 	| optionalParser |
-	self flag: #todo.	"In the future we will define the alignement before the headind."
 	optionalParser := (tableAlignMarkup / tableHeadingMarkup) optional.
 	^ (Markups at: PRTableCell) asPParser , optionalParser , optionalParser
 ]
@@ -918,7 +918,7 @@ PRPillarGrammar >> termBasicListItem [
 
 { #category : #'grammar - List' }
 PRPillarGrammar >> termListItem [
-	self flag: #todo.	"This and the overriden method of the parser are REALLY bad. We parse several times the same input, this is bad."
+	"This and the overriden method of the parser are REALLY bad. We parse several times the same input, this is bad."
 	^	epsilonToken , 
 		termMarkup and , 
 		termBasicListItem optional , 
@@ -970,7 +970,7 @@ PRPillarGrammar >> unorderedList [
 
 { #category : #'grammar - List' }
 PRPillarGrammar >> unorderedListItem [
-	self flag: #todo.	"This and the overriden method of the parser are REALLY bad. We parse several times the same input, this is bad."
+	"This and the overriden method of the parser are REALLY bad. We parse several times the same input, this is bad."
 	^	epsilonToken , 
 		unorderedMarkup and , 
 		unorderedBasicListItem optional , 

@@ -463,7 +463,7 @@ PRPillarParser >> raw [
 	^ super raw
 		==>
 			[ :array | 
-			| type contentRaw |
+			| contentRaw |
 			contentRaw := '' writeStream.
 			contentRaw nextPutAll: array third.
 			PRRaw content: contentRaw contents type: array second ]
@@ -476,7 +476,7 @@ PRPillarParser >> referenceContent [
 
 { #category : #'grammar - Reference' }
 PRPillarParser >> referenceFigure [
-	self flag: #todo. "We should maybe check for a :// inside the reference and maybe an extension."
+	"Todo: We should maybe check for a :// inside the reference and maybe an extension."
 	^ super referenceFigure ==> [ :array | self stringFrom: array ]
 ]
 
