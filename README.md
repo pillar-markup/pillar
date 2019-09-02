@@ -61,6 +61,34 @@ export PATH="$PATH:$PILLAR_HOME/build"
 
 ### 3. Install external dependencies
 
+You need to have a `LaTeX` installation in your machine. The simplest is to do a full installation, otherwise read below for a more tailored solution.
+
+#### Installing `LaTeX` on OSX
+
+The simplest installation is to do a full mactex installation. Just follow the instructions in https://www.tug.org/mactex/
+
+#### Installing `LaTeX` on *nix
+
+The simplest way to install `LaTeX` on unix is to install texlive-full in your system using your preferred package manager.
+
+#### Windows specificities
+
+Install a `LaTeX` distribution such as [MiKTeX](https://miktex.org/) and install the dependencies specified below using the provided package manager. Then, make sure the bin directory is in your PATH environment variable. For example this could be the following value:
+
+```
+C:\Program Files\MiKTeX 2.9\miktex\bin\x64
+```
+
+The automatic installer does this for you in general.
+
+Also, latexmk on MiKTeX depends on a perl interpreter, that could be obtained via:
+
+http://www.perl.org/get.html#win32
+
+And requires to install this specific package MiKTeX package:
+- supp-pdf
+
+#### Specific `LaTeX` Packages
 Producing pdf documents with pillar requires a `LaTeX` installation with at least the following packages:
 
 - fira
@@ -78,32 +106,7 @@ Producing pdf documents with pillar requires a `LaTeX` installation with at leas
 - url
 - import
 
-#### *nix specificities
-
-The simplest way to install `LaTeX` is to install texlive-full in your system. Alternatively, you can use a docker install with everything prepackaged. 
-
-```
-https://github.com/cdlm/docker-texlive
-```
-
-Otherwise, you can do a manual `LaTeX` install in both linux and osx, as we do in our travis builds. Check our [ensure_latex](scripts/travis/ensure_latex.sh) and [ensure_book_dependencies](scripts/travis/ensure_book_dependencies.sh) scripts.
-
-#### Windows specificities
-
-Install a `LaTeX` distribution such as [MiKTeX](https://miktex.org/) and install the dependencies specified above using the provided package manager. Then, make sure the bin directory is in your PATH environment variable. For example this could be the following value:
-
-```
-C:\Program Files\MiKTeX 2.9\miktex\bin\x64
-```
-
-The automatic installer does this for you in general.
-
-Also, latexmk on MiKTeX depends on a perl interpreter, that could be obtained via:
-
-http://www.perl.org/get.html#win32
-
-And requires to install this specific package MiKTeX package:
-- supp-pdf
+You can run the following scripts from the repository to install them, as we do in our travis builds. Check our [ensure_latex](scripts/ci/ensure_latex.sh) and [ensure_book_dependencies](scripts/ci/ensure_book_dependencies.sh) scripts.
 
 ### 4. Test your installation
 
