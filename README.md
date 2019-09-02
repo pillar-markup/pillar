@@ -71,7 +71,7 @@ The simplest installation is to do a full mactex installation. Just follow the i
 
 The simplest way to install `LaTeX` on unix is to install texlive-full in your system using your preferred package manager.
 
-#### Windows specificities
+#### Installing `LaTeX` on Windows
 
 Install a `LaTeX` distribution such as [MiKTeX](https://miktex.org/) and install the dependencies specified below using the provided package manager. Then, make sure the bin directory is in your PATH environment variable. For example this could be the following value:
 
@@ -88,7 +88,7 @@ http://www.perl.org/get.html#win32
 And requires to install this specific package MiKTeX package:
 - supp-pdf
 
-#### Specific `LaTeX` Packages
+#### Tailored installation (for non-full lovers)
 Producing pdf documents with pillar requires a `LaTeX` installation with at least the following packages:
 
 - fira
