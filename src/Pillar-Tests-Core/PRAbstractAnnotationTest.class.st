@@ -23,7 +23,7 @@ Internal Representation and Key Implementation Points.
 Class {
 	#name : #PRAbstractAnnotationTest,
 	#superclass : #PRDocumentItemTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#category : #'Pillar-Tests-Core'
 }
 
 { #category : #testing }
