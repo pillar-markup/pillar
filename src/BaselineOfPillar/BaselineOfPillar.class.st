@@ -1,7 +1,7 @@
 Class {
 	#name : #BaselineOfPillar,
 	#superclass : #BaselineOf,
-	#category : 'BaselineOfPillar'
+	#category : #BaselineOfPillar
 }
 
 { #category : #baselines }
@@ -16,7 +16,7 @@ BaselineOfPillar >> baseline: spec [
 			spec package: 'Pillar-Project' with: [ spec requires: 'ProcessWrapper' ] ].
 	spec
 		for: #(unix osx)
-		do: [ spec baseline: 'OSSubprocess' with: [ spec repository: 'github://marianopeck/OSSubprocess:v0.2.5/repository' ].
+		do: [ spec baseline: 'OSSubprocess' with: [ spec repository: 'github://pharo-contributions/OSSubprocess:v1.1/repository' ].
 			spec package: 'Pillar-Project' with: [ spec requires: 'OSSubprocess' ] ].
 	
 	spec
