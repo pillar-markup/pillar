@@ -14,5 +14,5 @@ PRColumnEnvironment class >> isAbstract [
 
 { #category : #visiting }
 PRColumnEnvironment >> accept: aVisitor [
-	aVisitor visitColumns: self
+	^aVisitor visitColumns: self
 ]

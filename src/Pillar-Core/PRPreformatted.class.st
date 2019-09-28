@@ -14,5 +14,5 @@ PRPreformatted class >> isAbstract [
 
 { #category : #visiting }
 PRPreformatted >> accept: aVisitor [
-	aVisitor visitPreformatted: self
+	^ aVisitor visitPreformatted: self
 ]

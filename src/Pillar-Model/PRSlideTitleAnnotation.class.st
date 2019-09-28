@@ -19,7 +19,7 @@ ${slide:title=Conclusion|label=sld:ccl}$
 Class {
 	#name : #PRSlideTitleAnnotation,
 	#superclass : #PRAbstractAnnotation,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #accessing }
@@ -35,5 +35,5 @@ PRSlideTitleAnnotation class >> tag [
 
 { #category : #visiting }
 PRSlideTitleAnnotation >> accept: aVisitor [
-	aVisitor visitSlideTitleAnnotation: self
+	^aVisitor visitSlideTitleAnnotation: self
 ]

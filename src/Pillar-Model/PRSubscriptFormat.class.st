@@ -14,5 +14,5 @@ PRSubscriptFormat class >> isAbstract [
 
 { #category : #visiting }
 PRSubscriptFormat >> accept: aVisitor [
-	aVisitor visitSubscriptFormat: self
+	^aVisitor visitSubscriptFormat: self
 ]

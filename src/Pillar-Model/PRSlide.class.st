@@ -12,7 +12,7 @@ Class {
 		'title',
 		'label'
 	],
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #testing }
@@ -29,7 +29,7 @@ PRSlide class >> titled: aTitle [
 
 { #category : #visiting }
 PRSlide >> accept: aVisitor [
-	aVisitor visitSlide: self
+	^aVisitor visitSlide: self
 ]
 
 { #category : #testing }

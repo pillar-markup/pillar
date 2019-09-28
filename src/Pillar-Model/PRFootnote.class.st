@@ -11,7 +11,7 @@ Class {
 	#instVars : [
 		'note'
 	],
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #testing }
@@ -26,7 +26,7 @@ PRFootnote class >> noted: aString [
 
 { #category : #visiting }
 PRFootnote >> accept: aVisitor [
-	aVisitor visitFootnote: self.
+	^aVisitor visitFootnote: self.
 ]
 
 { #category : #accessing }

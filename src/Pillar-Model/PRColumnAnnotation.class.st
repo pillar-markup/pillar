@@ -35,7 +35,7 @@ ${endColumns}$
 Class {
 	#name : #PRColumnAnnotation,
 	#superclass : #PRAbstractAnnotation,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #accessing }
@@ -50,7 +50,7 @@ PRColumnAnnotation class >> tag [
 
 { #category : #visiting }
 PRColumnAnnotation >> accept: aVisitor [
-	aVisitor visitColumnAnnotation: self
+	^aVisitor visitColumnAnnotation: self
 ]
 
 { #category : #printing }

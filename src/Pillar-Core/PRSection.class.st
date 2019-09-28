@@ -14,5 +14,5 @@ PRSection class >> isAbstract [
 
 { #category : #visiting }
 PRSection >> accept: aVisitor [
-	aVisitor visitSection: self
+	^ aVisitor visitSection: self
 ]

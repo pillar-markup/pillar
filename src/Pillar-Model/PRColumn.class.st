@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'width'
 	],
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #testing }
@@ -24,7 +24,7 @@ PRColumn class >> width: aNumber [
 
 { #category : #visiting }
 PRColumn >> accept: aVisitor [
-	aVisitor visitColumn: self
+	^aVisitor visitColumn: self
 ]
 
 { #category : #accessing }

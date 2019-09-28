@@ -29,7 +29,7 @@ PRParameterKey >> = anObject [
 		self name = anObject name ]
 ]
 
-{ #category : #visitor }
+{ #category : #visiting }
 PRParameterKey >> accept: aVisitor [
 	^ aVisitor visitParameterKey: self
 ]

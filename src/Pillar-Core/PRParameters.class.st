@@ -18,7 +18,7 @@ PRParameters class >> with: aPRParameter withAll: aCollection [
 	^ anInstance
 ]
 
-{ #category : #visitor }
+{ #category : #visiting }
 PRParameters >> accept: aVisitor [
 	^ aVisitor visitParameters: self
 ]

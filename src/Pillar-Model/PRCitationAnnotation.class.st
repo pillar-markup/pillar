@@ -12,7 +12,7 @@ Examples:
 Class {
 	#name : #PRCitationAnnotation,
 	#superclass : #PRAbstractAnnotation,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #accessing }
@@ -28,7 +28,7 @@ PRCitationAnnotation class >> tag [
 { #category : #visiting }
 PRCitationAnnotation >> accept: aVisitor [
 
-	aVisitor visitCitationAnnotation: self
+	^aVisitor visitCitationAnnotation: self
 ]
 
 { #category : #printing }

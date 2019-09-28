@@ -14,5 +14,5 @@ PRMonospaceFormat class >> isAbstract [
 
 { #category : #visiting }
 PRMonospaceFormat >> accept: aVisitor [
-	aVisitor visitMonospaceFormat: self
+	^ aVisitor visitMonospaceFormat: self
 ]

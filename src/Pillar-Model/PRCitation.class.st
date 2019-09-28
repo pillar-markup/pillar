@@ -11,7 +11,7 @@ Class {
 		'hadAllKeys',
 		'ref'
 	],
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #'as yet unclassified' }
@@ -38,7 +38,7 @@ PRCitation >> = anObject [
 
 { #category : #visiting }
 PRCitation >> accept: aVisitor [
-	aVisitor visitCitation: self
+	^aVisitor visitCitation: self
 ]
 
 { #category : #initialization }

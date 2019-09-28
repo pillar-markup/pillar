@@ -4,7 +4,7 @@ I am an definition list. I am typically used for a keyword and a longer definiti
 Class {
 	#name : #PRDefinitionList,
 	#superclass : #PRList,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #testing }
@@ -14,5 +14,5 @@ PRDefinitionList class >> isAbstract [
 
 { #category : #visiting }
 PRDefinitionList >> accept: aVisitor [
-	aVisitor visitDefinitionList: self
+	^aVisitor visitDefinitionList: self
 ]

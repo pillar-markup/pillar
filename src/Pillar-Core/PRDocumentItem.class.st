@@ -35,8 +35,10 @@ PRDocumentItem >> = anObject [
 
 { #category : #visiting }
 PRDocumentItem >> accept: aVisitor [
-	<ignoreForCoverage "This method is ignored for test coverage because it is overriden in all subclasses and these subclasses don't need to do a super-send.">
-	aVisitor visitDocumentItem: self
+	"This method is ignored for test coverage because it is overriden in all subclasses and these subclasses don't need to do a super-send."
+
+	<ignoreForCoverage>
+	^aVisitor visitDocumentItem: self
 ]
 
 { #category : #accessing }

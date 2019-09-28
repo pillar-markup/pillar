@@ -32,7 +32,7 @@ PRParameter >> = anObject [
 	^ super = anObject and: [ self isValid = anObject isValid ]
 ]
 
-{ #category : #visitor }
+{ #category : #visiting }
 PRParameter >> accept: aVisitor [
 	^ aVisitor visitParameter: self
 ]

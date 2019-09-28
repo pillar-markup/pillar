@@ -14,7 +14,7 @@ PRDocument class >> isAbstract [
 
 { #category : #visiting }
 PRDocument >> accept: aVisitor [
-	aVisitor visitDocument: self
+	^ aVisitor visitDocument: self
 ]
 
 { #category : #'common-properties' }

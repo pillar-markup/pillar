@@ -16,10 +16,10 @@ color of the fire
 Class {
 	#name : #PRTermItem,
 	#superclass : #PRListItem,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #visiting }
 PRTermItem >> accept: aVisitor [
-	aVisitor visitTermItem: self
+	^aVisitor visitTermItem: self
 ]

@@ -38,5 +38,5 @@ PREndColumnsAnnotation class >> tag [
 
 { #category : #visiting }
 PREndColumnsAnnotation >> accept: aVisitor [
-	aVisitor visitEndColumnsAnnotation: self
+	^aVisitor visitEndColumnsAnnotation: self
 ]
