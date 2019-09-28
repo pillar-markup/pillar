@@ -2,12 +2,12 @@ Extension { #name : #PRVisitor }
 
 { #category : #'*Pillar-BookTester' }
 PRVisitor >> visitLoaderAnnotation: aLoaderAnnotation [ 
-	self visitAnnotation: aLoaderAnnotation
+	^self visitAnnotation: aLoaderAnnotation
 ]
 
 { #category : #'*Pillar-BookTester' }
 PRVisitor >> visitRunAnnotation: aRunAnnotation [ 
-	self visitAnnotation: aRunAnnotation
+	^self visitAnnotation: aRunAnnotation
 ]
 
 { #category : #'*Pillar-BookTester' }
@@ -17,10 +17,10 @@ PRVisitor >> visitScreenshotAnnotation: aScreenshotAnnotation [
 
 { #category : #'*Pillar-BookTester' }
 PRVisitor >> visitShowClassAnnotation: aShowClassAnnotation [ 
-	self visitAnnotation: aShowClassAnnotation
+	^self visitAnnotation: aShowClassAnnotation
 ]
 
 { #category : #'*Pillar-BookTester' }
 PRVisitor >> visitShowMethodAnnotation: aShowMethodAnnotation [ 
-	self visitAnnotation: aShowMethodAnnotation
+	^self visitAnnotation: aShowMethodAnnotation
 ]
