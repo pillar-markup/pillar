@@ -16,7 +16,7 @@ BaselineOfPillarCore >> baseline: spec [
 					repository: 'github://Ducasse/Containers-PropertyEnvironment' ];
 				baseline: 'PetitParser2Core' with: [ spec
 					 repository: 'github://kursjan/petitparser2' ];
-
+				package: 'Pillar-Core';
 				package: 'Pillar-Model';
 				package: 'Pillar-PetitPillar' with: [ spec 
 					requires: #( 'PetitParser2Core' 'Pillar-Model' ) ];
