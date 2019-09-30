@@ -37,7 +37,7 @@ PREnvironment class >> named: aString [
 
 { #category : #visiting }
 PREnvironment >> accept: aVisitor [
-	aVisitor visitEnvironment: self
+	^ aVisitor visitEnvironment: self
 ]
 
 { #category : #accessing }

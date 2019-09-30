@@ -22,7 +22,7 @@ PRMailLink class >> priority [
 
 { #category : #visiting }
 PRMailLink >> accept: aVisitor [
-	aVisitor visitMailLink: self
+	^ aVisitor visitMailLink: self
 ]
 
 { #category : #'accessing-dynamic' }

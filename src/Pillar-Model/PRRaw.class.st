@@ -9,7 +9,7 @@ Class {
 	#instVars : [
 		'type'
 	],
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #'instance creation' }
@@ -38,7 +38,7 @@ PRRaw >> = anObject [
 
 { #category : #visiting }
 PRRaw >> accept: aVisitor [
-	aVisitor visitRaw: self
+	^ aVisitor visitRaw: self
 ]
 
 { #category : #comparing }

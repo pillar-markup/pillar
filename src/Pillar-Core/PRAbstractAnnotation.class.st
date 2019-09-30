@@ -155,7 +155,7 @@ PRAbstractAnnotation >> = anObject [
 { #category : #visiting }
 PRAbstractAnnotation >> accept: aVisitor [
 
-	aVisitor visitAnnotation: self
+	^ aVisitor visitAnnotation: self
 ]
 
 { #category : #rendering }

@@ -28,7 +28,7 @@ PRAnchor >> = anObject [
 
 { #category : #visiting }
 PRAnchor >> accept: aVisitor [
-	aVisitor visitAnchor: self
+	^ aVisitor visitAnchor: self
 ]
 
 { #category : #comparing }

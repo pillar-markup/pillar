@@ -29,5 +29,5 @@ PREndEnvironmentAnnotation class >> tag [
 
 { #category : #visiting }
 PREndEnvironmentAnnotation >> accept: aVisitor [
-	aVisitor visitEndEnvironmentAnnotation: self
+	^ aVisitor visitEndEnvironmentAnnotation: self
 ]

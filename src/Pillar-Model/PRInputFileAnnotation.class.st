@@ -15,7 +15,7 @@ ${inputFile:value=directory/myFile.pillar}$
 Class {
 	#name : #PRInputFileAnnotation,
 	#superclass : #PRAbstractAnnotation,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #protected }
@@ -48,7 +48,7 @@ PRInputFileAnnotation class >> value: aValue [
 
 { #category : #visiting }
 PRInputFileAnnotation >> accept: aVisitor [
-	aVisitor visitInputFileAnnotation: self
+	^ aVisitor visitInputFileAnnotation: self
 ]
 
 { #category : #printing }

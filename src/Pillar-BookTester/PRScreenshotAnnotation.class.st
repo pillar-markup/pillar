@@ -21,7 +21,7 @@ Note:
 Class {
 	#name : #PRScreenshotAnnotation,
 	#superclass : #PRAbstractAnnotation,
-	#category : 'Pillar-BookTester-Annotations'
+	#category : #'Pillar-BookTester-Annotations'
 }
 
 { #category : #accessing }
@@ -39,7 +39,7 @@ PRScreenshotAnnotation class >> tag [
 { #category : #visiting }
 PRScreenshotAnnotation >> accept: aVisitor [
 
-	aVisitor visitScreenshotAnnotation: self
+	^ aVisitor visitScreenshotAnnotation: self
 ]
 
 { #category : #visiting }

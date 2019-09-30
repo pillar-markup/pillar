@@ -17,5 +17,5 @@ PRListItem class >> isAbstract [
 
 { #category : #visiting }
 PRListItem >> accept: aVisitor [
-	aVisitor visitListItem: self
+	^ aVisitor visitListItem: self
 ]

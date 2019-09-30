@@ -16,5 +16,5 @@ PRParagraph class >> isAbstract [
 
 { #category : #visiting }
 PRParagraph >> accept: aVisitor [
-	aVisitor visitParagraph: self
+	^ aVisitor visitParagraph: self
 ]

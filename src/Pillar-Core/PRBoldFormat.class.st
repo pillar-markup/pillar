@@ -14,5 +14,5 @@ PRBoldFormat class >> isAbstract [
 
 { #category : #visiting }
 PRBoldFormat >> accept: aVisitor [
-	aVisitor visitBoldFormat: self
+	^ aVisitor visitBoldFormat: self
 ]

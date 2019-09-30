@@ -55,7 +55,7 @@ PRCodeblock >> = anObject [
 
 { #category : #visiting }
 PRCodeblock >> accept: aVisitor [
-	aVisitor visitCodeblock: self
+	^ aVisitor visitCodeblock: self
 ]
 
 { #category : #'accessing-delegated' }

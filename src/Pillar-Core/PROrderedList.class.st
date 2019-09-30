@@ -14,5 +14,5 @@ PROrderedList class >> isAbstract [
 
 { #category : #visiting }
 PROrderedList >> accept: aVisitor [
-	aVisitor visitOrderedList: self
+	^ aVisitor visitOrderedList: self
 ]

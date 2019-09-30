@@ -14,5 +14,5 @@ PRLineBreak class >> isAbstract [
 
 { #category : #visiting }
 PRLineBreak >> accept: aVisitor [
-	aVisitor visitLineBreak: self
+	^ aVisitor visitLineBreak: self
 ]

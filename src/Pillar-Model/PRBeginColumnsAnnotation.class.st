@@ -38,5 +38,5 @@ PRBeginColumnsAnnotation class >> tag [
 
 { #category : #visiting }
 PRBeginColumnsAnnotation >> accept: aVisitor [
-	aVisitor visitColumnsAnnotation: self
+	^ aVisitor visitColumnsAnnotation: self
 ]

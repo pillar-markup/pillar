@@ -9,5 +9,5 @@ Class {
 
 { #category : #visiting }
 PREmptyParagraph >> accept: aVisitor [
-	aVisitor visitEmptyParagraph: self
+	^ aVisitor visitEmptyParagraph: self
 ]

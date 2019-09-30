@@ -4,7 +4,7 @@ I am a table. My children are instances of *PRTableRow*.
 Class {
 	#name : #PRTable,
 	#superclass : #PRDocumentGroup,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #testing }
@@ -14,7 +14,7 @@ PRTable class >> isAbstract [
 
 { #category : #visiting }
 PRTable >> accept: aVisitor [
-	aVisitor visitTable: self
+	^ aVisitor visitTable: self
 ]
 
 { #category : #accessing }
