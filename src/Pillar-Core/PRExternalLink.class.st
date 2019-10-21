@@ -24,7 +24,7 @@ PRExternalLink class >> priority [
 
 { #category : #visiting }
 PRExternalLink >> accept: aVisitor [
-	aVisitor visitExternalLink: self
+	^ aVisitor visitExternalLink: self
 ]
 
 { #category : #testing }

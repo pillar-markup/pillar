@@ -18,7 +18,7 @@ Note:
 Class {
 	#name : #PRLoaderAnnotation,
 	#superclass : #PRAbstractAnnotation,
-	#category : 'Pillar-BookTester-Annotations'
+	#category : #'Pillar-BookTester-Annotations'
 }
 
 { #category : #accessing }
@@ -36,7 +36,7 @@ PRLoaderAnnotation class >> tag [
 { #category : #visiting }
 PRLoaderAnnotation >> accept: aVisitor [
 
-	aVisitor visitLoaderAnnotation: self
+	^ aVisitor visitLoaderAnnotation: self
 ]
 
 { #category : #visiting }

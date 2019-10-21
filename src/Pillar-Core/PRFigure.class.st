@@ -32,7 +32,7 @@ PRFigure class >> pictureExtensions [
 
 { #category : #visiting }
 PRFigure >> accept: aVisitor [
-	aVisitor visitFigure: self
+	^ aVisitor visitFigure: self
 ]
 
 { #category : #testing }

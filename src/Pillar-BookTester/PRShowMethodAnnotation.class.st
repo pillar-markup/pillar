@@ -17,7 +17,7 @@ Note:
 Class {
 	#name : #PRShowMethodAnnotation,
 	#superclass : #PRAbstractAnnotation,
-	#category : 'Pillar-BookTester-Annotations'
+	#category : #'Pillar-BookTester-Annotations'
 }
 
 { #category : #accessing }
@@ -41,7 +41,7 @@ PRShowMethodAnnotation class >> tag [
 { #category : #visiting }
 PRShowMethodAnnotation >> accept: aVisitor [
 
-	aVisitor visitShowMethodAnnotation: self
+	^ aVisitor visitShowMethodAnnotation: self
 ]
 
 { #category : #accessing }

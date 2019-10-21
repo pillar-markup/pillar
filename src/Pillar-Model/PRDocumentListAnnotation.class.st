@@ -34,7 +34,7 @@ PRDocumentListAnnotation class >> tag [
 { #category : #visiting }
 PRDocumentListAnnotation >> accept: aVisitor [
 
-	aVisitor visitDocListAnnotation: self
+	^ aVisitor visitDocListAnnotation: self
 ]
 
 { #category : #visiting }

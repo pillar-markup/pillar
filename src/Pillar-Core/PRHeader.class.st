@@ -30,7 +30,7 @@ PRHeader >> = anObject [
 
 { #category : #visiting }
 PRHeader >> accept: aVisitor [
-	aVisitor visitHeader: self
+	^ aVisitor visitHeader: self
 ]
 
 { #category : #comparing }

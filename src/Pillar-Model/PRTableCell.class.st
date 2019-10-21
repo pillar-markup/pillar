@@ -8,7 +8,7 @@ Class {
 		'align',
 		'heading'
 	],
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #'instance creation' }
@@ -33,7 +33,7 @@ PRTableCell >> = anObject [
 
 { #category : #visiting }
 PRTableCell >> accept: aVisitor [
-	aVisitor visitTableCell: self
+	^ aVisitor visitTableCell: self
 ]
 
 { #category : #accessing }

@@ -10,7 +10,7 @@ My parameters are :
 Class {
 	#name : #PRFootnoteAnnotation,
 	#superclass : #PRAbstractAnnotation,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #accessing }
@@ -26,7 +26,7 @@ PRFootnoteAnnotation class >> tag [
 
 { #category : #visiting }
 PRFootnoteAnnotation >> accept: aVisitor [
-	aVisitor visitFootnoteAnnotation: self
+	^ aVisitor visitFootnoteAnnotation: self
 ]
 
 { #category : #descriptions }

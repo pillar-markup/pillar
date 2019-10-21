@@ -14,5 +14,5 @@ PRStrikethroughFormat class >> isAbstract [
 
 { #category : #visiting }
 PRStrikethroughFormat >> accept: aVisitor [
-	aVisitor visitStrikethroughFormat: self
+	^ aVisitor visitStrikethroughFormat: self
 ]

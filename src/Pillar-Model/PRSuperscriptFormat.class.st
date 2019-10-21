@@ -4,7 +4,7 @@ Style as superscript
 Class {
 	#name : #PRSuperscriptFormat,
 	#superclass : #PRFormat,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #testing }
@@ -14,5 +14,5 @@ PRSuperscriptFormat class >> isAbstract [
 
 { #category : #visiting }
 PRSuperscriptFormat >> accept: aVisitor [
-	aVisitor visitSuperscriptFormat: self
+	^ aVisitor visitSuperscriptFormat: self
 ]

@@ -49,7 +49,7 @@ PRInternalLink >> = anObject [
 
 { #category : #visiting }
 PRInternalLink >> accept: aVisitor [
-	aVisitor visitInternalLink: self
+	^ aVisitor visitInternalLink: self
 ]
 
 { #category : #accessing }

@@ -28,7 +28,7 @@ PRText >> = anObject [
 
 { #category : #visiting }
 PRText >> accept: aVisitor [
-	aVisitor visitText: self
+	^ aVisitor visitText: self
 ]
 
 { #category : #comparing }

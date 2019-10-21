@@ -4,7 +4,7 @@ Style as underline formatted
 Class {
 	#name : #PRUnderlineFormat,
 	#superclass : #PRFormat,
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #testing }
@@ -14,5 +14,5 @@ PRUnderlineFormat class >> isAbstract [
 
 { #category : #visiting }
 PRUnderlineFormat >> accept: aVisitor [
-	aVisitor visitUnderlineFormat: self
+	^ aVisitor visitUnderlineFormat: self
 ]

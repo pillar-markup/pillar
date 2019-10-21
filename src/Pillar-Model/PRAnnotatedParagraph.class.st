@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'annotation'
 	],
-	#category : 'Pillar-Model-Document'
+	#category : #'Pillar-Model-Document'
 }
 
 { #category : #'instance creation' }
@@ -24,7 +24,7 @@ PRAnnotatedParagraph >> = anObject [
 
 { #category : #visiting }
 PRAnnotatedParagraph >> accept: aVisitor [
-	aVisitor visitAnnotatedParagraph: self
+	^ aVisitor visitAnnotatedParagraph: self
 ]
 
 { #category : #accessing }

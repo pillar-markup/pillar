@@ -14,5 +14,5 @@ PRItalicFormat class >> isAbstract [
 
 { #category : #visiting }
 PRItalicFormat >> accept: aVisitor [
-	aVisitor visitItalicFormat: self
+	^ aVisitor visitItalicFormat: self
 ]
