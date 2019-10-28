@@ -13,8 +13,8 @@ Execute the `build.sh` script found in the `scripts` directory:
 
 ```bash
 $ git clone git@github.com:pillar-markup/pillar.git
-$ git checkout v7.4.1
 $ cd pillar
+$ git checkout v7.4.1
 $ chmod a+x ./scripts/build.sh
 $ ./scripts/build.sh
 ```
