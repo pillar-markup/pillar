@@ -14,31 +14,35 @@ function die() {
     exit 1
 }
 
-function get-texlive-installer() {
-    local tldir
-
-    # download and checksum
-    curl --silent --location --remote-name "${TEXLIVE_MIRROR}/${TEXLIVE_TARBALL}"
-    curl --silent --location "${TEXLIVE_MIRROR}/${TEXLIVE_TARBALL}.sha512" \
-        | shasum --check -
-
-    # extract and grab name of tarball root
-    read -rd/ tldir < <(
-        tar --extract --ungzip --verbose --file "${TEXLIVE_TARBALL}"
-    )
-
-    # sanity check
-    [ -x "$tldir/install-tl" ] || die "can not find TeXlive installer at $tldir/install-tl"
-    echo "$tldir/install-tl"
+function fold() {
+    if [[ "$(type -t travis_fold)" == 'function' ]]; then
+        travis_fold "$@"
+    fi
 }
 
-function fold() {
+function fold-with() {
     local fold_name="$1"
     shift # rest is command to run inside the fold
 
-    travis_fold start "$fold_name"
+    fold start "$fold_name"
     "$@"
-    travis_fold end "$fold_name"
+    fold end "$fold_name"
+}
+
+function get-texlive-installer() {
+    local tlinst
+
+    # download, checksum, extract
+    curl --silent --location --remote-name "${TEXLIVE_MIRROR}/${TEXLIVE_TARBALL}"
+    curl --silent --location "${TEXLIVE_MIRROR}/${TEXLIVE_TARBALL}.sha512" \
+        | shasum --check -
+    tar --extract --gzip --file "${TEXLIVE_TARBALL}"
+
+    # find installer path from archive listing, sanity check
+    tlinst=$(tar --list --gzip --file "${TEXLIVE_TARBALL}" | grep '/install-tl$')
+    [ -x "$tlinst" ] || die "can not find TeXlive installer at ${tlinst}";
+
+    echo "$tlinst"
 }
 
 function texlive-profile() {
@@ -72,22 +76,27 @@ tlpdbopt_post_code 1
 EOF
 }
 
-function install-base() {
+function install-texlive() {
     local installer
     installer="$(get-texlive-installer)"
 
     texlive-profile >> texlive.profile
 
-    # fold "install TeXlive $TEXLIVE_RELEASE" \
-         "$installer" --repository "$TEXLIVE_MIRROR" --profile texlive.profile
+    fold-with "install TeXlive $TEXLIVE_RELEASE" \
+        "$installer" --repository "$TEXLIVE_MIRROR" --profile texlive.profile
+
+    fold-with "install base TeXlive packages" \
+        tlmgr install latexmk luatex85
 }
 
-function install-dependencies() {
-    tlmgr install latexmk luatex85
+
+function install-pillar() {
+    fold-with "build pillar image" \
+        ./pillar/scripts/build.sh
 }
 
-function install-texlive() {
+function setup-pillar-ci() {
     export PATH="$HOME/bin:$PATH"
-    install-base
-    install-dependencies
+    install-texlive
+    install-pillar
 }
