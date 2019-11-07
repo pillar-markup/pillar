@@ -56,7 +56,6 @@ instopt_portable 0
 instopt_write18_restricted 1
 
 # set repository:
-tlpdbopt_sys_bin $HOME/bin
 tlpdbopt_autobackup 0
 tlpdbopt_create_formats 1
 tlpdbopt_generate_updmap 0
@@ -92,7 +91,7 @@ function install-pillar() {
 }
 
 function setup-pillar-ci() {
-    export PATH="$HOME/bin:$PATH"
+    export PATH="$HOME/texlive/bin/x86_64-linux:$HOME/pillar/build:$PATH"
     install-texlive
     install-pillar
 }
