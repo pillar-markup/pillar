@@ -56,7 +56,6 @@ instopt_portable 0
 instopt_write18_restricted 1
 
 # set repository:
-tlpdbopt_location $TEXLIVE_MIRROR
 tlpdbopt_sys_bin $HOME/bin
 tlpdbopt_autobackup 0
 tlpdbopt_create_formats 1
