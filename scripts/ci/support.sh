@@ -30,21 +30,11 @@ function fold-with() {
 }
 
 function get-texlive-installer() {
-    local tlinst
-
     # download, checksum, extract
     curl --silent --location --remote-name "${TEXLIVE_MIRROR}/${TEXLIVE_TARBALL}"
     curl --silent --location "${TEXLIVE_MIRROR}/${TEXLIVE_TARBALL}.sha512" \
         | shasum --check -
     tar --extract --gzip --file "${TEXLIVE_TARBALL}"
-
-    ls -lh install-tl-*
-
-    # find installer path from archive listing, sanity check
-    tlinst=$(tar --list --gzip --file "${TEXLIVE_TARBALL}" | grep '/install-tl$')
-    [ -x "$tlinst" ] || die "can not find TeXlive installer at ${tlinst}";
-
-    echo "$tlinst"
 }
 
 function texlive-profile() {
@@ -80,21 +70,26 @@ EOF
 
 function install-texlive() {
     local installer
-    installer="$(get-texlive-installer)"
+
+    get-texlive-installer
+
+    # find installer path from archive listing, sanity check
+    installer="$(tar --list --gzip --file "${TEXLIVE_TARBALL}" | grep '/install-tl$' )"
+    [[ -x "$installer" ]] || die "can not find TeXlive installer at ${installer}";
 
     texlive-profile >> texlive.profile
 
     fold-with "install TeXlive $TEXLIVE_RELEASE" \
-        "$installer" --repository "$TEXLIVE_MIRROR" --profile texlive.profile
+              "$installer" --repository "$TEXLIVE_MIRROR" --profile texlive.profile
 
     fold-with "install base TeXlive packages" \
-        tlmgr install latexmk luatex85
+              tlmgr install latexmk luatex85
 }
 
 
 function install-pillar() {
     fold-with "build pillar image" \
-        ./pillar/scripts/build.sh
+              ./pillar/scripts/build.sh
 }
 
 function setup-pillar-ci() {
