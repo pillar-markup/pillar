@@ -12,4 +12,4 @@ tlmgr install trimspaces
 tlmgr install ctablestack
 tlmgr install import
 tlmgr install multirow
-tlmgr install ifetex
+tlmgr install iftex
