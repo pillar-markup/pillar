@@ -28,7 +28,7 @@ function get-texlive-installer() {
     )
 
     # sanity check
-    test -x "$tldir/install-tl" || die "can not find TeXlive installer"
+    [ -x "$tldir/install-tl" ] || die "can not find TeXlive installer at $tldir/install-tl"
     echo "$tldir/install-tl"
 }
 
