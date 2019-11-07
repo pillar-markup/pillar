@@ -14,21 +14,6 @@ function die() {
     exit 1
 }
 
-function fold() {
-    if [[ "$(type -t travis_fold)" == 'function' ]]; then
-        travis_fold "$@"
-    fi
-}
-
-function fold-with() {
-    local fold_name="$1"
-    shift # rest is command to run inside the fold
-
-    fold start "$fold_name"
-    "$@"
-    fold end "$fold_name"
-}
-
 function get-texlive-installer() {
     # download, checksum, extract
     curl --silent --location --remote-name "${TEXLIVE_MIRROR}/${TEXLIVE_TARBALL}"
@@ -76,18 +61,13 @@ function install-texlive() {
     [[ -x "$installer" ]] || die "can not find TeXlive installer at ${installer}";
 
     texlive-profile >> texlive.profile
-
-    fold-with "install TeXlive $TEXLIVE_RELEASE" \
-              "$installer" --repository "$TEXLIVE_MIRROR" --profile texlive.profile
-
-    fold-with "install base TeXlive packages" \
-              tlmgr install latexmk luatex85
+    "$installer" --repository "$TEXLIVE_MIRROR" --profile texlive.profile
+    tlmgr install latexmk luatex85
 }
 
 
 function install-pillar() {
-    fold-with "build pillar image" \
-              ./pillar/scripts/build.sh
+    ./pillar/scripts/build.sh
 }
 
 function setup-pillar-ci() {
