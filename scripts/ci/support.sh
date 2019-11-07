@@ -38,6 +38,8 @@ function get-texlive-installer() {
         | shasum --check -
     tar --extract --gzip --file "${TEXLIVE_TARBALL}"
 
+    ls -lh install-tl-*
+
     # find installer path from archive listing, sanity check
     tlinst=$(tar --list --gzip --file "${TEXLIVE_TARBALL}" | grep '/install-tl$')
     [ -x "$tlinst" ] || die "can not find TeXlive installer at ${tlinst}";
