@@ -23,8 +23,9 @@ function get-texlive-installer() {
         | shasum --check -
 
     # extract and grab name of tarball root
-    tar --extract --ungzip --verbose --file "${TEXLIVE_TARBALL}" \
-        | read -d/ tldir
+    read -rd/ tldir < <(
+        tar --extract --ungzip --verbose --file "${TEXLIVE_TARBALL}"
+    )
 
     # sanity check
     test -x "$tldir/install-tl" || die "can not find TeXlive installer"
