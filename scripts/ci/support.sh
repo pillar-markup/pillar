@@ -67,7 +67,7 @@ function install-texlive() {
 
 
 function install-pillar() {
-    ./pillar/scripts/build.sh
+    ./pillar/scripts/build.sh > pillar-buikd.log 2>&1
 }
 
 function setup-pillar-ci() {
