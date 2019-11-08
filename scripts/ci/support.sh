@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eo pipefail
+set -euo pipefail
 trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 IFS=$'\n\t'
 # preamble from https://disconnected.systems/blog/another-bash-strict-mode/
@@ -65,7 +65,8 @@ function install-texlive() {
     tlmgr install latexmk luatex85
 }
 
-function setup-pillar-ci() {
-    export PATH="$HOME/texlive/bin/x86_64-linux:$HOME/pillar/build:$PATH"
+# Only call the main function if this script was called as a command. This makes
+# it possible to source this script as a library.
+if [[ ${BASH_SOURCE[0]} == "$0" ]]; then
     install-texlive
-}
+fi
