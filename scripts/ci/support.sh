@@ -65,13 +65,7 @@ function install-texlive() {
     tlmgr install latexmk luatex85
 }
 
-
-function install-pillar() {
-    ./pillar/scripts/build.sh > pillar-buikd.log 2>&1
-}
-
 function setup-pillar-ci() {
     export PATH="$HOME/texlive/bin/x86_64-linux:$HOME/pillar/build:$PATH"
     install-texlive
-    install-pillar
 }
