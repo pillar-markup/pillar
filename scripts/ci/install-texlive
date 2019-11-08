@@ -16,9 +16,8 @@ function die() {
 
 function get-texlive-installer() {
     # download, checksum, extract
-    curl --silent --location --remote-name "${TEXLIVE_MIRROR}/${TEXLIVE_TARBALL}"
-    curl --silent --location "${TEXLIVE_MIRROR}/${TEXLIVE_TARBALL}.sha512" \
-        | shasum --check -
+    curl --silent --location --remote-name-all "${TEXLIVE_MIRROR}/${TEXLIVE_TARBALL}"{,.sha512}
+    shasum --check "${TEXLIVE_TARBALL}.sha512"
     tar --extract --gzip --file "${TEXLIVE_TARBALL}"
 }
 
