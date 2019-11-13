@@ -174,7 +174,7 @@ Read the documentation at https://github.com/SquareBracketAssociates/Booklet-Pub
 Please note that chapter on Pharo a web Perspective is obsolete since it refers to Pharo 60.
 
 ## History
-
+- 7.7.0 cleaned useless features, plus travis builds. 
 - 7.5.0 introduces environments (${begin:card|x=12}$ ... ${end:card}$
 - 7.4.1 introduces element-based templating (templates found in a given folder are used to output one given element).
 
