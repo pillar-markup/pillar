@@ -14,7 +14,7 @@ Execute the `build.sh` script found in the `scripts` directory:
 ```bash
 $ git clone git@github.com:pillar-markup/pillar.git
 $ cd pillar
-$ git checkout v7.7.1
+$ git checkout v7.7.2
 $ chmod a+x ./scripts/build.sh
 $ ./scripts/build.sh
 ```
