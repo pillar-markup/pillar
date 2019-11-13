@@ -29,9 +29,7 @@ LICENSE  README.md  appveyor.yml  archetypes  ==>>build<<==  download.sh  script
 
 #### Current versions
 
-- Most Pharo booklets are using 7.4.1
-- 7.5.0 is stable (most tests green except two from booktester - will be addressed soon). We have to check whether 7.5.0 supports old style columns (which where a kind of half-baked hardcoded environment).
-
+- Most Pharo booklets are using 7.7.2.
 
 #### Getting an older version
 
