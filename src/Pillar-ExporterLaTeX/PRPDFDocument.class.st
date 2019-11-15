@@ -85,7 +85,7 @@ PRPDFDocument >> postWriteTransform: aFile [
 			'-pdf' .
 			'-ps-' .
 			'-f' .
-			'-interaction=nonstopmode' .
+			'-interaction=batchmode' .
 			'-outdir=', (self toCommandPath: outputFileReference fullName).
 			self toCommandPath: (PRLaTeXWriter toLatexPath: (aFile relativeTo: outputDirectory) pillarPrintString) }
 		workingDirectory: outputDirectory fullName
