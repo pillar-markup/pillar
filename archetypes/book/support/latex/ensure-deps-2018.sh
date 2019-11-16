@@ -21,6 +21,7 @@ xargs tlmgr install <<DEPS
     opensans
     pgf
     polyglossia
+    hyphen-english
     tcolorbox
     tools
     trimspaces
