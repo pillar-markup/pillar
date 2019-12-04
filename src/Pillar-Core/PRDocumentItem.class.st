@@ -49,6 +49,18 @@ PRDocumentItem >> counter: anObject [
 	counter := anObject
 ]
 
+{ #category : #'gt-inspection' }
+PRDocumentItem >> gtInspectPillarModel: composite [
+	<gtInspectorPresentationOrder: 50>
+	
+	composite tree
+		shouldValidate: false;
+		title: 'Model';
+		display: [ :each | each hasChildren ifTrue: [ each children ] ifFalse: [ #() ] ];
+		children: [ :each | each hasChildren ifTrue: [ each children ] ifFalse: [ #() ] ];
+		format: [ :each | (each class name withoutPrefix: 'PR'), ' - ', (each text contractTo: 50)] 
+]
+
 { #category : #testing }
 PRDocumentItem >> hasChildren [
 	^ false
