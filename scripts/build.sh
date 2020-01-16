@@ -26,20 +26,44 @@ function get_platform_identifier() {
   fi
 }
 
+function get_platform_wrapper_selector() {
+  local TMP_OS=`uname | tr "[:upper:]" "[:lower:]"`
+  if [[ "{$TMP_OS}" = *darwin* ]]; then
+    echo "nixes";
+  elif [[ "{$TMP_OS}" = *linux* ]]; then
+    echo "nixes";
+  elif [[ "{$TMP_OS}" = *win* ]]; then
+    echo "windows";
+  elif [[ "{$TMP_OS}" = *mingw* ]]; then
+    echo "windows";
+  elif [[ "{$TMP_OS}" = *msys* ]]; then
+    echo "windows";
+  else
+    echo "Unsupported OS";
+    exit 1;
+  fi
+}
+
+
 # Set magic variables for current file & dir
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 __builddir="$(pwd)/build"
-PHARO_VERSION="${PHARO_VERSION:-70}"
+PHARO_VERSION="${PHARO_VERSION:-80}"
+
+OS=$(get_platform_identifier)
+REPOSITORY_PATH=${__dir}/../src
+PHARO_ARCH="64"
+if [ "$OS" == "win" ]; then	
+	PHARO_ARCH="32"
+    REPOSITORY_PATH=$(cygpath $REPOSITORY_PATH --windows)
+fi
+
+
 PHARO="./pharo Pharo.image --no-default-preferences"
 
 rm -rf "${__builddir}" && mkdir -p "${__builddir}" && cd "${__builddir}"
-wget -O - get.pharo.org/64/${PHARO_VERSION}+vm | bash
+wget -O - get.pharo.org/${PHARO_ARCH}/${PHARO_VERSION}+vm | bash
 
-REPOSITORY_PATH=${__dir}/../src
-OS=$(get_platform_identifier)
-if [ "$OS" == "win" ]; then
-    REPOSITORY_PATH=$(cygpath $REPOSITORY_PATH --windows)
-fi
 
 ${PHARO} eval --save "Metacello new baseline: 'Pillar'; repository: 'gitlocal://${REPOSITORY_PATH}'; load"
 
@@ -50,6 +74,6 @@ ${PHARO} eval --save "StartupPreferencesLoader allowStartupScript: false."
 # UserManager was remove on Pharo5. We need to check if there is an other way to do this.
 ${PHARO} eval --save "PharoFilesOpener default unsetInformAboutReadOnlyChanges."
 ${PHARO} eval --save "Smalltalk logFileName: '/tmp/pillar.log'"
-
-cp "${__dir}/wrappers/"* "${__builddir}"
+WRAPPER_SELECTOR=$(get_platform_wrapper_selector)
+cp "${__dir}/wrappers/$WRAPPER_SELECTOR/"* "${__builddir}"
 cp -r "${__dir}/../archetypes" "${__builddir}/archetypes"
