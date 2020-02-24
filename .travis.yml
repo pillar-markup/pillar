@@ -23,7 +23,7 @@ env:
   - JOB=build
 
 install:
-  - if [[ ${TYPE} == "Integration" ]] || [[ ${TYPE} == "System" ]]; then . scripts/ci/install-texlive; fi
+  - if [[ ${TYPE} == "Integration" ]] || [[ ${TYPE} == "System" ]]; then ./scripts/ci/install-texlive; fi
   - if [[ ${TYPE} == "Integration" ]] || [[ ${OUTPUT} == "pdf" ]]; then ./_support/latex/ensure-deps.sh; fi
   - if [[ ${TYPE} == "Integration" ]]; then mkdir -p $SMALLTALK_CI_BUILD; fi
   - if [[ ${TYPE} == "Integration" ]]; then cp -r archetypes $SMALLTALK_CI_BUILD; fi
