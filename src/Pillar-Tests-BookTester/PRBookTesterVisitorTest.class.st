@@ -142,7 +142,7 @@ PRBookTesterVisitorTest >> testExplanationIsExceptionCatchedInFailingTest [
 	self assert: bTester validTests isEmpty.
 	self assert: bTester failedTests size equals: 1.
 	self assert: bTester failedTests first explanation 
-		  equals: 'MessageNotUnderstood: Character>>adaptToNumber:andSend:'.
+		  equals: 'MessageNotUnderstood: Character>> #adaptToNumber:andSend:'.
 ]
 
 { #category : #'tests - explanation' }
