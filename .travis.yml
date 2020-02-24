@@ -4,8 +4,8 @@ os:
   - linux
   - osx
 smalltalk:
-  - Pharo-8.0-64
-  - Pharo-7.0
+  - Pharo64-8.0
+  - Pharo64-7.0
 
 env:
   matrix:
