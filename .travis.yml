@@ -6,7 +6,6 @@ os:
 smalltalk:
   - Pharo-8.0
   - Pharo-7.0
-  - Pharo-6.1
 
 env:
   matrix:
@@ -24,8 +23,8 @@ env:
   - JOB=build
 
 install:
-  - if [[ ${TYPE} == "Integration" ]] || [[ ${TYPE} == "System" ]]; then . scripts/ci/ensure_latex.sh; fi
-  - if [[ ${TYPE} == "Integration" ]] || [[ ${TYPE} == "System" ]]; then scripts/ci/ensure_book_dependencies.sh; fi
+  - if [[ ${TYPE} == "Integration" ]] || [[ ${TYPE} == "System" ]]; then . scripts/ci/install-texlive; fi
+  - if [[ ${TYPE} == "Integration" ]] || [[ ${OUTPUT} == "pdf" ]]; then ./_support/latex/ensure-deps.sh; fi
   - if [[ ${TYPE} == "Integration" ]]; then mkdir -p $SMALLTALK_CI_BUILD; fi
   - if [[ ${TYPE} == "Integration" ]]; then cp -r archetypes $SMALLTALK_CI_BUILD; fi
 
