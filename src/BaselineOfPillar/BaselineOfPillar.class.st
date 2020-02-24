@@ -24,12 +24,12 @@ BaselineOfPillar >> baseline: spec [
 		do: [ spec blessing: #baseline.
 			spec
 				baseline: 'ContainersPropertyEnvironment'
-				with: [ spec repository: 'github://Ducasse/Containers-PropertyEnvironment' ].
+				with: [ spec repository: 'github://Ducasse/Containers-PropertyEnvironment:v1.0.0' ].
 			spec
 				baseline: 'PetitParser2Core' with: [
 					spec
 					 	repository: 'github://kursjan/petitparser2' ];
-				baseline: 'Chrysal' with: [ spec repository: 'github://Ducasse/Chrysal/src' ];
+				baseline: 'Chrysal' with: [ spec repository: 'github://Ducasse/Chrysal:v1.0.0/src' ];
 				baseline: 'Mustache'
 					with: [ spec
 						repository: 'github://noha/mustache:v1.0/repository';
