@@ -5,6 +5,27 @@ Class {
 }
 
 { #category : #tests }
+PRBasicMicroDownParserTest >> testCodeBlock [
+
+	| document |
+	document := PRMicroDownParser parse: '```pharo
+	1-2 
+	```'.
+	self assert: document children first class equals: PRCodeblock.
+	
+]
+
+{ #category : #tests }
+PRBasicMicroDownParserTest >> testCodeInText [
+
+	| document |
+	document := PRMicroDownParser parse: 'The method ~foo~ is fun'.
+	self assert: document children first class equals: PRParagraph.
+	self halt.
+	
+]
+
+{ #category : #tests }
 PRBasicMicroDownParserTest >> testHeader [ 
 
 	| document |
