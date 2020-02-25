@@ -5,7 +5,7 @@ Class {
 		'buildStrategy',
 		'transformations'
 	],
-	#category : 'Pillar-ExporterCore-Base'
+	#category : #'Pillar-ExporterCore-Base'
 }
 
 { #category : #accessing }
@@ -49,6 +49,13 @@ PRTarget >> buildAll [
 ]
 
 { #category : #building }
+PRTarget >> buildMainRoot [
+	"To compile only the pillar file that can be found on the top-level."
+	
+	buildStrategy := PRBuildRootMainStrategy new
+]
+
+{ #category : #building }
 PRTarget >> buildOn: aProject [
 	"Set the pipeline and execute it for each file of the project."
 	| status |
@@ -86,7 +93,8 @@ PRTarget >> filesToBuildOn: aPRProject [
 PRTarget >> initialize [
 	super initialize.
 	transformations := Set new.
-	self buildAll
+	"self buildAll"
+	self buildMainRoot 
 ]
 
 { #category : #preparation }
