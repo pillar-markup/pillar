@@ -4,7 +4,7 @@ A LaTeX writer
 Class {
 	#name : #PRLaTeXWriter,
 	#superclass : #PRDocumentWriter,
-	#category : 'Pillar-ExporterLaTeX'
+	#category : #'Pillar-ExporterLaTeX'
 }
 
 { #category : #accessing }
@@ -102,6 +102,11 @@ PRLaTeXWriter >> protectUrl: aString [
 { #category : #helpers }
 PRLaTeXWriter >> sectioningCommands [
 	^ #('part' 'chapter' 'section' 'subsection' 'subsubsection' 'paragraph' 'subparagraph')
+]
+
+{ #category : #protected }
+PRLaTeXWriter >> tabularEnvironment [
+	^ 'tabular'
 ]
 
 { #category : #'visiting-document' }
@@ -345,15 +350,13 @@ PRLaTeXWriter >> visitSuperscriptFormat: aFormat [
 { #category : #'visiting-document' }
 PRLaTeXWriter >> visitTable: aTable [
 	| environment |
-	environment := canvas environment name: 'tabular'.
+	environment := canvas environment name: self tabularEnvironment.
 	aTable rowCount = 0
-		ifTrue: [ 
-			environment with: [  ].
+		ifTrue: [ environment with: [  ].
 			^ self ].
 	environment parameter: aTable latexSpecification.
 	environment
-		with: [ 
-			canvas command name: 'toprule'.
+		with: [ canvas command name: 'toprule'.
 			canvas newLine.
 			super visitTable: aTable.
 			canvas command name: 'bottomrule'.

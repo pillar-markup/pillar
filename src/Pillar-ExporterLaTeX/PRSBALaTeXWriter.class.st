@@ -4,7 +4,7 @@ Writes LaTeX code in the style expected by sbabook (https://github.com/cdlm/sbab
 Class {
 	#name : #PRSBALaTeXWriter,
 	#superclass : #PRLaTeXWriter,
-	#category : 'Pillar-ExporterLaTeX'
+	#category : #'Pillar-ExporterLaTeX'
 }
 
 { #category : #accessing }
@@ -25,6 +25,11 @@ PRSBALaTeXWriter >> optionalParametersForFloatingScript: aScript [
 	aScript hasLabel ifTrue: [ parameters add: 'label=', aScript label ].
 	aScript hasShortCaption ifTrue: [ parameters add: 'list text={', aScript shortCaption, '}' ].
 	^ parameters asCommaString
+]
+
+{ #category : #'visiting-document' }
+PRSBALaTeXWriter >> tabularEnvironment [
+	^ 'fullwidthtabular'
 ]
 
 { #category : #'visiting-document' }
