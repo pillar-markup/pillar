@@ -5,10 +5,12 @@ xargs tlmgr install <<DEPS
     environ
     filehook
     fira
+    fontaxes
     fontspec
     footmisc
     gentium-tug
     graphics
+    hyphen-english
     import
     listings
     luatexbase
@@ -17,7 +19,6 @@ xargs tlmgr install <<DEPS
     opensans
     pgf
     polyglossia
-    hyphen-english
     ragged2e
     tcolorbox
     tools
@@ -25,4 +26,5 @@ xargs tlmgr install <<DEPS
     ulem
     varwidth
     xcolor
+    xtab
 DEPS
