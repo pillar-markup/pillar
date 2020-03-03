@@ -124,7 +124,7 @@ PRPDFDocument >> writeDocument: aDocument [
 
 
 	self flag: #DuplicatedInSuperclass.
-	outputFile := (self outputDirectory resolve: (file file relativeTo: project baseDirectory asAbsolute)) withoutExtension , 'tex'.
+	outputFile := (self outputDirectory resolve: (file file asAbsolute relativeTo: project baseDirectory asAbsolute)) withoutExtension , 'tex'.
 	outputFile ensureDelete.
 	outputFile parent ensureCreateDirectory.
 	outputFile writeStreamDo: [ :stream | 
