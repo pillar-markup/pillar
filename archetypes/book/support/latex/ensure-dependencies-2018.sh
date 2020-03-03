@@ -28,4 +28,6 @@ xargs tlmgr install <<DEPS
     ulem
     varwidth
     xcolor
+    xtab
+    slantsc
 DEPS

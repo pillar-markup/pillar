@@ -1,5 +1,6 @@
 #!/bin/bash
 # this dependency list is for LaTeX 2019
+
 xargs tlmgr install <<DEPS
     ctablestack
     environ
@@ -27,4 +28,5 @@ xargs tlmgr install <<DEPS
     varwidth
     xcolor
     xtab
+    slantsc
 DEPS
