@@ -6,7 +6,8 @@ IFS=$'\n\t'
 
 # ensure meaningful default values for required environment variables
 : "${TEXLIVE_RELEASE:=2017}"
-: "${TEXLIVE_MIRROR:="https://ftp.tu-chemnitz.de/pub/tug/historic/systems/texlive/${TEXLIVE_RELEASE}/tlnet-final/"}"
+: "${TEXLIVE_RELEASE_DIRECTORY:=/tlnet-final/}"
+: "${TEXLIVE_MIRROR:="https://ftp.tu-chemnitz.de/pub/tug/historic/systems/texlive/${TEXLIVE_RELEASE}${TEXLIVE_RELEASE_DIRECTORY}"}"
 : "${TEXLIVE_TARBALL:=install-tl-unx.tar.gz}"
 
 function die() {
