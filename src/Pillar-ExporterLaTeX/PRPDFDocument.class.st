@@ -72,7 +72,7 @@ PRPDFDocument >> extension [
 PRPDFDocument >> postWriteTransform: aFile [
 
 	| relativePath outputFileReference |
-	relativePath := file file relativeTo: project baseDirectory asAbsolute.
+	relativePath := file file asAbsolute relativeTo: project baseDirectory asAbsolute.
 	outputFileReference := outputDirectory resolve: relativePath parent.
 	self
 		executeCommand: 'latexmk'
