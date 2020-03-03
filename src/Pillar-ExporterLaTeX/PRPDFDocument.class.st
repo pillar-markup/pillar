@@ -1,7 +1,7 @@
 Class {
 	#name : #PRPDFDocument,
 	#superclass : #PRAbstractOutputDocument,
-	#category : 'Pillar-ExporterLaTeX'
+	#category : #'Pillar-ExporterLaTeX'
 }
 
 { #category : #writing }
@@ -70,11 +70,7 @@ PRPDFDocument >> extension [
 
 { #category : #writing }
 PRPDFDocument >> postWriteTransform: aFile [
-	
-	"latexmk -pdflatex=lualatex -pdf -ps- -use-make \
-		-latexoption=""--file-line-error --halt-on-error"" \
-		-deps-out=""$*.d"" \
-		file"	
+
 	| relativePath outputFileReference |
 	relativePath := file file relativeTo: project baseDirectory asAbsolute.
 	outputFileReference := outputDirectory resolve: relativePath parent.
@@ -85,7 +81,7 @@ PRPDFDocument >> postWriteTransform: aFile [
 			'-pdf' .
 			'-ps-' .
 			'-f' .
-			'-interaction=batchmode' .
+			'-interaction=nonstopmode' .
 			'-outdir=', (self toCommandPath: outputFileReference fullName).
 			self toCommandPath: (PRLaTeXWriter toLatexPath: (aFile relativeTo: outputDirectory) pillarPrintString) }
 		workingDirectory: outputDirectory fullName
