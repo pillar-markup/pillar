@@ -1,5 +1,5 @@
 #!/bin/bash
-# this dependency list is for LaTex 2018
+# this dependency list is for LaTex 2017
 
 xargs tlmgr install <<DEPS
     ctablestack
