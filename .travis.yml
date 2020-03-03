@@ -8,7 +8,7 @@ smalltalk:
 
 env:
   global:
-  - PATH="$HOME/texlive/bin/x86_64-linux:$HOME/pillar/build:$PATH"
+  - PATH="$HOME/texlive/bin/x86_64-linux:$HOME/texlive/bin/x86_64-darwin:$HOME/pillar/build:$PATH"
   
   matrix:
   - JOB=test TYPE=Unit
