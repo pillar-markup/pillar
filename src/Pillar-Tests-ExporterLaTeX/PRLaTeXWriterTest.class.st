@@ -1,7 +1,7 @@
 Class {
 	#name : #PRLaTeXWriterTest,
 	#superclass : #PRDocumentWriterTest,
-	#category : 'Pillar-Tests-ExporterLaTeX'
+	#category : #'Pillar-Tests-ExporterLaTeX'
 }
 
 { #category : #testing }
@@ -390,7 +390,7 @@ PRLaTeXWriterTest >> testThereIsABlankLineBetweenTextAndTable [
 | bar'.
 	self
 		assertWriting: (self parser parse: text)
-		includesText: 'This is a table:' , nLine , nLine , '\begin{tab'
+		includesText: 'This is a table:' , nLine , nLine , self tableBegin
 ]
 
 { #category : #'tests-internalLinks' }
