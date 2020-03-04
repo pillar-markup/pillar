@@ -7,7 +7,7 @@ Class {
 		'target',
 		'outputDirectory'
 	],
-	#category : 'Pillar-ExporterCore-Base'
+	#category : #'Pillar-ExporterCore-Base'
 }
 
 { #category : #accessing }
@@ -167,7 +167,7 @@ PRAbstractOutputDocument >> writeDocument: aDocument [
 	
 	
 	self flag: #DuplicatedInSubclass.
-	outputFile := (self outputDirectory resolve: (file file relativeTo: project baseDirectory asAbsolute)) withoutExtension , self extension.
+	outputFile := (self outputDirectory resolve: (file file asAbsolute relativeTo: project baseDirectory asAbsolute)) withoutExtension , self extension.
 	outputFile ensureDelete.
 	outputFile parent ensureCreateDirectory.
 	outputFile writeStreamDo: [ :stream | stream nextPutAll: templatedOutput ].
