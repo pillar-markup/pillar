@@ -2,7 +2,7 @@ language: smalltalk
 sudo: false
 os:
   - linux
-  - osx
+  
 smalltalk:
   - Pharo64-8.0
 
