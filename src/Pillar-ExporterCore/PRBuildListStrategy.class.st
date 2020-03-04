@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'files'
 	],
-	#category : 'Pillar-ExporterCore-Base'
+	#category : #'Pillar-ExporterCore-Base'
 }
 
 { #category : #'instance-creation' }
@@ -17,7 +17,9 @@ PRBuildListStrategy class >> list: aCollection [
 
 { #category : #accessing }
 PRBuildListStrategy >> files: aCollection [ 
-	files := aCollection
+	"We first convert the argument into a Set to be sure there is only one occurence of each document, then back to an array to be consistent"
+	
+	files := aCollection asSet asArray
 ]
 
 { #category : #accessing }
