@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'files'
 	],
-	#category : 'Pillar-ExporterCore-Base'
+	#category : #'Pillar-ExporterCore-Base'
 }
 
 { #category : #'instance-creation' }
@@ -17,7 +17,7 @@ PRBuildListStrategy class >> list: aCollection [
 
 { #category : #accessing }
 PRBuildListStrategy >> files: aCollection [ 
-	files := aCollection
+	files := aCollection asSet
 ]
 
 { #category : #accessing }

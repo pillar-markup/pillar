@@ -107,7 +107,7 @@ PRBuildStrategyTest >> testPRBuildListStrategyDoubleEntry [
 		files: {'chapter1.pillar' . 'chapter1.pillar'}.
 	f := f filesToBuildOn: project.
 	self assert: f size equals: 1.
-	self assert: f first file fullName equals: '/chapter1.pillar'
+	self assert: f anyOne file fullName equals: '/chapter1.pillar'
 ]
 
 { #category : #tests }
