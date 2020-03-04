@@ -245,7 +245,7 @@ PRMicroDownGrammar class >> textMarkups [
 	markups
 		at: PRBoldFormat put: '""';
 		at: PRItalicFormat put: '''''';
-		at: PRMonospaceFormat put: '~';
+		at: PRMonospaceFormat put: '`';
 		at: PRStrikethroughFormat put: '--';
 		at: PRSubscriptFormat put: '@@';
 		at: PRSuperscriptFormat put: '^^';

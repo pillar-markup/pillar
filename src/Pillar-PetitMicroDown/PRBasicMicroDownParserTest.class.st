@@ -8,6 +8,7 @@ Class {
 PRBasicMicroDownParserTest >> testCodeBlock [
 
 	| document |
+	self skip.
 	document := PRMicroDownParser parse: '```pharo
 	1-2 
 	```'.
@@ -19,9 +20,9 @@ PRBasicMicroDownParserTest >> testCodeBlock [
 PRBasicMicroDownParserTest >> testCodeInText [
 
 	| document |
-	document := PRMicroDownParser parse: 'The method ~foo~ is fun'.
+	document := PRMicroDownParser parse: 'The method `foo` is fun'.
 	self assert: document children first class equals: PRParagraph.
-	self halt.
+	
 	
 ]
 

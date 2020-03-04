@@ -1,12 +1,46 @@
 Class {
 	#name : #PRPillarGrammarTest,
 	#superclass : #PP2CompositeNodeTest,
-	#category : 'Pillar-Tests-PetitPillar'
+	#instVars : [
+		'factory'
+	],
+	#category : #'Pillar-Tests-PetitPillar'
 }
+
+{ #category : #'tests - Script' }
+PRPillarGrammarTest >> codeBlockSample [
+	^ factory codeBlockSample 
+]
+
+{ #category : #accessing }
+PRPillarGrammarTest >> factory [
+
+	^ factory 
+]
+
+{ #category : #accessing }
+PRPillarGrammarTest >> factory: aFactory [
+
+	factory := aFactory
+]
+
+{ #category : #accessing }
+PRPillarGrammarTest >> parse: aString rule: aSymbol [
+	
+	PillarSnippetFactory compile: (testSelector allButFirst: 4) uncapitalized , 'Sample', String cr, String tab, '^ ''', aString , '''' classified: 'sample'.
+	
+	^ super parse: aString rule: aSymbol
+]
 
 { #category : #accessing }
 PRPillarGrammarTest >> parserClass [
 	^ PRPillarGrammar
+]
+
+{ #category : #running }
+PRPillarGrammarTest >> setUp [ 
+	super setUp.
+	self factory: PillarSnippetFactory new.
 ]
 
 { #category : #'tests - Reference' }
@@ -31,7 +65,7 @@ PRPillarGrammarTest >> testAliasLinkEscape [
 
 { #category : #'tests - Anchor' }
 PRPillarGrammarTest >> testAnchor [
-	self parse: '@test' rule: #anchor
+	self parse: factory anchorSample rule: #anchor
 ]
 
 { #category : #'tests - Anchor' }
@@ -503,7 +537,7 @@ bar}}}' rule: #raw
 
 { #category : #'tests - Reference' }
 PRPillarGrammarTest >> testReference [
-	self parse: '*foo>@bar*' rule: #reference
+	self parse: factory referenceSample rule: #reference
 ]
 
 { #category : #'tests - Reference' }
@@ -528,12 +562,7 @@ PRPillarGrammarTest >> testReferenceLinkEscape [
 
 { #category : #'tests - Script' }
 PRPillarGrammarTest >> testScript [
-	self
-		parse:
-			'[[[
-foo
-]]]'
-		rule: #script
+	self parse: self codeBlockSample rule: #script
 ]
 
 { #category : #'tests - Script' }
