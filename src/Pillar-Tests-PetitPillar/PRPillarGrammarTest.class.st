@@ -27,7 +27,7 @@ PRPillarGrammarTest >> factory: aFactory [
 { #category : #accessing }
 PRPillarGrammarTest >> parse: aString rule: aSymbol [
 	
-	PillarSnippetFactory compile: (testSelector allButFirst: 4) uncapitalized , 'Sample', String cr, String tab, '^ ''', aString , '''' classified: 'sample'.
+	"PillarSnippetFactory compile: (testSelector allButFirst: 4) uncapitalized , 'Sample', String cr, String tab, '^ ''', aString , '''' classified: 'sample'."
 	
 	^ super parse: aString rule: aSymbol
 ]
