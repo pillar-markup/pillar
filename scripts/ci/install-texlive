@@ -5,7 +5,7 @@ IFS=$'\n\t'
 # preamble from https://disconnected.systems/blog/another-bash-strict-mode/
 
 # ensure meaningful default values for required environment variables
-: "${TEXLIVE_RELEASE:=2018}"
+: "${TEXLIVE_RELEASE:=2017}"
 : "${TEXLIVE_MIRROR:="https://ftp.tu-chemnitz.de/pub/tug/historic/systems/texlive/${TEXLIVE_RELEASE}/tlnet-final/"}"
 : "${TEXLIVE_TARBALL:=install-tl-unx.tar.gz}"
 
@@ -23,30 +23,16 @@ function get-texlive-installer() {
 
 function texlive-profile() {
     cat <<EOF
-selected_scheme scheme-basic
-
-TEXDIR          $HOME/texlive
-TEXMFLOCAL      \$TEXDIR/texmf-local
-TEXMFSYSCONFIG  \$TEXDIR/texmf-config
-TEXMFSYSVAR     \$TEXDIR/texmf-var
-TEXMFCONFIG     \$TEXMFSYSCONFIG
-TEXMFHOME       \$TEXMFLOCAL
-TEXMFVAR        \$TEXMFSYSVAR
-
-instopt_adjustpath 0
-instopt_adjustrepo 0
-instopt_letter 0
-instopt_portable 0
-instopt_write18_restricted 1
-
-# set repository:
-tlpdbopt_autobackup 0
-tlpdbopt_create_formats 1
-tlpdbopt_generate_updmap 0
-tlpdbopt_install_docfiles 0
-tlpdbopt_install_srcfiles 0
-tlpdbopt_post_code 1
-
+	selected_scheme scheme-small
+	TEXDIR $HOME/texlive
+	TEXMFCONFIG $HOME/.texlive/texmf-config
+	TEXMFHOME $HOME/texmf
+	TEXMFLOCAL $HOME/texlive/texmf-local
+	TEXMFSYSCONFIG $HOME/texlive/texmf-config
+	TEXMFSYSVAR $HOME/texlive/texmf-var
+	TEXMFVAR $HOME/.texlive/texmf-var
+	option_doc 0
+	option_src 0
 EOF
 }
 
@@ -61,6 +47,7 @@ function install-texlive() {
 
     texlive-profile >> texlive.profile
     "$installer" --repository "$TEXLIVE_MIRROR" --profile texlive.profile
+    tlmgr init-usertree
     tlmgr install latexmk luatex85
 }
 

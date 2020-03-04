@@ -29,7 +29,6 @@ PRLineBreakTest >> testParseOneEmptyLine [
 		add: (PRParagraph new add: (PRText content: 'Nulla quis urna.') yourself);
 		yourself.
 		
-	self halt.
 	self assertWiki: wiki equalsTree: tree.
 	self assertTree: tree equalsWiki: wiki.
 	self assertTree: tree equalsText: text

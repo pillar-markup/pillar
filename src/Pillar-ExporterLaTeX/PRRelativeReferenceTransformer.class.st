@@ -6,7 +6,7 @@ Class {
 		'baseDirectory',
 		'outputDirectory'
 	],
-	#category : 'Pillar-ExporterLaTeX'
+	#category : #'Pillar-ExporterLaTeX'
 }
 
 { #category : #accessing }
@@ -24,7 +24,7 @@ PRRelativeReferenceTransformer >> destinationDirectoryFor: aDocument [
 	
 	| filePath relativePath |
 	filePath := inputFile parent.
-	relativePath := filePath relativeTo: baseDirectory.
+	relativePath := filePath asAbsolute relativeTo: baseDirectory asAbsolute.
 	^ outputDirectory resolve: relativePath.
 ]
 

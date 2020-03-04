@@ -1,25 +1,27 @@
 #!/bin/bash
-# this dependency list is for LaTeX 2019
+# this dependency list is for LaTex 2018
+
 xargs tlmgr install <<DEPS
     ctablestack
     environ
     filehook
     fira
-    fontaxes
     fontspec
     footmisc
     gentium-tug
     graphics
-    hyphen-english
+    ifetex
     import
     listings
+    luaotfload
     luatexbase
     memoir
+    ms
     multirow
     opensans
     pgf
     polyglossia
-    ragged2e
+    hyphen-english
     tcolorbox
     tools
     trimspaces
@@ -27,4 +29,5 @@ xargs tlmgr install <<DEPS
     varwidth
     xcolor
     xtab
+    slantsc
 DEPS

@@ -1,7 +1,7 @@
 Class {
 	#name : #PRSBALaTeXWriterTest,
 	#superclass : #PRLaTeXWriterTest,
-	#category : 'Pillar-Tests-ExporterLaTeX'
+	#category : #'Pillar-Tests-ExporterLaTeX'
 }
 
 { #category : #private }
@@ -12,6 +12,18 @@ PRSBALaTeXWriterTest >> actualClass [
 { #category : #requirements }
 PRSBALaTeXWriterTest >> monospaceFoo [
 	^ '\textcode{foo}'
+]
+
+{ #category : #requirements }
+PRSBALaTeXWriterTest >> tableBegin [
+
+	^ '\begin{fullwidthtabular}'
+]
+
+{ #category : #requirements }
+PRSBALaTeXWriterTest >> tableEnd [
+
+	^ '\end{fullwidthtabular}'
 ]
 
 { #category : #tests }

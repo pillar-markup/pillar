@@ -8,12 +8,13 @@ smalltalk:
 
 env:
   global:
-  - PATH="$HOME/texlive/bin/x86_64-linux:$HOME/pillar/build:$PATH"
+  - PATH="$HOME/texlive/bin/x86_64-linux:$HOME/texlive/bin/x86_64-darwin:$HOME/pillar/build:$PATH"
   
   matrix:
-  - JOB=test TYPE=Unit
   - JOB=test TYPE=Integration
-  - JOB=test TYPE=System ARCHETYPE=book OUTPUT=pdf
+  - JOB=test TYPE=System ARCHETYPE=book OUTPUT=pdf TEXLIVE_RELEASE=2017
+  - JOB=test TYPE=System ARCHETYPE=book OUTPUT=pdf TEXLIVE_RELEASE=2018
+  - JOB=test TYPE=System ARCHETYPE=book OUTPUT=pdf TEXLIVE_RELEASE=2019 TEXLIVE_MIRROR="http://mirror.ctan.org/systems/texlive/tlnet"
   - JOB=test TYPE=System ARCHETYPE=book OUTPUT=html
   - JOB=test TYPE=System ARCHETYPE=presentation OUTPUT=pdf
   - JOB=test TYPE=System ARCHETYPE=presentation OUTPUT=html
@@ -23,10 +24,11 @@ env:
   - JOB=test TYPE=System ARCHETYPE=basic-latex OUTPUT=html
   - JOB=test TYPE=System ARCHETYPE=tester-example OUTPUT=checkBook
   - JOB=build
+  - JOB=test TYPE=Unit
 
 install:
   - if [[ ${TYPE} == "Integration" ]] || [[ ${TYPE} == "System" ]]; then ./scripts/ci/install-texlive; fi
-  - if [[ ${TYPE} == "Integration" ]] || [[ ${OUTPUT} == "pdf" ]]; then ./archetypes/book/support/latex/ensure-deps.sh; fi
+  - if [[ ${TYPE} == "Integration" ]] || [[ ${OUTPUT} == "pdf" ]]; then ./archetypes/book/support/latex/ensure-dependencies-${TEXLIVE_RELEASE:=2017}.sh; fi
   - if [[ ${TYPE} == "Integration" ]]; then mkdir -p $SMALLTALK_CI_BUILD; fi
   - if [[ ${TYPE} == "Integration" ]]; then cp -r archetypes $SMALLTALK_CI_BUILD; fi
 
