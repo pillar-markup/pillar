@@ -56,6 +56,7 @@ BaselineOfPillar >> baseline: spec [
 				package: 'Pillar-Model' with: [ spec requires: #('Pillar-Core')];
 				package: 'Pillar-CodeBlockEvaluator' with: [ spec requires: #('Pillar-Core')];
 				package: 'Pillar-PetitPillar' with: [ spec requires: #('PetitParser2Core' 'Pillar-Model') ];
+				package: 'Pillar-ExporterRichText' with: [ spec requires: #('Pillar-Core' 'Pillar-PetitPillar') ];
 				package: 'Pillar-Pharo-Tools' with: [ spec requires: #('Pillar-Model' 'All exporters') ];
 				package: 'Pillar-Project' with: [ spec requires: #('Pillar-Model' 'All exporters') ];
 				package: 'Pillar-BookTester' with: [ spec requires: #('Pillar-Project') ];
