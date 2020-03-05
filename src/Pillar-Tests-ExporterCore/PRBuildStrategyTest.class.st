@@ -96,8 +96,8 @@ PRBuildStrategyTest >> testPRBuildListStrategy [
 		files: {'index.pillar' . 'chapter1.pillar'}.
 	f := f filesToBuildOn: project.
 	self assert: f size equals: 2.
-	self assert: f first file fullName equals: '/index.pillar'.
-	self assert: f second file fullName equals: '/chapter1.pillar'.
+	self assert: ((f collect: [:each | each fullName]) 
+							includesAll: #('/index.pillar' '/chapter1.pillar')).
 ]
 
 { #category : #tests }
