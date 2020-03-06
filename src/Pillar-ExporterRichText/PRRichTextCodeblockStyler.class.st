@@ -16,21 +16,21 @@ To define a new styler for a different language or format you should do the foll
 
 "
 Class {
-	#name : #PRRichTextCodeblokStyler,
+	#name : #PRRichTextCodeblockStyler,
 	#superclass : #Object,
 	#category : #'Pillar-ExporterRichText'
 }
 
-{ #category : #'as yet unclassified' }
-PRRichTextCodeblokStyler class >> defaultStyler: aString [
+{ #category : #'instance creation' }
+PRRichTextCodeblockStyler class >> defaultStyler: aString [
 	<codeblockStylerFor:'default'>
 	
 	"By default, render it as smalltalk code"
 	^self smalltalkStylerFor: aString
 ]
 
-{ #category : #'as yet unclassified' }
-PRRichTextCodeblokStyler class >> languageStylerFor: aLanguage [
+{ #category : #'instance creation' }
+PRRichTextCodeblockStyler class >> languageStylerFor: aLanguage [
 	| stylers |
 	stylers := Dictionary
 		newFromAssociations: ((PragmaCollector
@@ -41,8 +41,8 @@ PRRichTextCodeblokStyler class >> languageStylerFor: aLanguage [
 		ifAbsent: [ self languageStylerFor: 'default' ]
 ]
 
-{ #category : #'as yet unclassified' }
-PRRichTextCodeblokStyler class >> smalltalkStylerFor: aString [
+{ #category : #'instance creation' }
+PRRichTextCodeblockStyler class >> smalltalkStylerFor: aString [
 	<codeblockStylerFor:'Smalltalk'>
 	
 	^SHRBTextStyler new 
@@ -50,18 +50,19 @@ PRRichTextCodeblokStyler class >> smalltalkStylerFor: aString [
 		styledTextFor: aString asText
 ]
 
-{ #category : #'as yet unclassified' }
-PRRichTextCodeblokStyler class >> style: aString asLanguage: aLanguage [
+{ #category : #'instance creation' }
+PRRichTextCodeblockStyler class >> style: aString asLanguage: aLanguage [
 	"render aString according to the styler named aLanguage"
-	|styler|
+	
+	| styler |
 	styler := self languageStylerFor: aLanguage.
 	^ styler
 		valueWithReceiver: styler methodClass soleInstance 
-		arguments:  (Array with: aString)
+		arguments: (Array with: aString)
 ]
 
-{ #category : #'as yet unclassified' }
-PRRichTextCodeblokStyler class >> textStyler: aString [
+{ #category : #'instance creation' }
+PRRichTextCodeblockStyler class >> textStyler: aString [
 	<codeblockStylerFor:'text'>
 	
 	^aString asText

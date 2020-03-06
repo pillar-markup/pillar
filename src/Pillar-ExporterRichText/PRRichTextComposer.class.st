@@ -250,7 +250,7 @@ PRRichTextComposer >> visitCodeblock: aCodeBlock [
 	canvas newLineIfNotAlready .
 	canvas
 		indentIn: [ 
-			canvas << (PRRichTextCodeblokStyler  
+			canvas << (PRRichTextCodeblockStyler  
 				style: aCodeBlock text 
 				asLanguage: aCodeBlock language originalName)
 			].
