@@ -271,7 +271,7 @@ PillarSnippetFactory >> italicFormatSample [
 
 { #category : #sample }
 PillarSnippetFactory >> italicFormatWithEscapedSample [
-	^   '''''''''' 
+	^   '''''\''\''''''' 
 ]
 
 { #category : #sample }
