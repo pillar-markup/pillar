@@ -28,7 +28,7 @@ Now to exist and be used I do not need the full Chrysal package, just the runtim
 Class {
 	#name : #ConfigurationForPillar,
 	#superclass : #ChrysalPillarishConfiguration,
-	#category : 'Pillar-Chrysal'
+	#category : #'Pillar-Chrysal'
 }
 
 { #category : #description }
@@ -175,7 +175,8 @@ ConfigurationForPillar >> attribution: aValue [
 { #category : #accessing }
 ConfigurationForPillar >> baseDirectory [
 	"generated code"
-	^ self propertyAt: #baseDirectory ifAbsent: [(FileSystem workingDirectory / '.')]
+	"^ self propertyAt: #baseDirectory ifAbsent: [(FileSystem workingDirectory) / '.']"
+	^ (FileSystem workingDirectory)
 ]
 
 { #category : #accessing }
