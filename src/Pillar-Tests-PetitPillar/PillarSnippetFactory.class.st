@@ -261,7 +261,7 @@ PillarSnippetFactory >> horizontalRuleTrimRightSample [
 
 { #category : #sample }
 PillarSnippetFactory >> italicFormatEmptySample [
-	^ ''''''
+	^ '''''''''' 
 ]
 
 { #category : #sample }
@@ -271,7 +271,19 @@ PillarSnippetFactory >> italicFormatSample [
 
 { #category : #sample }
 PillarSnippetFactory >> italicFormatWithEscapedSample [
-	^ '''\'\''''
+	^   '''''''''' 
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> lineEndSample [
+
+	^  ''
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> lineEndwithNewlineSample [
+
+	^ String lf
 ]
 
 { #category : #sample }
@@ -311,6 +323,30 @@ PillarSnippetFactory >> monospaceFormatSample [
 { #category : #sample }
 PillarSnippetFactory >> monospaceFormatWithEscapedSample [
 	^ '==\=\==='
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> newlineCRLFSample [
+
+	^ String crlf
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> newlineCRSample [
+
+	^ String cr
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> newlineLFSample [
+
+	^ String lf
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> newlineSample [
+
+	^ Smalltalk os lineEnding
 ]
 
 { #category : #sample }
@@ -358,8 +394,18 @@ PillarSnippetFactory >> paragraphWithFormatSample [
 ]
 
 { #category : #sample }
+PillarSnippetFactory >> parameterFigureSample [
+	^'value=foo'
+]
+
+{ #category : #sample }
 PillarSnippetFactory >> parameterKeyUntilNewlineSample [
 	^ 'parameterName'
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> parameterLinkSample [
+	^  'value=foo' 
 ]
 
 { #category : #sample }
@@ -370,6 +416,16 @@ PillarSnippetFactory >> parameterUntilNewlineSample [
 { #category : #sample }
 PillarSnippetFactory >> parameterValueUntilNewlineSample [
 	^ '=parameterValue'
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> parametersFigureSample [
+	^ '|foo=bar|timo=leon' 
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> parametersLinkSample [
+	^ '|foo=bar|timo=leon'
 ]
 
 { #category : #sample }
