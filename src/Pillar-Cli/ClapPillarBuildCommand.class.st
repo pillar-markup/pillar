@@ -14,13 +14,11 @@ ClapPillarBuildCommand class >> commandSpecification [
 		description: 'Build your Pillar documents and export with a given format';
 		add:
 			((ClapPositional id: #requestedBuilder)
-				description: 'Format you want to export as';
-				meaning: [ :m | m word asString ]);
+				description: 'Format you want to export as');
 		add:
 			((ClapPositional id: #requestedFiles)
 				description: 'Pillar files you want to build';
-				multiple: true;
-				meaning: [ :m | m word asString ]);
+				multiple: true);
 		add:
 			((ClapFlag id: #all)
 				description: 'Build all Pillar documents in repository';
@@ -31,8 +29,7 @@ ClapPillarBuildCommand class >> commandSpecification [
 				canonicalName: 'm');
 		add:
 			((ClapFlag id: #templatable)
-				description: 'Use a template';
-				canonicalName: 'templatable');
+				description: 'Use a template');
 		meaning: [ :args | 
 			| target result |
 			project := PRProject on: (FileSystem workingDirectory ).
