@@ -755,7 +755,7 @@ PillarSnippetFactory >> tableCellSample [
 
 { #category : #sample }
 PillarSnippetFactory >> tableCellWithFormatSample [
-	^ '| ''Foo'' '
+	^ '| ''''Foo'''' ' 
 ]
 
 { #category : #sample }
