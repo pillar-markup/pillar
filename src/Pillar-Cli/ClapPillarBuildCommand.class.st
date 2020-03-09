@@ -35,6 +35,7 @@ ClapPillarBuildCommand class >> commandSpecification [
 				canonicalName: 'templatable');
 		meaning: [ :args | 
 			| target result |
+			project := PRProject on: (FileSystem workingDirectory ).
 			target := PRTarget builderForName: (args at: #requestedBuilder) value.
 			(args at: #requestedFiles) isExplicit
 				ifFalse: [ target buildMainRoot ]
@@ -55,11 +56,5 @@ ClapPillarBuildCommand class >> commandSpecification [
 
 { #category : #accessing }
 ClapPillarBuildCommand class >> project [
-	 ^ project ifNil: [ project := PRProject on: self workingDirectory ]
-]
-
-{ #category : #accessing }
-ClapPillarBuildCommand class >> workingDirectory [ 
-	
-	^ FileSystem workingDirectory 
+	 ^ project ifNil: [ project := PRProject on: (FileSystem workingDirectory )]
 ]
