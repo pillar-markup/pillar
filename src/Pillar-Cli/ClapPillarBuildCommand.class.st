@@ -1,6 +1,10 @@
 Class {
 	#name : #ClapPillarBuildCommand,
-	#superclass : #Object,
+	#superclass : #ClapApplication,
+	#instVars : [
+		'project',
+		'target'
+	],
 	#classInstVars : [
 		'project'
 	],
@@ -12,6 +16,7 @@ ClapPillarBuildCommand class >> commandSpecification [
 	<commandline>
 	^ (ClapCommand id: #build)
 		description: 'Build your Pillar documents and export with a given format';
+		add: ClapFlag forHelp;
 		add:
 			((ClapPositional id: #requestedBuilder)
 				description: 'Format you want to export as');
@@ -31,27 +36,66 @@ ClapPillarBuildCommand class >> commandSpecification [
 			((ClapFlag id: #templatable)
 				description: 'Use a template');
 		meaning: [ :args | 
-			| target result |
-			project := PRProject on: (FileSystem workingDirectory ).
-			target := PRTarget builderForName: (args at: #requestedBuilder) value.
-			(args at: #requestedFiles) isExplicit
-				ifFalse: [ target buildMainRoot ]
-				ifTrue: [ 
-					| requestedFiles |
-					requestedFiles := (args occurrencesOf: #requestedFiles) collect: #value.
-					target buildOnly: requestedFiles ].
-			(args at: #templatable) isExplicit 
-				ifTrue: [ (self project) beTemplatable ].
-			(args at: #all) isExplicit 
-				ifTrue: [ target buildAll ].
-			(args at: #mainRoot ) isExplicit
-				ifTrue: [ target buildMainRoot ].
-			result := (self project) build: target.
-			result exitProcess
+			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
+			(self with: args) execute
 			 ]
 ]
 
+{ #category : #'as yet unclassified' }
+ClapPillarBuildCommand >> allFlag: aBoolean [
+	aBoolean
+		ifTrue: [ target buildAll ]
+]
+
+{ #category : #'as yet unclassified' }
+ClapPillarBuildCommand >> evaluateFlags [
+	self templatableFlag: (arguments  at: #templatable) isExplicit.
+	self allFlag: (arguments  at: #all) isExplicit.
+	self mainRootFlag: (arguments at: #mainRoot ) isExplicit.
+]
+
+{ #category : #execution }
+ClapPillarBuildCommand >> execute [
+	self project.
+	self target: (arguments at: #requestedBuilder) value.
+	self requestedFiles: (arguments at: #requestedFiles) isExplicit.
+	self evaluateFlags.
+	self result.
+]
+
+{ #category : #'as yet unclassified' }
+ClapPillarBuildCommand >> mainRootFlag: aBoolean [
+	aBoolean
+		ifTrue: [ target buildMainRoot ].
+]
+
 { #category : #accessing }
-ClapPillarBuildCommand class >> project [
-	 ^ project ifNil: [ project := PRProject on: (FileSystem workingDirectory )]
+ClapPillarBuildCommand >> project [
+	^ project ifNil: [ project := PRProject on: (FileSystem workingDirectory) ]
+]
+
+{ #category : #'as yet unclassified' }
+ClapPillarBuildCommand >> requestedFiles: aBoolean [
+	aBoolean
+		ifFalse: [ target buildMainRoot ]
+		ifTrue: [ 
+			| requestedFiles |
+			requestedFiles := (arguments occurrencesOf: #requestedFiles) collect: #value.
+			target buildOnly: requestedFiles ].
+]
+
+{ #category : #accessing }
+ClapPillarBuildCommand >> result [
+	(project build: target) exitProcess.
+]
+
+{ #category : #accessing }
+ClapPillarBuildCommand >> target: requestedBuilder [
+	target:= PRTarget builderForName: requestedBuilder 
+]
+
+{ #category : #'as yet unclassified' }
+ClapPillarBuildCommand >> templatableFlag: aBoolean [
+	aBoolean
+		ifTrue: [ project beTemplatable ]
 ]
