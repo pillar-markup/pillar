@@ -90,7 +90,7 @@ BaselineOfPillar >> baseline: spec [
 					#('html exporter tests' 'latex exporter tests' 'beamer exporter tests' 'deckjs exporter tests' 'markdown exporter tests' 'pillar exporter tests' 'text exporter tests' 'asciidoc exporter tests' 'ePub exporter tests');
 				group: 'All exporters'
 					with:
-					#('html exporter' 'latex exporter' 'beamer exporter' 'deckjs exporter' 'markdown exporter' 'pillar exporter' 'text exporter' 'asciidoc exporter' 'ePub exporter');
+					#('html exporter' 'rich text exporter' 'latex exporter' 'beamer exporter' 'deckjs exporter' 'markdown exporter' 'pillar exporter' 'text exporter' 'asciidoc exporter' 'ePub exporter');
 				group: 'All tests'
 					with:
 					#('All exporter tests' 'Pillar-Tests-Model' 'Pillar-Tests-ExporterCore' #'Pillar-Tests-Cli' 'parser tests' 'Pillar-Tests-Project' 'Pillar-Tests-Integration');
@@ -102,6 +102,7 @@ BaselineOfPillar >> baseline: spec [
 				group: 'deckjs exporter tests' with: #('Pillar-Tests-ExporterDeckJS');
 				group: 'ePub exporter' with: #(#'Pillar-ExporterEPub');
 				group: 'ePub exporter tests' with: #(#'Pillar-Tests-ExporterEPub');
+				group: 'rich text exporter' with: #('Pillar-ExporterRichText');
 				group: 'html exporter' with: #('Pillar-ExporterHTML');
 				group: 'html exporter tests' with: #('Pillar-Tests-ExporterHTML');
 				group: 'booktester' with: #('Pillar-BookTester');
