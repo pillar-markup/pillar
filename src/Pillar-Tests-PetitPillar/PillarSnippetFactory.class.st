@@ -172,6 +172,12 @@ PillarSnippetFactory >> emptyParagraphSample [
 ]
 
 { #category : #sample }
+PillarSnippetFactory >> escapedCharacterSample [
+
+	^  '\*' 
+]
+
+{ #category : #sample }
 PillarSnippetFactory >> figureFollowedByLinkWithAliasSample [
 	^ '+file://TeapotWelcome.png+*Go>http://localhost*'
 ]
@@ -233,6 +239,11 @@ PillarSnippetFactory >> headerWithNewLineSample [
 ]
 
 { #category : #sample }
+PillarSnippetFactory >> headerWithWithLinkSample [
+	^ '! Foo *Link*'
+]
+
+{ #category : #sample }
 PillarSnippetFactory >> horizontalRuleFollowByNewLineSample [
 	^ '_
 '
@@ -250,17 +261,29 @@ PillarSnippetFactory >> horizontalRuleTrimRightSample [
 
 { #category : #sample }
 PillarSnippetFactory >> italicFormatEmptySample [
-	^ ''''''
+	^ '''''''''' 
 ]
 
 { #category : #sample }
 PillarSnippetFactory >> italicFormatSample [
-	^ '''Foo'''
+	^ '''''Foo''''' 
 ]
 
 { #category : #sample }
 PillarSnippetFactory >> italicFormatWithEscapedSample [
-	^ '''\'\''''
+	^   '''''\''\''''''' 
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> lineEndSample [
+
+	^  ''
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> lineEndwithNewlineSample [
+
+	^ String lf
 ]
 
 { #category : #sample }
@@ -300,6 +323,30 @@ PillarSnippetFactory >> monospaceFormatSample [
 { #category : #sample }
 PillarSnippetFactory >> monospaceFormatWithEscapedSample [
 	^ '==\=\==='
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> newlineCRLFSample [
+
+	^ String crlf
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> newlineCRSample [
+
+	^ String cr
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> newlineLFSample [
+
+	^ String lf
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> newlineSample [
+
+	^ Smalltalk os lineEnding
 ]
 
 { #category : #sample }
@@ -347,8 +394,18 @@ PillarSnippetFactory >> paragraphWithFormatSample [
 ]
 
 { #category : #sample }
+PillarSnippetFactory >> parameterFigureSample [
+	^'value=foo'
+]
+
+{ #category : #sample }
 PillarSnippetFactory >> parameterKeyUntilNewlineSample [
 	^ 'parameterName'
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> parameterLinkSample [
+	^  'value=foo' 
 ]
 
 { #category : #sample }
@@ -362,13 +419,71 @@ PillarSnippetFactory >> parameterValueUntilNewlineSample [
 ]
 
 { #category : #sample }
+PillarSnippetFactory >> parametersFigureSample [
+	^ '|foo=bar|timo=leon' 
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> parametersLinkSample [
+	^ '|foo=bar|timo=leon'
+]
+
+{ #category : #sample }
 PillarSnippetFactory >> parametersUntilNewlineSample [
 	^ 'foo=bar|baz=true'
 ]
 
 { #category : #sample }
+PillarSnippetFactory >> preformatedLineSample [
+	^ '= Foo' 
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> preformatedTextEmptySample [
+	^  '= ' 
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> preformatedTextSample [
+	^  '= Foo' 
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> preformatedTextWithMultiLinesSample [
+	^ '= Foo
+= Bar'
+		
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> preformatedTextWithNewlineSample [
+^ '= Foo
+' 
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> preformatedTextWithSpacesSample [
+	^ '=    Foo'
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> preformatedTextWithTabSample [
+	^ '= 	Foo' 
+]
+
+{ #category : #sample }
 PillarSnippetFactory >> rawEmptySample [
 	^ '{{{}}}'
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> rawHTMLSample [
+	^ '{{{html:foo}}}' 
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> rawInvalidSample [
+	^  '{{{invalid:foo}}}'
 ]
 
 { #category : #sample }
@@ -640,7 +755,7 @@ PillarSnippetFactory >> tableCellSample [
 
 { #category : #sample }
 PillarSnippetFactory >> tableCellWithFormatSample [
-	^ '| ''Foo'' '
+	^ '| ''''Foo'''' ' 
 ]
 
 { #category : #sample }
@@ -719,6 +834,21 @@ PillarSnippetFactory >> tableWithNewLineSample [
 { #category : #sample }
 PillarSnippetFactory >> textSample [
 	^ 'Foo'
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> textWithEscapeAtBeginningSample [
+	^ '\*Foo'
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> textWithEscapeInTheMiddleSample [
+	^ 'Foo \* Bar' 
+]
+
+{ #category : #sample }
+PillarSnippetFactory >> textWithMultiEscapeSample [
+	^ '\*Foo\*' 
 ]
 
 { #category : #sample }

@@ -11,7 +11,7 @@ That mean you can write latex formulas using a codeblock ==language=latexMath==:
 
 "
 Class {
-	#name : #PRCodeblokStylerExtensions,
+	#name : #PRCodeblockStylerExtensions,
 	#superclass : #Object,
 	#classInstVars : [
 		'imageCache'
@@ -20,19 +20,19 @@ Class {
 }
 
 { #category : #private }
-PRCodeblokStylerExtensions class >> imageCache [
+PRCodeblockStylerExtensions class >> imageCache [
 	imageCache ifNil: [ imageCache := LRUCache new ].
 	^imageCache
 	
 ]
 
 { #category : #private }
-PRCodeblokStylerExtensions class >> initialize [
+PRCodeblockStylerExtensions class >> initialize [
 	imageCache := nil.
 ]
 
 { #category : #examples }
-PRCodeblokStylerExtensions class >> latexExample [
+PRCodeblockStylerExtensions class >> latexExample [
 	<example>
 	(PRRichTextComposer  asText:
 '!!!Latex mathematics 
@@ -46,7 +46,7 @@ Cool eh?
 ]
 
 { #category : #styling }
-PRCodeblokStylerExtensions class >> latexMathStylerFor: aString [
+PRCodeblockStylerExtensions class >> latexMathStylerFor: aString [
 	<codeblockStylerFor:'latexMath'>
 	| expressionUrl |
 	expressionUrl := 'https://latex.codecogs.com/png.latex?', aString urlEncoded.
@@ -54,7 +54,7 @@ PRCodeblokStylerExtensions class >> latexMathStylerFor: aString [
 ]
 
 { #category : #private }
-PRCodeblokStylerExtensions class >> loadExternalImageFromURL: aUrl errorText: errorDesc [
+PRCodeblockStylerExtensions class >> loadExternalImageFromURL: aUrl errorText: errorDesc [
 	"I return a Text instance with an loaded from a url"
 	| anchoredImage|
 	anchoredImage := self imageCache 
