@@ -8,6 +8,35 @@ Class {
 	#category : #'Pillar-ExporterCore-Base'
 }
 
+{ #category : #clap }
+PRTarget class >> buildClapCommand [
+	
+	| target |
+	target := self new.
+
+	^ (ClapCommand id: self clapId)
+		description: 'Build your Pillar documents in ', self clapId ,' format';
+		add: ClapFlag forHelp;
+		add: ((ClapFlag id: #templatable)
+				description: 'Use a template');
+		add: ((ClapFlag id: #all)
+				description: 'Build all Pillar documents in repository';
+				canonicalName: 'a';
+				meaning: [ target buildAll ]);
+		add: ((ClapFlag id: #mainRoot)
+				description: 'Build index.pillar in root directory';
+				canonicalName: 'm';
+				meaning: [ target buildMainRoot ]);
+		add: ((ClapPositional id: #requestedFiles)
+				description: 'Pillar files you want to build';
+				multiple: true;
+				meaning: [ :arg | target addFile: arg ]);
+		meaning: [ :args |
+			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
+			target buildWithClapArguments: args ]
+		yourself
+]
+
 { #category : #accessing }
 PRTarget class >> builderClassForName: aString [ 
 	
@@ -29,6 +58,19 @@ PRTarget class >> builderForName: aString [
 PRTarget class >> builderName [
 	
 	^ self subclassResponsibility
+]
+
+{ #category : #clap }
+PRTarget class >> clapCommandList [
+	^ self allSubclasses
+		select: [ :each | each isAbstract not ]
+		thenCollect: [ :each | each buildClapCommand ]
+]
+
+{ #category : #clap }
+PRTarget class >> clapId [
+	
+	^ self builderName 
 ]
 
 { #category : #testing }
@@ -77,6 +119,12 @@ PRTarget >> buildOnly: aListOfFileReferences [
 	buildStrategy := PRBuildListStrategy list: aListOfFileReferences
 ]
 
+{ #category : #'clap-integration' }
+PRTarget >> buildWithClapArguments: clapArguments [
+
+	(self newProject build: self) exitProcess
+]
+
 { #category : #building }
 PRTarget >> documentFor: aFile [
 
@@ -95,6 +143,12 @@ PRTarget >> initialize [
 	transformations := Set new.
 	"self buildAll"
 	self buildMainRoot 
+]
+
+{ #category : #'clap-integration' }
+PRTarget >> newProject [
+
+	^ PRProject on: FileSystem workingDirectory
 ]
 
 { #category : #preparation }
