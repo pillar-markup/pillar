@@ -30,7 +30,7 @@ PRTarget class >> buildClapCommand [
 		add: ((ClapPositional id: #requestedFiles)
 				description: 'Pillar files you want to build';
 				multiple: true;
-				meaning: [ :arg | target addFile: arg ]);
+				meaning: [ :list | target buildOnly: list ]);
 		meaning: [ :args |
 			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
 			target buildWithClapArguments: args ]
