@@ -11,29 +11,40 @@ Class {
 { #category : #clap }
 PRTarget class >> buildClapCommand [
 	
-	| target |
+	| target project |
 	target := self new.
-
+	project := self newProject.
+ 
 	^ (ClapCommand id: self clapId)
 		description: 'Build your Pillar documents in ', self clapId ,' format';
 		add: ClapFlag forHelp;
 		add: ((ClapFlag id: #templatable)
 				description: 'Use a template');
+				meaning: [project beTemplatable];
 		add: ((ClapFlag id: #all)
 				description: 'Build all Pillar documents in repository';
 				canonicalName: 'a';
-				meaning: [ target buildAll ]);
+				meaning: [ PRBuildAllStrategy new ]);
 		add: ((ClapFlag id: #mainRoot)
 				description: 'Build index.pillar in root directory';
 				canonicalName: 'm';
-				meaning: [ target buildMainRoot ]);
+				meaning: [ PRBuildRootMainStrategy new ]);
 		add: ((ClapPositional id: #requestedFiles)
 				description: 'Pillar files you want to build';
 				multiple: true;
-				meaning: [ :list | target buildOnly: list ]);
+				meaning: [ :doc | doc word asFileReference ]);
 		meaning: [ :args |
 			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
-			target buildWithClapArguments: args ]
+			args at: #templatable ifPresent: [(args at: #templatable) value ].
+			"here, default strategy is mainRoot and the following order give strategies a priority order"
+			(args at: #requestedFiles ) isExplicit ifTrue:[ 
+				target buildStrategy: (PRBuildListStrategy list: (args occurrencesOf: #requestedFiles collect: #value) )
+				].
+			args at: #all ifPresent: [ :strat | target buildStrategy: strat value ].
+			args at: #mainRoot ifPresent: [ :strat | target buildStrategy: strat value].
+			
+			target buildWithClapArguments: project ]
+		
 		yourself
 ]
 
@@ -78,23 +89,16 @@ PRTarget class >> isAbstract [
 	^ self == PRTarget
 ]
 
+{ #category : #'clap-integration' }
+PRTarget class >> newProject [
+
+	^ PRProject on: FileSystem workingDirectory
+]
+
 { #category : #accessing }
 PRTarget >> addPillarDocumentTransformation: aTransformation [
 	
 	transformations add: aTransformation
-]
-
-{ #category : #building }
-PRTarget >> buildAll [
-
-	buildStrategy := PRBuildAllStrategy new
-]
-
-{ #category : #building }
-PRTarget >> buildMainRoot [
-	"To compile only the pillar file that can be found on the top-level."
-	
-	buildStrategy := PRBuildRootMainStrategy new
 ]
 
 { #category : #building }
@@ -119,10 +123,15 @@ PRTarget >> buildOnly: aListOfFileReferences [
 	buildStrategy := PRBuildListStrategy list: aListOfFileReferences
 ]
 
-{ #category : #'clap-integration' }
-PRTarget >> buildWithClapArguments: clapArguments [
+{ #category : #accessing }
+PRTarget >> buildStrategy: aStrategy [
+	buildStrategy := aStrategy
+]
 
-	(self newProject build: self) exitProcess
+{ #category : #'clap-integration' }
+PRTarget >> buildWithClapArguments: project [
+
+	(project build: self) exitProcess
 ]
 
 { #category : #building }
@@ -142,13 +151,7 @@ PRTarget >> initialize [
 	super initialize.
 	transformations := Set new.
 	"self buildAll"
-	self buildMainRoot 
-]
-
-{ #category : #'clap-integration' }
-PRTarget >> newProject [
-
-	^ PRProject on: FileSystem workingDirectory
+	buildStrategy := PRBuildRootMainStrategy new.
 ]
 
 { #category : #preparation }
