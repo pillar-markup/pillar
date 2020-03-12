@@ -18,6 +18,18 @@ PRRichTextWriterTest >> boldFormat [
 ]
 
 { #category : #'grammar - Format' }
+PRRichTextWriterTest >> externalLink: aLink [
+	^ TextAction new actOnClickBlock: [WebBrowser openOn: aLink]
+]
+
+{ #category : #'grammar - Format' }
+PRRichTextWriterTest >> figure: aFigureLink [
+	| url |
+	url := aFigureLink.
+	^ TextAnchor new anchoredMorph: (ZnEasy getPng: url)
+]
+
+{ #category : #'grammar - Format' }
 PRRichTextWriterTest >> headerLevel1 [
 	^ PRRichTextComposer headerLevelFont: 1
 ]
@@ -80,6 +92,32 @@ PRRichTextWriterTest >> superscriptFormat [
 { #category : #tests }
 PRRichTextWriterTest >> testBoldFormat [
 	self assertWriting: factory boldFormatSample include: self boldFormat
+]
+
+{ #category : #tests }
+PRRichTextWriterTest >> testExternaLink [
+	| pillarLink target obj1 obj2|
+	pillarLink := '*SitePharo>https://get.pharo.org/64/*'.
+	target := 'https://get.pharo.org/64/'.
+	
+	obj1 := ((PRRichTextComposer asText: pillarLink ) runs at: 1) first.
+	obj2 := self externalLink: target.
+	
+	self assert: obj1 class equals: (obj2 class).
+	self assert: obj1 class name equals: #TextAction
+]
+
+{ #category : #tests }
+PRRichTextWriterTest >> testFigure [
+	| link pillarLink obj1 obj2|
+	pillarLink := '+Pharologo>https://files.pharo.org/media/logo/logo.png+'.
+	link := 'https://files.pharo.org/media/logo/logo.png'.
+	
+	obj1 := ((PRRichTextComposer asText: pillarLink ) runs at: 1) first.
+	obj2 := self figure: link.
+	
+	self assert: obj1 class equals: (obj2 class).
+	self assert: obj1 class name equals: #TextAnchor
 ]
 
 { #category : #tests }
