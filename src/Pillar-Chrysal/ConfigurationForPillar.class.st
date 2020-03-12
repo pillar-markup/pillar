@@ -175,7 +175,6 @@ ConfigurationForPillar >> attribution: aValue [
 { #category : #accessing }
 ConfigurationForPillar >> baseDirectory [
 	"generated code"
-	"^ self propertyAt: #baseDirectory ifAbsent: [(FileSystem workingDirectory) / '.']"
 	^ (FileSystem workingDirectory)
 ]
 
