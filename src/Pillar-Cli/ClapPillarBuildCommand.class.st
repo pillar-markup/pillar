@@ -6,7 +6,8 @@ Class {
 
 { #category : #'command line' }
 ClapPillarBuildCommand class >> commandSpecification [
-<commandline>
+	<commandline>
+	
 	| command |
 	
 	command := (ClapCommand id: #build)
