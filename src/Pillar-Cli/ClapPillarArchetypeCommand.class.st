@@ -1,16 +1,21 @@
 Class {
 	#name : #ClapPillarArchetypeCommand,
-	#superclass : #ClapApplication,
+	#superclass : #ClapPillarCommand,
 	#instVars : [
 		'project'
 	],
 	#category : #'Pillar-Cli-Clap'
 }
 
+{ #category : #accessing }
+ClapPillarArchetypeCommand class >> commandName [
+	^'archetype'
+]
+
 { #category : #'command line' }
 ClapPillarArchetypeCommand class >> commandSpecification [ 
 	<commandline>
-	^ (ClapCommand id: #archetype)
+	^ (ClapCommand id: self commandName asSymbol)
 		description: 'I am a command line handler to create a pillar project in the current directory.
 The pillar project contains a basic template and skeleton pillar files following the archetype convention.
 
@@ -35,8 +40,7 @@ ClapPillarArchetypeCommand >> execute [
 
 { #category : #accessing }
 ClapPillarArchetypeCommand >> project [
-
-	^ project ifNil: [ project := PRProject on: FileSystem workingDirectory  ]
+	^ super project
 ]
 
 { #category : #activation }

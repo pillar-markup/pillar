@@ -1,16 +1,21 @@
 Class {
 	#name : #ClapPillarUpdateTemplateCo,
-	#superclass : #ClapApplication,
+	#superclass : #ClapPillarCommand,
 	#instVars : [
 		'project'
 	],
 	#category : #'Pillar-Cli-Clap'
 }
 
+{ #category : #accessing }
+ClapPillarUpdateTemplateCo class >> commandName [
+	^ 'updateTemplate'
+]
+
 { #category : #'command line' }
 ClapPillarUpdateTemplateCo class >> commandSpecification [
 	<commandline>
-	^ (ClapCommand id: #updateTemplate)
+	^ (ClapCommand id: self commandName asSymbol)
 		description: 'Update a given template';
 		add: ClapFlag forHelp;
 		add: ((ClapPositional id: #requestedTemplate )
@@ -29,7 +34,7 @@ ClapPillarUpdateTemplateCo >> execute [
 
 { #category : #accessing }
 ClapPillarUpdateTemplateCo >> project [
-	^ project ifNil: [ project := PRProject on: FileSystem workingDirectory  ]
+	^ super project
 ]
 
 { #category : #activation }

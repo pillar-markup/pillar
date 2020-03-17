@@ -1,8 +1,13 @@
 Class {
 	#name : #ClapPillarBuildCommand,
-	#superclass : #ClapApplication,
+	#superclass : #ClapPillarCommand,
 	#category : #'Pillar-Cli-Clap'
 }
+
+{ #category : #accessing }
+ClapPillarBuildCommand class >> commandName [
+	^'build'
+]
 
 { #category : #'command line' }
 ClapPillarBuildCommand class >> commandSpecification [
@@ -10,7 +15,7 @@ ClapPillarBuildCommand class >> commandSpecification [
 	
 	| command |
 	
-	command := (ClapCommand id: #build)
+	command := (ClapCommand id: self commandName asSymbol)
 		description: 'Build your Pillar documents and export with a given format';
 		add: ClapFlag forHelp;
 		yourself.
