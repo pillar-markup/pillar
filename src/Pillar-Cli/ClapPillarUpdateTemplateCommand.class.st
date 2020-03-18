@@ -1,19 +1,16 @@
 Class {
-	#name : #ClapPillarUpdateTemplateCo,
+	#name : #ClapPillarUpdateTemplateCommand,
 	#superclass : #ClapPillarCommand,
-	#instVars : [
-		'project'
-	],
 	#category : #'Pillar-Cli-Clap'
 }
 
 { #category : #accessing }
-ClapPillarUpdateTemplateCo class >> commandName [
+ClapPillarUpdateTemplateCommand class >> commandName [
 	^ 'updateTemplate'
 ]
 
 { #category : #'command line' }
-ClapPillarUpdateTemplateCo class >> commandSpecification [
+ClapPillarUpdateTemplateCommand class >> commandSpecification [
 	<commandline>
 	^ (ClapCommand id: self commandName asSymbol)
 		description: 'Update a given template';
@@ -28,16 +25,16 @@ ClapPillarUpdateTemplateCo class >> commandSpecification [
 ]
 
 { #category : #execution }
-ClapPillarUpdateTemplateCo >> execute [
+ClapPillarUpdateTemplateCommand >> execute [
 	self project installTemplateNamed: self requestedTemplate
 ]
 
 { #category : #accessing }
-ClapPillarUpdateTemplateCo >> project [
+ClapPillarUpdateTemplateCommand >> project [
 	^ super project
 ]
 
 { #category : #activation }
-ClapPillarUpdateTemplateCo >> requestedTemplate [
+ClapPillarUpdateTemplateCommand >> requestedTemplate [
 	 ^ (arguments at: #requestedTemplate) value: self
 ]
