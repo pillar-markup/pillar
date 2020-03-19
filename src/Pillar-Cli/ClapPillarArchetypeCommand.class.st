@@ -1,9 +1,6 @@
 Class {
 	#name : #ClapPillarArchetypeCommand,
 	#superclass : #ClapPillarCommand,
-	#instVars : [
-		'project'
-	],
 	#category : #'Pillar-Cli-Clap'
 }
 
