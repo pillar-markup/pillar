@@ -1,8 +1,13 @@
 Class {
 	#name : #PRWritingTarget,
 	#superclass : #PRTarget,
-	#category : 'Pillar-ExporterCore-Base'
+	#category : #'Pillar-ExporterCore-Base'
 }
+
+{ #category : #accessing }
+PRWritingTarget class >> builderName [
+	^ 'writingTarget'
+]
 
 { #category : #testing }
 PRWritingTarget class >> isAbstract [

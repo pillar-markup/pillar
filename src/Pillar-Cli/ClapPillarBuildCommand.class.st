@@ -13,17 +13,17 @@ ClapPillarBuildCommand class >> commandName [
 ClapPillarBuildCommand class >> commandSpecification [
 	<commandline>
 	
-	| command |
+	| defaultCommand |
+	defaultCommand := self defaultCommand.
 	
-	command := (ClapCommand id: self commandName asSymbol)
-		description: 'Build your Pillar documents and export with a given format';
-		add: ClapFlag forHelp;
-		yourself.
 	
-	PRTarget clapCommandList do: [ :each | 
-		command addSubcommand: each
-		 ].
-	 ^ command meaning: [ :args | 
-		args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
-	]
+	
+]
+
+{ #category : #'as yet unclassified' }
+ClapPillarBuildCommand class >> defaultCommand [
+	| defaultCommand  |
+	defaultCommand := PRTarget default buildClapCommandWithId: #build.
+	PRTarget clapCommandList do: [ :c | defaultCommand addSubcommand: c ].
+	^ defaultCommand 
 ]

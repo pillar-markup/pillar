@@ -8,15 +8,27 @@ Class {
 	#category : #'Pillar-ExporterCore-Base'
 }
 
+{ #category : #'as yet unclassified' }
+PRTarget class >> associateTarget: aFormat [
+	^ self allSubclasses
+		select: [ :each | (each isAbstract not) and: each builderName = aFormat asString ]
+]
+
 { #category : #clap }
 PRTarget class >> buildClapCommand [
+	
+	^ self buildClapCommandWithId: self clapId
+]
+
+{ #category : #clap }
+PRTarget class >> buildClapCommandWithId: anId [
 	
 	| target project |
 	target := self new.
 	project := self newProject.
  
-	^ (ClapCommand id: self clapId)
-		description: 'Build your Pillar documents in ', self clapId ,' format';
+	^ (ClapCommand id: anId asSymbol)
+		description: 'Build your Pillar documents in ', anId asString ,' format';
 		add: ClapFlag forHelp;
 		add: ((ClapFlag id: #templatable)
 				description: 'Use a template');
@@ -82,6 +94,15 @@ PRTarget class >> clapCommandList [
 PRTarget class >> clapId [
 	
 	^ self builderName 
+]
+
+{ #category : #accessing }
+PRTarget class >> default [
+	| conf defaultExport |
+	conf := self newProject configuration.
+	defaultExport := conf propertyAt: #defaultExport ifAbsent: [ self error: 'There is no default export format in pillar.conf' ].
+	(self associateTarget: defaultExport) ifEmpty: [ self error: 'There is no builder with your default export format' ] ifNotEmpty: [ :list | ^ list first ]
+	
 ]
 
 { #category : #testing }
