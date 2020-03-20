@@ -43,7 +43,7 @@ Class {
 		'baseDirectory',
 		'templatable'
 	],
-	#category : 'Pillar-Project-Core'
+	#category : #'Pillar-Project-Core'
 }
 
 { #category : #testing }
@@ -132,6 +132,13 @@ PRProject >> contributeToPipelineBuilding: aPRPipelineBuilder [
 { #category : #accessing }
 PRProject >> defaultOutputDirectoryName [
 	^ Path from: '_result'
+]
+
+{ #category : #accessing }
+PRProject >> defaultTarget [
+	| defaultExport |
+	defaultExport := self configuration defaultExport.
+	(PRTarget associateTarget: defaultExport) ifEmpty: [ self error: 'There is no builder with your default export format' ] ifNotEmpty: [ :list | ^ list first ]
 ]
 
 { #category : #initialization }

@@ -96,15 +96,6 @@ PRTarget class >> clapId [
 	^ self builderName 
 ]
 
-{ #category : #accessing }
-PRTarget class >> default [
-	| conf defaultExport |
-	conf := self newProject configuration.
-	defaultExport := conf propertyAt: #defaultExport ifAbsent: [ self error: 'There is no default export format in pillar.conf' ].
-	(self associateTarget: defaultExport) ifEmpty: [ self error: 'There is no builder with your default export format' ] ifNotEmpty: [ :list | ^ list first ]
-	
-]
-
 { #category : #testing }
 PRTarget class >> isAbstract [
 	^ self == PRTarget

@@ -384,6 +384,11 @@ ConfigurationForPillar >> declaredItems [
 	^ #( #bibFile #title #attribution #headingLevelOffset #series #keywords #outputDirectory #baseDirectory #outputFile #mainDocument #inputFile #latexTemplate #scrambledEmailAddresses #separateOutputFiles #renderStructureAsSlide #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter #htmlWriter #slideInTemplateForDeckJS #defaultScriptLanguage #levelSpecification #levels #tocFile )
 ]
 
+{ #category : #'as yet unclassified' }
+ConfigurationForPillar >> defaultExport [
+	^ self propertyAt: #defaultExport ifAbsent: [ self error: 'There is no default export format in pillar.conf' ].
+]
+
 { #category : #accessing }
 ConfigurationForPillar >> defaultScriptLanguage [
 	"generated code"
