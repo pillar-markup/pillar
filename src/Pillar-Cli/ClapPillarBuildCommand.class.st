@@ -13,8 +13,7 @@ ClapPillarBuildCommand class >> commandName [
 ClapPillarBuildCommand class >> commandSpecification [
 	<commandline>
 	
-	| defaultCommand |
-	defaultCommand := self defaultCommand.
+	^ self defaultCommand.
 	
 	
 	
