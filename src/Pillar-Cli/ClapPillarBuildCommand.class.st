@@ -22,7 +22,9 @@ ClapPillarBuildCommand class >> commandSpecification [
 { #category : #'as yet unclassified' }
 ClapPillarBuildCommand class >> defaultCommand [
 	| defaultCommand  |
-	defaultCommand := self new project defaultTarget buildClapCommandWithId: #build.
+	"When CLAP issue about ambiguous action with subcommand/positionnal will be solved, replace the next lign by the following one: 
+		defaultCommand := self new project defaultTarget buildClapCommandWithId: #build"
+	defaultCommand := self new project defaultTarget buildClapCommandWithId: #build withPosi: false.
 	PRTarget clapCommandList do: [ :c | defaultCommand addSubcommand: c ].
 	^ defaultCommand 
 ]
