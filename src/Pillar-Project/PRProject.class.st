@@ -138,7 +138,7 @@ PRProject >> defaultOutputDirectoryName [
 PRProject >> defaultTarget [
 	| defaultExport |
 	defaultExport := self configuration defaultExport.
-	(PRTarget associateTarget: defaultExport) ifEmpty: [ self error: 'There is no builder with your default export format' ] ifNotEmpty: [ :list | ^ list first ]
+	^ (PRTarget associateTarget: defaultExport) first
 ]
 
 { #category : #initialization }

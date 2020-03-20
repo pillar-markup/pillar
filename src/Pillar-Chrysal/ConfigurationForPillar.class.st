@@ -386,7 +386,7 @@ ConfigurationForPillar >> declaredItems [
 
 { #category : #'as yet unclassified' }
 ConfigurationForPillar >> defaultExport [
-	^ self propertyAt: #defaultExport ifAbsent: [ self error: 'There is no default export format in pillar.conf' ].
+	^ self propertyAt: #defaultExport ifAbsent: [ 'pdf' ].
 ]
 
 { #category : #accessing }
