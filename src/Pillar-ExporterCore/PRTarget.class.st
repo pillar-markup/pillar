@@ -61,7 +61,7 @@ PRTarget class >> buildClapCommandWithId: anId [
 ]
 
 { #category : #clap }
-PRTarget class >> buildClapCommandWithId: anId withPosi: isWithPosi [
+PRTarget class >> buildClapCommandWithId: anId withPositionals: isWithPositionals [
 	"When CLAP issue about ambiguous action with subcommand/positionnal will be solved, delete this method. We'll only use buildClapCommandWithId: and buildClapCommand"
 	
 	| target project command |
@@ -83,7 +83,7 @@ PRTarget class >> buildClapCommandWithId: anId withPosi: isWithPosi [
 				canonicalName: 'm';
 				meaning: [ PRBuildRootMainStrategy new ]); yourself.
 				
-		isWithPosi ifTrue: [ command := command add: ((ClapPositional id: #requestedFiles)
+		isWithPositionals ifTrue: [ command := command add: ((ClapPositional id: #requestedFiles)
 				description: 'Pillar files you want to build';
 				multiple: true;
 				meaning: [ :doc | doc word asFileReference ]); yourself ].
@@ -92,7 +92,7 @@ PRTarget class >> buildClapCommandWithId: anId withPosi: isWithPosi [
 			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
 			args at: #templatable ifPresent: [(args at: #templatable) value ].
 			"here, default strategy is mainRoot and the following order give strategies a priority order"
-			isWithPosi ifTrue: [ 
+			isWithPositionals ifTrue: [ 
 			(args at: #requestedFiles ) isExplicit ifTrue:[ 
 				target buildStrategy: (PRBuildListStrategy list: (args occurrencesOf: #requestedFiles collect: #value) )
 				] ].
