@@ -16,53 +16,15 @@ PRTarget class >> associateTarget: aFormat [
 
 { #category : #clap }
 PRTarget class >> buildClapCommand [
+	"When CLAP issue about ambiguous action with subcommand/positionnal will be solved, replace the next lign by the following one: 
+		self buildClapCommandWithId: self clapId"
 	
-	^ self buildClapCommandWithId: self clapId
-]
-
-{ #category : #clap }
-PRTarget class >> buildClapCommandWithId: anId [
-	
-	| target project |
-	target := self new.
-	project := self newProject.
- 
-	^ (ClapCommand id: anId asSymbol)
-		description: 'Build your Pillar documents in ', anId asString ,' format';
-		add: ClapFlag forHelp;
-		add: ((ClapFlag id: #templatable)
-				description: 'Use a template');
-				meaning: [project beTemplatable];
-		add: ((ClapFlag id: #all)
-				description: 'Build all Pillar documents in repository';
-				canonicalName: 'a';
-				meaning: [ PRBuildAllStrategy new ]);
-		add: ((ClapFlag id: #mainRoot)
-				description: 'Build index.pillar in root directory';
-				canonicalName: 'm';
-				meaning: [ PRBuildRootMainStrategy new ]);
-		add: ((ClapPositional id: #requestedFiles)
-				description: 'Pillar files you want to build';
-				multiple: true;
-				meaning: [ :doc | doc word asFileReference ]);
-		meaning: [ :args |
-			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
-			args at: #templatable ifPresent: [(args at: #templatable) value ].
-			"here, default strategy is mainRoot and the following order give strategies a priority order"
-			(args at: #requestedFiles ) isExplicit ifTrue:[ 
-				target buildStrategy: (PRBuildListStrategy list: (args occurrencesOf: #requestedFiles collect: #value) )
-				].
-			args at: #all ifPresent: [ :strat | target buildStrategy: strat value ].
-			args at: #mainRoot ifPresent: [ :strat | target buildStrategy: strat value].
-			
-			target buildWithClapArguments: project ]
-		
-		yourself
+	^ self buildClapCommandWithId: self clapId withPositionals: true
 ]
 
 { #category : #clap }
 PRTarget class >> buildClapCommandWithId: anId withPositionals: isWithPositionals [
-	"When CLAP issue about ambiguous action with subcommand/positionnal will be solved, delete this method. We'll only use buildClapCommandWithId: and buildClapCommand"
+	"When CLAP issue about ambiguous action with subcommand/positionnal will be solved, delete the withPositionals: isWithPositionals. We'll only use buildClapCommandWithId:"
 	
 	| target project command |
 	target := self new.
