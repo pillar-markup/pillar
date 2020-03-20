@@ -23,7 +23,7 @@ ClapPillarBuildCommand class >> commandSpecification [
 { #category : #'as yet unclassified' }
 ClapPillarBuildCommand class >> defaultCommand [
 	| defaultCommand  |
-	defaultCommand := PRTarget default buildClapCommandWithId: #build.
+	defaultCommand := self new project defaultTarget buildClapCommandWithId: #build.
 	PRTarget clapCommandList do: [ :c | defaultCommand addSubcommand: c ].
 	^ defaultCommand 
 ]

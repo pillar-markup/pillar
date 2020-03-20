@@ -25,6 +25,6 @@ ClapPillarBuildCommandTest >> testDefaultCommandIsBuild [
 ClapPillarBuildCommandTest >> testSameFlagsMainAndDefault [
 	| defaultCommand mainCommand |
 	defaultCommand := ClapPillarBuildCommand defaultCommand.
-	mainCommand := PRTarget default buildClapCommand.
+	mainCommand := (PRProject on: FileSystem workingDirectory) defaultTarget buildClapCommand.
 	self assert: (defaultCommand flags) asString = (mainCommand flags) asString
 ]
