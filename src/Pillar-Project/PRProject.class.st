@@ -137,8 +137,8 @@ PRProject >> defaultOutputDirectoryName [
 { #category : #accessing }
 PRProject >> defaultTarget [
 	| defaultExport |
-	defaultExport := self configuration defaultExport.
-	^ (PRTarget associateTarget: defaultExport) first
+	defaultExport := (self configuration defaultExport) ifEmpty: [ ^ PRAbsentTarget].
+	(PRTarget associateTarget: defaultExport) ifEmpty: [ ^ PRInvalidTarget ] ifNotEmpty: [ :l | ^ l first ].
 ]
 
 { #category : #initialization }

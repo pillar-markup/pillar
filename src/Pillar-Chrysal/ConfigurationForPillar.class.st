@@ -386,7 +386,7 @@ ConfigurationForPillar >> declaredItems [
 
 { #category : #'as yet unclassified' }
 ConfigurationForPillar >> defaultExport [
-	^ self propertyAt: #defaultExport ifAbsent: [ 'pdf' ].
+	^ self propertyAt: #defaultExport ifAbsent: [ '' ].
 ]
 
 { #category : #accessing }
