@@ -7,11 +7,15 @@ Class {
 { #category : #adding }
 ClapPillarBuildCommandTest >> testAddSubcommand [
 	| allIds defaultCommand |
-	defaultCommand := ClapPillarBuildCommand defaultCommand.
+	defaultCommand := ClapPillarBuildCommand commandSpecification.
 	allIds := PRTarget clapCommandList collect: [ :c | c identifier ].
-	allIds do: [ :id |
-		self assert: ((defaultCommand subcommands select: [ :c | c class = ClapCommand new class and: c identifier = id asSymbol ]) size = 1).
-		 ]
+	allIds do: 
+		[ :id | 
+			self assert: 
+				(defaultCommand subcommands anySatisfy: 
+					[ :c | c class = ClapCommand new class and: c identifier = id asSymbol]
+			) 
+		]
 ]
 
 { #category : #tests }
