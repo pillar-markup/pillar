@@ -136,7 +136,8 @@ Please note that chapter on "Pharo a web Perspective" is obsolete since it refer
 
 ## History
 - 8.0.0 current stable version.
-- 7.7.4 Last version before moving to P8.
+- 7.7.5 last version before moving to P8.
+- [7.7.4 Retired] last version before moving to P8 (bogus due to missing v1.0.0 for the propertyenvironment dependencies)
 - 7.7.3 introduces the possibility to use LaTeX 2018 or the rolling version of 2019. Check the ensure-deps.sh and companion travis file in the support/latex of the archetype.
 - 7.7.0 cleaned useless features, plus travis builds. 
 - 7.5.0 introduces environments (${begin:card|x=12}$ ... ${end:card}$
