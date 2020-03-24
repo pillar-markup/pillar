@@ -31,7 +31,7 @@ PRTarget class >> buildClapCommandWithId: anId withPositionals: isWithPositional
 	project := self newProject.
  
 	command := (ClapCommand id: anId asSymbol)
-		description: 'Build your Pillar documents in ', anId asString ,' format';
+		description: 'Build your Pillar documents in ', self clapId asString ,' format';
 		add: ClapFlag forHelp;
 		add: ((ClapFlag id: #templatable)
 				description: 'Use a template');
