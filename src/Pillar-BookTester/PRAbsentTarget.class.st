@@ -6,16 +6,8 @@ Class {
 
 { #category : #clap }
 PRAbsentTarget class >> buildClapCommandWithId: anId withPositionals: isWithPositionals [
+	^ self buildClapCommandWithId: anId withPositionals: isWithPositionals withDescription: 'Export format not found in pillar.config. Please edit it and add a valid export format at "defaultExport" label'
 
-	^ (ClapCommand id: anId asSymbol)
-			description: 'Export format not found in pillar.config. Please edit it and add a valid export format at "defaultExport" label';
-			add: ClapFlag forHelp;
-			meaning: [ :args |
-				args at: #helpFlag ifPresent: [ :help | help value; exitSuccess].
-				(ClapDocumenter on: (ZnCharacterWriteStream on: args context stdout))
-                explain: args specification.
-				];
-		yourself.
 ]
 
 { #category : #accessing }

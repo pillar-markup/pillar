@@ -6,16 +6,7 @@ Class {
 
 { #category : #clap }
 PRInvalidTarget class >> buildClapCommandWithId: anId withPositionals: isWithPositionals [
-
-	^ (ClapCommand id: anId asSymbol)
-			description: 'Invalid export format. Please edit your pillar.conf with a valid format at "defaultExport" label';
-			add: ClapFlag forHelp;
-			meaning: [ :args |
-				args at: #helpFlag ifPresent: [ :help | help value; exitSuccess].
-				(ClapDocumenter on: (ZnCharacterWriteStream on: args context stdout))
-                explain: args specification.
-				];
-		yourself.
+	^ self buildClapCommandWithId: anId withPositionals: isWithPositionals withDescription: 'Invalid export format. Please edit your pillar.conf with a valid format at "defaultExport" label'
 ]
 
 { #category : #accessing }
