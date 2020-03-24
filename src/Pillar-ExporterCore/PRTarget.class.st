@@ -112,7 +112,7 @@ PRTarget class >> newProject [
 { #category : #'as yet unclassified' }
 PRTarget class >> targetByFormatName: aFormat [
 	^ self allSubclasses
-		select: [ :each | (each isAbstract not) and: each builderName = aFormat asString ]
+		detect: [ :each | (each isAbstract not) and: [each builderName asString = aFormat asString] ] ifNone: [ ^ PRInvalidTarget ]
 ]
 
 { #category : #accessing }
