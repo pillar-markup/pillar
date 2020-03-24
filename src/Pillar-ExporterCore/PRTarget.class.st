@@ -10,15 +10,12 @@ Class {
 
 { #category : #clap }
 PRTarget class >> buildClapCommand [
-	"When CLAP issue about ambiguous action with subcommand/positionnal will be solved, replace the next lign by the following one: 
-		self buildClapCommandWithId: self clapId"
 	
 	^ self buildClapCommandWithId: self clapId withPositionals: true
 ]
 
 { #category : #clap }
 PRTarget class >> buildClapCommandWithId: anId withPositionals: isWithPositionals [
-	"When CLAP issue about ambiguous action with subcommand/positionnal will be solved, delete the withPositionals: isWithPositionals. We'll only use buildClapCommandWithId:"
 	
 	| target project command |
 	target := self new.

@@ -6,7 +6,6 @@ Class {
 
 { #category : #clap }
 PRAbsentTarget class >> buildClapCommandWithId: anId withPositionals: isWithPositionals [
-	"When CLAP issue about ambiguous action with subcommand/positionnal will be solved, delete the withPositionals: isWithPositionals. We'll only use buildClapCommandWithId:"
 
 	^ (ClapCommand id: anId asSymbol)
 			description: 'Export format not found in pillar.config. Please edit it and add a valid export format at "defaultExport" label';
