@@ -7,7 +7,7 @@ Class {
 	#category : #'Pillar-Tests-Project'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 ProjectDefaultTargetTest >> configHTMLContent [
 	^ '{
   "base_url": "",
@@ -22,7 +22,7 @@ ProjectDefaultTargetTest >> configHTMLContent [
 }'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 ProjectDefaultTargetTest >> configPDFContent [
 	^ '{
   "base_url": "",

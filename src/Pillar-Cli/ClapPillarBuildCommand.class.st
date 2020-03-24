@@ -18,9 +18,5 @@ ClapPillarBuildCommand class >> commandSpecification [
 	defaultCommand := self new project defaultTarget buildClapCommandWithId: #build withPositionals: false.
 	PRTarget clapCommandList do: [ :c | defaultCommand addSubcommand: c ].
 	
-	^ defaultCommand 
-
-	
-	
-	
+	^ defaultCommand
 ]

@@ -31,7 +31,7 @@ ClapPillarCommand class >> commandSpecification [
 	]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 ClapPillarCommand class >> pillarCommandsList [
 	^ self allSubclasses
 		select: [ :each | each isAbstract not ]

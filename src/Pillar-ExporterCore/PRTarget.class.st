@@ -106,7 +106,7 @@ PRTarget class >> newProject [
 	^ PRProject on: FileSystem workingDirectory
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PRTarget class >> targetByFormatName: aFormat [
 	^ self allSubclasses
 		detect: [ :each | (each isAbstract not) and: [each builderName asString = aFormat asString] ] ifNone: [ ^ PRInvalidTarget ]
