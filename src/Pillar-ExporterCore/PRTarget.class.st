@@ -8,12 +8,6 @@ Class {
 	#category : #'Pillar-ExporterCore-Base'
 }
 
-{ #category : #'as yet unclassified' }
-PRTarget class >> associateTarget: aFormat [
-	^ self allSubclasses
-		select: [ :each | (each isAbstract not) and: each builderName = aFormat asString ]
-]
-
 { #category : #clap }
 PRTarget class >> buildClapCommand [
 	"When CLAP issue about ambiguous action with subcommand/positionnal will be solved, replace the next lign by the following one: 
@@ -113,6 +107,12 @@ PRTarget class >> isAbstract [
 PRTarget class >> newProject [
 
 	^ PRProject on: FileSystem workingDirectory
+]
+
+{ #category : #'as yet unclassified' }
+PRTarget class >> targetByFormatName: aFormat [
+	^ self allSubclasses
+		select: [ :each | (each isAbstract not) and: each builderName = aFormat asString ]
 ]
 
 { #category : #accessing }
