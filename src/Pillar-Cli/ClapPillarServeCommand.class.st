@@ -68,7 +68,7 @@ ClapPillarServeCommand >> port [
 	^ port ifNil: [ port := (arguments at: #port) value]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 ClapPillarServeCommand >> watch [
 	(arguments at: #watch) isExplicit
 		ifFalse: [ ^ self ]
