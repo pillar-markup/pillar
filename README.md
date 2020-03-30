@@ -37,6 +37,17 @@ LICENSE  README.md  appveyor.yml  archetypes  ==>>build<<==  download.sh  script
 ### 2. Setting up the environment
 
 You can then proceed to install that pillar build where you want.
+
+#### Procedure working with CLAP system
+
+Once CLAP is installed and works ( [CLAP procedure](https://github.com/cdlm/clap-st)), add the following alias in your .bashrc :
+
+```bash
+alias pillar="<link to your pharo VM> <link to your Pharo.image> clap pillar"
+```
+
+#### Procedure with old commandlines system
+
 For example, you can place it in a hidden directory in your home directory:
 
 ```bash
@@ -88,6 +99,8 @@ Check the ensure-deps.sh files and companion travis file (if you want to run in 
 
 ### 4. Test your installation
 
+_Doesn't work with CLAP yet_
+
 To test your pillar installation, open a new terminal and execute the `pillar --version` command.
 If everything is ok, that should print out (as in the current version) the version of the Pharo VM.
 For example:
@@ -124,6 +137,19 @@ $ pillar build html
 
 The resulting pdf or html site will be written into the `_result` directory.
 
+#### All commands
+
+Add the `-h` flag to get documentation.
+
+**pillar build**
+It builds by default the export format found in `pillar.conf` at `defaultExport` target.
+
+**pillar archetype**
+
+**pillar updateTemplate**
+
+**pillar serve**
+
 ## Contributing to Pillar
 The current pillar version is being developped using both [Pharo8.0](www.pharo.org).
 To contribute, the easiest way to to follow the previous scripts and send PullRequests.
@@ -136,8 +162,7 @@ Please note that chapter on "Pharo a web Perspective" is obsolete since it refer
 
 ## History
 - 8.0.0 current stable version.
-- 7.7.5 last version before moving to P8.
-- [7.7.4 Retired] last version before moving to P8 (bogus due to missing v1.0.0 for the propertyenvironment dependencies)
+- 7.7.4 Last version before moving to P8.
 - 7.7.3 introduces the possibility to use LaTeX 2018 or the rolling version of 2019. Check the ensure-deps.sh and companion travis file in the support/latex of the archetype.
 - 7.7.0 cleaned useless features, plus travis builds. 
 - 7.5.0 introduces environments (${begin:card|x=12}$ ... ${end:card}$
