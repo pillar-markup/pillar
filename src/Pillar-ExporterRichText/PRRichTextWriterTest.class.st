@@ -96,26 +96,30 @@ PRRichTextWriterTest >> testBoldFormat [
 
 { #category : #tests }
 PRRichTextWriterTest >> testExternaLink [
-	| pillarLink target obj1 obj2|
-	pillarLink := '*SitePharo>https://get.pharo.org/64/*'.
+	| pillarLink target obj1 obj2 raised|
+	raised := false.
+	[ pillarLink := '*SitePharo>https://get.pharo.org/64/*'.
 	target := 'https://get.pharo.org/64/'.
 	
 	obj1 := ((PRRichTextComposer asText: pillarLink ) runs at: 1) first.
-	obj2 := self externalLink: target.
-	
+	obj2 := self externalLink: target. ] on: Error do: [ raised := true ].
+
+	self assert: raised not.	
 	self assert: obj1 class equals: (obj2 class).
 	self assert: obj1 class name equals: #TextAction
 ]
 
 { #category : #tests }
 PRRichTextWriterTest >> testFigure [
-	| link pillarLink obj1 obj2|
-	pillarLink := '+Pharologo>https://files.pharo.org/media/logo/logo.png+'.
-	link := 'https://files.pharo.org/media/logo/logo.png'.
+	| link pillarLink obj1 obj2 raised |
+	raised := false.
+	[  pillarLink := '+Pharologo>https://files.pharo.org/media/logo/logo.png+'.
+		link := 'https://files.pharo.org/media/logo/logo.png'.
+		
+		obj1 := ((PRRichTextComposer asText: pillarLink ) runs at: 1) first.
+		obj2 := self figure: link.] on: Error do: [ raised := true].
 	
-	obj1 := ((PRRichTextComposer asText: pillarLink ) runs at: 1) first.
-	obj2 := self figure: link.
-	
+	self assert: raised not.
 	self assert: obj1 class equals: (obj2 class).
 	self assert: obj1 class name equals: #TextAnchor
 ]
