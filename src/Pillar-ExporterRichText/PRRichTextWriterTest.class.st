@@ -167,16 +167,19 @@ PRRichTextWriterTest >> testMonospaceFormat [
 { #category : #tests }
 PRRichTextWriterTest >> testStrikethroughFormat [ 
 	"Test fails: strikethrough is recognized only if spaces surround text
-	This test pass:
-		self assertWriting: ' --Foo-- ' include: self strikethroughtFormat.
+	So this test fails:
+		self assertWriting: factory strikethroughFormatSample include: self strikethroughtFormat.
 	"
-	self assertWriting: factory strikethroughFormatSample include: self strikethroughtFormat
+	
+	self assertWriting: ' --Foo-- ' include: self strikethroughtFormat
 ]
 
 { #category : #tests }
 PRRichTextWriterTest >> testSubscriptFormat [
-	"Test fails: isn't recognized"
-	self assertWriting: factory subscriptFormatSample include: self subscriptFormat
+	"Test fails: subscript isn't recognized
+	
+	self assertWriting: factory subscriptFormatSample include: self subscriptFormat"
+	
 ]
 
 { #category : #tests }
