@@ -28,7 +28,7 @@ Now to exist and be used I do not need the full Chrysal package, just the runtim
 Class {
 	#name : #ConfigurationForPillar,
 	#superclass : #ChrysalPillarishConfiguration,
-	#category : 'Pillar-Chrysal'
+	#category : #'Pillar-Chrysal'
 }
 
 { #category : #description }
@@ -382,6 +382,11 @@ ConfigurationForPillar >> convertTocFile: aValue [
 ConfigurationForPillar >> declaredItems [
 	"generated code"
 	^ #( #bibFile #title #attribution #headingLevelOffset #series #keywords #outputDirectory #baseDirectory #outputFile #mainDocument #inputFile #latexTemplate #scrambledEmailAddresses #separateOutputFiles #renderStructureAsSlide #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter #htmlWriter #slideInTemplateForDeckJS #defaultScriptLanguage #levelSpecification #levels #tocFile )
+]
+
+{ #category : #'as yet unclassified' }
+ConfigurationForPillar >> defaultExport [
+	^ self propertyAt: #defaultExport ifAbsent: [ '' ].
 ]
 
 { #category : #accessing }
