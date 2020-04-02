@@ -2,14 +2,14 @@ Class {
 	#name : #PRRichTextWriterTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'factory'
+		'sample'
 	],
 	#category : #'Pillar-ExporterRichText'
 }
 
 { #category : #asserting }
-PRRichTextWriterTest >> assertWriting: aPillarString include: expectedAttribute [
-	self assert: ((PRRichTextComposer asText: aPillarString) runs includes: expectedAttribute asArray)
+PRRichTextWriterTest >> assertWriting: aPRDocument include: expectedAttribute [
+	self assert: ((PRRichTextComposer new start: aPRDocument) runs includes: expectedAttribute asArray)
 ]
 
 { #category : #'grammar - Format' }
@@ -61,7 +61,7 @@ PRRichTextWriterTest >> headerLevel6 [
 
 { #category : #initialization }
 PRRichTextWriterTest >> initialize [
-	factory := PillarSnippetFactory new
+	sample := PRDocumentSample new.
 ]
 
 { #category : #'grammar - Format' }
@@ -91,7 +91,7 @@ PRRichTextWriterTest >> superscriptFormat [
 
 { #category : #tests }
 PRRichTextWriterTest >> testBoldFormat [
-	self assertWriting: factory boldFormatSample include: self boldFormat
+	self assertWriting: sample bold include: self boldFormat
 ]
 
 { #category : #tests }
@@ -126,42 +126,42 @@ PRRichTextWriterTest >> testFigure [
 
 { #category : #tests }
 PRRichTextWriterTest >> testHeaderLevel1 [
-	self assertWriting: factory headerLevel1Sample  include: self headerLevel1
+	self assertWriting: sample headerLevel1 include: self headerLevel1
 ]
 
 { #category : #tests }
 PRRichTextWriterTest >> testHeaderLevel2 [
-	self assertWriting: factory headerLevel2Sample include: self headerLevel2
+	self assertWriting: sample headerLevel2 include: self headerLevel2
 ]
 
 { #category : #tests }
 PRRichTextWriterTest >> testHeaderLevel3 [
-	self assertWriting: factory headerLevel3Sample include: self headerLevel3
+	self assertWriting: sample headerLevel3 include: self headerLevel3
 ]
 
 { #category : #tests }
 PRRichTextWriterTest >> testHeaderLevel4 [
-	self assertWriting: factory headerLevel4Sample include: self headerLevel4
+	self assertWriting: sample headerLevel4 include: self headerLevel4
 ]
 
 { #category : #tests }
 PRRichTextWriterTest >> testHeaderLevel5 [
-	self assertWriting: factory headerLevel5Sample include: self headerLevel5
+	self assertWriting: sample headerLevel5 include: self headerLevel5
 ]
 
 { #category : #tests }
 PRRichTextWriterTest >> testHeaderLevel6 [
-	self assertWriting: factory headerLevel6Sample include: self headerLevel6
+	self assertWriting: sample headerLevel6 include: self headerLevel6
 ]
 
 { #category : #tests }
 PRRichTextWriterTest >> testItalicFormat [
-	self assertWriting: factory italicFormatSample include: self italicFormat
+	self assertWriting: sample italic include: self italicFormat
 ]
 
 { #category : #tests }
 PRRichTextWriterTest >> testMonospaceFormat [ 
-	self assertWriting: factory monospaceFormatSample include: self monospaceFormat
+	self assertWriting: sample monospace include: self monospaceFormat
 ]
 
 { #category : #tests }
@@ -171,7 +171,7 @@ PRRichTextWriterTest >> testStrikethroughFormat [
 		self assertWriting: factory strikethroughFormatSample include: self strikethroughtFormat.
 	"
 	
-	self assertWriting: ' --Foo-- ' include: self strikethroughtFormat
+	self fail.
 ]
 
 { #category : #tests }
@@ -184,12 +184,12 @@ PRRichTextWriterTest >> testSubscriptFormat [
 
 { #category : #tests }
 PRRichTextWriterTest >> testSuperscriptFormat [
-	self assertWriting: factory superscriptFormatSample include: self superscriptFormat
+	self assertWriting: sample superscript include: self superscriptFormat
 ]
 
 { #category : #tests }
 PRRichTextWriterTest >> testUnderlineFormat [ 
-	self assertWriting: factory underlineFormatSample include: self underlineFormat
+	self assertWriting: sample underline include: self underlineFormat
 ]
 
 { #category : #'grammar - Format' }
