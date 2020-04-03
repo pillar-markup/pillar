@@ -5,7 +5,7 @@ Class {
 		'properties',
 		'string'
 	],
-	#category : 'Pillar-Pharo-Tools-Editor'
+	#category : #'Pillar-Pharo-Tools-Editor'
 }
 
 { #category : #execute }
@@ -13,7 +13,7 @@ GTPillarCodeHighlightingCommand >> executeOn: aText inPresentation: aPresentatio
 	| styler styledText |
 	self isSmalltalk
 		ifTrue: [ 
-			styler := SHTextStylerST80 new.
+			styler := SHRBTextStyler new.
 			styler classOrMetaClass: nil.
 			styledText := styler styledTextFor: (aText copyFrom: self start to: self stop).
 			aText replaceFrom: self start to: self stop with: styledText ]
