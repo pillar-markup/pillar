@@ -54,6 +54,24 @@ PRDocumentSample >> monospace [
 	^ self withFormat: PRMonospaceFormat 
 ]
 
+{ #category : #'grammar - Format' }
+PRDocumentSample >> simpleOrderedList [
+
+	^ (PROrderedList
+			withAll:
+				{(PRListItem with: (PRText content: 'First')).
+				(PRListItem with: (PRText content: 'Second'))})
+]
+
+{ #category : #'grammar - Format' }
+PRDocumentSample >> simpleUnorderedList [
+
+	^ (PRUnorderedList
+			withAll:
+				{(PRListItem with: (PRText content: 'First')).
+				(PRListItem with: (PRText content: 'Second'))})
+]
+
 { #category : #accessing }
 PRDocumentSample >> superscript [
 	^ self withFormat: PRSuperscriptFormat 
@@ -75,7 +93,7 @@ PRDocumentSample >> withFormat: aPRFormatClass [
 			
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PRDocumentSample >> withStructure: aPRObject [
 	^ PRDocument new
 		add: (aPRObject add: (PRText content: 'foo');
