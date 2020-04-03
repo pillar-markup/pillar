@@ -6,7 +6,8 @@ Class {
 	#name : #PRRichTextComposer,
 	#superclass : #PRVisitor,
 	#instVars : [
-		'canvas'
+		'canvas',
+		'monospaceBackgroundColor'
 	],
 	#category : #'Pillar-ExporterRichText'
 }
@@ -188,6 +189,25 @@ PRRichTextComposer class >> renderComment: aSource [
 					  (self class environment at: 'GHMParser' ifAbsent: [ ^ aSource ]) 
 						  asText: aSource ]
 				  ifFalse: [ aSource ] ]
+]
+
+{ #category : #initialization }
+PRRichTextComposer >> initialize [
+
+	super initialize.
+	monospaceBackgroundColor := Smalltalk ui theme settings windowColor.
+]
+
+{ #category : #accessing }
+PRRichTextComposer >> monospaceBackgroundColor [
+
+	^ monospaceBackgroundColor
+]
+
+{ #category : #accessing }
+PRRichTextComposer >> monospaceBackgroundColor: aColor [
+
+	monospaceBackgroundColor := aColor
 ]
 
 { #category : #visiting }
@@ -401,7 +421,7 @@ PRRichTextComposer >> visitListItem: anItem [
 PRRichTextComposer >> visitMonospaceFormat: anObject [
 	"Notice - I add a highlight to the backgorund rather than mono-spaced."
 	| backgroundColor |
-	backgroundColor := Smalltalk ui theme settings windowColor .
+	backgroundColor := Smalltalk ui theme settings windowColor.
 	canvas 
 		includeAttribute: (TextBackgroundColor color: backgroundColor) 
 		in: [self visitFormat: anObject].  
