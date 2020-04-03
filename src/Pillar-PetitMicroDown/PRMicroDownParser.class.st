@@ -245,12 +245,12 @@ PRMicroDownParser >> listsParser [
 	"Attention: we refer to PRPillarParser explicitely here instead of using ==self== so that the PRPillarCompiled parser, if it exists, can work."
 	^ self 
 		propertyAt: #listsParser 
-		ifAbsentPut: [ (PRPillarParser newStartingAt: #lists) optimize ]
+		ifAbsentPut: [ (PRMicroDownParser newStartingAt: #lists) optimize ]
 ]
 
 { #category : #helpers }
 PRMicroDownParser >> literalFrom: characterArray [
-	^ PRParserUtility convertToPharoObject: (self stringFrom: characterArray)
+	^ PRMicroDownParserUtility convertToPharoObject: (self stringFrom: characterArray)
 ]
 
 { #category : #'grammar - Format' }
@@ -310,7 +310,7 @@ PRMicroDownParser >> paragraph [
 PRMicroDownParser >> parameterFrom: array [
 	^ (PRParameter 
 			keyNode: array second 
-			valueNode: (array third ifNil: [ PRParserUtility newDefaultParameterValue ]))
+			valueNode: (array third ifNil: [ PRMicroDownParserUtility newDefaultParameterValue ]))
 		start: array first start;
 		stop: array last stop
 ]

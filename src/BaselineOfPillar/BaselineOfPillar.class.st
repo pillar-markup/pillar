@@ -55,6 +55,7 @@ BaselineOfPillar >> baseline: spec [
 				package: 'Pillar-ExporterText' with: [ spec requires: #('Pillar-ExporterCore') ];
 				package: 'Pillar-GitBook' with: [ spec requires: #('Pillar-Cli' 'markdown exporter' 'text exporter') ];
 				package: 'Pillar-Core';
+				package: 'Pillar-PetitMicroDown'  with: [ spec requires: #('Pillar-Core' 'Pillar-Model' 'PetitParser2')];
 				package: 'Pillar-Model' with: [ spec requires: #('Pillar-Core')];
 				package: 'Pillar-CodeBlockEvaluator' with: [ spec requires: #('Pillar-Core')];
 				package: 'Pillar-PetitPillar' with: [ spec requires: #('PetitParser2Core' 'Pillar-Model') ];
