@@ -8,10 +8,9 @@ Class {
 PRBasicMicroDownParserTest >> testCodeBlock [
 
 	| document |
-	self skip.
-	document := PRMicroDownParser parse: '```pharo
+	document := PRMicroDownParser parse: '```language=pharo
 	1-2 
-	```'.
+```'.
 	self assert: document children first class equals: PRCodeblock.
 	
 ]

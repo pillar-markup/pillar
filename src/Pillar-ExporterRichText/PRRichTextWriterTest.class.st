@@ -95,7 +95,7 @@ PRRichTextWriterTest >> testBoldFormat [
 	self assertWriting: sample bold include: self boldFormat
 ]
 
-{ #category : #tests }
+{ #category : #'tests - to be revisited' }
 PRRichTextWriterTest >> testExternaLink [
 	| pillarLink target obj1 obj2 raised|
 	raised := false.
@@ -110,7 +110,7 @@ PRRichTextWriterTest >> testExternaLink [
 	self assert: obj1 class name equals: #TextAction
 ]
 
-{ #category : #tests }
+{ #category : #'tests - to be revisited' }
 PRRichTextWriterTest >> testFigure [
 	| link pillarLink obj1 obj2 raised |
 	raised := false.
@@ -125,32 +125,32 @@ PRRichTextWriterTest >> testFigure [
 	self assert: obj1 class name equals: #TextAnchor
 ]
 
-{ #category : #tests }
+{ #category : #'tests - header' }
 PRRichTextWriterTest >> testHeaderLevel1 [
 	self assertWriting: sample headerLevel1 include: self headerLevel1
 ]
 
-{ #category : #tests }
+{ #category : #'tests - header' }
 PRRichTextWriterTest >> testHeaderLevel2 [
 	self assertWriting: sample headerLevel2 include: self headerLevel2
 ]
 
-{ #category : #tests }
+{ #category : #'tests - header' }
 PRRichTextWriterTest >> testHeaderLevel3 [
 	self assertWriting: sample headerLevel3 include: self headerLevel3
 ]
 
-{ #category : #tests }
+{ #category : #'tests - header' }
 PRRichTextWriterTest >> testHeaderLevel4 [
 	self assertWriting: sample headerLevel4 include: self headerLevel4
 ]
 
-{ #category : #tests }
+{ #category : #'tests - header' }
 PRRichTextWriterTest >> testHeaderLevel5 [
 	self assertWriting: sample headerLevel5 include: self headerLevel5
 ]
 
-{ #category : #tests }
+{ #category : #'tests - header' }
 PRRichTextWriterTest >> testHeaderLevel6 [
 	self assertWriting: sample headerLevel6 include: self headerLevel6
 ]
@@ -169,9 +169,9 @@ PRRichTextWriterTest >> testMonospaceFormat [
 PRRichTextWriterTest >> testOrderedList [ 
 
 	|richText | 
-	richText := (PRRichTextComposer new start: sample simpleUnorderedList).
-	self assert: richText string first equals: (PRRichTextComposer bulletForLevel: 0) first.
-	self assert: (richText string at: 'First' size + 4) equals: (PRRichTextComposer bulletForLevel: 0) first.
+	richText := (PRRichTextComposer new start: sample simpleOrderedList).
+	self assert: richText string first equals: (PRRichTextComposer counterFor: 1 atLevel: 0) first.
+	self assert: (richText string at: 'First' size + 5) equals: (PRRichTextComposer counterFor: 2 atLevel: 0) first.
 ]
 
 { #category : #skipped }
