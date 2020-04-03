@@ -1,3 +1,7 @@
+"
+This is not clear that forking also the PRPillarGrammarTest was a good idea. 
+But let us start somewhere. 
+"
 Class {
 	#name : #PRMicroDownGrammarTest,
 	#superclass : #PP2CompositeNodeTest,

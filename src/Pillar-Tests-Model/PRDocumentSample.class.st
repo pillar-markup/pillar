@@ -1,7 +1,7 @@
 Class {
 	#name : #PRDocumentSample,
 	#superclass : #PRDocument,
-	#category : #'Pillar-Core-Model'
+	#category : #'Pillar-Tests-Model-Core'
 }
 
 { #category : #accessing }
