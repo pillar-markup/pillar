@@ -10,7 +10,7 @@ Class {
 		'canvas',
 		'attribute'
 	],
-	#category : #'Pillar-ExporterRichText'
+	#category : #'Pillar-ExporterRichText-Core'
 }
 
 { #category : #'as yet unclassified' }

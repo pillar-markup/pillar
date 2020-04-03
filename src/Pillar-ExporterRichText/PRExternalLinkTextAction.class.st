@@ -6,7 +6,7 @@ It seems like I might only work on mac.
 Class {
 	#name : #PRExternalLinkTextAction,
 	#superclass : #TextAction,
-	#category : #'Pillar-ExporterRichText'
+	#category : #'Pillar-ExporterRichText-Core'
 }
 
 { #category : #accessing }

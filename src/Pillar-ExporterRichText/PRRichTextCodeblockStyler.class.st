@@ -18,7 +18,7 @@ To define a new styler for a different language or format you should do the foll
 Class {
 	#name : #PRRichTextCodeblockStyler,
 	#superclass : #Object,
-	#category : #'Pillar-ExporterRichText'
+	#category : #'Pillar-ExporterRichText-Core'
 }
 
 { #category : #'instance creation' }

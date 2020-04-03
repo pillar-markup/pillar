@@ -9,7 +9,7 @@ Class {
 		'canvas',
 		'monospaceBackgroundColor'
 	],
-	#category : #'Pillar-ExporterRichText'
+	#category : #'Pillar-ExporterRichText-Core'
 }
 
 { #category : #converting }
@@ -195,7 +195,7 @@ PRRichTextComposer class >> renderComment: aSource [
 PRRichTextComposer >> initialize [
 
 	super initialize.
-	monospaceBackgroundColor := self class environment ui theme settings windowColor.
+	monospaceBackgroundColor := Smalltalk ui theme settings windowColor.
 ]
 
 { #category : #accessing }

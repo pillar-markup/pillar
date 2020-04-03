@@ -4,7 +4,7 @@ I am a Brush that paints the `TextIndent` on a `Text`. The actual value of the i
 Class {
 	#name : #PRRichTextIndentBrush,
 	#superclass : #PRRichTextBrush,
-	#category : #'Pillar-ExporterRichText'
+	#category : #'Pillar-ExporterRichText-Core'
 }
 
 { #category : #paint }
