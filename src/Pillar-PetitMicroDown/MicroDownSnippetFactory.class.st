@@ -4,7 +4,13 @@ Class {
 	#category : #'Pillar-PetitMicroDown'
 }
 
+{ #category : #utils }
+MicroDownSnippetFactory >> grammar [
+
+	^ PRMicroDownGrammar 
+]
+
 { #category : #sample }
 MicroDownSnippetFactory >> headerLevel1Sample [
-	^ '#Foo'
+	^ self grammar headerMarkup, '#Foo'
 ]

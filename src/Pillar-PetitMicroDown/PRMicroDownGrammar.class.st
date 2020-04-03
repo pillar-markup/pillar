@@ -202,6 +202,12 @@ PRMicroDownGrammar class >> endMarkups: anObject [
 	EndMarkups := anObject
 ]
 
+{ #category : #'line based' }
+PRMicroDownGrammar class >> headerMarkup [
+
+	^ '#'
+]
+
 { #category : #'class initialization' }
 PRMicroDownGrammar class >> initialize [
 	"self initialize"
@@ -215,7 +221,7 @@ PRMicroDownGrammar class >> lineMarkups [
 	markups := Dictionary new.
 	markups
 		at: PRAnchor put: '@';
-		at: PRHeader put: '#';
+		at: PRHeader put: self headerMarkup ;
 		at: PROrderedList put: '1';
 		at: PRUnorderedList put: '*';
 		at: PRDataItem put: ':';
