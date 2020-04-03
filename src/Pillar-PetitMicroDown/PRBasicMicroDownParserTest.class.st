@@ -34,6 +34,7 @@ PRBasicMicroDownParserTest >> testHeader [
 ## Header 2
 	
 ### Header 3'.
+	"we could have use Grammar headerMarkup to build the text but this is clearer like that"
 	self assert: document children first class equals: PRHeader.
 	self assert: document children third class equals: PRHeader.
 	self assert: document children fifth class equals: PRHeader

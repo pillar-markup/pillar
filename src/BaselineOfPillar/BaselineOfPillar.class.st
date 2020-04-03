@@ -55,7 +55,8 @@ BaselineOfPillar >> baseline: spec [
 				package: 'Pillar-ExporterText' with: [ spec requires: #('Pillar-ExporterCore') ];
 				package: 'Pillar-GitBook' with: [ spec requires: #('Pillar-Cli' 'markdown exporter' 'text exporter') ];
 				package: 'Pillar-Core';
-				package: 'Pillar-PetitMicroDown'  with: [ spec requires: #('Pillar-Core' 'Pillar-Model' 'PetitParser2Core')];
+				package: 'Pillar-PetitMicroDown'
+					with: [ spec requires: #('Pillar-Core' 'Pillar-Model' 'PetitParser2Core')];
 				package: 'Pillar-Model' with: [ spec requires: #('Pillar-Core')];
 				package: 'Pillar-CodeBlockEvaluator' with: [ spec requires: #('Pillar-Core')];
 				package: 'Pillar-PetitPillar' with: [ spec requires: #('PetitParser2Core' 'Pillar-Model') ];
@@ -84,40 +85,58 @@ BaselineOfPillar >> baseline: spec [
 				package: 'Pillar-Tests-BookTester' with: [ spec requires: #('Pillar-BookTester') ];
 				package: 'Pillar-Tests-Project' with: [ spec requires: #('Pillar-Project') ];
 				package: 'Pillar-Tests-Integration' with: [ spec requires: #('Pillar-Project') ].
+			
+			
+			
 			spec
 				group: 'ALL' with: #('All tests' 'All but tests');
+				
 				group: 'All but tests'
-					with: #('All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'Pillar-GitBook' 'parser' 'Pillar-Project' 'Pillar-BookTester' 'Pillar-CodeBlockEvaluator');
+					with: #('All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'Pillar-GitBook' 'parser' 'Pillar-Project' 'Pillar-BookTester' 'Pillar-CodeBlockEvaluator' 'Pillar-PetitMicroDown');
+				
 				group: 'All exporter tests'
 					with:
 					#('html exporter tests' 'latex exporter tests' 'beamer exporter tests' 'deckjs exporter tests' 'markdown exporter tests' 'pillar exporter tests' 'text exporter tests' 'asciidoc exporter tests' 'ePub exporter tests');
+				
 				group: 'All exporters'
 					with:
 					#('html exporter' 'rich text exporter' 'latex exporter' 'beamer exporter' 'deckjs exporter' 'markdown exporter' 'pillar exporter' 'text exporter' 'asciidoc exporter' 'ePub exporter');
+				
 				group: 'All tests'
 					with:
 					#('All exporter tests' 'Pillar-Tests-Model' 'Pillar-Tests-ExporterCore' #'Pillar-Tests-Cli' 'parser tests' 'Pillar-Tests-Project' 'Pillar-Tests-Integration');
+				
 				group: 'asciidoc exporter' with: #(#'Pillar-ExporterAsciiDoc');
 				group: 'asciidoc exporter tests' with: #(#'Pillar-Tests-ExporterAsciiDoc' 'ePub exporter');
 				group: 'beamer exporter' with: #('Pillar-ExporterBeamer');
 				group: 'beamer exporter tests' with: #('Pillar-Tests-ExporterBeamer');
+				
 				group: 'deckjs exporter' with: #('Pillar-ExporterDeckJS');
 				group: 'deckjs exporter tests' with: #('Pillar-Tests-ExporterDeckJS');
+				
 				group: 'ePub exporter' with: #(#'Pillar-ExporterEPub');
 				group: 'ePub exporter tests' with: #(#'Pillar-Tests-ExporterEPub');
+				
 				group: 'rich text exporter' with: #('Pillar-ExporterRichText');
+				
 				group: 'html exporter' with: #('Pillar-ExporterHTML');
 				group: 'html exporter tests' with: #('Pillar-Tests-ExporterHTML');
+				
 				group: 'booktester' with: #('Pillar-BookTester');
 				group: 'booktester tests' with: #('Pillar-Tests-BookTester');
+				
 				group: 'latex exporter' with: #('Pillar-ExporterLaTeX');
 				group: 'latex exporter tests' with: #('Pillar-Tests-ExporterLaTeX');
+				
 				group: 'markdown exporter' with: #('Pillar-ExporterMarkdown' 'parser');
 				group: 'markdown exporter tests' with: #('Pillar-Tests-ExporterMarkdown');
+				
 				group: 'parser' with: #('Pillar-PetitPillar');
 				group: 'parser tests' with: #('Pillar-Tests-PetitPillar');
+				
 				group: 'pillar exporter' with: #('Pillar-ExporterPillar');
 				group: 'pillar exporter tests' with: #('Pillar-Tests-ExporterPillar');
+				
 				group: 'text exporter' with: #('Pillar-ExporterText');
 				group: 'text exporter tests' with: #('Pillar-Tests-ExporterText').
 
