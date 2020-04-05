@@ -34,7 +34,27 @@ PRMicroDownGrammarTest >> setUp [
 	self factory: MicroDownSnippetFactory new.
 ]
 
-{ #category : #'tests - level1' }
+{ #category : #'tests - header' }
 PRMicroDownGrammarTest >> testHeaderLevel1 [
 	self parse: factory headerLevel1Sample rule: #header
+]
+
+{ #category : #'tests - header' }
+PRMicroDownGrammarTest >> testHeaderLevel2 [
+	self parse: factory headerLevel2Sample rule: #header
+]
+
+{ #category : #'tests - header' }
+PRMicroDownGrammarTest >> testHeaderLevel3 [
+	self parse: factory headerLevel3Sample rule: #header
+]
+
+{ #category : #'tests - header' }
+PRMicroDownGrammarTest >> testHeaderLevel4 [
+	self parse: factory headerLevel4Sample rule: #header
+]
+
+{ #category : #'tests - header' }
+PRMicroDownGrammarTest >> testHeaderLevel5 [
+	self parse: factory headerLevel5Sample rule: #header
 ]

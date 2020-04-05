@@ -21,6 +21,7 @@ PRBasicMicroDownParserTest >> testCodeInText [
 	| document |
 	document := PRMicroDownParser parse: 'The method `foo` is fun'.
 	self assert: document children first class equals: PRParagraph.
+	self assert: document children first children second class equals: PRMonospaceFormat 
 	
 	
 ]
@@ -50,5 +51,6 @@ PRBasicMicroDownParserTest >> testNumberedList [
 '.
 	self assert: document children first class equals: PROrderedList.
 
-	self assert: document children first children first class equals: PRListItem
+	self assert: document children first children first class equals: PRListItem.
+	self assert: document children first children second class equals: PRListItem
 ]
