@@ -108,3 +108,56 @@ PRMicroDownGrammarTest >> testScriptParameterWithSpacesBeforeAndAfter [
 		parse: factory scriptParameterWithSpacesBeforeAndAfterSample
 		rule: #scriptParameters
 ]
+
+{ #category : #'tests - codeblock' }
+PRMicroDownGrammarTest >> testScriptParameterWithoutValue [
+	self
+		parse: factory scriptParameterWithoutValueSample
+		rule: #parameterUntilNewline
+]
+
+{ #category : #'tests - codeblock' }
+PRMicroDownGrammarTest >> testScriptParameters [
+	self parse: factory scriptParametersSample rule: #scriptParameters
+]
+
+{ #category : #'tests - codeblock' }
+PRMicroDownGrammarTest >> testScriptParametersEscape [
+	self
+		parse: factory scriptParametersEscapeSample
+		rule: #scriptParameters
+]
+
+{ #category : #'tests - codeblock' }
+PRMicroDownGrammarTest >> testScriptParametersMultiple [
+	self
+		parse: factory scriptParametersMultipleSample
+		rule: #scriptParameters
+]
+
+{ #category : #'tests - codeblock' }
+PRMicroDownGrammarTest >> testScriptTwoParametersNoValue [
+	self
+		parse: factory scriptTwoParametersNoValueSample
+		rule: #scriptParameters
+]
+
+{ #category : #'tests - codeblock' }
+PRMicroDownGrammarTest >> testScriptWithLanguage [
+	self parse: factory scriptWithLanguageSample rule: #script
+]
+
+{ #category : #'tests - codeblock' }
+PRMicroDownGrammarTest >> testScriptWithNewLine [
+	self parse: factory scriptWithNewLineSample rule: #script
+]
+
+{ #category : #'tests - codeblock' }
+PRMicroDownGrammarTest >> testScriptWithSpaceAtTheEnd [
+	self parse: factory scriptWithSpaceAtTheEndSample rule: #script
+]
+
+{ #category : #'tests - codeblock' }
+PRMicroDownGrammarTest >> testScriptWithSpacedParameters [
+	self parse: factory scriptWithSpacedParametersSample rule: #script
+]

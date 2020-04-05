@@ -134,6 +134,59 @@ MicroDownSnippetFactory >> scriptParameterWithSpacesBeforeAndAfterSample [
 ]
 
 { #category : #'code block' }
+MicroDownSnippetFactory >> scriptParameterWithoutValueSample [
+	^ 'foo'
+]
+
+{ #category : #'code block' }
+MicroDownSnippetFactory >> scriptParametersEscapeSample [
+	^ 'value=foo\||bar
+'
+]
+
+{ #category : #'code block' }
+MicroDownSnippetFactory >> scriptParametersMultipleSample [
+	^ 'value=foo|bar
+'
+]
+
+{ #category : #'code block' }
+MicroDownSnippetFactory >> scriptParametersSample [
+	^ 'value=foo
+'
+]
+
+{ #category : #'code block' }
 MicroDownSnippetFactory >> scriptSample [
 	^ self codeblockNoParamBody: 'foo'
+]
+
+{ #category : #'code block' }
+MicroDownSnippetFactory >> scriptTwoParametersNoValueSample [
+	^ 'foo|bar
+'
+]
+
+{ #category : #'code block' }
+MicroDownSnippetFactory >> scriptWithLanguageSample [
+	^ self codeblock: 'language=smalltalk' body: 'foo'
+]
+
+{ #category : #'code block' }
+MicroDownSnippetFactory >> scriptWithNewLineSample [
+	^ (self codeblockNoParamBody: 'foo'), String cr
+]
+
+{ #category : #'code block' }
+MicroDownSnippetFactory >> scriptWithSpaceAtTheEndSample [
+		
+	 ^ (self codeblockNoParamBody: 'foo'), '  '.
+
+
+]
+
+{ #category : #'code block' }
+MicroDownSnippetFactory >> scriptWithSpacedParametersSample [
+	^ self codeblock:   ' foo = true | bar = 2 '
+body: 'bla'
 ]
