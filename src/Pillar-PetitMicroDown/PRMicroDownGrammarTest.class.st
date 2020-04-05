@@ -58,3 +58,22 @@ PRMicroDownGrammarTest >> testHeaderLevel4 [
 PRMicroDownGrammarTest >> testHeaderLevel5 [
 	self parse: factory headerLevel5Sample rule: #header
 ]
+
+{ #category : #'tests - codeblock' }
+PRMicroDownGrammarTest >> testScript [
+	self parse: factory scriptSample rule: #script
+]
+
+{ #category : #'tests - codeblock' }
+PRMicroDownGrammarTest >> testScriptParameter [
+	self
+		parse: factory scriptParameterSample
+		rule: #parameterUntilNewline
+]
+
+{ #category : #'tests - codeblock' }
+PRMicroDownGrammarTest >> testScriptParameterEscape [
+	self
+		parse: factory scriptParameterEscapeSample
+		rule: #parameterUntilNewline
+]

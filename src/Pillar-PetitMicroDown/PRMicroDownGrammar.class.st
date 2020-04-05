@@ -126,6 +126,12 @@ Class {
 	#category : #'Pillar-PetitMicroDown'
 }
 
+{ #category : #markup }
+PRMicroDownGrammar class >> codeblockMarkup [
+
+	^ '```'
+]
+
 { #category : #accessing }
 PRMicroDownGrammar class >> defaultEndMarkups [
 	| markups |
@@ -133,7 +139,7 @@ PRMicroDownGrammar class >> defaultEndMarkups [
 	markups
 		at: PRAbstractAnnotation put: '}$';
 		at: PRRaw put: '}}}';
-		at: PRCodeblock put: '```'.
+		at: PRCodeblock put: self codeblockMarkup.
 	^ markups
 ]
 
@@ -192,17 +198,17 @@ PRMicroDownGrammar class >> defaultMarkups [
 	^ self textMarkups , self lineMarkups
 ]
 
-{ #category : #accessing }
+{ #category : #'class initialization' }
 PRMicroDownGrammar class >> endMarkups [
 	^ EndMarkups
 ]
 
-{ #category : #accessing }
+{ #category : #'class initialization' }
 PRMicroDownGrammar class >> endMarkups: anObject [
 	EndMarkups := anObject
 ]
 
-{ #category : #'line based' }
+{ #category : #markup }
 PRMicroDownGrammar class >> headerMarkup [
 
 	^ '#'
@@ -234,12 +240,12 @@ PRMicroDownGrammar class >> lineMarkups [
 	^ markups
 ]
 
-{ #category : #accessing }
+{ #category : #'class initialization' }
 PRMicroDownGrammar class >> markups [
 	^ Markups
 ]
 
-{ #category : #accessing }
+{ #category : #'class initialization' }
 PRMicroDownGrammar class >> markups: anObject [
 	Markups := anObject
 ]
@@ -258,7 +264,7 @@ PRMicroDownGrammar class >> textMarkups [
 		at: PRUnderlineFormat put: '__';
 		at: PRFigure put: '+';
 		at: PRLink put: '*';
-		at: PRCodeblock put: '```';
+		at: PRCodeblock put: self codeblockMarkup;
 		at: PRRaw put: '{{{';
 		at: PRAbstractAnnotation put: '${'.
 	^ markups

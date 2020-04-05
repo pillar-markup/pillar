@@ -52,3 +52,24 @@ MicroDownSnippetFactory >> headerLevel: n [
 		 n timesRepeat: [ st nextPutAll: self grammar headerMarkup ].
 		 st nextPutAll: '#Foo']
 ]
+
+{ #category : #'code block' }
+MicroDownSnippetFactory >> scriptParameterEscapeSample [
+	^ 'value\==foo'
+]
+
+{ #category : #'code block' }
+MicroDownSnippetFactory >> scriptParameterSample [
+	^ 'value=foo'
+]
+
+{ #category : #'code block' }
+MicroDownSnippetFactory >> scriptSample [
+	^ String streamContents: [ :st | 
+		st nextPutAll: self grammar codeblockMarkup. 
+		st cr.
+		st nextPutAll: 'foo'.
+		st cr.
+		st nextPutAll: self grammar codeblockMarkup. 
+	]
+]
