@@ -4,6 +4,42 @@ Class {
 	#category : #'Pillar-PetitMicroDown'
 }
 
+{ #category : #'code block' }
+MicroDownSnippetFactory >> codeblock: param [ 
+
+	^ String streamContents: [ :st | 
+		st nextPutAll: self grammar codeblockMarkup. 
+		st nextPutAll: param.
+		st cr.
+		st nextPutAll: self grammar codeblockMarkup. 
+	]
+]
+
+{ #category : #'code block' }
+MicroDownSnippetFactory >> codeblock: param body: body [
+
+	^ String streamContents: [ :st | 
+		st nextPutAll: self grammar codeblockMarkup. 
+		st nextPutAll: param.
+		st cr.
+		st nextPutAll: body.
+		st cr.
+		st nextPutAll: self grammar codeblockMarkup. 
+	]
+]
+
+{ #category : #'code block' }
+MicroDownSnippetFactory >> codeblockNoParamBody: body [
+
+	^ String streamContents: [ :st | 
+		st nextPutAll: self grammar codeblockMarkup. 
+		st cr.
+		st nextPutAll: body.
+		st cr.
+		st nextPutAll: self grammar codeblockMarkup. 
+	]
+]
+
 { #category : #utils }
 MicroDownSnippetFactory >> grammar [
 
@@ -64,12 +100,40 @@ MicroDownSnippetFactory >> scriptParameterSample [
 ]
 
 { #category : #'code block' }
+MicroDownSnippetFactory >> scriptParameterTrueByDefaultSample [
+	^ self codeblock: 'foo' body: 'bar'
+	
+]
+
+{ #category : #'code block' }
+MicroDownSnippetFactory >> scriptParameterValueSample [
+	^ '=foo'
+]
+
+{ #category : #'code block' }
+MicroDownSnippetFactory >> scriptParameterWithFloatSample [
+	^ self codeblock: 'ratio=0.8' body: 'bar'
+	
+]
+
+{ #category : #'code block' }
+MicroDownSnippetFactory >> scriptParameterWithLiteralArraySample [
+	^ self codeblock: 'foo=#(1 2 true)'
+]
+
+{ #category : #'code block' }
+MicroDownSnippetFactory >> scriptParameterWithNoValuesSample [
+	^ self codeblock: 'foo=' body: 'bar'
+
+]
+
+{ #category : #'code block' }
+MicroDownSnippetFactory >> scriptParameterWithSpacesBeforeAndAfterSample [
+	^ ' foo = true | bar = 2 
+'
+]
+
+{ #category : #'code block' }
 MicroDownSnippetFactory >> scriptSample [
-	^ String streamContents: [ :st | 
-		st nextPutAll: self grammar codeblockMarkup. 
-		st cr.
-		st nextPutAll: 'foo'.
-		st cr.
-		st nextPutAll: self grammar codeblockMarkup. 
-	]
+	^ self codeblockNoParamBody: 'foo'
 ]

@@ -77,3 +77,34 @@ PRMicroDownGrammarTest >> testScriptParameterEscape [
 		parse: factory scriptParameterEscapeSample
 		rule: #parameterUntilNewline
 ]
+
+{ #category : #'tests - codeblock' }
+PRMicroDownGrammarTest >> testScriptParameterTrueByDefault [
+	self 
+		parse: factory scriptParameterTrueByDefaultSample 
+		rule: #script
+]
+
+{ #category : #'tests - codeblock' }
+PRMicroDownGrammarTest >> testScriptParameterValue [
+	self
+		parse: factory scriptParameterValueSample
+		rule: #parameterValueUntilNewline
+]
+
+{ #category : #'tests - codeblock' }
+PRMicroDownGrammarTest >> testScriptParameterWithFloat [
+	self parse: factory scriptParameterWithFloatSample rule: #script
+]
+
+{ #category : #'tests - codeblock' }
+PRMicroDownGrammarTest >> testScriptParameterWithNoValues [
+	self parse: factory scriptParameterWithNoValuesSample rule: #script
+]
+
+{ #category : #'tests - codeblock' }
+PRMicroDownGrammarTest >> testScriptParameterWithSpacesBeforeAndAfter [
+	self
+		parse: factory scriptParameterWithSpacesBeforeAndAfterSample
+		rule: #scriptParameters
+]
