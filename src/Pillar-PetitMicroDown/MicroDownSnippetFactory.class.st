@@ -48,7 +48,7 @@ MicroDownSnippetFactory >> grammar [
 
 { #category : #headers }
 MicroDownSnippetFactory >> headerLevel1Sample [
-	^ self grammar headerMarkup, '#Foo'
+	^ self headerLevel: 1
 ]
 
 { #category : #headers }
@@ -86,7 +86,7 @@ MicroDownSnippetFactory >> headerLevel: n [
 
 	^ String streamContents: [ :st |
 		 n timesRepeat: [ st nextPutAll: self grammar headerMarkup ].
-		 st nextPutAll: '#Foo']
+		 st nextPutAll: 'Foo']
 ]
 
 { #category : #'code block' }
