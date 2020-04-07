@@ -6,32 +6,32 @@ Class {
 
 { #category : #anchor }
 MicroDownSnippetFactory >> anchorAreTrimedSample [
-	^ (self grammarLineMarkup: PRAnchor), '  test  '
+	^ self grammar anchorMarkup, '  test  '
 ]
 
 { #category : #anchor }
 MicroDownSnippetFactory >> anchorSample [
-	^ (self grammarLineMarkup: PRAnchor) , 'test'
+	^ self grammar anchorMarkup, 'test'
 ]
 
 { #category : #anchor }
 MicroDownSnippetFactory >> anchorWithNewLineSample [
-	^ (self grammarLineMarkup: PRAnchor) , 'foo', String cr
+	^ self grammar anchorMarkup, 'foo', String cr
 ]
 
 { #category : #anchor }
 MicroDownSnippetFactory >> anchorWithSpaceInsideSample [
-	^ (self grammarLineMarkup: PRAnchor), 'foo bar'
+	^ self grammar anchorMarkup, 'foo bar'
 ]
 
 { #category : #format }
 MicroDownSnippetFactory >> boldFormatEmptySample [
-	^ self surround: '' withMarkup: (self grammarTextMarkup: PRBoldFormat) 
+	^ self surround: '' withMarkup: self grammar boldMarkup
 ]
 
 { #category : #format }
 MicroDownSnippetFactory >> boldFormatSample [
-	^ self surroundWithMarkup: (self grammarTextMarkup: PRBoldFormat)
+	^ self surroundWithMarkup: self grammar boldMarkup
 ]
 
 { #category : #'code block' }
@@ -76,19 +76,9 @@ MicroDownSnippetFactory >> grammar [
 	^ PRMicroDownGrammar 
 ]
 
-{ #category : #utils }
-MicroDownSnippetFactory >> grammarLineMarkup: aPRClass [
-	^ self grammar lineMarkups at: aPRClass
-]
-
-{ #category : #utils }
-MicroDownSnippetFactory >> grammarTextMarkup: aPRClass [
-	^ self grammar textMarkups at: aPRClass
-]
-
 { #category : #headers }
 MicroDownSnippetFactory >> headerEmptySample [ 
-	^ self grammar headerMarkup asString
+	^ self grammar headerMarkup
 ]
 
 { #category : #headers }
@@ -146,12 +136,12 @@ MicroDownSnippetFactory >> headerWithNewLineSample [
 
 { #category : #format }
 MicroDownSnippetFactory >> italicFormatEmptySample [
-	^ self surround: '' withMarkup: (self grammarTextMarkup: PRItalicFormat) 
+	^ self surround: '' withMarkup: self grammar italicMarkup
 ]
 
 { #category : #format }
 MicroDownSnippetFactory >> italicFormatSample [
-	^ self surroundWithMarkup: (self grammarTextMarkup: PRItalicFormat)
+	^ self surroundWithMarkup: self grammar italicMarkup
 ]
 
 { #category : #document }
@@ -168,12 +158,12 @@ MicroDownSnippetFactory >> lineEndwithNewlineSample [
 
 { #category : #format }
 MicroDownSnippetFactory >> monospaceFormatEmptySample [
-	^ self surround: '' withMarkup: (self grammarTextMarkup: PRMonospaceFormat) 
+	^ self surround: '' withMarkup: self grammar monospaceMarkup
 ]
 
 { #category : #format }
 MicroDownSnippetFactory >> monospaceFormatSample [
-	^ self surroundWithMarkup: (self grammarTextMarkup: PRMonospaceFormat)
+	^ self surroundWithMarkup: self grammar monospaceMarkup
 ]
 
 { #category : #document }
@@ -304,32 +294,32 @@ body: 'bla'
 
 { #category : #format }
 MicroDownSnippetFactory >> strikethroughFormatEmptySample [
-	^ self surround: '' withMarkup: (self grammarTextMarkup: PRStrikethroughFormat) 
+	^ self surround: '' withMarkup: self grammar strikethroughMarkup
 ]
 
 { #category : #format }
 MicroDownSnippetFactory >> strikethroughFormatSample [
-	^ self surroundWithMarkup: (self grammarTextMarkup: PRStrikethroughFormat)
+	^ self surroundWithMarkup: self grammar strikethroughMarkup
 ]
 
 { #category : #format }
 MicroDownSnippetFactory >> subscriptFormatEmptySample [
-	^ self surround: '' withMarkup: (self grammarTextMarkup: PRSubscriptFormat) 
+	^ self surround: '' withMarkup: self grammar subscriptMarkup
 ]
 
 { #category : #format }
 MicroDownSnippetFactory >> subscriptFormatSample [
-	^ self surroundWithMarkup: (self grammarTextMarkup: PRSubscriptFormat)
+	^ self surroundWithMarkup: self grammar subscriptMarkup
 ]
 
 { #category : #format }
 MicroDownSnippetFactory >> superscriptFormatEmptySample [
-	^ self surround: '' withMarkup: (self grammarTextMarkup: PRSuperscriptFormat) 
+	^ self surround: '' withMarkup: self grammar superscriptMarkup
 ]
 
 { #category : #format }
 MicroDownSnippetFactory >> superscriptFormatSample [
-	^ self surroundWithMarkup: (self grammarTextMarkup: PRSuperscriptFormat)
+	^ self surroundWithMarkup: self grammar superscriptMarkup
 ]
 
 { #category : #format }
@@ -344,34 +334,34 @@ MicroDownSnippetFactory >> surroundWithMarkup: aMarkup [
 
 { #category : #format }
 MicroDownSnippetFactory >> underlineFormatEmptySample [
-	^ self surround: '' withMarkup: (self grammarTextMarkup: PRUnderlineFormat) 
+	^ self surround: '' withMarkup: self grammar underlineMarkup
 ]
 
 { #category : #format }
 MicroDownSnippetFactory >> underlineFormatSample [
-	^ self surroundWithMarkup: (self grammarTextMarkup: PRUnderlineFormat)
+	^ self surroundWithMarkup: self grammar underlineMarkup
 ]
 
 { #category : #list }
 MicroDownSnippetFactory >> unorderedListEmptySample [
-	^ self grammarLineMarkup: PRUnorderedList
+	^ self grammar unorderedListMarkup
 ]
 
 { #category : #list }
 MicroDownSnippetFactory >> unorderedListSample [
-	^ (self grammarLineMarkup: PRUnorderedList) , 'Foo'
+	^ self grammar unorderedListMarkup, 'Foo'
 ]
 
 { #category : #list }
 MicroDownSnippetFactory >> unorderedListWithSubListSample [
 	| listMarkup |
-	listMarkup := self grammarLineMarkup: PRUnorderedList.
+	listMarkup := self grammar unorderedListMarkup.
 	^ listMarkup, 'Foo', String cr, listMarkup, listMarkup, 'Bar'
 ]
 
 { #category : #list }
 MicroDownSnippetFactory >> unorderedListWithTwoItemsSample [
 	| listMarkup |
-	listMarkup := self grammarLineMarkup: PRUnorderedList.
+	listMarkup := self grammar unorderedListMarkup.
 	^ listMarkup, 'Foo', String cr, listMarkup, 'Bar'
 ]
