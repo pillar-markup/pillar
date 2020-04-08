@@ -34,6 +34,41 @@ PRMicroDownGrammarTest >> setUp [
 	self factory: MicroDownSnippetFactory new.
 ]
 
+{ #category : #'tests - anchor' }
+PRMicroDownGrammarTest >> testAnchor [
+	self parse: factory anchorSample rule: #anchor
+]
+
+{ #category : #'tests - anchor' }
+PRMicroDownGrammarTest >> testAnchorAreTrimed [
+	self parse: factory anchorAreTrimedSample rule: #anchor
+]
+
+{ #category : #'tests - anchor' }
+PRMicroDownGrammarTest >> testAnchorWithNewLine [
+	self parse: factory anchorWithNewLineSample rule: #elementWithNewline
+]
+
+{ #category : #'tests - anchor' }
+PRMicroDownGrammarTest >> testAnchorWithSpaceInside [
+	self parse: factory anchorWithSpaceInsideSample rule: #anchor
+]
+
+{ #category : #'tests - format' }
+PRMicroDownGrammarTest >> testBoldFormat [
+	self parse: factory boldFormatSample rule: #format
+]
+
+{ #category : #'tests - format' }
+PRMicroDownGrammarTest >> testBoldFormatEmpty [
+	self parse: factory boldFormatEmptySample rule: #format
+]
+
+{ #category : #'tests - header' }
+PRMicroDownGrammarTest >> testHeaderEmpty [
+	self parse: factory headerEmptySample rule: #header
+]
+
 { #category : #'tests - header' }
 PRMicroDownGrammarTest >> testHeaderLevel1 [
 	self parse: factory headerLevel1Sample rule: #header
@@ -57,6 +92,66 @@ PRMicroDownGrammarTest >> testHeaderLevel4 [
 { #category : #'tests - header' }
 PRMicroDownGrammarTest >> testHeaderLevel5 [
 	self parse: factory headerLevel5Sample rule: #header
+]
+
+{ #category : #'tests - header' }
+PRMicroDownGrammarTest >> testHeaderWithFormat [
+	self parse: factory headerWithFormatSample rule: #header
+]
+
+{ #category : #'tests - header' }
+PRMicroDownGrammarTest >> testHeaderWithNewLine [
+	self parse: factory headerWithNewLineSample rule: #elementWithNewline
+]
+
+{ #category : #'tests - format' }
+PRMicroDownGrammarTest >> testItalicFormat [
+	self parse: factory italicFormatSample rule: #format
+]
+
+{ #category : #'tests - format' }
+PRMicroDownGrammarTest >> testItalicFormatEmpty [
+	self parse: factory italicFormatEmptySample rule: #format
+]
+
+{ #category : #'tests - document' }
+PRMicroDownGrammarTest >> testLineEnd [
+	self parse: factory lineEndSample rule: #lineEnd
+]
+
+{ #category : #'tests - document' }
+PRMicroDownGrammarTest >> testLineEndwithNewline [
+	self parse: factory lineEndwithNewlineSample rule: #lineEnd
+]
+
+{ #category : #'tests - format' }
+PRMicroDownGrammarTest >> testMonospaceFormat [
+	self parse: factory monospaceFormatSample rule: #format
+]
+
+{ #category : #'tests - format' }
+PRMicroDownGrammarTest >> testMonospaceFormatEmpty [
+	self parse: factory monospaceFormatEmptySample rule: #format
+]
+
+{ #category : #'tests - document' }
+PRMicroDownGrammarTest >> testNewline [
+	self parse: factory newlineSample rule: #newline
+]
+
+{ #category : #'tests - document' }
+PRMicroDownGrammarTest >> testNewlineCR [
+	self parse: factory newlineCRSample rule: #newline
+]
+
+{ #category : #'tests - document' }
+PRMicroDownGrammarTest >> testNewlineCRLF [
+	self parse: factory newlineCRLFSample rule: #newline
+]
+
+{ #category : #'tests - document' }
+PRMicroDownGrammarTest >> testNewlineLF [
+	self parse: factory newlineLFSample rule: #newline
 ]
 
 { #category : #'tests - codeblock' }
@@ -160,4 +255,68 @@ PRMicroDownGrammarTest >> testScriptWithSpaceAtTheEnd [
 { #category : #'tests - codeblock' }
 PRMicroDownGrammarTest >> testScriptWithSpacedParameters [
 	self parse: factory scriptWithSpacedParametersSample rule: #script
+]
+
+{ #category : #'tests - format' }
+PRMicroDownGrammarTest >> testStrikethroughFormat [
+	self parse: factory strikethroughFormatSample rule: #format
+]
+
+{ #category : #'tests - format' }
+PRMicroDownGrammarTest >> testStrikethroughFormatEmpty [
+	self parse: factory strikethroughFormatEmptySample rule: #format
+]
+
+{ #category : #'tests - format' }
+PRMicroDownGrammarTest >> testSubscriptFormat [
+	self parse: factory subscriptFormatSample rule: #format
+]
+
+{ #category : #'tests - format' }
+PRMicroDownGrammarTest >> testSubscriptFormatEmpty [
+	self parse: factory subscriptFormatEmptySample rule: #format
+]
+
+{ #category : #'tests - format' }
+PRMicroDownGrammarTest >> testSuperscriptFormat [
+	self parse: factory superscriptFormatSample rule: #format
+]
+
+{ #category : #'tests - format' }
+PRMicroDownGrammarTest >> testSuperscriptFormatEmpty [
+	self parse: factory superscriptFormatEmptySample rule: #format
+]
+
+{ #category : #'tests - format' }
+PRMicroDownGrammarTest >> testUnderlineFormat [
+	self parse: factory underlineFormatSample rule: #format
+]
+
+{ #category : #'tests - format' }
+PRMicroDownGrammarTest >> testUnderlineFormatEmpty [
+	self parse: factory underlineFormatEmptySample rule: #format
+]
+
+{ #category : #'tests - list' }
+PRMicroDownGrammarTest >> testUnorderedList [
+	self parse: factory unorderedListSample rule: #unorderedList
+]
+
+{ #category : #'tests - list' }
+PRMicroDownGrammarTest >> testUnorderedListEmpty [
+	self parse: factory unorderedListEmptySample rule: #unorderedList
+]
+
+{ #category : #'tests - list' }
+PRMicroDownGrammarTest >> testUnorderedListWithSubList [
+	self
+		parse: factory unorderedListWithSubListSample
+		rule: #unorderedList
+]
+
+{ #category : #'tests - list' }
+PRMicroDownGrammarTest >> testUnorderedListWithTwoItems [
+	self
+		parse: factory unorderedListWithTwoItemsSample
+		rule: #unorderedList
 ]

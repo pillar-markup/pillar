@@ -4,6 +4,36 @@ Class {
 	#category : #'Pillar-PetitMicroDown'
 }
 
+{ #category : #anchor }
+MicroDownSnippetFactory >> anchorAreTrimedSample [
+	^ self grammar anchorMarkup, '  test  '
+]
+
+{ #category : #anchor }
+MicroDownSnippetFactory >> anchorSample [
+	^ self grammar anchorMarkup, 'test'
+]
+
+{ #category : #anchor }
+MicroDownSnippetFactory >> anchorWithNewLineSample [
+	^ self grammar anchorMarkup, 'foo', String cr
+]
+
+{ #category : #anchor }
+MicroDownSnippetFactory >> anchorWithSpaceInsideSample [
+	^ self grammar anchorMarkup, 'foo bar'
+]
+
+{ #category : #format }
+MicroDownSnippetFactory >> boldFormatEmptySample [
+	^ self surround: '' withMarkup: self grammar boldMarkup
+]
+
+{ #category : #format }
+MicroDownSnippetFactory >> boldFormatSample [
+	^ self surroundWithMarkup: self grammar boldMarkup
+]
+
 { #category : #'code block' }
 MicroDownSnippetFactory >> codeblock: param [ 
 
@@ -47,6 +77,11 @@ MicroDownSnippetFactory >> grammar [
 ]
 
 { #category : #headers }
+MicroDownSnippetFactory >> headerEmptySample [ 
+	^ self grammar headerMarkup
+]
+
+{ #category : #headers }
 MicroDownSnippetFactory >> headerLevel1Sample [
 	^ self headerLevel: 1
 ]
@@ -87,6 +122,72 @@ MicroDownSnippetFactory >> headerLevel: n [
 	^ String streamContents: [ :st |
 		 n timesRepeat: [ st nextPutAll: self grammar headerMarkup ].
 		 st nextPutAll: 'Foo']
+]
+
+{ #category : #headers }
+MicroDownSnippetFactory >> headerWithFormatSample [
+	^ self grammar headerMarkup, self boldFormatSample 
+]
+
+{ #category : #headers }
+MicroDownSnippetFactory >> headerWithNewLineSample [
+	^ self grammar headerMarkup, 'Foo', String cr
+]
+
+{ #category : #format }
+MicroDownSnippetFactory >> italicFormatEmptySample [
+	^ self surround: '' withMarkup: self grammar italicMarkup
+]
+
+{ #category : #format }
+MicroDownSnippetFactory >> italicFormatSample [
+	^ self surroundWithMarkup: self grammar italicMarkup
+]
+
+{ #category : #document }
+MicroDownSnippetFactory >> lineEndSample [
+
+	^  ''
+]
+
+{ #category : #document }
+MicroDownSnippetFactory >> lineEndwithNewlineSample [
+
+	^ String lf
+]
+
+{ #category : #format }
+MicroDownSnippetFactory >> monospaceFormatEmptySample [
+	^ self surround: '' withMarkup: self grammar monospaceMarkup
+]
+
+{ #category : #format }
+MicroDownSnippetFactory >> monospaceFormatSample [
+	^ self surroundWithMarkup: self grammar monospaceMarkup
+]
+
+{ #category : #document }
+MicroDownSnippetFactory >> newlineCRLFSample [
+
+	^ String crlf
+]
+
+{ #category : #document }
+MicroDownSnippetFactory >> newlineCRSample [
+
+	^ String cr
+]
+
+{ #category : #document }
+MicroDownSnippetFactory >> newlineLFSample [
+
+	^ String lf
+]
+
+{ #category : #document }
+MicroDownSnippetFactory >> newlineSample [
+
+	^ Smalltalk os lineEnding
 ]
 
 { #category : #'code block' }
@@ -189,4 +290,78 @@ MicroDownSnippetFactory >> scriptWithSpaceAtTheEndSample [
 MicroDownSnippetFactory >> scriptWithSpacedParametersSample [
 	^ self codeblock:   ' foo = true | bar = 2 '
 body: 'bla'
+]
+
+{ #category : #format }
+MicroDownSnippetFactory >> strikethroughFormatEmptySample [
+	^ self surround: '' withMarkup: self grammar strikethroughMarkup
+]
+
+{ #category : #format }
+MicroDownSnippetFactory >> strikethroughFormatSample [
+	^ self surroundWithMarkup: self grammar strikethroughMarkup
+]
+
+{ #category : #format }
+MicroDownSnippetFactory >> subscriptFormatEmptySample [
+	^ self surround: '' withMarkup: self grammar subscriptMarkup
+]
+
+{ #category : #format }
+MicroDownSnippetFactory >> subscriptFormatSample [
+	^ self surroundWithMarkup: self grammar subscriptMarkup
+]
+
+{ #category : #format }
+MicroDownSnippetFactory >> superscriptFormatEmptySample [
+	^ self surround: '' withMarkup: self grammar superscriptMarkup
+]
+
+{ #category : #format }
+MicroDownSnippetFactory >> superscriptFormatSample [
+	^ self surroundWithMarkup: self grammar superscriptMarkup
+]
+
+{ #category : #format }
+MicroDownSnippetFactory >> surround: aWord withMarkup: aMarkup [
+	^ (aMarkup, aWord, aMarkup) asString
+]
+
+{ #category : #format }
+MicroDownSnippetFactory >> surroundWithMarkup: aMarkup [
+	^ self surround: 'Foo' withMarkup: aMarkup
+]
+
+{ #category : #format }
+MicroDownSnippetFactory >> underlineFormatEmptySample [
+	^ self surround: '' withMarkup: self grammar underlineMarkup
+]
+
+{ #category : #format }
+MicroDownSnippetFactory >> underlineFormatSample [
+	^ self surroundWithMarkup: self grammar underlineMarkup
+]
+
+{ #category : #list }
+MicroDownSnippetFactory >> unorderedListEmptySample [
+	^ self grammar unorderedListMarkup
+]
+
+{ #category : #list }
+MicroDownSnippetFactory >> unorderedListSample [
+	^ self grammar unorderedListMarkup, 'Foo'
+]
+
+{ #category : #list }
+MicroDownSnippetFactory >> unorderedListWithSubListSample [
+	| listMarkup |
+	listMarkup := self grammar unorderedListMarkup.
+	^ listMarkup, 'Foo', String cr, listMarkup, listMarkup, 'Bar'
+]
+
+{ #category : #list }
+MicroDownSnippetFactory >> unorderedListWithTwoItemsSample [
+	| listMarkup |
+	listMarkup := self grammar unorderedListMarkup.
+	^ listMarkup, 'Foo', String cr, listMarkup, 'Bar'
 ]

@@ -126,10 +126,46 @@ Class {
 	#category : #'Pillar-PetitMicroDown'
 }
 
-{ #category : #markup }
+{ #category : #'markup - text' }
+PRMicroDownGrammar class >> abstractAnnotationMarkup [
+
+	^ '${'
+]
+
+{ #category : #'markup - line' }
+PRMicroDownGrammar class >> anchorMarkup [
+
+	^ '@'
+]
+
+{ #category : #'markup - line' }
+PRMicroDownGrammar class >> annotatedParagraphMarkup [
+
+	^ '@@'
+]
+
+{ #category : #'markup - text' }
+PRMicroDownGrammar class >> boldMarkup [
+
+	^ '""'
+]
+
+{ #category : #'markup - text' }
 PRMicroDownGrammar class >> codeblockMarkup [
 
 	^ '```'
+]
+
+{ #category : #'markup - line' }
+PRMicroDownGrammar class >> commentedLineMarkup [
+
+	^ '%'
+]
+
+{ #category : #'markup - line' }
+PRMicroDownGrammar class >> dataItemMarkup [
+
+	^ ':'
 ]
 
 { #category : #accessing }
@@ -208,10 +244,21 @@ PRMicroDownGrammar class >> endMarkups: anObject [
 	EndMarkups := anObject
 ]
 
-{ #category : #markup }
+{ #category : #'markup - text' }
+PRMicroDownGrammar class >> figureMarkup [
+	^ '+'
+]
+
+{ #category : #'markup - line' }
 PRMicroDownGrammar class >> headerMarkup [
 
 	^ '#'
+]
+
+{ #category : #'markup - line' }
+PRMicroDownGrammar class >> horizontalRuleMarkup [
+
+	^ '_'
 ]
 
 { #category : #'class initialization' }
@@ -221,23 +268,33 @@ PRMicroDownGrammar class >> initialize [
 	EndMarkups := self defaultEndMarkups.
 ]
 
+{ #category : #'markup - text' }
+PRMicroDownGrammar class >> italicMarkup [
+	^ ''''''
+]
+
 { #category : #accessing }
 PRMicroDownGrammar class >> lineMarkups [
 	| markups |
 	markups := Dictionary new.
 	markups
-		at: PRAnchor put: '@';
+		at: PRAnchor put: self anchorMarkup;
 		at: PRHeader put: self headerMarkup ;
-		at: PROrderedList put: '1';
-		at: PRUnorderedList put: '*';
-		at: PRDataItem put: ':';
-		at: PRTermItem put: ';';
-		at: PRAnnotatedParagraph put: '@@';
-		at: PRPreformatted put: '= ';
-		at: PRHorizontalRule put: '_';
-		at: PRCommentedLine put: '%';
-		at: PRTableCell put: '|'.
+		at: PROrderedList put: self orderedListMarkup;
+		at: PRUnorderedList put: self unorderedListMarkup;
+		at: PRDataItem put: self dataItemMarkup;
+		at: PRTermItem put: self termItemMarkup;
+		at: PRAnnotatedParagraph put: self annotatedParagraphMarkup;
+		at: PRPreformatted put: self preformattedMarkup;
+		at: PRHorizontalRule put: self horizontalRuleMarkup;
+		at: PRCommentedLine put: self commentedLineMarkup;
+		at: PRTableCell put: self tableCellMarkup.
 	^ markups
+]
+
+{ #category : #'markup - text' }
+PRMicroDownGrammar class >> linkMarkup [
+	^ '*'
 ]
 
 { #category : #'class initialization' }
@@ -250,24 +307,85 @@ PRMicroDownGrammar class >> markups: anObject [
 	Markups := anObject
 ]
 
+{ #category : #'markup - text' }
+PRMicroDownGrammar class >> monospaceMarkup [
+	^ '`'
+]
+
+{ #category : #'markup - line' }
+PRMicroDownGrammar class >> orderedListMarkup [
+
+	^ '1'
+]
+
+{ #category : #'markup - line' }
+PRMicroDownGrammar class >> preformattedMarkup [
+
+	^ '= '
+]
+
+{ #category : #'markup - text' }
+PRMicroDownGrammar class >> rawMarkup [
+
+	^ '{{{'
+]
+
+{ #category : #'markup - text' }
+PRMicroDownGrammar class >> strikethroughMarkup [
+	^ '--'
+]
+
+{ #category : #'markup - text' }
+PRMicroDownGrammar class >> subscriptMarkup [
+	^ '@@'
+]
+
+{ #category : #'markup - text' }
+PRMicroDownGrammar class >> superscriptMarkup [
+	^ '^^'
+]
+
+{ #category : #'markup - line' }
+PRMicroDownGrammar class >> tableCellMarkup [
+
+	^ '|'
+]
+
+{ #category : #'markup - line' }
+PRMicroDownGrammar class >> termItemMarkup [
+
+	^ ';'
+]
+
 { #category : #accessing }
 PRMicroDownGrammar class >> textMarkups [
 	| markups |
 	markups := Dictionary new.
 	markups
-		at: PRBoldFormat put: '""';
-		at: PRItalicFormat put: '''''';
-		at: PRMonospaceFormat put: '`';
-		at: PRStrikethroughFormat put: '--';
-		at: PRSubscriptFormat put: '@@';
-		at: PRSuperscriptFormat put: '^^';
-		at: PRUnderlineFormat put: '__';
-		at: PRFigure put: '+';
-		at: PRLink put: '*';
+		at: PRBoldFormat put: self boldMarkup;
+		at: PRItalicFormat put: self italicMarkup;
+		at: PRMonospaceFormat put: self monospaceMarkup;
+		at: PRStrikethroughFormat put: self strikethroughMarkup;
+		at: PRSubscriptFormat put: self subscriptMarkup;
+		at: PRSuperscriptFormat put: self superscriptMarkup;
+		at: PRUnderlineFormat put: self underlineMarkup;
+		at: PRFigure put: self figureMarkup;
+		at: PRLink put: self linkMarkup;
 		at: PRCodeblock put: self codeblockMarkup;
-		at: PRRaw put: '{{{';
-		at: PRAbstractAnnotation put: '${'.
+		at: PRRaw put: self rawMarkup;
+		at: PRAbstractAnnotation put: self abstractAnnotationMarkup.
 	^ markups
+]
+
+{ #category : #'markup - text' }
+PRMicroDownGrammar class >> underlineMarkup [
+	^ '__'
+]
+
+{ #category : #'markup - line' }
+PRMicroDownGrammar class >> unorderedListMarkup [
+
+	^ '*'
 ]
 
 { #category : #'grammar - Anchor' }
