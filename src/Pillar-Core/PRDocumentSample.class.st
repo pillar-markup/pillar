@@ -4,67 +4,108 @@ Class {
 	#category : #'Pillar-Core-Model'
 }
 
-{ #category : #accessing }
+{ #category : #format }
 PRDocumentSample >> bold [
 	^ self withFormat: PRBoldFormat
 ]
 
-{ #category : #'grammar - Format' }
+{ #category : #header }
 PRDocumentSample >> headerLevel1 [
 	  ^ self headerWithLevel: 1
 ]
 
-{ #category : #'grammar - Format' }
+{ #category : #header }
 PRDocumentSample >> headerLevel2 [
 	  ^ self headerWithLevel: 2
 ]
 
-{ #category : #'grammar - Format' }
+{ #category : #header }
 PRDocumentSample >> headerLevel3 [
 	  ^ self headerWithLevel: 3
 ]
 
-{ #category : #'grammar - Format' }
+{ #category : #header }
 PRDocumentSample >> headerLevel4 [
 	  ^ self headerWithLevel: 4
 ]
 
-{ #category : #'grammar - Format' }
+{ #category : #header }
 PRDocumentSample >> headerLevel5 [
 	  ^ self headerWithLevel: 5
 ]
 
-{ #category : #'grammar - Format' }
+{ #category : #header }
 PRDocumentSample >> headerLevel6 [
 	  ^ self headerWithLevel: 6
 ]
 
-{ #category : #'grammar - Format' }
+{ #category : #header }
 PRDocumentSample >> headerWithLevel: aLevel [
 	  ^ self withStructure: (PRHeader new level: aLevel; yourself)
 ]
 
-{ #category : #accessing }
+{ #category : #format }
 PRDocumentSample >> italic [
 	^ self withFormat: PRItalicFormat 
 ]
 
-{ #category : #accessing }
+{ #category : #format }
 PRDocumentSample >> monospace [
 	^ self withFormat: PRMonospaceFormat 
 ]
 
-{ #category : #accessing }
+{ #category : #list }
+PRDocumentSample >> nestedList [
+	^ PRDocument new
+		add: (PROrderedList new
+			add: (PRListItem new 
+				add: (PRText content: 'item n1'); yourself);
+			add: (PRUnorderedList new
+				add: (PRListItem new 
+					add: (PRText content: 'item a'); yourself);
+				add: (PRListItem new 
+					add: (PRText content: 'item b'); yourself);
+				yourself);
+			add: (PRListItem new 
+				add: (PRText content: 'item n2'); 
+				yourself);
+		yourself); 
+	yourself.
+]
+
+{ #category : #list }
+PRDocumentSample >> orderedList [
+	^ PRDocument new
+		add: (PROrderedList new
+			add: (PRListItem new 
+				add: (PRText content: 'item n1'); yourself);
+			add: (PRListItem new 
+				add: (PRText content: 'item n2'); yourself);
+		yourself); yourself.
+]
+
+{ #category : #format }
 PRDocumentSample >> superscript [
 	^ self withFormat: PRSuperscriptFormat 
 ]
 
-{ #category : #accessing }
+{ #category : #format }
 PRDocumentSample >> underline [
 	^ self withFormat: PRUnderlineFormat 
 ]
 
-{ #category : #'instance creation' }
+{ #category : #list }
+PRDocumentSample >> unorderedList [
+	^ PRDocument new
+		add: (PRUnorderedList new
+			add: (PRListItem new 
+				add: (PRText content: 'item a'); yourself);
+			add: (PRListItem new 
+				add: (PRText content: 'item b'); yourself);
+		yourself); yourself.
+]
+
+{ #category : #format }
 PRDocumentSample >> withFormat: aPRFormatClass [
 	^ PRDocument new
         add:
