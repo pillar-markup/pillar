@@ -12,14 +12,14 @@ Class {
 
 { #category : #accessing }
 PRBuildRootMainStrategy >> filesToBuildOn: aProject [ 
+	"select the only file with pillar extension in current directory ; if there is no OR several pillar files, relative error is raised"
 	
-	| file |
-	file := aProject baseDirectory children detect: [ :each | each isFile and: [ each extension = 'pillar' ] ] ifNone: [ self error: 'There is no file pillar on the reposittory root.' ].
-	"we should set up an infrastructure to cleaning report problems.
-	may via aProject"
-	^ { PRInputDocument new
+	| pillarFiles|
+	pillarFiles := aProject baseDirectory children select: [ :each | each isFile and: [ each extension = 'pillar' ] ].
+	pillarFiles ifEmpty: [ self error: 'There is no pillar file in the repository root.' ].
+	pillarFiles size = 1 ifTrue: [ ^ { PRInputDocument new
 			project: aProject;
-			file: file;
-			yourself }
-	
+			file: pillarFiles first;
+			yourself } ].
+	self error: 'There is more than one pillar file in the repository root.'
 ]
