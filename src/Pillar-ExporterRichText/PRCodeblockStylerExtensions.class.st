@@ -16,7 +16,7 @@ Class {
 	#classInstVars : [
 		'imageCache'
 	],
-	#category : #'Pillar-ExporterRichText'
+	#category : #'Pillar-ExporterRichText-Core'
 }
 
 { #category : #private }

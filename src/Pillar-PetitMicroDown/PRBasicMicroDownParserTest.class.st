@@ -8,10 +8,9 @@ Class {
 PRBasicMicroDownParserTest >> testCodeBlock [
 
 	| document |
-	self skip.
-	document := PRMicroDownParser parse: '```pharo
+	document := PRMicroDownParser parse: '```language=pharo
 	1-2 
-	```'.
+```'.
 	self assert: document children first class equals: PRCodeblock.
 	
 ]
@@ -22,6 +21,7 @@ PRBasicMicroDownParserTest >> testCodeInText [
 	| document |
 	document := PRMicroDownParser parse: 'The method `foo` is fun'.
 	self assert: document children first class equals: PRParagraph.
+	self assert: document children first children second class equals: PRMonospaceFormat 
 	
 	
 ]
@@ -35,6 +35,7 @@ PRBasicMicroDownParserTest >> testHeader [
 ## Header 2
 	
 ### Header 3'.
+	"we could have use Grammar headerMarkup to build the text but this is clearer like that"
 	self assert: document children first class equals: PRHeader.
 	self assert: document children third class equals: PRHeader.
 	self assert: document children fifth class equals: PRHeader
@@ -50,5 +51,6 @@ PRBasicMicroDownParserTest >> testNumberedList [
 '.
 	self assert: document children first class equals: PROrderedList.
 
-	self assert: document children first children first class equals: PRListItem
+	self assert: document children first children first class equals: PRListItem.
+	self assert: document children first children second class equals: PRListItem
 ]

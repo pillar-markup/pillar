@@ -18,7 +18,7 @@ Class {
 		'nesting',
 		'crAtEnd'
 	],
-	#category : #'Pillar-ExporterRichText'
+	#category : #'Pillar-ExporterRichText-Core'
 }
 
 { #category : #public }

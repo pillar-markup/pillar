@@ -6,9 +6,10 @@ Class {
 	#name : #PRRichTextComposer,
 	#superclass : #PRVisitor,
 	#instVars : [
-		'canvas'
+		'canvas',
+		'monospaceBackgroundColor'
 	],
-	#category : #'Pillar-ExporterRichText'
+	#category : #'Pillar-ExporterRichText-Core'
 }
 
 { #category : #converting }
@@ -190,6 +191,25 @@ PRRichTextComposer class >> renderComment: aSource [
 				  ifFalse: [ aSource ] ]
 ]
 
+{ #category : #initialization }
+PRRichTextComposer >> initialize [
+
+	super initialize.
+	monospaceBackgroundColor := Smalltalk ui theme settings windowColor.
+]
+
+{ #category : #accessing }
+PRRichTextComposer >> monospaceBackgroundColor [
+
+	^ monospaceBackgroundColor
+]
+
+{ #category : #accessing }
+PRRichTextComposer >> monospaceBackgroundColor: aColor [
+
+	monospaceBackgroundColor := aColor
+]
+
 { #category : #visiting }
 PRRichTextComposer >> start: aDocument [
 	canvas := PRRichTextCanvas new.
@@ -209,9 +229,9 @@ PRRichTextComposer >> visitAnchor: anObject [
 
 { #category : #'visiting-document' }
 PRRichTextComposer >> visitAnnotatedParagraph: aDocument [
-	canvas newLineIfNotAlready .
-	canvas includeAttribute: (TextAlignment rightFlush) in: 
-		[canvas includeAttribute: (TextColor blue) in:
+	canvas newLineIfNotAlready.
+	canvas includeAttribute: TextAlignment rightFlush in: 
+		[canvas includeAttribute: TextColor blue in:
 			[self visitParagraph: aDocument]].
 	canvas cr.
 ]
@@ -231,7 +251,7 @@ PRRichTextComposer >> visitBeginEnvironmentAnnotation: aBeginEnvironmentAnnotati
 PRRichTextComposer >> visitBoldFormat: anObject [
 	canvas 
 		includeAttribute: TextEmphasis bold 
-		in: [self visitFormat: anObject].
+		in: [self visitFormat: anObject]
 	
 ]
 
@@ -247,22 +267,22 @@ PRRichTextComposer >> visitCitationAnnotation: aCitation [
 
 { #category : #'visiting-document' }
 PRRichTextComposer >> visitCodeblock: aCodeBlock [
-	canvas newLineIfNotAlready .
+	canvas newLineIfNotAlready.
 	canvas
 		indentIn: [ 
 			canvas << (PRRichTextCodeblockStyler  
 				style: aCodeBlock text 
 				asLanguage: aCodeBlock language originalName)
 			].
-	canvas cr.
+	canvas cr
 ]
 
 { #category : #'visiting-document' }
 PRRichTextComposer >> visitCodeblock_old: aCodeBlock [
-	canvas newLineIfNotAlready .
+	canvas newLineIfNotAlready.
 	canvas
 		indentIn: [ 
-			(#('' 'Smalltalk') includes: aCodeBlock language originalName)
+			(#('pharo' 'smalltalk') includes: aCodeBlock language originalName asLowercase)
 				ifTrue: [ canvas << (SHRBTextStyler new 
 								isForWorkspace: true; 
 								styledTextFor: aCodeBlock text asText) ] 
@@ -271,7 +291,7 @@ PRRichTextComposer >> visitCodeblock_old: aCodeBlock [
 						includeAttribute: (TextColor color: (Color fromHexString: '008822'))
 						in: [ self visitText: aCodeBlock ] ]
 			].
-	canvas cr.
+	canvas cr
 ]
 
 { #category : #'visiting-document' }
@@ -296,8 +316,8 @@ PRRichTextComposer >> visitColumnsAnnotation: aColumnsAnnotation [
 
 { #category : #'visiting-document' }
 PRRichTextComposer >> visitDataItem: anItem [
-	canvas newLineIfNotAlready .
-	self visitDocumentGroup: anItem.
+	canvas newLineIfNotAlready.
+	self visitDocumentGroup: anItem
 ]
 
 { #category : #'visiting-document' }
@@ -335,7 +355,7 @@ PRRichTextComposer >> visitEnvironment: anObject [
 					in: [self visitFormat: anObject]]
 		]
 		ifFalse: 
-		[canvas << ('>>> Environment ' , (anObject name) , 
+		[canvas << ('>>> Environment ' , anObject name , 
 						'is not supported in RichText Pillar <<<') asText]
 ]
 
@@ -380,7 +400,7 @@ PRRichTextComposer >> visitHeader: aHeader [
 
 { #category : #'visiting-document' }
 PRRichTextComposer >> visitItalicFormat: anObject [
-	canvas includeAttribute: TextEmphasis italic in: [ self visitFormat: anObject]
+	canvas includeAttribute: TextEmphasis italic in: [ self visitFormat: anObject ]
 ]
 
 { #category : #'visiting-document' }
@@ -391,17 +411,17 @@ PRRichTextComposer >> visitListItem: anItem [
 		ifTrue: [ (anItem propertyAt: #counter) asString asText , String tab ]
 		ifFalse: [ (anItem propertyAt: #bullet) asText , String tab ].
 	bullet addAttribute: (TextIndent tabs: canvas nesting - 1).
-	canvas newLineIfNotAlready .
+	canvas newLineIfNotAlready.
 	canvas << bullet.
 	self visitDocumentGroup: anItem.
-	canvas newLineIfNotAlready .
+	canvas newLineIfNotAlready.
 ]
 
 { #category : #'visiting-document' }
 PRRichTextComposer >> visitMonospaceFormat: anObject [
 	"Notice - I add a highlight to the backgorund rather than mono-spaced."
 	| backgroundColor |
-	backgroundColor := Smalltalk ui theme settings windowColor .
+	backgroundColor := self monospaceBackgroundColor.
 	canvas 
 		includeAttribute: (TextBackgroundColor color: backgroundColor) 
 		in: [self visitFormat: anObject].  
@@ -416,14 +436,14 @@ PRRichTextComposer >> visitOrderedList: anObject [
 			item propertyAt: #kind put: #ordered.
 			item
 				propertyAt: #counter
-				put: (self class counterFor: counter atLevel: canvas nesting-1).
+				put: (self class counterFor: counter atLevel: canvas nesting - 1).
 			counter := counter + 1 ].
-	super visitOrderedList: anObject.]
+	super visitOrderedList: anObject ]
 ]
 
 { #category : #'visiting-document' }
 PRRichTextComposer >> visitParagraph: anObject [
-	canvas newLineIfNotAlready .
+	canvas newLineIfNotAlready.
 	super visitParagraph: anObject.
 ]
 
@@ -448,7 +468,7 @@ PRRichTextComposer >> visitSuperscriptFormat: anObject [
 
 { #category : #'visiting-document' }
 PRRichTextComposer >> visitTermItem: anItem [
-	canvas newLineIfNotAlready .
+	canvas newLineIfNotAlready.
 	canvas
 		includeAttribute: (TextIndent tabs: canvas nesting - 1)
 		in: [ canvas
@@ -476,5 +496,5 @@ PRRichTextComposer >> visitUnorderedList: anObject [
 					item
 						propertyAt: #bullet
 						put: (self class bulletForLevel: canvas nesting - 1) ].
-			super visitUnorderedList: anObject.]
+			super visitUnorderedList: anObject ]
 ]
