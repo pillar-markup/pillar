@@ -89,7 +89,7 @@ PRRichTextWriterTest >> stringOf: aPRDocument [
 	^ (PRRichTextComposer new start: aPRDocument) string
 ]
 
-{ #category : #'tests - Format' }
+{ #category : #'skipped tests' }
 PRRichTextWriterTest >> subscriptFormat [
 	^ TextColor red
 ]
@@ -220,11 +220,13 @@ PRRichTextWriterTest >> testStrikethroughFormat [
 	self skip.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : #'skipped tests' }
 PRRichTextWriterTest >> testSubscriptFormat [
 	"Test fails: subscript isn't recognized
 	
 	self assertWriting: factory subscriptFormatSample include: self subscriptFormat"
+	
+	self skip.
 	
 ]
 
