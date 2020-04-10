@@ -147,7 +147,7 @@ PRMicroDownGrammar class >> annotatedParagraphMarkup [
 { #category : #'markup - text' }
 PRMicroDownGrammar class >> boldMarkup [
 
-	^ '""'
+	^ '**'
 ]
 
 { #category : #'markup - text' }
@@ -270,7 +270,7 @@ PRMicroDownGrammar class >> initialize [
 
 { #category : #'markup - text' }
 PRMicroDownGrammar class >> italicMarkup [
-	^ ''''''
+	^ '_'
 ]
 
 { #category : #accessing }
@@ -315,13 +315,13 @@ PRMicroDownGrammar class >> monospaceMarkup [
 { #category : #'markup - line' }
 PRMicroDownGrammar class >> orderedListMarkup [
 
-	^ '1'
+	^ '1. '
 ]
 
 { #category : #'markup - line' }
 PRMicroDownGrammar class >> preformattedMarkup [
 
-	^ '= '
+	^ '> '
 ]
 
 { #category : #'markup - text' }
@@ -385,7 +385,7 @@ PRMicroDownGrammar class >> underlineMarkup [
 { #category : #'markup - line' }
 PRMicroDownGrammar class >> unorderedListMarkup [
 
-	^ '*'
+	^ '-'
 ]
 
 { #category : #'grammar - Anchor' }
