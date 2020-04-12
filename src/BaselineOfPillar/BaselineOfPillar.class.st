@@ -159,11 +159,6 @@ BaselineOfPillar >> baseline: spec [
 				group: 'old' with: #( 'Pillar-PetitPillarOld' 'Pillar-Tests-PetitPillarOld' ) 
 	].
 
-	spec for: #'pharo6.x' do: [	
-		spec
-			package: 'Pillar-Model' with: [ 
-				spec requires: #( 'Pillar-Pharo6' ) ];
-			package: 'Pillar-Pharo6' ]
 ]
 
 { #category : #baselines }
