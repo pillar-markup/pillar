@@ -143,17 +143,16 @@ BaselineOfPillar >> baseline: spec [
 		"Petit Parse One packages"			
 		spec
 				project: 'PetitParser'
-					with: [ spec
-						className: #ConfigurationOfPetitParser;
-						versionString: #stable;
-						loads: #('Tests');
-						repository: 'http://www.smalltalkhub.com/mc/Moose/PetitParser/main' ];
+					with: [ 
+						spec 
+   							baseline: 'PetitParser' 
+   							with: [ spec repository: 'github://moosetechnology/PetitParser:v2.2.0/src'.
+								spec loads: #('Tests') ]];
 				project: 'PetitParserTest'
-					with: [ spec
-						className: #ConfigurationOfPetitParser;
-						versionString: #stable;
-						loads: #('Tests');
-						repository: 'http://www.smalltalkhub.com/mc/Moose/PetitParser/main' ];
+					with: [ spec 
+   							baseline: 'PetitParser' 
+   							with: [ spec repository: 'github://moosetechnology/PetitParser:v2.2.0/src'.
+								spec loads: #('Tests') ]] ;
 				package: 'Pillar-PetitPillarOld' with: [ spec requires: #('PetitParser' 'Pillar-Model') ];
 				package: 'Pillar-Tests-PetitPillarOld' with: [ 
 					spec requires: #('PetitParserTest' 'Pillar-PetitPillarOld') ];
