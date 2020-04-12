@@ -143,22 +143,26 @@ BaselineOfPillar >> baseline: spec [
 		"Petit Parse One packages"			
 		spec
 				project: 'PetitParser'
-					with: [ 
-						spec 
+					with: [ spec 
    							baseline: 'PetitParser' 
    							with: [ spec repository: 'github://moosetechnology/PetitParser:v2.2.0/src'.
-								spec loads: #('Tests') ]];
+								spec loads: #('Tests') ] ];
 				project: 'PetitParserTest'
 					with: [ spec 
    							baseline: 'PetitParser' 
    							with: [ spec repository: 'github://moosetechnology/PetitParser:v2.2.0/src'.
-								spec loads: #('Tests') ]] ;
+								spec loads: #('Tests') ] ];
 				package: 'Pillar-PetitPillarOld' with: [ spec requires: #('PetitParser' 'Pillar-Model') ];
 				package: 'Pillar-Tests-PetitPillarOld' with: [ 
 					spec requires: #('PetitParserTest' 'Pillar-PetitPillarOld') ];
 				group: 'old' with: #( 'Pillar-PetitPillarOld' 'Pillar-Tests-PetitPillarOld' ) 
 	].
 
+	spec for: #'pharo6.x' do: [	
+		spec
+			package: 'Pillar-Model' with: [ 
+				spec requires: #( 'Pillar-Pharo6' ) ];
+			package: 'Pillar-Pharo6' ]
 ]
 
 { #category : #baselines }
