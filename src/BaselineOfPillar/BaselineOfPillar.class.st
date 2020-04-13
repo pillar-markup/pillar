@@ -19,10 +19,8 @@ BaselineOfPillar >> baseline: spec [
 		do: [ spec baseline: 'OSSubprocess' with: [ spec repository: 'github://pharo-contributions/OSSubprocess:v1.1/repository' ].
 			spec package: 'Pillar-Project' with: [ spec requires: 'OSSubprocess' ] ].
 	
+	
 	spec
-	
-	
-	
 		for: #common
 		do: [ spec blessing: #baseline.
 			spec
