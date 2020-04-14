@@ -59,11 +59,6 @@ PRRichTextWriterTest >> headerLevel6 [
 	^ PRRichTextComposer headerLevelFont: 6
 ]
 
-{ #category : #initialization }
-PRRichTextWriterTest >> initialize [
-	sample := PRDocumentSample new.
-]
-
 { #category : #'tests - Format' }
 PRRichTextWriterTest >> italicFormat [
 	^ TextEmphasis italic
@@ -77,6 +72,12 @@ PRRichTextWriterTest >> monospaceFormat [
 { #category : #asserting }
 PRRichTextWriterTest >> runsOf: aPRDocument [
 	^ (PRRichTextComposer new start: aPRDocument) runs
+]
+
+{ #category : #initialization }
+PRRichTextWriterTest >> setUp [
+	super setUp.
+	sample := PRDocumentSample new.
 ]
 
 { #category : #'skipped tests' }
