@@ -30,14 +30,14 @@ PRBuildCommandLineHandler >> activate [
 	| target result |
 	target := PRTarget builderForName: self requestedBuilder.
 	self requestedFiles
-		ifEmpty: [ target buildMainRoot ]
+		ifEmpty: [ target buildStrategy: PRBuildRootMainStrategy new ]
 		ifNotEmpty: [ :files | target buildOnly: files ].
 	(self hasOption: 'templatable')
 		ifTrue: [ self project beTemplatable ].
 	(self hasOption: 'a')
-		ifTrue: [ target buildAll ].
+		ifTrue: [ target buildStrategy: PRBuildAllStrategy new].
 	(self hasOption: 'm')
-		ifTrue: [ target buildMainRoot ].
+		ifTrue: [ target buildStrategy: PRBuildRootMainStrategy new].
 	result := self project build: target.
 	result exitProcess
 ]

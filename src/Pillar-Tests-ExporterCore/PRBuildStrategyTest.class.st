@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'project'
 	],
-	#category : #'Pillar-Tests-ExporterCore'
+	#category : #'Pillar-Tests-ExporterCore-Base'
 }
 
 { #category : #'as yet unclassified' }

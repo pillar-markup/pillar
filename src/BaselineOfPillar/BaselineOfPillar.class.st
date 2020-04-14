@@ -19,6 +19,7 @@ BaselineOfPillar >> baseline: spec [
 		do: [ spec baseline: 'OSSubprocess' with: [ spec repository: 'github://pharo-contributions/OSSubprocess:v1.1/repository' ].
 			spec package: 'Pillar-Project' with: [ spec requires: 'OSSubprocess' ] ].
 	
+	
 	spec
 		for: #common
 		do: [ spec blessing: #baseline.
@@ -30,6 +31,7 @@ BaselineOfPillar >> baseline: spec [
 					spec
 					 	repository: 'github://kursjan/petitparser2' ];
 				baseline: 'Chrysal' with: [ spec repository: 'github://Ducasse/Chrysal:v1.0.0/src' ];
+				baseline: 'Clap' with: [ spec repository: 'github://cdlm/clap-st:pharo-pr5761' ];
 				baseline: 'Mustache'
 					with: [ spec
 						repository: 'github://noha/mustache:v1.0/repository';
@@ -37,7 +39,8 @@ BaselineOfPillar >> baseline: spec [
 			spec
 				package: 'Pillar-Chrysal-Generator' with: [ spec requires: #('Chrysal') ];
 				"Only needed to regenerate the pillar configuration: it depends on Chrysal and Chrysal-Runtime"
-				package: 'Pillar-Cli' with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-Chrysal') ];
+				package: 'Pillar-Cli' with: [ 
+					spec requires: #( 'Clap' 'Pillar-ExporterCore' 'Pillar-Chrysal') ];
 				package: 'Pillar-Chrysal' with: [ spec requires: #('Pillar-ExporterCore') ];
 				"Pillar-Chrysal should only depend on Chrysal-Runtime but right now I do not know how to express that the
 				Chrysal (builder) is different from Chrysal-Runtime"
@@ -53,6 +56,8 @@ BaselineOfPillar >> baseline: spec [
 				package: 'Pillar-ExporterText' with: [ spec requires: #('Pillar-ExporterCore') ];
 				package: 'Pillar-GitBook' with: [ spec requires: #('Pillar-Cli' 'markdown exporter' 'text exporter') ];
 				package: 'Pillar-Core';
+				package: 'Pillar-PetitMicroDown'
+					with: [ spec requires: #('Pillar-Core' 'Pillar-Model' 'PetitParser2Core')];
 				package: 'Pillar-Model' with: [ spec requires: #('Pillar-Core')];
 				package: 'Pillar-CodeBlockEvaluator' with: [ spec requires: #('Pillar-Core')];
 				package: 'Pillar-PetitPillar' with: [ spec requires: #('PetitParser2Core' 'Pillar-Model') ];
@@ -81,68 +86,72 @@ BaselineOfPillar >> baseline: spec [
 				package: 'Pillar-Tests-BookTester' with: [ spec requires: #('Pillar-BookTester') ];
 				package: 'Pillar-Tests-Project' with: [ spec requires: #('Pillar-Project') ];
 				package: 'Pillar-Tests-Integration' with: [ spec requires: #('Pillar-Project') ].
+			
+			
+			
 			spec
 				group: 'ALL' with: #('All tests' 'All but tests');
+				
 				group: 'All but tests'
-					with: #('All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'Pillar-GitBook' 'parser' 'Pillar-Project' 'Pillar-BookTester' 'Pillar-CodeBlockEvaluator');
+					with: #('All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'Pillar-GitBook' 'parser' 'Pillar-Project' 'Pillar-BookTester' 'Pillar-CodeBlockEvaluator' 'Pillar-PetitMicroDown');
+				
 				group: 'All exporter tests'
 					with:
 					#('html exporter tests' 'latex exporter tests' 'beamer exporter tests' 'deckjs exporter tests' 'markdown exporter tests' 'pillar exporter tests' 'text exporter tests' 'asciidoc exporter tests' 'ePub exporter tests');
+				
 				group: 'All exporters'
 					with:
 					#('html exporter' 'rich text exporter' 'latex exporter' 'beamer exporter' 'deckjs exporter' 'markdown exporter' 'pillar exporter' 'text exporter' 'asciidoc exporter' 'ePub exporter');
+				
 				group: 'All tests'
 					with:
 					#('All exporter tests' 'Pillar-Tests-Model' 'Pillar-Tests-ExporterCore' #'Pillar-Tests-Cli' 'parser tests' 'Pillar-Tests-Project' 'Pillar-Tests-Integration');
+				
 				group: 'asciidoc exporter' with: #(#'Pillar-ExporterAsciiDoc');
 				group: 'asciidoc exporter tests' with: #(#'Pillar-Tests-ExporterAsciiDoc' 'ePub exporter');
 				group: 'beamer exporter' with: #('Pillar-ExporterBeamer');
 				group: 'beamer exporter tests' with: #('Pillar-Tests-ExporterBeamer');
+				
 				group: 'deckjs exporter' with: #('Pillar-ExporterDeckJS');
 				group: 'deckjs exporter tests' with: #('Pillar-Tests-ExporterDeckJS');
+				
 				group: 'ePub exporter' with: #(#'Pillar-ExporterEPub');
 				group: 'ePub exporter tests' with: #(#'Pillar-Tests-ExporterEPub');
+				
 				group: 'rich text exporter' with: #('Pillar-ExporterRichText');
+				
 				group: 'html exporter' with: #('Pillar-ExporterHTML');
 				group: 'html exporter tests' with: #('Pillar-Tests-ExporterHTML');
+				
 				group: 'booktester' with: #('Pillar-BookTester');
 				group: 'booktester tests' with: #('Pillar-Tests-BookTester');
+				
 				group: 'latex exporter' with: #('Pillar-ExporterLaTeX');
 				group: 'latex exporter tests' with: #('Pillar-Tests-ExporterLaTeX');
+				
 				group: 'markdown exporter' with: #('Pillar-ExporterMarkdown' 'parser');
 				group: 'markdown exporter tests' with: #('Pillar-Tests-ExporterMarkdown');
+				
 				group: 'parser' with: #('Pillar-PetitPillar');
 				group: 'parser tests' with: #('Pillar-Tests-PetitPillar');
+				
 				group: 'pillar exporter' with: #('Pillar-ExporterPillar');
 				group: 'pillar exporter tests' with: #('Pillar-Tests-ExporterPillar');
+				
 				group: 'text exporter' with: #('Pillar-ExporterText');
 				group: 'text exporter tests' with: #('Pillar-Tests-ExporterText').
 
-		"Petit Parse One packages"			
-		spec
-				project: 'PetitParser'
-					with: [ spec
-						className: #ConfigurationOfPetitParser;
-						versionString: #stable;
-						loads: #('Tests');
-						repository: 'http://www.smalltalkhub.com/mc/Moose/PetitParser/main' ];
-				project: 'PetitParserTest'
-					with: [ spec
-						className: #ConfigurationOfPetitParser;
-						versionString: #stable;
-						loads: #('Tests');
-						repository: 'http://www.smalltalkhub.com/mc/Moose/PetitParser/main' ];
-				package: 'Pillar-PetitPillarOld' with: [ spec requires: #('PetitParser' 'Pillar-Model') ];
-				package: 'Pillar-Tests-PetitPillarOld' with: [ 
-					spec requires: #('PetitParserTest' 'Pillar-PetitPillarOld') ];
-				group: 'old' with: #( 'Pillar-PetitPillarOld' 'Pillar-Tests-PetitPillarOld' ) 
-	].
 
-	spec for: #'pharo6.x' do: [	
-		spec
-			package: 'Pillar-Model' with: [ 
-				spec requires: #( 'Pillar-Pharo6' ) ];
-			package: 'Pillar-Pharo6' ]
+		"Petit Parse One packages"			
+	 	spec 
+   				baseline: 'PetitParser' 
+   				with: [ spec repository: 'github://moosetechnology/PetitParser:v2.2.0/src'.
+								spec loads: #('Tests') ] ];
+		package: 'Pillar-PetitPillarOld' with: [ spec requires: #('PetitParser' 'Pillar-Model') ];
+		package: 'Pillar-Tests-PetitPillarOld' with: [ spec  requires: #('PetitParser' 'Pillar-PetitPillarOld') ];
+		group: 'old' with: #( 'Pillar-PetitPillarOld' 'Pillar-Tests-PetitPillarOld' ).
+
+
 ]
 
 { #category : #baselines }
