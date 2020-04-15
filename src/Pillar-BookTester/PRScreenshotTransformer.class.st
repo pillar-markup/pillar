@@ -45,7 +45,7 @@ PRScreenshotTransformer >> visitScreenshotAnnotation: aPRShowMethodAnnotation [
 	
 	UIManager default defer: [
 		1 second wait.
-		browser window exportAsPNGSilentlyForPillarFileNamed: fileName.
+		browser window exportAsPNGSilentlyForPillarFileNamed: fileName in: workingDirectory.
 		browser close].
 	
 	doc := PRPillarParser new parse:('+' , aPRShowMethodAnnotation caption, '.>file://figures/screenshots/', fileName,

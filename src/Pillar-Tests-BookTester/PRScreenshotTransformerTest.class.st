@@ -1,6 +1,9 @@
 Class {
 	#name : #PRScreenshotTransformerTest,
 	#superclass : #PRTransformerEnvironmentTest,
+	#instVars : [
+		'testingWorkingDirectory'
+	],
 	#category : #'Pillar-Tests-BookTester'
 }
 
@@ -13,12 +16,12 @@ PRScreenshotTransformerTest >> actualClass [
 PRScreenshotTransformerTest >> setUp [
 
 	super setUp.
-	testingFileSystem := FileSystem memory workingDirectory.
-	(testingFileSystem / PRTransformerEnvironmentTest pillarAnnotationsFileNameForTest)
+	testingWorkingDirectory := FileSystem memory workingDirectory.
+	(testingWorkingDirectory / PRTransformerEnvironmentTest pillarAnnotationsFileNameForTest)
 		writeStreamDo: [ :stream | 
 			stream nextPutAll: PRTransformerEnvironmentTest pillarAnnotationsContentsForTest ].
-	((FileLocator image / 'figures') isFile)
-		ifFalse: [ (FileLocator imageDirectory / 'figures') ensureCreateDirectory ].
+	((testingWorkingDirectory / 'figures') isFile)
+		ifFalse: [ (testingWorkingDirectory / 'figures') ensureCreateDirectory ].
 
 ]
 
@@ -39,7 +42,7 @@ PRScreenshotTransformerTest >> testTransformerCreatesFigureReference [
 					parameterAt: 'label' put: 'times2';
 				yourself); yourself.
 	"Pay attention that here the values should really be the values as created by the ${publications:... parser}$"
-	((PRScreenshotTransformer withContext: (PRProject on: testingFileSystem)) start: doc).
+	((PRScreenshotTransformer withContext: (PRProject on: testingWorkingDirectory)) start: doc).
 	figure := doc children first.
 	"Let's test that a figure reference has been added to the document with the correct parameters"
 	self assert: figure class equals: PRFigure.
@@ -81,8 +84,8 @@ PRScreenshotTransformerTest >> testTransformerCreatesFile [
 										asString splitOn:(DateAndTime now minute) asString) first) copyReplaceAll: ':' with: '-').
 							s << '*']).
 						    
-	((PRScreenshotTransformer withContext: (PRProject on: testingFileSystem )) start: doc).
-	self assert: (FileSystem workingDirectory / 'figures' / 'screenshots')  hasChildren.
-	self deny: ((FileSystem workingDirectory / 'figures' / 'screenshots')  childrenMatching: dateStamp) isEmpty.
+	((PRScreenshotTransformer withContext: (PRProject on: testingWorkingDirectory )) start: doc).
+	self assert: (testingWorkingDirectory / 'figures' / 'screenshots')  hasChildren.
+	self deny: ((testingWorkingDirectory / 'figures' / 'screenshots')  childrenMatching: dateStamp) isEmpty.
 	
 ]
