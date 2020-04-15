@@ -154,6 +154,13 @@ PRMicroDownGrammarTest >> testNewlineLF [
 	self parse: factory newlineLFSample rule: #newline
 ]
 
+{ #category : #'tests - list' }
+PRMicroDownGrammarTest >> testOrderedListWithTwoItems [
+	self
+		parse: factory orderedListWithTwoItemsSample
+		rule: #orderedList
+]
+
 { #category : #'tests - codeblock' }
 PRMicroDownGrammarTest >> testScript [
 	self parse: factory scriptSample rule: #script

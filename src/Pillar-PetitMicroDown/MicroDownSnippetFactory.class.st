@@ -190,6 +190,16 @@ MicroDownSnippetFactory >> newlineSample [
 	^ Smalltalk os lineEnding
 ]
 
+{ #category : #list }
+MicroDownSnippetFactory >> orderedListWithTwoItemsSample [
+	
+	^ 
+'
+1. first
+2. second
+'
+]
+
 { #category : #'code block' }
 MicroDownSnippetFactory >> scriptParameterEscapeSample [
 	^ 'value\==foo'

@@ -709,7 +709,7 @@ PRMicroDownGrammar >> orderedListItem [
 
 { #category : #'grammar - List' }
 PRMicroDownGrammar >> orderedMarkup [
-	^ (Markups at: PROrderedList) asPParser
+	^ #digit asPParser, $. asPParser ", #blank asPParser star optional"
 ]
 
 { #category : #'grammar - List' }
