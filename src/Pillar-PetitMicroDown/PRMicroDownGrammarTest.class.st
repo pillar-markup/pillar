@@ -287,16 +287,6 @@ PRMicroDownGrammarTest >> testSuperscriptFormatEmpty [
 	self parse: factory superscriptFormatEmptySample rule: #format
 ]
 
-{ #category : #'tests - format' }
-PRMicroDownGrammarTest >> testUnderlineFormat [
-	self parse: factory underlineFormatSample rule: #format
-]
-
-{ #category : #'tests - format' }
-PRMicroDownGrammarTest >> testUnderlineFormatEmpty [
-	self parse: factory underlineFormatEmptySample rule: #format
-]
-
 { #category : #'tests - list' }
 PRMicroDownGrammarTest >> testUnorderedList [
 	self parse: factory unorderedListSample rule: #unorderedList
