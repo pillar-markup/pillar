@@ -54,6 +54,36 @@ PRDocumentSample >> monospace [
 	^ self withFormat: PRMonospaceFormat 
 ]
 
+{ #category : #list }
+PRDocumentSample >> nestedList [
+	^ PRDocument new
+		add: (PROrderedList new
+			add: (PRListItem new 
+				add: (PRText content: 'item n1'); yourself);
+			add: (PRUnorderedList new
+				add: (PRListItem new 
+					add: (PRText content: 'item a'); yourself);
+				add: (PRListItem new 
+					add: (PRText content: 'item b'); yourself);
+				yourself);
+			add: (PRListItem new 
+				add: (PRText content: 'item n2'); 
+				yourself);
+		yourself); 
+	yourself.
+]
+
+{ #category : #list }
+PRDocumentSample >> orderedList [
+	^ PRDocument new
+		add: (PROrderedList new
+			add: (PRListItem new 
+				add: (PRText content: 'item n1'); yourself);
+			add: (PRListItem new 
+				add: (PRText content: 'item n2'); yourself);
+		yourself); yourself.
+]
+
 { #category : #'grammar - Format' }
 PRDocumentSample >> simpleOrderedList [
 
@@ -80,6 +110,17 @@ PRDocumentSample >> superscript [
 { #category : #accessing }
 PRDocumentSample >> underline [
 	^ self withFormat: PRUnderlineFormat 
+]
+
+{ #category : #list }
+PRDocumentSample >> unorderedList [
+	^ PRDocument new
+		add: (PRUnorderedList new
+			add: (PRListItem new 
+				add: (PRText content: 'item a'); yourself);
+			add: (PRListItem new 
+				add: (PRText content: 'item b'); yourself);
+		yourself); yourself.
 ]
 
 { #category : #'instance creation' }
