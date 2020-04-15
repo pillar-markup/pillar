@@ -61,10 +61,7 @@ PRScreenshotTransformerTest >> testTransformerCreatesFigureReference [
 { #category : #running }
 PRScreenshotTransformerTest >> testTransformerCreatesFile [
 	"The test may fail if launched at a when changing minutes if you are unlucky"
-	| doc dateStamp |
-	
-	SystemVersion current major < 7 ifTrue: [ ^ self skip ].
-	
+	| doc dateStamp screenshotDir |
 	doc := PRDocument new
 				add:
 				(PRScreenshotAnnotation new
@@ -85,7 +82,9 @@ PRScreenshotTransformerTest >> testTransformerCreatesFile [
 							s << '*']).
 						    
 	((PRScreenshotTransformer withContext: (PRProject on: testingWorkingDirectory )) start: doc).
-	self assert: (testingWorkingDirectory / 'figures' / 'screenshots')  hasChildren.
-	self deny: ((testingWorkingDirectory / 'figures' / 'screenshots')  childrenMatching: dateStamp) isEmpty.
+	screenshotDir := (testingWorkingDirectory / 'figures' / 'screenshots').
+	self assert: screenshotDir children isNotEmpty.
+	self assert: screenshotDir hasChildren.
+	self deny: (screenshotDir  childrenMatching: dateStamp) isEmpty.
 	
 ]
