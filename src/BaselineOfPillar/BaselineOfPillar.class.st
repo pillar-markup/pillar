@@ -19,6 +19,7 @@ BaselineOfPillar >> baseline: spec [
 		do: [ spec baseline: 'OSSubprocess' with: [ spec repository: 'github://pharo-contributions/OSSubprocess:v1.1/repository' ].
 			spec package: 'Pillar-Project' with: [ spec requires: 'OSSubprocess' ] ].
 	
+	
 	spec
 		for: #common
 		do: [ spec blessing: #baseline.
@@ -140,31 +141,17 @@ BaselineOfPillar >> baseline: spec [
 				group: 'text exporter' with: #('Pillar-ExporterText');
 				group: 'text exporter tests' with: #('Pillar-Tests-ExporterText').
 
-		"Petit Parse One packages"			
-		spec
-				project: 'PetitParser'
-					with: [ spec
-						className: #ConfigurationOfPetitParser;
-						versionString: #stable;
-						loads: #('Tests');
-						repository: 'http://www.smalltalkhub.com/mc/Moose/PetitParser/main' ];
-				project: 'PetitParserTest'
-					with: [ spec
-						className: #ConfigurationOfPetitParser;
-						versionString: #stable;
-						loads: #('Tests');
-						repository: 'http://www.smalltalkhub.com/mc/Moose/PetitParser/main' ];
-				package: 'Pillar-PetitPillarOld' with: [ spec requires: #('PetitParser' 'Pillar-Model') ];
-				package: 'Pillar-Tests-PetitPillarOld' with: [ 
-					spec requires: #('PetitParserTest' 'Pillar-PetitPillarOld') ];
-				group: 'old' with: #( 'Pillar-PetitPillarOld' 'Pillar-Tests-PetitPillarOld' ) 
-	].
 
-	spec for: #'pharo6.x' do: [	
-		spec
-			package: 'Pillar-Model' with: [ 
-				spec requires: #( 'Pillar-Pharo6' ) ];
-			package: 'Pillar-Pharo6' ]
+		"Petit Parse One packages"			
+	 	spec 
+   				baseline: 'PetitParser' 
+   				with: [ spec repository: 'github://moosetechnology/PetitParser:v2.2.0/src'.
+								spec loads: #('Tests') ] ];
+		package: 'Pillar-PetitPillarOld' with: [ spec requires: #('PetitParser' 'Pillar-Model') ];
+		package: 'Pillar-Tests-PetitPillarOld' with: [ spec  requires: #('PetitParser' 'Pillar-PetitPillarOld') ];
+		group: 'old' with: #( 'Pillar-PetitPillarOld' 'Pillar-Tests-PetitPillarOld' ).
+
+
 ]
 
 { #category : #baselines }
