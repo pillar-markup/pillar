@@ -156,6 +156,28 @@ MicroDownSnippetFactory >> lineEndwithNewlineSample [
 	^ String lf
 ]
 
+{ #category : #list }
+MicroDownSnippetFactory >> listMultiSample [
+	| unordered |
+	unordered := self grammar unorderedListMarkup.
+	
+	^ 	unordered, '1', String cr, 
+		unordered, unordered, '2', String cr, 
+		unordered, unordered, unordered, '3', String cr,
+		unordered, unordered, '4', String cr,
+		unordered, unordered, '5', String cr,	
+		unordered, unordered, '6', String cr,
+		unordered, '7', String cr,	
+		unordered, '2. 8'
+]
+
+{ #category : #list }
+MicroDownSnippetFactory >> listWithCommentSample [
+	^ '1. Foo
+%Comment
+2. Bar'
+]
+
 { #category : #format }
 MicroDownSnippetFactory >> monospaceFormatEmptySample [
 	^ self surround: '' withMarkup: self grammar monospaceMarkup
@@ -191,12 +213,21 @@ MicroDownSnippetFactory >> newlineSample [
 ]
 
 { #category : #list }
+MicroDownSnippetFactory >> orderedListEmptySample [
+	^ '1. '
+]
+
+{ #category : #list }
+MicroDownSnippetFactory >> orderedListSample [
+	^ '1. Foo'
+]
+
+{ #category : #list }
 MicroDownSnippetFactory >> orderedListWithTwoItemsSample [
 	
 	^ 
 '1. first
 2. second
-3. third
 '
 ]
 
