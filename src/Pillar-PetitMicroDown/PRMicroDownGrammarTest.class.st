@@ -124,6 +124,16 @@ PRMicroDownGrammarTest >> testLineEndwithNewline [
 	self parse: factory lineEndwithNewlineSample rule: #lineEnd
 ]
 
+{ #category : #'tests - list' }
+PRMicroDownGrammarTest >> testListMulti [
+	self parse: factory listMultiSample rule: #lists
+]
+
+{ #category : #'tests - list' }
+PRMicroDownGrammarTest >> testListWithComment [
+	self parse: factory listWithCommentSample rule: #list
+]
+
 { #category : #'tests - format' }
 PRMicroDownGrammarTest >> testMonospaceFormat [
 	self parse: factory monospaceFormatSample rule: #format
@@ -152,6 +162,16 @@ PRMicroDownGrammarTest >> testNewlineCRLF [
 { #category : #'tests - document' }
 PRMicroDownGrammarTest >> testNewlineLF [
 	self parse: factory newlineLFSample rule: #newline
+]
+
+{ #category : #'tests - list' }
+PRMicroDownGrammarTest >> testOrderedList [
+	self parse: factory orderedListSample rule: #orderedList
+]
+
+{ #category : #'tests - list' }
+PRMicroDownGrammarTest >> testOrderedListEmpty [
+	self parse: factory orderedListEmptySample rule: #orderedList
 ]
 
 { #category : #'tests - list' }
