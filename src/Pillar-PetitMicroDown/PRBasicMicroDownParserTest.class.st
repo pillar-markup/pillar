@@ -46,10 +46,7 @@ PRBasicMicroDownParserTest >> testHeader [
 PRBasicMicroDownParserTest >> testNumberedList [ 
 
 	| document |
-	document := PRMicroDownParser parse: '1. item1
-2. item2
-3. item3
-'.
+	document := PRMicroDownParser parse: MicroDownSnippetFactory new orderedListWithTwoItemsSample.
 	self assert: document children first class equals: PROrderedList.
 
 	self assert: document children first children first class equals: PRListItem.

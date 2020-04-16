@@ -194,11 +194,9 @@ MicroDownSnippetFactory >> newlineSample [
 MicroDownSnippetFactory >> orderedListWithTwoItemsSample [
 	
 	^ 
-'
-
-1. first
+'1. first
 2. second
-
+3. third
 '
 ]
 
