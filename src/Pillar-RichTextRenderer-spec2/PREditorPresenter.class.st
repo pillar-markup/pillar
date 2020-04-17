@@ -5,6 +5,7 @@ Class {
 		'parseButton',
 		'changeButton',
 		'syntaxState',
+		'screen',
 		'textInput',
 		'textOutput',
 		'morphWriter',
@@ -20,6 +21,7 @@ PREditorPresenter class >> defaultSpec [
 			add: #parseButton ;
 			add: #changeButton ;
 		yourself);
+		add: #screen;
 		add: (SpBoxLayout newHorizontal
 			add: #textInput;
 			add: #textOutput;
@@ -40,6 +42,7 @@ PREditorPresenter >> connectPresenters [
 		changeButton label: syntaxState label.
 		textInput text: syntaxState exampleText.
 		textOutput text: ''.
+		self screenLabelWith: syntaxState name.
 		 ].
 	
 ]
@@ -57,12 +60,18 @@ PREditorPresenter >> initializePresenters [
 	
 	parseButton := self newButton.
 	parseButton label: 'Parse'.
+	
 	changeButton := self newButton.
 	changeButton label: syntaxState label.
+	
 	textInput := self newText.
 	textInput text: syntaxState exampleText.
+	
 	textOutput := self newText.
 	textOutput text: ''.
+	
+	screen :=  self newLabel.
+	self screenLabelWith: syntaxState name.
 	
 ]
 
@@ -71,6 +80,11 @@ PREditorPresenter >> initializeWindow: aWindowPresenter [
 	aWindowPresenter
 		title: self title;
 		initialExtent: self initialExtent.	
+]
+
+{ #category : #api }
+PREditorPresenter >> screenLabelWith: aName [
+	screen label: 'Your current syntax is : ', aName string.
 ]
 
 { #category : #api }
