@@ -1,0 +1,79 @@
+Class {
+	#name : #PREditorPresenter,
+	#superclass : #SpPresenter,
+	#instVars : [
+		'parseButton',
+		'changeButton',
+		'syntaxState',
+		'textInput',
+		'textOutput',
+		'morphWriter',
+		'parser'
+	],
+	#category : #'Pillar-RichTextRenderer-spec2'
+}
+
+{ #category : #specs }
+PREditorPresenter class >> defaultSpec [
+	^ SpBoxLayout newVertical
+		add: (SpBoxLayout newHorizontal
+			add: #parseButton ;
+			add: #changeButton ;
+		yourself);
+		add: (SpBoxLayout newHorizontal
+			add: #textInput;
+			add: #textOutput;
+		yourself);
+yourself
+]
+
+{ #category : #initialization }
+PREditorPresenter >> connectPresenters [
+	| document |
+	parseButton action: [ 
+		document := parser new parse: textInput text.
+		textOutput text: (morphWriter start: document)
+		 ].
+	changeButton action: [ 
+		syntaxState := syntaxState next new.
+		parser := syntaxState parser.
+		changeButton label: syntaxState label.
+		textInput text: syntaxState exampleText.
+		textOutput text: ''.
+		 ].
+	
+]
+
+{ #category : #api }
+PREditorPresenter >> initialExtent [
+	^ 800@400
+]
+
+{ #category : #initialization }
+PREditorPresenter >> initializePresenters [
+	morphWriter := PRRichTextComposer new.
+	syntaxState := PRPillarState new.
+	parser := syntaxState parser.
+	
+	parseButton := self newButton.
+	parseButton label: 'Parse'.
+	changeButton := self newButton.
+	changeButton label: syntaxState label.
+	textInput := self newText.
+	textInput text: syntaxState exampleText.
+	textOutput := self newText.
+	textOutput text: ''.
+	
+]
+
+{ #category : #initialization }
+PREditorPresenter >> initializeWindow: aWindowPresenter [
+	aWindowPresenter
+		title: self title;
+		initialExtent: self initialExtent.	
+]
+
+{ #category : #api }
+PREditorPresenter >> title [
+	^ 'Pillar RichText-based Editor'
+]
