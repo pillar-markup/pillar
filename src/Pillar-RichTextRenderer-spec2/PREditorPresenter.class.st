@@ -129,6 +129,7 @@ PREditorPresenter >> menu [
 				addItem: [ :item | 
 					item
 						name: 'Render';
+						icon: (self iconNamed: #smallFindIcon);
 						description: 'Render your input text';
 						action: [ self renderAction	]
 				].
