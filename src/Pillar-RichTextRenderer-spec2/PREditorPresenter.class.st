@@ -9,6 +9,7 @@ Class {
 		'screen',
 		'textInput',
 		'textOutput',
+		'currentFile',
 		'morphWriter',
 		'parser'
 	],
@@ -62,7 +63,7 @@ PREditorPresenter >> exampleAction [
 	textOutput text: ''.
 ]
 
-{ #category : #acccessing }
+{ #category : #accessing }
 PREditorPresenter >> initialExtent [
 	^ 800@600
 ]
@@ -98,7 +99,7 @@ PREditorPresenter >> initializeWindow: aWindowPresenter [
 		initialExtent: self initialExtent
 ]
 
-{ #category : #acccessing }
+{ #category : #accessing }
 PREditorPresenter >> menu [
 	^ menu ifNil: [ ^ menu := self newMenuBar
 		addGroup: [ :group | 
@@ -109,7 +110,7 @@ PREditorPresenter >> menu [
 						description: 'Open file';
 						shortcut: $o meta;
 						icon: (self iconNamed: #openIcon);
-						action: [ self inform: 'Open File' ] ].
+						action: [ self openAction ] ].
 			group
 				addItem: [ :item | 
 					item
@@ -150,6 +151,19 @@ PREditorPresenter >> menu [
 ]
 
 { #category : #actions }
+PREditorPresenter >> openAction [
+	| fileManager |
+	fileManager := PRFileManager new editorPresenter: self.
+	fileManager morphicView openInWorld
+]
+
+{ #category : #actions }
+PREditorPresenter >> openReference: selectedFile [
+	textInput text: selectedFile  contents.
+	currentFile := selectedFile
+]
+
+{ #category : #actions }
 PREditorPresenter >> renderAction [
 	| document |
 	document := parser new parse: textInput text.
@@ -161,7 +175,12 @@ PREditorPresenter >> screenLabelWith: aName [
 	screen label: 'Your current syntax is: ', aName string
 ]
 
-{ #category : #acccessing }
+{ #category : #accessing }
+PREditorPresenter >> textInputText: aStringOrNil [
+	textInput text = aStringOrNil asString
+]
+
+{ #category : #accessing }
 PREditorPresenter >> title [
 	^ 'Pillar RichText-based Editor'
 ]
