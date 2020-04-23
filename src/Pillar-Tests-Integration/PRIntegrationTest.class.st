@@ -144,6 +144,13 @@ PRIntegrationTest >> testBookHtml [
 ]
 
 { #category : #tests }
+PRIntegrationTest >> testBookMarkdown [
+
+	self testArchetype: self archetypeBook output: self outputMarkdown.
+	self assert: (project outputDirectory / 'markdown' / 'index.markdown') exists.
+]
+
+{ #category : #tests }
 PRIntegrationTest >> testBookPdf [
 
 	self timeLimit: 2 minutes.
