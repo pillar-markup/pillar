@@ -1,15 +1,15 @@
 Class {
-	#name : #PRMarkdownDocument,
+	#name : #PRAsciiDocument,
 	#superclass : #PRTextDocument,
 	#category : #'Pillar-ExporterText'
 }
 
 { #category : #accessing }
-PRMarkdownDocument >> basicWriter [
-	^ PRMarkdownWriter new
+PRAsciiDocument >> basicWriter [
+	^ PRAsciiDocWriter new
 ]
 
 { #category : #accessing }
-PRMarkdownDocument >> extension [
-	^ 'markdown'
+PRAsciiDocument >> extension [
+	^ 'ascii'
 ]

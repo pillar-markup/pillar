@@ -41,6 +41,12 @@ PRIntegrationTest >> ensureTestDirectory [
 ]
 
 { #category : #parameters }
+PRIntegrationTest >> outputAscii [
+
+	^ PRAsciiOutput new
+]
+
+{ #category : #parameters }
 PRIntegrationTest >> outputEPub [
 
 	^ PREPubOutput new
@@ -106,6 +112,13 @@ PRIntegrationTest >> testBasicLatexPdf [
 ]
 
 { #category : #tests }
+PRIntegrationTest >> testBookAscii [
+
+	self testArchetype: self archetypeBook output: self outputAscii.
+	self assert: (project outputDirectory / 'ascii' / 'index.ascii') exists.
+]
+
+{ #category : #tests }
 PRIntegrationTest >> testBookEpub [
 
 	| archive |
@@ -139,6 +152,13 @@ PRIntegrationTest >> testBookPdf [
 ]
 
 { #category : #tests }
+PRIntegrationTest >> testPresentationAscii [
+
+	self testArchetype: self archetypePresentation output: self outputAscii.
+	self assert: (project outputDirectory / 'ascii' / 'index.ascii') exists.
+]
+
+{ #category : #tests }
 PRIntegrationTest >> testPresentationHtml [
 
 	self testArchetype: self archetypePresentation output: self outputHtml.
@@ -158,6 +178,13 @@ PRIntegrationTest >> testPresentationPdf [
 	self timeLimit: 2 minutes.
 	self testArchetype: self archetypePresentation output: self outputPdf.
 	self assert: (project outputDirectory / 'pdf' / 'index.pdf') exists.
+]
+
+{ #category : #tests }
+PRIntegrationTest >> testWelcomeAscii [
+
+	self testArchetype: self archetypeWelcome output: self outputAscii.
+	self assert: (project outputDirectory / 'ascii' / 'index.ascii') exists.
 ]
 
 { #category : #tests }
