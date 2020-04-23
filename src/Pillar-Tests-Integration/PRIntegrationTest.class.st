@@ -53,6 +53,12 @@ PRIntegrationTest >> outputHtml [
 ]
 
 { #category : #parameters }
+PRIntegrationTest >> outputMarkdown [
+
+	^ PRMarkdownOutput new
+]
+
+{ #category : #parameters }
 PRIntegrationTest >> outputPdf [
 
 	^ PRPdfOutput new
@@ -140,6 +146,13 @@ PRIntegrationTest >> testPresentationHtml [
 ]
 
 { #category : #tests }
+PRIntegrationTest >> testPresentationMarkdown [
+
+	self testArchetype: self archetypePresentation output: self outputMarkdown.
+	self assert: (project outputDirectory / 'markdown' / 'index.markdown') exists.
+]
+
+{ #category : #tests }
 PRIntegrationTest >> testPresentationPdf [
 
 	self timeLimit: 2 minutes.
@@ -152,6 +165,13 @@ PRIntegrationTest >> testWelcomeHtml [
 
 	self testArchetype: self archetypeWelcome output: self outputHtml.
 	self assert: (project outputDirectory / 'html' / 'index.html') exists.
+]
+
+{ #category : #tests }
+PRIntegrationTest >> testWelcomeMarkdown [
+
+	self testArchetype: self archetypeWelcome output: self outputMarkdown.
+	self assert: (project outputDirectory / 'markdown' / 'index.markdown') exists.
 ]
 
 { #category : #tests }
