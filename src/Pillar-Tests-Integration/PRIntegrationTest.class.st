@@ -171,7 +171,7 @@ PRIntegrationTest >> testWelcomeHtml [
 PRIntegrationTest >> testWelcomeMarkdown [
 
 	self testArchetype: self archetypeWelcome output: self outputMarkdown.
-	self assert: (project outputDirectory / 'markdown' / 'index.markdown') exists.
+	self assert: (project outputDirectory / 'markdown' / 'index.markdown') exists
 ]
 
 { #category : #tests }

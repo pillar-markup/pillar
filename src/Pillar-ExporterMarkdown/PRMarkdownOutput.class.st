@@ -1,7 +1,7 @@
 Class {
 	#name : #PRMarkdownOutput,
 	#superclass : #PRWritingTarget,
-	#category : #'Pillar-ExporterHTML'
+	#category : #'Pillar-ExporterMarkdown'
 }
 
 { #category : #building }
