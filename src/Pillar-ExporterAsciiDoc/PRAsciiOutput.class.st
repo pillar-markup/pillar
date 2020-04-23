@@ -4,6 +4,11 @@ Class {
 	#category : #'Pillar-ExporterAsciiDoc'
 }
 
+{ #category : #accessing }
+PRAsciiOutput class >> builderName [
+	^ 'ascii'
+]
+
 { #category : #building }
 PRAsciiOutput >> documentFor: aFile [
 

@@ -6,7 +6,7 @@ Class {
 
 { #category : #accessing }
 PRWritingTarget class >> builderName [
-	^ 'writingTarget'
+	^ self subclassResponsibility 
 ]
 
 { #category : #testing }

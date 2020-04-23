@@ -4,6 +4,11 @@ Class {
 	#category : #'Pillar-ExporterMarkdown'
 }
 
+{ #category : #accessing }
+PRMarkdownOutput class >> builderName [
+	^ 'markdown'
+]
+
 { #category : #building }
 PRMarkdownOutput >> documentFor: aFile [
 
