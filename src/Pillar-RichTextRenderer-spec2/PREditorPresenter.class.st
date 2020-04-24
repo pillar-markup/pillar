@@ -10,7 +10,8 @@ Class {
 		'textInput',
 		'textOutput',
 		'morphWriter',
-		'parser'
+		'parser',
+		'currentFile'
 	],
 	#category : #'Pillar-RichTextRenderer-spec2'
 }
@@ -109,7 +110,7 @@ PREditorPresenter >> menu [
 						description: 'Open file';
 						shortcut: $o meta;
 						icon: (self iconNamed: #openIcon);
-						action: [ self inform: 'Open File' ] ].
+						action: [ self openAction ] ].
 			group
 				addItem: [ :item | 
 					item
@@ -147,6 +148,18 @@ PREditorPresenter >> menu [
 						action: [ self changeAction ] 
 				]	
 		]; yourself ]
+]
+
+{ #category : #actions }
+PREditorPresenter >> openAction [
+	| openFileDialog |
+	openFileDialog := FDOpenFileDialog new okActionBlock: [
+		:selectedFile |
+			currentFile := selectedFile.
+			textInput text: selectedFile contents.
+			textOutput text: ''		
+		].
+	openFileDialog openDialogWithSpec 
 ]
 
 { #category : #actions }
