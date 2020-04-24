@@ -3,14 +3,13 @@ PREditorPresenter new openWithSpec
 "
 Class {
 	#name : #PREditorPresenter,
-	#superclass : #SpPresenter,
+	#superclass : #SpApplicationWithToolbar,
 	#instVars : [
-		'parseButton',
-		'changeButton',
 		'syntaxState',
 		'screen',
 		'textInput',
 		'textOutput',
+		'currentFile',
 		'morphWriter',
 		'parser'
 	],
@@ -19,7 +18,7 @@ Class {
 
 { #category : #specs }
 PREditorPresenter class >> defaultSpec [
-	^ SpBoxLayout newVertical
+	"^ SpBoxLayout newVertical
 		add: (SpBoxLayout newHorizontal
 			add: #changeButton ;
 			add: #parseButton ;
@@ -29,28 +28,42 @@ PREditorPresenter class >> defaultSpec [
 			add: #textInput;
 			add: #textOutput;
 		yourself);
-yourself
+yourself"
+	 ^ SpBoxLayout newVertical
+		add: #menu withConstraints: [ :constraints | constraints height: self toolbarHeight ];
+		add: #screen withConstraints: [:c | c expand: false];
+		add: (SpBoxLayout newHorizontal
+			add: #textInput;
+			add: #textOutput;
+		yourself);
+	yourself
 ]
 
-{ #category : #initialization }
-PREditorPresenter >> connectPresenters [
-	| document |
-	parseButton action: [ 
-		document := parser new parse: textInput text.
-		textOutput text: (morphWriter start: document)
-		 ].
-	changeButton action: [ 
-		syntaxState := syntaxState next new.
-		parser := syntaxState parser.
-		changeButton label: syntaxState label.
-		textInput text: syntaxState exampleText.
-		textOutput text: ''.
-		self screenLabelWith: syntaxState name.
-		 ].
-	
+{ #category : #examples }
+PREditorPresenter class >> open [
+	<example>
+	^ self new openWithSpec
 ]
 
-{ #category : #api }
+{ #category : #actions }
+PREditorPresenter >> changeAction [
+	syntaxState := syntaxState next new.
+	parser := syntaxState parser.
+	self screenLabelWith: syntaxState name.
+]
+
+{ #category : #actions }
+PREditorPresenter >> cleanAction [
+	textInput text: ''
+]
+
+{ #category : #actions }
+PREditorPresenter >> exampleAction [
+	textInput text: syntaxState exampleText.
+	textOutput text: ''.
+]
+
+{ #category : #accessing }
 PREditorPresenter >> initialExtent [
 	^ 800@600
 ]
@@ -60,12 +73,8 @@ PREditorPresenter >> initializePresenters [
 	morphWriter := PRRichTextComposer new.
 	syntaxState := PRPillarState new.
 	parser := syntaxState parser.
-	
-	parseButton := self newButton.
-	parseButton label: 'Render'.
-	
-	changeButton := self newButton.
-	changeButton label: syntaxState label.
+
+	self menu applyTo: self.
 	
 	textInput := self newText.
 	textInput 
@@ -75,9 +84,12 @@ PREditorPresenter >> initializePresenters [
 	textOutput := self newText.
 	textOutput text: ''.
 	
+	self focusOrder add: textInput.
+	self focusOrder add: textOutput.
+
 	screen :=  self newLabel.
-	self screenLabelWith: syntaxState name
-	
+	self screenLabelWith: syntaxState name.
+	self focusOrder add: screen.
 ]
 
 { #category : #initialization }
@@ -87,12 +99,88 @@ PREditorPresenter >> initializeWindow: aWindowPresenter [
 		initialExtent: self initialExtent
 ]
 
+{ #category : #accessing }
+PREditorPresenter >> menu [
+	^ menu ifNil: [ ^ menu := self newMenuBar
+		addGroup: [ :group | 
+			group
+				addItem: [ :item | 
+					item
+						name: 'Open';
+						description: 'Open file';
+						shortcut: $o meta;
+						icon: (self iconNamed: #openIcon);
+						action: [ self openAction ] ].
+			group
+				addItem: [ :item | 
+					item
+						name: 'Save';
+						description: 'Save file';
+						shortcut: $s meta;
+						icon: (self iconNamed: #smallSaveIcon);
+						action: [ self inform: 'Save File' ] ].
+			group 
+				addItem: [ :item | 
+					item
+						name: 'Clean';
+						icon: (self iconNamed: #smallCancelIcon);
+						action: [ self cleanAction ] ] ];
+		addGroup: [ :group | 
+			group
+				addItem: [ :item | 
+					item
+						name: 'Render';
+						icon: (self iconNamed: #smallFindIcon);
+						description: 'Render your input text';
+						action: [ self renderAction	]
+				].
+			group
+				addItem: [ :item | 
+					item
+						name: 'Get example';
+						description: 'Give a text input example in current syntax';
+						action: [ self exampleAction ] ].
+			group
+				addItem: [ :item | 
+					item
+						name: 'Change input syntax';
+						description: 'Switch with MicroDown or Pillar';
+						action: [ self changeAction ] 
+				]	
+		]; yourself ]
+]
+
+{ #category : #actions }
+PREditorPresenter >> openAction [
+	| fileManager |
+	fileManager := PRFileManager new editorPresenter: self.
+	fileManager morphicView openInWorld
+]
+
+{ #category : #actions }
+PREditorPresenter >> openReference: selectedFile [
+	textInput text: selectedFile  contents.
+	currentFile := selectedFile
+]
+
+{ #category : #actions }
+PREditorPresenter >> renderAction [
+	| document |
+	document := parser new parse: textInput text.
+	textOutput text: (morphWriter start: document) 
+]
+
 { #category : #api }
 PREditorPresenter >> screenLabelWith: aName [
 	screen label: 'Your current syntax is: ', aName string
 ]
 
-{ #category : #api }
+{ #category : #accessing }
+PREditorPresenter >> textInputText: aStringOrNil [
+	textInput text = aStringOrNil asString
+]
+
+{ #category : #accessing }
 PREditorPresenter >> title [
 	^ 'Pillar RichText-based Editor'
 ]

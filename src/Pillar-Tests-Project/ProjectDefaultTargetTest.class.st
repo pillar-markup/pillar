@@ -22,6 +22,21 @@ ProjectDefaultTargetTest >> configAbsentTargetContent [
 ]
 
 { #category : #tests }
+ProjectDefaultTargetTest >> configAsciiContent [
+	^ '{
+  "base_url": "",
+  "site_name": "Pharo Book",
+  "title": "The Pillar Super Book Archetype",
+  "attribution": "The Pillar team",
+  "series": "Square Bracket tutorials",
+  "keywords": "project template, Pillar, Pharo, Smalltalk",
+  "language": "en-UK",
+  "latexWriter" : #latex,
+  "defaultExport" : "ascii"
+}'
+]
+
+{ #category : #tests }
 ProjectDefaultTargetTest >> configHTMLContent [
 	^ '{
   "base_url": "",
@@ -52,6 +67,21 @@ ProjectDefaultTargetTest >> configInvalidTargetContent [
 ]
 
 { #category : #tests }
+ProjectDefaultTargetTest >> configMarkdownContent [
+	^ '{
+  "base_url": "",
+  "site_name": "Pharo Book",
+  "title": "The Pillar Super Book Archetype",
+  "attribution": "The Pillar team",
+  "series": "Square Bracket tutorials",
+  "keywords": "project template, Pillar, Pharo, Smalltalk",
+  "language": "en-UK",
+  "latexWriter" : #latex,
+  "defaultExport" : "markdown"
+}'
+]
+
+{ #category : #tests }
 ProjectDefaultTargetTest >> configPDFContent [
 	^ '{
   "base_url": "",
@@ -78,6 +108,17 @@ ProjectDefaultTargetTest >> testDefaultTargetAbsent [
 ]
 
 { #category : #tests }
+ProjectDefaultTargetTest >> testDefaultTargetAscii [
+	| directory |
+	directory := FileSystem memory root.
+	directory / 'pillar.conf'
+		writeStreamDo: [ :st | st nextPutAll: self configAsciiContent ].
+	project := PRProject new baseDirectory: directory.
+	
+	self assert: project defaultTarget equals: PRAsciiOutput
+]
+
+{ #category : #tests }
 ProjectDefaultTargetTest >> testDefaultTargetHTML [
 	| directory |
 	directory := FileSystem memory root.
@@ -97,6 +138,17 @@ ProjectDefaultTargetTest >> testDefaultTargetInvalid [
 	project := PRProject new baseDirectory: directory.
 	
 	self assert: project defaultTarget equals: PRInvalidTarget
+]
+
+{ #category : #tests }
+ProjectDefaultTargetTest >> testDefaultTargetMarkdown [
+	| directory |
+	directory := FileSystem memory root.
+	directory / 'pillar.conf'
+		writeStreamDo: [ :st | st nextPutAll: self configMarkdownContent ].
+	project := PRProject new baseDirectory: directory.
+	
+	self assert: project defaultTarget equals: PRMarkdownOutput
 ]
 
 { #category : #tests }
