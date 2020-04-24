@@ -26,6 +26,13 @@ BaselineOfPillar >> baseline: spec [
 			spec
 				baseline: 'ContainersPropertyEnvironment'
 				with: [ spec repository: 'github://Ducasse/Containers-PropertyEnvironment:v1.0.0' ].
+				
+			spec
+				baseline: 'FileDialog'
+				with: [ spec repository: 'github://pharo-contribution/file-dialog/repository' ].	
+					
+			spec package: 'Pillar-RichTextRenderer-spec2' with: [ spec requires: #('FileDialog' 'Pillar-ExporterRichText') ].
+				
 			spec
 				baseline: 'PetitParser2Core' with: [
 					spec
@@ -55,12 +62,14 @@ BaselineOfPillar >> baseline: spec [
 				package: 'Pillar-ExporterPillar' with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-PetitPillar') ];
 				package: 'Pillar-ExporterText' with: [ spec requires: #('Pillar-ExporterCore') ];
 				package: 'Pillar-GitBook' with: [ spec requires: #('Pillar-Cli' 'markdown exporter' 'text exporter') ];
+				
 				package: 'Pillar-Core';
 				package: 'Pillar-PetitMicroDown'
 					with: [ spec requires: #('Pillar-Core' 'Pillar-Model' 'PetitParser2Core')];
 				package: 'Pillar-Model' with: [ spec requires: #('Pillar-Core')];
 				package: 'Pillar-CodeBlockEvaluator' with: [ spec requires: #('Pillar-Core')];
 				package: 'Pillar-PetitPillar' with: [ spec requires: #('PetitParser2Core' 'Pillar-Model') ];
+			
 				package: 'Pillar-ExporterRichText' with: [ spec requires: #('Pillar-Core' 'Pillar-PetitPillar') ];
 				package: 'Pillar-Pharo-Tools' with: [ spec requires: #('Pillar-Model' 'All exporters') ];
 				package: 'Pillar-Project' with: [ spec requires: #('Pillar-Model' 'All exporters') ];
