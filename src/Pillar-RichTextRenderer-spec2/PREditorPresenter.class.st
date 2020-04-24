@@ -9,6 +9,7 @@ Class {
 		'screen',
 		'textInput',
 		'textOutput',
+		'currentFile',
 		'morphWriter',
 		'parser',
 		'currentFile'
@@ -63,7 +64,7 @@ PREditorPresenter >> exampleAction [
 	textOutput text: ''.
 ]
 
-{ #category : #acccessing }
+{ #category : #accessing }
 PREditorPresenter >> initialExtent [
 	^ 800@600
 ]
@@ -99,7 +100,7 @@ PREditorPresenter >> initializeWindow: aWindowPresenter [
 		initialExtent: self initialExtent
 ]
 
-{ #category : #acccessing }
+{ #category : #accessing }
 PREditorPresenter >> menu [
 	^ menu ifNil: [ ^ menu := self newMenuBar
 		addGroup: [ :group | 
@@ -174,7 +175,12 @@ PREditorPresenter >> screenLabelWith: aName [
 	screen label: 'Your current syntax is: ', aName string
 ]
 
-{ #category : #acccessing }
+{ #category : #accessing }
+PREditorPresenter >> textInputText: aStringOrNil [
+	textInput text = aStringOrNil asString
+]
+
+{ #category : #accessing }
 PREditorPresenter >> title [
 	^ 'Pillar RichText-based Editor'
 ]
