@@ -29,7 +29,7 @@ BaselineOfPillar >> baseline: spec [
 				
 			spec
 				baseline: 'FileDialog'
-				with: [ spec repository: 'github://pharo-contribution/file-dialog/repository' ].	
+				with: [ spec repository: 'github://pharo-contributions/file-dialog/repository' ].	
 					
 			spec package: 'Pillar-RichTextRenderer-spec2' with: [ spec requires: #('FileDialog' 'Pillar-ExporterRichText') ].
 				
