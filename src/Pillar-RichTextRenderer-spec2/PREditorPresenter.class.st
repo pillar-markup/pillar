@@ -54,12 +54,18 @@ PREditorPresenter >> changeAction [
 
 { #category : #actions }
 PREditorPresenter >> cleanAction [
-	textInput text: ''
+	textInput text: ''.
+	textOutput text: ''
 ]
 
 { #category : #accessing }
 PREditorPresenter >> currentFile [
 	^ currentFile ifNil: [ ^ currentFile := FDSaveFileDialog new openModal ]
+]
+
+{ #category : #accessing }
+PREditorPresenter >> currentFileName [
+	^ currentFile ifNil: [ ^ 'New File' ] ifNotNil: [ ^ currentFile basename]
 ]
 
 { #category : #actions }
@@ -104,7 +110,7 @@ PREditorPresenter >> initializeWindow: aWindowPresenter [
 		initialExtent: self initialExtent
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 PREditorPresenter >> menu [
 	^ menu ifNil: [ ^ menu := self newMenuBar
 		addGroup: [ :group | 
@@ -168,7 +174,8 @@ PREditorPresenter >> menu [
 { #category : #actions }
 PREditorPresenter >> newDocAction [
 	self cleanAction.
-	currentFile := nil
+	currentFile := nil.
+	self updateTitle
 ]
 
 { #category : #actions }
@@ -178,7 +185,8 @@ PREditorPresenter >> openAction [
 		:selectedFile |
 			currentFile := selectedFile.
 			textInput text: selectedFile contents.
-			textOutput text: ''		
+			textOutput text: ''.
+			self updateTitle
 		].
 	openFileDialog openWithSpec 
 ]
@@ -195,6 +203,7 @@ PREditorPresenter >> saveAction [
 	self currentFile writeStreamDo: [ 
 		:str | str nextPutAll: textInput text asString; truncate: textInput text asString size 
 	].
+	self updateTitle.
 	self inform: self currentFile fullName, ' is saved'
 ]
 
@@ -210,5 +219,10 @@ PREditorPresenter >> textInputText: aStringOrNil [
 
 { #category : #accessing }
 PREditorPresenter >> title [
-	^ 'Pillar RichText-based Editor'
+	^ 'Pillar Editor - ', self currentFileName
+]
+
+{ #category : #api }
+PREditorPresenter >> updateTitle [
+	self window title: self title.
 ]
