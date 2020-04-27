@@ -58,12 +58,17 @@ PREditorPresenter >> cleanAction [
 ]
 
 { #category : #actions }
+PREditorPresenter >> currentFile [
+	^ currentFile ifNil: [ ^ self saveNew ]
+]
+
+{ #category : #actions }
 PREditorPresenter >> exampleAction [
 	textInput text: syntaxState exampleText.
 	textOutput text: ''.
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 PREditorPresenter >> initialExtent [
 	^ 800@600
 ]
@@ -118,7 +123,7 @@ PREditorPresenter >> menu [
 						description: 'Save file';
 						shortcut: $s meta;
 						icon: (self iconNamed: #smallSaveIcon);
-						action: [ self inform: 'Save File' ] ].
+						action: [ self saveAction ] ].
 			group 
 				addItem: [ :item | 
 					item
@@ -168,6 +173,12 @@ PREditorPresenter >> renderAction [
 	| document |
 	document := parser new parse: textInput text.
 	textOutput text: (morphWriter start: document) 
+]
+
+{ #category : #actions }
+PREditorPresenter >> saveAction [
+	self currentFile writeStreamDo: [ :str | str nextPutAll: textInput text asString ].
+	self inform: self currentFile fullName, ' is saved'
 ]
 
 { #category : #api }
