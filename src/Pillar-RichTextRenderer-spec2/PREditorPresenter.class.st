@@ -107,7 +107,8 @@ PREditorPresenter >> initializePresenters [
 PREditorPresenter >> initializeWindow: aWindowPresenter [
 	aWindowPresenter
 		title: self title;
-		initialExtent: self initialExtent
+		initialExtent: self initialExtent;
+		windowIcon: (self iconNamed: #glamorousBrowseIcon)
 ]
 
 { #category : #api }
@@ -165,7 +166,7 @@ PREditorPresenter >> menu [
 					item
 						name: 'Change input syntax';
 						description: 'Switch with MicroDown or Pillar';
-						icon: (self iconNamed: #diffIcon);
+						icon: (self iconNamed: #changeUpdateIcon);
 						action: [ self changeAction ] 
 				]	
 		]; yourself ]
