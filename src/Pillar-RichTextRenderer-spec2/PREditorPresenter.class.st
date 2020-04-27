@@ -108,6 +108,13 @@ PREditorPresenter >> initializeWindow: aWindowPresenter [
 PREditorPresenter >> menu [
 	^ menu ifNil: [ ^ menu := self newMenuBar
 		addGroup: [ :group | 
+			group 
+				addItem: [ :item | 
+					item
+						name: 'New';
+						description: 'New document';
+						icon: (self iconNamed: #pageIcon);
+						action: [ self newDocAction ] ].
 			group
 				addItem: [ :item | 
 					item
@@ -129,7 +136,7 @@ PREditorPresenter >> menu [
 					item
 						name: 'Clean';
 						description: 'Erase input text';
-						icon: (self iconNamed: #smallCancelIcon);
+						icon: (self iconNamed: #smallCancel);
 						action: [ self cleanAction ] ] ];
 		addGroup: [ :group | 
 			group
@@ -145,15 +152,23 @@ PREditorPresenter >> menu [
 					item
 						name: 'Get example';
 						description: 'Give a text input example in current syntax';
+						icon: (self iconNamed: #smallDoItIcon);
 						action: [ self exampleAction ] ].
 			group
 				addItem: [ :item | 
 					item
 						name: 'Change input syntax';
 						description: 'Switch with MicroDown or Pillar';
+						icon: (self iconNamed: #diffIcon);
 						action: [ self changeAction ] 
 				]	
 		]; yourself ]
+]
+
+{ #category : #actions }
+PREditorPresenter >> newDocAction [
+	self cleanAction.
+	currentFile := nil
 ]
 
 { #category : #actions }
