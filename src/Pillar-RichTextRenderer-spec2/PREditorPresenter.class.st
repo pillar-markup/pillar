@@ -123,6 +123,7 @@ PREditorPresenter >> menu [
 				addItem: [ :item | 
 					item
 						name: 'Clean';
+						description: 'Erase input text';
 						icon: (self iconNamed: #smallCancelIcon);
 						action: [ self cleanAction ] ] ];
 		addGroup: [ :group | 
