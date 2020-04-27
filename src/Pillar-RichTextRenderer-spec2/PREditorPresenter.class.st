@@ -177,7 +177,9 @@ PREditorPresenter >> renderAction [
 
 { #category : #actions }
 PREditorPresenter >> saveAction [
-	self currentFile writeStreamDo: [ :str | str nextPutAll: textInput text asString ].
+	self currentFile writeStreamDo: [ 
+		:str | str nextPutAll: textInput text asString; truncate: textInput text asString size 
+	].
 	self inform: self currentFile fullName, ' is saved'
 ]
 
