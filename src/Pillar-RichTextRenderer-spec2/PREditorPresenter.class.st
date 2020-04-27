@@ -57,9 +57,9 @@ PREditorPresenter >> cleanAction [
 	textInput text: ''
 ]
 
-{ #category : #actions }
+{ #category : #accessing }
 PREditorPresenter >> currentFile [
-	^ currentFile ifNil: [ ^ self saveNew ]
+	^ currentFile ifNil: [ ^ currentFile := FDSaveFileDialog new openModal ]
 ]
 
 { #category : #actions }
