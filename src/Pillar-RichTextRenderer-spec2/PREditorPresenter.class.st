@@ -11,8 +11,7 @@ Class {
 		'textOutput',
 		'currentFile',
 		'morphWriter',
-		'parser',
-		'currentFile'
+		'parser'
 	],
 	#category : #'Pillar-RichTextRenderer-spec2'
 }
@@ -154,13 +153,13 @@ PREditorPresenter >> menu [
 { #category : #actions }
 PREditorPresenter >> openAction [
 	| openFileDialog |
-	openFileDialog := FDOpenFileDialog new okActionBlock: [
+	openFileDialog := FDOpenFileDialog new whenSelected: [
 		:selectedFile |
 			currentFile := selectedFile.
 			textInput text: selectedFile contents.
 			textOutput text: ''		
 		].
-	openFileDialog openDialogWithSpec 
+	openFileDialog openWithSpec 
 ]
 
 { #category : #actions }
