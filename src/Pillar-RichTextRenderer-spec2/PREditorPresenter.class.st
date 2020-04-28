@@ -63,6 +63,12 @@ PREditorPresenter >> exampleAction [
 	textOutput text: ''.
 ]
 
+{ #category : #actions }
+PREditorPresenter >> exportAction [
+	self saveAction.
+	(PRExportPresenter withInputFile: self currentFile file withParser: syntaxState parser ) openWithSpec 
+]
+
 { #category : #initialization }
 PREditorPresenter >> initialExtent [
 	^ 800@600
@@ -158,7 +164,15 @@ PREditorPresenter >> menu [
 						icon: (self iconNamed: #changeUpdateIcon);
 						action: [ self changeAction ] 
 				]	
-		]; yourself ]
+		];
+	addGroup: [ :group | 
+			group
+				addItem: [ :item | 
+					item
+						name: 'Export';
+						description: 'Build your document in export formt you want';
+						icon: (self iconNamed: #glamorousOpenFromUrlIcon);
+						action: [ self exportAction ] ] ]; yourself ]
 ]
 
 { #category : #actions }
