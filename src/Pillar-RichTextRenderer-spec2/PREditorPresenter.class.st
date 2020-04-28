@@ -18,17 +18,6 @@ Class {
 
 { #category : #specs }
 PREditorPresenter class >> defaultSpec [
-	"^ SpBoxLayout newVertical
-		add: (SpBoxLayout newHorizontal
-			add: #changeButton ;
-			add: #parseButton ;
-		yourself) height: 30;
-		add: #screen withConstraints: [:c | c expand: false];
-		add: (SpBoxLayout newHorizontal
-			add: #textInput;
-			add: #textOutput;
-		yourself);
-yourself"
 	 ^ SpBoxLayout newVertical
 		add: #menu withConstraints: [ :constraints | constraints height: self toolbarHeight ];
 		add: #screen withConstraints: [:c | c expand: false];
@@ -60,12 +49,12 @@ PREditorPresenter >> cleanAction [
 
 { #category : #accessing }
 PREditorPresenter >> currentFile [
-	^ currentFile ifNil: [ ^ currentFile := FDSaveFileDialog new openModal ]
+	^ currentFile ifNil: [ ^ currentFile := PREditorNewFile new ]
 ]
 
 { #category : #accessing }
-PREditorPresenter >> currentFileName [
-	^ currentFile ifNil: [ ^ 'New File' ] ifNotNil: [ ^ currentFile basename]
+PREditorPresenter >> currentFile: aPREditorFile [
+	currentFile := aPREditorFile
 ]
 
 { #category : #actions }
@@ -175,7 +164,7 @@ PREditorPresenter >> menu [
 { #category : #actions }
 PREditorPresenter >> newDocAction [
 	self cleanAction.
-	currentFile := nil.
+	currentFile := PREditorNewFile new.
 	self updateTitle
 ]
 
@@ -184,7 +173,7 @@ PREditorPresenter >> openAction [
 	| openFileDialog |
 	openFileDialog := FDOpenFileDialog new whenSelected: [
 		:selectedFile |
-			currentFile := selectedFile.
+			currentFile := PREditorOpenedFile new file: selectedFile.
 			textInput text: selectedFile contents.
 			textOutput text: ''.
 			self updateTitle
@@ -201,9 +190,7 @@ PREditorPresenter >> renderAction [
 
 { #category : #actions }
 PREditorPresenter >> saveAction [
-	self currentFile writeStreamDo: [ 
-		:str | str nextPutAll: textInput text asString; truncate: textInput text asString size 
-	].
+	self currentFile: (self currentFile save: textInput).
 	self updateTitle.
 	self inform: self currentFile fullName, ' is saved'
 ]
@@ -220,7 +207,7 @@ PREditorPresenter >> textInputText: aStringOrNil [
 
 { #category : #accessing }
 PREditorPresenter >> title [
-	^ 'Pillar Editor - ', self currentFileName
+	^ 'Pillar Editor - ', self currentFile basename
 ]
 
 { #category : #api }
