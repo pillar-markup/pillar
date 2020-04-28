@@ -70,13 +70,7 @@ PRExportPresenter >> connectPresenters [
 
 { #category : #actions }
 PRExportPresenter >> exportAction [
-	"| conf |"
 	self project installArchetypeNamed: 'book'.
-	"conf := (self inputFile parent / 'pillar.conf').
-	conf exists ifFalse: [ 
-		conf ensureCreateFile.
-		conf writeStreamDo: [ :st | st nextPutAll: self defaultConfig ]
-		 ]."
 	self target buildOnly: self inputFile asArray ; buildWithClapArguments: self project
 ]
 

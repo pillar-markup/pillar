@@ -70,7 +70,8 @@ PREditorPresenter >> exampleAction [
 PREditorPresenter >> exportAction [
 	"EXPORT button is pressed: open export window"
 	self saveAction.
-	(PRExportPresenter withInputFile: self currentFile file withParser: syntaxState parser ) openWithSpec 
+	self currentFile isNew ifFalse: [ (PRExportPresenter withInputFile: self currentFile file withParser: syntaxState parser ) openWithSpec  ]
+	
 ]
 
 { #category : #initialization }
@@ -193,7 +194,7 @@ PREditorPresenter >> openAction [
 	| openFileDialog |
 	openFileDialog := FDOpenFileDialog new whenSelected: [
 		:selectedFile |
-			currentFile := PREditorOpenedFile new file: selectedFile.
+			self currentFile: (PREditorOpenedFile new file: selectedFile).
 			textInput text: selectedFile contents.
 			textOutput text: ''.
 			self updateTitle

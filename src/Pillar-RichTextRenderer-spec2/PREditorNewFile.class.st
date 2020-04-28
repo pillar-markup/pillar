@@ -6,7 +6,7 @@ Class {
 
 { #category : #accessing }
 PREditorNewFile >> basename [ 
-	^ 'NewFile'
+	^ 'newFile'
 ]
 
 { #category : #accessing }
@@ -23,6 +23,7 @@ PREditorNewFile >> isNew [
 PREditorNewFile >> save: aText [
 	| selectedFile |
 	selectedFile := FDSaveFileDialog new openModal.
-	selectedFile ifNotNil: [ ^ PREditorOpenedFile new file: selectedFile; save: aText; yourself. ]
+	selectedFile ifNotNil: [ ^ PREditorOpenedFile new file: selectedFile; save: aText; yourself. ].
+	^ self
 	
 ]
