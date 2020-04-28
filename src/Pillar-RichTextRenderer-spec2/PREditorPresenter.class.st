@@ -36,6 +36,7 @@ PREditorPresenter class >> open [
 
 { #category : #actions }
 PREditorPresenter >> changeAction [
+	"CHANGE button is pressed: change input syntax with next syntax state"
 	syntaxState := syntaxState next new.
 	parser := syntaxState parser.
 	self screenLabelWith: syntaxState name.
@@ -43,6 +44,7 @@ PREditorPresenter >> changeAction [
 
 { #category : #actions }
 PREditorPresenter >> cleanAction [
+	"CLEAN button is pressed: erase both input and output text content"
 	textInput text: ''.
 	textOutput text: ''
 ]
@@ -59,12 +61,14 @@ PREditorPresenter >> currentFile: aPREditorFile [
 
 { #category : #actions }
 PREditorPresenter >> exampleAction [
+	"GET EXAMPLE button is pressed: fill input text with an example"
 	textInput text: syntaxState exampleText.
 	textOutput text: ''.
 ]
 
 { #category : #actions }
 PREditorPresenter >> exportAction [
+	"EXPORT button is pressed: open export window"
 	self saveAction.
 	(PRExportPresenter withInputFile: self currentFile file withParser: syntaxState parser ) openWithSpec 
 ]
@@ -177,6 +181,7 @@ PREditorPresenter >> menu [
 
 { #category : #actions }
 PREditorPresenter >> newDocAction [
+	"NEW button is pressed: reset tool"
 	self cleanAction.
 	currentFile := PREditorNewFile new.
 	self updateTitle
@@ -184,6 +189,7 @@ PREditorPresenter >> newDocAction [
 
 { #category : #actions }
 PREditorPresenter >> openAction [
+	"OPEN button is pressed: open window"
 	| openFileDialog |
 	openFileDialog := FDOpenFileDialog new whenSelected: [
 		:selectedFile |
@@ -197,6 +203,7 @@ PREditorPresenter >> openAction [
 
 { #category : #actions }
 PREditorPresenter >> renderAction [
+	"RENDER button is pressed: render RichText result in output text"
 	| document |
 	document := parser new parse: textInput text.
 	textOutput text: (morphWriter start: document) 
@@ -204,9 +211,10 @@ PREditorPresenter >> renderAction [
 
 { #category : #actions }
 PREditorPresenter >> saveAction [
+	"SAVE button is pressed: save file, then print message if actually saved (if no cancel)"
 	self currentFile: (self currentFile save: textInput).
 	self updateTitle.
-	self inform: self currentFile fullName, ' is saved'
+	self currentFile isNew ifFalse: [self inform: self currentFile fullName, ' is saved'].
 ]
 
 { #category : #api }

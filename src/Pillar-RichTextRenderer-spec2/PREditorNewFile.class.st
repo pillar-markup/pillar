@@ -23,5 +23,6 @@ PREditorNewFile >> isNew [
 PREditorNewFile >> save: aText [
 	| selectedFile |
 	selectedFile := FDSaveFileDialog new openModal.
-	^ PREditorOpenedFile new file: selectedFile; save: aText; yourself.
+	selectedFile ifNotNil: [ ^ PREditorOpenedFile new file: selectedFile; save: aText; yourself. ]
+	
 ]
