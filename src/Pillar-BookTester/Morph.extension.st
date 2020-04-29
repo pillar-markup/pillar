@@ -14,3 +14,18 @@ Morph >> exportAsPNGSilentlyForPillarFileNamed: aFileName [
 	
 	
 ]
+
+{ #category : #'*Pillar-BookTester' }
+Morph >> exportAsPNGSilentlyForPillarFileNamed: aFileName in: aWorkingDirectory [
+	
+	"The png can be found under the file name YourBook/YourChapter/figures/screenshots/'YourChapter-SystemWindowName'.png"
+	"The name of the png file itself is Class>>Method-TimeAndDate"
+	| filePath |
+	filePath := (aWorkingDirectory / 'figures' / 'screenshots').
+	(filePath isFile)
+		ifFalse: [ filePath ensureCreateDirectory ].
+	PNGReadWriter putForm: self imageForm onFileNamed: 
+		filePath / aFileName.
+	
+	
+]
