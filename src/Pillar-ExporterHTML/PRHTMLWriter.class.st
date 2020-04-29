@@ -8,7 +8,7 @@ Class {
 		'footnoteID',
 		'noteDictionary'
 	],
-	#category : 'Pillar-ExporterHTML'
+	#category : #'Pillar-ExporterHTML'
 }
 
 { #category : #accessing }
@@ -113,7 +113,7 @@ PRHTMLWriter >> noteDictionary [
 
 { #category : #visiting }
 PRHTMLWriter >> start: anObject [
-	canvas := PRHTMLCanvas on: stream.
+	canvas := self canvasClass on: stream.
 	footnoteID := 0.
 	noteDictionary := Dictionary new.
 	super start: anObject.
