@@ -1,15 +1,15 @@
 "
-I am a visitor specialized in visiting books and testing their code. Therefore, I only redefine visitCodeBlock: and specify it with the different parameters the codelock may have.
+I am a visitor specialized in visiting books and testing their code. Therefore, I only redefine visitCodeBlock: and specify it with the different parameters the codeblock may have.
 
-I gather all results as PRBookTestResult s in allTestsResults.
+I gather all results as PRBookTestResults in the variable allTestsResults.
 
 visitCodeblock: uses executeAndReport: creating a PRBookTestResult with the result of the evaluation of the codeblock.
 
 checkAndReportFileNamed: starts the visit in a given file.
 
 Every codeblock can be specified with the following parameters implying a specialized visit:
-- testcase: The codeblock is an example defined as follows, 
-				[[[testcase=true
+- example: The codeblock is an example defined as follows, 
+				[[[example=true
 				(stimuli) >>> result
 				]]]
 	
@@ -28,12 +28,17 @@ Every codeblock can be specified with the following parameters implying a specia
 				]]]
 	
 - evaluation
-				[[[testcase=true
+				[[[eval=true
 				(stimuli) >>> result
 				]]]
 
 
-
+The process goes like that: 
+- when I visit a code block I create a result which is annotated with a prepared version of the codeblock body.
+- then depending on this preparation, I execute the code to validate it. 
+- each type have a specific way of being validated.
+- I report for each if is possible or not to check that the example provide the correct result, that the class 
+definition can compile or that the method definition can compile. 
 
 "
 Class {
@@ -45,7 +50,7 @@ Class {
 		'codeblockDict',
 		'finalStatus'
 	],
-	#category : 'Pillar-BookTester-Visitor'
+	#category : #'Pillar-BookTester-Visitor'
 }
 
 { #category : #testing }
@@ -70,10 +75,11 @@ PRBookTesterVisitor >> allTestResults: anObject [
 PRBookTesterVisitor >> checkAndReportFileNamed: aPath [
 	"The API we want to be using: 
 	Visitor checkAndReportFileNamed: path"
+	
 	| text |
 	text := (workingDirectory resolve: aPath) asFileReference readStreamDo: [:str | str contents].
 	self start: (PRPillarParser new parse: text).
-	self allTestResults do: [:each | self finalStatus: (self finalStatus and: each status) ]
+	self allTestResults do: [:each | self finalStatus: (self finalStatus & each status) ]
 		
 
 ]
@@ -102,8 +108,9 @@ PRBookTesterVisitor >> compileClassSideMethod: aResult [
 
 	| isCorrect |
 	[((self class environment at: (((aResult fragmentedText first) first trimBoth) asSymbol)) class)
-				compile: (aResult fragmentedText second,'
-	', aResult fragmentedText third).
+				compileSilently: (aResult fragmentedText second,'
+	', aResult fragmentedText third) 
+				classified: 'book tester'.
 	isCorrect := true]
 		on: Exception
 		do: [ :ex | aResult explanation: ex asString.
@@ -117,8 +124,9 @@ PRBookTesterVisitor >> compileMethod: aResult [
 
 	| isCorrect |
 	[(self class environment at: (((aResult fragmentedText first) first trimBoth) asSymbol))
-				compile: (aResult fragmentedText second,'
-	', aResult fragmentedText third).
+				compileSilently: (aResult fragmentedText second,'
+	', aResult fragmentedText third)
+				classified: 'book tester'.
 	isCorrect := true]
 		on: Exception
 		do: [ :ex | aResult explanation: ex asString.
@@ -147,28 +155,26 @@ PRBookTesterVisitor >> evaluate: aCodeBlock [
 PRBookTesterVisitor >> executeAndReportClassDefinition: result [
 	"Executes a codeblock with parameter classDefinition=true.
 	It verifies the compilation occurs without raising any Error/Exception
+	
 	[[[classDefinition
 	Object subclass: #Plop
 		instanceVariableNames: 'iv1 iv2'
 		classVariableNames: ''
 		package: 'Pillar-BookTesterResults'
 	]]]"
-	
+
 	| isCorrect |
 	result explanation: 'Class did not compile without raising an exception'.
 	isCorrect := false.
 	[ self class evaluate: result text.
-	  isCorrect := true ]
+	isCorrect := true ]
 		on: Exception
-		do: [ :ex | result explanation: ex asString.
-						isCorrect := false ].
+		do: [ :ex | 
+			result explanation: ex asString.
+			isCorrect := false ].
 	result status: isCorrect.
 	isCorrect
 		ifTrue: [ result explanation: 'Class created' ]
-	
-	
-		
-
 ]
 
 { #category : #compiling }
@@ -198,14 +204,15 @@ PRBookTesterVisitor >> executeAndReportExample: result [
 
 { #category : #compiling }
 PRBookTesterVisitor >> executeAndReportMethodDefinition: result [
-	| isCorrect typeString |
 	"Executes the method definition in the given class with the right name
+	
 	[[[methodDefinition
 	Plop >> plop1
 	^1
 	]]]
 	will define the method plop1 that returns 1 in the class Plop"
 	
+	| isCorrect typeString |
 	result explanation: 'Method did not compile without raising an exception'.
 	isCorrect := false.
 	"The method definition can be either 'classSide', 'wrongSyntax' or 'normalMethodDefinition'"
@@ -258,11 +265,11 @@ PRBookTesterVisitor >> validTests [
 
 { #category : #'visiting-codeblock' }
 PRBookTesterVisitor >> visitCodeblock: aCodeBlock [
-	
-	codeblockDict keys do: [ :k | 
-						  (aCodeBlock perform: k) 
-								ifTrue: [ self perform: (codeblockDict at: k) with: aCodeBlock] ]
 
+	codeblockDict keys
+		do: [ :k | 
+			(aCodeBlock perform: k)
+				ifTrue: [ self perform: (codeblockDict at: k) with: aCodeBlock ] ]
 ]
 
 { #category : #'visiting-codeblock' }
