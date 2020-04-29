@@ -60,7 +60,7 @@ PRBookTestGeneratorTest >> tearDown [
 { #category : #running }
 PRBookTestGeneratorTest >> testMethodCreationFailingCodeblock [
 	| codeBlock run |
-	testGenerator resultPackage: 'Pillar-BookTesterResults-TestResults'.
+	testGenerator resultPackage: self packageName .
 	testGenerator fileName: 'PRTTestMethodCreationFail'.
 	testGenerator createClassFrom: testGenerator fileName.
 	testGenerator codeBlockIndex: 1.
@@ -87,7 +87,7 @@ PRBookTestGeneratorTest >> testMethodCreationFailingCodeblock [
 PRBookTestGeneratorTest >> testMethodCreationSuccessfulCodeblock [
 
 	| codeBlock run |
-	testGenerator resultPackage: 'Pillar-BookTesterResults-TestResults'.
+	testGenerator resultPackage: self packageName.
 	testGenerator fileName: 'PRTTestMethodCreationSuccess'.
 	testGenerator createClassFrom: testGenerator fileName.
 	testGenerator codeBlockIndex: 1.
@@ -115,7 +115,7 @@ PRBookTestGeneratorTest >> testMethodCreationSyntaxErrorCodeblock [
 
 	| codeBlock run |
 	testGenerator fileName: 'PRTTestMethodCreationError'.
-	testGenerator resultPackage: 'Pillar-BookTesterResults-TestResults'.
+	testGenerator resultPackage: self packageName.
 	testGenerator createClassFrom: testGenerator fileName.
 	testGenerator codeBlockIndex: 1.
 	codeBlock := PRCodeblock content: '(a1 at: 1) at: 1 put: ''sally''. a1 >>> #(#(''sally''))' parameters: 'testcase=true'.
@@ -136,7 +136,7 @@ PRBookTestGeneratorTest >> testMethodCreationSyntaxErrorCodeblock [
 { #category : #running }
 PRBookTestGeneratorTest >> testMethodsPassed [
 
-	testGenerator resultPackage: 'Pillar-BookTesterResults-TestResults'.
+	testGenerator resultPackage: self packageName.
 	testGenerator workingDirectory: testingFileSystem.
 	testGenerator checkAndReportFileNamed: self class pillarFileNameForTest.	
 	self assert: testGenerator codeBlockIndex equals: 6.

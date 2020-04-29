@@ -4,7 +4,7 @@ Class {
 	#category : #'Pillar-ExporterCore-Base'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #clap }
 PRErrorTarget class >> buildClapCommandWithId: anId withPositionals: isWithPositionals withDescription: aDescription [
 
 	^ (ClapCommand id: anId asSymbol)
