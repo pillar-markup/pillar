@@ -32,7 +32,7 @@
 \subtitle{«& subtitle»}
 \author{«& author»}
 \institute{«& complement»}
-\date{\today}
+\date{«& date»}
 
 \addtobeamertemplate{navigation symbols}{}{%
     \usebeamerfont{footline}%
