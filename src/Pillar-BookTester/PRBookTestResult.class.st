@@ -6,7 +6,7 @@ I am composed of a text, a result and an explanation.
 The text shows the text of the codeblock I am linked to, the result is a boolean stating if the test has passed or not and the explanation is either 'Test passed', 'Test failed without raising an exception' or the exception raised by the test.
 
 For example:
-[[[ 
+[[[example=true 
 3+4
 >>> 7
 ]]]
@@ -16,10 +16,10 @@ text: ''3+4'
 result: true 
 explanation: 'Test passed'
 
-The fragmentedText instance variable is used by method or test definitions in order to keep class and method names. For example:
+The fragmentedText instance variable is used by method or test definitions to keep class and method names. For example:
 [[[methodDefinition
 Plop >> plop1
-^ '1'
+   ^ '1'
 ]]]
 
 text: 'Plop >> plop1
@@ -37,20 +37,18 @@ Class {
 		'status',
 		'explanation'
 	],
-	#category : 'Pillar-BookTester-Visitor'
+	#category : #'Pillar-BookTester-Visitor'
 }
 
 { #category : #accessing }
 PRBookTestResult >> characterizeMethodDefinition [
 	"Precondition: fragmentedText should be filled in before using this method"
-	
-	((self fragmentedText) isString)
-		ifTrue: [ ^ 'wrongSyntax' ].
 
-	((((self fragmentedText) first size) = 2)  
-		and: ((self fragmentedText) first) isArray) 
+	self fragmentedText isString
+		ifTrue: [ ^ 'wrongSyntax' ].
+	self fragmentedText first size = 2
+		& self fragmentedText first isArray
 		ifTrue: [ ^ 'classSide' ].
-		
 	^ 'normalMethodDefinition'
 ]
 

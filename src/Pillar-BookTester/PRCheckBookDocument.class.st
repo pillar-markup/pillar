@@ -1,7 +1,11 @@
+"
+I'm the output of a book checking phase. 
+I will report on stdout failing and working test.
+"
 Class {
 	#name : #PRCheckBookDocument,
 	#superclass : #PRAbstractOutputDocument,
-	#category : 'Pillar-BookTester-CommandLine'
+	#category : #'Pillar-BookTester-CommandLine'
 }
 
 { #category : #building }

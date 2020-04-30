@@ -14,7 +14,7 @@ PRCodeblock >> isClassDefinition [
 
 { #category : #'*Pillar-BookTester' }
 PRCodeblock >> isExample [
-	"a code may be testable annotation. It does not need to be be testable=true, testable alone is enough.
+	"a code may be testable annotation. It does not need to be be example=true, example alone is enough.
 	
 	[[[example
 			
@@ -38,7 +38,7 @@ PRCodeblock >> isExpectedFailure [
 
 { #category : #'*Pillar-BookTester' }
 PRCodeblock >> isMethodDefinition [
-	"a codeblock may be a method definition. It does not need to be be methodDefinition=true, methodDefinition alone is enough.
+	"a codeblock may be a method definition. It does not need to be methodDefinition=true, methodDefinition alone is enough.
 	
 	[[[methodDefinition
 			
@@ -56,14 +56,14 @@ PRCodeblock >> isTestDefinition [
 			
 	]]]
 	"
-	
-	^ (self hasParameter: 'testDefinition')
+	self flag: 'it looks like testdefinition was replaced by example'.
+	^ self hasParameter: 'testDefinition'
 ]
 
 { #category : #'*Pillar-BookTester' }
 PRCodeblock >> textForExample [
 	"returns a preformated text for codeblock testing"
-	"(PRCodeblock content: ' 3+4 >>> 7 ' parameters: (OrderedDictionary newFromKeys: #('testcase') andValues: #(true))) textForTestcase 
+	"(PRCodeblock content: ' 3+4 >>> 7 ' parameters: (OrderedDictionary newFromKeys: #('example') andValues: #(true))) textForExample 
 	  >>> '(3+4)>>>7'"
 	
 	('*>>>*' match: self text)
