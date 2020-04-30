@@ -1,0 +1,78 @@
+% -*- mode: latex; -*- mustache tags: {{=« »=}} «! the '&' below prevents HTML escaping. »
+
+% add the PATH to retrieve cls and sty beamer styles files
+\makeatletter
+\providecommand*{\input@path}{}
+\edef\input@path{{root/support/beamer/}\input@path}% prepend
+\makeatother
+
+% \documentclass{pharoslides} % format 4/3
+% \documentclass[aspectratio=169]{pharoslides} % format 16/9
+\documentclass[withvideo]{pharoslides} % format 16/9 + incrustation video
+
+\graphicspath{{./}{root/}{root/support/beamer/imgs/}}
+
+%Information to be included in the title page:
+\title{«& title»}
+\subtitle{«& subtitle»}
+\author{«& author»}
+\institute{«& complement»}
+\slidesid{«& slidesid»}
+
+\begin{document}
+
+\frame[plain]{\titlepage}
+
+«& content»
+
+
+% \setlength{\textwidth}{\originaltextwidth}
+\setbeamertemplate{background canvas}{\insertBorderForHandout}
+
+\begin{frame}[plain]
+
+\begin{minipage}{\originaltextwidth}
+\centering
+\large
+
+
+\vspace{2em}
+
+A course by
+
+\vspace{1em}
+
+\hspace{-20px}\includegraphics[height=32px]{inriaLogo}\hspace{3em}\raisebox{7px}{and}\hspace{3em}\raisebox{-6px}{\includegraphics[height=30px]{logoutop}}
+
+\vspace{2em}
+
+in collaboration with
+
+\vspace{1em}
+
+\includegraphics[height=40px]{unisciellogo}\hskip 1.5em%
+\raisebox{5px}{\includegraphics[height=30px]{unitlogo}}\hskip 2em%
+\raisebox{8px}{\includegraphics[height=24px]{univLilleLogo}}\hskip 2em%
+% \raisebox{3px}{\includegraphics[height=29px]{logo-IMT}}\hskip 2em%
+\raisebox{1px}{\includegraphics[height=36px]{IMT_Lille_Douai_Logo}}
+
+\vspace{2.5em}
+
+\includegraphics[width=50px]{by-nc-nd} \tiny \hskip 0.5em \raisebox{5px}{Inria 2020}
+
+\medskip
+
+\tiny
+Except where otherwise noted, this work is licensed under CC BY-NC-ND 3.0 France
+
+\url{https://creativecommons.org/licenses/by-nc-nd/3.0/fr/}
+
+\end{minipage}
+\end{frame}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,16 @@
+wget http://imakewebthings.com/deck.js/extensions/goto/deck.goto.css
+wget http://imakewebthings.com/deck.js/extensions/menu/deck.menu.css
+wget http://imakewebthings.com/deck.js/extensions/navigation/deck.navigation.css
+wget http://imakewebthings.com/deck.js/extensions/status/deck.status.css
+wget http://imakewebthings.com/deck.js/extensions/scale/deck.scale.css
+wget http://imakewebthings.com/deck.js/themes/style/web-2.0.css
+wget http://imakewebthings.com/deck.js/themes/transition/horizontal-slide.css
+wget http://imakewebthings.com/deck.js/core/print.css
+wget http://imakewebthings.com/deck.js/modernizr.custom.js
+wget http://imakewebthings.com/deck.js/jquery.min.js
+wget http://imakewebthings.com/deck.js/core/deck.core.js
+wget http://imakewebthings.com/deck.js/extensions/menu/deck.menu.js
+wget http://imakewebthings.com/deck.js/extensions/goto/deck.goto.js
+wget http://imakewebthings.com/deck.js/extensions/status/deck.status.js
+wget http://imakewebthings.com/deck.js/extensions/navigation/deck.navigation.js
+wget http://imakewebthings.com/deck.js/extensions/scale/deck.scale.js
