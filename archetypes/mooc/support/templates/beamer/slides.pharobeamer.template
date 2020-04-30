@@ -3,19 +3,19 @@
 % add the PATH to retrieve cls and sty beamer styles files
 \makeatletter
 \providecommand*{\input@path}{}
-\edef\input@path{{root/support/beamer/}\input@path}% prepend
+\edef\input@path{{_support/beamer/}\input@path}% prepend
 \makeatother
 
 % \documentclass{pharoslides} % format 4/3
 % \documentclass[aspectratio=169]{pharoslides} % format 16/9
 \documentclass[withvideo]{pharoslides} % format 16/9 + incrustation video
 
-\graphicspath{{./}{root/}{root/support/beamer/imgs/}}
+\graphicspath{{./}{_support/beamer/imgs/}}
 
 %Information to be included in the title page:
 \title{«& title»}
 \subtitle{«& subtitle»}
-\author{«& author»}
+\author{«& attribution»}
 \institute{«& complement»}
 \slidesid{«& slidesid»}
 

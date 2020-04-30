@@ -3,14 +3,14 @@
 % add the PATH to retrieve cls and sty beamer styles files
 \makeatletter
 \providecommand*{\input@path}{}
-\edef\input@path{{../../support/beamer/}\input@path}% prepend
+\edef\input@path{{_support/beamer/}\input@path}% prepend
 \makeatother
 
 \documentclass[handout]{pharoslides}
 % \documentclass[aspectratio=169]{pharoslides} % format 16/9
 % \documentclass[withvideo]{pharoslides} % format 16/9 + incrustation video
 
-\graphicspath{{./figures/}{../}{../../support/beamer/imgs/}}
+\graphicspath{{./figures/}{../}{_support/beamer/imgs/}}
 
 %Information to be included in the title page:
 \title{<%title%>}
