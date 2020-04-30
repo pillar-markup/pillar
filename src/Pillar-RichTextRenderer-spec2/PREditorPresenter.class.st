@@ -54,7 +54,18 @@ PREditorPresenter >> changeAction [
 
 { #category : #actions }
 PREditorPresenter >> cleanAction [
-	textInput text: ''
+	textInput text: ''.
+	textOutput text: ''
+]
+
+{ #category : #accessing }
+PREditorPresenter >> currentFile [
+	^ currentFile ifNil: [ ^ currentFile := FDSaveFileDialog new openModal ]
+]
+
+{ #category : #accessing }
+PREditorPresenter >> currentFileName [
+	^ currentFile ifNil: [ ^ 'New File' ] ifNotNil: [ ^ currentFile basename]
 ]
 
 { #category : #actions }
@@ -63,7 +74,7 @@ PREditorPresenter >> exampleAction [
 	textOutput text: ''.
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 PREditorPresenter >> initialExtent [
 	^ 800@600
 ]
@@ -96,13 +107,21 @@ PREditorPresenter >> initializePresenters [
 PREditorPresenter >> initializeWindow: aWindowPresenter [
 	aWindowPresenter
 		title: self title;
-		initialExtent: self initialExtent
+		initialExtent: self initialExtent;
+		windowIcon: (self iconNamed: #glamorousBrowseIcon)
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 PREditorPresenter >> menu [
 	^ menu ifNil: [ ^ menu := self newMenuBar
 		addGroup: [ :group | 
+			group 
+				addItem: [ :item | 
+					item
+						name: 'New';
+						description: 'New document';
+						icon: (self iconNamed: #pageIcon);
+						action: [ self newDocAction ] ].
 			group
 				addItem: [ :item | 
 					item
@@ -118,12 +137,13 @@ PREditorPresenter >> menu [
 						description: 'Save file';
 						shortcut: $s meta;
 						icon: (self iconNamed: #smallSaveIcon);
-						action: [ self inform: 'Save File' ] ].
+						action: [ self saveAction ] ].
 			group 
 				addItem: [ :item | 
 					item
 						name: 'Clean';
-						icon: (self iconNamed: #smallCancelIcon);
+						description: 'Erase input text';
+						icon: (self iconNamed: #smallCancel);
 						action: [ self cleanAction ] ] ];
 		addGroup: [ :group | 
 			group
@@ -139,28 +159,37 @@ PREditorPresenter >> menu [
 					item
 						name: 'Get example';
 						description: 'Give a text input example in current syntax';
+						icon: (self iconNamed: #smallDoItIcon);
 						action: [ self exampleAction ] ].
 			group
 				addItem: [ :item | 
 					item
 						name: 'Change input syntax';
 						description: 'Switch with MicroDown or Pillar';
+						icon: (self iconNamed: #changeUpdateIcon);
 						action: [ self changeAction ] 
 				]	
 		]; yourself ]
 ]
 
 { #category : #actions }
-PREditorPresenter >> openAction [
-	| fileManager |
-	fileManager := PRFileManager new editorPresenter: self.
-	fileManager morphicView openInWorld
+PREditorPresenter >> newDocAction [
+	self cleanAction.
+	currentFile := nil.
+	self updateTitle
 ]
 
 { #category : #actions }
-PREditorPresenter >> openReference: selectedFile [
-	textInput text: selectedFile  contents.
-	currentFile := selectedFile
+PREditorPresenter >> openAction [
+	| openFileDialog |
+	openFileDialog := FDOpenFileDialog new whenSelected: [
+		:selectedFile |
+			currentFile := selectedFile.
+			textInput text: selectedFile contents.
+			textOutput text: ''.
+			self updateTitle
+		].
+	openFileDialog openWithSpec 
 ]
 
 { #category : #actions }
@@ -168,6 +197,15 @@ PREditorPresenter >> renderAction [
 	| document |
 	document := parser new parse: textInput text.
 	textOutput text: (morphWriter start: document) 
+]
+
+{ #category : #actions }
+PREditorPresenter >> saveAction [
+	self currentFile writeStreamDo: [ 
+		:str | str nextPutAll: textInput text asString; truncate: textInput text asString size 
+	].
+	self updateTitle.
+	self inform: self currentFile fullName, ' is saved'
 ]
 
 { #category : #api }
@@ -182,5 +220,10 @@ PREditorPresenter >> textInputText: aStringOrNil [
 
 { #category : #accessing }
 PREditorPresenter >> title [
-	^ 'Pillar RichText-based Editor'
+	^ 'Pillar Editor - ', self currentFileName
+]
+
+{ #category : #api }
+PREditorPresenter >> updateTitle [
+	self window title: self title.
 ]
