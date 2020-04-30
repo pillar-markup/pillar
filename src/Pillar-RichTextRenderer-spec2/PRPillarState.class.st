@@ -45,7 +45,7 @@ PRPillarState >> name [
 
 { #category : #accessing }
 PRPillarState >> next [
-	^ PRMicroDownState 
+	^ PRMicroDownState new
 ]
 
 { #category : #accessing }

@@ -37,7 +37,7 @@ PREditorPresenter class >> open [
 { #category : #actions }
 PREditorPresenter >> changeAction [
 	"CHANGE button is pressed: change input syntax with next syntax state"
-	syntaxState := syntaxState next new.
+	syntaxState := syntaxState next.
 	parser := syntaxState parser.
 	self screenLabelWith: syntaxState name.
 ]
