@@ -10,7 +10,7 @@
 % \documentclass[aspectratio=169]{pharoslides} % format 16/9
 \documentclass[withvideo]{pharoslides} % format 16/9 + incrustation video
 
-\graphicspath{{./}{_support/beamer/imgs/}}
+\graphicspath{{./}{./figures/}{_support/beamer/imgs/}}
 
 %Information to be included in the title page:
 \title{«& title»}
