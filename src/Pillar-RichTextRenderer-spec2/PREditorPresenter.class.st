@@ -213,7 +213,7 @@ PREditorPresenter >> renderAction [
 { #category : #actions }
 PREditorPresenter >> saveAction [
 	"SAVE button is pressed: save file, then print message if actually saved (if no cancel)"
-	self currentFile: (self currentFile save: textInput).
+	self currentFile: (self currentFile save: textInput withExtension: syntaxState extension).
 	self updateTitle.
 	self currentFile isNew ifFalse: [self inform: self currentFile fullName, ' is saved'].
 ]

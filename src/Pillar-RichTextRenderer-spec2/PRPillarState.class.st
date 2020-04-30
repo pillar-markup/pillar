@@ -39,6 +39,11 @@ Point class >> new
 ]
 
 { #category : #accessing }
+PRPillarState >> extension [
+	^ 'pillar'
+]
+
+{ #category : #accessing }
 PRPillarState >> name [
 	^ 'Pillar'
 ]

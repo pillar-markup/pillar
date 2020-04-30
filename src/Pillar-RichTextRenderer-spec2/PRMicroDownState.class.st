@@ -39,6 +39,11 @@ Point class >> new
 ]
 
 { #category : #accessing }
+PRMicroDownState >> extension [
+	^ 'microdown'
+]
+
+{ #category : #accessing }
 PRMicroDownState >> name [
 	^ 'MicroDown'
 ]

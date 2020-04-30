@@ -33,6 +33,6 @@ PREditorFile >> isNew [
 ]
 
 { #category : #action }
-PREditorFile >> save: aText [
+PREditorFile >> save: aText withExtension: anExtension [
 	^ self subclassResponsibility 
 ]
