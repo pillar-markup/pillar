@@ -3,19 +3,13 @@ Class {
 	#superclass : #SpPresenter,
 	#instVars : [
 		'inputFile',
-		'syntaxLabel',
-		'syntaxInput',
+		'syntaxScreen',
 		'parser',
 		'formatLabel',
 		'formatInput',
 		'target',
-		'directoryLabel',
-		'directoryText',
-		'directorySearchButton',
+		'directoryScreen',
 		'project',
-		'nameLabel',
-		'nameInput',
-		'name',
 		'confirmButton',
 		'cancelButton'
 	],
@@ -25,10 +19,9 @@ Class {
 { #category : #specs }
 PRExportPresenter class >> defaultSpec [
 	^ SpBoxLayout newVertical 
-			add: (SpBoxLayout newHorizontal	add: #syntaxLabel; add: #syntaxInput) withConstraints: [:c | c height: self toolbarHeight ];
 			add: (SpBoxLayout newHorizontal	add: #formatLabel; add: #formatInput) withConstraints: [:c | c height: self toolbarHeight ];
-			add: (SpBoxLayout newHorizontal	add: #directoryLabel; add: #directoryText; add: #directorySearchButton) withConstraints: [:c | c height: self toolbarHeight ];
-			add: (SpBoxLayout newHorizontal	add: #nameLabel; add: #nameInput) withConstraints: [:c | c height: self toolbarHeight ];
+			add: #syntaxScreen withConstraints: [:c | c height: self toolbarHeight ];
+			add: #directoryScreen withConstraints: [:c | c height: self toolbarHeight ];
 			add: (SpBoxLayout newHorizontal	add: #cancelButton; add: #confirmButton) withConstraints: [:c | c height: self toolbarHeight ];
 		yourself.
 ]
@@ -39,27 +32,15 @@ PRExportPresenter class >> open [
 	self new openDialogWithSpec
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #creation }
 PRExportPresenter class >> withInputFile: aFileReference withParser: aParser [
-	^ self new inputFile: aFileReference; parser: aParser; yourself
+	^ self basicNew inputFile: aFileReference; parser: aParser; initialize; yourself
 ]
 
 { #category : #initialization }
 PRExportPresenter >> connectPresenters [
-	self parser: syntaxInput selectedItem parser.
 	
 	self target: formatInput selectedItem.
-	
-	directorySearchButton action: [ 
-		FDOpenDirectoryDialog new 
-			whenSelected: [ :selectedDirectory | 
-				self project: (PRProject on: selectedDirectory).
-				directoryText text: selectedDirectory basename
-			];
-			openWithSpec
-	].
-	
-	self name: nameInput text.
 	
 	cancelButton action: [ self delete ].
 	
@@ -81,36 +62,26 @@ PRExportPresenter >> formatList [
 
 { #category : #initialization }
 PRExportPresenter >> initialExtent [
-	^ 500@200
+	^ 600@200
 ]
 
 { #category : #initialization }
 PRExportPresenter >> initializePresenters [
-	syntaxLabel := self newLabel label: 'Input syntax:'.
-	syntaxInput := SpLabelledDropList new
-		items: self syntaxList;
-		display: [ :item | item name asString ].
 	
 	formatLabel := self newLabel label: 'Export format:'.
 	formatInput := SpLabelledDropList new
 		items: self formatList;
 		display: [ :item | item extension asString ].
 	
-	directoryLabel := self newLabel label: 'Output directory:'.
-	directoryText := self newTextInput text: '...'; enabled: false.
-	directorySearchButton := self newButton icon: (self iconNamed: #glamorousFolderIcon).
-	
-	nameLabel := self newLabel label: 'Name of final file: '.
-	nameInput := self newTextInput placeholder: 'type your output name (without extension)'.
+	syntaxScreen := self newLabel label: 'Input syntax: ', self parser name.
+	directoryScreen := self newLabel label: 'Final export directory: ', self inputFile fullName, '\_result'.
 	
 	cancelButton := self newButton label: 'Cancel'.
 	confirmButton := self newButton label: 'Export'.
 	
 	self focusOrder 
-		add: syntaxLabel; add: syntaxInput;
 		add: formatLabel; add: formatInput;
-		add: directoryLabel; add: directoryText; add: directorySearchButton;
-		add: nameLabel; add: nameInput;
+		add: syntaxScreen; add: directoryScreen;
 		add: cancelButton; add: confirmButton
 ]
 
@@ -133,16 +104,6 @@ PRExportPresenter >> inputFile: aFile [
 ]
 
 { #category : #accessing }
-PRExportPresenter >> name [
-	^ name ifNil: [ ^ self inputFile basename ]
-]
-
-{ #category : #accessing }
-PRExportPresenter >> name: aString [
-	name := aString
-]
-
-{ #category : #accessing }
 PRExportPresenter >> parser [
 	"required at creation"
 	^ parser
@@ -161,11 +122,6 @@ PRExportPresenter >> project [
 { #category : #accessing }
 PRExportPresenter >> project: aPRProject [
 	project := aPRProject 
-]
-
-{ #category : #list }
-PRExportPresenter >> syntaxList [
-	^ PRSyntaxState subclasses collect: [ :class | class new ]
 ]
 
 { #category : #accessing }
