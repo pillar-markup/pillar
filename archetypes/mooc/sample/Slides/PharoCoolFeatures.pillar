@@ -1,0 +1,66 @@
+{
+	"title":"Pharo Features (part)"
+}
+
+
+${slide:title=Outline}$
+
+Pharo benefits from an elegant design that enables a relatively simple implementation of many advanced programming techniques. 
+
++ >file://figures/LogoPharo.png|width=30+
+
+${slide:title=Optional fusion}$
+
+The optional fusion of a developed program and development environment
+
+- In Pharo, the border between your program and IDE can be eliminated.
+- You may directly use your code for a visual representation of your data structures during debugging, and easily modify the built-in tools to fit your needs, etc.
+
+${slide:title=Advanced run-time reflection}$
+
+- Pharo exposes everything to the programmer. Every object in the system can be examined and changed with respect to the object encapsulation rules.
+- Access all instances of a classes.
+- Enumerate all objects that have reference to some object.
+- Switch references between objects.
+
+
+${slide:title=Advanced run-time reflection 2}$
+
+- Pharo exposes everything to the programmer. Every object in the system can be examined and changed with respect to the object encapsulation rules.
+- Access all instances of a classes.
+- Enumerate all objects that have reference to some object.
+- Switch references between objects.
+
+${slide:title=Pure object-oriented approach}$ 
+
+- In Pharo, **everything** is an object.
+- No static, no primitive types, no override, no overloading, no generics 
+- This purity and uniformity in the system and language design makes Pharo clean and comfortable to learn.
+
+${slide:title=Software as objects}$ 
+
+- Uses files for serialization of source code, but, by default, it does not use files to edit them. 
+- It provides the tools to browse and modify the classes, methods, class comments and other program entities. 
+- Pharo has a much better understanding of relations between them and allows easier navigation and refactorings.
+
+
+${slide:title=Simple language syntax}$
+
+Complete syntax fits on one post card
+- The language syntax has only six reserved words
+- Since the grammar is LL(1), it is very fast to parse
+- Easy to learn
+- Pharo is designed for message passing without argument ambiguity
+
+${slide:title=Fast resumable exceptions}$
+
+- Pharo provides advanced exceptions system that can do things like resuming from a raised exception with providing an alternative result so your program can recover from failures.
+- Their fast speed allows them to be used for clean information-flow mechanisms.
+
+${slide:title=Feels different and powerfull}$
+
+- http://www.pharo.org
+
+
+
+

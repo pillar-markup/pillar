@@ -137,7 +137,7 @@ PRProject >> defaultOutputDirectoryName [
 { #category : #accessing }
 PRProject >> defaultTarget [
 	| defaultExport |
-	defaultExport := (self configuration defaultExport) ifEmpty: [ ^ PRAbsentTarget].
+	defaultExport := [self configuration defaultExport ifEmpty: [ ^ PRAbsentTarget]] ifError: [ ^ PRAbsentTarget ]  .
 	^ PRTarget targetByFormatName: defaultExport
 ]
 
@@ -223,6 +223,18 @@ PRProject >> tableOfContents [
 		currentFile: tocFileName;
 		inProcessFiles: (Array with: self baseDirectory / tocFileName);
 		visit: inputDoc
+]
+
+{ #category : #'as yet unclassified' }
+PRProject >> updateBuild [
+	| destination reference |
+	reference := FileLocator imageDirectory parent / 'archetypes'.
+	destination := FileLocator imageDirectory / 'archetypes'.
+	
+	destination ensureDeleteAll.
+
+	"Because we copy the archetypes folder from parent into build/archetypes"
+	reference copyAllTo: destination
 ]
 
 { #category : #actions }

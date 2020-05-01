@@ -29,11 +29,6 @@ ClapPillarUpdateTemplateCommand >> execute [
 	self project installTemplateNamed: self requestedTemplate
 ]
 
-{ #category : #accessing }
-ClapPillarUpdateTemplateCommand >> project [
-	^ super project
-]
-
 { #category : #activation }
 ClapPillarUpdateTemplateCommand >> requestedTemplate [
 	 ^ (arguments at: #requestedTemplate) value: self
