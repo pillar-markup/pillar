@@ -3,9 +3,10 @@ Class {
 	#superclass : #PRObject,
 	#instVars : [
 		'name',
-		'project'
+		'project',
+		'directory'
 	],
-	#category : 'Pillar-Project-Core'
+	#category : #'Pillar-Project-Core'
 }
 
 { #category : #testing }
@@ -17,7 +18,12 @@ PRArchetype class >> isAbstract [
 { #category : #accessing }
 PRArchetype >> directory [
 
-	^  FileLocator imageDirectory / 'archetypes' / name
+	^ directory ifNil: [ ^ FileLocator imageDirectory / 'archetypes' / name ] 
+]
+
+{ #category : #accessing }
+PRArchetype >> directory: aDirectory [
+	directory := aDirectory
 ]
 
 { #category : #actions }

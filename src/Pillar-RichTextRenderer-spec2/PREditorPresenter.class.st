@@ -10,6 +10,7 @@ Class {
 		'textInput',
 		'textOutput',
 		'currentFile',
+		'configPillarFolder',
 		'morphWriter',
 		'parser'
 	],
@@ -49,6 +50,24 @@ PREditorPresenter >> cleanAction [
 	textOutput text: ''
 ]
 
+{ #category : #actions }
+PREditorPresenter >> configAction [
+	"CONFIG button is pressed: open window"
+	| selectedDir |
+	selectedDir := FDOpenDirectoryDialog new defaultName: 'pillar'; title: 'Select pillar directory in your installation'; openModal.
+	selectedDir ifNotNil: [ self configPillarFolder: selectedDir].
+]
+
+{ #category : #accessing }
+PREditorPresenter >> configPillarFolder [
+	^ configPillarFolder
+]
+
+{ #category : #accessing }
+PREditorPresenter >> configPillarFolder: aDirectory [
+	configPillarFolder := aDirectory 
+]
+
 { #category : #accessing }
 PREditorPresenter >> currentFile [
 	^ currentFile ifNil: [ ^ currentFile := PREditorNewFile new ]
@@ -69,8 +88,12 @@ PREditorPresenter >> exampleAction [
 { #category : #actions }
 PREditorPresenter >> exportAction [
 	"EXPORT button is pressed: open export window"
+	"check conditions to export"
 	self saveAction.
-	self currentFile isNew ifFalse: [ (PRExportPresenter withInputFile: self currentFile file withParser: syntaxState parser ) openWithSpec  ]
+	self currentFile isNew ifTrue: [ ^ self inform: 'Please save your file before export' ].
+	self configPillarFolder ifNil: [self configAction].
+	self configPillarFolder ifNil: [ ^ self inform: 'Please localise your pillar directory in configuration' ].
+	(PRExportPresenter withInputFile: self currentFile file withParser: syntaxState parser withConfigDirectory: self configPillarFolder) openWithSpec
 	
 ]
 
@@ -177,7 +200,14 @@ PREditorPresenter >> menu [
 						name: 'Export';
 						description: 'Build your document in export formt you want';
 						icon: (self iconNamed: #glamorousOpenFromUrlIcon);
-						action: [ self exportAction ] ] ]; yourself ]
+						action: [ self exportAction ] ].
+			group
+				addItem: [ :item | 
+					item
+						name: 'Set config';
+						description: 'Give your Pillar installation directory path to be able to export';
+						icon: (self iconNamed: #configIcon);
+						action: [ self configAction ] ] ]; yourself ]
 ]
 
 { #category : #actions }
@@ -215,7 +245,8 @@ PREditorPresenter >> saveAction [
 	"SAVE button is pressed: save file, then print message if actually saved (if no cancel)"
 	self currentFile: (self currentFile save: textInput withExtension: syntaxState extension).
 	self updateTitle.
-	self currentFile isNew ifFalse: [self inform: self currentFile fullName, ' is saved'].
+	self currentFile isNew ifFalse: [
+		self inform: self currentFile fullName, ' is saved'.].
 ]
 
 { #category : #api }

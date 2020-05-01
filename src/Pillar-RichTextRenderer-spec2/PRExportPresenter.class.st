@@ -10,6 +10,7 @@ Class {
 		'target',
 		'directoryScreen',
 		'project',
+		'configDirectory',
 		'confirmButton',
 		'cancelButton'
 	],
@@ -33,26 +34,45 @@ PRExportPresenter class >> open [
 ]
 
 { #category : #creation }
-PRExportPresenter class >> withInputFile: aFileReference withParser: aParser [
-	^ self basicNew inputFile: aFileReference; parser: aParser; initialize; yourself
+PRExportPresenter class >> withInputFile: aFileReference withParser: aParser withConfigDirectory: aDirectory [
+	^ self basicNew inputFile: aFileReference; parser: aParser; configDirectory: aDirectory; initialize; yourself
+]
+
+{ #category : #accessing }
+PRExportPresenter >> configDirectory [
+	^ configDirectory 
+]
+
+{ #category : #accessing }
+PRExportPresenter >> configDirectory: aDirectory [
+	configDirectory := aDirectory
 ]
 
 { #category : #initialization }
 PRExportPresenter >> connectPresenters [
 	
-	self target: formatInput selectedItem.
-	
 	cancelButton action: [ self delete ].
 	
-	confirmButton action: [ self exportAction. self delete ].
+	confirmButton action: [ 
+		self target: formatInput selectedItem.
+		self exportAction. 
+		self delete ].
 	
 
 ]
 
 { #category : #actions }
 PRExportPresenter >> exportAction [
-	self project installArchetypeNamed: 'book'.
-	self target buildOnly: self inputFile asArray ; buildWithClapArguments: self project
+	| inputFileDirectory |
+	self project installArchetypeNamed: 'book' fromDirectory: (self configDirectory / 'archetypes' / 'book') asFileReference.
+	self target buildOnly: self inputFile asArray ; buildOn: self project.
+	"delete temp files created"
+	inputFileDirectory := self inputFile parent.
+	(inputFileDirectory / 'Chapters') deleteAll.
+	(inputFileDirectory / '_support') deleteAll.
+	(inputFileDirectory / 'index.pillar') delete.
+	(inputFileDirectory / 'pillar.conf') delete.
+	self inform: self inputFile basename, 'is exported!'
 ]
 
 { #category : #list }
