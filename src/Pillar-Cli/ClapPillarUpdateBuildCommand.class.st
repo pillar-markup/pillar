@@ -26,8 +26,3 @@ ClapPillarUpdateBuildCommand class >> commandSpecification [
 ClapPillarUpdateBuildCommand >> execute [
 	self project updateBuild
 ]
-
-{ #category : #accessing }
-ClapPillarUpdateBuildCommand >> project [
-	^ super project
-]

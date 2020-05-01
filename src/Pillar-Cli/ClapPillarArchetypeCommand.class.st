@@ -35,11 +35,6 @@ ClapPillarArchetypeCommand >> execute [
 	self project installArchetypeNamed: self requestedArchetype asString.
 ]
 
-{ #category : #accessing }
-ClapPillarArchetypeCommand >> project [
-	^ super project
-]
-
 { #category : #activation }
 ClapPillarArchetypeCommand >> requestedArchetype [
 	 ^ (arguments at: #requestedArchetype) value: self
