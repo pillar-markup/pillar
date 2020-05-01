@@ -27,12 +27,6 @@ PRExportPresenter class >> defaultSpec [
 		yourself.
 ]
 
-{ #category : #examples }
-PRExportPresenter class >> open [
-	<example>
-	self new openDialogWithSpec
-]
-
 { #category : #creation }
 PRExportPresenter class >> withInputFile: aFileReference withParser: aParser withConfigDirectory: aDirectory [
 	^ self basicNew inputFile: aFileReference; parser: aParser; configDirectory: aDirectory; initialize; yourself
@@ -61,17 +55,24 @@ PRExportPresenter >> connectPresenters [
 
 ]
 
+{ #category : #deleting }
+PRExportPresenter >> deleteBookArchetypeDataIn: aDirectory [
+	(aDirectory / 'Chapters') exists ifTrue: [ (aDirectory / 'Chapters') deleteAll ] .
+	(aDirectory / '_support') exists ifTrue: [ (aDirectory / '_support') deleteAll ] .
+	(aDirectory / 'index.pillar') exists ifTrue: [ (aDirectory / 'index.pillar') delete ] .
+	(aDirectory / 'pillar.conf') exists ifTrue: [ (aDirectory / 'pillar.conf') delete ] .
+]
+
 { #category : #actions }
 PRExportPresenter >> exportAction [
 	| inputFileDirectory |
-	self project installArchetypeNamed: 'book' fromDirectory: (self configDirectory / 'archetypes' / 'book') asFileReference.
-	self target buildOnly: self inputFile asArray ; buildOn: self project.
-	"delete temp files created"
 	inputFileDirectory := self inputFile parent.
-	(inputFileDirectory / 'Chapters') deleteAll.
-	(inputFileDirectory / '_support') deleteAll.
-	(inputFileDirectory / 'index.pillar') delete.
-	(inputFileDirectory / 'pillar.conf') delete.
+	"here: it's hardcoded for book archetype. It's a first version. We need to change it if we generalize to other archetypes/templates."
+	self deleteBookArchetypeDataIn: inputFileDirectory.
+	self project installArchetypeNamed: 'book' fromDirectory: (self configDirectory / 'archetypes' / 'book') asFileReference.	
+	self target buildOnly: self inputFile asArray ; buildOn: self project.
+	"remove temp data from archetypes/book"
+	self deleteBookArchetypeDataIn: inputFileDirectory.
 	self inform: self inputFile basename, 'is exported!'
 ]
 
