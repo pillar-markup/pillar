@@ -23,7 +23,7 @@ PREditorNewFile >> isNew [
 PREditorNewFile >> save: aText withExtension: anExtension [
 	| selectedFile |
 	selectedFile := FDSaveFileDialog new defaultName: ('my_document.', anExtension asString); openModal.
-	selectedFile ifNotNil: [ ^ PREditorOpenedFile new file: selectedFile; save: aText; yourself. ].
+	selectedFile ifNotNil: [ ^ PREditorOpenedFile new file: selectedFile; save: aText withExtension: anExtension; yourself. ].
 	^ self
 	
 ]
