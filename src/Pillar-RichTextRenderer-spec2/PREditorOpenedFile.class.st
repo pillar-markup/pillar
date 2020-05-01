@@ -24,7 +24,7 @@ PREditorOpenedFile >> save: aText withExtension: anExtension [
 	self file writeStreamDo: [ 
 		:str | str nextPutAll: aText text asString; truncate: aText text asString size 
 	].
-	(self file extension = anExtension asString) ifFalse: [ self file renameTo: self file withoutExtension,'.', anExtension asString].
+	(self file extension = anExtension asString) ifFalse: [ self file renameTo: self file withoutExtension basename,'.', anExtension asString].
 	^ self
 
 ]
