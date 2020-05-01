@@ -216,6 +216,18 @@ PRProject >> tableOfContents [
 		visit: inputDoc
 ]
 
+{ #category : #'as yet unclassified' }
+PRProject >> updateBuild [
+	| destination reference |
+	reference := FileLocator imageDirectory parent / 'archetypes'.
+	destination := FileLocator imageDirectory / 'archetypes'.
+	
+	destination ensureDeleteAll.
+
+	"Because we copy the archetypes folder from parent into build/archetypes"
+	reference copyAllTo: destination
+]
+
 { #category : #actions }
 PRProject >> wipeout [
 	
