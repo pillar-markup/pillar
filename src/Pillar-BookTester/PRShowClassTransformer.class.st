@@ -15,8 +15,8 @@ Class {
 PRShowClassTransformer >> visitShowClassAnnotation: aPRShowClassAnnotation [
 	| textOfClassDefinition |
 	textOfClassDefinition := self class environment
-		at: aPRShowClassAnnotation
-		ifPresent: [ :classShown | classShown definition ] shownClassName
+		at: aPRShowClassAnnotation shownClassName
+		ifPresent: [ :classShown | classShown definition ]
 		ifAbsent: [ 'The system was looking for ' , aPRShowClassAnnotation shownClassName , ' but did not find it' ].
 	self
 		replace:
