@@ -31,10 +31,7 @@ PRSectionTransformer class >> maxDepthLevelForSection [
 
 { #category : #testing }
 PRSectionTransformer >> aSectionIsOpen [
-	sections
-		do: [ :e | 
-			e isNotNil
-				ifTrue: [ ^ true ] ].
+	sections do: [ :e | e ifNotNil: [ ^ true ] ].
 	^ false
 ]
 
@@ -82,8 +79,7 @@ PRSectionTransformer >> currentSectionIndex [
 	index := MaxDepthLevel.
 	sections reverse
 		do: [ :each | 
-			each isNotNil
-				ifTrue: [ ^ index ].
+			each ifNotNil: [ ^ index ].
 			index := index - 1 ].
 	^ -1
 ]

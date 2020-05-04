@@ -66,12 +66,12 @@ PRInternalLink >> anchor: aString [
 
 { #category : #testing }
 PRInternalLink >> hasAnchor [
-	^ self anchor notNil
+	^ self anchor isNotNil
 ]
 
 { #category : #testing }
 PRInternalLink >> hasReference [
-	^ self reference notNil
+	^ self reference isNotNil
 ]
 
 { #category : #comparing }
@@ -88,11 +88,9 @@ PRInternalLink >> isInternal [
 PRInternalLink >> renderAsText [
 	| text |
 	text := String new writeStream.
-	self reference isNotNil
-		ifTrue: [ text nextPutAll: self reference ].
+	self reference ifNotNil: [ :ref | text nextPutAll: ref ].
 	self hasAnchor
-		ifTrue: [ 
-			text
+		ifTrue: [ text
 				nextPutAll: '@';
 				nextPutAll: self anchor ].
 	^ text contents

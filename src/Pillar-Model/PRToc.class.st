@@ -12,7 +12,7 @@ Class {
 		'children',
 		'fileReference'
 	],
-	#category : 'Pillar-Model-Toc'
+	#category : #'Pillar-Model-Toc'
 }
 
 { #category : #testing }
@@ -104,7 +104,7 @@ PRToc >> fileReference: anObject [
 
 { #category : #testing }
 PRToc >> hasFileReference [
-	^ fileReference notNil
+	^ fileReference isNotNil
 ]
 
 { #category : #comparing }

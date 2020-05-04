@@ -29,7 +29,7 @@ PRAbstractScriptLanguage class >> acceptedLanguagesRegex [
 
 { #category : #private }
 PRAbstractScriptLanguage class >> concreteClassFor: aLanguageName [
-	aLanguageName isNil ifTrue: [ ^ PRUnspecifiedScriptLanguage ].
+	aLanguageName ifNil: [ ^ PRUnspecifiedScriptLanguage ].
 	^ (self withAllConcreteClasses copyWithout: PRUnsupportedScriptLanguage)
 		detect: [ :cl | cl acceptLanguage: aLanguageName ]
 		ifNone: [ PRUnsupportedScriptLanguage ]

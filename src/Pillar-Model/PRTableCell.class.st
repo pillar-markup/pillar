@@ -89,7 +89,7 @@ PRTableCell >> initialize [
 
 { #category : #testing }
 PRTableCell >> isAligned [
-	^ self align notNil
+	^ self align isNotNil
 ]
 
 { #category : #testing }

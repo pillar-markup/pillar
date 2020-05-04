@@ -15,7 +15,7 @@ Class {
 		'nesting',
 		'markupsToEscape'
 	],
-	#category : 'Pillar-ExporterPillar'
+	#category : #'Pillar-ExporterPillar'
 }
 
 { #category : #private }
@@ -274,8 +274,10 @@ PRPillarWriter >> visitPreformatted: aPreformatted [
 { #category : #'visiting-document' }
 PRPillarWriter >> visitRaw: anObject [
 	canvas raw: (self markupFor: anObject).
-	anObject type isNil
-		ifFalse: [ canvas nextPutAll: anObject type; raw: PRPillarParser defaultMarkupRawType ].
+	anObject type
+		ifNotNil: [ canvas
+				nextPutAll: anObject type;
+				raw: PRPillarParser defaultMarkupRawType ].
 	canvas raw: anObject text.
 	canvas raw: (self markupEndFor: anObject)
 ]
@@ -283,24 +285,14 @@ PRPillarWriter >> visitRaw: anObject [
 { #category : #'visiting-document' }
 PRPillarWriter >> visitReference: aReference [
 	aReference hasAlias
-		ifTrue:
-			[ 
-			super visitReference: aReference.
+		ifTrue: [ super visitReference: aReference.
 			canvas raw: PRPillarParser defaultMarkupReferenceAlias ].
-	canvas
-		raw:
-			(aReference reference isNil
-				ifTrue: [ '' ]
-				ifFalse: [ aReference reference ]).
+	canvas raw: (aReference reference ifNil: [ '' ]).
 	aReference hasAnchor
-		ifTrue:
-			[ 
-			canvas raw: PRPillarParser defaultMarkupReferenceAnchor.
+		ifTrue: [ canvas raw: PRPillarParser defaultMarkupReferenceAnchor.
 			canvas nextPutAll: aReference anchor ].
 	aReference hasParameters
-		ifTrue:
-			[ 
-			canvas raw: PRPillarParser defaultMarkupParameter.
+		ifTrue: [ canvas raw: PRPillarParser defaultMarkupParameter.
 			self visitParametersOf: aReference ]
 ]
 
@@ -330,17 +322,15 @@ PRPillarWriter >> visitText: anObject [
 	| string |
 	string := anObject text.
 	writingRaw
-		ifTrue: [ 
-			canvas rawLines: string.
+		ifTrue: [ canvas rawLines: string.
 			^ self ].
 	canvas lastIsNewLine
-		ifTrue:
-			[ 
-			| markup |
-			markup := PRPillarParser lineMarkups values detect: [ :each | string beginsWith: each ] ifNone: [ nil ].
-			markup isNil
-				ifFalse: [ 
-					canvas
+		ifTrue: [ | markup |
+			markup := PRPillarParser lineMarkups values
+				detect: [ :each | string beginsWith: each ]
+				ifNone: [ nil ].
+			markup
+				ifNotNil: [ canvas
 						nextPut: $\;
 						raw: markup.
 					string := string allButFirst: markup size ] ].

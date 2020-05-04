@@ -1,7 +1,7 @@
 Class {
 	#name : #PRReferenceTest,
 	#superclass : #PRDocumentGroupTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#category : #'Pillar-Tests-Model-Document'
 }
 
 { #category : #private }
@@ -321,5 +321,5 @@ PRReferenceTest >> testReference [
 
 { #category : #'tests-accessing' }
 PRReferenceTest >> testTitle [
-	self deny: self instance title notNil
+	self deny: self instance title isNotNil
 ]

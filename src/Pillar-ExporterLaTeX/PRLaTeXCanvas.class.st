@@ -7,7 +7,7 @@ Class {
 	#classVars : [
 		'LatexCharacters'
 	],
-	#category : 'Pillar-ExporterLaTeX'
+	#category : #'Pillar-ExporterLaTeX'
 }
 
 { #category : #'class initialization' }
@@ -98,9 +98,7 @@ PRLaTeXCanvas >> environment [
 
 { #category : #'writing text' }
 PRLaTeXCanvas >> nextPut: aCharacter [
-	| string |
-	string := LatexCharacters at: aCharacter ifAbsent: nil.
-	string isNil
-		ifTrue: [ super nextPut: aCharacter ]
-		ifFalse: [ self raw: string ]
+	(LatexCharacters at: aCharacter ifAbsent: nil)
+		ifNil: [ super nextPut: aCharacter ]
+		ifNotNil: [ :string | self raw: string ]
 ]
