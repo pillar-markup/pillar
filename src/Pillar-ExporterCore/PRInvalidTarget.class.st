@@ -1,7 +1,7 @@
 Class {
 	#name : #PRInvalidTarget,
 	#superclass : #PRErrorTarget,
-	#category : #'Pillar-BookTester-CommandLine'
+	#category : #'Pillar-ExporterCore-Base'
 }
 
 { #category : #clap }
