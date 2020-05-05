@@ -35,7 +35,7 @@ ClapPillarServeCommand class >> commandSpecification [
 	
 ]
 
-{ #category : #accessing }
+{ #category : #activation }
 ClapPillarServeCommand >> baseurl [
 	^ baseurl ifNil: [ baseurl := (arguments at: #baseurl) value]
 ]
@@ -63,12 +63,12 @@ ClapPillarServeCommand >> execute [
 	^ self watch.
 ]
 
-{ #category : #accessing }
+{ #category : #activation }
 ClapPillarServeCommand >> port [
 	^ port ifNil: [ port := (arguments at: #port) value]
 ]
 
-{ #category : #running }
+{ #category : #activation }
 ClapPillarServeCommand >> watch [
 	(arguments at: #watch) isExplicit
 		ifFalse: [ ^ self ]
