@@ -12,28 +12,25 @@ ClapPillarCheckCommand class >> commandName [
 { #category : #'command line' }
 ClapPillarCheckCommand class >> commandSpecification [
 	<commandline>
+	| target |
+	target := PRCheckBookTarget new.
 	^ (ClapCommand id: self commandName asSymbol)
 		description: 'Check code in all the codeblocks in given file or book, then generate a report';
 		add: ClapFlag forHelp;
-		add: ((ClapPositional id: #fileToCheck )
-			description: 'Pillar document you want to check';
+		add: ((ClapPositional id: #requestedFiles )
+			description: 'Pillar document(s) you want to check';
 			implicitMeaning: [ '' ]);
 		meaning:
 			[ :args |
 			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
-			(self with: args) execute ]
+			(args at: #requestedFiles ) isExplicit 
+				ifTrue:[ 
+					target buildStrategy: (PRBuildListStrategy list: (args occurrencesOf: #requestedFiles collect: #value) )
+					]
+				ifFalse: [ 
+					target buildStrategy: (PRBuildAllStrategy new)
+					 ].
+			^ target buildOn: self new project.
+			]
 	
-]
-
-{ #category : #execution }
-ClapPillarCheckCommand >> execute [
-	| target |
-	target := PRCheckBookTarget new.
-	target buildStrategy: (PRBuildListStrategy list: (self fileToCheck) asArray).
-	^ target buildOn: self project.
-]
-
-{ #category : #activation }
-ClapPillarCheckCommand >> fileToCheck [
-	^ (arguments at: #fileToCheck) value: self
 ]
