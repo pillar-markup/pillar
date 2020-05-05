@@ -8,15 +8,31 @@ Class {
 	#category : #'Pillar-BookTester-CommandLine'
 }
 
+{ #category : #writing }
+PRCheckBookDocument >> basicWriter [
+	" No basicWriter : do nothing"
+]
+
 { #category : #building }
 PRCheckBookDocument >> buildOn: aPRProject [ 
 	
-	| parsedDocument transformedDocument bTester stream |
+	| parsedDocument transformedDocument |
 	parsedDocument := self parseInputFile: file.
 	transformedDocument := self transformDocument: parsedDocument.
+	^ self writeDocument: transformedDocument.
+]
+
+{ #category : #building }
+PRCheckBookDocument >> extension [
+	^ 'txt'
+]
+
+{ #category : #building }
+PRCheckBookDocument >> writeDocument: aDocument [
+	| bTester checkReport outputFile| 
 	bTester := PRBookTesterVisitor new.
-	bTester start: transformedDocument.
-	stream := String streamContents: 
+	bTester start: aDocument.
+	checkReport := String streamContents: 
 				 [ :s |
 					s << file fullName.
 					s crlf.
@@ -31,8 +47,12 @@ PRCheckBookDocument >> buildOn: aPRProject [
 											  		 	s crlf; crlf. ].
 				   s << 'File Checked!'.
 					s crlf;crlf.].
-	Stdio stdout 
-		nextPutAll: stream contents.
+	outputFile := (self outputDirectory resolve: (file file asAbsolute relativeTo: project baseDirectory asAbsolute)) withoutExtension , self extension.
+	outputFile ensureDelete.
+	outputFile parent ensureCreateDirectory.
+	outputFile writeStreamDo: [ :stream | stream nextPutAll: checkReport contents].
+	
 	bTester allTestResults do: [:each | bTester finalStatus: (bTester finalStatus and: each status) ].	
 	^ PRStatus withStatus: bTester finalStatus
+	
 ]
