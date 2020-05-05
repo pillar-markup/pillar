@@ -14,12 +14,24 @@ PRCheckBookTarget class >> builderName [
 ]
 
 { #category : #building }
+PRCheckBookTarget >> buildOn: aProject [
+	| status |
+	status := PRSuccess new.
+	
+	"We chech each file"
+	(self filesToBuildOn: aProject) do: [ :each |
+		status := status and: ((self documentFor: each) buildOn: aProject) ].
+
+	^ status
+]
+
+{ #category : #building }
 PRCheckBookTarget >> documentFor: aFile [
 	^ PRCheckBookDocument new
 		project: aFile project;
 		file: aFile;
 		target: self;
-		outputDirectory: aFile project outputDirectory / self outputDirectoryName ;
+		outputDirectory: (aFile project baseDirectory / self outputDirectoryName ) ensureCreateDirectory;
 		yourself
 ]
 
@@ -30,7 +42,7 @@ PRCheckBookTarget >> extension [
 
 { #category : #accessing }
 PRCheckBookTarget >> outputDirectoryName [ 
-	^ 'check_report'
+	^ '_check'
 ]
 
 { #category : #preparation }

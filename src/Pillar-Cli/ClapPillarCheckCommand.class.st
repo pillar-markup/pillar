@@ -30,7 +30,7 @@ ClapPillarCheckCommand class >> commandSpecification [
 				ifFalse: [ 
 					target buildStrategy: (PRBuildAllStrategy new)
 					 ].
-			^ target buildOn: self new project.
+			target buildOn: self new project.
 			]
 	
 ]
