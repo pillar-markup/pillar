@@ -1,5 +1,7 @@
 "
-An annotated paragraph
+An annotated paragraph is represented by: @@ in pillar syntax.
+
+@@foo bar zork
 "
 Class {
 	#name : #PRAnnotatedParagraph,
