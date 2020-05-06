@@ -3,11 +3,7 @@ BookTester introduces new annotations
 
 - ${showMethod:method=foo|class=Integer}$ to display the method definition.
 - ${showMethod:class=Integer}$ to display the class definition.
-- ${screenshot:class=Class|
-		method=foo|
-		caption='jlkl'|
-		width=100|
-		label=mylabel}$
+- ${screenshot:class=Class|method=foo|caption='jlkl'|width=100|label=mylabel}$
 - run and load should be commented here
 		
 BookTester also validates the annotations for example, class and method definitions.
