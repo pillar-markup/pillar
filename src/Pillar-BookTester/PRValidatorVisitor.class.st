@@ -18,10 +18,13 @@ PRValidatorVisitor >> initialize [
 
 { #category : #initialization }
 PRValidatorVisitor >> isSuccess [
-
+	
+	| wrongReference |
+	wrongReference := true.
 	references do: [ :each | 
-			anchors remove: each ].
-	^ anchors isEmpty
+			(anchors includes: each)
+				ifFalse: [ wrongReference := false ] ].
+	^ wrongReference
 ]
 
 { #category : #'visiting-document' }

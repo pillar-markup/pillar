@@ -5,6 +5,39 @@ Class {
 }
 
 { #category : #tests }
+PRBasicValitorTest >> testOneReferenceRefersToASingleAnchor [
+
+	| doc validator | 
+	doc := PRPillarParserMain parse: '
+	
+	Figure *@UseCustom* shows bla. 
+	
+	+Use Custom SSH keys settings.>file://figures/useCustom.png|width=75|label=UseCustom+
+	'.
+	validator := PRValidatorVisitor new.
+	validator start: doc.
+	self assert: validator isSuccess
+	
+]
+
+{ #category : #tests }
+PRBasicValitorTest >> testTwoReferencesReferToASingleAnchor [
+
+	| doc validator | 
+	doc := PRPillarParserMain parse: '
+	
+	Figure *@UseCustom* shows bla. 
+	Figure *@UseCustom* shows bla. 
+	
+	+Use Custom SSH keys settings.>file://figures/useCustom.png|width=75|label=UseCustom+
+	'.
+	validator := PRValidatorVisitor new.
+	validator start: doc.
+	self assert: validator isSuccess
+	
+]
+
+{ #category : #tests }
 PRBasicValitorTest >> testValidatorIdentifiesAnchor [
 
 	| doc validator |
@@ -35,21 +68,5 @@ PRBasicValitorTest >> testValidatorIdentifiesDoubleAnchorClash [
 	'.
 	validator := PRValidatorVisitor new start: doc.
 	self assert: validator isFailure
-	
-]
-
-{ #category : #tests }
-PRBasicValitorTest >> testValidatorReferenceExistCorrectly [
-
-	| doc validator | 
-	doc := PRPillarParserMain parse: '
-	
-	Figure *@UseCustom* shows bla. 
-	
-	+Use Custom SSH keys settings.>file://figures/useCustom.png|width=75|label=UseCustom+
-	'.
-	validator := PRValidatorVisitor new.
-	validator start: doc.
-	self assert: validator isSuccess
 	
 ]
