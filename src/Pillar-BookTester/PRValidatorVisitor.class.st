@@ -24,48 +24,98 @@ Class {
 	#superclass : #PRVisitor,
 	#instVars : [
 		'anchors',
-		'references'
+		'references',
+		'allTestsResults',
+		'finalStatus'
 	],
-	#category : #'Pillar-BookTester'
+	#category : #'Pillar-BookTester-Visitor'
 }
+
+{ #category : #accessing }
+PRValidatorVisitor >> allTestsResults [
+	^ allTestsResults 
+]
+
+{ #category : #accessing }
+PRValidatorVisitor >> anchors [
+	^ anchors
+]
+
+{ #category : #checking }
+PRValidatorVisitor >> checkAllReferencesReferToAnExistingAnchor [
+	references do: [ :each | 
+			(anchors includes: each)
+				ifFalse: [ allTestsResults add: (self result anchorIsMissing: each) ] ]
+	
+]
+
+{ #category : #checking }
+PRValidatorVisitor >> finalCheck [
+	
+	self checkAllReferencesReferToAnExistingAnchor.
+]
+
+{ #category : #accessing }
+PRValidatorVisitor >> finalStatus [
+	^ allTestsResults isEmpty
+]
 
 { #category : #initialization }
 PRValidatorVisitor >> initialize [
 
 	super initialize.
-	anchors := OrderedCollection new. 
+	
+	allTestsResults := OrderedCollection new.
+	finalStatus := true.
+	
+	anchors := OrderedCollection new.
 	references := OrderedCollection new. 
 ]
 
-{ #category : #initialization }
+{ #category : #testing }
+PRValidatorVisitor >> isFailure [
+	^ self finalStatus not
+]
+
+{ #category : #testing }
 PRValidatorVisitor >> isSuccess [
-	
-	| wrongReference |
-	wrongReference := true.
-	references do: [ :each | 
-			(anchors includes: each)
-				ifFalse: [ wrongReference := false ] ].
-	^ wrongReference
+	^ self finalStatus
+]
+
+{ #category : #accessing }
+PRValidatorVisitor >> references [
+	^ references
+]
+
+{ #category : #accessing }
+PRValidatorVisitor >> result [
+	^ PRValidatorResult
+]
+
+{ #category : #visiting }
+PRValidatorVisitor >> start: anObject [
+	super start: anObject.
+	self finalCheck.
 ]
 
 { #category : #'visiting-document' }
 PRValidatorVisitor >> visitAnchor: anAnchor [
+	super visitAnchor: anAnchor.
+	(anchors includes: anAnchor name) ifTrue: [ allTestsResults add: (self result twoAnchorsSameNameWith: anAnchor name ) ] ifFalse: [ anchors add: anAnchor name ].
 	
-	anchors add: anAnchor name
 	
 ]
 
 { #category : #'visiting-document' }
 PRValidatorVisitor >> visitFigure: aFigure [
-	
 	super visitFigure: aFigure.
-	anchors add: aFigure label.
+	self halt.
+	(anchors includes: aFigure label) ifTrue: [ allTestsResults add: (self result twoAnchorsRelativeToFigureSameNameWith: aFigure label ) ] ifFalse: [ anchors add: aFigure label ].
 	
 ]
 
 { #category : #'visiting-document' }
 PRValidatorVisitor >> visitInternalLink: aLink [
-
 	super visitInternalLink: aLink.
 	references add: aLink anchor.
 ]
