@@ -9,19 +9,23 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PRValidatorResult class >> anchorIsMissing: anAnchorName [
-	^ self new specification: anAnchorName ; explanation: 'A reference refers to a missing anchor'
+PRValidatorResult class >> allResults [
+	| allResults |
+	allResults := Dictionary new.
+	allResults
+		at: #anchorIsMissing put: 'A reference refers to a missing anchor';
+		at: #twoAnchorsSameNameRelativeToFigure put: 'A figure is declared with a label already declared as an anchor or another figure label';
+		at: #twoAnchorsSameName put: '2 anchors are declared with the same name'.
+	^ allResults
 ]
 
 { #category : #'as yet unclassified' }
-PRValidatorResult class >> twoAnchorsRelativeToFigureSameNameWith: aFigureLabel [
-	^ self new specification: aFigureLabel ; explanation: '2 anchors relative to a figure are declared with the same name'
+PRValidatorResult class >> explanation: aMethodSymbol withSpecification: aString [
+	^ self new explanation: (self allResults at: aMethodSymbol); specification: aString; yourself.
 ]
 
 { #category : #'as yet unclassified' }
-PRValidatorResult class >> twoAnchorsSameNameWith: anAnchorName [
-	^ self new specification: anAnchorName ; explanation: '2 anchors are declared with the same name'
-	
+PRValidatorResult >> anchorIsMissing [
 ]
 
 { #category : #accessing }

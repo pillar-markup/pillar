@@ -45,7 +45,7 @@ PRValidatorVisitor >> anchors [
 PRValidatorVisitor >> checkAllReferencesReferToAnExistingAnchor [
 	references do: [ :each | 
 			(anchors includes: each)
-				ifFalse: [ allTestsResults add: (self result anchorIsMissing: each) ] ]
+				ifFalse: [ allTestsResults add: (self result explanation: #anchorIsMissing withSpecification: each) ] ]
 	
 ]
 
@@ -101,7 +101,7 @@ PRValidatorVisitor >> start: anObject [
 { #category : #'visiting-document' }
 PRValidatorVisitor >> visitAnchor: anAnchor [
 	super visitAnchor: anAnchor.
-	(anchors includes: anAnchor name) ifTrue: [ allTestsResults add: (self result twoAnchorsSameNameWith: anAnchor name ) ] ifFalse: [ anchors add: anAnchor name ].
+	(anchors includes: anAnchor name) ifTrue: [ allTestsResults add: (self result explanation: #twoAnchorsSameName withSpecification: anAnchor name ) ] ifFalse: [ anchors add: anAnchor name ].
 	
 	
 ]
@@ -109,13 +109,24 @@ PRValidatorVisitor >> visitAnchor: anAnchor [
 { #category : #'visiting-document' }
 PRValidatorVisitor >> visitFigure: aFigure [
 	super visitFigure: aFigure.
-	self halt.
-	(anchors includes: aFigure label) ifTrue: [ allTestsResults add: (self result twoAnchorsRelativeToFigureSameNameWith: aFigure label ) ] ifFalse: [ anchors add: aFigure label ].
+	(anchors includes: aFigure label) ifTrue: [ 
+		allTestsResults add: (self result explanation: #twoAnchorsSameNameRelativeToFigure withSpecification: aFigure label ) 
+		] ifFalse: [ 
+		anchors add: aFigure label 
+	].
+	
+	"check if figure exists"
 	
 ]
 
 { #category : #'visiting-document' }
 PRValidatorVisitor >> visitInternalLink: aLink [
 	super visitInternalLink: aLink.
-	references add: aLink anchor.
+	"check if exists"
+]
+
+{ #category : #'visiting-document' }
+PRValidatorVisitor >> visitReference: aReference [
+	super visitReference: aReference.
+	aReference hasAnchor ifTrue: [ references add: aReference anchor ]
 ]
