@@ -109,13 +109,14 @@ PRValidatorVisitor >> visitAnchor: anAnchor [
 { #category : #'visiting-document' }
 PRValidatorVisitor >> visitFigure: aFigure [
 	super visitFigure: aFigure.
+	"figure name considered like an anchor"
 	(anchors includes: aFigure label) ifTrue: [ 
 		allTestsResults add: (self result explanation: #twoAnchorsSameNameRelativeToFigure withSpecification: aFigure label ) 
 		] ifFalse: [ 
 		anchors add: aFigure label 
 	].
-	
-	"check if figure exists"
+	"check if figure exists in files"
+	aFigure reference asFileReference exists ifFalse: [ allTestsResults add: (self result explanation: #figureUnfound withSpecification: aFigure reference) ]
 	
 ]
 
