@@ -15,15 +15,19 @@ PRValidatorVisitorTest >> setUp [
 	| workingDir |
 	workingDir := FileSystem workingDirectory .
 	(workingDir / 'validator_figures' / 'useCustom.png') ensureCreateFile.
+	(workingDir / 'validator_figures' / 'aFileWithNoExtension') ensureCreateFile.
 	(workingDir / 'validator_inputFiles' / 'my_test_file.pillar') ensureCreateFile
 ]
 
 { #category : #'setup & teardown' }
 PRValidatorVisitorTest >> tearDown [
-	(FileSystem workingDirectory / 'validator_figures') deleteAll.
+	| workingDir |
+	workingDir := FileSystem workingDirectory .
+	(workingDir / 'validator_figures' ) deleteAll.
+	(workingDir / 'validator_inputFiles' ) deleteAll.
 ]
 
-{ #category : #'test-checkErrorRaised' }
+{ #category : #'test-anchor-reference' }
 PRValidatorVisitorTest >> testErrorAnchorIsMissing [
 
 	| doc validator |
@@ -38,7 +42,52 @@ A reference to header *@secheader1*
 	
 ]
 
-{ #category : #'test-checkErrorRaised' }
+{ #category : #'test-figure' }
+PRValidatorVisitorTest >> testErrorFigureIncorrectExtension [
+
+	| doc validator |
+	doc := PRPillarParserMain parse: '
++A pic descripton.>file://validator_inputFiles/my_test_file.pillar+
+'.
+	validator := PRValidatorVisitor new.
+	validator start: doc.
+	self assert: validator isFailure.
+	self assert: validator allTestsResults first explanation equals: (self allValidatorResults at: #figureIncorrectExtension).
+	self assert: validator allTestsResults first specification equals: 'file://validator_inputFiles/my_test_file.pillar'
+	
+]
+
+{ #category : #'test-figure' }
+PRValidatorVisitorTest >> testErrorFigureIncorrectExtension_ExtensionMissing [
+
+	| doc validator |
+	doc := PRPillarParserMain parse: '
++A pic descripton.>file://validator_figures/useCustom+
+'.
+	validator := PRValidatorVisitor new.
+	validator start: doc.
+	self assert: validator isFailure.
+	self assert: validator allTestsResults first explanation equals: (self allValidatorResults at: #figureNotFound).
+	self assert: validator allTestsResults first specification equals: 'file://validator_figures/useCustom'
+	
+]
+
+{ #category : #'test-figure' }
+PRValidatorVisitorTest >> testErrorFigureIncorrectExtension_WithNoExtension [
+
+	| doc validator |
+	doc := PRPillarParserMain parse: '
++A pic descripton.>file://validator_figures/aFileWithNoExtension+
+'.
+	validator := PRValidatorVisitor new.
+	validator start: doc.
+	self assert: validator isFailure.
+	self assert: validator allTestsResults first explanation equals: (self allValidatorResults at: #figureIncorrectExtension).
+	self assert: validator allTestsResults first specification equals: 'file://validator_figures/aFileWithNoExtension'
+	
+]
+
+{ #category : #'test-figure' }
 PRValidatorVisitorTest >> testErrorFigureNotFound [
 	| doc validator |
 	doc := PRPillarParserMain parse: '
@@ -51,7 +100,7 @@ PRValidatorVisitorTest >> testErrorFigureNotFound [
 	self assert: validator allTestsResults first specification equals: 'file://validator_figures/unfoundPic.png'
 ]
 
-{ #category : #'test-checkErrorRaised' }
+{ #category : #'test-inputFileAnnotation' }
 PRValidatorVisitorTest >> testErrorInputFileNotFound [
 	| doc validator |
 	doc := PRPillarParserMain parse: '
@@ -64,7 +113,7 @@ ${inputFile:validator_unfound_input_file.pillar}$
 	self assert: validator allTestsResults first specification equals: 'validator_unfound_input_file.pillar'
 ]
 
-{ #category : #'test-checkErrorRaised' }
+{ #category : #'test-anchor-reference' }
 PRValidatorVisitorTest >> testErrorTwoAnchorsSameName [
 
 	| doc validator |
@@ -85,7 +134,7 @@ A reference to header *@secheader1*
 	
 ]
 
-{ #category : #'test-checkErrorRaised' }
+{ #category : #'test-anchor-reference' }
 PRValidatorVisitorTest >> testErrorTwoAnchorsSameNameRelativeToFigure [
 
 	| doc validator | 

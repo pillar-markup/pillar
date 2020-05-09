@@ -101,20 +101,16 @@ PRValidatorVisitor >> start: anObject [
 { #category : #'visiting-document' }
 PRValidatorVisitor >> visitAnchor: anAnchor [
 	super visitAnchor: anAnchor.
+	"check if anchor has a unique name"
 	(anchors includes: anAnchor name) ifTrue: [ allTestsResults add: (self result explanation: #twoAnchorsSameName withSpecification: anAnchor name ) ] ifFalse: [ anchors add: anAnchor name ].
 	
 	
 ]
 
 { #category : #'visiting-document' }
-PRValidatorVisitor >> visitExternalLink: aLink [
-	super visitExternalLink: aLink.
-]
-
-{ #category : #'visiting-document' }
 PRValidatorVisitor >> visitFigure: aFigure [
 	super visitFigure: aFigure.
-	"figure name considered like an anchor"
+	"check if figure name considered like an anchor is unique"
 	aFigure hasLabel ifTrue: [ 
 		(anchors includes: aFigure label) ifTrue: [ 
 			allTestsResults add: (self result explanation: #twoAnchorsSameNameRelativeToFigure withSpecification: aFigure label ) 
@@ -123,7 +119,11 @@ PRValidatorVisitor >> visitFigure: aFigure [
 		]
 	].
 	"check if figure exists in files"
-	aFigure reference asFileReference exists ifFalse: [ allTestsResults add: (self result explanation: #figureNotFound withSpecification: aFigure reference) ]
+	aFigure reference asFileReference exists ifFalse: 
+		[ allTestsResults add: (self result explanation: #figureNotFound withSpecification: aFigure reference) ].
+	"check if figure has correct extension"
+	(aFigure class pictureExtensions includes: aFigure reference asFileReference extension) ifFalse: 
+		[ allTestsResults add: (self result explanation: #figureIncorrectExtension withSpecification: aFigure reference) ]
 	
 ]
 
