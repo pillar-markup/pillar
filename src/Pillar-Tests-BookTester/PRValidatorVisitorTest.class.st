@@ -4,33 +4,27 @@ Class {
 	#category : #'Pillar-Tests-BookTester'
 }
 
-{ #category : #tests }
-PRValidatorVisitorTest >> setUp [
-	"Create a setup directory with: figures/test.png"
-	| workingDir |
-	workingDir := FileSystem workingDirectory .
-	(workingDir / 'validator_figures' / 'useCustom.png') ensureCreateFile 
+{ #category : #accessing }
+PRValidatorVisitorTest >> allValidatorResults [
+	^ PRValidatorResult allResults
 ]
 
-{ #category : #tests }
+{ #category : #'setup & teardown' }
+PRValidatorVisitorTest >> setUp [
+	"Create a setup directory with: validator_figures/useCustom.png & validator_inputFiles/my_test_file.pillar "
+	| workingDir |
+	workingDir := FileSystem workingDirectory .
+	(workingDir / 'validator_figures' / 'useCustom.png') ensureCreateFile.
+	(workingDir / 'validator_inputFiles' / 'my_test_file.pillar') ensureCreateFile
+]
+
+{ #category : #'setup & teardown' }
 PRValidatorVisitorTest >> tearDown [
 	(FileSystem workingDirectory / 'validator_figures') deleteAll.
 ]
 
-{ #category : #tests }
-PRValidatorVisitorTest >> testErrorFigureUnfound [
-	| doc validator |
-	doc := PRPillarParserMain parse: '
-+Use Custom SSH keys settings.>file://validator_figures/unfoundPic.png|width=75+
-'.
-	validator := PRValidatorVisitor new.
-	validator start: doc.
-	self assert: validator isFailure.
-	self assert: validator allTestsResults first specification equals: 'file://validator_figures/unfoundPic.png'
-]
-
-{ #category : #tests }
-PRValidatorVisitorTest >> testErrorMissingAnchor [
+{ #category : #'test-checkErrorRaised' }
+PRValidatorVisitorTest >> testErrorAnchorIsMissing [
 
 	| doc validator |
 	doc := PRPillarParserMain parse: '
@@ -39,11 +33,38 @@ A reference to header *@secheader1*
 	validator := PRValidatorVisitor new.
 	validator start: doc.
 	self assert: validator isFailure.
+	self assert: validator allTestsResults first explanation equals: (self allValidatorResults at: #anchorIsMissing).
 	self assert: validator allTestsResults first specification equals: 'secheader1'
 	
 ]
 
-{ #category : #tests }
+{ #category : #'test-checkErrorRaised' }
+PRValidatorVisitorTest >> testErrorFigureNotFound [
+	| doc validator |
+	doc := PRPillarParserMain parse: '
++Use Custom SSH keys settings.>file://validator_figures/unfoundPic.png|width=75+
+'.
+	validator := PRValidatorVisitor new.
+	validator start: doc.
+	self assert: validator isFailure.
+	self assert: validator allTestsResults first explanation equals: (self allValidatorResults at: #figureNotFound).
+	self assert: validator allTestsResults first specification equals: 'file://validator_figures/unfoundPic.png'
+]
+
+{ #category : #'test-checkErrorRaised' }
+PRValidatorVisitorTest >> testErrorInputFileNotFound [
+	| doc validator |
+	doc := PRPillarParserMain parse: '
+${inputFile:validator_unfound_input_file.pillar}$
+'.
+	validator := PRValidatorVisitor new.
+	validator start: doc.
+	self assert: validator isFailure.
+	self assert: validator allTestsResults first explanation equals: (self allValidatorResults at: #inputFileNotFound).
+	self assert: validator allTestsResults first specification equals: 'validator_unfound_input_file.pillar'
+]
+
+{ #category : #'test-checkErrorRaised' }
 PRValidatorVisitorTest >> testErrorTwoAnchorsSameName [
 
 	| doc validator |
@@ -59,12 +80,13 @@ A reference to header *@secheader1*
 	validator := PRValidatorVisitor new.
 	validator start: doc.
 	self assert: validator isFailure.
+	self assert: validator allTestsResults first explanation equals: (self allValidatorResults at: #twoAnchorsSameName).
 	self assert: validator allTestsResults first specification equals: 'secheader1'
 	
 ]
 
-{ #category : #tests }
-PRValidatorVisitorTest >> testErrorTwoAnchorsSameNameWithFigure [
+{ #category : #'test-checkErrorRaised' }
+PRValidatorVisitorTest >> testErrorTwoAnchorsSameNameRelativeToFigure [
 
 	| doc validator | 
 	doc := PRPillarParserMain parse: '
@@ -78,10 +100,11 @@ See this figure *@UseCustom*
 	validator := PRValidatorVisitor new.
 	validator start: doc.
 	self assert: validator isFailure.
+	self assert: validator allTestsResults first explanation equals: (self allValidatorResults at: #twoAnchorsSameNameRelativeToFigure).
 	self assert: validator allTestsResults first specification equals: 'UseCustom'
 ]
 
-{ #category : #tests }
+{ #category : #'test-figure' }
 PRValidatorVisitorTest >> testFigureExists [
 	| doc validator |
 	doc := PRPillarParserMain parse: '
@@ -93,7 +116,7 @@ PRValidatorVisitorTest >> testFigureExists [
 	self assert: validator anchors isNotEmpty.
 ]
 
-{ #category : #tests }
+{ #category : #'test-anchor-reference' }
 PRValidatorVisitorTest >> testIdentifiesAnchor [
 
 	| doc validator |
@@ -110,8 +133,8 @@ A reference to header *@secheader1*
 	
 ]
 
-{ #category : #tests }
-PRValidatorVisitorTest >> testIdentifiesFigure [
+{ #category : #'test-figure' }
+PRValidatorVisitorTest >> testIdentifiesFigureWithLabel [
 	| doc validator |
 	doc := PRPillarParserMain parse: '
 +Use Custom SSH keys settings.>file://validator_figures/useCustom.png|width=75|label=UseCustom+
@@ -122,7 +145,30 @@ PRValidatorVisitorTest >> testIdentifiesFigure [
 	self assert: validator anchors isNotEmpty.
 ]
 
-{ #category : #tests }
+{ #category : #'test-figure' }
+PRValidatorVisitorTest >> testIdentifiesFigureWithoutLabel [
+	| doc validator |
+	doc := PRPillarParserMain parse: '
++Use Custom SSH keys settings.>file://validator_figures/useCustom.png|width=75+
+'.
+	validator := PRValidatorVisitor new.
+	validator start: doc.
+	self assert: validator isSuccess.
+	self assert: validator anchors isEmpty.
+]
+
+{ #category : #'test-inputFileAnnotation' }
+PRValidatorVisitorTest >> testIdentifiesFileInclusion [
+	| doc validator |
+	doc := PRPillarParserMain parse: '
+${inputFile:validator_inputFiles/my_test_file.pillar}$
+'.
+	validator := PRValidatorVisitor new.
+	validator start: doc.
+	self assert: validator isSuccess.
+]
+
+{ #category : #'test-anchor-reference' }
 PRValidatorVisitorTest >> testOneReferenceRefersToASingleAnchor [
 
 	| doc validator | 
@@ -139,7 +185,7 @@ A reference to header *@secheader1*
 	
 ]
 
-{ #category : #tests }
+{ #category : #'test-anchor-reference' }
 PRValidatorVisitorTest >> testOneReferenceRefersToASingleFigure [
 
 	| doc validator | 
@@ -154,7 +200,7 @@ See this figure *@UseCustom*
 	self assert: validator references first equals: 'UseCustom'
 ]
 
-{ #category : #tests }
+{ #category : #'test-anchor-reference' }
 PRValidatorVisitorTest >> testTwoReferencesReferToASingleAnchor [
 
 	| doc validator | 

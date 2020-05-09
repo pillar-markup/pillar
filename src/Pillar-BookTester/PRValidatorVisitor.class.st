@@ -107,23 +107,31 @@ PRValidatorVisitor >> visitAnchor: anAnchor [
 ]
 
 { #category : #'visiting-document' }
+PRValidatorVisitor >> visitExternalLink: aLink [
+	super visitExternalLink: aLink.
+]
+
+{ #category : #'visiting-document' }
 PRValidatorVisitor >> visitFigure: aFigure [
 	super visitFigure: aFigure.
 	"figure name considered like an anchor"
-	(anchors includes: aFigure label) ifTrue: [ 
-		allTestsResults add: (self result explanation: #twoAnchorsSameNameRelativeToFigure withSpecification: aFigure label ) 
+	aFigure hasLabel ifTrue: [ 
+		(anchors includes: aFigure label) ifTrue: [ 
+			allTestsResults add: (self result explanation: #twoAnchorsSameNameRelativeToFigure withSpecification: aFigure label ) 
 		] ifFalse: [ 
-		anchors add: aFigure label 
+			anchors add: aFigure label 
+		]
 	].
 	"check if figure exists in files"
-	aFigure reference asFileReference exists ifFalse: [ allTestsResults add: (self result explanation: #figureUnfound withSpecification: aFigure reference) ]
+	aFigure reference asFileReference exists ifFalse: [ allTestsResults add: (self result explanation: #figureNotFound withSpecification: aFigure reference) ]
 	
 ]
 
 { #category : #'visiting-document' }
-PRValidatorVisitor >> visitInternalLink: aLink [
-	super visitInternalLink: aLink.
-	"check if exists"
+PRValidatorVisitor >> visitInputFileAnnotation: anInputFileAnnotation [
+	super visitInputFileAnnotation: anInputFileAnnotation.
+	"check if file with given path exists"
+	(anInputFileAnnotation path) asString asFileReference exists ifFalse: [ allTestsResults add: (self result explanation: #inputFileNotFound withSpecification: anInputFileAnnotation path) ]
 ]
 
 { #category : #'visiting-document' }
