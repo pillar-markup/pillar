@@ -1,3 +1,15 @@
+"
+I represent an error result raised by PRValidator.
+
+I am composed of:
+- an explanation (of my error)
+- a specification (the name of concerned file or reference)
+
+All recognized error explanation are in allResult dictionary.
+
+Use my constructor to instantiate me.
+
+"
 Class {
 	#name : #PRValidatorResult,
 	#superclass : #PRVisitor,

@@ -1,23 +1,10 @@
 "
-!! Preamble
-Iceberg is a tool to manage git projects from Pharo. 
-It makes the experience of managing code really smooth.
-Iceberg evolved over the years.
-A first version was introduced with Pharo 6.0.
-A major effort went into the version of Iceberg presents in Pharo 7.0. 
-We are using the version of Iceberg available in Pharo 8.0.
+I am a visitor specialized for Pillar files to check if references and file calls are correct.
 
-This document is under writing but we decided to release before its completion 
-because managing code can be a large topic when we start to discuss workflow and process. 
+I gather all found issues in my variable allTestsResults. Each issue is represented by a PRValidatorResult.
 
-The authors want to thank Sean de Nigris, Quentin Ducasse and Stefan Eggermont for the reviews and copy-edit of the early version. We also thank Peter Uhnak for his first blog on publishing Pharo code on Github.
+finalStatus variable returns true if there isn't any issue.
 
-${inputFile:path=Chapters/Started/started.pillar}$
-${inputFile:path=Chapters/Started/extensions.pillar}$
-${inputFile:path=Chapters/Started/services.pillar}$
-${inputFile:path=Chapters/Started/pharo.pillar}$
-${inputFile:path=Chapters/Started/glossary.pillar}$
-${inputFile:path=Chapters/Tips/tips.pillar}$
 "
 Class {
 	#name : #PRValidatorVisitor,
@@ -122,7 +109,7 @@ PRValidatorVisitor >> visitFigure: aFigure [
 	aFigure reference asFileReference exists ifFalse: 
 		[ allTestsResults add: (self result explanation: #figureNotFound withSpecification: aFigure reference) ].
 	"check if figure has correct extension"
-	(aFigure class pictureExtensions includes: aFigure reference asFileReference extension) ifFalse: 
+	(aFigure hasFigureExtension) ifFalse: 
 		[ allTestsResults add: (self result explanation: #figureIncorrectExtension withSpecification: aFigure reference) ]
 	
 ]

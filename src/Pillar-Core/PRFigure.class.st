@@ -41,6 +41,11 @@ PRFigure >> hasCaption [
 ]
 
 { #category : #testing }
+PRFigure >> hasFigureExtension [
+	^ self class pictureExtensions includes: self reference asFileReference extension
+]
+
+{ #category : #testing }
 PRFigure >> hasLabel [
 	^ self label isNotNil
 ]
