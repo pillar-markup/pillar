@@ -52,6 +52,12 @@ PRValidatorResult >> explanation: aString [
 	explanation := aString
 ]
 
+{ #category : #printing }
+PRValidatorResult >> printOn: aStream [
+	aStream nextPutAll: 'Error explanation: "', self explanation asString, '", with specification: "', self specification asString, '"'
+	
+]
+
 { #category : #accessing }
 PRValidatorResult >> specification [
 	^ specification
