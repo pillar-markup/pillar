@@ -58,7 +58,7 @@ PRValidatorVisitorTest >> testErrorFigureIncorrectExtension [
 ]
 
 { #category : #'test-figure' }
-PRValidatorVisitorTest >> testErrorFigureIncorrectExtension_ExtensionMissing [
+PRValidatorVisitorTest >> testErrorFigureIncorrectExtensionExtensionMissing [
 
 	| doc validator |
 	doc := PRPillarParserMain parse: '
@@ -73,7 +73,7 @@ PRValidatorVisitorTest >> testErrorFigureIncorrectExtension_ExtensionMissing [
 ]
 
 { #category : #'test-figure' }
-PRValidatorVisitorTest >> testErrorFigureIncorrectExtension_WithNoExtension [
+PRValidatorVisitorTest >> testErrorFigureIncorrectExtensionWithNoExtension [
 
 	| doc validator |
 	doc := PRPillarParserMain parse: '
