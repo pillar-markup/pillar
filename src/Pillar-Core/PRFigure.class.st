@@ -59,3 +59,11 @@ PRFigure >> label [
 PRFigure >> label: aString [
 	self parameters at: 'label' put: aString
 ]
+
+{ #category : #'as yet unclassified' }
+PRFigure >> pathInternFile [
+	| path |
+	path := self reference.
+	(path beginsWith: 'file://') ifTrue: [ path := path allButFirst: 7 ].
+	^ path
+]

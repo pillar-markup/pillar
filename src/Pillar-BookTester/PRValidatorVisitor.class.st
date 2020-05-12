@@ -106,7 +106,7 @@ PRValidatorVisitor >> visitFigure: aFigure [
 		]
 	].
 	"check if figure exists in files"
-	aFigure reference asFileReference exists ifFalse: 
+	aFigure pathInternFile asFileReference exists ifFalse: 
 		[ allTestsResults add: (self result explanation: #figureNotFound withSpecification: aFigure reference) ].
 	"check if figure has correct extension"
 	(aFigure hasFigureExtension) ifFalse: 
