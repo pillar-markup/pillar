@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'configuration'
 	],
-	#category : 'Pillar-Tests-ExporterCore-LevelPrinter'
+	#category : #'Pillar-Tests-ExporterCore-LevelPrinter'
 }
 
 { #category : #testing }
@@ -33,14 +33,8 @@ PRDocumentWriterTest2 >> annotation [
 
 { #category : #asserting }
 PRDocumentWriterTest2 >> assert: result includesSubstring: expected [
-	expected isEmpty ifTrue: [ ^ self ].
-	self
-		assert: (result includesSubstring: expected)
-		description:
-			('''{1}'' not in ''{2}'''
-				format:
-					{expected.
-					result})
+	expected ifEmpty: [ ^ self ].
+	self assert: (result includesSubstring: expected) description: ('''{1}'' not in ''{2}''' format: {expected . result})
 ]
 
 { #category : #asserting }
@@ -483,7 +477,7 @@ PRDocumentWriterTest2 >> testFiguresHaveACaption [
 PRDocumentWriterTest2 >> testFileExtension [
 	| fileExtension |
 	fileExtension := self instance fileExtension.
-	self assert: fileExtension notNil.
+	self assert: fileExtension isNotNil.
 	self assert: fileExtension isString
 ]
 
@@ -500,7 +494,7 @@ PRDocumentWriterTest2 >> testFootnote [
 
 { #category : #tests }
 PRDocumentWriterTest2 >> testHasName [
-	self assert: self actualClass writerName notEmpty
+	self assert: self actualClass writerName isNotEmpty
 ]
 
 { #category : #tests }
@@ -747,7 +741,7 @@ PRDocumentWriterTest2 >> testMailLink [
 PRDocumentWriterTest2 >> testMarkupType [
 	| markupType |
 	markupType := self instance markupType.
-	self assert: markupType notNil.
+	self assert: markupType isNotNil.
 	self assert: markupType isSymbol
 ]
 

@@ -8,7 +8,7 @@ Class {
 		'nesting',
 		'annotatedKeywords'
 	],
-	#category : 'Pillar-ExporterAsciiDoc'
+	#category : #'Pillar-ExporterAsciiDoc'
 }
 
 { #category : #accessing }
@@ -113,13 +113,11 @@ PRAsciiDocWriter >> visitAnchor: anAnchor [
 
 { #category : #'visiting-document' }
 PRAsciiDocWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
-	
-	|annotation|
+	| annotation |
 	annotation := self searchAnnotation: anAnnotatedParagraph annotation.
-	
-	canvas precede: [ super visitParagraph: anAnnotatedParagraph ] by: (annotation, (annotation isEmpty ifTrue:[''] ifFalse:[' ']) ).
-	canvas potentialNewLine.  
-	
+
+	canvas precede: [ super visitParagraph: anAnnotatedParagraph ] by: annotation , (annotation ifEmpty: [ '' ] ifNotEmpty: [ ' ' ]).
+	canvas potentialNewLine
 ]
 
 { #category : #'visiting-document' }

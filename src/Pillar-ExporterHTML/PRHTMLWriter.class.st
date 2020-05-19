@@ -88,8 +88,8 @@ PRHTMLWriter >> internalLinkWillBeRender: anInternalLink [
 
 { #category : #private }
 PRHTMLWriter >> noteAtEnd [
-	self noteDictionary isNotEmpty
-		ifTrue: [ canvas newLine.
+	self noteDictionary
+		ifNotEmpty: [ canvas newLine.
 			canvas tag
 				name: 'hr';
 				with: ''.

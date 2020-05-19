@@ -37,7 +37,7 @@ PRObjectTest >> testHasProperty [
 
 { #category : #'tests-properties' }
 PRObjectTest >> testProperties [
-	self assert: self instance properties notNil.
+	self assert: self instance properties isNotNil.
 	self instance instVarNamed: 'properties' put: nil.
 
 	self instance propertyAt: #foo put: #bar.

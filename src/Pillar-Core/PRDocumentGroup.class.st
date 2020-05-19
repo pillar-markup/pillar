@@ -61,7 +61,7 @@ PRDocumentGroup >> children [
 
 { #category : #testing }
 PRDocumentGroup >> hasChildren [
-	^ self children notEmpty
+	^ self children isNotEmpty
 ]
 
 { #category : #comparing }

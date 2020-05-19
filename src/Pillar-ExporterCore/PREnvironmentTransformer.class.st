@@ -38,8 +38,7 @@ PREnvironmentTransformer >> goal: aPRBuildGoal [
 
 { #category : #environment }
 PREnvironmentTransformer >> hasEnvironment [
-	
-	^ environmentStack notEmpty
+	^ environmentStack isNotEmpty
 ]
 
 { #category : #initialization }
@@ -81,14 +80,10 @@ PREnvironmentTransformer >> pushEnvironment: anEnvironment [
 { #category : #visiting }
 PREnvironmentTransformer >> start: aDocumentItem [
 	| object |
-	
 	"Execute clean annotation before"
 	object := super start: (PRCleanAnnotationInParagraphTransformer new start: aDocumentItem).
-	self hasEnvironment | currentColumn notNil
-		ifTrue: [ 
-			PRError
-				signal: ('Missing end of environment ''{name}'''
-					format: { 'name' -> self currentEnvironment name } asDictionary) ].
+	self hasEnvironment | currentColumn isNotNil
+		ifTrue: [ PRError signal: ('Missing end of environment ''{name}''' format: {('name' -> self currentEnvironment name)} asDictionary) ].
 	^ object
 ]
 

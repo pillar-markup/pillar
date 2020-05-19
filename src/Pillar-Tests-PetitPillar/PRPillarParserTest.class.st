@@ -1,19 +1,14 @@
 Class {
 	#name : #PRPillarParserTest,
 	#superclass : #PRPillarGrammarTest,
-	#category : 'Pillar-Tests-PetitPillar'
+	#category : #'Pillar-Tests-PetitPillar'
 }
 
 { #category : #asserting }
 PRPillarParserTest >> assertStart: aStartInteger stop: aStopIndex [
-	self assert: result notNil.
-	self
-		assert: result start
-		equals: aStartInteger.
-	self
-		assert: result stop
-		equals: aStopIndex.
-	
+	self assert: result isNotNil.
+	self assert: result start equals: aStartInteger.
+	self assert: result stop equals: aStopIndex
 ]
 
 { #category : #asserting }
