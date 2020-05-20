@@ -1,7 +1,7 @@
 Class {
 	#name : #PRScriptLanguageTest,
 	#superclass : #TestCase,
-	#category : 'Pillar-Tests-Model-ScriptLanguage'
+	#category : #'Pillar-Tests-Model-ScriptLanguage'
 }
 
 { #category : #tests }
@@ -16,13 +16,13 @@ PRScriptLanguageTest >> testFinding [
 	self assert: (PRAbstractScriptLanguage concreteClassFor: 'no language') equals: PRNoScriptLanguage.
 	self assert: (PRAbstractScriptLanguage concreteClassFor: 'no language') default isSpecified.
 	self assert: (PRAbstractScriptLanguage concreteClassFor: nil) equals: PRUnspecifiedScriptLanguage.
-	self assert: (PRAbstractScriptLanguage concreteClassFor: nil) default isSpecified not.
+	self deny: (PRAbstractScriptLanguage concreteClassFor: nil) default isSpecified.
 	self assert: (PRAbstractScriptLanguage concreteClassFor: 'smalltalk') equals: PRSmalltalkScriptLanguage.
 	self assert: (PRAbstractScriptLanguage concreteClassFor: 'smalltalk') default isSpecified.
 	self assert: (PRAbstractScriptLanguage concreteClassFor: 'html') equals: PRHTMLScriptLanguage.
 	self assert: (PRAbstractScriptLanguage concreteClassFor: 'html') default isSpecified.
 	self assert: (PRAbstractScriptLanguage concreteClassFor: 'HTML') equals: PRHTMLScriptLanguage.
 	self assert: (PRAbstractScriptLanguage concreteClassFor: 'HTML') default isSpecified.
-	self assert: (PRAbstractScriptLanguage concreteClassFor: 'non existing language foobar') equals: PRUnsupportedScriptLanguage .
-	self assert: (PRAbstractScriptLanguage concreteClassFor: 'non existing language foobar') new isSpecified not.
+	self assert: (PRAbstractScriptLanguage concreteClassFor: 'non existing language foobar') equals: PRUnsupportedScriptLanguage.
+	self deny: (PRAbstractScriptLanguage concreteClassFor: 'non existing language foobar') new isSpecified
 ]

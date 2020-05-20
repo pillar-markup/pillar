@@ -109,19 +109,16 @@ PREnvironmentTransformer >> visitDocumentItem: anItem [
 
 { #category : #'visiting-annotations' }
 PREnvironmentTransformer >> visitEndEnvironmentAnnotation: anAnnotation [
-	self hasEnvironment not
-		ifTrue: [ PRError signal: ('Missing begin of environment ''{name}'''
-					format: { 'name' -> anAnnotation name } asDictionary) ].
-	
+	self hasEnvironment ifFalse: [ PRError signal: ('Missing begin of environment ''{name}''' format: {('name' -> anAnnotation name)} asDictionary) ].
+
 	self currentEnvironment name = anAnnotation name
-		ifFalse: [
-			PRError signal: ('Mismatching environments: closing ''{closing}'' while ''{open}'' environment is open'
-					format: { 
-					'closing' -> anAnnotation name.
-					'open' -> self currentEnvironment name } asDictionary) ]. 
-	
+		ifFalse: [ PRError
+				signal:
+					('Mismatching environments: closing ''{closing}'' while ''{open}'' environment is open'
+						format: {('closing' -> anAnnotation name) . ('open' -> self currentEnvironment name)} asDictionary) ].
+
 	self popEnvironment.
-	
+
 	"Remove the end annotation from the tree.
 	The end annotation marks the end of a scope and is replaced by a recursive environment structure."
 	self delete
