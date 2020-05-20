@@ -1,7 +1,7 @@
 Class {
 	#name : #PREPubNavigationMenuWriterTest,
 	#superclass : #PRHTMLWriterTest,
-	#category : 'Pillar-Tests-ExporterEPub'
+	#category : #'Pillar-Tests-ExporterEPub'
 }
 
 { #category : #testing }
@@ -93,18 +93,18 @@ PREPubNavigationMenuWriterTest >> testFigureLabelGenerateAnchor [
 
 { #category : #tests }
 PREPubNavigationMenuWriterTest >> testFigureReference [
-	| item resultString |
+	| item |
 	item := PRParagraph new
 		add:
-				(PRFigure new
-						reference: 'file://picture.png';
-						parameterAt: 'label' put: 'pierLogo';
-						counter: ((PRCascadingCounter maxLevel: 5) incrementAt: 2 );
-						yourself);
+			(PRFigure new
+				reference: 'file://picture.png';
+				parameterAt: 'label' put: 'pierLogo';
+				counter: ((PRCascadingCounter maxLevel: 5) incrementAt: 2);
+				yourself);
 		add: (PRText content: 'See figure ');
-		add: ((PRInternalLink reference: '@pierLogo') counter: ((PRCascadingCounter maxLevel: 5) incrementAt: 2 ));
+		add: ((PRInternalLink reference: '@pierLogo') counter: ((PRCascadingCounter maxLevel: 5) incrementAt: 2));
 		yourself.
-		resultString := self write: item.
+	self write: item.
 	self assert: (self write: item) isEmpty
 ]
 

@@ -4,7 +4,7 @@ Check ChrysalConfigurationBuilder >> #itemDescriptionForXX for the
 Class {
 	#name : #ChrysalPillarConfigurationTest,
 	#superclass : #TestCase,
-	#category : 'Pillar-Chrysal'
+	#category : #'Pillar-Chrysal'
 }
 
 { #category : #'tests - from cocoon' }
@@ -36,23 +36,23 @@ ChrysalPillarConfigurationTest >> printerSample [
 
 { #category : #tests }
 ChrysalPillarConfigurationTest >> testPrinter [
-	|  config levels level1 level2 |
-	config := self configurationClass newFromDictionary:  (STON fromString: self printerSample).
-	levels := config propertyAt: 'levels'. 
-	
+	| config level1 level2 |
+	config := self configurationClass newFromDictionary: (STON fromString: self printerSample).
+	config propertyAt: 'levels'.
+
 	level1 := config printer level1.
 	self assert: level1 capitalization equals: 'uppercase'.
 	self assert: level1 numbering.
 	self assert: level1 level equals: 1.
 	self assert: level1 size equals: 2.
 	self assert: level1 class equals: PRLevelLetterPrinter.
-	
+
 	level2 := config printer level2.
 	self assert: level2 capitalization equals: 'uppercase'.
 	self assert: level2 numbering.
 	self assert: level2 level equals: 2.
 	self assert: level2 size equals: 3.
-	self assert: level2 class equals: PRLevelNumberPrinter.
+	self assert: level2 class equals: PRLevelNumberPrinter
 ]
 
 { #category : #'tests - from cocoon' }

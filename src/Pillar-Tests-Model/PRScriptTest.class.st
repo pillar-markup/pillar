@@ -5,7 +5,7 @@ A PRRawTest is xxxxxxxxx.
 Class {
 	#name : #PRScriptTest,
 	#superclass : #PRTextTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#category : #'Pillar-Tests-Model-Document'
 }
 
 { #category : #testing }
