@@ -21,14 +21,7 @@ Class {
 
 { #category : #private }
 PRCodeblockStylerExtensions class >> imageCache [
-	imageCache ifNil: [ imageCache := LRUCache new ].
-	^imageCache
-	
-]
-
-{ #category : #private }
-PRCodeblockStylerExtensions class >> initialize [
-	imageCache := nil.
+	^ imageCache ifNil: [ imageCache := LRUCache new ]
 ]
 
 { #category : #examples }
