@@ -10,10 +10,6 @@ __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PHARO_VM="${__dir}/pharo"
 PILLAR_IMAGE="${__dir}/Pharo.image"
 
-#Read pillar command
-command=$1
-shift
-
 # disable parameter expansion to forward all arguments unprocessed to the VM
 set -f
 
@@ -21,4 +17,4 @@ set -f
 # can remove the --baseDirectory from here. The current solution is
 # problematic because it overrides any baseDirectory parameter of the
 # pillar.conf file.
-exec "${PHARO_VM}" "${PILLAR_IMAGE}" --no-default-preferences clap pillar "${command}" --baseDirectory="${PWD}" "$@"
+exec "${PHARO_VM}" "${PILLAR_IMAGE}" --no-default-preferences clap pillar "$@"
