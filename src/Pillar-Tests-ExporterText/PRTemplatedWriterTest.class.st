@@ -22,14 +22,13 @@ PRTemplatedWriterTest >> assertTemplatePath: templatePath writesValue: contents 
 
 { #category : #'tests-templatefiles' }
 PRTemplatedWriterTest >> assertWritingNode: node writes: contents [
-
-	| document result writer |
+	| document result |
 	document := PRDocument new
 		add: node;
 		yourself.
 
 	result := textDocument writer write: document.
-		
+
 	self assert: result equals: contents
 ]
 

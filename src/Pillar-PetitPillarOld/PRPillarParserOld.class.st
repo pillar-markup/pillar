@@ -369,9 +369,8 @@ PRPillarParserOld >> preformatedText [
 { #category : #'grammar - Raw' }
 PRPillarParserOld >> raw [
 	^ super raw
-		==>
-			[ :array | 
-			| type contentRaw |
+		==> [ :array | 
+			| contentRaw |
 			contentRaw := '' writeStream.
 			contentRaw nextPutAll: array third.
 			PRRaw content: contentRaw contents type: array second ]
