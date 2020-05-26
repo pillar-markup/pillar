@@ -130,7 +130,7 @@ PRProject >> contributeToPipelineBuilding: aPRPipelineBuilder [
 
 { #category : #accessing }
 PRProject >> defaultOutputDirectoryName [
-	^ Path from: '_result'
+	^ '_result'
 ]
 
 { #category : #accessing }
