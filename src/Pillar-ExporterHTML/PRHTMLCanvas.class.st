@@ -12,7 +12,7 @@ Class {
 	#classVars : [
 		'HTMLCharacters'
 	],
-	#category : 'Pillar-ExporterHTML'
+	#category : #'Pillar-ExporterHTML'
 }
 
 { #category : #'class initialization' }
@@ -32,11 +32,9 @@ PRHTMLCanvas >> emptyTag [
 
 { #category : #'writing text' }
 PRHTMLCanvas >> nextPut: aCharacter [
-	| string |
-	string := HTMLCharacters at: aCharacter ifAbsent: nil.
-	string isNil
-		ifTrue: [ super nextPut: aCharacter ]
-		ifFalse: [ self raw: string ]
+	(HTMLCharacters at: aCharacter ifAbsent: nil)
+		ifNil: [ super nextPut: aCharacter ]
+		ifNotNil: [ :string | self raw: string ]
 ]
 
 { #category : #tags }

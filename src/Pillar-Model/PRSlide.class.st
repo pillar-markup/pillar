@@ -49,9 +49,7 @@ PRSlide >> label: anObject [
 
 { #category : #accessing }
 PRSlide >> title [
-	^ title isNotNil
-		ifTrue: [ title ]
-		ifFalse: [ 'New Slide' ]
+	^ title ifNil: [ 'New Slide' ]
 ]
 
 { #category : #accessing }

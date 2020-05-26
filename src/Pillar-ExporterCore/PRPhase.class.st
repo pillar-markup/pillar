@@ -42,9 +42,7 @@ PRPhase >> actionOn: anInput [
 
 { #category : #accessing }
 PRPhase >> configuration [
-	^ configuration isNotNil
-		ifTrue: [ configuration ]
-		ifFalse: [ ConfigurationForPillar new ]
+	^ configuration ifNil: [ ConfigurationForPillar new ]
 ]
 
 { #category : #accessing }

@@ -1,7 +1,7 @@
 Class {
 	#name : #PRMarkdownWriterTest,
 	#superclass : #PRDocumentWriterTest,
-	#category : 'Pillar-Tests-ExporterMarkdown'
+	#category : #'Pillar-Tests-ExporterMarkdown'
 }
 
 { #category : #private }
@@ -26,14 +26,8 @@ PRMarkdownWriterTest >> definitionListBegin [
 
 { #category : #asserting }
 PRMarkdownWriterTest >> deny: result includesSubstring: expected [
-	expected isEmpty ifTrue: [ ^ self ].
-	self
-		deny: (result includesSubstring: expected)
-		description:
-			('''{1}'' is in ''{2}'''
-				format:
-					{expected.
-					result})
+	expected ifEmpty: [ ^ self ].
+	self deny: (result includesSubstring: expected) description: ('''{1}'' is in ''{2}''' format: {expected . result})
 ]
 
 { #category : #asserting }

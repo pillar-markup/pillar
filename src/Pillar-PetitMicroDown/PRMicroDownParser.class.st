@@ -91,14 +91,16 @@ PRMicroDownParser >> contents [
 
 { #category : #'grammar - List' }
 PRMicroDownParser >> dataListItem [
-	^ super dataListItem ==> [ :array | 
-		| item |
-		item := array second withAll: (array third ifNil: [ {} ]).
-		item addAll: array fourth.
-		array fifth isNotNil ifTrue: [ 
-			item addAll: (self listsParser parse: array fifth) ].
-		item start: array first start; stop: array last stop.
-		item ]
+	^ super dataListItem
+		==> [ :array | 
+			| item |
+			item := array second withAll: (array third ifNil: [ {} ]).
+			item addAll: array fourth.
+			array fifth ifNotNil: [ :fifth | item addAll: (self listsParser parse: fifth) ].
+			item
+				start: array first start;
+				stop: array last stop.
+			item ]
 ]
 
 { #category : #'grammar - List' }
@@ -273,14 +275,16 @@ PRMicroDownParser >> orderedList [
 
 { #category : #'grammar - List' }
 PRMicroDownParser >> orderedListItem [
-	^ super orderedListItem ==> [ :array | 
-		| item |
-		item := PRListItem withAll: (array third ifNil: [ {} ]).
-		item addAll: array fourth.
-		array fifth isNotNil ifTrue: [ 
-			item addAll: (self listsParser parse: array fifth) ].
-		item start: array first start; stop: array last stop.
-		item ]
+	^ super orderedListItem
+		==> [ :array | 
+			| item |
+			item := PRListItem withAll: (array third ifNil: [ {} ]).
+			item addAll: array fourth.
+			array fifth ifNotNil: [ :fifth | item addAll: (self listsParser parse: fifth) ].
+			item
+				start: array first start;
+				stop: array last stop.
+			item ]
 ]
 
 { #category : #'grammar - List' }
@@ -601,14 +605,16 @@ PRMicroDownParser >> tableRow [
 
 { #category : #'grammar - List' }
 PRMicroDownParser >> termListItem [
-	^ super termListItem ==> [ :array | 
-		| item |
-		item := array second withAll: (array third ifNil: [ {} ]).
-		item addAll: array fourth.
-		array fifth isNotNil ifTrue: [ 
-			item addAll: (self listsParser parse: array fifth) ].
-		item start: array first start; stop: array last stop.
-		item ]
+	^ super termListItem
+		==> [ :array | 
+			| item |
+			item := array second withAll: (array third ifNil: [ {} ]).
+			item addAll: array fourth.
+			array fifth ifNotNil: [ :fifth | item addAll: (self listsParser parse: fifth) ].
+			item
+				start: array first start;
+				stop: array last stop.
+			item ]
 ]
 
 { #category : #'grammar - List' }
@@ -661,15 +667,16 @@ PRMicroDownParser >> unorderedList [
 
 { #category : #'grammar - List' }
 PRMicroDownParser >> unorderedListItem [
-	^ super unorderedListItem ==> [ :array | 
-		| item |
-		item := PRListItem withAll: (array third ifNil: [ {} ]).
-		item addAll: array fourth.
-		array fifth isNotNil
-			ifTrue:
-				[ item addAll: (self listsParser parse: array fifth) ].
-		item start: array first start; stop: array last stop.
-		item ]
+	^ super unorderedListItem
+		==> [ :array | 
+			| item |
+			item := PRListItem withAll: (array third ifNil: [ {} ]).
+			item addAll: array fourth.
+			array fifth ifNotNil: [ :fifth | item addAll: (self listsParser parse: fifth) ].
+			item
+				start: array first start;
+				stop: array last stop.
+			item ]
 ]
 
 { #category : #'grammar - List' }

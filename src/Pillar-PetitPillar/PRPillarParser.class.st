@@ -5,7 +5,7 @@ I use the PRPillarGrammar and I build a PRDocument.
 Class {
 	#name : #PRPillarParser,
 	#superclass : #PRPillarGrammar,
-	#category : 'Pillar-PetitPillar'
+	#category : #'Pillar-PetitPillar'
 }
 
 { #category : #parsing }
@@ -95,14 +95,16 @@ PRPillarParser >> contents [
 
 { #category : #'grammar - List' }
 PRPillarParser >> dataListItem [
-	^ super dataListItem ==> [ :array | 
-		| item |
-		item := array second withAll: (array third ifNil: [ {} ]).
-		item addAll: array fourth.
-		array fifth isNotNil ifTrue: [ 
-			item addAll: (self listsParser parse: array fifth) ].
-		item start: array first start; stop: array last stop.
-		item ]
+	^ super dataListItem
+		==> [ :array | 
+			| item |
+			item := array second withAll: (array third ifNil: [ {} ]).
+			item addAll: array fourth.
+			array fifth ifNotNil: [ :fifth | item addAll: (self listsParser parse: fifth) ].
+			item
+				start: array first start;
+				stop: array last stop.
+			item ]
 ]
 
 { #category : #'grammar - List' }
@@ -277,14 +279,16 @@ PRPillarParser >> orderedList [
 
 { #category : #'grammar - List' }
 PRPillarParser >> orderedListItem [
-	^ super orderedListItem ==> [ :array | 
-		| item |
-		item := PRListItem withAll: (array third ifNil: [ {} ]).
-		item addAll: array fourth.
-		array fifth isNotNil ifTrue: [ 
-			item addAll: (self listsParser parse: array fifth) ].
-		item start: array first start; stop: array last stop.
-		item ]
+	^ super orderedListItem
+		==> [ :array | 
+			| item |
+			item := PRListItem withAll: (array third ifNil: [ {} ]).
+			item addAll: array fourth.
+			array fifth ifNotNil: [ :fifth | item addAll: (self listsParser parse: fifth) ].
+			item
+				start: array first start;
+				stop: array last stop.
+			item ]
 ]
 
 { #category : #'grammar - List' }
@@ -605,14 +609,16 @@ PRPillarParser >> tableRow [
 
 { #category : #'grammar - List' }
 PRPillarParser >> termListItem [
-	^ super termListItem ==> [ :array | 
-		| item |
-		item := array second withAll: (array third ifNil: [ {} ]).
-		item addAll: array fourth.
-		array fifth isNotNil ifTrue: [ 
-			item addAll: (self listsParser parse: array fifth) ].
-		item start: array first start; stop: array last stop.
-		item ]
+	^ super termListItem
+		==> [ :array | 
+			| item |
+			item := array second withAll: (array third ifNil: [ {} ]).
+			item addAll: array fourth.
+			array fifth ifNotNil: [ :fifth | item addAll: (self listsParser parse: fifth) ].
+			item
+				start: array first start;
+				stop: array last stop.
+			item ]
 ]
 
 { #category : #'grammar - List' }
@@ -665,15 +671,16 @@ PRPillarParser >> unorderedList [
 
 { #category : #'grammar - List' }
 PRPillarParser >> unorderedListItem [
-	^ super unorderedListItem ==> [ :array | 
-		| item |
-		item := PRListItem withAll: (array third ifNil: [ {} ]).
-		item addAll: array fourth.
-		array fifth isNotNil
-			ifTrue:
-				[ item addAll: (self listsParser parse: array fifth) ].
-		item start: array first start; stop: array last stop.
-		item ]
+	^ super unorderedListItem
+		==> [ :array | 
+			| item |
+			item := PRListItem withAll: (array third ifNil: [ {} ]).
+			item addAll: array fourth.
+			array fifth ifNotNil: [ :fifth | item addAll: (self listsParser parse: fifth) ].
+			item
+				start: array first start;
+				stop: array last stop.
+			item ]
 ]
 
 { #category : #'grammar - List' }
