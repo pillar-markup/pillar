@@ -1,3 +1,6 @@
+"
+I am an abstract PREditorFile, to distinguish a **new** text file and an existing **opened** text file.
+"
 Class {
 	#name : #PREditorFile,
 	#superclass : #Object,

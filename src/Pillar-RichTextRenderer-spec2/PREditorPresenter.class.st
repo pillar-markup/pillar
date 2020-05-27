@@ -1,5 +1,21 @@
 "
-PREditorPresenter new openWithSpec
+I am a Spec2 Presenter for Pillar Editor (Laurine Dargaud).
+
+Features:
+- New: open a new file
+- Open: open a existing text file from your directories
+- Save: save your new file or your opened file
+- Clean: delete text content
+- Render: see the Richtext result of your markuped text
+- Get example: print an example markuped text which covers characteristic grammar
+- Change input syntax: switch between Pillar or MicroDown markup syntax
+
+**For now, export feature is unavailable, so it has been removed from menu - but relative classes and methods in code exist**
+
+Open me via my class method `open` or execute the following line:
+` PREditorPresenter new openWithSpec `
+
+
 "
 Class {
 	#name : #PREditorPresenter,
@@ -193,7 +209,7 @@ PREditorPresenter >> menu [
 						action: [ self changeAction ] 
 				]	
 		];
-	addGroup: [ :group | 
+	"addGroup: [ :group | 
 			group
 				addItem: [ :item | 
 					item
@@ -207,7 +223,7 @@ PREditorPresenter >> menu [
 						name: 'Set config';
 						description: 'Give your Pillar installation directory path to be able to export';
 						icon: (self iconNamed: #configIcon);
-						action: [ self configAction ] ] ]; yourself ]
+						action: [ self configAction ] ] ];" yourself ]
 ]
 
 { #category : #actions }
