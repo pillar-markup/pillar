@@ -63,14 +63,13 @@ PRCodeblock >> isTestDefinition [
 { #category : #'*Pillar-BookTester' }
 PRCodeblock >> textForExample [
 	"returns a preformated text for codeblock testing"
+
 	"(PRCodeblock content: ' 3+4 >>> 7 ' parameters: (OrderedDictionary newFromKeys: #('example') andValues: #(true))) textForExample 
 	  >>> '(3+4)>>>7'"
-	
-	('*>>>*' match: self text)
-			ifTrue: [ ^ '(', (self text splitOn: '>>>') first trimBoth, 
-				         ')','>>>', (self text splitOn: '>>>') second trimBoth ]
-			ifFalse: [ ^ self text ]
-	 
+
+	^ ('*>>>*' match: self text)
+		ifTrue: [ '(' , (self text splitOn: '>>>') first trimBoth , ')' , '>>>' , (self text splitOn: '>>>') second trimBoth ]
+		ifFalse: [ self text ]
 ]
 
 { #category : #'*Pillar-BookTester' }
@@ -80,18 +79,27 @@ PRCodeblock >> textForMethodDefinition [
 		-Class Name
 		-Method Name
 		-Method Body"
+
 	"(PRCodeblock content: 'classname >> methodName
 blabla
 blabla' parameters: nil) textForMethodDefinitionParameter >>>  #('classname' 'methodName' 'blabla
 blabla') "
-		
-	('*>>*' match: self text)
-			ifTrue: [ ^ Array with: ((self text splitOn: '>>') first trimBoth splitOn: ' ') asArray
-		 						   with: (((self text splitOn: '>>') second) splitOn: '
+
+	^ ('*>>*' match: self text)
+		ifTrue: [ Array
+				with: ((self text splitOn: '>>') first trimBoth splitOn: ' ') asArray
+				with:
+					((self text splitOn: '>>') second
+						splitOn:
+							'
 ') first trimBoth
-		 							with: ('
-' join: (((self text splitOn: '>>') second) splitOn: '
+				with:
+					('
+'
+						join:
+							((self text splitOn: '>>') second
+								splitOn:
+									'
 ') allButFirst) trimBoth ]
-			ifFalse: [ ^ 'Method definition syntax not respected. Please use: YourClass>>yourMethod ...' ]
-	 
+		ifFalse: [ 'Method definition syntax not respected. Please use: YourClass>>yourMethod ...' ]
 ]

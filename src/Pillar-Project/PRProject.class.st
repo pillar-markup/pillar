@@ -105,12 +105,11 @@ PRProject >> configuration [
 	
 	| readConfiguration extension |
 	extension := Dictionary new.
-	extension at: 'baseDirectory' put: self baseDirectory.
 	extension at: 'outputDirectory' put: self defaultOutputDirectoryName.
 	
 	"Just for backwards compatibility"
 	extension at: '_project' put: self.
-	
+
 	readConfiguration := self configurationFileReference exists
 		ifFalse: [ ConfigurationForPillar newFromDictionary: extension ]
 		ifTrue: [ ConfigurationForPillar newFromFile: self configurationFileReference extendedWith: extension ].
@@ -131,7 +130,7 @@ PRProject >> contributeToPipelineBuilding: aPRPipelineBuilder [
 
 { #category : #accessing }
 PRProject >> defaultOutputDirectoryName [
-	^ Path from: '_result'
+	^ '_result'
 ]
 
 { #category : #accessing }

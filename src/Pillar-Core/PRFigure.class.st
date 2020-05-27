@@ -41,6 +41,11 @@ PRFigure >> hasCaption [
 ]
 
 { #category : #testing }
+PRFigure >> hasFigureExtension [
+	^ self class pictureExtensions includes: self reference asFileReference extension
+]
+
+{ #category : #testing }
 PRFigure >> hasLabel [
 	^ self label isNotNil
 ]
@@ -53,4 +58,12 @@ PRFigure >> label [
 { #category : #accessing }
 PRFigure >> label: aString [
 	self parameters at: 'label' put: aString
+]
+
+{ #category : #'as yet unclassified' }
+PRFigure >> pathInternFile [
+	| path |
+	path := self reference.
+	(path beginsWith: 'file://') ifTrue: [ path := path allButFirst: 7 ].
+	^ path
 ]

@@ -16,7 +16,7 @@ PRTParametrizable >> hasParameter: aKey [
 
 { #category : #'accessing-parameters' }
 PRTParametrizable >> hasParameters [
-	^ self parameters isEmpty not
+	^ self parameters isNotEmpty
 ]
 
 { #category : #'accessing-parameters' }

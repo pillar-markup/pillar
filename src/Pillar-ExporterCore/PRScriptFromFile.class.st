@@ -9,19 +9,18 @@ Class {
 		'lastLine',
 		'fileStream'
 	],
-	#category : 'Pillar-ExporterCore-Feature-ScriptFromFile'
+	#category : #'Pillar-ExporterCore-Feature-ScriptFromFile'
 }
 
 { #category : #adding }
 PRScriptFromFile >> addScript: aScript [
-	| content cpt |
+	| content |
 	content := String new writeStream.
 	aScript hasNoCode
 		ifFalse: [ 
 			PRWarning
 				signal:
 					'Be careful, you used the fromFile parameter on a script which is not empty. This has been erased : ' , aScript text ].
-	cpt := 0.	"We first pass the begining of the code."
 	firstLine - 1 timesRepeat: [ fileStream nextLine ].
 	lastLine - firstLine + 1
 		timesRepeat: [ 
@@ -47,23 +46,19 @@ PRScriptFromFile >> hasFromFile: aScript [
 		at: 'firstLine'
 		ifPresent: [ :lineNumber | 
 			firstLine := lineNumber asInteger.
-			firstLine isNotNil
-				ifFalse: [ PRPropertyError signal: 'firstLine parameter must contains digits' ].
+			firstLine ifNil: [ PRPropertyError signal: 'firstLine parameter must contains digits' ].
 			aScript parameters
 				at: 'fromFile'
-				ifAbsent: [ 
-					PRWarning signal: 'firstLine has to be with a fromFile parameter.'.
+				ifAbsent: [ PRWarning signal: 'firstLine has to be with a fromFile parameter.'.
 					^ false ] ].
 	aScript parameters
 		at: 'lastLine'
 		ifPresent: [ :lineNumber | 
 			lastLine := lineNumber asInteger.
-			lastLine isNotNil
-				ifFalse: [ PRPropertyError signal: 'lastLine parameter must contains digits' ].
+			lastLine ifNil: [ PRPropertyError signal: 'lastLine parameter must contains digits' ].
 			aScript parameters
 				at: 'fromFile'
-				ifAbsent: [ 
-					PRWarning signal: 'lastLine has to be with a fromFile parameter.'.
+				ifAbsent: [ PRWarning signal: 'lastLine has to be with a fromFile parameter.'.
 					^ false ] ].
 	aScript parameters
 		at: 'fromFile'
@@ -71,13 +66,6 @@ PRScriptFromFile >> hasFromFile: aScript [
 			self setFileAndInterval: fileName.
 			^ true ]
 		ifAbsent: [ ^ false ]
-]
-
-{ #category : #accessing }
-PRScriptFromFile >> initialize [
-	super initialize.
-	firstLine := nil.
-	lastLine := nil
 ]
 
 { #category : #action }
@@ -96,21 +84,15 @@ PRScriptFromFile >> setFileAndInterval: aFileName [
 PRScriptFromFile >> updateInterval [
 	| fileLineNumber |
 	fileLineNumber := self fileLineNumber.
-	firstLine isNil
-		ifTrue: [ firstLine := 1 ]
-		ifFalse: [ 
-			firstLine <= fileLineNumber
-				ifFalse: [ 
-					PRPropertyError
-						signal: 'firstLine parameter is not a valid parameter. Please choose a firstLine lower than the file size.' ] ].
-	lastLine isNil
-		ifTrue: [ lastLine := fileLineNumber ]
-		ifFalse: [ 
-			(lastLine >= firstLine and: [ lastLine <= fileLineNumber ])
-				ifFalse: [ 
-					PRPropertyError
-						signal:
-							'lastLine parameter is not a valid parameter. Please choose a lastLine lower than the file size and higher then the firstLine.' ] ]
+	firstLine
+		ifNil: [ firstLine := 1 ]
+		ifNotNil: [ firstLine <= fileLineNumber
+				ifFalse: [ PRPropertyError signal: 'firstLine parameter is not a valid parameter. Please choose a firstLine lower than the file size.' ] ].
+	lastLine
+		ifNil: [ lastLine := fileLineNumber ]
+		ifNotNil: [ (lastLine >= firstLine and: [ lastLine <= fileLineNumber ])
+				ifFalse:
+					[ PRPropertyError signal: 'lastLine parameter is not a valid parameter. Please choose a lastLine lower than the file size and higher then the firstLine.' ] ]
 ]
 
 { #category : #'visiting-document' }

@@ -24,7 +24,7 @@ Class {
 		'printer',
 		'renderAs'
 	],
-	#category : 'Pillar-ExporterCore-Configuration'
+	#category : #'Pillar-ExporterCore-Configuration'
 }
 
 { #category : #'accessing - defaults' }
@@ -100,9 +100,10 @@ PRTitlePrinterSpecification >> headerSize [
 { #category : #accessing }
 PRTitlePrinterSpecification >> headerSize: anInteger [
 	"Pay attention changing the size only makes sense when numbering is true."
-	numbering
-		ifTrue: [ size := anInteger ]
-		ifFalse: [ size := 0 ].
+
+	size := numbering
+		ifTrue: [ anInteger ]
+		ifFalse: [ 0 ]
 ]
 
 { #category : #initialization }

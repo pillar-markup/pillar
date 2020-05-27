@@ -5,7 +5,7 @@ I use the PRPillarGrammar and I build a PRDocument.
 Class {
 	#name : #PRPillarParserOld,
 	#superclass : #PRPillarGrammarOld,
-	#category : 'Pillar-PetitPillarOld'
+	#category : #'Pillar-PetitPillarOld'
 }
 
 { #category : #'grammar - Anchor' }
@@ -81,14 +81,11 @@ PRPillarParserOld >> contents [
 { #category : #'grammar - List' }
 PRPillarParserOld >> dataListItem [
 	^ super dataListItem
-		==>
-			[ :array | 
+		==> [ :array | 
 			| item |
 			item := array first withAll: (array second ifNil: [ {} ]).
 			item addAll: array third.
-			array fourth isNotNil
-				ifTrue:
-					[ item addAll: (self listsParser parse: array fourth) ].
+			array fourth ifNotNil: [ :fourth | item addAll: (self listsParser parse: fourth) ].
 			item ]
 ]
 
@@ -240,14 +237,11 @@ PRPillarParserOld >> orderedList [
 { #category : #'grammar - List' }
 PRPillarParserOld >> orderedListItem [
 	^ super orderedListItem
-		==>
-			[ :array | 
+		==> [ :array | 
 			| item |
 			item := PRListItem withAll: (array second ifNil: [ {} ]).
 			item addAll: array third.
-			array fourth isNotNil
-				ifTrue:
-					[ item addAll: (self listsParser parse: array fourth) ].
+			array fourth ifNotNil: [ :fourth | item addAll: (self listsParser parse: fourth) ].
 			item ]
 ]
 
@@ -375,9 +369,8 @@ PRPillarParserOld >> preformatedText [
 { #category : #'grammar - Raw' }
 PRPillarParserOld >> raw [
 	^ super raw
-		==>
-			[ :array | 
-			| type contentRaw |
+		==> [ :array | 
+			| contentRaw |
 			contentRaw := '' writeStream.
 			contentRaw nextPutAll: array third.
 			PRRaw content: contentRaw contents type: array second ]
@@ -517,14 +510,11 @@ PRPillarParserOld >> tableRow [
 { #category : #'grammar - List' }
 PRPillarParserOld >> termListItem [
 	^ super termListItem
-		==>
-			[ :array | 
+		==> [ :array | 
 			| item |
 			item := array first withAll: (array second ifNil: [ {} ]).
 			item addAll: array third.
-			array fourth isNotNil
-				ifTrue:
-					[ item addAll: (self listsParser parse: array fourth) ].
+			array fourth ifNotNil: [ :fourth | item addAll: (self listsParser parse: fourth) ].
 			item ]
 ]
 
@@ -578,14 +568,11 @@ PRPillarParserOld >> unorderedList [
 { #category : #'grammar - List' }
 PRPillarParserOld >> unorderedListItem [
 	^ super unorderedListItem
-		==>
-			[ :array | 
+		==> [ :array | 
 			| item |
 			item := PRListItem withAll: (array second ifNil: [ {} ]).
 			item addAll: array third.
-			array fourth isNotNil
-				ifTrue:
-					[ item addAll: (self listsParser parse: array fourth) ].
+			array fourth ifNotNil: [ :fourth | item addAll: (self listsParser parse: fourth) ].
 			item ]
 ]
 

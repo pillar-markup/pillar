@@ -6,22 +6,19 @@ PRAbstractAnnotation class >> adaptKeysOn: aCollection [
 	newDictionary := OrderedDictionary new.
 	aCollection
 		keysDo: [ :key | 
-			(aCollection at: key) isNil
-				ifTrue: [ newDictionary at: self defaultParameterName put: key ]
-				ifFalse: [ newDictionary at: key put: (aCollection at: key) ] ].
+			(aCollection at: key)
+				ifNil: [ newDictionary at: self defaultParameterName put: key ]
+				ifNotNil: [ :elem | newDictionary at: key put: elem ] ].
 	^ newDictionary
 ]
 
 { #category : #'*Pillar-PetitPillarOld' }
 PRAbstractAnnotation class >> checkKeysOf: aCollection [
 	"aCollection may be a SmallDictionary('Foo'->nil 'number'->'5')"
-		
+
 	| nilParameters |
 	nilParameters := 0.
-	aCollection values
-		do: [ :each | 
-			each isNil
-				ifTrue: [ nilParameters := nilParameters + 1 ] ].
+	aCollection values do: [ :each | each ifNil: [ nilParameters := nilParameters + 1 ] ].
 	self raiseErrorIfTooManyDefaultParameters: nilParameters.
 	^ nilParameters = 1
 		ifTrue: [ self adaptKeysOn: aCollection ]

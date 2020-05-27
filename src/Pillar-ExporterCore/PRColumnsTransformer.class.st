@@ -42,22 +42,18 @@ PRColumnsTransformer >> prepareForExecutionOn: aPRProject [
 { #category : #visiting }
 PRColumnsTransformer >> start: aDocumentItem [
 	| object |
-	
 	"Execute clean annotation before"
 	object := super start: (PRCleanAnnotationInParagraphTransformer new start: aDocumentItem).
-	currentColumns notNil | currentColumn notNil
-		ifTrue: [ PRError
-				signal:
-					'Missing ending columns annotation. Please use ${endColumns}$ at the end of the columns environment.' ].
+	currentColumns isNotNil | currentColumn isNotNil
+		ifTrue: [ PRError signal: 'Missing ending columns annotation. Please use ${endColumns}$ at the end of the columns environment.' ].
 	^ object
 ]
 
 { #category : #'visiting-annotations' }
 PRColumnsTransformer >> visitColumnAnnotation: anAnnotation [
-	currentColumns isNil
-		ifTrue: [ PRError
-				signal:
-					'You can''t create a new column if you are not inside a column environment. Please use ${columns}$ before the beginning of a column.' ].
+	currentColumns
+		ifNil:
+			[ PRError signal: 'You can''t create a new column if you are not inside a column environment. Please use ${columns}$ before the beginning of a column.' ].
 	currentColumn := PRColumn width: (anAnnotation parameters at: 'width').
 	currentColumns add: currentColumn.
 	self delete
@@ -65,10 +61,7 @@ PRColumnsTransformer >> visitColumnAnnotation: anAnnotation [
 
 { #category : #'visiting-annotations' }
 PRColumnsTransformer >> visitColumnsAnnotation: anAnnotation [
-	currentColumns notNil
-		ifTrue: [ PRError
-				signal:
-					'You have to close a columns environment before you open an other. Use the ${endColumns}$ tag please.' ].
+	currentColumns ifNotNil: [ PRError signal: 'You have to close a columns environment before you open an other. Use the ${endColumns}$ tag please.' ].
 	currentColumns := PRColumnEnvironment new.
 	self delete
 ]
@@ -85,8 +78,7 @@ PRColumnsTransformer >> visitDocumentItem: anItem [
 
 { #category : #'visiting-annotations' }
 PRColumnsTransformer >> visitEndColumnsAnnotation: anAnnotation [
-	currentColumns isNil
-		ifTrue: [ PRError signal: 'Column environement ending encounter out of a column environment.' ].
+	currentColumns ifNil: [ PRError signal: 'Column environement ending encounter out of a column environment.' ].
 	self replace: {currentColumns}.
 	currentColumns := nil.
 	currentColumn := nil
