@@ -50,17 +50,6 @@ LICENSE  README.md  appveyor.yml  archetypes  ==>>build<<==  download.sh  script
 ### 2. Setting up the environment
 
 You can then proceed to install that pillar build where you want.
-
-#### Procedure working with CLAP system
-
-Once CLAP is installed and works ( [CLAP procedure](https://github.com/cdlm/clap-st)), add the following alias in your .bashrc :
-
-```bash
-alias pillar="<link to your pharo VM> <link to your Pharo.image> clap pillar"
-```
-
-#### Procedure with old commandlines system
-
 For example, you can place it in a hidden directory in your home directory:
 
 ```bash
@@ -111,8 +100,6 @@ Check the ensure-deps.sh files and companion travis file (if you want to run in 
 
 
 ### 4. Test your installation
-
-_Doesn't work with CLAP yet_
 
 To test your pillar installation, open a new terminal and execute the `pillar --version` command.
 If everything is ok, that should print out (as in the current version) the version of the Pharo VM.
