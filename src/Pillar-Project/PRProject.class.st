@@ -149,9 +149,18 @@ PRProject >> initialize [
 
 { #category : #archetypes }
 PRProject >> installArchetypeNamed: archetypeName [
+	| archetype |
+	archetype := self archetypeNamed: archetypeName.
+	archetype validateExists.
+	archetype installIn: self baseDirectory
+]
+
+{ #category : #archetypes }
+PRProject >> installArchetypeNamed: archetypeName fromDirectory: pillarDirectory [
 	
 	| archetype |
 	archetype := self archetypeNamed: archetypeName.
+	archetype directory: pillarDirectory.
 	archetype validateExists.
 	archetype installIn: self baseDirectory
 ]

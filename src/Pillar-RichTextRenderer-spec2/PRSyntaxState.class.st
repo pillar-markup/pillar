@@ -1,3 +1,6 @@
+"
+I am a state pattern to switch syntax between **MicroDown** and **Pillar** for now. We can think of adding GitHub Markdown.
+"
 Class {
 	#name : #PRSyntaxState,
 	#superclass : #Object,

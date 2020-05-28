@@ -1,5 +1,21 @@
 "
-PREditorPresenter new openWithSpec
+I am a Spec2 Presenter for Pillar Editor (Laurine Dargaud).
+
+Features:
+- New: open a new file
+- Open: open a existing text file from your directories
+- Save: save your new file or your opened file
+- Clean: delete text content
+- Render: see the Richtext result of your markuped text
+- Get example: print an example markuped text which covers characteristic grammar
+- Change input syntax: switch between Pillar or MicroDown markup syntax
+
+**For now, export feature is unavailable, so it has been removed from menu - but relative classes and methods in code exist**
+
+Open me via my class method `open` or execute the following line:
+` PREditorPresenter new openWithSpec `
+
+
 "
 Class {
 	#name : #PREditorPresenter,
@@ -10,6 +26,7 @@ Class {
 		'textInput',
 		'textOutput',
 		'currentFile',
+		'configPillarFolder',
 		'morphWriter',
 		'parser'
 	],
@@ -37,7 +54,7 @@ PREditorPresenter class >> open [
 { #category : #actions }
 PREditorPresenter >> changeAction [
 	"CHANGE button is pressed: change input syntax with next syntax state"
-	syntaxState := syntaxState next new.
+	syntaxState := syntaxState next.
 	parser := syntaxState parser.
 	self screenLabelWith: syntaxState name.
 ]
@@ -47,6 +64,24 @@ PREditorPresenter >> cleanAction [
 	"CLEAN button is pressed: erase both input and output text content"
 	textInput text: ''.
 	textOutput text: ''
+]
+
+{ #category : #actions }
+PREditorPresenter >> configAction [
+	"CONFIG button is pressed: open window"
+	| selectedDir |
+	selectedDir := FDOpenDirectoryDialog new defaultName: 'pillar'; title: 'Select pillar directory in your installation'; openModal.
+	selectedDir ifNotNil: [ self configPillarFolder: selectedDir].
+]
+
+{ #category : #accessing }
+PREditorPresenter >> configPillarFolder [
+	^ configPillarFolder
+]
+
+{ #category : #accessing }
+PREditorPresenter >> configPillarFolder: aDirectory [
+	configPillarFolder := aDirectory 
 ]
 
 { #category : #accessing }
@@ -69,8 +104,12 @@ PREditorPresenter >> exampleAction [
 { #category : #actions }
 PREditorPresenter >> exportAction [
 	"EXPORT button is pressed: open export window"
+	"check conditions to export"
 	self saveAction.
-	self currentFile isNew ifFalse: [ (PRExportPresenter withInputFile: self currentFile file withParser: syntaxState parser ) openWithSpec  ]
+	self currentFile isNew ifTrue: [ ^ self inform: 'Please save your file before export' ].
+	self configPillarFolder ifNil: [self configAction].
+	self configPillarFolder ifNil: [ ^ self inform: 'Please localise your pillar directory in configuration' ].
+	(PRExportPresenter withInputFile: self currentFile file withParser: syntaxState parser withConfigDirectory: self configPillarFolder) openWithSpec
 	
 ]
 
@@ -170,14 +209,21 @@ PREditorPresenter >> menu [
 						action: [ self changeAction ] 
 				]	
 		];
-	addGroup: [ :group | 
+	"addGroup: [ :group | 
 			group
 				addItem: [ :item | 
 					item
 						name: 'Export';
 						description: 'Build your document in export formt you want';
 						icon: (self iconNamed: #glamorousOpenFromUrlIcon);
-						action: [ self exportAction ] ] ]; yourself ]
+						action: [ self exportAction ] ].
+			group
+				addItem: [ :item | 
+					item
+						name: 'Set config';
+						description: 'Give your Pillar installation directory path to be able to export';
+						icon: (self iconNamed: #configIcon);
+						action: [ self configAction ] ] ];" yourself ]
 ]
 
 { #category : #actions }
@@ -213,9 +259,10 @@ PREditorPresenter >> renderAction [
 { #category : #actions }
 PREditorPresenter >> saveAction [
 	"SAVE button is pressed: save file, then print message if actually saved (if no cancel)"
-	self currentFile: (self currentFile save: textInput).
+	self currentFile: (self currentFile save: textInput withExtension: syntaxState extension).
 	self updateTitle.
-	self currentFile isNew ifFalse: [self inform: self currentFile fullName, ' is saved'].
+	self currentFile isNew ifFalse: [
+		self inform: self currentFile fullName, ' is saved'.].
 ]
 
 { #category : #api }

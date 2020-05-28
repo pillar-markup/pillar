@@ -1,21 +1,19 @@
+"
+I am the export presenter using file-dialog.
+"
 Class {
 	#name : #PRExportPresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'inputFile',
-		'syntaxLabel',
-		'syntaxInput',
+		'syntaxScreen',
 		'parser',
 		'formatLabel',
 		'formatInput',
 		'target',
-		'directoryLabel',
-		'directoryText',
-		'directorySearchButton',
+		'directoryScreen',
 		'project',
-		'nameLabel',
-		'nameInput',
-		'name',
+		'configDirectory',
 		'confirmButton',
 		'cancelButton'
 	],
@@ -25,53 +23,60 @@ Class {
 { #category : #specs }
 PRExportPresenter class >> defaultSpec [
 	^ SpBoxLayout newVertical 
-			add: (SpBoxLayout newHorizontal	add: #syntaxLabel; add: #syntaxInput) withConstraints: [:c | c height: self toolbarHeight ];
 			add: (SpBoxLayout newHorizontal	add: #formatLabel; add: #formatInput) withConstraints: [:c | c height: self toolbarHeight ];
-			add: (SpBoxLayout newHorizontal	add: #directoryLabel; add: #directoryText; add: #directorySearchButton) withConstraints: [:c | c height: self toolbarHeight ];
-			add: (SpBoxLayout newHorizontal	add: #nameLabel; add: #nameInput) withConstraints: [:c | c height: self toolbarHeight ];
+			add: #syntaxScreen withConstraints: [:c | c height: self toolbarHeight ];
+			add: #directoryScreen withConstraints: [:c | c height: self toolbarHeight ];
 			add: (SpBoxLayout newHorizontal	add: #cancelButton; add: #confirmButton) withConstraints: [:c | c height: self toolbarHeight ];
 		yourself.
 ]
 
-{ #category : #examples }
-PRExportPresenter class >> open [
-	<example>
-	self new openDialogWithSpec
+{ #category : #creation }
+PRExportPresenter class >> withInputFile: aFileReference withParser: aParser withConfigDirectory: aDirectory [
+	^ self basicNew inputFile: aFileReference; parser: aParser; configDirectory: aDirectory; initialize; yourself
 ]
 
-{ #category : #'as yet unclassified' }
-PRExportPresenter class >> withInputFile: aFileReference withParser: aParser [
-	^ self new inputFile: aFileReference; parser: aParser; yourself
+{ #category : #accessing }
+PRExportPresenter >> configDirectory [
+	^ configDirectory 
+]
+
+{ #category : #accessing }
+PRExportPresenter >> configDirectory: aDirectory [
+	configDirectory := aDirectory
 ]
 
 { #category : #initialization }
 PRExportPresenter >> connectPresenters [
-	self parser: syntaxInput selectedItem parser.
-	
-	self target: formatInput selectedItem.
-	
-	directorySearchButton action: [ 
-		FDOpenDirectoryDialog new 
-			whenSelected: [ :selectedDirectory | 
-				self project: (PRProject on: selectedDirectory).
-				directoryText text: selectedDirectory basename
-			];
-			openWithSpec
-	].
-	
-	self name: nameInput text.
 	
 	cancelButton action: [ self delete ].
 	
-	confirmButton action: [ self exportAction. self delete ].
+	confirmButton action: [ 
+		self target: formatInput selectedItem.
+		self exportAction. 
+		self delete ].
 	
 
 ]
 
+{ #category : #deleting }
+PRExportPresenter >> deleteBookArchetypeDataIn: aDirectory [
+	(aDirectory / 'Chapters') exists ifTrue: [ (aDirectory / 'Chapters') deleteAll ] .
+	(aDirectory / '_support') exists ifTrue: [ (aDirectory / '_support') deleteAll ] .
+	(aDirectory / 'index.pillar') exists ifTrue: [ (aDirectory / 'index.pillar') delete ] .
+	(aDirectory / 'pillar.conf') exists ifTrue: [ (aDirectory / 'pillar.conf') delete ] .
+]
+
 { #category : #actions }
 PRExportPresenter >> exportAction [
-	self project installArchetypeNamed: 'book'.
-	self target buildOnly: self inputFile asArray ; buildWithClapArguments: self project
+	| inputFileDirectory |
+	inputFileDirectory := self inputFile parent.
+	"here: it's hardcoded for book archetype. It's a first version. We need to change it if we generalize to other archetypes/templates."
+	self deleteBookArchetypeDataIn: inputFileDirectory.
+	self project installArchetypeNamed: 'book' fromDirectory: (self configDirectory / 'archetypes' / 'book') asFileReference.	
+	self target buildOnly: self inputFile asArray ; buildOn: self project.
+	"remove temp data from archetypes/book"
+	self deleteBookArchetypeDataIn: inputFileDirectory.
+	self inform: self inputFile basename, 'is exported!'
 ]
 
 { #category : #list }
@@ -81,36 +86,26 @@ PRExportPresenter >> formatList [
 
 { #category : #initialization }
 PRExportPresenter >> initialExtent [
-	^ 500@200
+	^ 600@200
 ]
 
 { #category : #initialization }
 PRExportPresenter >> initializePresenters [
-	syntaxLabel := self newLabel label: 'Input syntax:'.
-	syntaxInput := SpLabelledDropList new
-		items: self syntaxList;
-		display: [ :item | item name asString ].
 	
 	formatLabel := self newLabel label: 'Export format:'.
 	formatInput := SpLabelledDropList new
 		items: self formatList;
 		display: [ :item | item extension asString ].
 	
-	directoryLabel := self newLabel label: 'Output directory:'.
-	directoryText := self newTextInput text: '...'; enabled: false.
-	directorySearchButton := self newButton icon: (self iconNamed: #glamorousFolderIcon).
-	
-	nameLabel := self newLabel label: 'Name of final file: '.
-	nameInput := self newTextInput placeholder: 'type your output name (without extension)'.
+	syntaxScreen := self newLabel label: 'Input syntax: ', self parser name.
+	directoryScreen := self newLabel label: 'Final export directory: ', self inputFile fullName, '\_result'.
 	
 	cancelButton := self newButton label: 'Cancel'.
 	confirmButton := self newButton label: 'Export'.
 	
 	self focusOrder 
-		add: syntaxLabel; add: syntaxInput;
 		add: formatLabel; add: formatInput;
-		add: directoryLabel; add: directoryText; add: directorySearchButton;
-		add: nameLabel; add: nameInput;
+		add: syntaxScreen; add: directoryScreen;
 		add: cancelButton; add: confirmButton
 ]
 
@@ -133,16 +128,6 @@ PRExportPresenter >> inputFile: aFile [
 ]
 
 { #category : #accessing }
-PRExportPresenter >> name [
-	^ name ifNil: [ ^ self inputFile basename ]
-]
-
-{ #category : #accessing }
-PRExportPresenter >> name: aString [
-	name := aString
-]
-
-{ #category : #accessing }
 PRExportPresenter >> parser [
 	"required at creation"
 	^ parser
@@ -161,11 +146,6 @@ PRExportPresenter >> project [
 { #category : #accessing }
 PRExportPresenter >> project: aPRProject [
 	project := aPRProject 
-]
-
-{ #category : #list }
-PRExportPresenter >> syntaxList [
-	^ PRSyntaxState subclasses collect: [ :class | class new ]
 ]
 
 { #category : #accessing }
