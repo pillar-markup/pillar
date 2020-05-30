@@ -1,55 +1,59 @@
+"
+I'm a little pillar tree generator.
+
+"
 Class {
 	#name : #PRDocumentSample,
 	#superclass : #PRDocument,
 	#category : #'Pillar-Tests-Model-Core'
 }
 
-{ #category : #accessing }
+{ #category : #formats }
 PRDocumentSample >> bold [
 	^ self withFormat: PRBoldFormat
 ]
 
-{ #category : #'grammar - Format' }
+{ #category : #headers }
 PRDocumentSample >> headerLevel1 [
-	  ^ self headerWithLevel: 1
+	^ self headerWithLevel: 1
 ]
 
-{ #category : #'grammar - Format' }
+{ #category : #headers }
 PRDocumentSample >> headerLevel2 [
-	  ^ self headerWithLevel: 2
+	^ self headerWithLevel: 2
 ]
 
-{ #category : #'grammar - Format' }
+{ #category : #headers }
 PRDocumentSample >> headerLevel3 [
 	  ^ self headerWithLevel: 3
 ]
 
-{ #category : #'grammar - Format' }
+{ #category : #headers }
 PRDocumentSample >> headerLevel4 [
 	  ^ self headerWithLevel: 4
 ]
 
-{ #category : #'grammar - Format' }
+{ #category : #headers }
 PRDocumentSample >> headerLevel5 [
-	  ^ self headerWithLevel: 5
+	^ self headerWithLevel: 5
 ]
 
-{ #category : #'grammar - Format' }
+{ #category : #headers }
 PRDocumentSample >> headerLevel6 [
-	  ^ self headerWithLevel: 6
+	^ self headerWithLevel: 6 
 ]
 
-{ #category : #'grammar - Format' }
+{ #category : #headers }
 PRDocumentSample >> headerWithLevel: aLevel [
 	  ^ self withStructure: (PRHeader new level: aLevel; yourself)
 ]
 
-{ #category : #accessing }
+{ #category : #formats }
 PRDocumentSample >> italic [
 	^ self withFormat: PRItalicFormat 
 ]
 
-{ #category : #accessing }
+{ #category : #formats }
 PRDocumentSample >> monospace [
 	^ self withFormat: PRMonospaceFormat 
 ]
@@ -84,7 +88,16 @@ PRDocumentSample >> orderedList [
 		yourself); yourself.
 ]
 
-{ #category : #'grammar - Format' }
+{ #category : #preformatted }
+PRDocumentSample >> preformatted [
+	^ PRDocument new
+		add: (PRPreformatted new
+					add: (PRText content: 'foo'); 
+					add: (PRText content: 'bar') ;yourself);
+		yourself
+]
+
+{ #category : #list }
 PRDocumentSample >> simpleOrderedList [
 
 	^ (PROrderedList
@@ -93,7 +106,7 @@ PRDocumentSample >> simpleOrderedList [
 				(PRListItem with: (PRText content: 'Second'))})
 ]
 
-{ #category : #'grammar - Format' }
+{ #category : #list }
 PRDocumentSample >> simpleUnorderedList [
 
 	^ (PRUnorderedList
@@ -102,12 +115,12 @@ PRDocumentSample >> simpleUnorderedList [
 				(PRListItem with: (PRText content: 'Second'))})
 ]
 
-{ #category : #accessing }
+{ #category : #formats }
 PRDocumentSample >> superscript [
 	^ self withFormat: PRSuperscriptFormat 
 ]
 
-{ #category : #accessing }
+{ #category : #formats }
 PRDocumentSample >> underline [
 	^ self withFormat: PRUnderlineFormat 
 ]
@@ -123,7 +136,7 @@ PRDocumentSample >> unorderedList [
 		yourself); yourself.
 ]
 
-{ #category : #'instance creation' }
+{ #category : #helpers }
 PRDocumentSample >> withFormat: aPRFormatClass [
 	^ PRDocument new
         add:
@@ -134,9 +147,9 @@ PRDocumentSample >> withFormat: aPRFormatClass [
 			
 ]
 
-{ #category : #'instance creation' }
+{ #category : #helpers }
 PRDocumentSample >> withStructure: aPRObject [
 	^ PRDocument new
-		add: (aPRObject add: (PRText content: 'foo');
-			yourself)
+		add: (aPRObject add: (PRText content: 'foo'); yourself); 
+		yourself
 ]
