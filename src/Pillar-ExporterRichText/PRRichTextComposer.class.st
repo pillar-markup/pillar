@@ -177,15 +177,6 @@ PRRichTextComposer class >> headerLevelFont: level [
 				pointSize: (fontSizes at: level))
 ]
 
-{ #category : #converting }
-PRRichTextComposer class >> renderComment: aSource [
-	"render aSource if it looks like it contains microdown. Otherwise just return aSource"
-	
-	^ (aSource matchesRegex: '.*(`|!!|\*\*|^#|```|^>).*') 
-			ifTrue: [ (self class environment at: #MicroDownParser ifAbsent: [ ^ aSource ]) asText: aSource ]
-			ifFalse: [ aSource ] 
-]
-
 { #category : #accessing }
 PRRichTextComposer >> annotatedParagrapAlignment [
 	^ annotatedParagraphAlignment 
