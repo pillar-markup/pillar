@@ -1,7 +1,7 @@
 Class {
 	#name : #ClapPillarUpdateBuildCommand,
 	#superclass : #ClapPillarCommand,
-	#category : #'Pillar-Cli'
+	#category : #'Pillar-Cli-Clap'
 }
 
 { #category : #accessing }
