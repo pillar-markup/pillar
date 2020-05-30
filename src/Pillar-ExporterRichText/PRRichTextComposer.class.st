@@ -179,24 +179,11 @@ PRRichTextComposer class >> headerLevelFont: level [
 
 { #category : #converting }
 PRRichTextComposer class >> renderComment: aSource [
-	"render aSource if it looks like it contains pillar. Otherwise just return aSource"
-	"Check to see if some of the more unusual sequences from pillar is inside aSource."
-	"Only accepts # as a sign of list if it is followed by space, to not recognize symbols	"
-	"Do not match bullet list with -, as it is used extensively in non-pillar"
+	"render aSource if it looks like it contains microdown. Otherwise just return aSource"
 	
-	"If it is not pillar, perhaps it is github. However, only render as github if that class is present"
-	
-	^ (aSource matchesRegex: '.*(==|@@|""|^!|^# |^\[\[\[).*')
-		  ifTrue: [
-				"we should indicate to the user that there is an error"
-				[self asText: aSource] on: PRSyntaxError do: [ :ex | aSource ].
-				 ]
-		  ifFalse: [ 
-			  (aSource matchesRegex: '.*(`|\*\*|^##|```|^>).*') 
-				  ifTrue: [ 
-					  (self class environment at: #MicroDownParser ifAbsent: [ ^ aSource ]) 
-						  asText: aSource ]
-				  ifFalse: [ aSource ] ]
+	^ (aSource matchesRegex: '.*(`|\*\*|^#|```|^>).*') 
+			ifTrue: [ (self class environment at: #MicroDownParser ifAbsent: [ ^ aSource ]) asText: aSource ]
+			ifFalse: [ aSource ] 
 ]
 
 { #category : #accessing }
@@ -331,30 +318,17 @@ PRRichTextComposer >> visitCitationAnnotation: aCitation [
 { #category : #'visiting-document' }
 PRRichTextComposer >> visitCodeblock: aCodeBlock [
 	canvas newLineIfNotAlready.
+	canvas newLine.	
 	canvas
-		indentIn: [ 
-			canvas << (PRRichTextCodeblockStyler  
-				style: aCodeBlock text 
-				asLanguage: aCodeBlock language originalName)
-			].
-	canvas newLine
-]
-
-{ #category : #'visiting-document' }
-PRRichTextComposer >> visitCodeblock_old: aCodeBlock [
-	canvas newLineIfNotAlready.
-	canvas
-		indentIn: [ 
-			(#('pharo' 'smalltalk') includes: aCodeBlock language originalName asLowercase)
-				ifTrue: [ canvas << (SHRBTextStyler new 
-								isForWorkspace: true; 
-								styledTextFor: aCodeBlock text asText) ] 
-				ifFalse: [ 
-					canvas
-						includeAttribute: (TextColor color: (Color fromHexString: '008822'))
-						in: [ self visitText: aCodeBlock ] ]
-			].
-	canvas newLine
+		indentIn: [  
+			canvas
+				indentIn: [ 
+					canvas << (PRRichTextCodeblockStyler  
+						style: aCodeBlock text 
+						asLanguage: aCodeBlock language originalName)
+			] ].
+	canvas newLine.
+	canvas newLine.
 ]
 
 { #category : #'visiting-unsupported' }
@@ -510,7 +484,7 @@ PRRichTextComposer >> visitParagraph: anObject [
 
 { #category : #'visiting-document' }
 PRRichTextComposer >> visitPreformatted: aPreformatted [
-	
+
 	canvas newLineIfNotAlready.
 	canvas newLine.
 	canvas

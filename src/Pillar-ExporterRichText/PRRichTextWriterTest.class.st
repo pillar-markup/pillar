@@ -128,6 +128,29 @@ PRRichTextWriterTest >> testBoldFormat [
 	self assertWriting: sample bold include: self boldFormat
 ]
 
+{ #category : #'tests - CodeBlock' }
+PRRichTextWriterTest >> testCodeBlock [
+	| runs richText |
+	richText := self richTextFor: sample codeblock.
+
+"
+'1 + 2 
+	* 3  '
+"	
+	runs := richText runs.	
+	
+	"self assert: runs first isEmpty. 
+	self assert: runs second first class equals: TextIndent.
+	self assert: runs second first amount equals: 1.
+	self assert: runs runs equals:  #(1 3 1 15 1 1).
+	"
+	self assert: richText string equals: '
+1 + 2 
+	* 3  
+
+'
+]
+
 { #category : #'skipped tests' }
 PRRichTextWriterTest >> testExternaLink [
 	| pillarLink target obj1 obj2 raised |
@@ -239,7 +262,7 @@ PRRichTextWriterTest >> testOrderedList [
 { #category : #'tests - Preformatted' }
 PRRichTextWriterTest >> testPreformatted [
 	| runs richText |
-	richText := self richTextFor:  sample preformatted.
+	richText := self richTextFor: sample preformatted.
 "
 a Text for '
 foo
@@ -251,7 +274,9 @@ barwith a space
 	self assert: runs first isEmpty. 
 	self assert: runs second first class equals: TextIndent.
 	self assert: runs second first amount equals: 1.
-	self assert: runs runs equals:  #(1 3 1 15 1 1)
+	self assert: runs runs equals:  #(1 3 1 15 1 1).
+	self assert: richText string first equals: Character cr. 
+	self assert: richText string second equals: $f. 
 ]
 
 { #category : #'skipped tests' }

@@ -12,17 +12,37 @@ Class {
 PRDocumentSample >> annotatedParagraph [
 	"PRPillarParserMain parse: '@@note one more annotated!'"
 	
-	^ PRDocument new
-		add: (PRAnnotatedParagraph new
+	^ self documentWith: (PRAnnotatedParagraph new
 					annotation: 'note';
 					add: (PRText content: 'one more annotated!'); 
-					 yourself);
-		yourself
+					 yourself)
+	
 ]
 
 { #category : #formats }
 PRDocumentSample >> bold [
 	^ self withFormat: PRBoldFormat
+]
+
+{ #category : #'annotated paragraph' }
+PRDocumentSample >> codeblock [
+	"PRPillarParserMain parse: '[[[
+1 + 2 
+	* 3  
+]]]
+'"
+	
+	^ self documentWith:  (PRCodeblock new
+					text:  '1 + 2 
+	* 3  '; 
+					 yourself)
+]
+
+{ #category : #helpers }
+PRDocumentSample >> documentWith: anElement [
+	^ PRDocument new
+		add: anElement; 
+		yourself
 ]
 
 { #category : #headers }
@@ -150,18 +170,14 @@ PRDocumentSample >> unorderedList [
 
 { #category : #helpers }
 PRDocumentSample >> withFormat: aPRFormatClass [
-	^ PRDocument new
-        add:
+	^ self documentWith: 
             (PRParagraph new
                 add: (aPRFormatClass with: (PRText content: 'Foo'));
-                yourself);
-        yourself.
+                yourself)
 			
 ]
 
 { #category : #helpers }
 PRDocumentSample >> withStructure: aPRObject [
-	^ PRDocument new
-		add: (aPRObject add: (PRText content: 'foo'); yourself); 
-		yourself
+	^ self documentWith: (aPRObject add: (PRText content: 'foo'); yourself); yourself
 ]
