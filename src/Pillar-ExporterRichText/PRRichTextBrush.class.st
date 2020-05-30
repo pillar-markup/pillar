@@ -13,13 +13,13 @@ Class {
 	#category : #'Pillar-ExporterRichText-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PRRichTextBrush class >> on: canvas [ 
 	^self new
 		canvas: canvas
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PRRichTextBrush class >> on: canvas attribute: attr [
 	^self new
 		canvas: canvas;

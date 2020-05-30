@@ -7,7 +7,12 @@ Class {
 	#superclass : #PRVisitor,
 	#instVars : [
 		'canvas',
-		'monospaceBackgroundColor'
+		'monospaceBackgroundColor',
+		'superscriptColor',
+		'subscriptColor',
+		'annotatedParagraphColor',
+		'annotatedParagraphAnnotationColor',
+		'annotatedParagraphAlignment'
 	],
 	#category : #'Pillar-ExporterRichText-Core'
 }
@@ -181,16 +186,15 @@ PRRichTextComposer class >> renderComment: aSource [
 	
 	"If it is not pillar, perhaps it is github. However, only render as github if that class is present"
 	
-	^ (aSource matchesRegex: '.*(==|""|^!|^# |^\[\[\[).*')
+	^ (aSource matchesRegex: '.*(==|@@|""|^!|^# |^\[\[\[).*')
 		  ifTrue: [
-				self flag: #fixme. 
 				"we should indicate to the user that there is an error"
 				[self asText: aSource] on: PRSyntaxError do: [ :ex | aSource ].
 				 ]
 		  ifFalse: [ 
 			  (aSource matchesRegex: '.*(`|\*\*|^##|```|^>).*') 
 				  ifTrue: [ 
-					  (self class environment at: 'GHMParser' ifAbsent: [ ^ aSource ]) 
+					  (self class environment at: #MicroDownParser ifAbsent: [ ^ aSource ]) 
 						  asText: aSource ]
 				  ifFalse: [ aSource ] ]
 ]

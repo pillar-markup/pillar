@@ -8,6 +8,18 @@ Class {
 	#category : #'Pillar-Tests-Model-Core'
 }
 
+{ #category : #'annotated paragraph' }
+PRDocumentSample >> annotatedParagraph [
+	"PRPillarParserMain parse: '@@note one more annotated!'"
+	
+	^ PRDocument new
+		add: (PRAnnotatedParagraph new
+					annotation: 'note';
+					add: (PRText content: 'one more annotated!'); 
+					 yourself);
+		yourself
+]
+
 { #category : #formats }
 PRDocumentSample >> bold [
 	^ self withFormat: PRBoldFormat

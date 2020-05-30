@@ -7,7 +7,7 @@ Class {
 	#category : #'Pillar-ExporterRichText-Tests'
 }
 
-{ #category : #asserting }
+{ #category : #helpers }
 PRRichTextWriterTest >> assertWriting: aPRDocument include: expectedAttribute [
 	self assert: ((self runsOf: aPRDocument) includes: expectedAttribute asArray)
 ]
@@ -17,7 +17,7 @@ PRRichTextWriterTest >> boldFormat [
 	^ TextEmphasis bold
 ]
 
-{ #category : #asserting }
+{ #category : #initialization }
 PRRichTextWriterTest >> composer [
 	^ PRRichTextComposer new
 ]
@@ -74,7 +74,7 @@ PRRichTextWriterTest >> monospaceFormat [
 	^ TextBackgroundColor color: Smalltalk ui theme settings windowColor
 ]
 
-{ #category : #asserting }
+{ #category : #helpers }
 PRRichTextWriterTest >> runsOf: aPRDocument [
 	^ (self composer start: aPRDocument) runs
 ]
@@ -90,7 +90,7 @@ PRRichTextWriterTest >> strikethroughtFormat [
 	^ TextEmphasis struckOut
 ]
 
-{ #category : #asserting }
+{ #category : #helpers }
 PRRichTextWriterTest >> stringOf: aPRDocument [
 	^ (self composer start: aPRDocument) string
 ]
@@ -103,6 +103,19 @@ PRRichTextWriterTest >> subscriptFormat [
 { #category : #'tests - Format' }
 PRRichTextWriterTest >> superscriptFormat [
 	^ TextColor blue
+]
+
+{ #category : #'tests - Annotated paragraph' }
+PRRichTextWriterTest >> testAnnotatedParagraph [
+
+	| runs string |
+	runs := self runsOf: sample annotatedParagraph.
+	string := self stringOf: sample orderedList.
+	self assert: runs first first class equals: TextIndent.
+	self assert: runs first first amount equals: 1.
+	self assert: runs runs equals: #(3 7 1 3 7 1) asArray.
+	self assert: string first equals: $1.
+	self assert: (string at: 12) equals: $2.
 ]
 
 { #category : #'tests - Format' }
@@ -218,6 +231,16 @@ PRRichTextWriterTest >> testOrderedList [
 	self assert: (string at: 12) equals: $2.
 ]
 
+{ #category : #'tests - Preformatted' }
+PRRichTextWriterTest >> testPreformatted [
+	| runs |
+	runs := self runsOf: sample preformatted.
+	self halt.
+	self assert: runs first first class equals: TextIndent.
+	self assert: runs first first amount equals: 1.
+	self assert: runs runs equals: #(2 6 1 2 6 1) asArray.
+]
+
 { #category : #'skipped tests' }
 PRRichTextWriterTest >> testStrikethroughFormat [ 
 	"Test fails: strikethrough is recognized only if spaces surround text
@@ -248,7 +271,7 @@ PRRichTextWriterTest >> testUnderlineFormat [
 	self assertWriting: sample underline include: self underlineFormat
 ]
 
-{ #category : #'tests - Preformatted' }
+{ #category : #'tests - List' }
 PRRichTextWriterTest >> testUnorderedList [ 
 	| runs |
 	runs := self runsOf: sample unorderedList.
