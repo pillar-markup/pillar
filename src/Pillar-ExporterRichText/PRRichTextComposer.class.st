@@ -475,13 +475,16 @@ PRRichTextComposer >> visitOrderedList: anObject [
 				propertyAt: #counter
 				put: (self class counterFor: counter atLevel: canvas nesting - 1).
 			counter := counter + 1 ].
-	super visitOrderedList: anObject ]
+	super visitOrderedList: anObject ].
+	canvas newLine
 ]
 
 { #category : #'visiting-document' }
 PRRichTextComposer >> visitParagraph: anObject [
 	canvas newLineIfNotAlready.
 	super visitParagraph: anObject.
+	canvas newLine.
+	canvas newLine.
 ]
 
 { #category : #'visiting-document' }
@@ -549,5 +552,6 @@ PRRichTextComposer >> visitUnorderedList: anObject [
 					item
 						propertyAt: #bullet
 						put: (self class bulletForLevel: canvas nesting - 1) ].
-			super visitUnorderedList: anObject ]
+			super visitUnorderedList: anObject ].
+	canvas newLine
 ]
