@@ -181,7 +181,7 @@ PRRichTextComposer class >> headerLevelFont: level [
 PRRichTextComposer class >> renderComment: aSource [
 	"render aSource if it looks like it contains microdown. Otherwise just return aSource"
 	
-	^ (aSource matchesRegex: '.*(`|\*\*|^#|```|^>).*') 
+	^ (aSource matchesRegex: '.*(`|!!|\*\*|^#|```|^>).*') 
 			ifTrue: [ (self class environment at: #MicroDownParser ifAbsent: [ ^ aSource ]) asText: aSource ]
 			ifFalse: [ aSource ] 
 ]
@@ -270,6 +270,7 @@ PRRichTextComposer >> visitAnchor: anObject [
 
 { #category : #'visiting-document' }
 PRRichTextComposer >> visitAnnotatedParagraph: anAnnotatedParagraph [
+	
 	canvas newLineIfNotAlready.
 	canvas newLine.
 	canvas
@@ -283,7 +284,8 @@ PRRichTextComposer >> visitAnnotatedParagraph: anAnnotatedParagraph [
 				in: [ canvas
 						includeAttribute: self annotatedParagraphColor
 						in: [ self visitParagraph: anAnnotatedParagraph ] ] ].
-	canvas newLine
+	canvas newLine.
+	canvas newLine.
 ]
 
 { #category : #'visiting-unsupported' }
