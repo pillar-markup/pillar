@@ -75,8 +75,13 @@ PRRichTextWriterTest >> monospaceFormat [
 ]
 
 { #category : #helpers }
+PRRichTextWriterTest >> richTextFor: aPRDocument [
+	^ self composer start: aPRDocument
+]
+
+{ #category : #helpers }
 PRRichTextWriterTest >> runsOf: aPRDocument [
-	^ (self composer start: aPRDocument) runs
+	^ (self richTextFor: aPRDocument) runs
 ]
 
 { #category : #initialization }
@@ -92,7 +97,7 @@ PRRichTextWriterTest >> strikethroughtFormat [
 
 { #category : #helpers }
 PRRichTextWriterTest >> stringOf: aPRDocument [
-	^ (self composer start: aPRDocument) string
+	^ (self richTextFor: aPRDocument) string
 ]
 
 { #category : #'skipped tests' }
@@ -233,12 +238,20 @@ PRRichTextWriterTest >> testOrderedList [
 
 { #category : #'tests - Preformatted' }
 PRRichTextWriterTest >> testPreformatted [
-	| runs |
-	runs := self runsOf: sample preformatted.
-	self halt.
-	self assert: runs first first class equals: TextIndent.
-	self assert: runs first first amount equals: 1.
-	self assert: runs runs equals: #(2 6 1 2 6 1) asArray.
+	| runs richText |
+	richText := self richTextFor:  sample preformatted.
+"
+a Text for '
+foo
+barwith a space
+
+'
+"	
+	runs := richText runs.	
+	self assert: runs first isEmpty. 
+	self assert: runs second first class equals: TextIndent.
+	self assert: runs second first amount equals: 1.
+	self assert: runs runs equals:  #(1 3 1 15 1 1)
 ]
 
 { #category : #'skipped tests' }

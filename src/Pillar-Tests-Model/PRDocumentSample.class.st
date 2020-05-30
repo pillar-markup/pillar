@@ -105,7 +105,7 @@ PRDocumentSample >> preformatted [
 	^ PRDocument new
 		add: (PRPreformatted new
 					add: (PRText content: 'foo'); 
-					add: (PRText content: 'bar') ;yourself);
+					add: (PRText content: 'barwith a space') ;yourself);
 		yourself
 ]
 
