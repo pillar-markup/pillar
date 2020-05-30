@@ -77,13 +77,18 @@ PRRichTextCanvas >> nesting [
 
 { #category : #public }
 PRRichTextCanvas >> newLine [
-	self << String cr asText.
-	crAtEnd := true.
+	self newLineBody.
+	crAtEnd := true
+]
+
+{ #category : #private }
+PRRichTextCanvas >> newLineBody [
+	self << String cr asText
 ]
 
 { #category : #public }
 PRRichTextCanvas >> newLineIfNotAlready [
-	crAtEnd 
-		ifFalse: [self << String cr asText].
-	crAtEnd := true.
+	crAtEnd
+		ifFalse: [ self newLineBody ].
+	crAtEnd := true
 ]

@@ -337,7 +337,7 @@ PRRichTextComposer >> visitCodeblock: aCodeBlock [
 				style: aCodeBlock text 
 				asLanguage: aCodeBlock language originalName)
 			].
-	canvas cr
+	canvas newLine
 ]
 
 { #category : #'visiting-document' }
@@ -354,7 +354,7 @@ PRRichTextComposer >> visitCodeblock_old: aCodeBlock [
 						includeAttribute: (TextColor color: (Color fromHexString: '008822'))
 						in: [ self visitText: aCodeBlock ] ]
 			].
-	canvas cr
+	canvas newLine
 ]
 
 { #category : #'visiting-unsupported' }
@@ -395,7 +395,7 @@ PRRichTextComposer >> visitDocListAnnotation: aPRDocListAnnotation [
 
 { #category : #'visiting-document' }
 PRRichTextComposer >> visitEmptyParagraph: anObject [
-	canvas cr
+	canvas newLine
 ]
 
 { #category : #'visiting-unsupported' }
@@ -456,7 +456,7 @@ PRRichTextComposer >> visitHeader: aHeader [
 	canvas
 		includeAttribute: (self class headerLevelFont: aHeader level)
 		in: [ self visitDocumentGroup: aHeader ].
-	canvas cr
+	canvas newLine
 ]
 
 { #category : #'visiting-document' }
@@ -512,16 +512,16 @@ PRRichTextComposer >> visitParagraph: anObject [
 PRRichTextComposer >> visitPreformatted: aPreformatted [
 	
 	canvas newLineIfNotAlready.
-	canvas cr.
+	canvas newLine.
 	canvas
 		indentIn: [ 
 			aPreformatted children do: [ :each | 
 				canvas << (PRRichTextCodeblockStyler textStyler: each text).
-				canvas cr ].
+				canvas newLine ].
 			"This is not really correct since the text should be interpreted."
 			"canvas << (PRRichTextCodeblockStyler textStyler: aPreformatted text)"].
 		
-	canvas cr
+	canvas newLine
 ]
 
 { #category : #'visiting-document' }
