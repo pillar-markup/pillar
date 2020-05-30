@@ -17,6 +17,11 @@ PRRichTextWriterTest >> boldFormat [
 	^ TextEmphasis bold
 ]
 
+{ #category : #asserting }
+PRRichTextWriterTest >> composer [
+	^ PRRichTextComposer new
+]
+
 { #category : #'skipped tests' }
 PRRichTextWriterTest >> externalLink: aLink [
 	^ TextAction new actOnClickBlock: [WebBrowser openOn: aLink]
@@ -71,7 +76,7 @@ PRRichTextWriterTest >> monospaceFormat [
 
 { #category : #asserting }
 PRRichTextWriterTest >> runsOf: aPRDocument [
-	^ (PRRichTextComposer new start: aPRDocument) runs
+	^ (self composer start: aPRDocument) runs
 ]
 
 { #category : #initialization }
@@ -87,7 +92,7 @@ PRRichTextWriterTest >> strikethroughtFormat [
 
 { #category : #asserting }
 PRRichTextWriterTest >> stringOf: aPRDocument [
-	^ (PRRichTextComposer new start: aPRDocument) string
+	^ (self composer start: aPRDocument) string
 ]
 
 { #category : #'skipped tests' }
@@ -243,7 +248,7 @@ PRRichTextWriterTest >> testUnderlineFormat [
 	self assertWriting: sample underline include: self underlineFormat
 ]
 
-{ #category : #'tests - List' }
+{ #category : #'tests - Preformatted' }
 PRRichTextWriterTest >> testUnorderedList [ 
 	| runs |
 	runs := self runsOf: sample unorderedList.
