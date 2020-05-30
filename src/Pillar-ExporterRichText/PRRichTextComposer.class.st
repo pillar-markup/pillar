@@ -199,11 +199,31 @@ PRRichTextComposer class >> renderComment: aSource [
 				  ifFalse: [ aSource ] ]
 ]
 
+{ #category : #accessing }
+PRRichTextComposer >> annotatedParagrapAlignment [
+	^ annotatedParagraphAlignment 
+]
+
+{ #category : #accessing }
+PRRichTextComposer >> annotatedParagraphAnnotationColor [
+	^ annotatedParagraphAnnotationColor 
+]
+
+{ #category : #accessing }
+PRRichTextComposer >> annotatedParagraphColor [
+	^ annotatedParagraphColor 
+]
+
 { #category : #initialization }
 PRRichTextComposer >> initialize [
 
 	super initialize.
-	monospaceBackgroundColor := Smalltalk ui theme settings windowColor.
+	monospaceBackgroundColor := self theme settings windowColor.
+	superscriptColor := TextColor blue.
+	subscriptColor := TextColor red.
+	annotatedParagraphColor := TextColor blue.
+	annotatedParagraphAnnotationColor := TextEmphasis bold.
+	annotatedParagraphAlignment := TextAlignment leftFlush
 ]
 
 { #category : #accessing }
@@ -225,31 +245,66 @@ PRRichTextComposer >> start: aDocument [
 	^ canvas contents
 ]
 
+{ #category : #accessing }
+PRRichTextComposer >> subscriptColor [
+	^ subscriptColor 
+]
+
+{ #category : #accessing }
+PRRichTextComposer >> subscriptColor: anObject [
+	subscriptColor := anObject
+]
+
+{ #category : #accessing }
+PRRichTextComposer >> superscriptColor [
+	^ superscriptColor 
+]
+
+{ #category : #accessing }
+PRRichTextComposer >> superscriptColor: anObject [
+	superscriptColor := anObject
+]
+
+{ #category : #initialization }
+PRRichTextComposer >> theme [
+
+	^  Smalltalk ui theme
+]
+
 { #category : #visiting }
 PRRichTextComposer >> visit: anObject [
 	anObject accept: self
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting-unsupported' }
 PRRichTextComposer >> visitAnchor: anObject [
 	canvas << '>>> Anchors not supported in RichText Pillar <<<' asText
 ]
 
 { #category : #'visiting-document' }
-PRRichTextComposer >> visitAnnotatedParagraph: aDocument [
+PRRichTextComposer >> visitAnnotatedParagraph: anAnnotatedParagraph [
 	canvas newLineIfNotAlready.
-	canvas includeAttribute: TextAlignment rightFlush in: 
-		[canvas includeAttribute: TextColor blue in:
-			[self visitParagraph: aDocument]].
-	canvas cr.
+	canvas newLine.
+	canvas
+		includeAttribute: self annotatedParagrapAlignment
+		in: [ canvas
+				includeAttribute: self annotatedParagraphAnnotationColor
+				in: [ canvas << anAnnotatedParagraph annotation capitalized asText ].
+			canvas newLine.
+			canvas
+				includeAttribute: self annotatedParagrapAlignment
+				in: [ canvas
+						includeAttribute: self annotatedParagraphColor
+						in: [ self visitParagraph: anAnnotatedParagraph ] ] ].
+	canvas newLine
 ]
 
-{ #category : #'visiting-annotations' }
+{ #category : #'visiting-unsupported' }
 PRRichTextComposer >> visitAnnotation: anAnnotation [
 	canvas << '>>> Annotations not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting-annotations' }
+{ #category : #'visiting-unsupported' }
 PRRichTextComposer >> visitBeginEnvironmentAnnotation: aBeginEnvironmentAnnotation [
 
 	canvas << '>>> Environments not supported in RichText Pillar <<<' asText
@@ -263,12 +318,12 @@ PRRichTextComposer >> visitBoldFormat: anObject [
 	
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting-unsupported' }
 PRRichTextComposer >> visitCitation: aCitation [
 	canvas << '>>> Citations not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting-unsupported' }
 PRRichTextComposer >> visitCitationAnnotation: aCitation [
 	canvas << '>>> Citations not supported in RichText Pillar <<<' asText
 ]
@@ -302,22 +357,22 @@ PRRichTextComposer >> visitCodeblock_old: aCodeBlock [
 	canvas cr
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting-unsupported' }
 PRRichTextComposer >> visitColumn: aColumn [
 	canvas << '>>> Columns not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting-unsupported' }
 PRRichTextComposer >> visitColumnAnnotation: aColumnAnnotation [
 	canvas << '>>> Columns not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting-unsupported' }
 PRRichTextComposer >> visitColumns: aColumns [
 	canvas << '>>> Columns not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting-unsupported' }
 PRRichTextComposer >> visitColumnsAnnotation: aColumnsAnnotation [
 	canvas << '>>> Columns not supported in RichText Pillar <<<' asText
 ]
@@ -333,7 +388,7 @@ PRRichTextComposer >> visitDefinitionList: anObject [
 	canvas indentIn: [ self visitUnorderedList: anObject ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting-unsupported' }
 PRRichTextComposer >> visitDocListAnnotation: aPRDocListAnnotation [
 	canvas << '>>> DocLists not supported in RichText Pillar <<<' asText
 ]
@@ -343,12 +398,12 @@ PRRichTextComposer >> visitEmptyParagraph: anObject [
 	canvas cr
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting-unsupported' }
 PRRichTextComposer >> visitEndColumnsAnnotation: aEndColumnsAnnotation [
 	canvas << '>>> Columns not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting-unsupported' }
 PRRichTextComposer >> visitEndEnvironmentAnnotation: aEndEnvironmentAnnotation [
 	canvas << '>>> Environments not supported in RichText Pillar <<<' asText
 ]
@@ -360,10 +415,8 @@ PRRichTextComposer >> visitEnvironment: anObject [
 			canvas indentIn: [  
 				canvas 
 					includeAttribute: TextEmphasis italic  
-					in: [self visitFormat: anObject]]
-		]
-		ifFalse: 
-		[canvas << ('>>> Environment ' , anObject name , 
+					in: [self visitFormat: anObject]] ]
+		ifFalse: [canvas << ('>>> Environment ' , anObject name , 
 						'is not supported in RichText Pillar <<<') asText]
 ]
 
@@ -456,6 +509,22 @@ PRRichTextComposer >> visitParagraph: anObject [
 ]
 
 { #category : #'visiting-document' }
+PRRichTextComposer >> visitPreformatted: aPreformatted [
+	
+	canvas newLineIfNotAlready.
+	canvas cr.
+	canvas
+		indentIn: [ 
+			aPreformatted children do: [ :each | 
+				canvas << (PRRichTextCodeblockStyler textStyler: each text).
+				canvas cr ].
+			"This is not really correct since the text should be interpreted."
+			"canvas << (PRRichTextCodeblockStyler textStyler: aPreformatted text)"].
+		
+	canvas cr
+]
+
+{ #category : #'visiting-document' }
 PRRichTextComposer >> visitStrikethroughFormat: anObject [
 	canvas includeAttribute: TextEmphasis struckOut in: [ self visitFormat: anObject ]
 ]
@@ -463,14 +532,14 @@ PRRichTextComposer >> visitStrikethroughFormat: anObject [
 { #category : #'visiting-document' }
 PRRichTextComposer >> visitSubscriptFormat: anObject [
 	canvas
-		includeAttribute: TextColor red
+		includeAttribute: self subscriptColor
 		in: [ self visitFormat: anObject ]
 ]
 
 { #category : #'visiting-document' }
 PRRichTextComposer >> visitSuperscriptFormat: anObject [
 	canvas
-		includeAttribute: TextColor blue
+		includeAttribute: self superscriptColor
 		in: [ self visitFormat: anObject ]
 ]
 

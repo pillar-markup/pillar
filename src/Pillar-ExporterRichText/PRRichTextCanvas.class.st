@@ -35,8 +35,7 @@ PRRichTextCanvas >> contents [
 
 { #category : #public }
 PRRichTextCanvas >> cr [
-	self << String cr asText.
-	crAtEnd := true.
+	self newLine
 ]
 
 { #category : #public }
@@ -64,9 +63,9 @@ PRRichTextCanvas >> indentIn: aBlock [
 
 { #category : #initialization }
 PRRichTextCanvas >> initialize [
+	super initialize.
 	out := WriteStream on: '' asText.
-	brushes := OrderedCollection
-		with: (PRRichTextIndentBrush on: self).
+	brushes := OrderedCollection with: (PRRichTextIndentBrush on: self).
 	nesting := 0.
 	crAtEnd := true. "Prevent newlines in beginning"
 ]
@@ -74,6 +73,12 @@ PRRichTextCanvas >> initialize [
 { #category : #accessing }
 PRRichTextCanvas >> nesting [
 	^ nesting
+]
+
+{ #category : #public }
+PRRichTextCanvas >> newLine [
+	self << String cr asText.
+	crAtEnd := true.
 ]
 
 { #category : #public }
