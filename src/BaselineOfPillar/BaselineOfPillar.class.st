@@ -64,8 +64,7 @@ BaselineOfPillar >> baseline: spec [
 				package: 'Pillar-GitBook' with: [ spec requires: #('Pillar-Cli' 'markdown exporter' 'text exporter') ];
 				
 				package: 'Pillar-Core';
-				package: 'Pillar-PetitMicroDown'
-					with: [ spec requires: #('Pillar-Core' 'Pillar-Model' 'PetitParser2Core')];
+				
 				package: 'Pillar-Model' with: [ spec requires: #('Pillar-Core')];
 				package: 'Pillar-CodeBlockEvaluator' with: [ spec requires: #('Pillar-Core')];
 				package: 'Pillar-PetitPillar' with: [ spec requires: #('PetitParser2Core' 'Pillar-Model') ];
@@ -102,7 +101,7 @@ BaselineOfPillar >> baseline: spec [
 				group: 'ALL' with: #('All tests' 'All but tests');
 				
 				group: 'All but tests'
-					with: #('All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'Pillar-GitBook' 'parser' 'Pillar-Project' 'Pillar-BookTester' 'Pillar-CodeBlockEvaluator' 'Pillar-PetitMicroDown');
+					with: #('All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'Pillar-GitBook' 'parser' 'Pillar-Project' 'Pillar-BookTester' 'Pillar-CodeBlockEvaluator');
 				
 				group: 'All exporter tests'
 					with:
