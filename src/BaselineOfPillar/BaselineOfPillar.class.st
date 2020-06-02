@@ -69,7 +69,13 @@ BaselineOfPillar >> baseline: spec [
 				package: 'Pillar-CodeBlockEvaluator' with: [ spec requires: #('Pillar-Core')];
 				package: 'Pillar-PetitPillar' with: [ spec requires: #('PetitParser2Core' 'Pillar-Model') ];
 			
-				package: 'Pillar-ExporterRichText' with: [ spec requires: #('Pillar-Core' 'Pillar-PetitPillar') ];
+				"Going from Pillar model to richText"
+				package: 'Pillar-ExporterRichText' 
+					with: [ spec requires: #('Pillar-Core' ) ];
+				"Going from Pillar text to richText"
+				package: 'Pillar-PillarTextRichTextExporter' 
+					with: [ spec requires: #('Pillar-ExporterRichText' 'Pillar-PetitPillar') ];
+					
 				package: 'Pillar-Pharo-Tools' with: [ spec requires: #('Pillar-Model' 'All exporters') ];
 				package: 'Pillar-Project' with: [ spec requires: #('Pillar-Model' 'All exporters') ];
 				package: 'Pillar-BookTester' with: [ spec requires: #('Pillar-Project') ];
@@ -101,7 +107,7 @@ BaselineOfPillar >> baseline: spec [
 				group: 'ALL' with: #('All tests' 'All but tests');
 				
 				group: 'All but tests'
-					with: #('All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'Pillar-GitBook' 'parser' 'Pillar-Project' 'Pillar-BookTester' 'Pillar-CodeBlockEvaluator');
+					with: #('All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'Pillar-GitBook' 'parser' 'Pillar-Project' 'Pillar-BookTester' 'Pillar-CodeBlockEvaluator' 'Pillar-PillarTextRichTextExporter');
 				
 				group: 'All exporter tests'
 					with:
@@ -126,6 +132,7 @@ BaselineOfPillar >> baseline: spec [
 				group: 'ePub exporter' with: #(#'Pillar-ExporterEPub');
 				group: 'ePub exporter tests' with: #(#'Pillar-Tests-ExporterEPub');
 				
+				"from pillar model to richtext"
 				group: 'rich text exporter' with: #('Pillar-ExporterRichText');
 				
 				group: 'html exporter' with: #('Pillar-ExporterHTML');
