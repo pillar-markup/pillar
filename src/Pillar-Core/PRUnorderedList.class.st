@@ -4,7 +4,7 @@ I am an unordered list. I am typically used for unnumbered lists
 Class {
 	#name : #PRUnorderedList,
 	#superclass : #PRList,
-	#category : #'Pillar-Model-Document'
+	#category : #'Pillar-Core-Model'
 }
 
 { #category : #testing }
