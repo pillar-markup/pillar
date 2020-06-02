@@ -17,6 +17,15 @@ Class {
 	#category : #'Pillar-ExporterRichText-Core'
 }
 
+{ #category : #stupid }
+PRRichTextComposer class >> asText: aStreamOrString [
+	^ self new
+		start:
+			(PRPillarParserMain
+				initialize;
+				parse: aStreamOrString asString)
+]
+
 { #category : #private }
 PRRichTextComposer class >> browse: urlString [
 	"I am a url on the form: browse://Class or browse://Class/method"
