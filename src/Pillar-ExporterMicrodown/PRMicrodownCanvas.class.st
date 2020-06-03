@@ -1,6 +1,6 @@
 Class {
 	#name : #PRMicrodownCanvas,
-	#superclass : #PRExportCanvas,
+	#superclass : #PRBuilderCanvas,
 	#instVars : [
 		'lastIsNewLine',
 		'prefixStack'
