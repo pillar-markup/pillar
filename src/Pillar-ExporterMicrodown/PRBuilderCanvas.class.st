@@ -1,5 +1,5 @@
 Class {
-	#name : #MicAbstractBuilder,
+	#name : #PRBuilderCanvas,
 	#superclass : #PRBasicObject,
 	#instVars : [
 		'stream',
@@ -9,14 +9,14 @@ Class {
 }
 
 { #category : #'instance creation' }
-MicAbstractBuilder class >> on: aStream [ 
+PRBuilderCanvas class >> on: aStream [ 
 	^ self new
 		setStream: aStream;
 		yourself
 ]
 
 { #category : #private }
-MicAbstractBuilder >> brush: aBrush [
+PRBuilderCanvas >> brush: aBrush [
 	self flush.
 	currentBrush := aBrush.
 	aBrush setStream: stream.
@@ -24,19 +24,19 @@ MicAbstractBuilder >> brush: aBrush [
 ]
 
 { #category : #accessing }
-MicAbstractBuilder >> flush [
+PRBuilderCanvas >> flush [
 	stream flush
 ]
 
 { #category : #'writing text' }
-MicAbstractBuilder >> line: aString [
+PRBuilderCanvas >> line: aString [
 	self
 		nextPutAll: aString;
 		newLine
 ]
 
 { #category : #'writing text' }
-MicAbstractBuilder >> lines: aString [
+PRBuilderCanvas >> lines: aString [
 	"Output aString and take care of line ending within aString."
 	| str |
 	str := aString readStream.
@@ -49,48 +49,48 @@ MicAbstractBuilder >> lines: aString [
 ]
 
 { #category : #'writing text' }
-MicAbstractBuilder >> newLine [
+PRBuilderCanvas >> newLine [
 	stream newLine
 ]
 
 { #category : #'writing text' }
-MicAbstractBuilder >> nextPut: aCharacter [
+PRBuilderCanvas >> nextPut: aCharacter [
 	stream nextPut: aCharacter
 ]
 
 { #category : #'writing text' }
-MicAbstractBuilder >> nextPutAll: aString [
+PRBuilderCanvas >> nextPutAll: aString [
 	aString do: [ :char | self nextPut: char ]
 ]
 
 { #category : #'writing text' }
-MicAbstractBuilder >> nextPutAllLines: aString [
+PRBuilderCanvas >> nextPutAllLines: aString [
 	self withLinesIn: aString do: [ :line | self nextPutAll: line ] separatedBy: [ self newLine ]
 ]
 
 { #category : #'writing text' }
-MicAbstractBuilder >> raw: aString [
+PRBuilderCanvas >> raw: aString [
 	stream << aString
 ]
 
 { #category : #'writing text' }
-MicAbstractBuilder >> rawLines: aString [
+PRBuilderCanvas >> rawLines: aString [
 	"Output aString and take care of line ending within aString."
 	self withLinesIn: aString do: [ :line | self raw: line ] separatedBy: [ self newLine ]
 ]
 
 { #category : #initialization }
-MicAbstractBuilder >> setStream: aStream [ 
+PRBuilderCanvas >> setStream: aStream [ 
 	stream := aStream
 ]
 
 { #category : #'writing text' }
-MicAbstractBuilder >> space [
+PRBuilderCanvas >> space [
 	stream space
 ]
 
 { #category : #private }
-MicAbstractBuilder >> withLinesIn: aString do: aBlock separatedBy: anotherBlock [
+PRBuilderCanvas >> withLinesIn: aString do: aBlock separatedBy: anotherBlock [
 	| str |
 	str := aString readStream.
 	[ str atEnd ]

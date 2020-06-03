@@ -1,5 +1,5 @@
 Class {
-	#name : #PRMicrodownBuilderCanvas,
+	#name : #PRMicrodownCanvas,
 	#superclass : #PRExportCanvas,
 	#instVars : [
 		'lastIsNewLine',
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : #accessing }
-PRMicrodownBuilderCanvas >> bold: aText [
+PRMicrodownCanvas >> bold: aText [
 
 	^ self
 		raw: '**';
@@ -18,48 +18,48 @@ PRMicrodownBuilderCanvas >> bold: aText [
 ]
 
 { #category : #initialization }
-PRMicrodownBuilderCanvas >> initialize [
+PRMicrodownCanvas >> initialize [
 	super initialize.
 	prefixStack := OrderedCollection new.
 	lastIsNewLine := true
 ]
 
 { #category : #accessing }
-PRMicrodownBuilderCanvas >> lastIsNewLine [
+PRMicrodownCanvas >> lastIsNewLine [
 	^ lastIsNewLine
 ]
 
 { #category : #'writing text' }
-PRMicrodownBuilderCanvas >> newLine [
+PRMicrodownCanvas >> newLine [
 	super newLine.
 	lastIsNewLine := true
 ]
 
 { #category : #'writing text' }
-PRMicrodownBuilderCanvas >> nextPut: aCharacter [
+PRMicrodownCanvas >> nextPut: aCharacter [
 	super nextPut: aCharacter.
 	lastIsNewLine := false
 ]
 
 { #category : #'prefix-stack' }
-PRMicrodownBuilderCanvas >> popPrefix [
+PRMicrodownCanvas >> popPrefix [
 	
 	prefixStack removeLast
 ]
 
 { #category : #'writing text' }
-PRMicrodownBuilderCanvas >> potentialNewLine [
+PRMicrodownCanvas >> potentialNewLine [
 	lastIsNewLine ifFalse: [ self newLine ]
 ]
 
 { #category : #'prefix-stack' }
-PRMicrodownBuilderCanvas >> pushPrefix: aString [ 
+PRMicrodownCanvas >> pushPrefix: aString [ 
 	
 	prefixStack addLast: aString
 ]
 
 { #category : #'writing text' }
-PRMicrodownBuilderCanvas >> raw: aString [
+PRMicrodownCanvas >> raw: aString [
 	
 	lastIsNewLine ifTrue: [ 
 		prefixStack do: [ :each |
@@ -70,7 +70,7 @@ PRMicrodownBuilderCanvas >> raw: aString [
 ]
 
 { #category : #writing }
-PRMicrodownBuilderCanvas >> writeBlockQuoteDuring: aBlockClosure [ 
+PRMicrodownCanvas >> writeBlockQuoteDuring: aBlockClosure [ 
 	
 	self
 		writePrefix: '> '
@@ -78,7 +78,7 @@ PRMicrodownBuilderCanvas >> writeBlockQuoteDuring: aBlockClosure [
 ]
 
 { #category : #writing }
-PRMicrodownBuilderCanvas >> writeIndentedCodeBlockDuring: aBlockClosure [ 
+PRMicrodownCanvas >> writeIndentedCodeBlockDuring: aBlockClosure [ 
 	
 	self
 		writePrefix: '    '
@@ -86,7 +86,7 @@ PRMicrodownBuilderCanvas >> writeIndentedCodeBlockDuring: aBlockClosure [
 ]
 
 { #category : #writing }
-PRMicrodownBuilderCanvas >> writeLinkDuring: aBlockClosure destination: aString [ 
+PRMicrodownCanvas >> writeLinkDuring: aBlockClosure destination: aString [ 
 	
 	self
 		writeLinkDuring: aBlockClosure
@@ -95,7 +95,7 @@ PRMicrodownBuilderCanvas >> writeLinkDuring: aBlockClosure destination: aString 
 ]
 
 { #category : #writing }
-PRMicrodownBuilderCanvas >> writeLinkDuring: aBlockClosure destination: aDestination title: aTitle [ 
+PRMicrodownCanvas >> writeLinkDuring: aBlockClosure destination: aDestination title: aTitle [ 
 
 	self raw: '['.
 	aBlockClosure ensure: [ 
@@ -114,7 +114,7 @@ PRMicrodownBuilderCanvas >> writeLinkDuring: aBlockClosure destination: aDestina
 ]
 
 { #category : #writing }
-PRMicrodownBuilderCanvas >> writePrefix: aString forEachLineDuring: aBlockClosure [ 
+PRMicrodownCanvas >> writePrefix: aString forEachLineDuring: aBlockClosure [ 
 
 	self pushPrefix: aString.
 	aBlockClosure ensure: [ self popPrefix ].
