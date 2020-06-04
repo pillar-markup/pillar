@@ -1,18 +1,61 @@
 Class {
 	#name : #PRMicrodownWriterTest,
 	#superclass : #TestCase,
+	#instVars : [
+		'canvas',
+		'parser',
+		'writer',
+		'initialText',
+		'writtenText',
+		'parsedBloc'
+	],
 	#category : #'Pillar-ExporterMicrodown'
 }
 
+{ #category : #accessing }
+PRMicrodownWriterTest >> exampleText [
+	^ 'Hello Pharo'
+]
+
+{ #category : #accessing }
+PRMicrodownWriterTest >> parser [
+	^ parser ifNil: [ parser := MicroDownParser new. ^ parser ]
+]
+
+{ #category : #running }
+PRMicrodownWriterTest >> setUp [
+	canvas := PRMicrodownCanvas on: String new writeStream
+
+]
+
 { #category : #tests }
-PRMicrodownWriterTest >> testHeader [ 
-	
-	| builder text bloc text2 |
-	"we should use this builder but the canvas"
-	builder := MicroDownParser builder. 
-	text := builder buildHeader: 'Hello Pharo'; contents.
-	
-	bloc := MicroDownParser new parse: text readStream.
-	text2 := PRMicrodownWriter new start: bloc asPillar; contents.
-	self assert: text equals: text2.
+PRMicrodownWriterTest >> testBold [
+	"**Hello Pharo**"
+	initialText := canvas bold: self exampleText; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: initialText equals: writtenText.
+]
+
+{ #category : #tests }
+PRMicrodownWriterTest >> testHeader [
+	"# Hello Pharo"
+	initialText := canvas header: self exampleText; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: initialText equals: writtenText.
+]
+
+{ #category : #tests }
+PRMicrodownWriterTest >> testItalic [
+	"_Hello Pharo_"
+	initialText := canvas italic: self exampleText; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: initialText equals: writtenText.
+]
+
+{ #category : #accessing }
+PRMicrodownWriterTest >> writer [
+	^ writer ifNil: [ writer := PRMicrodownWriter new. ^ writer ]
 ]

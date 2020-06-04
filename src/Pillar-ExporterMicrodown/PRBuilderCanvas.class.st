@@ -24,6 +24,11 @@ PRBuilderCanvas >> brush: aBrush [
 ]
 
 { #category : #accessing }
+PRBuilderCanvas >> contents [
+	^ stream contents
+]
+
+{ #category : #accessing }
 PRBuilderCanvas >> flush [
 	stream flush
 ]

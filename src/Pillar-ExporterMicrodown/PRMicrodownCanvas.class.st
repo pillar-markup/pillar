@@ -3,25 +3,38 @@ Class {
 	#superclass : #PRBuilderCanvas,
 	#instVars : [
 		'lastIsNewLine',
-		'prefixStack'
+		'prefixStack',
+		'parserClass'
 	],
 	#category : #'Pillar-ExporterMicrodown'
 }
 
-{ #category : #accessing }
+{ #category : #'grammar features' }
 PRMicrodownCanvas >> bold: aText [
+	^ self surround: aText withMarkup: (parserClass inlineMarkup: #bold)
+]
 
-	^ self
-		raw: '**';
-		raw: aText;
-		raw: '**'
+{ #category : #'grammar features' }
+PRMicrodownCanvas >> header: aText [
+	"http://spec.commonmark.org/0.28/#atx-headings"
+	stream
+		nextPutAll: parserClass headerMarkup ; 
+		nextPut: Character space;
+		nextPutAll: aText;
+		crlf
 ]
 
 { #category : #initialization }
 PRMicrodownCanvas >> initialize [
 	super initialize.
 	prefixStack := OrderedCollection new.
+	parserClass := MicroDownParser.
 	lastIsNewLine := true
+]
+
+{ #category : #'grammar features' }
+PRMicrodownCanvas >> italic: aText [
+	^ self surround: aText withMarkup: (parserClass inlineMarkup: #italic)
 ]
 
 { #category : #accessing }
@@ -67,6 +80,14 @@ PRMicrodownCanvas >> raw: aString [
 	].
 	super raw: aString.
 	lastIsNewLine := false
+]
+
+{ #category : #format }
+PRMicrodownCanvas >> surround: aText withMarkup: aMarkup [
+	^ self
+		raw: aMarkup;
+		raw: aText;
+		raw: aMarkup
 ]
 
 { #category : #writing }
