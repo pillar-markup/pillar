@@ -34,7 +34,7 @@ PRMicrodownWriterTest >> testBold [
 	initialText := canvas bold: self exampleText; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
-	self assert: initialText equals: writtenText.
+	self assert: writtenText equals: initialText.
 ]
 
 { #category : #tests }
@@ -43,7 +43,7 @@ PRMicrodownWriterTest >> testHeader [
 	initialText := canvas header: self exampleText; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
-	self assert: initialText equals: writtenText.
+	self assert: writtenText equals: initialText.
 ]
 
 { #category : #tests }
@@ -52,7 +52,7 @@ PRMicrodownWriterTest >> testItalic [
 	initialText := canvas italic: self exampleText; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
-	self assert: initialText equals: writtenText.
+	self assert: writtenText equals: initialText .
 ]
 
 { #category : #accessing }
