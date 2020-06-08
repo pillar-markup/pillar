@@ -1,1 +1,1 @@
-Package { #name : #'Pillar-ExporterMicrodown' }
+Package { #name : #'Pillar-ExporterMicroDown' }

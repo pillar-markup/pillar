@@ -31,9 +31,15 @@ PRMicrodownWriterTest >> setUp [
 { #category : #tests }
 PRMicrodownWriterTest >> testAnnotated [
 	"!! Hello Pharo"
-	self skip.
-	"in progress"
 	initialText := canvas annotated: self exampleText; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #tests }
+PRMicrodownWriterTest >> testAnnotated2 [
+	initialText := '!! Hello', String crlf, '!! Pharo'.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
@@ -51,11 +57,7 @@ PRMicrodownWriterTest >> testBold [
 { #category : #tests }
 PRMicrodownWriterTest >> testComment [
 	"% Hello Pharo"
-	self skip.
-	"in progress"
-	"initialText := canvas comment: self exampleText; contents."
-	initialText := '% Hey
-% llo'.
+	initialText := canvas comment: self exampleText; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
@@ -73,7 +75,6 @@ PRMicrodownWriterTest >> testExternalLink [
 { #category : #tests }
 PRMicrodownWriterTest >> testFigure [
 	"![Hello Pharo](url)"
-	"conflict with annotatedParagraph block markup"
 	initialText := canvas figure: 'url' withDescription: self exampleText; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
@@ -83,6 +84,15 @@ PRMicrodownWriterTest >> testFigure [
 { #category : #tests }
 PRMicrodownWriterTest >> testHeader [
 	"# Hello Pharo"
+	initialText := canvas header: self exampleText withLevel: 1; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #tests }
+PRMicrodownWriterTest >> testHeaderLvl3 [
+	"### Hello Pharo"
 	initialText := canvas header: self exampleText withLevel: 3; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.

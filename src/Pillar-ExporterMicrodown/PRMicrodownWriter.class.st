@@ -18,6 +18,16 @@ PRMicrodownWriter >> start: anObject [
 	super start: anObject
 ]
 
+{ #category : #'visiting-document' }
+PRMicrodownWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
+	canvas writeBlockQuoteDuring: [
+		anAnnotatedParagraph annotation ifNotEmpty: [ canvas
+			bold: anAnnotatedParagraph annotation;
+			raw: ': ' ] ifEmpty: [ canvas raw: '' ].
+		self visitParagraph: anAnnotatedParagraph
+	]
+]
+
 { #category : #accessing }
 PRMicrodownWriter >> visitBoldFormat: aFormat [
 	canvas bold: aFormat text

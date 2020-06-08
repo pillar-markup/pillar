@@ -10,6 +10,11 @@ Class {
 }
 
 { #category : #grammar }
+PRMicrodownCanvas >> annotated: aText [
+	^ self writeText: aText beginsWith: parserClass annotatedParagraphMarkup
+]
+
+{ #category : #grammar }
 PRMicrodownCanvas >> bold: aText [
 	^ self writeText: aText surroundBy: parserClass boldMarkup
 ]
@@ -38,7 +43,7 @@ PRMicrodownCanvas >> figure: aFigureUrl withDescription: aDescription [
 
 { #category : #grammar }
 PRMicrodownCanvas >> header: aText withLevel: anInteger [
-	^ self writeText: aText beginsWith: (parserClass headerMarkup repeat: anInteger), String space.
+	^ self writeText: aText beginsWith: (parserClass headerMarkup repeat: anInteger)
 ]
 
 { #category : #initialization }
@@ -113,7 +118,7 @@ PRMicrodownCanvas >> strike: aText [
 PRMicrodownCanvas >> writeBlockQuoteDuring: aBlockClosure [ 
 	
 	self
-		writePrefix: '> '
+		writePrefix: (parserClass annotatedParagraphMarkup), String space 
 		forEachLineDuring: aBlockClosure.
 ]
 
@@ -164,6 +169,7 @@ PRMicrodownCanvas >> writePrefix: aString forEachLineDuring: aBlockClosure [
 PRMicrodownCanvas >> writeText: aText beginsWith: aMarkup [
 	^ self
 		raw: aMarkup;
+		raw: String space;
 		raw: aText
 ]
 
