@@ -18,6 +18,16 @@ PRMicrodownWriter >> start: anObject [
 	super start: anObject
 ]
 
+{ #category : #'visiting-document' }
+PRMicrodownWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
+	canvas writeBlockQuoteDuring: [
+		anAnnotatedParagraph annotation ifNotEmpty: [ canvas
+			bold: anAnnotatedParagraph annotation;
+			raw: ': ' ] ifEmpty: [ canvas raw: '' ].
+		self visitParagraph: anAnnotatedParagraph
+	]
+]
+
 { #category : #accessing }
 PRMicrodownWriter >> visitBoldFormat: aFormat [
 	canvas bold: aFormat text
@@ -56,6 +66,14 @@ PRMicrodownWriter >> visitItalicFormat: aFormat [
 { #category : #accessing }
 PRMicrodownWriter >> visitMonospaceFormat: aFormat [
 	canvas monospace: aFormat text
+]
+
+{ #category : #'visiting-document' }
+PRMicrodownWriter >> visitPreformatted: aPreformatted [
+	canvas writeIndentedCodeBlockDuring: [
+		aPreformatted children
+			do: [ :child | self visit: child ]
+			separatedBy: [canvas newLine ] ]
 ]
 
 { #category : #accessing }

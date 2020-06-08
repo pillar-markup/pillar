@@ -17,6 +17,11 @@ Class {
 }
 
 { #category : #formatting }
+PRMicrodownCanvas >> annotated: aText [
+	^ self writeText: aText beginsWith: parserClass annotatedParagraphMarkup
+]
+
+{ #category : #formatting }
 PRMicrodownCanvas >> bold: aText [
 	"Return a text decorated as bold. 
 	Does not change the receiver."
@@ -60,7 +65,7 @@ PRMicrodownCanvas >> figure: aFigureUrl withDescription: aDescription [
 
 { #category : #grammar }
 PRMicrodownCanvas >> header: aText withLevel: anInteger [
-	^ self writeText: aText beginsWith: (parserClass headerMarkup repeat: anInteger), String space.
+	^ self writeText: aText beginsWith: (parserClass headerMarkup repeat: anInteger)
 ]
 
 { #category : #initialization }
@@ -109,6 +114,11 @@ PRMicrodownCanvas >> potentialNewLine [
 	lastIsNewLine ifFalse: [ self newLine ]
 ]
 
+{ #category : #grammar }
+PRMicrodownCanvas >> preformatted: aText [
+	^ self writeText: aText beginsWith: parserClass preformattedMarkup
+]
+
 { #category : #'prefix-stack' }
 PRMicrodownCanvas >> pushPrefix: aString [ 
 	
@@ -135,7 +145,7 @@ PRMicrodownCanvas >> strike: aText [
 PRMicrodownCanvas >> writeBlockQuoteDuring: aBlockClosure [ 
 	
 	self
-		writePrefix: '> '
+		writePrefix: (parserClass annotatedParagraphMarkup), String space 
 		forEachLineDuring: aBlockClosure.
 ]
 
@@ -143,7 +153,7 @@ PRMicrodownCanvas >> writeBlockQuoteDuring: aBlockClosure [
 PRMicrodownCanvas >> writeIndentedCodeBlockDuring: aBlockClosure [ 
 	
 	self
-		writePrefix: '    '
+		writePrefix: parserClass preformattedMarkup
 		forEachLineDuring: aBlockClosure.
 ]
 
@@ -186,6 +196,7 @@ PRMicrodownCanvas >> writePrefix: aString forEachLineDuring: aBlockClosure [
 PRMicrodownCanvas >> writeText: aText beginsWith: aMarkup [
 	^ self
 		raw: aMarkup;
+		raw: String space;
 		raw: aText
 ]
 
