@@ -57,6 +57,8 @@ PRMicrodownWriterTest >> testBold [
 { #category : #tests }
 PRMicrodownWriterTest >> testComment [
 	"% Hello Pharo"
+	self skip.
+	"PRCommentedBlock doesn't exist. Only lines exist."
 	initialText := canvas comment: self exampleText; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
@@ -112,6 +114,24 @@ PRMicrodownWriterTest >> testItalic [
 PRMicrodownWriterTest >> testMonospace [
 	"`Hello Pharo`"
 	initialText := canvas monospace: self exampleText; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #tests }
+PRMicrodownWriterTest >> testPreformatted [
+	"= Hello Pharo"
+	initialText := canvas annotated: self exampleText; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #tests }
+PRMicrodownWriterTest >> testPreformatted2 [
+	"= Hello Pharo"
+	initialText := '= Hello', String crlf, '= There'.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.

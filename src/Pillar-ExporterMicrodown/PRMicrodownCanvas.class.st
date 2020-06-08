@@ -92,6 +92,11 @@ PRMicrodownCanvas >> potentialNewLine [
 	lastIsNewLine ifFalse: [ self newLine ]
 ]
 
+{ #category : #grammar }
+PRMicrodownCanvas >> preformatted: aText [
+	^ self writeText: aText beginsWith: parserClass preformattedMarkup
+]
+
 { #category : #'prefix-stack' }
 PRMicrodownCanvas >> pushPrefix: aString [ 
 	
@@ -126,7 +131,7 @@ PRMicrodownCanvas >> writeBlockQuoteDuring: aBlockClosure [
 PRMicrodownCanvas >> writeIndentedCodeBlockDuring: aBlockClosure [ 
 	
 	self
-		writePrefix: '    '
+		writePrefix: parserClass preformattedMarkup
 		forEachLineDuring: aBlockClosure.
 ]
 

@@ -68,6 +68,14 @@ PRMicrodownWriter >> visitMonospaceFormat: aFormat [
 	canvas monospace: aFormat text
 ]
 
+{ #category : #'visiting-document' }
+PRMicrodownWriter >> visitPreformatted: aPreformatted [
+	canvas writeIndentedCodeBlockDuring: [
+		aPreformatted children
+			do: [ :child | self visit: child ]
+			separatedBy: [canvas newLine ] ]
+]
+
 { #category : #accessing }
 PRMicrodownWriter >> visitStrikethroughFormat: aFormat [
 	canvas strike: aFormat text
