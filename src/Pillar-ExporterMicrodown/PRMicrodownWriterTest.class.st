@@ -44,25 +44,15 @@ PRMicrodownWriterTest >> testAnnotated [
 ]
 
 { #category : #tests }
-PRMicrodownWriterTest >> testAnnotated2 [
-	self skip.
-	self flag: #Laurine. 
-	"I do not know but annotated is 
-	!! a paragraph.... potentially on multiple line 
-	like this
-	
-	So the example below is like two annotated and the test should not be blind on this fact.
-	"
-	"annotated: should have the responsibility to issue the terminating new line. 
-	
-	In addition annotated is 
-	
-	!! Important body 
-	body
-	
-	Important is an annotation of the preformatted"
-	initialText := canvas annotated: 'Hello', String cr, 'Pharo'; contents.
+PRMicrodownWriterTest >> testAnnotatedOnMultipleLines [
+
+	| body |
+	body := self exampleText, String cr, self exampleText.
+	initialText := canvas annotated: 'Note' paragraph: body; contents.
 	parsedBloc := self parser parse: initialText readStream.
+	self assert: parsedBloc children first label equals: 'Note'.
+	self assert: parsedBloc children first body equals: body.
+	self halt.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
 ]
