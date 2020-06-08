@@ -9,7 +9,7 @@ Class {
 		'writtenText',
 		'parsedBloc'
 	],
-	#category : #'Pillar-ExporterMicrodown-Tests'
+	#category : #'Pillar-ExporterMicrodown'
 }
 
 { #category : #running }
@@ -34,16 +34,34 @@ PRMicrodownWriterTest >> setUp [
 
 { #category : #tests }
 PRMicrodownWriterTest >> testAnnotated [
-	"!! Hello Pharo"
-	initialText := canvas annotated: self exampleText; contents.
+	"!!Note Pharo is cool and microdown too."
+	
+	initialText := canvas annotated: 'Important?' paragraph:  self exampleText; contents.
 	parsedBloc := self parser parse: initialText readStream.
+	self assert: parsedBloc children first label equals: 'Important?'.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
 ]
 
 { #category : #tests }
 PRMicrodownWriterTest >> testAnnotated2 [
-	initialText := '!! Hello', String crlf, '!! Pharo'.
+	self skip.
+	self flag: #Laurine. 
+	"I do not know but annotated is 
+	!! a paragraph.... potentially on multiple line 
+	like this
+	
+	So the example below is like two annotated and the test should not be blind on this fact.
+	"
+	"annotated: should have the responsibility to issue the terminating new line. 
+	
+	In addition annotated is 
+	
+	!! Important body 
+	body
+	
+	Important is an annotation of the preformatted"
+	initialText := canvas annotated: 'Hello', String cr, 'Pharo'; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
@@ -108,7 +126,7 @@ PRMicrodownWriterTest >> testHeaderLvl3 [
 { #category : #'tests - header' }
 PRMicrodownWriterTest >> testHeaderWithBold [
 	"# Hello **Pharo** is cool"
-	
+	self skip.
 	initialText := canvas 
 							header: 'Hello ', (canvas bold: 'Pharo'),  'is cool' withLevel: 3;				
 							contents.
@@ -137,10 +155,11 @@ PRMicrodownWriterTest >> testMonospace [
 	self assert: writtenText equals: initialText.
 ]
 
-
 { #category : #tests }
 PRMicrodownWriterTest >> testPreformatted [
 	"= Hello Pharo"
+	self skip. 
+	"this should not be annotated"
 	initialText := canvas annotated: self exampleText; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
@@ -150,7 +169,13 @@ PRMicrodownWriterTest >> testPreformatted [
 { #category : #tests }
 PRMicrodownWriterTest >> testPreformatted2 [
 	"= Hello Pharo"
-	initialText := '= Hello', String crlf, '= There'.
+	self skip.
+	self flag: #Laurine.
+	"First we should use the builder.
+	Second = is not for preformatted but > is 
+	Third the build API should manage the String cr not us"
+	
+	initialText := '= Hello', String cr, '= There'.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.

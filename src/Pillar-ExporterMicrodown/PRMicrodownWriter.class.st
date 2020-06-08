@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'nesting'
 	],
-	#category : #'Pillar-ExporterMicrodown-Core'
+	#category : #'Pillar-ExporterMicrodown'
 }
 
 { #category : #accessing }
@@ -20,12 +20,17 @@ PRMicrodownWriter >> start: anObject [
 
 { #category : #'visiting-document' }
 PRMicrodownWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
-	canvas writeBlockQuoteDuring: [
-		anAnnotatedParagraph annotation ifNotEmpty: [ canvas
-			bold: anAnnotatedParagraph annotation;
-			raw: ': ' ] ifEmpty: [ canvas raw: '' ].
-		self visitParagraph: anAnnotatedParagraph
-	]
+	"
+	Annotated paragraph in microdown is 
+	
+	!!label paragraph
+	
+	
+	"
+
+	canvas annotatedAnnotation: anAnnotatedParagraph annotation.
+	self visitParagraph: anAnnotatedParagraph
+	
 ]
 
 { #category : #accessing }

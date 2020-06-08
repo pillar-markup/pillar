@@ -1,10 +1,3 @@
-"
-I encapsulate microdown writing logic. 
-
-
-## Implementation points
-I'm a subclass from a class that is not shared by other PR elements because I will be moved to the microdown package.
-"
 Class {
 	#name : #PRMicrodownCanvas,
 	#superclass : #PRAbstractMicrodownBuilderCanvas,
@@ -13,12 +6,46 @@ Class {
 		'prefixStack',
 		'parserClass'
 	],
-	#category : #'Pillar-ExporterMicrodown-Core'
+	#category : #'Pillar-ExporterMicrodown'
 }
 
 { #category : #formatting }
 PRMicrodownCanvas >> annotated: aText [
-	^ self writeText: aText beginsWith: parserClass annotatedParagraphMarkup
+	"!!Important there is not space between the !! and the label (annotation in pillar) or we should improve the microdown parser"
+	self flag: #Laurine. 
+	self
+		raw: parserClass annotatedParagraphMarkup;
+		raw: aText
+	
+
+]
+
+{ #category : #formatting }
+PRMicrodownCanvas >> annotated: annotation paragraph:  aText [
+	"!!Important 
+	
+	attention there is not space between the !! and the label (annotation in pillar) or we should improve the microdown parser"
+
+	self
+		raw: parserClass annotatedParagraphMarkup;
+		raw: annotation; 
+		raw: String space;
+		raw: aText
+	
+
+]
+
+{ #category : #formatting }
+PRMicrodownCanvas >> annotatedAnnotation: annotation [
+	"I'm made to be followed by a paragraph. I manage the space between the annotation/label and the paragraph."
+	
+	"!!Important there is not space between the !! and the label (annotation in pillar) or we should improve the microdown parser"
+	self
+		raw: parserClass annotatedParagraphMarkup;
+		raw: annotation;
+		raw: String space
+	
+
 ]
 
 { #category : #formatting }
@@ -194,7 +221,7 @@ PRMicrodownCanvas >> writePrefix: aString forEachLineDuring: aBlockClosure [
 
 { #category : #writing }
 PRMicrodownCanvas >> writeText: aText beginsWith: aMarkup [
-	^ self
+	self
 		raw: aMarkup;
 		raw: String space;
 		raw: aText
@@ -202,12 +229,12 @@ PRMicrodownCanvas >> writeText: aText beginsWith: aMarkup [
 
 { #category : #writing }
 PRMicrodownCanvas >> writeText: aText surroundBy: aMarkup [
-	^ self writeText: aText surroundBy: aMarkup and: aMarkup
+	self writeText: aText surroundBy: aMarkup and: aMarkup
 ]
 
 { #category : #writing }
 PRMicrodownCanvas >> writeText: aText surroundBy: anOpenerMarkup and: aCloserMarkup [
-	^ self
+	self
 		raw: anOpenerMarkup;
 		raw: aText;
 		raw: aCloserMarkup
