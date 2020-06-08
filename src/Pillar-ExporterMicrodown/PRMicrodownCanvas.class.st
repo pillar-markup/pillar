@@ -18,7 +18,13 @@ Class {
 
 { #category : #formatting }
 PRMicrodownCanvas >> annotated: aText [
-	^ self writeText: aText beginsWith: parserClass annotatedParagraphMarkup
+	"!!Important there is not space between the !! and the label (annotation in pillar) or we should improve the microdown parser"
+	self flag: #Laurine. 
+	self
+		raw: parserClass annotatedParagraphMarkup;
+		raw: aText
+	
+
 ]
 
 { #category : #formatting }
@@ -194,7 +200,7 @@ PRMicrodownCanvas >> writePrefix: aString forEachLineDuring: aBlockClosure [
 
 { #category : #writing }
 PRMicrodownCanvas >> writeText: aText beginsWith: aMarkup [
-	^ self
+	self
 		raw: aMarkup;
 		raw: String space;
 		raw: aText
@@ -202,12 +208,12 @@ PRMicrodownCanvas >> writeText: aText beginsWith: aMarkup [
 
 { #category : #writing }
 PRMicrodownCanvas >> writeText: aText surroundBy: aMarkup [
-	^ self writeText: aText surroundBy: aMarkup and: aMarkup
+	self writeText: aText surroundBy: aMarkup and: aMarkup
 ]
 
 { #category : #writing }
 PRMicrodownCanvas >> writeText: aText surroundBy: anOpenerMarkup and: aCloserMarkup [
-	^ self
+	self
 		raw: anOpenerMarkup;
 		raw: aText;
 		raw: aCloserMarkup
