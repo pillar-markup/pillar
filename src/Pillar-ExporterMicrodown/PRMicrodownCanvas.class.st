@@ -1,32 +1,67 @@
 Class {
 	#name : #PRMicrodownCanvas,
-	#superclass : #PRBuilderCanvas,
+	#superclass : #PRExportCanvas,
 	#instVars : [
 		'lastIsNewLine',
-		'prefixStack'
+		'prefixStack',
+		'parserClass'
 	],
-	#category : #'Pillar-ExporterMicrodown'
+	#category : #'Pillar-ExporterMicroDown'
 }
 
-{ #category : #accessing }
+{ #category : #grammar }
 PRMicrodownCanvas >> bold: aText [
+	^ self writeText: aText surroundBy: parserClass boldMarkup
+]
 
-	^ self
-		raw: '**';
-		raw: aText;
-		raw: '**'
+{ #category : #accessing }
+PRMicrodownCanvas >> comment: aTextLine [
+	^ self writeText: aTextLine beginsWith: (parserClass commentedLineMarkup), String space
+]
+
+{ #category : #accessing }
+PRMicrodownCanvas >> contents [
+	^ stream contents
+]
+
+{ #category : #grammar }
+PRMicrodownCanvas >> externalLink: aURL withDescription: aDescription [
+	self writeText: aDescription surroundBy: parserClass linkNameOpenerMarkup and: parserClass linkNameCloserMarkup.
+	self writeText: aURL surroundBy: parserClass urlOpenerMarkup and: parserClass urlCloserMarkup
+]
+
+{ #category : #grammar }
+PRMicrodownCanvas >> figure: aFigureUrl withDescription: aDescription [
+	self writeText: aDescription surroundBy: parserClass figureOpenerMarkup and: parserClass linkNameCloserMarkup.
+	self writeText: aFigureUrl surroundBy: parserClass urlOpenerMarkup and: parserClass urlCloserMarkup
+]
+
+{ #category : #grammar }
+PRMicrodownCanvas >> header: aText withLevel: anInteger [
+	^ self writeText: aText beginsWith: (parserClass headerMarkup repeat: anInteger), String space.
 ]
 
 { #category : #initialization }
 PRMicrodownCanvas >> initialize [
 	super initialize.
+	parserClass := MicroDownParser.
 	prefixStack := OrderedCollection new.
 	lastIsNewLine := true
+]
+
+{ #category : #grammar }
+PRMicrodownCanvas >> italic: aText [
+	^ self writeText: aText surroundBy: parserClass italicMarkup
 ]
 
 { #category : #accessing }
 PRMicrodownCanvas >> lastIsNewLine [
 	^ lastIsNewLine
+]
+
+{ #category : #grammar }
+PRMicrodownCanvas >> monospace: aText [
+	^ self writeText: aText surroundBy: parserClass monospaceMarkup
 ]
 
 { #category : #'writing text' }
@@ -67,6 +102,11 @@ PRMicrodownCanvas >> raw: aString [
 	].
 	super raw: aString.
 	lastIsNewLine := false
+]
+
+{ #category : #grammar }
+PRMicrodownCanvas >> strike: aText [
+	^ self writeText: aText surroundBy: parserClass strikeMarkup
 ]
 
 { #category : #writing }
@@ -118,4 +158,24 @@ PRMicrodownCanvas >> writePrefix: aString forEachLineDuring: aBlockClosure [
 
 	self pushPrefix: aString.
 	aBlockClosure ensure: [ self popPrefix ].
+]
+
+{ #category : #writing }
+PRMicrodownCanvas >> writeText: aText beginsWith: aMarkup [
+	^ self
+		raw: aMarkup;
+		raw: aText
+]
+
+{ #category : #writing }
+PRMicrodownCanvas >> writeText: aText surroundBy: aMarkup [
+	^ self writeText: aText surroundBy: aMarkup and: aMarkup
+]
+
+{ #category : #writing }
+PRMicrodownCanvas >> writeText: aText surroundBy: anOpenerMarkup and: aCloserMarkup [
+	^ self
+		raw: anOpenerMarkup;
+		raw: aText;
+		raw: aCloserMarkup
 ]
