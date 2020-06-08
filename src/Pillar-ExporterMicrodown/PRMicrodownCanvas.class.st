@@ -1,21 +1,30 @@
+"
+I encapsulate microdown writing logic. 
+
+
+## Implementation points
+I'm a subclass from a class that is not shared by other PR elements because I will be moved to the microdown package.
+"
 Class {
 	#name : #PRMicrodownCanvas,
-	#superclass : #PRExportCanvas,
+	#superclass : #PRAbstractMicrodownBuilderCanvas,
 	#instVars : [
 		'lastIsNewLine',
 		'prefixStack',
 		'parserClass'
 	],
-	#category : #'Pillar-ExporterMicroDown'
+	#category : #'Pillar-ExporterMicrodown-Core'
 }
 
-{ #category : #grammar }
+{ #category : #formatting }
 PRMicrodownCanvas >> annotated: aText [
 	^ self writeText: aText beginsWith: parserClass annotatedParagraphMarkup
 ]
 
-{ #category : #grammar }
+{ #category : #formatting }
 PRMicrodownCanvas >> bold: aText [
+	"Return a text decorated as bold. 
+	Does not change the receiver."
 	^ self writeText: aText surroundBy: parserClass boldMarkup
 ]
 
@@ -31,14 +40,27 @@ PRMicrodownCanvas >> contents [
 
 { #category : #grammar }
 PRMicrodownCanvas >> externalLink: aURL withDescription: aDescription [
-	self writeText: aDescription surroundBy: parserClass linkNameOpenerMarkup and: parserClass linkNameCloserMarkup.
-	self writeText: aURL surroundBy: parserClass urlOpenerMarkup and: parserClass urlCloserMarkup
+	self 
+		writeText: aDescription 
+		surroundBy: parserClass linkNameOpenerMarkup 
+		and: parserClass linkNameCloserMarkup.
+	self 
+		writeText: aURL 
+		surroundBy: parserClass urlOpenerMarkup 
+		and: parserClass urlCloserMarkup
 ]
 
 { #category : #grammar }
 PRMicrodownCanvas >> figure: aFigureUrl withDescription: aDescription [
-	self writeText: aDescription surroundBy: parserClass figureOpenerMarkup and: parserClass linkNameCloserMarkup.
-	self writeText: aFigureUrl surroundBy: parserClass urlOpenerMarkup and: parserClass urlCloserMarkup
+
+	self 
+		writeText: aDescription 
+		surroundBy: parserClass figureOpenerMarkup 
+		and: parserClass linkNameCloserMarkup.
+	self 
+		writeText: aFigureUrl 
+		surroundBy: parserClass urlOpenerMarkup 
+		and: parserClass urlCloserMarkup
 ]
 
 { #category : #grammar }
@@ -54,7 +76,7 @@ PRMicrodownCanvas >> initialize [
 	lastIsNewLine := true
 ]
 
-{ #category : #grammar }
+{ #category : #formatting }
 PRMicrodownCanvas >> italic: aText [
 	^ self writeText: aText surroundBy: parserClass italicMarkup
 ]
@@ -64,7 +86,7 @@ PRMicrodownCanvas >> lastIsNewLine [
 	^ lastIsNewLine
 ]
 
-{ #category : #grammar }
+{ #category : #formatting }
 PRMicrodownCanvas >> monospace: aText [
 	^ self writeText: aText surroundBy: parserClass monospaceMarkup
 ]
@@ -114,7 +136,7 @@ PRMicrodownCanvas >> raw: aString [
 	lastIsNewLine := false
 ]
 
-{ #category : #grammar }
+{ #category : #formatting }
 PRMicrodownCanvas >> strike: aText [
 	^ self writeText: aText surroundBy: parserClass strikeMarkup
 ]

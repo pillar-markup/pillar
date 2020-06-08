@@ -9,23 +9,27 @@ Class {
 		'writtenText',
 		'parsedBloc'
 	],
-	#category : #'Pillar-ExporterMicrodown'
+	#category : #'Pillar-ExporterMicrodown-Tests'
 }
 
-{ #category : #accessing }
+{ #category : #running }
 PRMicrodownWriterTest >> exampleText [
 	^ 'Hello Pharo'
 ]
 
 { #category : #accessing }
 PRMicrodownWriterTest >> parser [
-	^ parser ifNil: [ parser := MicroDownParser new ]
+	^ parser 
 ]
 
 { #category : #running }
 PRMicrodownWriterTest >> setUp [
+	super setUp.
+	parser := MicroDownParser new.
+	writer := PRMicrodownWriter new.
 	canvas := PRMicrodownCanvas on: String new writeStream
 
+	
 ]
 
 { #category : #tests }
@@ -45,7 +49,7 @@ PRMicrodownWriterTest >> testAnnotated2 [
 	self assert: writtenText equals: initialText.
 ]
 
-{ #category : #tests }
+{ #category : #'tests - formatting' }
 PRMicrodownWriterTest >> testBold [
 	"**Hello Pharo**"
 	initialText := canvas bold: self exampleText; contents.
@@ -83,7 +87,7 @@ PRMicrodownWriterTest >> testFigure [
 	self assert: writtenText equals: initialText.
 ]
 
-{ #category : #tests }
+{ #category : #'tests - header' }
 PRMicrodownWriterTest >> testHeader [
 	"# Hello Pharo"
 	initialText := canvas header: self exampleText withLevel: 1; contents.
@@ -101,7 +105,21 @@ PRMicrodownWriterTest >> testHeaderLvl3 [
 	self assert: writtenText equals: initialText.
 ]
 
-{ #category : #tests }
+{ #category : #'tests - header' }
+PRMicrodownWriterTest >> testHeaderWithBold [
+	"# Hello **Pharo** is cool"
+	
+	initialText := canvas 
+							header: 'Hello ', (canvas bold: 'Pharo'),  'is cool' withLevel: 3;				
+							contents.
+	self halt.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #'tests - formatting' }
 PRMicrodownWriterTest >> testItalic [
 	"_Hello Pharo_"
 	initialText := canvas italic: self exampleText; contents.
@@ -110,7 +128,7 @@ PRMicrodownWriterTest >> testItalic [
 	self assert: writtenText equals: initialText .
 ]
 
-{ #category : #tests }
+{ #category : #'tests - formatting' }
 PRMicrodownWriterTest >> testMonospace [
 	"`Hello Pharo`"
 	initialText := canvas monospace: self exampleText; contents.
@@ -118,6 +136,7 @@ PRMicrodownWriterTest >> testMonospace [
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
 ]
+
 
 { #category : #tests }
 PRMicrodownWriterTest >> testPreformatted [
@@ -137,7 +156,7 @@ PRMicrodownWriterTest >> testPreformatted2 [
 	self assert: writtenText equals: initialText.
 ]
 
-{ #category : #tests }
+{ #category : #'tests - formatting' }
 PRMicrodownWriterTest >> testStrike [
 	"~Hello Pharo~"
 	initialText := canvas strike: self exampleText; contents.
@@ -148,5 +167,5 @@ PRMicrodownWriterTest >> testStrike [
 
 { #category : #accessing }
 PRMicrodownWriterTest >> writer [
-	^ writer ifNil: [ writer := PRMicrodownWriter new ]
+	^ writer
 ]

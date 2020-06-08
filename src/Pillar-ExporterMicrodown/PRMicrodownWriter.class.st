@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'nesting'
 	],
-	#category : #'Pillar-ExporterMicroDown'
+	#category : #'Pillar-ExporterMicrodown-Core'
 }
 
 { #category : #accessing }
