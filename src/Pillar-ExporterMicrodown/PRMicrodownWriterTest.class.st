@@ -19,13 +19,24 @@ PRMicrodownWriterTest >> exampleText [
 
 { #category : #accessing }
 PRMicrodownWriterTest >> parser [
-	^ parser ifNil: [ parser := MicroDownParser new. ^ parser ]
+	^ parser ifNil: [ parser := MicroDownParser new ]
 ]
 
 { #category : #running }
 PRMicrodownWriterTest >> setUp [
 	canvas := PRMicrodownCanvas on: String new writeStream
 
+]
+
+{ #category : #tests }
+PRMicrodownWriterTest >> testAnnotated [
+	"!! Hello Pharo"
+	self skip.
+	"in progress"
+	initialText := canvas annotated: self exampleText; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
 ]
 
 { #category : #tests }
@@ -38,9 +49,41 @@ PRMicrodownWriterTest >> testBold [
 ]
 
 { #category : #tests }
+PRMicrodownWriterTest >> testComment [
+	"% Hello Pharo"
+	self skip.
+	"in progress"
+	"initialText := canvas comment: self exampleText; contents."
+	initialText := '% Hey
+% llo'.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #tests }
+PRMicrodownWriterTest >> testExternalLink [
+	"[Hello Pharo](url)"
+	initialText := canvas externalLink: 'url' withDescription: self exampleText; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #tests }
+PRMicrodownWriterTest >> testFigure [
+	"![Hello Pharo](url)"
+	"conflict with annotatedParagraph block markup"
+	initialText := canvas figure: 'url' withDescription: self exampleText; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #tests }
 PRMicrodownWriterTest >> testHeader [
 	"# Hello Pharo"
-	initialText := canvas header: self exampleText; contents.
+	initialText := canvas header: self exampleText withLevel: 3; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
@@ -55,7 +98,25 @@ PRMicrodownWriterTest >> testItalic [
 	self assert: writtenText equals: initialText .
 ]
 
+{ #category : #tests }
+PRMicrodownWriterTest >> testMonospace [
+	"`Hello Pharo`"
+	initialText := canvas monospace: self exampleText; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #tests }
+PRMicrodownWriterTest >> testStrike [
+	"~Hello Pharo~"
+	initialText := canvas strike: self exampleText; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
 { #category : #accessing }
 PRMicrodownWriterTest >> writer [
-	^ writer ifNil: [ writer := PRMicrodownWriter new. ^ writer ]
+	^ writer ifNil: [ writer := PRMicrodownWriter new ]
 ]

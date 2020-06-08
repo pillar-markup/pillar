@@ -1,45 +1,67 @@
 Class {
 	#name : #PRMicrodownCanvas,
-	#superclass : #PRBuilderCanvas,
+	#superclass : #PRExportCanvas,
 	#instVars : [
 		'lastIsNewLine',
 		'prefixStack',
 		'parserClass'
 	],
-	#category : #'Pillar-ExporterMicrodown'
+	#category : #'Pillar-ExporterMicroDown'
 }
 
-{ #category : #'grammar features' }
+{ #category : #grammar }
 PRMicrodownCanvas >> bold: aText [
-	^ self surround: aText withMarkup: (parserClass inlineMarkup: #bold)
+	^ self writeText: aText surroundBy: parserClass boldMarkup
 ]
 
-{ #category : #'grammar features' }
-PRMicrodownCanvas >> header: aText [
-	"http://spec.commonmark.org/0.28/#atx-headings"
-	stream
-		nextPutAll: parserClass headerMarkup ; 
-		nextPut: Character space;
-		nextPutAll: aText;
-		crlf
+{ #category : #accessing }
+PRMicrodownCanvas >> comment: aTextLine [
+	^ self writeText: aTextLine beginsWith: (parserClass commentedLineMarkup), String space
+]
+
+{ #category : #accessing }
+PRMicrodownCanvas >> contents [
+	^ stream contents
+]
+
+{ #category : #grammar }
+PRMicrodownCanvas >> externalLink: aURL withDescription: aDescription [
+	self writeText: aDescription surroundBy: parserClass linkNameOpenerMarkup and: parserClass linkNameCloserMarkup.
+	self writeText: aURL surroundBy: parserClass urlOpenerMarkup and: parserClass urlCloserMarkup
+]
+
+{ #category : #grammar }
+PRMicrodownCanvas >> figure: aFigureUrl withDescription: aDescription [
+	self writeText: aDescription surroundBy: parserClass figureOpenerMarkup and: parserClass linkNameCloserMarkup.
+	self writeText: aFigureUrl surroundBy: parserClass urlOpenerMarkup and: parserClass urlCloserMarkup
+]
+
+{ #category : #grammar }
+PRMicrodownCanvas >> header: aText withLevel: anInteger [
+	^ self writeText: aText beginsWith: (parserClass headerMarkup repeat: anInteger), String space.
 ]
 
 { #category : #initialization }
 PRMicrodownCanvas >> initialize [
 	super initialize.
-	prefixStack := OrderedCollection new.
 	parserClass := MicroDownParser.
+	prefixStack := OrderedCollection new.
 	lastIsNewLine := true
 ]
 
-{ #category : #'grammar features' }
+{ #category : #grammar }
 PRMicrodownCanvas >> italic: aText [
-	^ self surround: aText withMarkup: (parserClass inlineMarkup: #italic)
+	^ self writeText: aText surroundBy: parserClass italicMarkup
 ]
 
 { #category : #accessing }
 PRMicrodownCanvas >> lastIsNewLine [
 	^ lastIsNewLine
+]
+
+{ #category : #grammar }
+PRMicrodownCanvas >> monospace: aText [
+	^ self writeText: aText surroundBy: parserClass monospaceMarkup
 ]
 
 { #category : #'writing text' }
@@ -82,12 +104,9 @@ PRMicrodownCanvas >> raw: aString [
 	lastIsNewLine := false
 ]
 
-{ #category : #format }
-PRMicrodownCanvas >> surround: aText withMarkup: aMarkup [
-	^ self
-		raw: aMarkup;
-		raw: aText;
-		raw: aMarkup
+{ #category : #grammar }
+PRMicrodownCanvas >> strike: aText [
+	^ self writeText: aText surroundBy: parserClass strikeMarkup
 ]
 
 { #category : #writing }
@@ -139,4 +158,24 @@ PRMicrodownCanvas >> writePrefix: aString forEachLineDuring: aBlockClosure [
 
 	self pushPrefix: aString.
 	aBlockClosure ensure: [ self popPrefix ].
+]
+
+{ #category : #writing }
+PRMicrodownCanvas >> writeText: aText beginsWith: aMarkup [
+	^ self
+		raw: aMarkup;
+		raw: aText
+]
+
+{ #category : #writing }
+PRMicrodownCanvas >> writeText: aText surroundBy: aMarkup [
+	^ self writeText: aText surroundBy: aMarkup and: aMarkup
+]
+
+{ #category : #writing }
+PRMicrodownCanvas >> writeText: aText surroundBy: anOpenerMarkup and: aCloserMarkup [
+	^ self
+		raw: anOpenerMarkup;
+		raw: aText;
+		raw: aCloserMarkup
 ]
