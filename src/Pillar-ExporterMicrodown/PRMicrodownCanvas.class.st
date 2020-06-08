@@ -1,10 +1,3 @@
-"
-I encapsulate microdown writing logic. 
-
-
-## Implementation points
-I'm a subclass from a class that is not shared by other PR elements because I will be moved to the microdown package.
-"
 Class {
 	#name : #PRMicrodownCanvas,
 	#superclass : #PRAbstractMicrodownBuilderCanvas,
@@ -13,7 +6,7 @@ Class {
 		'prefixStack',
 		'parserClass'
 	],
-	#category : #'Pillar-ExporterMicrodown-Core'
+	#category : #'Pillar-ExporterMicrodown'
 }
 
 { #category : #formatting }
@@ -23,6 +16,34 @@ PRMicrodownCanvas >> annotated: aText [
 	self
 		raw: parserClass annotatedParagraphMarkup;
 		raw: aText
+	
+
+]
+
+{ #category : #formatting }
+PRMicrodownCanvas >> annotated: annotation paragraph:  aText [
+	"!!Important 
+	
+	attention there is not space between the !! and the label (annotation in pillar) or we should improve the microdown parser"
+
+	self
+		raw: parserClass annotatedParagraphMarkup;
+		raw: annotation; 
+		raw: String space;
+		raw: aText
+	
+
+]
+
+{ #category : #formatting }
+PRMicrodownCanvas >> annotatedAnnotation: annotation [
+	"I'm made to be followed by a paragraph. I manage the space between the annotation/label and the paragraph."
+	
+	"!!Important there is not space between the !! and the label (annotation in pillar) or we should improve the microdown parser"
+	self
+		raw: parserClass annotatedParagraphMarkup;
+		raw: annotation;
+		raw: String space
 	
 
 ]

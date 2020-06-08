@@ -5,7 +5,7 @@ Class {
 		'stream',
 		'currentBrush'
 	],
-	#category : #'Pillar-ExporterMicrodown-Core'
+	#category : #'Pillar-ExporterMicrodown'
 }
 
 { #category : #'instance creation' }
