@@ -43,7 +43,15 @@ PRMicrodownWriterTest >> testAnnotated [
 
 { #category : #tests }
 PRMicrodownWriterTest >> testAnnotated2 [
-	initialText := '!! Hello', String crlf, '!! Pharo'.
+	self flag: #toDiscuss. 
+	"I do not know but annotated is 
+	!! a paragraph.... potentially on multiple line 
+	like this
+	
+	So the example below is like two annotated and the test should not be blind on this fact.
+	"
+	"annotated: should have the responsibility to issue the terminating new line. "
+	initialText := canvas annotated: 'Hello', String cr, 'Pharo'; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
@@ -137,7 +145,6 @@ PRMicrodownWriterTest >> testMonospace [
 	self assert: writtenText equals: initialText.
 ]
 
-
 { #category : #tests }
 PRMicrodownWriterTest >> testPreformatted [
 	"= Hello Pharo"
@@ -150,7 +157,13 @@ PRMicrodownWriterTest >> testPreformatted [
 { #category : #tests }
 PRMicrodownWriterTest >> testPreformatted2 [
 	"= Hello Pharo"
-	initialText := '= Hello', String crlf, '= There'.
+	
+	self flag: #toBeFixed.
+	"First we should use the builder.
+	Second = is not for preformatted but > is 
+	Third the build API should manage the String cr not us"
+	
+	initialText := '= Hello', String cr, '= There'.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
