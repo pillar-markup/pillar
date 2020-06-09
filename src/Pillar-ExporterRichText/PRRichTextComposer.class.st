@@ -160,7 +160,7 @@ PRRichTextComposer class >> headerLevelFont: level [
 	"StrikeFont actualFamilyNames an OrderedCollection(#'Bitmap DejaVu Sans' #'Bitmap Source Code Pro' #'Bitmap Source Sans Pro')"
 
 	| fontSizes |
-	fontSizes := #(24 20 18 16 14 14).
+	fontSizes := #(22 20 18 16 14 14).
 	^ TextFontReference
 		toFont:
 			(StrikeFont
