@@ -104,7 +104,7 @@ PRMicrodownCanvas >> figure: aFigureUrl withDescription: aDescription [
 		and: parserClass urlCloserMarkup
 ]
 
-{ #category : #grammar }
+{ #category : #header }
 PRMicrodownCanvas >> header: aText withLevel: anInteger [
 	self writeText: aText beginsWith: (parserClass headerMarkup repeat: anInteger)
 ]
@@ -135,6 +135,11 @@ PRMicrodownCanvas >> lastIsNewLine [
 { #category : #formatting }
 PRMicrodownCanvas >> monospace: aText [
 	self writeText: aText surroundBy: parserClass monospaceMarkup
+]
+
+{ #category : #formatting }
+PRMicrodownCanvas >> monospacish: aString [ 
+	^ parserClass monospaceMarkup, aString, parserClass monospaceMarkup
 ]
 
 { #category : #'writing text' }
@@ -185,6 +190,11 @@ PRMicrodownCanvas >> raw: aString [
 { #category : #formatting }
 PRMicrodownCanvas >> strike: aText [
 	self writeText: aText surroundBy: parserClass strikeMarkup
+]
+
+{ #category : #formatting }
+PRMicrodownCanvas >> strikish: aString [ 
+	^ parserClass strikeMarkup , aString, parserClass strikeMarkup
 ]
 
 { #category : #writing }

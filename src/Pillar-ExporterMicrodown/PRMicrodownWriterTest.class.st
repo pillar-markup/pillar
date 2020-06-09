@@ -130,9 +130,9 @@ PRMicrodownWriterTest >> testHeaderWithBold [
 { #category : #'tests - header' }
 PRMicrodownWriterTest >> testHeaderWithCode [
 	"# Hello _Pharo_ is cool"
-	self skip.
+	
 	initialText := canvas 
-							header: 'Hello ', (canvas italicish: 'Pharo'),  ' is cool' withLevel: 2;				
+							header: 'Hello ', (canvas monospacish: 'Pharo'),  ' is cool' withLevel: 2;				
 							contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
@@ -141,10 +141,10 @@ PRMicrodownWriterTest >> testHeaderWithCode [
 
 { #category : #'tests - header' }
 PRMicrodownWriterTest >> testHeaderWithItalic [
-	"# Hello _Pharo_ is cool"
+	"# Hello ~Pharo~ is cool"
 
 	initialText := canvas 
-							header: 'Hello ', (canvas italicish: 'Pharo'),  ' is cool' withLevel: 2;				
+							header: 'Hello ', (canvas strikish: 'Pharo'),  ' is cool' withLevel: 5;				
 							contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
