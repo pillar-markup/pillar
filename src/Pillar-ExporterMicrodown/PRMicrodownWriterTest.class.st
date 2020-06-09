@@ -116,11 +116,10 @@ PRMicrodownWriterTest >> testHeaderLvl3 [
 { #category : #'tests - header' }
 PRMicrodownWriterTest >> testHeaderWithBold [
 	"# Hello **Pharo** is cool"
-	self skip.
+
 	initialText := canvas 
-							header: 'Hello ', (canvas bold: 'Pharo'),  'is cool' withLevel: 3;				
+							header: 'Hello ', (canvas boldish: 'Pharo'),  'is cool' withLevel: 3;				
 							contents.
-	self halt.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	

@@ -9,7 +9,7 @@ Class {
 	#category : #'Pillar-ExporterMicrodown'
 }
 
-{ #category : #formatting }
+{ #category : #annotated }
 PRMicrodownCanvas >> annotated: aText [
 	"!!Important there is not space between the !! and the label (annotation in pillar) or we should improve the microdown parser"
 	self flag: #Laurine. 
@@ -20,7 +20,7 @@ PRMicrodownCanvas >> annotated: aText [
 
 ]
 
-{ #category : #formatting }
+{ #category : #annotated }
 PRMicrodownCanvas >> annotated: annotation paragraph:  aText [
 	"!!Important 
 	
@@ -35,7 +35,7 @@ PRMicrodownCanvas >> annotated: annotation paragraph:  aText [
 
 ]
 
-{ #category : #formatting }
+{ #category : #annotated }
 PRMicrodownCanvas >> annotatedAnnotation: annotation [
 	"I'm made to be followed by a paragraph. I manage the space between the annotation/label and the paragraph."
 	
@@ -52,7 +52,12 @@ PRMicrodownCanvas >> annotatedAnnotation: annotation [
 PRMicrodownCanvas >> bold: aText [
 	"Return a text decorated as bold. 
 	Does not change the receiver."
-	^ self writeText: aText surroundBy: parserClass boldMarkup
+	self writeText: aText surroundBy: parserClass boldMarkup
+]
+
+{ #category : #formatting }
+PRMicrodownCanvas >> boldish: aString [ 
+	^ parserClass boldMarkup, aString, parserClass boldMarkup
 ]
 
 { #category : #accessing }
@@ -105,7 +110,7 @@ PRMicrodownCanvas >> initialize [
 
 { #category : #formatting }
 PRMicrodownCanvas >> italic: aText [
-	^ self writeText: aText surroundBy: parserClass italicMarkup
+	self writeText: aText surroundBy: parserClass italicMarkup
 ]
 
 { #category : #accessing }
@@ -115,7 +120,7 @@ PRMicrodownCanvas >> lastIsNewLine [
 
 { #category : #formatting }
 PRMicrodownCanvas >> monospace: aText [
-	^ self writeText: aText surroundBy: parserClass monospaceMarkup
+	self writeText: aText surroundBy: parserClass monospaceMarkup
 ]
 
 { #category : #'writing text' }
@@ -165,7 +170,7 @@ PRMicrodownCanvas >> raw: aString [
 
 { #category : #formatting }
 PRMicrodownCanvas >> strike: aText [
-	^ self writeText: aText surroundBy: parserClass strikeMarkup
+	self writeText: aText surroundBy: parserClass strikeMarkup
 ]
 
 { #category : #writing }
