@@ -118,7 +118,7 @@ PRMicrodownWriterTest >> testHeaderWithBold [
 	"# Hello **Pharo** is cool"
 
 	initialText := canvas 
-							header: 'Hello ', (canvas boldish: 'Pharo'),  'is cool' withLevel: 3;				
+							header: 'Hello ', (canvas boldish: 'Pharo'),  ' is cool' withLevel: 3;				
 							contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.

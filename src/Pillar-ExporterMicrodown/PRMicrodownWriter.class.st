@@ -35,6 +35,7 @@ PRMicrodownWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
 
 { #category : #accessing }
 PRMicrodownWriter >> visitBoldFormat: aFormat [
+	self halt.
 	canvas bold: aFormat text
 ]
 
