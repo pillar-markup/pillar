@@ -122,7 +122,7 @@ PRMicrodownCanvas >> italic: aText [
 	self writeText: aText surroundBy: parserClass italicMarkup
 ]
 
-{ #category : #'private-formatting' }
+{ #category : #formatting }
 PRMicrodownCanvas >> italicish: aString [ 
 	^ parserClass italicMarkup , aString, parserClass italicMarkup
 ]
