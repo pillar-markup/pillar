@@ -62,7 +62,7 @@ PRMicrodownCanvas >> boldish: aString [
 
 { #category : #accessing }
 PRMicrodownCanvas >> comment: aTextLine [
-	^ self writeText: aTextLine beginsWith: (parserClass commentedLineMarkup), String space
+	self writeText: aTextLine beginsWith: (parserClass commentedLineMarkup), String space
 ]
 
 { #category : #accessing }
