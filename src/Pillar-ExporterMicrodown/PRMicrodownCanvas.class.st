@@ -122,6 +122,11 @@ PRMicrodownCanvas >> italic: aText [
 	self writeText: aText surroundBy: parserClass italicMarkup
 ]
 
+{ #category : #'private-formatting' }
+PRMicrodownCanvas >> italicish: aString [ 
+	^ parserClass italicMarkup , aString, parserClass italicMarkup
+]
+
 { #category : #accessing }
 PRMicrodownCanvas >> lastIsNewLine [
 	^ lastIsNewLine

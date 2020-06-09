@@ -32,7 +32,7 @@ PRMicrodownWriterTest >> setUp [
 	
 ]
 
-{ #category : #tests }
+{ #category : #'tests - annotated' }
 PRMicrodownWriterTest >> testAnnotated [
 	"!!Note Pharo is cool and microdown too."
 	
@@ -43,10 +43,11 @@ PRMicrodownWriterTest >> testAnnotated [
 	self assert: writtenText equals: initialText.
 ]
 
-{ #category : #tests }
+{ #category : #'tests - annotated' }
 PRMicrodownWriterTest >> testAnnotatedOnMultipleLines [
 
 	| body |
+	self skip.
 	body := self exampleText, String cr, self exampleText.
 	initialText := canvas annotated: 'Note' paragraph: body; contents.
 	parsedBloc := self parser parse: initialText readStream.
@@ -66,7 +67,7 @@ PRMicrodownWriterTest >> testBold [
 	self assert: writtenText equals: initialText.
 ]
 
-{ #category : #tests }
+{ #category : #'tests - comments' }
 PRMicrodownWriterTest >> testComment [
 	"% Hello Pharo"
 	self skip.
@@ -104,7 +105,7 @@ PRMicrodownWriterTest >> testHeader [
 	self assert: writtenText equals: initialText.
 ]
 
-{ #category : #tests }
+{ #category : #'tests - header' }
 PRMicrodownWriterTest >> testHeaderLvl3 [
 	"### Hello Pharo"
 	initialText := canvas header: self exampleText withLevel: 3; contents.
@@ -123,6 +124,30 @@ PRMicrodownWriterTest >> testHeaderWithBold [
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #'tests - header' }
+PRMicrodownWriterTest >> testHeaderWithCode [
+	"# Hello _Pharo_ is cool"
+	self skip.
+	initialText := canvas 
+							header: 'Hello ', (canvas italicish: 'Pharo'),  ' is cool' withLevel: 2;				
+							contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #'tests - header' }
+PRMicrodownWriterTest >> testHeaderWithItalic [
+	"# Hello _Pharo_ is cool"
+
+	initialText := canvas 
+							header: 'Hello ', (canvas italicish: 'Pharo'),  ' is cool' withLevel: 2;				
+							contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
 ]
 
