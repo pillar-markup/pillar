@@ -70,6 +70,15 @@ PRMicrodownCanvas >> contents [
 	^ stream contents
 ]
 
+{ #category : #header }
+PRMicrodownCanvas >> duringHeaderLevel: anInteger do: aBlockClosure [ 
+
+	self
+		raw: (parserClass headerMarkup repeat: anInteger);
+		raw: String space.
+	aBlockClosure value
+]
+
 { #category : #grammar }
 PRMicrodownCanvas >> externalLink: aURL withDescription: aDescription [
 	self 
@@ -97,7 +106,7 @@ PRMicrodownCanvas >> figure: aFigureUrl withDescription: aDescription [
 
 { #category : #grammar }
 PRMicrodownCanvas >> header: aText withLevel: anInteger [
-	^ self writeText: aText beginsWith: (parserClass headerMarkup repeat: anInteger)
+	self writeText: aText beginsWith: (parserClass headerMarkup repeat: anInteger)
 ]
 
 { #category : #initialization }

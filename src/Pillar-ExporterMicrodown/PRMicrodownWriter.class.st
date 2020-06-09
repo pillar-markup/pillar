@@ -35,7 +35,7 @@ PRMicrodownWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
 
 { #category : #accessing }
 PRMicrodownWriter >> visitBoldFormat: aFormat [
-	self halt.
+
 	canvas bold: aFormat text
 ]
 
@@ -61,7 +61,7 @@ PRMicrodownWriter >> visitFigure: aFigure [
 PRMicrodownWriter >> visitHeader: aHeader [
 	| level |
 	level := aHeader level min: 6 max: 1.
-	canvas header: aHeader text trimmed withLevel: level.
+	canvas duringHeaderLevel: level do: [ super visitHeader: aHeader ]
 ]
 
 { #category : #accessing }
