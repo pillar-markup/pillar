@@ -18,7 +18,7 @@ PRMicrodownWriter >> start: anObject [
 	super start: anObject
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRMicrodownWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
 	"
 	Annotated paragraph in microdown is 
@@ -44,12 +44,13 @@ PRMicrodownWriter >> visitCommentedLine: aCommentedLine [
 	canvas comment: aCommentedLine text
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRMicrodownWriter >> visitExternalLink: anExternalLink [
-	canvas externalLink: anExternalLink reference path withDescription: anExternalLink text
+
+	canvas externalLink: anExternalLink reference printString withDescription: anExternalLink text
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRMicrodownWriter >> visitFigure: aFigure [
 	| figureName figureLink |
 	figureName := aFigure text.
@@ -57,7 +58,7 @@ PRMicrodownWriter >> visitFigure: aFigure [
 	canvas figure: figureLink withDescription: figureName.
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRMicrodownWriter >> visitHeader: aHeader [
 	| level |
 	level := aHeader level min: 6 max: 1.
@@ -74,7 +75,7 @@ PRMicrodownWriter >> visitMonospaceFormat: aFormat [
 	canvas monospace: aFormat text
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRMicrodownWriter >> visitPreformatted: aPreformatted [
 	canvas writeIndentedCodeBlockDuring: [
 		aPreformatted children

@@ -140,6 +140,19 @@ PRMicrodownWriterTest >> testHeaderWithCode [
 ]
 
 { #category : #'tests - header' }
+PRMicrodownWriterTest >> testHeaderWithExternalLink [
+	"# Hello [Pharo](http://pharo.org) is cool"
+
+	initialText := canvas 
+							header: 'Hello ', (canvas externalLinkish: 'http://pharo.org/' 
+																withDescription: 'Pharo'), ' is cool' withLevel: 5;				
+							contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #'tests - header' }
 PRMicrodownWriterTest >> testHeaderWithItalic [
 	"# Hello ~Pharo~ is cool"
 
