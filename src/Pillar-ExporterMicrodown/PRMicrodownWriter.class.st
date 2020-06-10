@@ -33,7 +33,7 @@ PRMicrodownWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
 	
 ]
 
-{ #category : #accessing }
+{ #category : #'visit - formatting' }
 PRMicrodownWriter >> visitBoldFormat: aFormat [
 
 	canvas bold: aFormat text
@@ -64,12 +64,12 @@ PRMicrodownWriter >> visitHeader: aHeader [
 	canvas duringHeaderLevel: level do: [ super visitHeader: aHeader ]
 ]
 
-{ #category : #accessing }
+{ #category : #'visit - formatting' }
 PRMicrodownWriter >> visitItalicFormat: aFormat [
 	canvas italic: aFormat text
 ]
 
-{ #category : #accessing }
+{ #category : #'visit - formatting' }
 PRMicrodownWriter >> visitMonospaceFormat: aFormat [
 	canvas monospace: aFormat text
 ]
@@ -82,7 +82,7 @@ PRMicrodownWriter >> visitPreformatted: aPreformatted [
 			separatedBy: [canvas newLine ] ]
 ]
 
-{ #category : #accessing }
+{ #category : #'visit - formatting' }
 PRMicrodownWriter >> visitStrikethroughFormat: aFormat [
 	canvas strike: aFormat text
 ]

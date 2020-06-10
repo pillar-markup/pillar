@@ -50,13 +50,14 @@ PRMicrodownCanvas >> annotatedAnnotation: annotation [
 
 { #category : #formatting }
 PRMicrodownCanvas >> bold: aText [
-	"Return a text decorated as bold. 
-	Does not change the receiver."
+
 	self writeText: aText surroundBy: parserClass boldMarkup
 ]
 
 { #category : #formatting }
-PRMicrodownCanvas >> boldish: aString [ 
+PRMicrodownCanvas >> boldish: aString [
+	"Return a text decorated as bold. 
+	Does not change the receiver."
 	^ parserClass boldMarkup, aString, parserClass boldMarkup
 ]
 
@@ -123,7 +124,9 @@ PRMicrodownCanvas >> italic: aText [
 ]
 
 { #category : #formatting }
-PRMicrodownCanvas >> italicish: aString [ 
+PRMicrodownCanvas >> italicish: aString [
+	"Return a text decorated as bold. 
+	Does not change the receiver."
 	^ parserClass italicMarkup , aString, parserClass italicMarkup
 ]
 
@@ -138,7 +141,9 @@ PRMicrodownCanvas >> monospace: aText [
 ]
 
 { #category : #formatting }
-PRMicrodownCanvas >> monospacish: aString [ 
+PRMicrodownCanvas >> monospacish: aString [
+	"Return a text decorated as bold. 
+	Does not change the receiver."
 	^ parserClass monospaceMarkup, aString, parserClass monospaceMarkup
 ]
 
@@ -193,8 +198,10 @@ PRMicrodownCanvas >> strike: aText [
 ]
 
 { #category : #formatting }
-PRMicrodownCanvas >> strikish: aString [ 
-	^ parserClass strikeMarkup , aString, parserClass strikeMarkup
+PRMicrodownCanvas >> strikish: aString [
+	"Return a text decorated as bold. 
+	Does not change the receiver."
+	^ parserClass strikeMarkup, aString, parserClass strikeMarkup
 ]
 
 { #category : #writing }

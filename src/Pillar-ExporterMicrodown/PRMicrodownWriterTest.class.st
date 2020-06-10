@@ -129,7 +129,7 @@ PRMicrodownWriterTest >> testHeaderWithBold [
 
 { #category : #'tests - header' }
 PRMicrodownWriterTest >> testHeaderWithCode [
-	"# Hello _Pharo_ is cool"
+	"# Hello `Pharo` is cool"
 	
 	initialText := canvas 
 							header: 'Hello ', (canvas monospacish: 'Pharo'),  ' is cool' withLevel: 2;				
