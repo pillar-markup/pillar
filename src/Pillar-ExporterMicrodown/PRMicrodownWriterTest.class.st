@@ -77,10 +77,20 @@ PRMicrodownWriterTest >> testComment [
 	self assert: writtenText equals: initialText.
 ]
 
+{ #category : #'tests - comments' }
+PRMicrodownWriterTest >> testCommentOnMultipleLines [
+	"% Hello Pharo"
+	
+	initialText := canvas comment: self exampleText; writeNewLine; comment: 'Second line comments' ; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
 { #category : #tests }
 PRMicrodownWriterTest >> testExternalLink [
 	"[Hello Pharo](url)"
-	initialText := canvas externalLink: 'url' withDescription: self exampleText; contents.
+	initialText := canvas externalLink: '/url' withDescription: self exampleText; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.

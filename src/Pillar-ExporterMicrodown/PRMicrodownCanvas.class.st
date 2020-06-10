@@ -254,6 +254,12 @@ PRMicrodownCanvas >> writeLinkDuring: aBlockClosure destination: aDestination ti
 ]
 
 { #category : #writing }
+PRMicrodownCanvas >> writeNewLine [
+	self raw: String cr
+	
+]
+
+{ #category : #writing }
 PRMicrodownCanvas >> writePrefix: aString forEachLineDuring: aBlockClosure [ 
 
 	self pushPrefix: aString.

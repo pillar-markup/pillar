@@ -1,3 +1,10 @@
+"
+I'm an pillar to microdown exporter.
+
+### Known todo or limits  
+- externallink url is printing / and we should check it.
+- externallink should be tested with real URL.
+"
 Class {
 	#name : #PRMicrodownWriter,
 	#superclass : #PRDocumentWriter,
