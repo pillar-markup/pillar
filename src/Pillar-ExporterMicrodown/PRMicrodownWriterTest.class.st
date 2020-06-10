@@ -70,8 +70,7 @@ PRMicrodownWriterTest >> testBold [
 { #category : #'tests - comments' }
 PRMicrodownWriterTest >> testComment [
 	"% Hello Pharo"
-	self skip.
-	"PRCommentedBlock doesn't exist. Only lines exist."
+	
 	initialText := canvas comment: self exampleText; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.

@@ -25,9 +25,7 @@ PRMicrodownWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
 	
 	!!label paragraph
 	
-	
 	"
-
 	canvas annotatedAnnotation: anAnnotatedParagraph annotation.
 	self visitParagraph: anAnnotatedParagraph
 	
