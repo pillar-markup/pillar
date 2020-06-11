@@ -36,9 +36,9 @@ PRMicrodownWriterTest >> setUp [
 PRMicrodownWriterTest >> testAnnotated [
 	"!!Note Pharo is cool and microdown too."
 	
-	initialText := builder annotated: 'Important?' paragraph:  self exampleText; contents.
+	initialText := builder annotated: 'Note' paragraph:  'Pharo is cool and microdown too'; contents.
 	parsedBloc := self parser parse: initialText readStream.
-	self assert: parsedBloc children first label equals: 'Important?'.
+	self assert: parsedBloc children first label equals: 'Note'.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
 ]
@@ -46,14 +46,10 @@ PRMicrodownWriterTest >> testAnnotated [
 { #category : #'tests - annotated' }
 PRMicrodownWriterTest >> testAnnotatedOnMultipleLines [
 
-	| body |
-	self skip.
-	body := self exampleText, String cr, self exampleText.
-	initialText := builder annotated: 'Note' paragraph: body; contents.
+	initialText := builder annotated: 'Note' paragraph:  'Pharo is cool
+and microdown too'; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	self assert: parsedBloc children first label equals: 'Note'.
-	self assert: parsedBloc children first body equals: body.
-	self halt.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
 ]
@@ -79,9 +75,11 @@ PRMicrodownWriterTest >> testComment [
 
 { #category : #'tests - comments' }
 PRMicrodownWriterTest >> testCommentOnMultipleLines [
-	"% Hello Pharo"
+	"% Hello 
+	% Pharo"
 	
-	initialText := builder comment: self exampleText; writeNewLine; comment: 'Second line comments' ; contents.
+	initialText := builder comment: 'Hello
+Pharo' ; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
@@ -108,32 +106,16 @@ PRMicrodownWriterTest >> testFigure [
 { #category : #'tests - header' }
 PRMicrodownWriterTest >> testHeader [
 	"# Hello Pharo"
-	initialText := builder header: self exampleText withLevel: 1; contents.
+	initialText := builder header: [:b | self exampleText] withLevel: 1; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
-	self assert: writtenText equals: initialText.
-]
-
-{ #category : #'tests - header' }
-PRMicrodownWriterTest >> testHeader2WithBold [
-	"# Hello **Pharo** is cool"
-
-	initialText := builder 
-							header2: [ :b | b text: 'Hello '.
-											 b bold: 'Pharo'.
-											 b text: ' is cool'] 
-							withLevel: 3;					
-							contents.
-	parsedBloc := self parser parse: initialText readStream.
-	writtenText := self writer start: parsedBloc asPillar; contents.
-	
 	self assert: writtenText equals: initialText.
 ]
 
 { #category : #'tests - header' }
 PRMicrodownWriterTest >> testHeaderLvl3 [
 	"### Hello Pharo"
-	initialText := builder header: self exampleText withLevel: 3; contents.
+	initialText := builder header: [:b | self exampleText] withLevel: 3; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
@@ -144,10 +126,10 @@ PRMicrodownWriterTest >> testHeaderWithBold [
 	"# Hello **Pharo** is cool"
 
 	initialText := builder 
-							header2: [ builder text: 'Hello '.
-											 builder bold: 'Pharo'.
-											 builder text: ' is cool'] 
-							withLevel: 3;					
+							header: [ :b | b text: 'Hello '.
+											 b bold: 'Pharo'.
+											 b text: ' is cool'] 
+							withLevel: 1;					
 							contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
@@ -160,7 +142,9 @@ PRMicrodownWriterTest >> testHeaderWithCode [
 	"# Hello `Pharo` is cool"
 	
 	initialText := builder 
-							header: 'Hello ', (builder monospacish: 'Pharo'),  ' is cool' withLevel: 2;				
+							header: [ :b | b text: 'Hello '.
+											 b monospace: 'Pharo'.
+											 b text: ' is cool']  withLevel: 1;				
 							contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
@@ -171,9 +155,10 @@ PRMicrodownWriterTest >> testHeaderWithCode [
 PRMicrodownWriterTest >> testHeaderWithExternalLink [
 	"# Hello [Pharo](http://pharo.org) is cool"
 
-	initialText := builder 
-							header: 'Hello ', (builder externalLinkish: 'http://pharo.org/' 
-																withDescription: 'Pharo'), ' is cool' withLevel: 5;				
+	initialText := builder header: [ :b | b text: 'Hello '.
+											 b externalLink: 'http://pharo.org/' withDescription: 'Pharo'.
+											 b text: ' is cool'] 
+										withLevel: 1;			
 							contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
@@ -182,10 +167,26 @@ PRMicrodownWriterTest >> testHeaderWithExternalLink [
 
 { #category : #'tests - header' }
 PRMicrodownWriterTest >> testHeaderWithItalic [
+	"# Hello _Pharo_ is cool"
+
+	initialText := builder 
+							header: [ :b | b text: 'Hello '.
+											 b italic: 'Pharo'.
+											 b text: ' is cool']  withLevel: 1;				
+							contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #'tests - header' }
+PRMicrodownWriterTest >> testHeaderWithStrike [
 	"# Hello ~Pharo~ is cool"
 
 	initialText := builder 
-							header: 'Hello ', (builder strikish: 'Pharo'),  ' is cool' withLevel: 5;				
+							header: [ :b | b text: 'Hello '.
+											 b strike: 'Pharo'.
+											 b text: ' is cool']  withLevel: 1;				
 							contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.

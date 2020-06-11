@@ -50,7 +50,7 @@ PRAbstractMicrodownBuilderCanvas >> lines: aString [
 
 { #category : #'writing text' }
 PRAbstractMicrodownBuilderCanvas >> newLine [
-	stream newLine
+	self raw: String cr
 ]
 
 { #category : #'writing text' }

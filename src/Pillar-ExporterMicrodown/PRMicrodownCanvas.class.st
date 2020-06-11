@@ -10,17 +10,6 @@ Class {
 }
 
 { #category : #annotated }
-PRMicrodownCanvas >> annotated: aText [
-	"!!Important there is not space between the !! and the label (annotation in pillar) or we should improve the microdown parser"
-	self flag: #Laurine. 
-	self
-		raw: parserClass annotatedParagraphMarkup;
-		raw: aText
-	
-
-]
-
-{ #category : #annotated }
 PRMicrodownCanvas >> annotated: annotation paragraph:  aText [
 	"!!Important 
 	
@@ -31,7 +20,6 @@ PRMicrodownCanvas >> annotated: annotation paragraph:  aText [
 		raw: annotation; 
 		raw: String space;
 		raw: aText
-	
 
 ]
 
@@ -54,16 +42,11 @@ PRMicrodownCanvas >> bold: aText [
 	self writeText: aText surroundBy: parserClass boldMarkup
 ]
 
-{ #category : #formatting }
-PRMicrodownCanvas >> boldish: aString [
-	"Return a text decorated as bold. 
-	Does not change the receiver."
-	^ parserClass boldMarkup, aString, parserClass boldMarkup
-]
-
 { #category : #accessing }
-PRMicrodownCanvas >> comment: aTextLine [
-	self writeText: aTextLine beginsWith: (parserClass commentedLineMarkup), String space
+PRMicrodownCanvas >> comment: aText [
+	self withLinesIn: aText 
+	do: [ :line | self writeText: line beginsWith: (parserClass commentedLineMarkup), String space ] 	separatedBy: [ self newLine ]
+	
 ]
 
 { #category : #accessing }
@@ -92,11 +75,6 @@ PRMicrodownCanvas >> externalLink: aURL withDescription: aDescription [
 		and: parserClass urlCloserMarkup
 ]
 
-{ #category : #'external reference' }
-PRMicrodownCanvas >> externalLinkish: aURL withDescription: aDescription [
-		^ parserClass linkNameOpenerMarkup, aDescription, parserClass linkNameCloserMarkup, parserClass urlOpenerMarkup, aURL, parserClass urlCloserMarkup
-]
-
 { #category : #elements }
 PRMicrodownCanvas >> figure: aFigureUrl withDescription: aDescription [
 
@@ -111,8 +89,10 @@ PRMicrodownCanvas >> figure: aFigureUrl withDescription: aDescription [
 ]
 
 { #category : #header }
-PRMicrodownCanvas >> header: aText withLevel: anInteger [
-	self writeText: aText beginsWith: (parserClass headerMarkup repeat: anInteger)
+PRMicrodownCanvas >> header: aBloc withLevel: anInteger [
+	self raw: (parserClass headerMarkup repeat: anInteger).
+   self raw: String space.
+   aBloc value: self
 ]
 
 { #category : #initialization }
@@ -128,13 +108,6 @@ PRMicrodownCanvas >> italic: aText [
 	self writeText: aText surroundBy: parserClass italicMarkup
 ]
 
-{ #category : #formatting }
-PRMicrodownCanvas >> italicish: aString [
-	"Return a text decorated as bold. 
-	Does not change the receiver."
-	^ parserClass italicMarkup , aString, parserClass italicMarkup
-]
-
 { #category : #accessing }
 PRMicrodownCanvas >> lastIsNewLine [
 	^ lastIsNewLine
@@ -143,13 +116,6 @@ PRMicrodownCanvas >> lastIsNewLine [
 { #category : #formatting }
 PRMicrodownCanvas >> monospace: aText [
 	self writeText: aText surroundBy: parserClass monospaceMarkup
-]
-
-{ #category : #formatting }
-PRMicrodownCanvas >> monospacish: aString [
-	"Return a text decorated as bold. 
-	Does not change the receiver."
-	^ parserClass monospaceMarkup, aString, parserClass monospaceMarkup
 ]
 
 { #category : #'writing text' }
@@ -202,11 +168,10 @@ PRMicrodownCanvas >> strike: aText [
 	self writeText: aText surroundBy: parserClass strikeMarkup
 ]
 
-{ #category : #formatting }
-PRMicrodownCanvas >> strikish: aString [
-	"Return a text decorated as bold. 
-	Does not change the receiver."
-	^ parserClass strikeMarkup, aString, parserClass strikeMarkup
+{ #category : #writing }
+PRMicrodownCanvas >> text: aText [
+	self raw: aText
+	
 ]
 
 { #category : #writing }
