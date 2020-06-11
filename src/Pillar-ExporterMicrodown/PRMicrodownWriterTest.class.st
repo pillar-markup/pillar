@@ -77,7 +77,6 @@ PRMicrodownWriterTest >> testComment [
 PRMicrodownWriterTest >> testCommentOnMultipleLines [
 	"% Hello 
 	% Pharo"
-	self skip.
 	
 	initialText := builder comment: 'Hello
 Pharo' ; contents.
