@@ -78,7 +78,7 @@ PRMicrodownWriter >> visitMonospaceFormat: aFormat [
 
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitPreformatted: aPreformatted [
-	canvas writeIndentedCodeBlockDuring: [
+	canvas writeQuoteCodeBlockDuring: [
 		aPreformatted children
 			do: [ :child | self visit: child ]
 			separatedBy: [ canvas newLine ] ]

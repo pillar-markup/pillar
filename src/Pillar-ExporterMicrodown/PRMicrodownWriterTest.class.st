@@ -257,6 +257,15 @@ PRMicrodownWriterTest >> testQuoteBlock2 [
 	self assert: writtenText equals: initialText.
 ]
 
+{ #category : #'tests - quote block' }
+PRMicrodownWriterTest >> testQuoteBlockOnMultipleLines [
+	"> Hello Pharo"
+	initialText := builder quoteBlock: self exampleText; newLine; quoteBlock: self exampleText ; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
 { #category : #'tests - formatting' }
 PRMicrodownWriterTest >> testStrike [
 	"~Hello Pharo~"

@@ -156,6 +156,7 @@ PRMicrodownTextualBuilder >> pushPrefix: aString [
 
 { #category : #'quote block' }
 PRMicrodownTextualBuilder >> quoteBlock: aText [
+
 	self writeText: aText beginsWith: parserClass preformattedMarkup
 ]
 
@@ -183,7 +184,7 @@ PRMicrodownTextualBuilder >> text: aText [
 
 { #category : #writing }
 PRMicrodownTextualBuilder >> writeBlockQuoteDuring: aBlockClosure [ 
-	
+	self halt.
 	self
 		writePrefix: (parserClass annotatedParagraphMarkup), String space 
 		forEachLineDuring: aBlockClosure.
@@ -192,6 +193,7 @@ PRMicrodownTextualBuilder >> writeBlockQuoteDuring: aBlockClosure [
 { #category : #writing }
 PRMicrodownTextualBuilder >> writeIndentedCodeBlockDuring: aBlockClosure [ 
 	
+	self halt.
 	self
 		writePrefix: parserClass preformattedMarkup
 		forEachLineDuring: aBlockClosure.
@@ -236,6 +238,14 @@ PRMicrodownTextualBuilder >> writePrefix: aString forEachLineDuring: aBlockClosu
 
 	self pushPrefix: aString.
 	aBlockClosure ensure: [ self popPrefix ].
+]
+
+{ #category : #writing }
+PRMicrodownTextualBuilder >> writeQuoteCodeBlockDuring: aBlockClosure [ 
+
+	self
+		writePrefix: parserClass preformattedMarkup
+		forEachLineDuring: aBlockClosure
 ]
 
 { #category : #writing }

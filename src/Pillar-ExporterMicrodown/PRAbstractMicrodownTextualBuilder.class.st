@@ -68,7 +68,10 @@ PRAbstractMicrodownTextualBuilder >> nextPutAll: aString [
 
 { #category : #'writing text' }
 PRAbstractMicrodownTextualBuilder >> nextPutAllLines: aString [
-	self withLinesIn: aString do: [ :line | self nextPutAll: line ] separatedBy: [ self newLine ]
+	self 
+		withLinesIn: aString 
+		do: [ :line | self nextPutAll: line ] 
+		separatedBy: [ self newLine ]
 ]
 
 { #category : #'writing text' }
