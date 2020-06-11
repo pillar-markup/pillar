@@ -80,7 +80,7 @@ PRMicrodownCanvas >> duringHeaderLevel: anInteger do: aBlockClosure [
 	aBlockClosure value
 ]
 
-{ #category : #grammar }
+{ #category : #'external reference' }
 PRMicrodownCanvas >> externalLink: aURL withDescription: aDescription [
 	self 
 		writeText: aDescription 
@@ -92,7 +92,12 @@ PRMicrodownCanvas >> externalLink: aURL withDescription: aDescription [
 		and: parserClass urlCloserMarkup
 ]
 
-{ #category : #grammar }
+{ #category : #'external reference' }
+PRMicrodownCanvas >> externalLinkish: aURL withDescription: aDescription [
+		^ parserClass linkNameOpenerMarkup, aDescription, parserClass linkNameCloserMarkup, parserClass urlOpenerMarkup, aURL, parserClass urlCloserMarkup
+]
+
+{ #category : #elements }
 PRMicrodownCanvas >> figure: aFigureUrl withDescription: aDescription [
 
 	self 
@@ -159,7 +164,7 @@ PRMicrodownCanvas >> nextPut: aCharacter [
 	lastIsNewLine := false
 ]
 
-{ #category : #'prefix-stack' }
+{ #category : #utils }
 PRMicrodownCanvas >> popPrefix [
 	
 	prefixStack removeLast
@@ -170,12 +175,12 @@ PRMicrodownCanvas >> potentialNewLine [
 	lastIsNewLine ifFalse: [ self newLine ]
 ]
 
-{ #category : #grammar }
+{ #category : #elements }
 PRMicrodownCanvas >> preformatted: aText [
 	^ self writeText: aText beginsWith: parserClass preformattedMarkup
 ]
 
-{ #category : #'prefix-stack' }
+{ #category : #utils }
 PRMicrodownCanvas >> pushPrefix: aString [ 
 	
 	prefixStack addLast: aString
@@ -246,6 +251,12 @@ PRMicrodownCanvas >> writeLinkDuring: aBlockClosure destination: aDestination ti
 		].
 		self raw: ')'
 	 ]
+]
+
+{ #category : #writing }
+PRMicrodownCanvas >> writeNewLine [
+	self raw: String cr
+	
 ]
 
 { #category : #writing }

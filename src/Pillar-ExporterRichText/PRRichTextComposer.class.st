@@ -1,6 +1,14 @@
 "
 I am a visitor that produce rich text (class Text) based on a pillar document model.
 I am implemented using a canvas/brush pattern.
+
+#### Advanced 
+For the LaTeX rendering, internet connexion is required. 
+You can also turn it off/on doing
+
+```
+PRRichTextComposer putOffLine
+```
 "
 Class {
 	#name : #PRRichTextComposer,
@@ -13,6 +21,9 @@ Class {
 		'annotatedParagraphColor',
 		'annotatedParagraphAnnotationColor',
 		'annotatedParagraphAlignment'
+	],
+	#classVars : [
+		'OffLine'
 	],
 	#category : #'Pillar-ExporterRichText-Core'
 }
@@ -166,6 +177,23 @@ PRRichTextComposer class >> headerLevelFont: level [
 			(StrikeFont
 				familyName: 'Bitmap Source Sans Pro'
 				pointSize: (fontSizes at: level))
+]
+
+{ #category : #'class initialization' }
+PRRichTextComposer class >> initialize [ 
+	OffLine := false
+]
+
+{ #category : #'class initialization' }
+PRRichTextComposer class >> putOffline [
+
+	OffLine := true
+]
+
+{ #category : #'class initialization' }
+PRRichTextComposer class >> putOnline [
+
+	OffLine := false
 ]
 
 { #category : #accessing }
@@ -434,6 +462,15 @@ PRRichTextComposer >> visitListItem: anItem [
 	canvas << bullet.
 	self visitDocumentGroup: anItem.
 	canvas newLineIfNotAlready.
+]
+
+{ #category : #visiting }
+PRRichTextComposer >> visitMathInTextAnnotation: aPRMathInTextAnnotation [ 
+	"we could plug some math rendering for Polymath following the implementation of Kasper.
+	See PRCodeblockStylerExtensions"
+	OffLine 
+		ifTrue: [   canvas << '$', aPRMathInTextAnnotation text, '$']
+		ifFalse: [ canvas << (PRCodeblockStylerExtensions latexMathStylerFor: aPRMathInTextAnnotation text)]
 ]
 
 { #category : #'visiting-document' }
