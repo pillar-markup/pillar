@@ -36,9 +36,9 @@ PRMicrodownWriterTest >> setUp [
 PRMicrodownWriterTest >> testAnnotated [
 	"!!Note Pharo is cool and microdown too."
 	
-	initialText := builder annotated: 'Important?' paragraph:  self exampleText; contents.
+	initialText := builder annotated: 'Note' paragraph:  'Pharo is cool and microdown too'; contents.
 	parsedBloc := self parser parse: initialText readStream.
-	self assert: parsedBloc children first label equals: 'Important?'.
+	self assert: parsedBloc children first label equals: 'Note'.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
 ]
@@ -46,14 +46,10 @@ PRMicrodownWriterTest >> testAnnotated [
 { #category : #'tests - annotated' }
 PRMicrodownWriterTest >> testAnnotatedOnMultipleLines [
 
-	| body |
-	self skip.
-	body := self exampleText, String cr, self exampleText.
-	initialText := builder annotated: 'Note' paragraph: body; contents.
+	initialText := builder annotated: 'Note' paragraph:  'Pharo is cool
+and microdown too'; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	self assert: parsedBloc children first label equals: 'Note'.
-	self assert: parsedBloc children first body equals: body.
-	self halt.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
 ]

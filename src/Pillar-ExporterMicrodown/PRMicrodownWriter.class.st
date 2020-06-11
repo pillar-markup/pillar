@@ -27,12 +27,8 @@ PRMicrodownWriter >> start: anObject [
 
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
-	"
-	Annotated paragraph in microdown is 
-	
-	!!label paragraph
-	
-	"
+	"!!label paragraph
+	And Paragraph keeps going here"
 	canvas annotatedAnnotation: anAnnotatedParagraph annotation.
 	self visitParagraph: anAnnotatedParagraph
 	

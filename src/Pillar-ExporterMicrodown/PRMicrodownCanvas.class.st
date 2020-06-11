@@ -10,17 +10,6 @@ Class {
 }
 
 { #category : #annotated }
-PRMicrodownCanvas >> annotated: aText [
-	"!!Important there is not space between the !! and the label (annotation in pillar) or we should improve the microdown parser"
-	self flag: #Laurine. 
-	self
-		raw: parserClass annotatedParagraphMarkup;
-		raw: aText
-	
-
-]
-
-{ #category : #annotated }
 PRMicrodownCanvas >> annotated: annotation paragraph:  aText [
 	"!!Important 
 	
@@ -31,7 +20,6 @@ PRMicrodownCanvas >> annotated: annotation paragraph:  aText [
 		raw: annotation; 
 		raw: String space;
 		raw: aText
-	
 
 ]
 
