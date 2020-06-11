@@ -27,7 +27,7 @@ PRMicrodownWriterTest >> setUp [
 	super setUp.
 	parser := MicroDownParser new.
 	writer := PRMicrodownWriter new.
-	builder := PRMicrodownCanvas on: String new writeStream
+	builder := PRMicrodownTextualBuilder on: String new writeStream
 
 	
 ]
@@ -85,7 +85,7 @@ Pharo' ; contents.
 	self assert: writtenText equals: initialText.
 ]
 
-{ #category : #tests }
+{ #category : #'tests - external link' }
 PRMicrodownWriterTest >> testExternalLink [
 	"[Hello Pharo](url)"
 	initialText := builder externalLink: '/url' withDescription: self exampleText; contents.
@@ -107,6 +107,7 @@ PRMicrodownWriterTest >> testFigure [
 PRMicrodownWriterTest >> testFigureWithArgument [
 	"![Hello Pharo](url|label=fig&caption=This is a caption."
 	self skip. 
+	self flag: #todo.
 	initialText := builder figure: 'url|label=fig1&caption=This is a caption.&width=80' withDescription: self exampleText; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
@@ -117,6 +118,7 @@ PRMicrodownWriterTest >> testFigureWithArgument [
 PRMicrodownWriterTest >> testFigureWithArgumentContainingFormatting [
 	"![Hello Pharo](url|label=fig&caption=This is a caption and it can contain **bol** but also `code`."
 	self skip. 
+	self flag: #todo.
 	initialText := builder figure: 'url|label=fig&caption=This is a caption and it can contain **bol** but also `code`' withDescription: self exampleText; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
@@ -231,19 +233,17 @@ PRMicrodownWriterTest >> testMonospace [
 	self assert: writtenText equals: initialText.
 ]
 
-{ #category : #tests }
-PRMicrodownWriterTest >> testPreformatted [
-	"= Hello Pharo"
-	self skip. 
-	"this should not be annotated"
-	initialText := builder annotated: self exampleText; contents.
+{ #category : #'tests - quote block' }
+PRMicrodownWriterTest >> testQuoteBlock [
+	"> Hello Pharo"
+	initialText := builder quoteBlock: self exampleText; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
 ]
 
-{ #category : #tests }
-PRMicrodownWriterTest >> testPreformatted2 [
+{ #category : #'tests - quote block' }
+PRMicrodownWriterTest >> testQuoteBlock2 [
 	"= Hello Pharo"
 	self skip.
 	self flag: #Laurine.

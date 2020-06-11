@@ -16,7 +16,7 @@ Class {
 
 { #category : #accessing }
 PRMicrodownWriter >> canvasClass [
-	^ PRMicrodownCanvas
+	^ PRMicrodownTextualBuilder
 ]
 
 { #category : #accessing }
@@ -81,7 +81,7 @@ PRMicrodownWriter >> visitPreformatted: aPreformatted [
 	canvas writeIndentedCodeBlockDuring: [
 		aPreformatted children
 			do: [ :child | self visit: child ]
-			separatedBy: [canvas newLine ] ]
+			separatedBy: [ canvas newLine ] ]
 ]
 
 { #category : #'visit - formatting' }

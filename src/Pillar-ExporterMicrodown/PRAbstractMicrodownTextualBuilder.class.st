@@ -1,6 +1,9 @@
+"
+I'm a copy of Pillar textual canvas. I should be fusioned in my subclass and probably be moved to the microdown project because I'm not linked to Pillar.
+"
 Class {
-	#name : #PRAbstractMicrodownBuilderCanvas,
-	#superclass : #PRBasicObject,
+	#name : #PRAbstractMicrodownTextualBuilder,
+	#superclass : #Object,
 	#instVars : [
 		'stream',
 		'currentBrush'
@@ -9,14 +12,14 @@ Class {
 }
 
 { #category : #'instance creation' }
-PRAbstractMicrodownBuilderCanvas class >> on: aStream [ 
+PRAbstractMicrodownTextualBuilder class >> on: aStream [ 
 	^ self new
 		setStream: aStream;
 		yourself
 ]
 
 { #category : #private }
-PRAbstractMicrodownBuilderCanvas >> brush: aBrush [
+PRAbstractMicrodownTextualBuilder >> brush: aBrush [
 	self flush.
 	currentBrush := aBrush.
 	aBrush setStream: stream.
@@ -24,19 +27,19 @@ PRAbstractMicrodownBuilderCanvas >> brush: aBrush [
 ]
 
 { #category : #accessing }
-PRAbstractMicrodownBuilderCanvas >> flush [
+PRAbstractMicrodownTextualBuilder >> flush [
 	stream flush
 ]
 
 { #category : #'writing text' }
-PRAbstractMicrodownBuilderCanvas >> line: aString [
+PRAbstractMicrodownTextualBuilder >> line: aString [
 	self
 		nextPutAll: aString;
 		newLine
 ]
 
 { #category : #'writing text' }
-PRAbstractMicrodownBuilderCanvas >> lines: aString [
+PRAbstractMicrodownTextualBuilder >> lines: aString [
 	"Output aString and take care of line ending within aString."
 	| str |
 	str := aString readStream.
@@ -49,48 +52,48 @@ PRAbstractMicrodownBuilderCanvas >> lines: aString [
 ]
 
 { #category : #'writing text' }
-PRAbstractMicrodownBuilderCanvas >> newLine [
+PRAbstractMicrodownTextualBuilder >> newLine [
 	self raw: String cr
 ]
 
 { #category : #'writing text' }
-PRAbstractMicrodownBuilderCanvas >> nextPut: aCharacter [
+PRAbstractMicrodownTextualBuilder >> nextPut: aCharacter [
 	stream nextPut: aCharacter
 ]
 
 { #category : #'writing text' }
-PRAbstractMicrodownBuilderCanvas >> nextPutAll: aString [
+PRAbstractMicrodownTextualBuilder >> nextPutAll: aString [
 	aString do: [ :char | self nextPut: char ]
 ]
 
 { #category : #'writing text' }
-PRAbstractMicrodownBuilderCanvas >> nextPutAllLines: aString [
+PRAbstractMicrodownTextualBuilder >> nextPutAllLines: aString [
 	self withLinesIn: aString do: [ :line | self nextPutAll: line ] separatedBy: [ self newLine ]
 ]
 
 { #category : #'writing text' }
-PRAbstractMicrodownBuilderCanvas >> raw: aString [
+PRAbstractMicrodownTextualBuilder >> raw: aString [
 	stream << aString
 ]
 
 { #category : #'writing text' }
-PRAbstractMicrodownBuilderCanvas >> rawLines: aString [
+PRAbstractMicrodownTextualBuilder >> rawLines: aString [
 	"Output aString and take care of line ending within aString."
 	self withLinesIn: aString do: [ :line | self raw: line ] separatedBy: [ self newLine ]
 ]
 
 { #category : #initialization }
-PRAbstractMicrodownBuilderCanvas >> setStream: aStream [ 
+PRAbstractMicrodownTextualBuilder >> setStream: aStream [ 
 	stream := aStream
 ]
 
 { #category : #'writing text' }
-PRAbstractMicrodownBuilderCanvas >> space [
+PRAbstractMicrodownTextualBuilder >> space [
 	stream space
 ]
 
 { #category : #private }
-PRAbstractMicrodownBuilderCanvas >> withLinesIn: aString do: aBlock separatedBy: anotherBlock [
+PRAbstractMicrodownTextualBuilder >> withLinesIn: aString do: aBlock separatedBy: anotherBlock [
 	"this method shows that the PRCommentedLine class is weak because it should encapsulate the way it internally represents lines. Now this is exposed in clients."
 	| str |
 	str := aString readStream.

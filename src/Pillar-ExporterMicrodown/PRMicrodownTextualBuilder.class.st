@@ -1,6 +1,12 @@
+"
+I'm a textual builder of microdown. 
+Using my API clients can generate text in Microdown format.
+
+I should replace MicBuilder and probably be moved to Microdown project.
+"
 Class {
-	#name : #PRMicrodownCanvas,
-	#superclass : #PRAbstractMicrodownBuilderCanvas,
+	#name : #PRMicrodownTextualBuilder,
+	#superclass : #PRAbstractMicrodownTextualBuilder,
 	#instVars : [
 		'lastIsNewLine',
 		'prefixStack',
@@ -10,7 +16,7 @@ Class {
 }
 
 { #category : #annotated }
-PRMicrodownCanvas >> annotated: annotation paragraph:  aText [
+PRMicrodownTextualBuilder >> annotated: annotation paragraph:  aText [
 	"!!Important 
 	
 	attention there is not space between the !! and the label (annotation in pillar) or we should improve the microdown parser"
@@ -24,7 +30,7 @@ PRMicrodownCanvas >> annotated: annotation paragraph:  aText [
 ]
 
 { #category : #annotated }
-PRMicrodownCanvas >> annotatedAnnotation: annotation [
+PRMicrodownTextualBuilder >> annotatedAnnotation: annotation [
 	"I'm made to be followed by a paragraph. I manage the space between the annotation/label and the paragraph."
 	
 	"!!Important there is not space between the !! and the label (annotation in pillar) or we should improve the microdown parser"
@@ -37,13 +43,13 @@ PRMicrodownCanvas >> annotatedAnnotation: annotation [
 ]
 
 { #category : #formatting }
-PRMicrodownCanvas >> bold: aText [
+PRMicrodownTextualBuilder >> bold: aText [
 
 	self writeText: aText surroundBy: parserClass boldMarkup
 ]
 
 { #category : #accessing }
-PRMicrodownCanvas >> comment: aText [
+PRMicrodownTextualBuilder >> comment: aText [
 	self 
 		withLinesIn: aText 
 		do: [ :line | self writeText: line beginsWith: (parserClass commentedLineMarkup), String space ] 		separatedBy: [ self newLine ]
@@ -51,12 +57,12 @@ PRMicrodownCanvas >> comment: aText [
 ]
 
 { #category : #accessing }
-PRMicrodownCanvas >> contents [
+PRMicrodownTextualBuilder >> contents [
 	^ stream contents
 ]
 
 { #category : #header }
-PRMicrodownCanvas >> duringHeaderLevel: anInteger do: aBlockClosure [ 
+PRMicrodownTextualBuilder >> duringHeaderLevel: anInteger do: aBlockClosure [ 
 
 	self
 		raw: (parserClass headerMarkup repeat: anInteger);
@@ -65,7 +71,7 @@ PRMicrodownCanvas >> duringHeaderLevel: anInteger do: aBlockClosure [
 ]
 
 { #category : #'external reference' }
-PRMicrodownCanvas >> externalLink: aURL withDescription: aDescription [
+PRMicrodownTextualBuilder >> externalLink: aURL withDescription: aDescription [
 	self 
 		writeText: aDescription 
 		surroundBy: parserClass linkNameOpenerMarkup 
@@ -77,7 +83,7 @@ PRMicrodownCanvas >> externalLink: aURL withDescription: aDescription [
 ]
 
 { #category : #elements }
-PRMicrodownCanvas >> figure: aFigureUrl withDescription: aDescription [
+PRMicrodownTextualBuilder >> figure: aFigureUrl withDescription: aDescription [
 
 	self 
 		writeText: aDescription 
@@ -90,14 +96,14 @@ PRMicrodownCanvas >> figure: aFigureUrl withDescription: aDescription [
 ]
 
 { #category : #header }
-PRMicrodownCanvas >> header: aBloc withLevel: anInteger [
+PRMicrodownTextualBuilder >> header: aBloc withLevel: anInteger [
 	self raw: (parserClass headerMarkup repeat: anInteger).
    self raw: String space.
    aBloc value: self
 ]
 
 { #category : #initialization }
-PRMicrodownCanvas >> initialize [
+PRMicrodownTextualBuilder >> initialize [
 	super initialize.
 	parserClass := MicroDownParser.
 	prefixStack := OrderedCollection new.
@@ -105,56 +111,56 @@ PRMicrodownCanvas >> initialize [
 ]
 
 { #category : #formatting }
-PRMicrodownCanvas >> italic: aText [
+PRMicrodownTextualBuilder >> italic: aText [
 	self writeText: aText surroundBy: parserClass italicMarkup
 ]
 
 { #category : #accessing }
-PRMicrodownCanvas >> lastIsNewLine [
+PRMicrodownTextualBuilder >> lastIsNewLine [
 	^ lastIsNewLine
 ]
 
 { #category : #formatting }
-PRMicrodownCanvas >> monospace: aText [
+PRMicrodownTextualBuilder >> monospace: aText [
 	self writeText: aText surroundBy: parserClass monospaceMarkup
 ]
 
 { #category : #'writing text' }
-PRMicrodownCanvas >> newLine [
+PRMicrodownTextualBuilder >> newLine [
 	super newLine.
 	lastIsNewLine := true
 ]
 
 { #category : #'writing text' }
-PRMicrodownCanvas >> nextPut: aCharacter [
+PRMicrodownTextualBuilder >> nextPut: aCharacter [
 	super nextPut: aCharacter.
 	lastIsNewLine := false
 ]
 
 { #category : #utils }
-PRMicrodownCanvas >> popPrefix [
+PRMicrodownTextualBuilder >> popPrefix [
 	
 	prefixStack removeLast
 ]
 
 { #category : #'writing text' }
-PRMicrodownCanvas >> potentialNewLine [
+PRMicrodownTextualBuilder >> potentialNewLine [
 	lastIsNewLine ifFalse: [ self newLine ]
 ]
 
-{ #category : #elements }
-PRMicrodownCanvas >> preformatted: aText [
-	^ self writeText: aText beginsWith: parserClass preformattedMarkup
-]
-
 { #category : #utils }
-PRMicrodownCanvas >> pushPrefix: aString [ 
+PRMicrodownTextualBuilder >> pushPrefix: aString [ 
 	
 	prefixStack addLast: aString
 ]
 
+{ #category : #'quote block' }
+PRMicrodownTextualBuilder >> quoteBlock: aText [
+	self writeText: aText beginsWith: parserClass preformattedMarkup
+]
+
 { #category : #'writing text' }
-PRMicrodownCanvas >> raw: aString [
+PRMicrodownTextualBuilder >> raw: aString [
 	
 	lastIsNewLine ifTrue: [ 
 		prefixStack do: [ :each |
@@ -165,18 +171,18 @@ PRMicrodownCanvas >> raw: aString [
 ]
 
 { #category : #formatting }
-PRMicrodownCanvas >> strike: aText [
+PRMicrodownTextualBuilder >> strike: aText [
 	self writeText: aText surroundBy: parserClass strikeMarkup
 ]
 
 { #category : #writing }
-PRMicrodownCanvas >> text: aText [
+PRMicrodownTextualBuilder >> text: aText [
 	self raw: aText
 	
 ]
 
 { #category : #writing }
-PRMicrodownCanvas >> writeBlockQuoteDuring: aBlockClosure [ 
+PRMicrodownTextualBuilder >> writeBlockQuoteDuring: aBlockClosure [ 
 	
 	self
 		writePrefix: (parserClass annotatedParagraphMarkup), String space 
@@ -184,7 +190,7 @@ PRMicrodownCanvas >> writeBlockQuoteDuring: aBlockClosure [
 ]
 
 { #category : #writing }
-PRMicrodownCanvas >> writeIndentedCodeBlockDuring: aBlockClosure [ 
+PRMicrodownTextualBuilder >> writeIndentedCodeBlockDuring: aBlockClosure [ 
 	
 	self
 		writePrefix: parserClass preformattedMarkup
@@ -192,7 +198,7 @@ PRMicrodownCanvas >> writeIndentedCodeBlockDuring: aBlockClosure [
 ]
 
 { #category : #writing }
-PRMicrodownCanvas >> writeLinkDuring: aBlockClosure destination: aString [ 
+PRMicrodownTextualBuilder >> writeLinkDuring: aBlockClosure destination: aString [ 
 	
 	self
 		writeLinkDuring: aBlockClosure
@@ -201,7 +207,7 @@ PRMicrodownCanvas >> writeLinkDuring: aBlockClosure destination: aString [
 ]
 
 { #category : #writing }
-PRMicrodownCanvas >> writeLinkDuring: aBlockClosure destination: aDestination title: aTitle [ 
+PRMicrodownTextualBuilder >> writeLinkDuring: aBlockClosure destination: aDestination title: aTitle [ 
 
 	self raw: '['.
 	aBlockClosure ensure: [ 
@@ -220,20 +226,20 @@ PRMicrodownCanvas >> writeLinkDuring: aBlockClosure destination: aDestination ti
 ]
 
 { #category : #writing }
-PRMicrodownCanvas >> writeNewLine [
+PRMicrodownTextualBuilder >> writeNewLine [
 	self raw: String cr
 	
 ]
 
 { #category : #writing }
-PRMicrodownCanvas >> writePrefix: aString forEachLineDuring: aBlockClosure [ 
+PRMicrodownTextualBuilder >> writePrefix: aString forEachLineDuring: aBlockClosure [ 
 
 	self pushPrefix: aString.
 	aBlockClosure ensure: [ self popPrefix ].
 ]
 
 { #category : #writing }
-PRMicrodownCanvas >> writeText: aText beginsWith: aMarkup [
+PRMicrodownTextualBuilder >> writeText: aText beginsWith: aMarkup [
 	self
 		raw: aMarkup;
 		raw: String space;
@@ -241,12 +247,12 @@ PRMicrodownCanvas >> writeText: aText beginsWith: aMarkup [
 ]
 
 { #category : #writing }
-PRMicrodownCanvas >> writeText: aText surroundBy: aMarkup [
+PRMicrodownTextualBuilder >> writeText: aText surroundBy: aMarkup [
 	self writeText: aText surroundBy: aMarkup and: aMarkup
 ]
 
 { #category : #writing }
-PRMicrodownCanvas >> writeText: aText surroundBy: anOpenerMarkup and: aCloserMarkup [
+PRMicrodownTextualBuilder >> writeText: aText surroundBy: anOpenerMarkup and: aCloserMarkup [
 	self
 		raw: anOpenerMarkup;
 		raw: aText;
