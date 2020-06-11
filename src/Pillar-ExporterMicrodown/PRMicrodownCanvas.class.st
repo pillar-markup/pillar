@@ -43,8 +43,10 @@ PRMicrodownCanvas >> bold: aText [
 ]
 
 { #category : #accessing }
-PRMicrodownCanvas >> comment: aTextLine [
-	self writeText: aTextLine beginsWith: (parserClass commentedLineMarkup), String space
+PRMicrodownCanvas >> comment: aText [
+	self withLinesIn: aText 
+	do: [ :line | self writeText: line beginsWith: (parserClass commentedLineMarkup), String space ] 	separatedBy: [ self newLine ]
+	
 ]
 
 { #category : #accessing }

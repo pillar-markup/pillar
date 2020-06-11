@@ -75,10 +75,12 @@ PRMicrodownWriterTest >> testComment [
 
 { #category : #'tests - comments' }
 PRMicrodownWriterTest >> testCommentOnMultipleLines [
-	"% Hello Pharo"
+	"% Hello 
+	% Pharo"
 	self skip.
 	
-	initialText := builder comment: self exampleText; writeNewLine; comment: 'Second line comments' ; contents.
+	initialText := builder comment: 'Hello
+Pharo' ; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
