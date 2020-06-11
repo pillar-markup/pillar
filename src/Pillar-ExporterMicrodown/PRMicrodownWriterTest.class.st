@@ -94,10 +94,30 @@ PRMicrodownWriterTest >> testExternalLink [
 	self assert: writtenText equals: initialText.
 ]
 
-{ #category : #tests }
+{ #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigure [
 	"![Hello Pharo](url)"
 	initialText := builder figure: 'url' withDescription: self exampleText; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #'tests - figures' }
+PRMicrodownWriterTest >> testFigureWithArgument [
+	"![Hello Pharo](url|label=fig&caption=This is a caption."
+	self skip. 
+	initialText := builder figure: 'url|label=fig1&caption=This is a caption.&width=80' withDescription: self exampleText; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #'tests - figures' }
+PRMicrodownWriterTest >> testFigureWithArgumentContainingFormatting [
+	"![Hello Pharo](url|label=fig&caption=This is a caption and it can contain **bol** but also `code`."
+	self skip. 
+	initialText := builder figure: 'url|label=fig&caption=This is a caption and it can contain **bol** but also `code`' withDescription: self exampleText; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
