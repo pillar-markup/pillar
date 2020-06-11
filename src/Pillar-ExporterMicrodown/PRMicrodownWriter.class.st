@@ -78,6 +78,7 @@ PRMicrodownWriter >> visitMonospaceFormat: aFormat [
 
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitPreformatted: aPreformatted [
+
 	canvas writeQuoteCodeBlockDuring: [
 		aPreformatted children
 			do: [ :child | self visit: child ]
@@ -87,4 +88,10 @@ PRMicrodownWriter >> visitPreformatted: aPreformatted [
 { #category : #'visit - formatting' }
 PRMicrodownWriter >> visitStrikethroughFormat: aFormat [
 	canvas strike: aFormat text
+]
+
+{ #category : #'visit - formatting' }
+PRMicrodownWriter >> visitText: aText [
+	
+	canvas raw: aText text
 ]

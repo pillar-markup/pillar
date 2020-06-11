@@ -162,7 +162,13 @@ PRMicrodownTextualBuilder >> quoteBlock: aText [
 
 { #category : #'writing text' }
 PRMicrodownTextualBuilder >> raw: aString [
+	"We have in the prefix potentially many nesting level '> ', '```' and for each new line 
+	we want to make sure that prefixes are written prior to aString.
 	
+	Now lastIsNewLine indicates that we should only do that for new line since 
+	raw can be invoked for multiple reasons. Now the logic of writeIndentedCodeBlockDuring: only works if 
+	this raw is invoked. 
+	"
 	lastIsNewLine ifTrue: [ 
 		prefixStack do: [ :each |
 			super raw: each ].
@@ -183,17 +189,11 @@ PRMicrodownTextualBuilder >> text: aText [
 ]
 
 { #category : #writing }
-PRMicrodownTextualBuilder >> writeBlockQuoteDuring: aBlockClosure [ 
-	self halt.
-	self
-		writePrefix: (parserClass annotatedParagraphMarkup), String space 
-		forEachLineDuring: aBlockClosure.
-]
-
-{ #category : #writing }
 PRMicrodownTextualBuilder >> writeIndentedCodeBlockDuring: aBlockClosure [ 
+	"The logic of writeIndentedCodeBlockDuring: only works if the raw: method managing the prefixes
+is invoked. Therefore somehow the blockclosure execution should invoke it.
+It means that within the context of a visitor the visitText: method should do it."
 	
-	self halt.
 	self
 		writePrefix: parserClass preformattedMarkup
 		forEachLineDuring: aBlockClosure.
@@ -235,16 +235,20 @@ PRMicrodownTextualBuilder >> writeNewLine [
 
 { #category : #writing }
 PRMicrodownTextualBuilder >> writePrefix: aString forEachLineDuring: aBlockClosure [ 
-
+	"The logic of writePrefix:forEachLineDuring: only works if the raw: method managing the prefixes
+is invoked. Therefore somehow the blockclosure execution should invoke it.
+It means that within the context of a visitor the visitText: method should do it."
 	self pushPrefix: aString.
 	aBlockClosure ensure: [ self popPrefix ].
 ]
 
 { #category : #writing }
 PRMicrodownTextualBuilder >> writeQuoteCodeBlockDuring: aBlockClosure [ 
-
+	"The logic of writePrefix:forEachLineDuring: only works if the raw: method managing the prefixes
+is invoked. Therefore somehow the blockclosure execution should invoke it.
+It means that within the context of a visitor the visitText: method should do it."
 	self
-		writePrefix: parserClass preformattedMarkup
+		writePrefix: parserClass preformattedMarkup, String space
 		forEachLineDuring: aBlockClosure
 ]
 
