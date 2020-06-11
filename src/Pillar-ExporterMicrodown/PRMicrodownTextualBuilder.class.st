@@ -48,6 +48,15 @@ PRMicrodownTextualBuilder >> bold: aText [
 	self writeText: aText surroundBy: parserClass boldMarkup
 ]
 
+{ #category : #'code block' }
+PRMicrodownTextualBuilder >> codeblock: aString [ 
+	self raw: parserClass codeblockMarkup.
+	self newLine.
+	self raw: aString.
+	self newLine.
+	self raw: parserClass codeblockMarkup.
+]
+
 { #category : #accessing }
 PRMicrodownTextualBuilder >> comment: aText [
 	self 

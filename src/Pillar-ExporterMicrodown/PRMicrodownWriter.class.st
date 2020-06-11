@@ -40,7 +40,13 @@ PRMicrodownWriter >> visitBoldFormat: aFormat [
 	canvas bold: aFormat text
 ]
 
-{ #category : #visiting }
+{ #category : #'visiting - document' }
+PRMicrodownWriter >> visitCodeblock: aCodeBlock [ 
+
+	canvas codeblock: aCodeBlock text
+]
+
+{ #category : #'visiting - document' }
 PRMicrodownWriter >> visitCommentedLine: aCommentedLine [
 	canvas comment: aCommentedLine text
 ]
