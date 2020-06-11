@@ -243,27 +243,48 @@ PRMicrodownWriterTest >> testQuoteBlock [
 ]
 
 { #category : #'tests - quote block' }
-PRMicrodownWriterTest >> testQuoteBlock2 [
-	"= Hello Pharo"
+PRMicrodownWriterTest >> testQuoteBlockOnMultipleLines [
+	"> Hello Pharo"
 	self skip.
-	self flag: #Laurine.
-	"First we should use the builder.
-	Second = is not for preformatted but > is 
-	Third the build API should manage the String cr not us"
-	
-	initialText := '= Hello', String cr, '= There'.
+	"The problem here is that quote a un seul text donc si on traite les formatting nous allons perdre les cr 
+	et du coup on ne peut pas avoir la semantique d'isomorphisme. 
+	But the question is if we want it:
+		if quote block is a pure preformatted this is easy. Noformatting so we keep the cr. 
+		if quote block is more different way to describe a paragraph then we cannot keep the cr
+		because in that case
+		
+			aa *bb
+			bb* cc
+			should be handled
+			as
+				aa boldbb 
+				boldbb cc
+			so the termination due to to new line should propagate to the next line.
+			
+		"
+	initialText := builder quoteBlock: self exampleText; newLine; quoteBlock: self exampleText ; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
 ]
 
 { #category : #'tests - quote block' }
-PRMicrodownWriterTest >> testQuoteBlockOnMultipleLines [
+PRMicrodownWriterTest >> testQuoteBlockOnMultipleLinesWithFormatting [
 	"> Hello Pharo"
-	initialText := builder quoteBlock: self exampleText; newLine; quoteBlock: self exampleText ; contents.
+	"to be changed explicit use of ** should only for testing strange human edition"
+	self skip.
+	initialText := builder quoteBlock: 'hello **bold**'; newLine; quoteBlock: self exampleText ; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
+	"MicInlineSplitter new start: parsedBloc children first text"
 	self assert: writtenText equals: initialText.
+	
+
+	"MicInlineSplitter new start: 'hello **bold**', String cr, 'Pharo'
+	ne garde pas les sauts de ligne.
+	Donc cela veut dire que pour les lignes qui ne sont pas des paragraphes et que l'on veut garder comme
+	telles on ne peut pas avoir des formatting qui debutent et finissent sur deux lignes.
+	"
 ]
 
 { #category : #'tests - formatting' }
