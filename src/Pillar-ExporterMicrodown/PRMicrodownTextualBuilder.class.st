@@ -146,6 +146,21 @@ PRMicrodownTextualBuilder >> nextPut: aCharacter [
 	lastIsNewLine := false
 ]
 
+{ #category : #list }
+PRMicrodownTextualBuilder >> orderedList: aText [
+	| str i |
+	str := aText readStream.
+	i := 1.
+	[ str atEnd ]
+		whileFalse: [ 
+			| line |
+			line := str nextLine.
+			self writeText: line beginsWith: i asString, '.'.
+			i := i+1.
+			str atEnd
+				ifFalse: [self newLine] ]
+]
+
 { #category : #utils }
 PRMicrodownTextualBuilder >> popPrefix [
 	
@@ -197,6 +212,14 @@ PRMicrodownTextualBuilder >> text: aText [
 	
 ]
 
+{ #category : #list }
+PRMicrodownTextualBuilder >> unorderedList: aText [
+	self 
+		withLinesIn: aText 
+		do: [ :line | self writeText: line beginsWith: parserClass unorderedListMarkup ] 		
+		separatedBy: [ self newLine ]
+]
+
 { #category : #writing }
 PRMicrodownTextualBuilder >> writeIndentedCodeBlockDuring: aBlockClosure [ 
 	"The logic of writeIndentedCodeBlockDuring: only works if the raw: method managing the prefixes
@@ -243,6 +266,11 @@ PRMicrodownTextualBuilder >> writeNewLine [
 ]
 
 { #category : #writing }
+PRMicrodownTextualBuilder >> writeOrderedListIndex: anInteger [
+	self raw: anInteger asString, '. '
+]
+
+{ #category : #writing }
 PRMicrodownTextualBuilder >> writePrefix: aString forEachLineDuring: aBlockClosure [ 
 	"The logic of writePrefix:forEachLineDuring: only works if the raw: method managing the prefixes
 is invoked. Therefore somehow the blockclosure execution should invoke it.
@@ -280,4 +308,11 @@ PRMicrodownTextualBuilder >> writeText: aText surroundBy: anOpenerMarkup and: aC
 		raw: anOpenerMarkup;
 		raw: aText;
 		raw: aCloserMarkup
+]
+
+{ #category : #writing }
+PRMicrodownTextualBuilder >> writeUnorderedListDuring: aBlockClosure [
+	self
+		writePrefix: parserClass unorderedListMarkup , String space
+		forEachLineDuring: aBlockClosure
 ]
