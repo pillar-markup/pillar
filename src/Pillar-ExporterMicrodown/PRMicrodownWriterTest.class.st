@@ -354,12 +354,11 @@ PRMicrodownWriterTest >> testQuoteBlockOnMultipleLinesWithFormatting [
 { #category : #'tests - code block' }
 PRMicrodownWriterTest >> testSimpleCodeBlock [
 	"```
-basic
-really basic
-```."
+	Hello
+	Pharo
+	```"
 	
-	initialText := builder codeblock: 'basic
-really basic'; contents.
+	initialText := builder codeblock: self exampleTextMultipleLines ; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
