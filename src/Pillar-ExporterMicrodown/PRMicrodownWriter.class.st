@@ -51,6 +51,13 @@ PRMicrodownWriter >> visitCommentedLine: aCommentedLine [
 	canvas comment: aCommentedLine text
 ]
 
+{ #category : #'visiting-document' }
+PRMicrodownWriter >> visitDocument: aDocument [
+	aDocument children
+		do: [ :child | self visit: child ]
+		separatedBy: [ canvas newLine. canvas newLine ]
+]
+
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitExternalLink: anExternalLink [
 

@@ -89,7 +89,6 @@ PRMicrodownWriterTest >> testBoldMultipleLinesWithNewLine [
 	
 	Pharo**"
 	
-	self skip.
 	self testWithInitialText: (builder bold: self exampleTextMultipleLinesWithNewLine; contents)
 ]
 
@@ -324,6 +323,14 @@ PRMicrodownWriterTest >> testStrikeMultipleLines [
 	Pharo~"
 	
 	self testWithInitialText: (builder strike: self exampleTextMultipleLines; contents)
+]
+
+{ #category : #'tests - paragraph' }
+PRMicrodownWriterTest >> testTwoParagraphs [
+	"Hello
+	
+	Pharo"
+	self testWithInitialText: (builder text: self exampleTextMultipleLinesWithNewLine ; contents)
 ]
 
 { #category : #'tests - list' }
