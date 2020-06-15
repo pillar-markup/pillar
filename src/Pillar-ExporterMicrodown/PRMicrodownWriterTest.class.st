@@ -17,6 +17,19 @@ PRMicrodownWriterTest >> exampleText [
 	^ 'Hello Pharo'
 ]
 
+{ #category : #running }
+PRMicrodownWriterTest >> exampleTextMultipleLines [
+	^ 'Hello
+Pharo'
+]
+
+{ #category : #running }
+PRMicrodownWriterTest >> exampleTextMultipleLinesWithNewLineBetween [
+	^ 'Hello
+
+Pharo'
+]
+
 { #category : #accessing }
 PRMicrodownWriterTest >> parser [
 	^ parser 
@@ -58,6 +71,16 @@ and microdown too'; contents.
 PRMicrodownWriterTest >> testBold [
 	"**Hello Pharo**"
 	initialText := builder bold: self exampleText; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #'tests - formatting' }
+PRMicrodownWriterTest >> testBoldMultipleLines [
+	"**Hello 
+	Pharo**"
+	initialText := builder bold: self exampleTextMultipleLines; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
@@ -225,9 +248,50 @@ PRMicrodownWriterTest >> testItalic [
 ]
 
 { #category : #'tests - formatting' }
+PRMicrodownWriterTest >> testItalicMultipleLines [
+	"_Hello
+	Pharo_"
+	initialText := builder italic: self exampleTextMultipleLines; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText .
+]
+
+{ #category : #'tests - formatting' }
 PRMicrodownWriterTest >> testMonospace [
 	"`Hello Pharo`"
 	initialText := builder monospace: self exampleText; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #'tests - formatting' }
+PRMicrodownWriterTest >> testMonospaceMultipleLines [
+	"`Hello
+	Pharo`"
+	initialText := builder monospace: self exampleTextMultipleLines; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #'tests - list' }
+PRMicrodownWriterTest >> testOrderedList [
+	"1. Hello
+	2. Pharo"
+	initialText := builder orderedList: self exampleTextMultipleLines ; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #'tests - list' }
+PRMicrodownWriterTest >> testOrderedListWithFormat [
+	"1. Hello
+	2. _Pharo_"
+	initialText := builder orderedList: 'Hello
+_Pharo_' ; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
@@ -305,6 +369,37 @@ really basic'; contents.
 PRMicrodownWriterTest >> testStrike [
 	"~Hello Pharo~"
 	initialText := builder strike: self exampleText; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #'tests - formatting' }
+PRMicrodownWriterTest >> testStrikeMultipleLines [
+	"~Hello
+	Pharo~"
+	initialText := builder strike: self exampleTextMultipleLines; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #'tests - list' }
+PRMicrodownWriterTest >> testUnorderedList [
+	"- Hello
+	- Pharo"
+	initialText := builder unorderedList: self exampleTextMultipleLines ; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #'tests - list' }
+PRMicrodownWriterTest >> testUnorderedListWithFormat [
+	"- **Hello**
+	- Pharo"
+	initialText := builder unorderedList: '**Hello**
+Pharo' ; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
