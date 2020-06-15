@@ -286,6 +286,17 @@ PRMicrodownWriterTest >> testOrderedList [
 	self assert: writtenText equals: initialText.
 ]
 
+{ #category : #'tests - list' }
+PRMicrodownWriterTest >> testOrderedListWithFormat [
+	"1. Hello
+	2. _Pharo_"
+	initialText := builder orderedList: 'Hello
+_Pharo_' ; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
 { #category : #'tests - quote block' }
 PRMicrodownWriterTest >> testQuoteBlock [
 	"> Hello Pharo"
@@ -378,6 +389,17 @@ PRMicrodownWriterTest >> testUnorderedList [
 	"- Hello
 	- Pharo"
 	initialText := builder unorderedList: self exampleTextMultipleLines ; contents.
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: initialText.
+]
+
+{ #category : #'tests - list' }
+PRMicrodownWriterTest >> testUnorderedListWithFormat [
+	"- **Hello**
+	- Pharo"
+	initialText := builder unorderedList: '**Hello**
+Pharo' ; contents.
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
 	self assert: writtenText equals: initialText.
