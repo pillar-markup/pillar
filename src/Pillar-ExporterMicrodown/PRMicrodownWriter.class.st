@@ -51,6 +51,13 @@ PRMicrodownWriter >> visitCommentedLine: aCommentedLine [
 	canvas comment: aCommentedLine text
 ]
 
+{ #category : #'visiting-document' }
+PRMicrodownWriter >> visitDocument: aDocument [
+	aDocument children
+		do: [ :child | self visit: child ]
+		separatedBy: [ canvas newLine. canvas newLine ]
+]
+
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitExternalLink: anExternalLink [
 
@@ -82,6 +89,18 @@ PRMicrodownWriter >> visitMonospaceFormat: aFormat [
 	canvas monospace: aFormat text
 ]
 
+{ #category : #'visiting-document' }
+PRMicrodownWriter >> visitOrderedList: anOrderedList [
+	| i |
+	i := 1.
+	anOrderedList children
+			do: [ :child | 
+				canvas writeOrderedListIndex: i.
+				i := i+1. 
+				self visit: child ]
+			separatedBy: [ canvas newLine ]
+]
+
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitPreformatted: aPreformatted [
 
@@ -100,4 +119,12 @@ PRMicrodownWriter >> visitStrikethroughFormat: aFormat [
 PRMicrodownWriter >> visitText: aText [
 	
 	canvas raw: aText text
+]
+
+{ #category : #'visiting-document' }
+PRMicrodownWriter >> visitUnorderedList: anUnorderedList [
+	canvas writeUnorderedListDuring: [
+		anUnorderedList children
+			do: [ :child | self visit: child ]
+			separatedBy: [ canvas newLine ] ]
 ]
