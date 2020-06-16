@@ -469,7 +469,7 @@ PRRichTextComposer >> visitMathInTextAnnotation: aPRMathInTextAnnotation [
 	"we could plug some math rendering for Polymath following the implementation of Kasper.
 	See PRCodeblockStylerExtensions"
 	OffLine 
-		ifTrue: [   canvas << '$', aPRMathInTextAnnotation text, '$']
+		ifTrue: [ canvas << '$', aPRMathInTextAnnotation text, '$' ]
 		ifFalse: [ canvas << (PRCodeblockStylerExtensions latexMathStylerFor: aPRMathInTextAnnotation text)]
 ]
 

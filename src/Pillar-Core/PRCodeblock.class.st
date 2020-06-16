@@ -1,27 +1,25 @@
 "
-An embedded script
+I represent a code block whose body is not executed. 
 
-[[[language=smalltalk|caption=""addition""
+In Pillar syntax
+
+```
+[[[
 1 + 3 			
 ]]]
+```
 
-In addition scripts are also used to define structures
+But a block can also have a tag and parameters.
 
-[[[structure=city
-{
-   ""name""        : ""Bordeaux"",
-   ""latitude""    : 44.84, [...]
-}
+```
+[[[language=smalltalk|caption=""addition""|label=whatever
+1 + 3 			
 ]]]
+```
 
-We needed a way to have a JSON structure in a Pillar file without interpreting the JSON as Pillar syntax. To do this, we used environments whose contents is JSON:
-[[[structure=city
-{
-   ""name""        : ""Bordeaux"",
-   ""latitude""    : 44.84, [...]
-}
-]]]
-Environments are the only Pillar elements which keep their contents unparsed. This solution encapsulates new syntax within an existing one thus avoiding problems with existing documents.
+#### Implementation thoughts
+In pillar is in unclear that the argument values can contain formatting directives.
+
 "
 Class {
 	#name : #PRCodeblock,
