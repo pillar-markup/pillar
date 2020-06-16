@@ -1,5 +1,7 @@
 "
-Italic styling format
+Format can be nested.
+
+`""""bold ''italic''bold""""` shows **bold_italic_bold**
 "
 Class {
 	#name : #PRItalicFormat,
