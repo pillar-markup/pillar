@@ -86,7 +86,7 @@ ChrysalPillarConfigurationTest >> testReadingRenderStructureAsSlide [
 	| dictionary config |
 	dictionary := Dictionary with: 'renderStructureAsSlide' -> false.
 	config := self configurationClass newFromDictionary: dictionary.
-	self assert: config renderStructureAsSlide equals: false
+	self deny: config renderStructureAsSlide
 ]
 
 { #category : #'tests - from cocoon' }
@@ -94,7 +94,7 @@ ChrysalPillarConfigurationTest >> testReadingScrambledEmailAddresses [
 	| dictionary config |
 	dictionary := STON fromStream: '{ "scrambledEmailAddresses" : true }' readStream.
 	config := self configurationClass newFromDictionary: dictionary.
-	self assert: config scrambledEmailAddresses equals: true
+	self assert: config scrambledEmailAddresses
 ]
 
 { #category : #'tests - from cocoon' }
@@ -102,7 +102,7 @@ ChrysalPillarConfigurationTest >> testReadingSeparateOutputFiles [
 	| dictionary config |
 	dictionary := Dictionary with: 'separateOutputFiles' -> false.
 	config := self configurationClass newFromDictionary: dictionary.
-	self assert: config separateOutputFiles equals: false
+	self deny: config separateOutputFiles
 ]
 
 { #category : #'tests - from cocoon' }
@@ -118,17 +118,13 @@ ChrysalPillarConfigurationTest >> testReadingVerbose [
 	| dictionary config |
 	dictionary := Dictionary with: 'verbose' -> false.
 	config := self configurationClass newFromDictionary: dictionary.
-	self assert: (config propertyAt: #verbose) equals: false
+	self deny: (config propertyAt: #verbose)
 ]
 
 { #category : #'tests - from cocoon' }
 ChrysalPillarConfigurationTest >> testSeparateOutputFiles [
 	| dictionary config |
-	dictionary := STON
-		fromStream: '{  "separateOutputFiles" : false }' readStream.
-	config := self configurationClass
-		newFromDictionary: dictionary.
-	self assert: config separateOutputFiles equals: false
-	
-
+	dictionary := STON fromStream: '{  "separateOutputFiles" : false }' readStream.
+	config := self configurationClass newFromDictionary: dictionary.
+	self deny: config separateOutputFiles
 ]

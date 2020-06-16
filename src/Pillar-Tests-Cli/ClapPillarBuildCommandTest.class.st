@@ -52,9 +52,9 @@ ClapPillarBuildCommandTest >> testAddSubcommand [
 
 { #category : #tests }
 ClapPillarBuildCommandTest >> testDefaultCommandIsBuild [
-	| defaultCommand  |
-	defaultCommand := ClapPillarBuildCommand commandSpecification .
-	self assert: (defaultCommand identifier = #build)
+	| defaultCommand |
+	defaultCommand := ClapPillarBuildCommand commandSpecification.
+	self assert: defaultCommand identifier equals: #build
 ]
 
 { #category : #tests }

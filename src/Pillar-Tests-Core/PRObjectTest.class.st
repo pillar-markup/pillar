@@ -24,7 +24,7 @@ PRObjectTest class >> shouldInheritSelectors [
 
 { #category : #'tests-copying' }
 PRObjectTest >> testCopyProperties [
-	self deny: self instance properties == self instance copy properties
+	self deny: self instance properties identicalTo: self instance copy properties
 ]
 
 { #category : #'tests-properties' }
@@ -80,10 +80,10 @@ PRObjectTest >> testPropertyAtIfAbsentPut [
 { #category : #'tests-properties' }
 PRObjectTest >> testPropertyAtPut [
 	self instance propertyAt: #foo put: 'bar'.
-	self assert: (self instance propertyAt: #foo) = 'bar'.
+	self assert: (self instance propertyAt: #foo) equals: 'bar'.
 
 	self instance propertyAt: #foo put: 'baz'.
-	self assert: (self instance propertyAt: #foo) = 'baz'
+	self assert: (self instance propertyAt: #foo) equals: 'baz'
 ]
 
 { #category : #tests }

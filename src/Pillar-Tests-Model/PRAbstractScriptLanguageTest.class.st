@@ -23,7 +23,7 @@ Internal Representation and Key Implementation Points.
 Class {
 	#name : #PRAbstractScriptLanguageTest,
 	#superclass : #PRObjectTest,
-	#category : 'Pillar-Tests-Model-ScriptLanguage'
+	#category : #'Pillar-Tests-Model-ScriptLanguage'
 }
 
 { #category : #testing }
@@ -38,11 +38,11 @@ PRAbstractScriptLanguageTest >> actualClass [
 
 { #category : #tests }
 PRAbstractScriptLanguageTest >> testEqual [
-	self assert: self instance = self instance.
-	self assert: self instance = self actualInstance
+	self assert: self instance equals: self instance.
+	self assert: self instance equals: self actualInstance
 ]
 
 { #category : #tests }
 PRAbstractScriptLanguageTest >> testHash [
-	self assert: self instance hash = self instance copy hash
+	self assert: self instance hash equals: self instance copy hash
 ]

@@ -35,10 +35,10 @@ PRCleanAnnotationInParagraphTransfomerTest >> testShouldNotRemoveWhenSomethingEl
 	misc := self exampleMisc.
 	document := PRDocument with: (PRParagraph withAll: {annotation . misc}).
 	self assert: (document children first isKindOf: PRParagraph).
-	self deny: document children first = annotation.
+	self deny: document children first equals: annotation.
 	self executePhase: document.
 	self assert: (document children first isKindOf: PRParagraph).
-	self deny: document children first = annotation
+	self deny: document children first equals: annotation
 ]
 
 { #category : #tests }
@@ -47,10 +47,10 @@ PRCleanAnnotationInParagraphTransfomerTest >> testShouldNotRemoveWhenSomethingEl
 	misc := self exampleMisc.
 	document := PRDocument with: (PRParagraph with: misc).
 	self assert: (document children first isKindOf: PRParagraph).
-	self deny: document children first = misc.
+	self deny: document children first equals: misc.
 	self executePhase: document.
 	self assert: (document children first isKindOf: PRParagraph).
-	self deny: document children first = misc
+	self deny: document children first equals: misc
 ]
 
 { #category : #tests }
@@ -59,10 +59,10 @@ PRCleanAnnotationInParagraphTransfomerTest >> testShouldRemoveWhenAnnotationAlon
 	annotation := self exampleAnnotation.
 	document := PRDocument with: (PRParagraph with: annotation).
 	self assert: (document children first isKindOf: PRParagraph).
-	self deny: document children first = annotation.
+	self deny: document children first equals: annotation.
 	self executePhase: document.
 	self deny: (document children first isKindOf: PRParagraph).
-	self assert: document children first = annotation
+	self assert: document children first equals: annotation
 ]
 
 { #category : #tests }
@@ -72,9 +72,9 @@ PRCleanAnnotationInParagraphTransfomerTest >> testShouldRemoveWhenAnnotationAlon
 	misc := PRLineBreak new.
 	document := PRDocument with: (PRParagraph withAll: {annotation . misc}).
 	self assert: (document children first isKindOf: PRParagraph).
-	self deny: document children first = annotation.
+	self deny: document children first equals: annotation.
 	self executePhase: document.
 	self deny: (document children first isKindOf: PRParagraph).
-	self assert: document children first = annotation.
+	self assert: document children first equals: annotation.
 	self assert: document children size equals: 1
 ]

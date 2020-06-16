@@ -673,23 +673,19 @@ PRPillarParserTest >> testParameterKeyUntilNewline [
 	<expectedFailure>
 	super testParameterKeyUntilNewline.
 	self assert: result equals: (PRParameterKey named: #parameterName).
-	self deny: result = (PRParameterKey named: #parameterName2).
-	self assertStart: 1 stop: 13.
+	self deny: result equals: (PRParameterKey named: #parameterName2).
+	self assertStart: 1 stop: 13
 ]
 
 { #category : #'tests - Parameter' }
 PRPillarParserTest >> testParameterUntilNewline [
 	<expectedFailure>
 	super testParameterUntilNewline.
-	self assert: result equals: (PRParameter 
-		keyNode: (PRParameterKey named: #foo) 
-		valueNode: (PRParameterValue value: 'bar')).
-	self deny: result = (PRParameter 
-		keyNode: (PRParameterKey named: #bar) 
-		valueNode: (PRParameterValue value: 'foo')).
+	self assert: result equals: (PRParameter keyNode: (PRParameterKey named: #foo) valueNode: (PRParameterValue value: 'bar')).
+	self deny: result equals: (PRParameter keyNode: (PRParameterKey named: #bar) valueNode: (PRParameterValue value: 'foo')).
 	self assertStart: 1 stop: 7.
 	self assertStart: 1 stop: 3 ofNode: result keyNode.
-	self assertStart: 5 stop: 7 ofNode: result valueNode.
+	self assertStart: 5 stop: 7 ofNode: result valueNode
 ]
 
 { #category : #'tests - Parameter' }
@@ -697,29 +693,29 @@ PRPillarParserTest >> testParameterValueUntilNewline [
 	<expectedFailure>
 	super testParameterValueUntilNewline.
 	self assert: result equals: (PRParameterValue value: #parameterValue).
-	self deny: result = (PRParameterValue value: #parameterValue2).
-	self assertStart: 2 stop: 15.
+	self deny: result equals: (PRParameterValue value: #parameterValue2).
+	self assertStart: 2 stop: 15
 ]
 
 { #category : #'tests - Parameter' }
 PRPillarParserTest >> testParametersUntilNewline [
 	<expectedFailure>
 	super testParametersUntilNewline.
-	self assert: result equals: (PRParameters withAll: { 
-		(PRParameter 
-			keyNode: (PRParameterKey named: #foo) 
-			valueNode: (PRParameterValue value: 'bar')).
-		(PRParameter 
-			keyNode: (PRParameterKey named: #baz) 
-			valueNode: (PRParameterValue value: 'true')) }).
-	self deny: result = PRParameters new.
+	self
+		assert: result
+		equals:
+			(PRParameters
+				withAll:
+					{(PRParameter keyNode: (PRParameterKey named: #foo) valueNode: (PRParameterValue value: 'bar')).
+					(PRParameter keyNode: (PRParameterKey named: #baz) valueNode: (PRParameterValue value: 'true'))}).
+	self deny: result equals: PRParameters new.
 	self assertStart: 1 stop: 16.
 	self assertStart: 1 stop: 7 ofNode: result children first.
 	self assertStart: 9 stop: 16 ofNode: result children second.
 	self assertStart: 1 stop: 3 ofNode: result children first keyNode.
 	self assertStart: 5 stop: 7 ofNode: result children first valueNode.
 	self assertStart: 9 stop: 11 ofNode: result children second keyNode.
-	self assertStart: 13 stop: 16 ofNode: result children second valueNode.
+	self assertStart: 13 stop: 16 ofNode: result children second valueNode
 ]
 
 { #category : #'tests - Text' }
@@ -1147,7 +1143,7 @@ PRPillarParserTest >> testTableCenterMarkup [
 { #category : #'tests - Table' }
 PRPillarParserTest >> testTableHeadingMarkup [
 	super testTableHeadingMarkup.
-	self assert: result equals: true
+	self assert: result
 ]
 
 { #category : #'tests - Table' }

@@ -1,7 +1,7 @@
 Class {
 	#name : #PRPillarParserOldTest,
 	#superclass : #PRPillarGrammarOldTest,
-	#category : 'Pillar-Tests-PetitPillarOld'
+	#category : #'Pillar-Tests-PetitPillarOld'
 }
 
 { #category : #accessing }
@@ -857,7 +857,7 @@ PRPillarParserOldTest >> testTableCenterMarkup [
 { #category : #'tests - Table' }
 PRPillarParserOldTest >> testTableHeadingMarkup [
 	super testTableHeadingMarkup.
-	self assert: result equals: true
+	self assert: result
 ]
 
 { #category : #'tests - Table' }

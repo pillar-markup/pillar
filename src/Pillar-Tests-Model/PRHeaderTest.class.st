@@ -1,7 +1,7 @@
 Class {
 	#name : #PRHeaderTest,
 	#superclass : #PRDocumentGroupTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#category : #'Pillar-Tests-Model-Document'
 }
 
 { #category : #testing }
@@ -16,7 +16,7 @@ PRHeaderTest >> actualClass [
 
 { #category : #'tests-comparing' }
 PRHeaderTest >> testEqualLevel [
-	self deny: (self actualClass new level: 1) = (self actualClass new level: 2)
+	self deny: (self actualClass new level: 1) equals: (self actualClass new level: 2)
 ]
 
 { #category : #tests }
@@ -27,7 +27,7 @@ PRHeaderTest >> testIsHeader [
 { #category : #'tests-accessing' }
 PRHeaderTest >> testName [
 	self instance level: 3.
-	self assert: self instance level = 3
+	self assert: self instance level equals: 3
 ]
 
 { #category : #'tests-parsing' }

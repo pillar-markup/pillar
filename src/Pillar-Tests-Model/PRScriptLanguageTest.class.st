@@ -6,7 +6,7 @@ Class {
 
 { #category : #tests }
 PRScriptLanguageTest >> testEquals [
-	self assert: (PRAbstractScriptLanguage for: 'smalltalk') = (PRAbstractScriptLanguage for: 'smalltalk')
+	self assert: (PRAbstractScriptLanguage for: 'smalltalk') equals: (PRAbstractScriptLanguage for: 'smalltalk')
 ]
 
 { #category : #tests }

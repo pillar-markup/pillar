@@ -1,7 +1,7 @@
 Class {
 	#name : #PRTitlePrinterTest,
 	#superclass : #TestCase,
-	#category : 'Pillar-Tests-ExporterCore-LevelPrinter'
+	#category : #'Pillar-Tests-ExporterCore-LevelPrinter'
 }
 
 { #category : #testing }
@@ -71,23 +71,20 @@ PRTitlePrinterTest >> testCounter [
 { #category : #tests }
 PRTitlePrinterTest >> testFillFrom [
 	| specTarget specSource |
-	specTarget := PRTitlePrinterSpecification new. 
-	specSource := PRTitlePrinterSpecification new. 
-	specSource level:3. 
-	specSource size: 55. 
+	specTarget := PRTitlePrinterSpecification new.
+	specSource := PRTitlePrinterSpecification new.
+	specSource level: 3.
+	specSource size: 55.
 	specSource renderAs: 'roman'.
 	specSource numbering: true.
 	specSource capitalization: 'capitalize english'.
-	
-	specTarget fillFromAnother: specSource. 
+
+	specTarget fillFromAnother: specSource.
 	self assert: specTarget level equals: 3.
 	self assert: specTarget size equals: 55.
 	self assert: specTarget renderAs equals: 'roman'.
-	self assert: specTarget numbering equals: true.
-	self assert: specTarget capitalization equals:  'capitalize english'.
-	
-	
-	 
+	self assert: specTarget numbering.
+	self assert: specTarget capitalization equals: 'capitalize english'
 ]
 
 { #category : #tests }

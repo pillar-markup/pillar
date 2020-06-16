@@ -86,16 +86,16 @@ PRDocumentItemTest >> parser [
 
 { #category : #'tests-copying' }
 PRDocumentItemTest >> testCopy [
-	self assert: self instance = self instance copy.
-	self assert: self instance hash = self instance copy hash.
+	self assert: self instance equals: self instance copy.
+	self assert: self instance hash equals: self instance copy hash.
 
-	self deny: self instance == self instance copy
+	self deny: self instance identicalTo: self instance copy
 ]
 
 { #category : #'tests-comparing' }
 PRDocumentItemTest >> testEqual [
-	self assert: self instance = self instance.
-	self assert: self instance = self actualInstance
+	self assert: self instance equals: self instance.
+	self assert: self instance equals: self actualInstance
 ]
 
 { #category : #'tests-comparing' }
@@ -105,8 +105,8 @@ PRDocumentItemTest >> testEqualNil [
 
 { #category : #'tests-comparing' }
 PRDocumentItemTest >> testEqualOther [
-	self deny: self instance = self fooInstance.
-	self deny: self instance = self barInstance
+	self deny: self instance equals: self fooInstance.
+	self deny: self instance equals: self barInstance
 ]
 
 { #category : #'tests-testing' }
@@ -116,7 +116,7 @@ PRDocumentItemTest >> testHasChildren [
 
 { #category : #'tests-comparing' }
 PRDocumentItemTest >> testHash [
-	self assert: self instance hash = self instance copy hash
+	self assert: self instance hash equals: self instance copy hash
 ]
 
 { #category : #tests }

@@ -1,7 +1,7 @@
 Class {
 	#name : #PRExternalLinkTest,
 	#superclass : #PRLinkTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#category : #'Pillar-Tests-Model-Document'
 }
 
 { #category : #testing }
@@ -46,11 +46,11 @@ PRExternalLinkTest >> testLinkToAFigureIsExternalLink [
 { #category : #'tests-accessing' }
 PRExternalLinkTest >> testTitle [
 	self instance reference: 'http://www.lukas-renggli.ch'.
-	self assert: self instance title = 'http://www.lukas-renggli.ch'
+	self assert: self instance title equals: 'http://www.lukas-renggli.ch'
 ]
 
 { #category : #'tests-accessing' }
 PRExternalLinkTest >> testUrl [
 	self instance reference: 'http://www.lukas-renggli.ch'.
-	self assert: self instance url = 'http://www.lukas-renggli.ch'
+	self assert: self instance url equals: 'http://www.lukas-renggli.ch'
 ]
