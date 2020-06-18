@@ -275,7 +275,8 @@ PRMicrodownWriterTest >> testOrderedList [
 PRMicrodownWriterTest >> testOrderedListWithFormat [
 	"1. Hello
 	2. _Pharo_"
-	
+	self flag: #fixMe. 
+	"not like that! Check header design"
 	self testWithInitialText: (builder orderedList: 'Hello
 _Pharo_' ; contents)
 ]
@@ -369,7 +370,8 @@ PRMicrodownWriterTest >> testUnorderedList [
 PRMicrodownWriterTest >> testUnorderedListWithFormat [
 	"- **Hello**
 	- Pharo"
-	
+	self flag: #fixMe. 
+	"not like that! Check header design"
 	self testWithInitialText: (builder unorderedList: '**Hello**
 Pharo' ; contents)
 ]
