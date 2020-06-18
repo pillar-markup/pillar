@@ -382,13 +382,13 @@ PRRichTextComposer >> visitColumnsAnnotation: aColumnsAnnotation [
 	canvas << '>>> Columns not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting - document' }
+{ #category : #'visiting - list' }
 PRRichTextComposer >> visitDataItem: anItem [
 	canvas newLineIfNotAlready.
 	self visitDocumentGroup: anItem
 ]
 
-{ #category : #'visiting - document' }
+{ #category : #'visiting - list' }
 PRRichTextComposer >> visitDefinitionList: anObject [
 	canvas indentIn: [ self visitUnorderedList: anObject ]
 ]
@@ -476,7 +476,7 @@ PRRichTextComposer >> visitItalicFormat: anObject [
 	canvas includeAttribute: TextEmphasis italic in: [ self visitFormat: anObject ]
 ]
 
-{ #category : #'visiting - document' }
+{ #category : #'visiting - list' }
 PRRichTextComposer >> visitListItem: anItem [
 	| bullet |
 	"I stored the counter and bullet type in `visitOrderedList` and `visitUnorderedList`"
@@ -509,7 +509,7 @@ PRRichTextComposer >> visitMonospaceFormat: anObject [
 		in: [self visitFormat: anObject].  
 ]
 
-{ #category : #'visiting - document' }
+{ #category : #'visiting - list' }
 PRRichTextComposer >> visitOrderedList: anObject [
 	| counter |
 	canvas indentIn: [counter := 1.
@@ -567,7 +567,7 @@ PRRichTextComposer >> visitSuperscriptFormat: anObject [
 		in: [ self visitFormat: anObject ]
 ]
 
-{ #category : #'visiting - document' }
+{ #category : #'visiting - list' }
 PRRichTextComposer >> visitTermItem: anItem [
 	canvas newLineIfNotAlready.
 	canvas
@@ -588,7 +588,7 @@ PRRichTextComposer >> visitUnderlineFormat: anObject [
 	canvas includeAttribute: TextEmphasis underlined in: [ self visitFormat: anObject ]
 ]
 
-{ #category : #'visiting - document' }
+{ #category : #'visiting - list' }
 PRRichTextComposer >> visitUnorderedList: anObject [
 	canvas
 		indentIn: [ anObject children
