@@ -37,6 +37,13 @@ PRExternalLink >> localFileOrExternalReference [
 	^ self class localFileOrExternalReference: self url
 ]
 
+{ #category : #printing }
+PRExternalLink >> printOn: aStream [
+
+	super printOn: aStream.
+	aStream space ; nextPut: $* ; nextPutAll: self url; nextPut: $*
+]
+
 { #category : #accessing }
 PRExternalLink >> url [
 	"Answer the URL the receiver is pointing to."

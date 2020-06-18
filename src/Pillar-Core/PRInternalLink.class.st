@@ -97,7 +97,7 @@ PRInternalLink >> isInternal [
 PRInternalLink >> printOn: aStream [
 
 	super printOn: aStream.
-	aStream space ; nextPutAll: '*@', anchor; nextPut: $*
+	aStream space ; nextPutAll: '*@'; nextPutAll: anchor; nextPut: $*
 ]
 
 { #category : #accessing }
