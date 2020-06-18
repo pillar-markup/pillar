@@ -34,7 +34,7 @@ PRMicrodownWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
 	
 ]
 
-{ #category : #'visit - formatting' }
+{ #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitBoldFormat: aFormat [
 
 	canvas bold: aFormat text
@@ -51,7 +51,7 @@ PRMicrodownWriter >> visitCommentedLine: aCommentedLine [
 	canvas comment: aCommentedLine text
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRMicrodownWriter >> visitDocument: aDocument [
 	aDocument children
 		do: [ :child | self visit: child ]
@@ -79,7 +79,7 @@ PRMicrodownWriter >> visitHeader: aHeader [
 	canvas duringHeaderLevel: level do: [ super visitHeader: aHeader ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRMicrodownWriter >> visitHorizontalRule: anHorizontalLine [
 
 	canvas horizontalLine
@@ -91,26 +91,36 @@ PRMicrodownWriter >> visitInternalLink: anExternalLink [
 	canvas externalLink: anExternalLink reference printString withDescription: anExternalLink text
 ]
 
-{ #category : #'visit - formatting' }
+{ #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitItalicFormat: aFormat [
 	canvas italic: aFormat text
 ]
 
-{ #category : #'visit - formatting' }
+{ #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitMonospaceFormat: aFormat [
 	canvas monospace: aFormat text
 ]
 
-{ #category : #'visiting-document' }
-PRMicrodownWriter >> visitOrderedList: anOrderedList [
+{ #category : #'visiting - list' }
+PRMicrodownWriter >> visitOrderedList2: anOrderedList [
+
 	| i |
 	i := 1.
 	anOrderedList children
 			do: [ :child | 
 				canvas writeOrderedListIndex: i.
-				i := i+1. 
+				i := i + 1. 
 				self visit: child ]
 			separatedBy: [ canvas newLine ]
+]
+
+{ #category : #'visiting - list' }
+PRMicrodownWriter >> visitOrderedList: anUnorderedList [
+
+	canvas orderedListDuring: [
+		anUnorderedList children
+			do: [ :child | self visit: child ]
+			separatedBy: [ canvas newLine ] ]
 ]
 
 { #category : #'visiting - document' }
@@ -122,20 +132,21 @@ PRMicrodownWriter >> visitPreformatted: aPreformatted [
 			separatedBy: [ canvas newLine ] ]
 ]
 
-{ #category : #'visit - formatting' }
+{ #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitStrikethroughFormat: aFormat [
 	canvas strike: aFormat text
 ]
 
-{ #category : #'visit - formatting' }
+{ #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitText: aText [
 	
 	canvas raw: aText text
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - list' }
 PRMicrodownWriter >> visitUnorderedList: anUnorderedList [
-	canvas writeUnorderedListDuring: [
+
+	canvas unorderedListDuring: [
 		anUnorderedList children
 			do: [ :child | self visit: child ]
 			separatedBy: [ canvas newLine ] ]

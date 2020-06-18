@@ -126,7 +126,7 @@ PRMicrodownWriterTest >> testFigureWithArgument [
 	"![Hello Pharo](url|label=fig&caption=This is a caption."
 	self skip. 
 	self flag: #todo.
-	self testWithInitialText: (builder figure: 'url|label=fig1&caption=This is a caption.&width=80' withDescription: self exampleText; contents)
+	self testWithInitialText: (builder figure: 'url|label=fig1&caption=This is **a** caption.&width=80' withDescription: self exampleText; contents)
 ]
 
 { #category : #'tests - figures' }
@@ -265,20 +265,29 @@ PRMicrodownWriterTest >> testMonospaceMultipleLines [
 
 { #category : #'tests - list' }
 PRMicrodownWriterTest >> testOrderedList [
-	"1. Hello
-	2. Pharo"
+	"- Hello
+	- Pharo"
+	| mictext |
+	mictext := (builder orderedListDuring: [
+		builder item: [ builder text: 'Hello' ].
+		builder item: [ builder text: 'Beautiful' ].
+		builder item: [ builder text: 'Microdown item list' ]];
+		contents).
+	self testWithInitialText: mictext
 	
-	self testWithInitialText: (builder orderedList: self exampleTextMultipleLines ; contents)
 ]
 
 { #category : #'tests - list' }
 PRMicrodownWriterTest >> testOrderedListWithFormat [
-	"1. Hello
-	2. _Pharo_"
-	self flag: #fixMe. 
-	"not like that! Check header design"
-	self testWithInitialText: (builder orderedList: 'Hello
-_Pharo_' ; contents)
+	"1. **Hello**
+	2. Pharo"
+	
+	| mictext |
+	mictext := (builder orderedListDuring: [
+						builder item: [ builder bold: 'Hello'; space; text: 'beautiful...' ].
+						builder item: [ builder text: 'Pharo' ] ] ;
+						contents).
+	self testWithInitialText: mictext
 ]
 
 { #category : #'tests - quote block' }
@@ -363,17 +372,27 @@ PRMicrodownWriterTest >> testTwoParagraphs [
 PRMicrodownWriterTest >> testUnorderedList [
 	"- Hello
 	- Pharo"
-	self testWithInitialText: (builder unorderedList: self exampleTextMultipleLines ; contents)
+	| mictext |
+	mictext := (builder unorderedListDuring: [ 
+		builder item: [ builder text: 'Hello' ].
+		builder item: [ builder text: 'Beautiful' ].
+		builder item: [ builder text: 'Microdown item list' ]];
+		contents).
+	self testWithInitialText: mictext
+	
 ]
 
 { #category : #'tests - list' }
 PRMicrodownWriterTest >> testUnorderedListWithFormat [
 	"- **Hello**
 	- Pharo"
-	self flag: #fixMe. 
-	"not like that! Check header design"
-	self testWithInitialText: (builder unorderedList: '**Hello**
-Pharo' ; contents)
+	
+	| mictext |
+	mictext := (builder unorderedListDuring: [
+						builder item: [ builder bold: 'Hello'; space; text: 'beautiful...' ].
+						builder item: [ builder text: 'Pharo' ] ] ;
+						contents).
+	self testWithInitialText: mictext
 ]
 
 { #category : #running }

@@ -8,9 +8,7 @@ Class {
 	#name : #PRMicrodownTextualBuilder,
 	#superclass : #PRAbstractMicrodownTextualBuilder,
 	#instVars : [
-		'lastIsNewLine',
-		'prefixStack',
-		'parserClass'
+		'prefixStack'
 	],
 	#category : #'Pillar-ExporterMicrodown'
 }
@@ -42,14 +40,10 @@ PRMicrodownTextualBuilder >> annotatedAnnotation: annotation [
 
 ]
 
-{ #category : #formatting }
-PRMicrodownTextualBuilder >> bold: aText [
-
-	self writeText: aText surroundBy: parserClass boldMarkup
-]
-
 { #category : #'code block' }
 PRMicrodownTextualBuilder >> codeblock: aString [ 
+	self flag: #fixme. 
+	"missing first line stuff"
 	self raw: parserClass codeblockMarkup.
 	self newLine.
 	self raw: aString.
@@ -57,7 +51,7 @@ PRMicrodownTextualBuilder >> codeblock: aString [
 	self raw: parserClass codeblockMarkup.
 ]
 
-{ #category : #accessing }
+{ #category : #header }
 PRMicrodownTextualBuilder >> comment: aText [
 	self 
 		withLinesIn: aText 
@@ -93,7 +87,8 @@ PRMicrodownTextualBuilder >> externalLink: aURL withDescription: aDescription [
 
 { #category : #figure }
 PRMicrodownTextualBuilder >> figure: aFigureUrl withDescription: aDescription [
-
+	self flag: #fixme.
+	"missing parameter and need a builder like in header."
 	self 
 		writeText: aDescription 
 		surroundBy: parserClass figureOpenerMarkup 
@@ -121,9 +116,8 @@ PRMicrodownTextualBuilder >> horizontalLine [
 { #category : #initialization }
 PRMicrodownTextualBuilder >> initialize [
 	super initialize.
-	parserClass := MicroDownParser.
 	prefixStack := OrderedCollection new.
-	lastIsNewLine := true
+	
 ]
 
 { #category : #references }
@@ -135,62 +129,64 @@ PRMicrodownTextualBuilder >> internalLink: aLabel [
 	
 ]
 
-{ #category : #formatting }
-PRMicrodownTextualBuilder >> italic: aText [
-	self writeText: aText surroundBy: parserClass italicMarkup
+{ #category : #list }
+PRMicrodownTextualBuilder >> item: aBlock [
+
+	aBlock value
 ]
 
-{ #category : #accessing }
-PRMicrodownTextualBuilder >> lastIsNewLine [
-	^ lastIsNewLine
+{ #category : #'ugly line handling' }
+PRMicrodownTextualBuilder >> lines: aString [
+	"Output aString and take care of line ending within aString."
+	| str |
+	str := aString readStream.
+	[ str atEnd ] whileFalse: [ | line |
+		line := str nextLine.
+		str atEnd
+			ifTrue: [ self nextPutAll: line ]
+			ifFalse: [ self line: line ]
+	 ]
 ]
 
-{ #category : #formatting }
-PRMicrodownTextualBuilder >> monospace: aText [
-	self writeText: aText surroundBy: parserClass monospaceMarkup
-]
-
-{ #category : #'writing text' }
-PRMicrodownTextualBuilder >> newLine [
-	super newLine.
-	lastIsNewLine := true
-]
-
-{ #category : #'writing text' }
-PRMicrodownTextualBuilder >> nextPut: aCharacter [
-	super nextPut: aCharacter.
-	lastIsNewLine := false
+{ #category : #'ugly line handling' }
+PRMicrodownTextualBuilder >> nextPutAllLines: aString [
+	self 
+		withLinesIn: aString 
+		do: [ :line | self nextPutAll: line ] 
+		separatedBy: [ self newLine ]
 ]
 
 { #category : #list }
-PRMicrodownTextualBuilder >> orderedList: aText [
-	| str i |
-	self flag: #fixme. 
-	"this API is not sufficient (what if we have bold inside). check header's one"
-	str := aText readStream.
-	i := 1.
-	[ str atEnd ]
-		whileFalse: [ 
-			| line |
-			line := str nextLine.
-			self writeText: line beginsWith: i asString, '.'.
-			i := i+1.
-			str atEnd
-				ifFalse: [self newLine] ]
+PRMicrodownTextualBuilder >> orderedList: aBlock [
+	self flag: #toDiscussWithGuille. "for fun the problem is that we need to know that we handle the last elements"
+	aBlock value: (PROrderedItemBuilder new setStream: stream ; yourself)
+
+
 ]
 
-{ #category : #utils }
+{ #category : #list }
+PRMicrodownTextualBuilder >> orderedListDuring: aBlockClosure [
+	"For list we do not emit empty line at the end because we do not want to force the creation of a paragraph 
+	in the middle of nested list. And from a builder point of view this is difficult to know it."
+	
+	
+	self
+		writePrefix: parserClass orderedListSemiMarkup
+		forEachLineDuring: [ |i|
+									i := 1.
+									self writeOrderedListIndex: i.
+									aBlockClosure value.
+									i := i + 1].
+		
+]
+
+{ #category : #'private utils' }
 PRMicrodownTextualBuilder >> popPrefix [
 	
 	prefixStack removeLast
 ]
 
-{ #category : #'writing text' }
-PRMicrodownTextualBuilder >> potentialNewLine [
-	lastIsNewLine ifFalse: [ self newLine ]
-]
-
-{ #category : #utils }
+{ #category : #'private utils' }
 PRMicrodownTextualBuilder >> pushPrefix: aString [ 
 	
 	prefixStack addLast: aString
@@ -202,7 +198,7 @@ PRMicrodownTextualBuilder >> quoteBlock: aText [
 	self writeText: aText beginsWith: parserClass preformattedMarkup
 ]
 
-{ #category : #'writing text' }
+{ #category : #'writing low-level' }
 PRMicrodownTextualBuilder >> raw: aString [
 	"We have in the prefix potentially many nesting level '> ', '```' and for each new line 
 	we want to make sure that prefixes are written prior to aString.
@@ -219,28 +215,43 @@ PRMicrodownTextualBuilder >> raw: aString [
 	lastIsNewLine := false
 ]
 
-{ #category : #formatting }
-PRMicrodownTextualBuilder >> strike: aText [
-	self writeText: aText surroundBy: parserClass strikeMarkup
-]
-
-{ #category : #writing }
-PRMicrodownTextualBuilder >> text: aText [
-	self raw: aText
-	
+{ #category : #'ugly line handling' }
+PRMicrodownTextualBuilder >> rawLines: aString [
+	"Output aString and take care of line ending within aString."
+	self withLinesIn: aString do: [ :line | self raw: line ] separatedBy: [ self newLine ]
 ]
 
 { #category : #list }
-PRMicrodownTextualBuilder >> unorderedList: aText [
-	self flag: #fixme. 
-	"this API is not sufficient (what if we have bold inside). check header's one"
-	self 
-		withLinesIn: aText 
-		do: [ :line | self writeText: line beginsWith: parserClass unorderedListMarkup ] 		
-		separatedBy: [ self newLine ]
+PRMicrodownTextualBuilder >> unorderedList: aBlock [
+	self flag: #toDiscussWithGuille. "for fun the problem is that we need to know that we handle the last elements"
+	aBlock value: (PRUnorderedItemBuilder new setStream: stream ; yourself)
+
 ]
 
-{ #category : #writing }
+{ #category : #list }
+PRMicrodownTextualBuilder >> unorderedListDuring: aBlockClosure [
+	"For list we do not emit empty line at the end because we do not want to force the creation of a paragraph 
+	in the middle of nested list. And from a builder point of view this is difficult to know it."
+	self
+		writePrefix: parserClass unorderedListMarkup
+		forEachLineDuring: aBlockClosure.
+]
+
+{ #category : #'ugly line handling' }
+PRMicrodownTextualBuilder >> withLinesIn: aString do: aBlock separatedBy: anotherBlock [
+	"this method shows that the PRCommentedLine class is weak because it should encapsulate the way it internally represents lines. Now this is exposed in clients."
+	| str |
+	str := aString readStream.
+	[ str atEnd ]
+		whileFalse: [ 
+			| line |
+			line := str nextLine.
+			aBlock value: line.
+			str atEnd
+				ifFalse: anotherBlock ]
+]
+
+{ #category : #'writing during' }
 PRMicrodownTextualBuilder >> writeIndentedCodeBlockDuring: aBlockClosure [ 
 	"The logic of writeIndentedCodeBlockDuring: only works if the raw: method managing the prefixes
 is invoked. Therefore somehow the blockclosure execution should invoke it.
@@ -251,46 +262,12 @@ It means that within the context of a visitor the visitText: method should do it
 		forEachLineDuring: aBlockClosure.
 ]
 
-{ #category : #writing }
-PRMicrodownTextualBuilder >> writeLinkDuring: aBlockClosure destination: aString [ 
-	
-	self
-		writeLinkDuring: aBlockClosure
-		destination: aString
-		title: nil
-]
-
-{ #category : #writing }
-PRMicrodownTextualBuilder >> writeLinkDuring: aBlockClosure destination: aDestination title: aTitle [ 
-
-	self raw: '['.
-	aBlockClosure ensure: [ 
-		self
-			raw: '](';
-			raw: aDestination.
-		
-		aTitle ifNotNil: [ 
-			self
-				raw: ' "';
-				raw: aTitle;
-				raw: '"'.
-		].
-		self raw: ')'
-	 ]
-]
-
-{ #category : #writing }
-PRMicrodownTextualBuilder >> writeNewLine [
-	self raw: String cr
-	
-]
-
-{ #category : #writing }
+{ #category : #list }
 PRMicrodownTextualBuilder >> writeOrderedListIndex: anInteger [
-	self raw: anInteger asString, '. '
+	self raw: anInteger asString, parserClass orderedListSemiMarkup
 ]
 
-{ #category : #writing }
+{ #category : #'writing during' }
 PRMicrodownTextualBuilder >> writePrefix: aString forEachLineDuring: aBlockClosure [ 
 	"The logic of writePrefix:forEachLineDuring: only works if the raw: method managing the prefixes
 is invoked. Therefore somehow the blockclosure execution should invoke it.
@@ -299,40 +276,12 @@ It means that within the context of a visitor the visitText: method should do it
 	aBlockClosure ensure: [ self popPrefix ].
 ]
 
-{ #category : #writing }
+{ #category : #'writing during' }
 PRMicrodownTextualBuilder >> writeQuoteCodeBlockDuring: aBlockClosure [ 
 	"The logic of writePrefix:forEachLineDuring: only works if the raw: method managing the prefixes
 is invoked. Therefore somehow the blockclosure execution should invoke it.
 It means that within the context of a visitor the visitText: method should do it."
 	self
 		writePrefix: parserClass preformattedMarkup, String space
-		forEachLineDuring: aBlockClosure
-]
-
-{ #category : #writing }
-PRMicrodownTextualBuilder >> writeText: aText beginsWith: aMarkup [
-	self
-		raw: aMarkup;
-		raw: String space;
-		raw: aText
-]
-
-{ #category : #writing }
-PRMicrodownTextualBuilder >> writeText: aText surroundBy: aMarkup [
-	self writeText: aText surroundBy: aMarkup and: aMarkup
-]
-
-{ #category : #writing }
-PRMicrodownTextualBuilder >> writeText: aText surroundBy: anOpenerMarkup and: aCloserMarkup [
-	self
-		raw: anOpenerMarkup;
-		raw: aText;
-		raw: aCloserMarkup
-]
-
-{ #category : #writing }
-PRMicrodownTextualBuilder >> writeUnorderedListDuring: aBlockClosure [
-	self
-		writePrefix: parserClass unorderedListMarkup , String space
 		forEachLineDuring: aBlockClosure
 ]

@@ -6,7 +6,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'stream',
-		'currentBrush'
+		'parserClass',
+		'lastIsNewLine'
 	],
 	#category : #'Pillar-ExporterMicrodown'
 }
@@ -18,17 +19,33 @@ PRAbstractMicrodownTextualBuilder class >> on: aStream [
 		yourself
 ]
 
-{ #category : #private }
-PRAbstractMicrodownTextualBuilder >> brush: aBrush [
-	self flush.
-	currentBrush := aBrush.
-	aBrush setStream: stream.
-	^ aBrush
+{ #category : #formatting }
+PRAbstractMicrodownTextualBuilder >> bold: aText [
+
+	self writeText: aText surroundBy: parserClass boldMarkup
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 PRAbstractMicrodownTextualBuilder >> flush [
 	stream flush
+]
+
+{ #category : #initialization }
+PRAbstractMicrodownTextualBuilder >> initialize [
+	super initialize.
+	parserClass := MicroDownParser.
+	lastIsNewLine := true
+]
+
+{ #category : #formatting }
+PRAbstractMicrodownTextualBuilder >> italic: aText [
+
+	self writeText: aText surroundBy: parserClass italicMarkup
+]
+
+{ #category : #testing }
+PRAbstractMicrodownTextualBuilder >> lastIsNewLine [
+	^ lastIsNewLine
 ]
 
 { #category : #'writing text' }
@@ -38,51 +55,38 @@ PRAbstractMicrodownTextualBuilder >> line: aString [
 		newLine
 ]
 
-{ #category : #'writing text' }
-PRAbstractMicrodownTextualBuilder >> lines: aString [
-	"Output aString and take care of line ending within aString."
-	| str |
-	str := aString readStream.
-	[ str atEnd ] whileFalse: [ | line |
-		line := str nextLine.
-		str atEnd
-			ifTrue: [ self nextPutAll: line ]
-			ifFalse: [ self line: line ]
-	 ]
+{ #category : #formatting }
+PRAbstractMicrodownTextualBuilder >> monospace: aText [
+
+	self writeText: aText surroundBy: parserClass monospaceMarkup
 ]
 
 { #category : #'writing text' }
 PRAbstractMicrodownTextualBuilder >> newLine [
-	self raw: String cr
+	self raw: String cr.
+	lastIsNewLine := true
 ]
 
 { #category : #'writing text' }
 PRAbstractMicrodownTextualBuilder >> nextPut: aCharacter [
-	stream nextPut: aCharacter
+	stream nextPut: aCharacter.
+	lastIsNewLine := false
 ]
 
 { #category : #'writing text' }
 PRAbstractMicrodownTextualBuilder >> nextPutAll: aString [
+	
 	aString do: [ :char | self nextPut: char ]
 ]
 
-{ #category : #'writing text' }
-PRAbstractMicrodownTextualBuilder >> nextPutAllLines: aString [
-	self 
-		withLinesIn: aString 
-		do: [ :line | self nextPutAll: line ] 
-		separatedBy: [ self newLine ]
+{ #category : #'writing low-level' }
+PRAbstractMicrodownTextualBuilder >> potentialNewLine [
+	lastIsNewLine ifFalse: [ self newLine ]
 ]
 
 { #category : #'writing text' }
 PRAbstractMicrodownTextualBuilder >> raw: aString [
 	stream << aString
-]
-
-{ #category : #'writing text' }
-PRAbstractMicrodownTextualBuilder >> rawLines: aString [
-	"Output aString and take care of line ending within aString."
-	self withLinesIn: aString do: [ :line | self raw: line ] separatedBy: [ self newLine ]
 ]
 
 { #category : #initialization }
@@ -95,16 +99,69 @@ PRAbstractMicrodownTextualBuilder >> space [
 	stream space
 ]
 
-{ #category : #private }
-PRAbstractMicrodownTextualBuilder >> withLinesIn: aString do: aBlock separatedBy: anotherBlock [
-	"this method shows that the PRCommentedLine class is weak because it should encapsulate the way it internally represents lines. Now this is exposed in clients."
-	| str |
-	str := aString readStream.
-	[ str atEnd ]
-		whileFalse: [ 
-			| line |
-			line := str nextLine.
-			aBlock value: line.
-			str atEnd
-				ifFalse: anotherBlock ]
+{ #category : #formatting }
+PRAbstractMicrodownTextualBuilder >> strike: aText [
+
+	self writeText: aText surroundBy: parserClass strikeMarkup
+]
+
+{ #category : #writing }
+PRAbstractMicrodownTextualBuilder >> text: aText [
+	self raw: aText
+	
+]
+
+{ #category : #writing }
+PRAbstractMicrodownTextualBuilder >> writeLinkDuring: aBlockClosure destination: aString [ 
+	
+	self
+		writeLinkDuring: aBlockClosure
+		destination: aString
+		title: nil
+]
+
+{ #category : #writing }
+PRAbstractMicrodownTextualBuilder >> writeLinkDuring: aBlockClosure destination: aDestination title: aTitle [ 
+
+	self raw: '['.
+	aBlockClosure ensure: [ 
+		self
+			raw: '](';
+			raw: aDestination.
+		
+		aTitle ifNotNil: [ 
+			self
+				raw: ' "';
+				raw: aTitle;
+				raw: '"'.
+		].
+		self raw: ')'
+	 ]
+]
+
+{ #category : #writing }
+PRAbstractMicrodownTextualBuilder >> writeNewLine [
+	self raw: String cr
+	
+]
+
+{ #category : #writing }
+PRAbstractMicrodownTextualBuilder >> writeText: aText beginsWith: aMarkup [
+	self
+		raw: aMarkup;
+		raw: String space;
+		raw: aText
+]
+
+{ #category : #writing }
+PRAbstractMicrodownTextualBuilder >> writeText: aText surroundBy: aMarkup [
+	self writeText: aText surroundBy: aMarkup and: aMarkup
+]
+
+{ #category : #writing }
+PRAbstractMicrodownTextualBuilder >> writeText: aText surroundBy: anOpenerMarkup and: aCloserMarkup [
+	self
+		raw: anOpenerMarkup;
+		raw: aText;
+		raw: aCloserMarkup
 ]
