@@ -4,7 +4,7 @@ Test hash properties
 Class {
 	#name : #PRTocTest,
 	#superclass : #PRDocumentItemTest,
-	#category : 'Pillar-Tests-Model-Toc'
+	#category : #'Pillar-Tests-Model-Toc'
 }
 
 { #category : #testing }
@@ -34,8 +34,8 @@ PRTocTest >> testDifferentTocsHaveDifferentHashValue [
 			(PRToc new
 				name: 'test2';
 				level: 2).
-	self deny: toc1 = toc2.
-	self deny: toc1 hash = toc2 hash
+	self deny: toc1 equals: toc2.
+	self deny: toc1 hash equals: toc2 hash
 ]
 
 { #category : #tests }

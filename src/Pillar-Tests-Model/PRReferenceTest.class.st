@@ -25,11 +25,11 @@ PRReferenceTest >> testAlias [
 
 	self instance add: self fooInstance.
 	self assert: self instance hasAlias.
-	self assert: self instance alias = 'foo'.
+	self assert: self instance alias equals: 'foo'.
 
 	self instance add: self barInstance.
 	self assert: self instance hasAlias.
-	self assert: self instance alias = 'foobar'
+	self assert: self instance alias equals: 'foobar'
 ]
 
 { #category : #'tests-accessing' }
@@ -39,7 +39,15 @@ PRReferenceTest >> testAnchor [
 
 { #category : #'tests-comparing' }
 PRReferenceTest >> testEqualReference [
-	self deny: (self actualClass new reference: 'foo'; yourself) = (self actualClass new reference: 'bar'; yourself)
+	self
+		deny:
+			(self actualClass new
+				reference: 'foo';
+				yourself)
+		equals:
+			(self actualClass new
+				reference: 'bar';
+				yourself)
 ]
 
 { #category : #'tests-parameters' }
@@ -72,35 +80,35 @@ PRReferenceTest >> testNonTextAlias [
 { #category : #'tests-parameters' }
 PRReferenceTest >> testParameterAt [
 	self instance parameters: (Dictionary with: 'foo' -> 'bar').
-	self assert: (self instance parameters at: 'foo' ifAbsent: [nil]) = 'bar'.
-	self assert: (self instance parameters at: 'bar' ifAbsent: [nil]) isNil
+	self assert: (self instance parameters at: 'foo' ifAbsent: [ nil ]) equals: 'bar'.
+	self assert: (self instance parameters at: 'bar' ifAbsent: [ nil ]) isNil
 ]
 
 { #category : #'tests-parameters' }
 PRReferenceTest >> testParameterAtIfAbsent [
 	self instance parameters: (Dictionary with: 'foo' -> 'bar').
-	self assert: (self instance parameters at: 'foo' ifAbsent: [ 'zork' ]) = 'bar'.
-	self assert: (self instance parameters at: 'bar'  ifAbsent: [ 'zork' ]) = 'zork'
+	self assert: (self instance parameters at: 'foo' ifAbsent: [ 'zork' ]) equals: 'bar'.
+	self assert: (self instance parameters at: 'bar' ifAbsent: [ 'zork' ]) equals: 'zork'
 ]
 
 { #category : #'tests-parameters' }
 PRReferenceTest >> testParameterAtIfPresent [
 	self instance parameters: (Dictionary with: 'foo' -> 'bar').
-	self assert: (self instance parameters at: 'foo' ifPresent: [ :value | '!' , value ]) = '!bar'.
+	self assert: (self instance parameters at: 'foo' ifPresent: [ :value | '!' , value ]) equals: '!bar'.
 	self assert: (self instance parameters at: 'bar' ifPresent: [ :value | '!' , value ]) isNil
 ]
 
 { #category : #'tests-parameters' }
 PRReferenceTest >> testParameterAtPut [
-	self assert: (self instance parameters at: 'foo' put: 'bar') = 'bar'.
-	self assert: (self instance parameters size = 1).
-	self assert: (self instance parameters keys first = 'foo').
-	self assert: (self instance parameters values first = 'bar').
+	self assert: (self instance parameters at: 'foo' put: 'bar') equals: 'bar'.
+	self assert: self instance parameters size equals: 1.
+	self assert: self instance parameters keys first equals: 'foo'.
+	self assert: self instance parameters values first equals: 'bar'.
 
-	self assert: (self instance parameters at: 'foo' put: 'zork') = 'zork'.
-	self assert: (self instance parameters size = 1).
-	self assert: (self instance parameters keys first = 'foo').
-	self assert: (self instance parameters values first = 'zork')
+	self assert: (self instance parameters at: 'foo' put: 'zork') equals: 'zork'.
+	self assert: self instance parameters size equals: 1.
+	self assert: self instance parameters keys first equals: 'foo'.
+	self assert: self instance parameters values first equals: 'zork'
 ]
 
 { #category : #'tests-parameters' }
@@ -110,19 +118,19 @@ PRReferenceTest >> testParameterCopy [
 	copy := self instance copy.
 	copy parameters at: 'class' put: 'inactive'.
 	copy parameters at: 'foo' put: 'bar'.
-	
-	self assert: (self instance parameters at: 'class') = 'active'.
+
+	self assert: (self instance parameters at: 'class') equals: 'active'.
 	self deny: (self instance hasParameter: 'foo').
-	
-	self assert: (copy parameters at: 'class') = 'inactive'.
-	self assert: (copy parameters at: 'foo') = 'bar'
+
+	self assert: (copy parameters at: 'class') equals: 'inactive'.
+	self assert: (copy parameters at: 'foo') equals: 'bar'
 ]
 
 { #category : #'tests-parameters' }
 PRReferenceTest >> testParameters [
 	self assert: self instance parameters isEmpty.
 	self instance parameters: (Array with: 'foo' -> 'bar').
-	self assert: self instance parameters size = 1
+	self assert: self instance parameters size equals: 1
 ]
 
 { #category : #'tests-parsing' }
@@ -316,7 +324,7 @@ PRReferenceTest >> testParseParametersEscaped [
 { #category : #'tests-accessing' }
 PRReferenceTest >> testReference [
 	self instance reference: 'zork'.
-	self assert: self instance reference = 'zork'
+	self assert: self instance reference equals: 'zork'
 ]
 
 { #category : #'tests-accessing' }

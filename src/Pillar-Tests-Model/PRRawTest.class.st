@@ -1,7 +1,7 @@
 Class {
 	#name : #PRRawTest,
 	#superclass : #PRTextTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#category : #'Pillar-Tests-Model-Document'
 }
 
 { #category : #testing }
@@ -159,11 +159,11 @@ PRRawTest >> testParseTypeText [
 { #category : #'tests-accessing' }
 PRRawTest >> testText [
 	self instance text: 'zork'.
-	self assert: self instance text = 'zork'
+	self assert: self instance text equals: 'zork'
 ]
 
 { #category : #'tests-accessing' }
 PRRawTest >> testType [
 	self instance type: 'html'.
-	self assert: self instance type = 'html'
+	self assert: self instance type equals: 'html'
 ]

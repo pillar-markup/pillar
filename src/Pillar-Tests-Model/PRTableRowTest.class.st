@@ -1,7 +1,7 @@
 Class {
 	#name : #PRTableRowTest,
 	#superclass : #PRDocumentGroupTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#category : #'Pillar-Tests-Model-Document'
 }
 
 { #category : #testing }
@@ -17,10 +17,10 @@ PRTableRowTest >> actualClass [
 { #category : #'tests-accessing' }
 PRTableRowTest >> testCount [
 	self instance add: PRTableCell new.
-	self assert: self instance columnCount = 1.
+	self assert: self instance columnCount equals: 1.
 
 	self instance add: PRTableCell new.
-	self assert: self instance columnCount = 2
+	self assert: self instance columnCount equals: 2
 ]
 
 { #category : #'tests-accessing' }

@@ -1,7 +1,7 @@
 Class {
 	#name : #PRTableCellTest,
 	#superclass : #PRDocumentGroupTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#category : #'Pillar-Tests-Model-Document'
 }
 
 { #category : #testing }
@@ -17,13 +17,13 @@ PRTableCellTest >> actualClass [
 { #category : #'tests-accessing' }
 PRTableCellTest >> testAlign [
 	self instance align: #right.
-	self assert: self instance align = #right
+	self assert: self instance align equals: #right
 ]
 
 { #category : #'tests-accessing' }
 PRTableCellTest >> testBeAlignedCenter [
 	self instance beAlignedCenter.
-	self assert: self instance align = #center.
+	self assert: self instance align equals: #center.
 	self assert: self instance isAlignedCenter.
 	self deny: self instance isAlignedLeft.
 	self deny: self instance isAlignedRight
@@ -32,7 +32,7 @@ PRTableCellTest >> testBeAlignedCenter [
 { #category : #'tests-accessing' }
 PRTableCellTest >> testBeAlignedLeft [
 	self instance beAlignedLeft.
-	self assert: self instance align = #left.
+	self assert: self instance align equals: #left.
 	self deny: self instance isAlignedCenter.
 	self assert: self instance isAlignedLeft.
 	self deny: self instance isAlignedRight
@@ -41,7 +41,7 @@ PRTableCellTest >> testBeAlignedLeft [
 { #category : #'tests-accessing' }
 PRTableCellTest >> testBeAlignedRight [
 	self instance beAlignedRight.
-	self assert: self instance align = #right.
+	self assert: self instance align equals: #right.
 	self deny: self instance isAlignedCenter.
 	self deny: self instance isAlignedLeft.
 	self assert: self instance isAlignedRight
@@ -49,10 +49,8 @@ PRTableCellTest >> testBeAlignedRight [
 
 { #category : #'tests-comparing' }
 PRTableCellTest >> testEqualAlign [
-	self deny: self actualClass new beAlignedRight
-				= self actualClass new beAlignedCenter.
-	self deny: self actualClass new beAlignedCenter
-				= self actualClass new beAlignedLeft
+	self deny: self actualClass new beAlignedRight equals: self actualClass new beAlignedCenter.
+	self deny: self actualClass new beAlignedCenter equals: self actualClass new beAlignedLeft
 ]
 
 { #category : #'tests-accessing' }

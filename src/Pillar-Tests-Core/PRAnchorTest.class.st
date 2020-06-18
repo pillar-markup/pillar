@@ -16,13 +16,13 @@ PRAnchorTest >> actualClass [
 
 { #category : #'tests-comparing' }
 PRAnchorTest >> testEqualName [
-	self deny: (self actualClass named: 'foo') = (self actualClass named: 'bar')
+	self deny: (self actualClass named: 'foo') equals: (self actualClass named: 'bar')
 ]
 
 { #category : #'tests-accessing' }
 PRAnchorTest >> testName [
 	self instance name: 'zork'.
-	self assert: self instance name = 'zork'
+	self assert: self instance name equals: 'zork'
 ]
 
 { #category : #'tests-parsing' }
@@ -77,5 +77,5 @@ PRAnchorTest >> testParseSpaces [
 { #category : #'tests-instantiation' }
 PRAnchorTest >> testWith [
 	instance := self actualClass named: 'test'.
-	self assert: self instance name = 'test'
+	self assert: self instance name equals: 'test'
 ]

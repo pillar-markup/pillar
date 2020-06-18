@@ -1,7 +1,7 @@
 Class {
 	#name : #PRMailLinkTest,
 	#superclass : #PRExternalLinkTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#category : #'Pillar-Tests-Model-Document'
 }
 
 { #category : #testing }
@@ -45,7 +45,7 @@ PRMailLinkTest >> testParseBogus [
 PRMailLinkTest >> testTitle [
 	super testTitle.
 	self instance reference: self referenceString.
-	self assert: self instance title = self referenceString
+	self assert: self instance title equals: self referenceString
 ]
 
 { #category : #'tests-accessing' }
@@ -54,5 +54,5 @@ PRMailLinkTest >> testUrl [
 	self assert: (self instance url beginsWith: 'mailto:').
 	self assert: self instance url ~= ('mailto:' , self referenceString).
 	self assert: self instance scrambledUrl ~= ('mailto:' , self referenceString).
-	self assert: self instance unscrambledUrl = ('mailto:' , self referenceString)
+	self assert: self instance unscrambledUrl equals: 'mailto:' , self referenceString
 ]
