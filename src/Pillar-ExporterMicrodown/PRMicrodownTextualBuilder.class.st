@@ -165,6 +165,8 @@ PRMicrodownTextualBuilder >> nextPut: aCharacter [
 { #category : #list }
 PRMicrodownTextualBuilder >> orderedList: aText [
 	| str i |
+	self flag: #fixme. 
+	"this API is not sufficient (what if we have bold inside). check header's one"
 	str := aText readStream.
 	i := 1.
 	[ str atEnd ]
@@ -230,6 +232,8 @@ PRMicrodownTextualBuilder >> text: aText [
 
 { #category : #list }
 PRMicrodownTextualBuilder >> unorderedList: aText [
+	self flag: #fixme. 
+	"this API is not sufficient (what if we have bold inside). check header's one"
 	self 
 		withLinesIn: aText 
 		do: [ :line | self writeText: line beginsWith: parserClass unorderedListMarkup ] 		
