@@ -328,7 +328,7 @@ PRRichTextComposer >> visitBeginEnvironmentAnnotation: aBeginEnvironmentAnnotati
 	canvas << '>>> Environments not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting format' }
+{ #category : #'visiting -  format' }
 PRRichTextComposer >> visitBoldFormat: anObject [
 	canvas 
 		includeAttribute: TextEmphasis bold 
@@ -471,7 +471,7 @@ PRRichTextComposer >> visitHorizontalRule: anObject [
 	
 ]
 
-{ #category : #'visiting format' }
+{ #category : #'visiting -  format' }
 PRRichTextComposer >> visitItalicFormat: anObject [
 	canvas includeAttribute: TextEmphasis italic in: [ self visitFormat: anObject ]
 ]
@@ -487,7 +487,7 @@ PRRichTextComposer >> visitListItem: anItem [
 	canvas newLineIfNotAlready.
 	canvas << bullet.
 	self visitDocumentGroup: anItem.
-	canvas newLineIfNotAlready.
+	"canvas newLineIfNotAlready."
 ]
 
 { #category : #'visiting - document' }
@@ -499,7 +499,7 @@ PRRichTextComposer >> visitMathInTextAnnotation: aPRMathInTextAnnotation [
 		ifFalse: [ canvas << (PRCodeblockStylerExtensions latexMathStylerFor: aPRMathInTextAnnotation text)]
 ]
 
-{ #category : #'visiting format' }
+{ #category : #'visiting -  format' }
 PRRichTextComposer >> visitMonospaceFormat: anObject [
 	"Notice - I add a highlight to the backgorund rather than mono-spaced."
 	| backgroundColor |
@@ -513,20 +513,21 @@ PRRichTextComposer >> visitMonospaceFormat: anObject [
 PRRichTextComposer >> visitOrderedList: anObject [
 	| counter |
 	canvas indentIn: [counter := 1.
-	anObject children
-		do: [ :item | 
-			item propertyAt: #kind put: #ordered.
-			item
-				propertyAt: #counter
-				put: (self class counterFor: counter atLevel: canvas nesting - 1).
-			counter := counter + 1 ].
-	super visitOrderedList: anObject ].
+		anObject children
+			do: [ :item | 
+				item propertyAt: #kind put: #ordered.
+				item
+					propertyAt: #counter
+					put: (self class counterFor: counter atLevel: canvas nesting - 1).
+				counter := counter + 1 ].
+		super visitOrderedList: anObject ].
 	canvas newLine
 ]
 
 { #category : #'visiting - document' }
 PRRichTextComposer >> visitParagraph: anObject [
-	canvas newLineIfNotAlready.
+	"canvas newLineIfNotAlready."
+	canvas newLine.
 	super visitParagraph: anObject.
 	canvas newLine.
 	canvas newLine.
@@ -548,19 +549,19 @@ PRRichTextComposer >> visitPreformatted: aPreformatted [
 	canvas newLine
 ]
 
-{ #category : #'visiting format' }
+{ #category : #'visiting -  format' }
 PRRichTextComposer >> visitStrikethroughFormat: anObject [
 	canvas includeAttribute: TextEmphasis struckOut in: [ self visitFormat: anObject ]
 ]
 
-{ #category : #'visiting format' }
+{ #category : #'visiting -  format' }
 PRRichTextComposer >> visitSubscriptFormat: anObject [
 	canvas
 		includeAttribute: self subscriptColor
 		in: [ self visitFormat: anObject ]
 ]
 
-{ #category : #'visiting format' }
+{ #category : #'visiting -  format' }
 PRRichTextComposer >> visitSuperscriptFormat: anObject [
 	canvas
 		includeAttribute: self superscriptColor
@@ -583,7 +584,7 @@ PRRichTextComposer >> visitText: anObject [
 		" - should not be necessary addAttribute: (TextIndent tabs: canvas nesting)"
 ]
 
-{ #category : #'visiting format' }
+{ #category : #'visiting -  format' }
 PRRichTextComposer >> visitUnderlineFormat: anObject [
 	canvas includeAttribute: TextEmphasis underlined in: [ self visitFormat: anObject ]
 ]
