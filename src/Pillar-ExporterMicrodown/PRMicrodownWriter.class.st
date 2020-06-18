@@ -85,6 +85,12 @@ PRMicrodownWriter >> visitHorizontalRule: anHorizontalLine [
 	canvas horizontalLine
 ]
 
+{ #category : #'visiting - document' }
+PRMicrodownWriter >> visitInternalLink: anExternalLink [
+	self halt.
+	canvas externalLink: anExternalLink reference printString withDescription: anExternalLink text
+]
+
 { #category : #'visit - formatting' }
 PRMicrodownWriter >> visitItalicFormat: aFormat [
 	canvas italic: aFormat text

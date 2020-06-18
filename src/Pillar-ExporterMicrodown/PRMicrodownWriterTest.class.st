@@ -226,6 +226,13 @@ PRMicrodownWriterTest >> testHorizontalLineWithIgnoredText [
 	
 ]
 
+{ #category : #'tests - internal link' }
+PRMicrodownWriterTest >> testInternalLink [
+	"*@fig1*"
+	
+	self testWithInitialText: (builder internalLink: 'fig1' ; contents)
+]
+
 { #category : #'tests - formatting' }
 PRMicrodownWriterTest >> testItalic [
 	"_Hello Pharo_"

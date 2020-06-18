@@ -79,7 +79,7 @@ PRMicrodownTextualBuilder >> duringHeaderLevel: anInteger do: aBlockClosure [
 	aBlockClosure value
 ]
 
-{ #category : #'external reference' }
+{ #category : #references }
 PRMicrodownTextualBuilder >> externalLink: aURL withDescription: aDescription [
 	self 
 		writeText: aDescription 
@@ -91,7 +91,7 @@ PRMicrodownTextualBuilder >> externalLink: aURL withDescription: aDescription [
 		and: parserClass urlCloserMarkup
 ]
 
-{ #category : #elements }
+{ #category : #figure }
 PRMicrodownTextualBuilder >> figure: aFigureUrl withDescription: aDescription [
 
 	self 
@@ -124,6 +124,15 @@ PRMicrodownTextualBuilder >> initialize [
 	parserClass := MicroDownParser.
 	prefixStack := OrderedCollection new.
 	lastIsNewLine := true
+]
+
+{ #category : #references }
+PRMicrodownTextualBuilder >> internalLink: aLabel [
+	self 
+		writeText: aLabel 
+		surroundBy: parserClass anchorReferenceOpenerMarkup 
+		and: parserClass anchorReferenceCloserMarkup.
+	
 ]
 
 { #category : #formatting }
