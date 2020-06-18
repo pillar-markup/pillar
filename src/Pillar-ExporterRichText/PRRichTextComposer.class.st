@@ -207,18 +207,37 @@ PRRichTextComposer >> annotatedParagraphAnnotationColor [
 ]
 
 { #category : #accessing }
+PRRichTextComposer >> annotatedParagraphAnnotationColor: aColor [
+	annotatedParagraphAnnotationColor := aColor
+]
+
+{ #category : #accessing }
 PRRichTextComposer >> annotatedParagraphColor [
 	^ annotatedParagraphColor 
 ]
 
+{ #category : #accessing }
+PRRichTextComposer >> annotatedParagraphColor: aColor [
+	annotatedParagraphColor := aColor
+]
+
+{ #category : #initialization }
+PRRichTextComposer >> defaultAnnotatedParagraphColor [
+	^ TextColor blue
+]
+
+{ #category : #initialization }
+PRRichTextComposer >> defaultSuperscriptColor [
+	^ TextColor blue
+]
+
 { #category : #initialization }
 PRRichTextComposer >> initialize [
-
 	super initialize.
 	monospaceBackgroundColor := self theme settings windowColor.
-	superscriptColor := TextColor blue.
+	superscriptColor := self defaultSuperscriptColor.
 	subscriptColor := TextColor red.
-	annotatedParagraphColor := TextColor blue.
+	annotatedParagraphColor := self defaultAnnotatedParagraphColor.
 	annotatedParagraphAnnotationColor := TextEmphasis bold.
 	annotatedParagraphAlignment := TextAlignment leftFlush
 ]
@@ -273,12 +292,12 @@ PRRichTextComposer >> visit: anObject [
 	anObject accept: self
 ]
 
-{ #category : #'visiting-unsupported' }
+{ #category : #'visiting - unsupported' }
 PRRichTextComposer >> visitAnchor: anObject [
 	canvas << '>>> Anchors not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRRichTextComposer >> visitAnnotatedParagraph: anAnnotatedParagraph [
 	
 	canvas newLineIfNotAlready.
@@ -298,18 +317,18 @@ PRRichTextComposer >> visitAnnotatedParagraph: anAnnotatedParagraph [
 	canvas newLine.
 ]
 
-{ #category : #'visiting-unsupported' }
+{ #category : #'visiting - unsupported' }
 PRRichTextComposer >> visitAnnotation: anAnnotation [
 	canvas << '>>> Annotations not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting-unsupported' }
+{ #category : #'visiting - unsupported' }
 PRRichTextComposer >> visitBeginEnvironmentAnnotation: aBeginEnvironmentAnnotation [
 
 	canvas << '>>> Environments not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting format' }
 PRRichTextComposer >> visitBoldFormat: anObject [
 	canvas 
 		includeAttribute: TextEmphasis bold 
@@ -317,17 +336,17 @@ PRRichTextComposer >> visitBoldFormat: anObject [
 	
 ]
 
-{ #category : #'visiting-unsupported' }
+{ #category : #'visiting - unsupported' }
 PRRichTextComposer >> visitCitation: aCitation [
 	canvas << '>>> Citations not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting-unsupported' }
+{ #category : #'visiting - unsupported' }
 PRRichTextComposer >> visitCitationAnnotation: aCitation [
 	canvas << '>>> Citations not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRRichTextComposer >> visitCodeblock: aCodeBlock [
 	canvas newLineIfNotAlready.
 	canvas newLine.	
@@ -343,58 +362,58 @@ PRRichTextComposer >> visitCodeblock: aCodeBlock [
 	canvas newLine.
 ]
 
-{ #category : #'visiting-unsupported' }
+{ #category : #'visiting - unsupported' }
 PRRichTextComposer >> visitColumn: aColumn [
 	canvas << '>>> Columns not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting-unsupported' }
+{ #category : #'visiting - unsupported' }
 PRRichTextComposer >> visitColumnAnnotation: aColumnAnnotation [
 	canvas << '>>> Columns not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting-unsupported' }
+{ #category : #'visiting - unsupported' }
 PRRichTextComposer >> visitColumns: aColumns [
 	canvas << '>>> Columns not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting-unsupported' }
+{ #category : #'visiting - unsupported' }
 PRRichTextComposer >> visitColumnsAnnotation: aColumnsAnnotation [
 	canvas << '>>> Columns not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRRichTextComposer >> visitDataItem: anItem [
 	canvas newLineIfNotAlready.
 	self visitDocumentGroup: anItem
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRRichTextComposer >> visitDefinitionList: anObject [
 	canvas indentIn: [ self visitUnorderedList: anObject ]
 ]
 
-{ #category : #'visiting-unsupported' }
+{ #category : #'visiting - unsupported' }
 PRRichTextComposer >> visitDocListAnnotation: aPRDocListAnnotation [
 	canvas << '>>> DocLists not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRRichTextComposer >> visitEmptyParagraph: anObject [
 	canvas newLine
 ]
 
-{ #category : #'visiting-unsupported' }
+{ #category : #'visiting - unsupported' }
 PRRichTextComposer >> visitEndColumnsAnnotation: aEndColumnsAnnotation [
 	canvas << '>>> Columns not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting-unsupported' }
+{ #category : #'visiting - unsupported' }
 PRRichTextComposer >> visitEndEnvironmentAnnotation: aEndEnvironmentAnnotation [
 	canvas << '>>> Environments not supported in RichText Pillar <<<' asText
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRRichTextComposer >> visitEnvironment: anObject [
 	anObject name = 'textBlock'
 		ifTrue:[
@@ -406,7 +425,7 @@ PRRichTextComposer >> visitEnvironment: anObject [
 						'is not supported in RichText Pillar <<<') asText]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRRichTextComposer >> visitExternalLink: aLink [
 	| attribute target url |
 	target := aLink reference.
@@ -424,7 +443,7 @@ PRRichTextComposer >> visitExternalLink: aLink [
 		ifNil: [ self visitLink: aLink ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRRichTextComposer >> visitFigure: aFigure [
 	| serverUrl anchoredImage |
 	serverUrl := aFigure reference.
@@ -436,7 +455,7 @@ PRRichTextComposer >> visitFigure: aFigure [
 		do: [self visitAll: aFigure children].
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRRichTextComposer >> visitHeader: aHeader [
 	canvas newLineIfNotAlready .
 	canvas
@@ -445,12 +464,19 @@ PRRichTextComposer >> visitHeader: aHeader [
 	canvas newLine
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
+PRRichTextComposer >> visitHorizontalRule: anObject [
+	canvas newLineIfNotAlready.
+	canvas newLine.	
+	
+]
+
+{ #category : #'visiting format' }
 PRRichTextComposer >> visitItalicFormat: anObject [
 	canvas includeAttribute: TextEmphasis italic in: [ self visitFormat: anObject ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRRichTextComposer >> visitListItem: anItem [
 	| bullet |
 	"I stored the counter and bullet type in `visitOrderedList` and `visitUnorderedList`"
@@ -464,7 +490,7 @@ PRRichTextComposer >> visitListItem: anItem [
 	canvas newLineIfNotAlready.
 ]
 
-{ #category : #visiting }
+{ #category : #'visiting - document' }
 PRRichTextComposer >> visitMathInTextAnnotation: aPRMathInTextAnnotation [ 
 	"we could plug some math rendering for Polymath following the implementation of Kasper.
 	See PRCodeblockStylerExtensions"
@@ -473,7 +499,7 @@ PRRichTextComposer >> visitMathInTextAnnotation: aPRMathInTextAnnotation [
 		ifFalse: [ canvas << (PRCodeblockStylerExtensions latexMathStylerFor: aPRMathInTextAnnotation text)]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting format' }
 PRRichTextComposer >> visitMonospaceFormat: anObject [
 	"Notice - I add a highlight to the backgorund rather than mono-spaced."
 	| backgroundColor |
@@ -483,7 +509,7 @@ PRRichTextComposer >> visitMonospaceFormat: anObject [
 		in: [self visitFormat: anObject].  
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRRichTextComposer >> visitOrderedList: anObject [
 	| counter |
 	canvas indentIn: [counter := 1.
@@ -498,7 +524,7 @@ PRRichTextComposer >> visitOrderedList: anObject [
 	canvas newLine
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRRichTextComposer >> visitParagraph: anObject [
 	canvas newLineIfNotAlready.
 	super visitParagraph: anObject.
@@ -506,7 +532,7 @@ PRRichTextComposer >> visitParagraph: anObject [
 	canvas newLine.
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRRichTextComposer >> visitPreformatted: aPreformatted [
 
 	canvas newLineIfNotAlready.
@@ -522,26 +548,26 @@ PRRichTextComposer >> visitPreformatted: aPreformatted [
 	canvas newLine
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting format' }
 PRRichTextComposer >> visitStrikethroughFormat: anObject [
 	canvas includeAttribute: TextEmphasis struckOut in: [ self visitFormat: anObject ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting format' }
 PRRichTextComposer >> visitSubscriptFormat: anObject [
 	canvas
 		includeAttribute: self subscriptColor
 		in: [ self visitFormat: anObject ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting format' }
 PRRichTextComposer >> visitSuperscriptFormat: anObject [
 	canvas
 		includeAttribute: self superscriptColor
 		in: [ self visitFormat: anObject ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRRichTextComposer >> visitTermItem: anItem [
 	canvas newLineIfNotAlready.
 	canvas
@@ -551,18 +577,18 @@ PRRichTextComposer >> visitTermItem: anItem [
 				in: [ self visitDocumentGroup: anItem ] ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRRichTextComposer >> visitText: anObject [
 	canvas << anObject text asText
 		" - should not be necessary addAttribute: (TextIndent tabs: canvas nesting)"
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting format' }
 PRRichTextComposer >> visitUnderlineFormat: anObject [
 	canvas includeAttribute: TextEmphasis underlined in: [ self visitFormat: anObject ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : #'visiting - document' }
 PRRichTextComposer >> visitUnorderedList: anObject [
 	canvas
 		indentIn: [ anObject children

@@ -111,6 +111,13 @@ PRMicrodownTextualBuilder >> header: aBloc withLevel: anInteger [
    aBloc value: self
 ]
 
+{ #category : #header }
+PRMicrodownTextualBuilder >> horizontalLine [
+	self raw: parserClass horizontalLineMarkup.
+   self newLine
+
+]
+
 { #category : #initialization }
 PRMicrodownTextualBuilder >> initialize [
 	super initialize.

@@ -79,6 +79,12 @@ PRMicrodownWriter >> visitHeader: aHeader [
 	canvas duringHeaderLevel: level do: [ super visitHeader: aHeader ]
 ]
 
+{ #category : #'visiting-document' }
+PRMicrodownWriter >> visitHorizontalRule: anHorizontalLine [
+
+	canvas horizontalLine
+]
+
 { #category : #'visit - formatting' }
 PRMicrodownWriter >> visitItalicFormat: aFormat [
 	canvas italic: aFormat text

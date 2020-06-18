@@ -208,6 +208,24 @@ PRMicrodownWriterTest >> testHeaderWithStrike [
 							contents)
 ]
 
+{ #category : #'tests - horizontal line' }
+PRMicrodownWriterTest >> testHorizontalLine [
+	"***"
+	
+	self testWithInitialText: (builder horizontalLine; contents)
+]
+
+{ #category : #'tests - horizontal line' }
+PRMicrodownWriterTest >> testHorizontalLineWitIgnoredText [
+	"*** kjlkjkljkl"
+
+	initialText := (builder raw: self parser horizontalLineMarkup; space; raw: 'Blblblbl'; contents).
+	parsedBloc := self parser parse: initialText readStream.
+	writtenText := self writer start: parsedBloc asPillar; contents.
+	self assert: writtenText equals: self parser horizontalLineMarkup, String cr.
+	
+]
+
 { #category : #'tests - formatting' }
 PRMicrodownWriterTest >> testItalic [
 	"_Hello Pharo_"
