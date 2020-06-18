@@ -109,8 +109,11 @@ PRValidatorVisitor >> visitFigure: aFigure [
 	aFigure pathInternFile asFileReference exists ifFalse: 
 		[ allTestsResults add: (self result explanation: #figureNotFound withSpecification: aFigure reference) ].
 	"check if figure has correct extension"
-	(aFigure hasFigureExtension) ifFalse: 
-		[ allTestsResults add: (self result explanation: #figureIncorrectExtension withSpecification: aFigure reference) ]
+	aFigure hasFigureExtension 
+		ifFalse: [ allTestsResults add: 
+						(self result 
+								explanation: #figureIncorrectExtension 
+								withSpecification: aFigure reference) ]
 	
 ]
 
@@ -118,11 +121,16 @@ PRValidatorVisitor >> visitFigure: aFigure [
 PRValidatorVisitor >> visitInputFileAnnotation: anInputFileAnnotation [
 	super visitInputFileAnnotation: anInputFileAnnotation.
 	"check if file with given path exists"
-	(anInputFileAnnotation path) asString asFileReference exists ifFalse: [ allTestsResults add: (self result explanation: #inputFileNotFound withSpecification: anInputFileAnnotation path) ]
+	anInputFileAnnotation path asString asFileReference exists 
+		ifFalse: [ allTestsResults add: 
+						(self result 
+							explanation: #inputFileNotFound 
+							withSpecification: anInputFileAnnotation path) ]
 ]
 
 { #category : #'visiting-document' }
 PRValidatorVisitor >> visitReference: aReference [
+
 	super visitReference: aReference.
 	aReference hasAnchor ifTrue: [ references add: aReference anchor ]
 ]

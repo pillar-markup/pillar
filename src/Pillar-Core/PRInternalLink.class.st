@@ -1,5 +1,14 @@
 "
-I am an internal link pointing to a structure within the current kernel. I reference my owning structure to be able to lookup the referenced structure. The referenced structure is cached in the instance variable ==target==.
+I am an internal link pointing to a structure within the current kernel. I'm syntactically represented by `*@`, label, and `*` 
+
+```
+# Header1
+@secheader1
+	
+A reference to header *@secheader1*
+```
+
+I reference my owning structure to be able to lookup the referenced structure. The referenced structure is cached in the instance variable `target`.
 "
 Class {
 	#name : #PRInternalLink,
@@ -82,6 +91,13 @@ PRInternalLink >> hash [
 { #category : #testing }
 PRInternalLink >> isInternal [
 	^ true
+]
+
+{ #category : #printing }
+PRInternalLink >> printOn: aStream [
+
+	super printOn: aStream.
+	aStream space ; nextPutAll: '*@', anchor; nextPut: $*
 ]
 
 { #category : #accessing }

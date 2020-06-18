@@ -1,5 +1,11 @@
 "
-I'm a Figure, i can have a label in parameter. My alias (coming from the superclass) represents the figure caption
+I'm a Figure.
+I can have a label and a caption in parameter. 
+My alias (inherited) represents the figure caption.
+
+```
++A nice caption for our nice figure.>file://figures/pharo-logo.png|width=50|label=pharoLogo+
+```
 "
 Class {
 	#name : #PRFigure,
