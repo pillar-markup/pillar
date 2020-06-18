@@ -216,7 +216,7 @@ PRMicrodownWriterTest >> testHorizontalLine [
 ]
 
 { #category : #'tests - horizontal line' }
-PRMicrodownWriterTest >> testHorizontalLineWitIgnoredText [
+PRMicrodownWriterTest >> testHorizontalLineWithIgnoredText [
 	"*** kjlkjkljkl"
 
 	initialText := (builder raw: self parser horizontalLineMarkup; space; raw: 'Blblblbl'; contents).
