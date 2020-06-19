@@ -97,6 +97,7 @@ PRRichTextWriterTest >> strikethroughtFormat [
 
 { #category : #helpers }
 PRRichTextWriterTest >> stringOf: aPRDocument [
+	
 	^ (self richTextFor: aPRDocument) string
 ]
 
@@ -108,19 +109,6 @@ PRRichTextWriterTest >> subscriptFormat [
 { #category : #'tests - Format' }
 PRRichTextWriterTest >> superscriptFormat [
 	^ TextColor blue
-]
-
-{ #category : #'tests - Annotated paragraph' }
-PRRichTextWriterTest >> testAnnotatedParagraph [
-
-	| runs string |
-	runs := self runsOf: sample annotatedParagraph.
-	string := self stringOf: sample orderedList.
-	self assert: runs first first class equals: TextIndent.
-	self assert: runs first first amount equals: 1.
-	self assert: runs runs equals: #(3 7 1 3 7 1) asArray.
-	self assert: string first equals: $1.
-	self assert: (string at: 12) equals: $2.
 ]
 
 { #category : #'tests - Format' }

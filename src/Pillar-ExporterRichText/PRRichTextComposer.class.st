@@ -1,5 +1,5 @@
 "
-I am a visitor that produce rich text (class Text) based on a pillar document model.
+I am a visitor that produces rich text (class Text) based on a pillar document model.
 I am implemented using a canvas/brush pattern.
 
 #### Advanced 
@@ -9,6 +9,8 @@ You can also turn it off/on doing
 ```
 PRRichTextComposer putOffLine
 ```
+
+!!Note To test the composer.
 "
 Class {
 	#name : #PRRichTextComposer,
@@ -304,10 +306,10 @@ PRRichTextComposer >> visitAnnotatedParagraph: anAnnotatedParagraph [
 	canvas newLine.
 	canvas
 		includeAttribute: self annotatedParagrapAlignment
-		in: [ canvas
+		in: [ 
+			canvas
 				includeAttribute: self annotatedParagraphAnnotationColor
 				in: [ canvas << anAnnotatedParagraph annotation capitalized asText ].
-			canvas newLine.
 			canvas
 				includeAttribute: self annotatedParagrapAlignment
 				in: [ canvas
