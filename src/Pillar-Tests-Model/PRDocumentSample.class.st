@@ -91,6 +91,11 @@ PRDocumentSample >> monospace [
 	^ self withFormat: PRMonospaceFormat 
 ]
 
+{ #category : #formats }
+PRDocumentSample >> monospacePoint [
+	^ self with: 'Point' format: PRMonospaceFormat 
+]
+
 { #category : #list }
 PRDocumentSample >> nestedList [
 	^ PRDocument new
@@ -167,6 +172,12 @@ PRDocumentSample >> unorderedList [
 			add: (PRListItem new 
 				add: (PRText content: 'item b'); yourself);
 		yourself); yourself.
+]
+
+{ #category : #helpers }
+PRDocumentSample >> with: aString format: aPRFormatClass [
+	^ (aPRFormatClass with: (PRText content: aString))
+               
 ]
 
 { #category : #helpers }
