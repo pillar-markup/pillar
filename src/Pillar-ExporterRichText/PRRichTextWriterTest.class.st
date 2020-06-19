@@ -81,6 +81,7 @@ PRRichTextWriterTest >> richTextFor: aPRDocument [
 
 { #category : #helpers }
 PRRichTextWriterTest >> runsOf: aPRDocument [
+
 	^ (self richTextFor: aPRDocument) runs
 ]
 
@@ -175,7 +176,9 @@ PRRichTextWriterTest >> testFigure [
 
 { #category : #'tests - Header' }
 PRRichTextWriterTest >> testHeaderLevel1 [
-	self assertWriting: sample headerLevel1 include: self headerLevel1
+	sample := sample headerLevel1.
+	self assert: sample hasChildren.
+	self assertWriting: sample include: self headerLevel1
 ]
 
 { #category : #'tests - Header' }

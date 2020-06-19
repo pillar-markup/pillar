@@ -459,7 +459,8 @@ PRRichTextComposer >> visitFigure: aFigure [
 
 { #category : #'visiting - document' }
 PRRichTextComposer >> visitHeader: aHeader [
-	canvas newLineIfNotAlready .
+
+	canvas newLineIfNotAlready.
 	canvas
 		includeAttribute: (self class headerLevelFont: aHeader level)
 		in: [ self visitDocumentGroup: aHeader ].

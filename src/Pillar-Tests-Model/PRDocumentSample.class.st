@@ -1,5 +1,5 @@
 "
-I'm a little pillar tree generator.
+I'm a holder of some samples for Pillar structures.
 
 "
 Class {
@@ -40,6 +40,7 @@ PRDocumentSample >> codeblock [
 
 { #category : #helpers }
 PRDocumentSample >> documentWith: anElement [
+
 	^ PRDocument new
 		add: anElement; 
 		yourself
@@ -179,5 +180,5 @@ PRDocumentSample >> withFormat: aPRFormatClass [
 
 { #category : #helpers }
 PRDocumentSample >> withStructure: aPRObject [
-	^ self documentWith: (aPRObject add: (PRText content: 'foo'); yourself); yourself
+	^ self documentWith: (aPRObject add: (PRText content: 'foo'); yourself)
 ]
