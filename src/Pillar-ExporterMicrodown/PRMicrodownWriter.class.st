@@ -86,9 +86,10 @@ PRMicrodownWriter >> visitHorizontalRule: anHorizontalLine [
 ]
 
 { #category : #'visiting - document' }
-PRMicrodownWriter >> visitInternalLink: anExternalLink [
-	self halt.
-	canvas externalLink: anExternalLink reference printString withDescription: anExternalLink text
+PRMicrodownWriter >> visitInternalLink: anInternalLink [
+	"Corresponding to *@fig1* in Pillar"
+	
+	canvas internalLink: anInternalLink anchor 
 ]
 
 { #category : #'visiting - formatting' }
