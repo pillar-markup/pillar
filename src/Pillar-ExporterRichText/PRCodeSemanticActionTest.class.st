@@ -8,6 +8,22 @@ Class {
 }
 
 { #category : #tests }
+PRCodeSemanticActionTest >> testReferenceToABrokenMetaClass [
+
+	| text |
+	text := (PRMonospaceFormat with: (PRText content: 'Point2 class')) children first text.
+	self assert: (PRSemanticAction from: text) entity isNil
+]
+
+{ #category : #tests }
+PRCodeSemanticActionTest >> testReferenceToABrokenMetaClass2 [
+
+	| text |
+	text := (PRMonospaceFormat with: (PRText content: 'Point grgrgr')) children first text.
+	self assert: (PRSemanticAction from: text) entity isNil
+]
+
+{ #category : #'tests - class' }
 PRCodeSemanticActionTest >> testReferenceToAClass [
 
 	| text |
@@ -55,7 +71,7 @@ PRCodeSemanticActionTest >> testReferenceToANonExistingMethodBecauseOfNoSymbol [
 	self assert: (PRSemanticAction from: text) entity isNil
 ]
 
-{ #category : #tests }
+{ #category : #'tests - package' }
 PRCodeSemanticActionTest >> testReferenceToANonExistingPackage [
 
 	| text |
@@ -63,15 +79,15 @@ PRCodeSemanticActionTest >> testReferenceToANonExistingPackage [
 	self assert: (PRSemanticAction from: text) entity isNil
 ]
 
-{ #category : #tests }
+{ #category : #'tests - package' }
 PRCodeSemanticActionTest >> testReferenceToAPackage [
 
 	| text |
-	text := (PRMonospaceFormat with: (PRText content: 'Pillar-ExporterRichText')) children first text.
+	text := (PRMonospaceFormat with: (PRText content: #'''Pillar-ExporterRichText''')) children first text.
 	self assert: (PRSemanticAction from: text) entity name equals: 'Pillar-ExporterRichText'
 ]
 
-{ #category : #tests }
+{ #category : #'tests - class' }
 PRCodeSemanticActionTest >> testReferenceToNonExistingClass [
 
 	| text |

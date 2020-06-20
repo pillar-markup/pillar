@@ -3,7 +3,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'string',
-		'entity'
+		'entity',
+		'tokens'
 	],
 	#category : #'Pillar-ExporterRichText'
 }
@@ -20,26 +21,18 @@ PRSemanticAction >> computeEntity [
 		Point >> #setX:setY: 
 		Point class >> 
 		"
-	^ (string includesSubstring: '>>')
-		ifTrue: [ self extractMethod ]
-		ifFalse: [  
-			(string includesSubstring: ' class')
-				ifFalse: [
-					| package |
-					self class environment 
-						at: string asSymbol  
-						ifPresent: [ :cl | entity := cl. ^ self ]
-						ifAbsent: [  ].
-					package := RPackageOrganizer default packageNamed: string ifAbsent: [ nil ].
-					package ifNotNil: [ entity := package. ^ self ].
-					]
-				ifTrue: [ 
-					| pair |
-					pair := string splitOn: Character space.
-					self class environment 
-						at: pair first   
-						ifPresent: [ :cl | entity := cl class. ^ self ]
-					 ] ]
+	| size |
+	tokens := RBScanner scanTokens: string.
+	size := tokens size.
+	
+	"either 'Point' for a class or #'''System-Caching''' for a package"
+	size = 1 
+		ifTrue: [ self getClassOrNil
+						ifNil: [self getPackageOrNil ] ].
+
+	"only 'Point class'"
+	size = 2
+		ifTrue: [ self getMetaClassOrNil ]
 ]
 
 { #category : #'instance creation' }
@@ -69,6 +62,35 @@ PRSemanticAction >> computeEntity2 [
 	ast.
 ]
 
+{ #category : #'instance creation' }
+PRSemanticAction >> computeEntity3 [
+	"Try to guess what 
+		Point
+		Point >> #setX:setY: 
+		Point class >> 
+		"
+	^ (string includesSubstring: '>>')
+		ifTrue: [ self extractMethod ]
+		ifFalse: [  
+			(string includesSubstring: ' class')
+				ifFalse: [
+					| package |
+					self class environment 
+						at: string asSymbol  
+						ifPresent: [ :cl | entity := cl. ^ self ]
+						ifAbsent: [  ].
+					package := RPackageOrganizer default packageNamed: string ifAbsent: [ nil ].
+					package ifNotNil: [ entity := package. ^ self ].
+					]
+				ifTrue: [ 
+					| pair |
+					pair := string splitOn: Character space.
+					self class environment 
+						at: pair first   
+						ifPresent: [ :cl | entity := cl class. ^ self ]
+					 ] ]
+]
+
 { #category : #accessing }
 PRSemanticAction >> entity [
 	^ entity
@@ -90,6 +112,37 @@ PRSemanticAction >> from: aString [
 
 	string := aString.
 	self computeEntity.
+]
+
+{ #category : #'instance creation' }
+PRSemanticAction >> getClassOrNil [
+
+	self class environment 
+			at: tokens first asSymbol  
+			ifPresent: [ :cl | entity := cl ]
+			ifAbsent: [ ].
+	^ entity
+				
+]
+
+{ #category : #'instance creation' }
+PRSemanticAction >> getMetaClassOrNil [
+
+	self class environment 
+			at: tokens first asSymbol  
+			ifPresent: [ :cl | entity := cl. tokens second = 'class' 
+															ifTrue: [ entity := entity class ]
+															ifFalse: [ entity := nil "because we do not want Point foo" ] ]
+			ifAbsent: [ ].
+	^ entity
+				
+]
+
+{ #category : #'instance creation' }
+PRSemanticAction >> getPackageOrNil [
+	entity := RPackageOrganizer default packageNamed: tokens first asString ifAbsent: [ nil ].
+	^ entity
+				
 ]
 
 { #category : #testing }
