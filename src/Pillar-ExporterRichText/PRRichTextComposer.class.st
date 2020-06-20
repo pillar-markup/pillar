@@ -2,6 +2,8 @@
 I am a visitor that produces rich text (class Text) based on a pillar document model.
 I am implemented using a canvas/brush pattern.
 
+!!Note The composer should be improved to render better and in nicer ways elements. 
+
 #### Advanced 
 For the LaTeX rendering, internet connexion is required. 
 You can also turn it off/on doing
@@ -10,7 +12,10 @@ You can also turn it off/on doing
 PRRichTextComposer putOffLine
 ```
 
-!!Note To test the composer.
+#### Known limits.
+Monospaced text (e.g., `Point`, `Point class`,  `Point>>#setX:setY:`, or `#'Pillar-ExporterPillar'`) uses TextAction to trigger browser opening on the corresponding element. It would be better to use a TextLink because the styler is aware of them. 
+
+
 "
 Class {
 	#name : #PRRichTextComposer,
@@ -316,7 +321,6 @@ PRRichTextComposer >> visitAnchor: anObject [
 PRRichTextComposer >> visitAnnotatedParagraph: anAnnotatedParagraph [
 	
 	canvas newLineIfNotAlready.
-	canvas newLine.
 	canvas
 		includeAttribute: self annotatedParagrapAlignment
 		in: [ 
@@ -328,7 +332,6 @@ PRRichTextComposer >> visitAnnotatedParagraph: anAnnotatedParagraph [
 				in: [ canvas
 						includeAttribute: self annotatedParagraphColor
 						in: [ self visitParagraph: anAnnotatedParagraph ] ] ].
-	canvas newLine.
 	canvas newLine.
 ]
 
@@ -364,7 +367,6 @@ PRRichTextComposer >> visitCitationAnnotation: aCitation [
 { #category : #'visiting - document' }
 PRRichTextComposer >> visitCodeblock: aCodeBlock [
 	canvas newLineIfNotAlready.
-	canvas newLine.	
 	canvas
 		indentIn: [  
 			canvas
@@ -374,7 +376,7 @@ PRRichTextComposer >> visitCodeblock: aCodeBlock [
 						asLanguage: aCodeBlock language originalName)
 			] ].
 	canvas newLine.
-	canvas newLine.
+	canvas newLine
 ]
 
 { #category : #'visiting - unsupported' }
