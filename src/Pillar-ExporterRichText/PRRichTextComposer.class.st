@@ -153,6 +153,19 @@ and this is the second line') inspect
 ]
 
 { #category : #examples }
+PRRichTextComposer class >> example7 [
+	<example>
+	(self asText:
+					'!First section
+
+# ==Point== should open a class browser on Point.
+# ==Point class== should open a class browser on Point.
+# ==Point >> setX:setY:== should open a browser on the correspoding method.
+# ==Pillar\-ExporterRichText== should open a browser on the package.
+') inspect
+]
+
+{ #category : #examples }
 PRRichTextComposer class >> exampleLatexMath [
 	<example>
 	(PRRichTextComposer  asText:
@@ -505,11 +518,19 @@ PRRichTextComposer >> visitMathInTextAnnotation: aPRMathInTextAnnotation [
 { #category : #'visiting -  format' }
 PRRichTextComposer >> visitMonospaceFormat: anObject [
 	"Notice - I add a highlight to the backgorund rather than mono-spaced."
-	| backgroundColor |
+	| backgroundColor sem |
 	backgroundColor := self monospaceBackgroundColor.
+	
+	self flag: #fixMe.
+	"Right now we stupidly emit TextAction but we should emit TextClassLink and revisit them."
 	canvas 
 		includeAttribute: (TextBackgroundColor color: backgroundColor) 
-		in: [self visitFormat: anObject].  
+		in: [ 
+			sem := PRSemanticAction from: anObject text.
+			sem hasEntity 
+				ifTrue: [ canvas 
+								includeAttribute: (TextAction new actOnClickBlock: [ sem entity browse ]) in: [self visitFormat: anObject ] ]
+				ifFalse: [ self visitFormat: anObject]].  
 ]
 
 { #category : #'visiting - list' }

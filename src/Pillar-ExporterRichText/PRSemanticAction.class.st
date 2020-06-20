@@ -28,11 +28,12 @@ PRSemanticAction >> computeEntity [
 	"either 'Point' for a class or #'''System-Caching''' for a package"
 	size = 1 
 		ifTrue: [ self getClassOrNil
-						ifNil: [self getPackageOrNil ] ].
+						ifNil: [self getPackageOrNil ].
+					^ self  ].
 
 	"only 'Point class'"
 	size = 2
-		ifTrue: [ self getMetaClassOrNil ].
+		ifTrue: [ self getMetaClassOrNil. ^ self ].
 	
 	tokens second = '>>'
 		ifTrue: [ self getClassOrNil. 
