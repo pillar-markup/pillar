@@ -252,7 +252,7 @@ PREditorPresenter >> openAction [
 PREditorPresenter >> renderAction [
 	"RENDER button is pressed: render RichText result in output text"
 	| document |
-	document := parser new parse: textInput text.
+	document := syntaxState parse: textInput text.
 	textOutput text: (morphWriter start: document) 
 ]
 
