@@ -12,7 +12,7 @@ You can also turn it off/on doing
 PRRichTextComposer putOffLine
 ```
 
-#### Known limits.
+#### Known limits
 Monospaced text (e.g., `Point`, `Point class`,  `Point>>#setX:setY:`, or `#'Pillar-ExporterPillar'`) uses TextAction to trigger browser opening on the corresponding element. It would be better to use a TextLink because the styler is aware of them. 
 
 
