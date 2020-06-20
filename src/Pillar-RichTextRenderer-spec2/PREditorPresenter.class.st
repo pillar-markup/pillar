@@ -12,8 +12,9 @@ Features:
 
 **For now, export feature is unavailable, so it has been removed from menu - but relative classes and methods in code exist**
 
-Open me via my class method `open` or execute the following line:
-` PREditorPresenter new openWithSpec `
+I implemented a state-like pattern to switch between syntax Pillar and MicroDown.
+
+Open me via my 'open' class method : `PREditorPresenter class>>#open`
 
 
 "
