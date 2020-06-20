@@ -32,79 +32,18 @@ PRSemanticAction >> computeEntity [
 
 	"only 'Point class'"
 	size = 2
-		ifTrue: [ self getMetaClassOrNil ]
-]
-
-{ #category : #'instance creation' }
-PRSemanticAction >> computeEntity2 [
-	"Try to guess what 
-		Point
-		Point >> #setX:setY: 
-		"
-		
-	| ast |
-	ast := RBParser parseExpression: string.
-	ast doSemanticAnalysis.
-	ast isVariable	
-		ifTrue: [ 
-			self class environment 
-				at: ast name 
-				ifPresent: [ :cl | entity := cl. ^ self ]
-				ifAbsent: [  ] ]
-		ifFalse: [ 
-			| package |
-			package := RPackageOrganizer default packageNamed: string ifAbsent: [ nil ].
-			package ifNotNil: [ entity := package. ^ self ]
-			"may be this is a method ref?" 
-			
-			
-			].
-	ast.
-]
-
-{ #category : #'instance creation' }
-PRSemanticAction >> computeEntity3 [
-	"Try to guess what 
-		Point
-		Point >> #setX:setY: 
-		Point class >> 
-		"
-	^ (string includesSubstring: '>>')
-		ifTrue: [ self extractMethod ]
-		ifFalse: [  
-			(string includesSubstring: ' class')
-				ifFalse: [
-					| package |
-					self class environment 
-						at: string asSymbol  
-						ifPresent: [ :cl | entity := cl. ^ self ]
-						ifAbsent: [  ].
-					package := RPackageOrganizer default packageNamed: string ifAbsent: [ nil ].
-					package ifNotNil: [ entity := package. ^ self ].
-					]
-				ifTrue: [ 
-					| pair |
-					pair := string splitOn: Character space.
-					self class environment 
-						at: pair first   
-						ifPresent: [ :cl | entity := cl class. ^ self ]
-					 ] ]
+		ifTrue: [ self getMetaClassOrNil ].
+	
+	tokens second = '>>'
+		ifTrue: [ self getClassOrNil. 
+					 self getCompiledMethodFrom: 3  ]
+		ifFalse: [ self getMetaClassOrNil.
+					 self getCompiledMethodFrom: 4  ]
 ]
 
 { #category : #accessing }
 PRSemanticAction >> entity [
 	^ entity
-]
-
-{ #category : #'instance creation' }
-PRSemanticAction >> extractMethod [
-	"
-	Point class >> foo 
-	Point >> foo 
-	"
-	" We could also invoke the compiler"
-	
-	[ entity := OpalCompiler new source: string ; evaluate ] on: Error, SyntaxErrorNotification do: [ ] 
 ]
 
 { #category : #'instance creation' }
@@ -123,6 +62,23 @@ PRSemanticAction >> getClassOrNil [
 			ifAbsent: [ ].
 	^ entity
 				
+]
+
+{ #category : #'instance creation' }
+PRSemanticAction >> getCompiledMethodFrom: start [
+
+	"
+	| selector |
+	selector := String streamContents: [ :str |
+		start to: tokens size do: [ :each | str nextPutAll: (tokens at: each) ] ].
+	^ selector
+	No we do not want to support space in method selector!
+	"
+	entity ifNotNil: [  
+		entity 
+			compiledMethodAt: (tokens at: start) 
+			ifPresent: [ :cm | entity := cm ] 
+			ifAbsent: [ entity := nil ] ]
 ]
 
 { #category : #'instance creation' }
@@ -148,4 +104,10 @@ PRSemanticAction >> getPackageOrNil [
 { #category : #testing }
 PRSemanticAction >> hasEntity [
 	^ entity isNotNil
+]
+
+{ #category : #accessing }
+PRSemanticAction >> tokens: aCol [
+
+	tokens := aCol
 ]
