@@ -25,7 +25,7 @@ BaselineOfPillarMicro >> baseline: spec [
 			spec repository: 'github://pillar-markup/Microdown/src' ].	
 		spec 
 			package: 'Pillar-ExporterMicrodown' 
-			with: [ spec requires: #('Pillar-ExporterCore' 'Microdown') ].
+			with: [ spec requires: #('Pillar' 'Microdown') ].
 		]
 
 ]
