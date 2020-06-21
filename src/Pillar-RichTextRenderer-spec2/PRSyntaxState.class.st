@@ -27,6 +27,11 @@ PRSyntaxState >> next [
 	^ self subclassResponsibility 
 ]
 
+{ #category : #parsing }
+PRSyntaxState >> parse: aText [
+	^ self parser new parse: aText asString
+]
+
 { #category : #accessing }
 PRSyntaxState >> parser [
 	^ self subclassResponsibility 

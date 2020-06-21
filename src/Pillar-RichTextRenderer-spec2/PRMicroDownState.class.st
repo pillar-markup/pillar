@@ -53,7 +53,12 @@ PRMicroDownState >> next [
 	^ PRPillarState new
 ]
 
+{ #category : #parsing }
+PRMicroDownState >> parse: aText [
+	^ (super parse: aText asString) asPillar
+]
+
 { #category : #accessing }
 PRMicroDownState >> parser [
-	^ PRMicroDownParser 
+	^ MicroDownParser 
 ]
