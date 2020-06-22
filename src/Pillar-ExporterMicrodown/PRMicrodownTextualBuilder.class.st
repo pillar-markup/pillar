@@ -157,14 +157,6 @@ PRMicrodownTextualBuilder >> nextPutAllLines: aString [
 ]
 
 { #category : #list }
-PRMicrodownTextualBuilder >> orderedList: aBlock [
-	self flag: #toDiscussWithGuille. "for fun the problem is that we need to know that we handle the last elements"
-	aBlock value: (PROrderedItemBuilder new setStream: stream ; yourself)
-
-
-]
-
-{ #category : #list }
 PRMicrodownTextualBuilder >> orderedListDuring: aBlockClosure [
 	"For list we do not emit empty line at the end because we do not want to force the creation of a paragraph 
 	in the middle of nested list. And from a builder point of view this is difficult to know it."
@@ -219,13 +211,6 @@ PRMicrodownTextualBuilder >> raw: aString [
 PRMicrodownTextualBuilder >> rawLines: aString [
 	"Output aString and take care of line ending within aString."
 	self withLinesIn: aString do: [ :line | self raw: line ] separatedBy: [ self newLine ]
-]
-
-{ #category : #list }
-PRMicrodownTextualBuilder >> unorderedList: aBlock [
-	self flag: #toDiscussWithGuille. "for fun the problem is that we need to know that we handle the last elements"
-	aBlock value: (PRUnorderedItemBuilder new setStream: stream ; yourself)
-
 ]
 
 { #category : #list }
