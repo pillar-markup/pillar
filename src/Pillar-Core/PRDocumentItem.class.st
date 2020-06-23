@@ -21,6 +21,7 @@ Class {
 	#name : #PRDocumentItem,
 	#superclass : #PRObject,
 	#instVars : [
+		'parent',
 		'counter',
 		'start',
 		'stop'
@@ -94,6 +95,18 @@ PRDocumentItem >> isHeader [
 { #category : #testing }
 PRDocumentItem >> isLink [
 	^ false
+]
+
+{ #category : #accessing }
+PRDocumentItem >> parent [
+
+	^ parent
+]
+
+{ #category : #accessing }
+PRDocumentItem >> parent: aDocumentGroup [
+
+	parent := aDocumentGroup
 ]
 
 { #category : #helpers }

@@ -44,6 +44,7 @@ PRDocumentGroup >> accept: aVisitor [
 
 { #category : #adding }
 PRDocumentGroup >> add: aDocumentItem [
+	aDocumentItem parent: self. 
 	self setChildren: (self children copyWith: aDocumentItem)
 ]
 
