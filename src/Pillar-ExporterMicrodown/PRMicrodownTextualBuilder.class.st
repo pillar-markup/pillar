@@ -99,6 +99,16 @@ PRMicrodownTextualBuilder >> figure: aFigureUrl withDescription: aDescription [
 		and: parserClass urlCloserMarkup
 ]
 
+{ #category : #figure }
+PRMicrodownTextualBuilder >> figure: aFigureUrl withDescription: aDescription withParameters: aZnDictionary [
+	| stringToAdd |
+	aZnDictionary ifEmpty: [ self figure: aFigureUrl withDescription: aDescription ] ifNotEmpty: [
+		stringToAdd := String empty.
+		aZnDictionary keysAndValuesDo: [ :key :value | stringToAdd := stringToAdd, parserClass argumentListDelimiter, key asString, parserClass argumentListEqualsDelimiter, value asString ].
+		stringToAdd := parserClass argumentListStartDelimiter, stringToAdd allButFirst.
+		self figure: aFigureUrl, stringToAdd withDescription: aDescription ]
+]
+
 { #category : #header }
 PRMicrodownTextualBuilder >> header: aBloc withLevel: anInteger [
 	self raw: (parserClass headerMarkup repeat: anInteger).

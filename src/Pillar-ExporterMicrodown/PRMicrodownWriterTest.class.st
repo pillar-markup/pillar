@@ -124,16 +124,12 @@ PRMicrodownWriterTest >> testFigure [
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithArgument [
 	"![Hello Pharo](url|label=fig&caption=This is a caption."
-	self skip. 
-	self flag: #todo.
 	self testWithInitialText: (builder figure: 'url|label=fig1&caption=This is **a** caption.&width=80' withDescription: self exampleText; contents)
 ]
 
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithArgumentContainingFormatting [
 	"![Hello Pharo](url|label=fig&caption=This is a caption and it can contain **bol** but also `code`."
-	self skip. 
-	self flag: #todo.
 	self testWithInitialText: (builder figure: 'url|label=fig&caption=This is a caption and it can contain **bol** but also `code`' withDescription: self exampleText; contents)
 ]
 
