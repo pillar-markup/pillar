@@ -88,7 +88,7 @@ PRMicrodownWriter >> visitFigure: aFigure [
 	| figureName figureLink |
 	figureName := aFigure text.
 	figureLink := aFigure reference path.
-	canvas figure: figureLink withDescription: figureName.
+	canvas figure: figureLink withDescription: figureName withParameters: aFigure parameters
 ]
 
 { #category : #'visiting - document' }
