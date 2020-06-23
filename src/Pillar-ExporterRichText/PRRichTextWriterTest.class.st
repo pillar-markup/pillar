@@ -133,8 +133,7 @@ PRRichTextWriterTest >> testCodeBlock [
 	self assert: runs second first amount equals: 1.
 	self assert: runs runs equals:  #(1 3 1 15 1 1).
 	"
-	self assert: richText string equals: '
-1 + 2 
+	self assert: richText string equals: '1 + 2 
 	* 3  
 
 '
