@@ -57,3 +57,8 @@ PRPillarState >> next [
 PRPillarState >> parser [
 	^ PRPillarParser
 ]
+
+{ #category : #accessing }
+PRPillarState >> writer [
+	^ PRPillarWriter
+]
