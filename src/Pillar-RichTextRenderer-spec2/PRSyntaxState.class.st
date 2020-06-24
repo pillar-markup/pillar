@@ -36,3 +36,16 @@ PRSyntaxState >> parse: aText [
 PRSyntaxState >> parser [
 	^ self subclassResponsibility 
 ]
+
+{ #category : #writing }
+PRSyntaxState >> write: aStringOrStream [
+	| parsedAsPillar writtenText|
+	parsedAsPillar := self parse: aStringOrStream.
+	writtenText := self next writer new start: parsedAsPillar; contents.
+	^ writtenText
+]
+
+{ #category : #accessing }
+PRSyntaxState >> writer [
+	^ self subclassResponsibility 
+]

@@ -9,6 +9,7 @@ Features:
 - Render: see the Richtext result of your markuped text
 - Get example: print an example markuped text which covers characteristic grammar
 - Change input syntax: switch between Pillar or MicroDown markup syntax
+- Convert: open a new presenter with your input text converted into the other syntax using associate writer
 
 **For now, export feature is unavailable, so it has been removed from menu - but relative classes and methods in code exist**
 
@@ -52,12 +53,22 @@ PREditorPresenter class >> open [
 	^ self new openWithSpec
 ]
 
+{ #category : #examples }
+PREditorPresenter class >> openWithText: anInputText withSyntaxState: aSyntaxState [
+	| presenter |
+	presenter := self new.
+	presenter initializePresentersWithText: anInputText withSyntax: aSyntaxState.
+	^ presenter openWithSpec
+]
+
 { #category : #actions }
 PREditorPresenter >> changeAction [
 	"CHANGE button is pressed: change input syntax with next syntax state"
 	syntaxState := syntaxState next.
 	parser := syntaxState parser.
+	self exampleAction.
 	self screenLabelWith: syntaxState name.
+	self inform: 'Now, you''re working on ', syntaxState name
 ]
 
 { #category : #actions }
@@ -83,6 +94,14 @@ PREditorPresenter >> configPillarFolder [
 { #category : #accessing }
 PREditorPresenter >> configPillarFolder: aDirectory [
 	configPillarFolder := aDirectory 
+]
+
+{ #category : #actions }
+PREditorPresenter >> convertAction [
+	| convertedInput |
+	convertedInput := syntaxState write: textInput text.
+	self class openWithText: convertedInput withSyntaxState: syntaxState next.
+	self inform: 'A new Editor appears, set on ', syntaxState next name
 ]
 
 { #category : #accessing }
@@ -121,8 +140,16 @@ PREditorPresenter >> initialExtent [
 
 { #category : #initialization }
 PREditorPresenter >> initializePresenters [
+	| initialText initialSyntaxState |
+	initialSyntaxState := PRPillarState new.
+	initialText := '% Type your marked-up text here. Render it and see right the output generated as rich text', String cr, String cr, initialSyntaxState exampleText.
+	self initializePresentersWithText: initialText withSyntax: initialSyntaxState
+]
+
+{ #category : #initialization }
+PREditorPresenter >> initializePresentersWithText: anInputText withSyntax: aSyntaxState [
 	morphWriter := PRRichTextComposer new.
-	syntaxState := PRPillarState new.
+	syntaxState := aSyntaxState.
 	parser := syntaxState parser.
 
 	self menu applyTo: self.
@@ -130,7 +157,7 @@ PREditorPresenter >> initializePresenters [
 	textInput := self newText.
 	textInput 
 		autoAccept: true; 
-		text: '% Type your marked-up text here. Render it and see right the output generated as rich text', String cr, String cr, syntaxState exampleText.
+		text: anInputText.
 	
 	textOutput := self newText.
 	textOutput text: ''.
@@ -208,6 +235,14 @@ PREditorPresenter >> menu [
 						description: 'Switch with MicroDown or Pillar';
 						icon: (self iconNamed: #changeUpdateIcon);
 						action: [ self changeAction ] 
+				].
+			group
+				addItem: [ :item | 
+					item
+						name: 'Convert';
+						description: 'Open a new editor with input text converted in the other syntax';
+						icon: (self iconNamed: #glamorousRestartIcon);
+						action: [ self convertAction ] 
 				]	
 		];
 	"addGroup: [ :group | 
@@ -272,8 +307,19 @@ PREditorPresenter >> screenLabelWith: aName [
 ]
 
 { #category : #accessing }
+PREditorPresenter >> syntaxState [
+	^ syntaxState
+]
+
+{ #category : #accessing }
+PREditorPresenter >> syntaxState: aSyntaxState [
+	syntaxState := aSyntaxState.
+	parser := aSyntaxState parser.
+]
+
+{ #category : #accessing }
 PREditorPresenter >> textInputText: aStringOrNil [
-	textInput text = aStringOrNil asString
+	textInput text: aStringOrNil asString
 ]
 
 { #category : #accessing }

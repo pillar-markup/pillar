@@ -62,3 +62,8 @@ PRMicroDownState >> parse: aText [
 PRMicroDownState >> parser [
 	^ MicroDownParser 
 ]
+
+{ #category : #accessing }
+PRMicroDownState >> writer [
+	^ PRMicrodownWriter
+]
