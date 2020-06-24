@@ -136,15 +136,17 @@ PRMicrodownWriterTest >> testFigureWithArgumentContainingFormatting [
 { #category : #'tests - header' }
 PRMicrodownWriterTest >> testHeader [
 	"# Hello Pharo"
-	
-	self testWithInitialText: (builder header: [:b | self exampleText] withLevel: 1; contents)
+	| text |
+	text := (builder header: [:b |  b text: self exampleText] withLevel: 1; contents).
+	self assert: ('*Pharo*' match: text). 
+	self testWithInitialText: text
 ]
 
 { #category : #'tests - header' }
 PRMicrodownWriterTest >> testHeaderLvl3 [
 	"### Hello Pharo"
 	
-	self testWithInitialText: (builder header: [:b | self exampleText] withLevel: 3; contents)
+	self testWithInitialText: (builder header: [:b |  b text: self exampleText] withLevel: 3; contents)
 
 ]
 
