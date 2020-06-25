@@ -1,3 +1,6 @@
+"
+I am a commandline to **check the code in all the codeblocks of a file, then I generate a report**.
+"
 Class {
 	#name : #ClapPillarCheckCommand,
 	#superclass : #ClapPillarCommand,
