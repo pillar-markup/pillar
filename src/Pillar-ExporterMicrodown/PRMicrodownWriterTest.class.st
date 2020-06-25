@@ -47,7 +47,7 @@ PRMicrodownWriterTest >> setUp [
 	super setUp.
 	parser := MicroDownParser new.
 	writer := PRMicrodownWriter new.
-	builder := PRMicrodownTextualBuilder on: String new writeStream
+	builder := MicMicrodownTextualBuilder on: String new writeStream
 
 	
 ]

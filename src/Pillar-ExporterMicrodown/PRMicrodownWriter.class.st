@@ -35,7 +35,7 @@ PRMicrodownWriter class >> writerName [
 
 { #category : #accessing }
 PRMicrodownWriter >> canvasClass [
-	^ PRMicrodownTextualBuilder
+	^ MicMicrodownTextualBuilder
 ]
 
 { #category : #accessing }
