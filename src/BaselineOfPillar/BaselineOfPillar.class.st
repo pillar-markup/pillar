@@ -27,11 +27,6 @@ BaselineOfPillar >> baseline: spec [
 				baseline: 'ContainersPropertyEnvironment'
 				with: [ spec repository: 'github://Ducasse/Containers-PropertyEnvironment:v1.0.0' ].
 				
-			spec
-				baseline: 'FileDialog'
-				with: [ spec repository: 'github://Ducasse/file-dialog/repository' ].	
-					
-			spec package: 'Pillar-RichTextRenderer-spec2' with: [ spec requires: #('FileDialog' 'Pillar-ExporterRichText') ].
 				
 			spec
 				baseline: 'PetitParser2Core' with: [
