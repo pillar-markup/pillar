@@ -1,11 +1,9 @@
 "
-# PEAR: Pillar Editor And Renderer
-**Pear **is an editor and RichText renderer for both Pillar and MicroDown syntaxes, developed by Laurine Dargaud (2020).
-Pear implements a Spec2 Presenter interface.
+**Pear** is an editor and RichText renderer for both Pillar and MicroDown syntaxes, developed by Laurine Dargaud (2020). PEAR stands for Pillar Editor And Renderer. It is implemented a Spec2.
 
-**Open me executing the following method : `PRPearPresenter class>>#open`**
+Open me executing the following method: `PRPearPresenter class>>#open`
 
-## Features
+### Features
 - **New:** open a new file
 - **Open:** open a existing text file from your directories
 - **Save:** save your new file or your opened file
