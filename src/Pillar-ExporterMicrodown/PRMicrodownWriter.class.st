@@ -94,8 +94,11 @@ PRMicrodownWriter >> visitFigure: aFigure [
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitHeader: aHeader [
 	| level |
+	canvas newLine.
 	level := aHeader level min: 6 max: 1.
-	canvas duringHeaderLevel: level do: [ super visitHeader: aHeader ]
+	canvas duringHeaderLevel: level do: [ super visitHeader: aHeader ].
+	canvas newLine.
+	
 ]
 
 { #category : #'visiting - document' }
