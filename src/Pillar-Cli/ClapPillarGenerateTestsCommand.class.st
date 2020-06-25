@@ -1,3 +1,6 @@
+"
+I am a commandline to **generate tests from examples in the codeblocks of some file(s)**.
+"
 Class {
 	#name : #ClapPillarGenerateTestsCommand,
 	#superclass : #ClapPillarCommand,

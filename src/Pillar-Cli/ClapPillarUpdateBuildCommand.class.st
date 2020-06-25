@@ -1,3 +1,10 @@
+"
+I am a commandline to **update archetypes in build repository**.
+
+Indeed, directory 'archetypes' used by CLAP isn't updated automatically by Git or Iceberg since it's located in another place.
+
+So use me when a file in 'archetype' changed to update it.
+"
 Class {
 	#name : #ClapPillarUpdateBuildCommand,
 	#superclass : #ClapPillarCommand,
