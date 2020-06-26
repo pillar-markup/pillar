@@ -61,33 +61,39 @@ PRScreenshotTransformerTest >> testTransformerCreatesFigureReference [
 { #category : #running }
 PRScreenshotTransformerTest >> testTransformerCreatesFile [
 	"The test may fail if launched at a when changing minutes if you are unlucky"
+
 	| doc dateStamp screenshotDir |
 	self skip.
 	doc := PRDocument new
-				add:
-				(PRScreenshotAnnotation new
-					parameterAt: 'class' put: 'Integer';
-					parameterAt: 'method' put: 'isPowerOfTwo';
-					parameterAt: 'caption' put: 'The method determining if an integer is a power of two';
-					parameterAt: 'width' put: '50';
-					parameterAt: 'label' put: 'times2';
-				yourself); yourself.
-	dateStamp := (String streamContents:
-					[ :s | s << 'Integer_isPowerOfTwo'. 
-						    s << (('-', ((DateAndTime year: (DateAndTime now year) 
-											       month: (DateAndTime now month) 
-											       day: (DateAndTime now dayOfMonth)
-													 hour: (DateAndTime now hour)
-												    minute: (DateAndTime now minute))
-										asString splitOn:(DateAndTime now minute) asString) first) copyReplaceAll: ':' with: '-').
-							s << '*']).
-						    
-	((PRScreenshotTransformer withContext: (PRProject on: testingWorkingDirectory )) start: doc).
+		add:
+			(PRScreenshotAnnotation new
+				parameterAt: 'class' put: 'Integer';
+				parameterAt: 'method' put: 'isPowerOfTwo';
+				parameterAt: 'caption' put: 'The method determining if an integer is a power of two';
+				parameterAt: 'width' put: '50';
+				parameterAt: 'label' put: 'times2';
+				yourself);
+		yourself.
+	dateStamp := String
+		streamContents: [ :s | 
+			s << 'Integer_isPowerOfTwo'.
+			s
+				<<
+					('-'
+						,
+							((DateAndTime
+								year: DateAndTime now year
+								month: DateAndTime now month
+								day: DateAndTime now dayOfMonth
+								hour: DateAndTime now hour
+								minute: DateAndTime now minute) asString splitOn: DateAndTime now minute asString) first copyReplaceAll: ':' with: '-').
+			s << '*' ].
+
+	(PRScreenshotTransformer withContext: (PRProject on: testingWorkingDirectory)) start: doc.
 	5 seconds wait.
 	"because the screenshot needs the time to open and close the browser"
-	screenshotDir := (testingWorkingDirectory / 'figures' / 'screenshots').
-	self assert: screenshotDir children isNotEmpty.
-	self assert: screenshotDir hasChildren.
+	screenshotDir := testingWorkingDirectory / 'figures' / 'screenshots'.
+	self denyEmpty: screenshotDir children.
+	self assert: screenshotDir hasChildren
 	"self deny: (screenshotDir  childrenMatching: dateStamp) isEmpty."
-	
 ]

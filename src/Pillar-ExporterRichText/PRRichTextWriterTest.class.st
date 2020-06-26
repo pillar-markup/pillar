@@ -253,20 +253,20 @@ PRRichTextWriterTest >> testOrderedList [
 PRRichTextWriterTest >> testPreformatted [
 	| runs richText |
 	richText := self richTextFor: sample preformatted.
-"
+	"
 a Text for '
 foo
 barwith a space
 
 '
-"	
-	runs := richText runs.	
-	self assert: runs first isEmpty. 
+"
+	runs := richText runs.
+	self assertEmpty: runs first.
 	self assert: runs second first class equals: TextIndent.
 	self assert: runs second first amount equals: 1.
-	self assert: runs runs equals:  #(1 3 1 15 1 1).
-	self assert: richText string first equals: Character cr. 
-	self assert: richText string second equals: $f. 
+	self assert: runs runs equals: #(1 3 1 15 1 1).
+	self assert: richText string first equals: Character cr.
+	self assert: richText string second equals: $f
 ]
 
 { #category : #'skipped tests' }

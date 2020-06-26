@@ -128,7 +128,7 @@ PRReferenceTest >> testParameterCopy [
 
 { #category : #'tests-parameters' }
 PRReferenceTest >> testParameters [
-	self assert: self instance parameters isEmpty.
+	self assertEmpty: self instance parameters.
 	self instance parameters: (Array with: 'foo' -> 'bar').
 	self assert: self instance parameters size equals: 1
 ]

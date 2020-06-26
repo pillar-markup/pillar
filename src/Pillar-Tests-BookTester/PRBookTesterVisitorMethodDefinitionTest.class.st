@@ -29,9 +29,7 @@ PRBookTesterVisitorMethodDefinitionTest >> tearDown [
 
 { #category : #'tests-class/method definition' }
 PRBookTesterVisitorMethodDefinitionTest >> testVisitClassDefinitionValid [
-	
-  | docText doc bTester |
-		
+	| docText doc bTester |
 	docText := '[[[classDefinition=true
 PRBookTestDummyClassTest subclass: #PRBookTestDummyClassCreationTest
 	instanceVariableNames: ''''
@@ -41,9 +39,9 @@ PRBookTestDummyClassTest subclass: #PRBookTestDummyClassCreationTest
 '.
 	doc := PRPillarParser new parse: docText.
 	bTester := PRBookTesterVisitor new.
-	bTester visitCodeblockClassDefinition: doc children first. 
-	self assert: bTester failedTests isEmpty.
-	self assert: bTester validTests size equals: 1.
+	bTester visitCodeblockClassDefinition: doc children first.
+	self assertEmpty: bTester failedTests.
+	self assert: bTester validTests size equals: 1
 ]
 
 { #category : #'tests-class/method definition' }
@@ -63,8 +61,7 @@ PRBookTestDummyMethodDefinitionTest >> methodTestDefinitionCreatesTest
 
 { #category : #'tests-class/method definition' }
 PRBookTesterVisitorMethodDefinitionTest >> testVisitMethodDefinitionFailing [
-	
-  | docText doc bTester |
+	| docText doc bTester |
 	docText := '[[[methodDefinition=true
 PRUnexistingClass >> methodTestDefinitionCreatesTest
 ^ ''I am a method of the class '', self class asString
@@ -72,15 +69,14 @@ PRUnexistingClass >> methodTestDefinitionCreatesTest
 '.
 	doc := PRPillarParser new parse: docText.
 	bTester := PRBookTesterVisitor new.
-	bTester visitCodeblockMethodDefinition: doc children first. 
+	bTester visitCodeblockMethodDefinition: doc children first.
 	self assert: bTester failedTests size equals: 1.
-	self assert: bTester validTests isEmpty.
+	self assertEmpty: bTester validTests
 ]
 
 { #category : #'tests-class/method definition' }
 PRBookTesterVisitorMethodDefinitionTest >> testVisitMethodDefinitionFailingWithExpectedFailure [
-	
-  | docText doc bTester |
+	| docText doc bTester |
 	docText := '[[[methodDefinition=true|expectedFailure=true
 PRUnexistingClass >> methodTestDefinitionCreatesTest
 ^ ''I am a method of the class '', self class asString
@@ -88,15 +84,14 @@ PRUnexistingClass >> methodTestDefinitionCreatesTest
 '.
 	doc := PRPillarParser new parse: docText.
 	bTester := PRBookTesterVisitor new.
-	bTester visitCodeblockMethodDefinition: doc children first. 
-	self assert: bTester failedTests isEmpty.
-	self assert: bTester validTests size equals: 1.
+	bTester visitCodeblockMethodDefinition: doc children first.
+	self assertEmpty: bTester failedTests.
+	self assert: bTester validTests size equals: 1
 ]
 
 { #category : #'tests-class/method definition' }
 PRBookTesterVisitorMethodDefinitionTest >> testVisitMethodDefinitionOneBracket [
-	
-  | docText doc bTester |
+	| docText doc bTester |
 	docText := '[[[methodDefinition=true
 PRBookTestDummyMethodDefinition > methodTestDefinitionCreatesTest
 ^ ''I am a method of the class'', self class asString
@@ -104,15 +99,14 @@ PRBookTestDummyMethodDefinition > methodTestDefinitionCreatesTest
 '.
 	doc := PRPillarParser new parse: docText.
 	bTester := PRBookTesterVisitor new.
-	bTester visitCodeblockMethodDefinition: doc children first. 
+	bTester visitCodeblockMethodDefinition: doc children first.
 	self assert: bTester failedTests size equals: 1.
-	self assert: bTester validTests isEmpty.
+	self assertEmpty: bTester validTests
 ]
 
 { #category : #'tests-class/method definition' }
 PRBookTesterVisitorMethodDefinitionTest >> testVisitMethodDefinitionValid [
-	
-  | docText doc bTester |
+	| docText doc bTester |
 	docText := '[[[methodDefinition=true
 PRBookTestDummyMethodDefinitionTest >> methodTestDefinitionCreatesTest
 ^ ''I am a method of the class'', self class asString
@@ -120,15 +114,14 @@ PRBookTestDummyMethodDefinitionTest >> methodTestDefinitionCreatesTest
 '.
 	doc := PRPillarParser new parse: docText.
 	bTester := PRBookTesterVisitor new.
-	bTester visitCodeblockMethodDefinition: doc children first. 
-	self assert: bTester failedTests isEmpty.
-	self assert: bTester validTests size equals: 1.
+	bTester visitCodeblockMethodDefinition: doc children first.
+	self assertEmpty: bTester failedTests.
+	self assert: bTester validTests size equals: 1
 ]
 
 { #category : #'tests-class/method definition' }
 PRBookTesterVisitorMethodDefinitionTest >> testVisitMethodDefinitionValidClassSide [
-	
-  | docText doc bTester |
+	| docText doc bTester |
 	docText := '[[[methodDefinition=true
 PRBookTestDummyMethodDefinitionTest class>> methodTestDefinitionCreatesTest
 ^ ''I am a method of the class'', self class asString
@@ -136,9 +129,9 @@ PRBookTestDummyMethodDefinitionTest class>> methodTestDefinitionCreatesTest
 '.
 	doc := PRPillarParser new parse: docText.
 	bTester := PRBookTesterVisitor new.
-	bTester visitCodeblockMethodDefinition: doc children first. 
-	self assert: bTester failedTests isEmpty.
-	self assert: bTester validTests size equals: 1.
+	bTester visitCodeblockMethodDefinition: doc children first.
+	self assertEmpty: bTester failedTests.
+	self assert: bTester validTests size equals: 1
 ]
 
 { #category : #'tests-class/method definition' }

@@ -27,14 +27,13 @@ PREPubNavigationMenuWriterTest >> packageNamesUnderTest [
 { #category : #tests }
 PREPubNavigationMenuWriterTest >> testAnnotation [
 	| item |
-	{ 'note' . 'dothis' } do:
-	[	:annotation |	
-		item := PRAnnotatedParagraph new
-			annotation: annotation;
-			add: (PRText content: 'foo');
-			yourself.
-		self assert: (self write: item) isEmpty
-	].
+	{'note' . 'dothis'}
+		do: [ :annotation | 
+			item := PRAnnotatedParagraph new
+				annotation: annotation;
+				add: (PRText content: 'foo');
+				yourself.
+			self assertEmpty: (self write: item) ]
 ]
 
 { #category : #tests }
@@ -42,10 +41,10 @@ PREPubNavigationMenuWriterTest >> testConsecutiveTextsInAParagraphAreSeparatedBy
 	| item |
 	item := PRParagraph new
 		add: (PRText content: 'foo');
-		add: (PRLineBreak new);
+		add: PRLineBreak new;
 		add: (PRText content: 'bar');
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -55,7 +54,7 @@ PREPubNavigationMenuWriterTest >> testDefinitionList [
 		add: (self addText: 'foo' to: PRTermItem new);
 		add: (self addText: 'bar' to: PRDataItem new);
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -65,11 +64,11 @@ PREPubNavigationMenuWriterTest >> testExportingIsolatedRaw [
 	| item |
 	item := PRDocument new
 		add:
-				(PRParagraph new
-						add: (PRRaw content: '<div>foo</div>');
-						yourself);
+			(PRParagraph new
+				add: (PRRaw content: '<div>foo</div>');
+				yourself);
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -78,7 +77,7 @@ PREPubNavigationMenuWriterTest >> testFigure [
 	item := PRFigure new
 		reference: 'file://picture.png';
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -88,7 +87,7 @@ PREPubNavigationMenuWriterTest >> testFigureLabelGenerateAnchor [
 		reference: 'file://picture.png';
 		parameterAt: 'label' put: 'pierLogo';
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -105,7 +104,7 @@ PREPubNavigationMenuWriterTest >> testFigureReference [
 		add: ((PRInternalLink reference: '@pierLogo') counter: ((PRCascadingCounter maxLevel: 5) incrementAt: 2));
 		yourself.
 	self write: item.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -116,7 +115,7 @@ PREPubNavigationMenuWriterTest >> testFigureWithLabelAndWithCaptionAreExportedWi
 		add: (PRText content: 'caption');
 		label: 'label';
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -126,7 +125,7 @@ PREPubNavigationMenuWriterTest >> testFigureWithLabelAndWithoutCaptionAreExporte
 		reference: 'file://picture.png';
 		label: 'label';
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -137,7 +136,7 @@ PREPubNavigationMenuWriterTest >> testFigureWithWidth [
 		reference: 'file://picture.png';
 		parameterAt: 'width' put: width;
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -147,7 +146,7 @@ PREPubNavigationMenuWriterTest >> testFigureWithoutLabelAndWithCaptionAreExporte
 		reference: 'file://picture.png';
 		add: (PRText content: 'caption');
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -160,7 +159,7 @@ PREPubNavigationMenuWriterTest >> testFiguresHaveACaption [
 		label: 'picture';
 		add: (PRText content: caption);
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -171,7 +170,7 @@ PREPubNavigationMenuWriterTest >> testFootnote [
 		add: (PRFootnote noted: 'Bar');
 		add: (PRText content: 'leon');
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -185,11 +184,11 @@ PREPubNavigationMenuWriterTest >> testInternalLinkWithAliasWithRefWithAncorWithS
 	item := PRParagraph new
 		add: (PRAnchor named: 'foo');
 		add:
-				((PRInternalLink reference: 'ref.pillar@foo')
-						addAll: {(PRText content: 'Alias')};
-						yourself);
+			((PRInternalLink reference: 'ref.pillar@foo')
+				addAll: {(PRText content: 'Alias')};
+				yourself);
 		yourself.
-	self assert: (self writeWithSeparateOutputFiles: item) isEmpty
+	self assertEmpty: (self writeWithSeparateOutputFiles: item)
 ]
 
 { #category : #tests }
@@ -198,11 +197,11 @@ PREPubNavigationMenuWriterTest >> testInternalLinkWithAliasWithRefWithAncorWitho
 	item := PRParagraph new
 		add: (PRAnchor named: 'foo');
 		add:
-				((PRInternalLink reference: 'ref.pillar@foo')
-						addAll: {(PRText content: 'Alias')};
-						yourself);
+			((PRInternalLink reference: 'ref.pillar@foo')
+				addAll: {(PRText content: 'Alias')};
+				yourself);
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -211,11 +210,11 @@ PREPubNavigationMenuWriterTest >> testInternalLinkWithAliasWithReferenceWithoutA
 	item := PRParagraph new
 		add: (PRAnchor named: 'foo');
 		add:
-				((PRInternalLink reference: 'ref.pillar')
-						addAll: {(PRText content: 'Alias')};
-						yourself);
+			((PRInternalLink reference: 'ref.pillar')
+				addAll: {(PRText content: 'Alias')};
+				yourself);
 		yourself.
-	self assert: (self writeWithSeparateOutputFiles: item) isEmpty
+	self assertEmpty: (self writeWithSeparateOutputFiles: item)
 ]
 
 { #category : #tests }
@@ -224,11 +223,11 @@ PREPubNavigationMenuWriterTest >> testInternalLinkWithAliasWithReferenceWithoutA
 	item := PRParagraph new
 		add: (PRAnchor named: 'foo');
 		add:
-				((PRInternalLink reference: 'ref')
-						addAll: {(PRText content: 'Alias')};
-						yourself);
+			((PRInternalLink reference: 'ref')
+				addAll: {(PRText content: 'Alias')};
+				yourself);
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -237,11 +236,11 @@ PREPubNavigationMenuWriterTest >> testInternalLinkWithAliasWithoutReferenceWithA
 	item := PRParagraph new
 		add: (PRAnchor named: 'foo');
 		add:
-				((PRInternalLink reference: '@foo')
-						addAll: {(PRText content: 'Alias')};
-						yourself);
+			((PRInternalLink reference: '@foo')
+				addAll: {(PRText content: 'Alias')};
+				yourself);
 		yourself.
-	self assert: (self writeWithSeparateOutputFiles: item) isEmpty
+	self assertEmpty: (self writeWithSeparateOutputFiles: item)
 ]
 
 { #category : #tests }
@@ -250,11 +249,11 @@ PREPubNavigationMenuWriterTest >> testInternalLinkWithAliasWithoutReferenceWithA
 	item := PRParagraph new
 		add: (PRAnchor named: 'foo');
 		add:
-				((PRInternalLink reference: '@foo')
-						addAll: {(PRText content: 'Alias')};
-						yourself);
+			((PRInternalLink reference: '@foo')
+				addAll: {(PRText content: 'Alias')};
+				yourself);
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -264,7 +263,7 @@ PREPubNavigationMenuWriterTest >> testInternalLinkWithoutAliasWithRefWithAncorWi
 		add: (PRAnchor named: 'foo');
 		add: (PRInternalLink reference: 'ref.pillar@foo');
 		yourself.
-	self assert: (self writeWithSeparateOutputFiles: item) isEmpty
+	self assertEmpty: (self writeWithSeparateOutputFiles: item)
 ]
 
 { #category : #tests }
@@ -274,7 +273,7 @@ PREPubNavigationMenuWriterTest >> testInternalLinkWithoutAliasWithRefWithAncorWi
 		add: (PRAnchor named: 'foo');
 		add: (PRInternalLink reference: 'ref.pillar@foo');
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -284,7 +283,7 @@ PREPubNavigationMenuWriterTest >> testInternalLinkWithoutAliasWithReferenceWitho
 		add: (PRAnchor named: 'foo');
 		add: (PRInternalLink reference: 'ref.pillar');
 		yourself.
-	self assert: (self writeWithSeparateOutputFiles: item) isEmpty
+	self assertEmpty: (self writeWithSeparateOutputFiles: item)
 ]
 
 { #category : #tests }
@@ -293,11 +292,11 @@ PREPubNavigationMenuWriterTest >> testInternalLinkWithoutAliasWithReferenceWitho
 	item := PRParagraph new
 		add: (PRAnchor named: 'foo');
 		add:
-				((PRInternalLink reference: 'ref')
-						addAll: {(PRText content: 'Alias')};
-						yourself);
+			((PRInternalLink reference: 'ref')
+				addAll: {(PRText content: 'Alias')};
+				yourself);
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -305,11 +304,9 @@ PREPubNavigationMenuWriterTest >> testInternalLinkWithoutAliasWithoutReferenceWi
 	| item |
 	item := PRParagraph new
 		add: (PRAnchor named: 'foo');
-		add:
-				((PRInternalLink reference: '@foo')
-						yourself);
+		add: (PRInternalLink reference: '@foo') yourself;
 		yourself.
-	self assert: (self writeWithSeparateOutputFiles: item) isEmpty
+	self assertEmpty: (self writeWithSeparateOutputFiles: item)
 ]
 
 { #category : #tests }
@@ -317,11 +314,9 @@ PREPubNavigationMenuWriterTest >> testInternalLinkWithoutAliasWithoutReferenceWi
 	| item |
 	item := PRParagraph new
 		add: (PRAnchor named: 'foo');
-		add:
-				((PRInternalLink reference: '@foo')
-						yourself);
+		add: (PRInternalLink reference: '@foo') yourself;
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -330,14 +325,14 @@ PREPubNavigationMenuWriterTest >> testOrderedList [
 	item := PROrderedList new
 		add: (self addText: '1' to: PRListItem new);
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
 PREPubNavigationMenuWriterTest >> testParagraph [
 	| item |
 	item := self addText: 'foo' to: PRParagraph new.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -402,16 +397,15 @@ PREPubNavigationMenuWriterTest >> testReferenceToHeaderAnchor [
 PREPubNavigationMenuWriterTest >> testScript [
 	| item |
 	item := PRCodeblock content: 'foo'.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
 PREPubNavigationMenuWriterTest >> testScriptDefaultLanguage [
 	| item |
-	self supportSyntaxHighlighting
-		ifFalse: [ self skip ].
+	self supportSyntaxHighlighting ifFalse: [ self skip ].
 	item := PRCodeblock content: 'foo'.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -420,7 +414,7 @@ PREPubNavigationMenuWriterTest >> testScriptLabelGenerateAnchor [
 	item := (PRCodeblock content: 'foo')
 		label: 'myScript';
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -430,7 +424,7 @@ PREPubNavigationMenuWriterTest >> testScriptLanguage [
 	item := (PRCodeblock content: 'foo')
 		language: 'html';
 		yourself.
-	self assert: (self writeWithSeparateOutputFiles: item) isEmpty
+	self assertEmpty: (self writeWithSeparateOutputFiles: item)
 ]
 
 { #category : #tests }
@@ -439,7 +433,7 @@ PREPubNavigationMenuWriterTest >> testScriptWithFormattedCaption [
 	item := (PRCodeblock content: 'bar')
 		caption: '""foo""';
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -449,7 +443,7 @@ PREPubNavigationMenuWriterTest >> testScriptWithProblematicEval [
 	item := (PRCodeblock content: 'Object ' , nonExistingMethod)
 		eval: true;
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -457,9 +451,9 @@ PREPubNavigationMenuWriterTest >> testScriptsHaveACaption [
 	| item caption |
 	caption := 'A description'.
 	item := (PRCodeblock content: 'foo')
-		caption:  caption;
+		caption: caption;
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]
 
 { #category : #tests }
@@ -473,5 +467,5 @@ PREPubNavigationMenuWriterTest >> testUnorderedList [
 	item := PRUnorderedList new
 		add: (self addText: '1' to: PRListItem new);
 		yourself.
-	self assert: (self write: item) isEmpty
+	self assertEmpty: (self write: item)
 ]

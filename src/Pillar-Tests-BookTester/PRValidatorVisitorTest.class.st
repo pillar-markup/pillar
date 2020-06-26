@@ -156,20 +156,23 @@ See this figure *@UseCustom*
 { #category : #'test-figure' }
 PRValidatorVisitorTest >> testFigureExists [
 	| doc validator |
-	doc := PRPillarParserMain parse: '
+	doc := PRPillarParserMain
+		parse:
+			'
 +A description.>file://validator_figures/useCustom.png|width=75|label=UseCustom+
 '.
 	validator := PRValidatorVisitor new.
 	validator start: doc.
 	self assert: validator isSuccess.
-	self assert: validator anchors isNotEmpty.
+	self denyEmpty: validator anchors
 ]
 
 { #category : #'test-anchor-reference' }
 PRValidatorVisitorTest >> testIdentifiesAnchor [
-
 	| doc validator |
-	doc := PRPillarParserMain parse: '
+	doc := PRPillarParserMain
+		parse:
+			'
 # Header1
 @secheader1
 	
@@ -178,32 +181,35 @@ A reference to header *@secheader1*
 	validator := PRValidatorVisitor new.
 	validator start: doc.
 	self assert: validator isSuccess.
-	self assert: validator anchors isNotEmpty.
-	
+	self denyEmpty: validator anchors
 ]
 
 { #category : #'test-figure' }
 PRValidatorVisitorTest >> testIdentifiesFigureWithLabel [
 	| doc validator |
-	doc := PRPillarParserMain parse: '
+	doc := PRPillarParserMain
+		parse:
+			'
 +Use Custom SSH keys settings.>file://validator_figures/useCustom.png|width=75|label=UseCustom+
 '.
 	validator := PRValidatorVisitor new.
 	validator start: doc.
 	self assert: validator isSuccess.
-	self assert: validator anchors isNotEmpty.
+	self denyEmpty: validator anchors
 ]
 
 { #category : #'test-figure' }
 PRValidatorVisitorTest >> testIdentifiesFigureWithoutLabel [
 	| doc validator |
-	doc := PRPillarParserMain parse: '
+	doc := PRPillarParserMain
+		parse:
+			'
 +Use Custom SSH keys settings.>file://validator_figures/useCustom.png|width=75+
 '.
 	validator := PRValidatorVisitor new.
 	validator start: doc.
 	self assert: validator isSuccess.
-	self assert: validator anchors isEmpty.
+	self assertEmpty: validator anchors
 ]
 
 { #category : #'test-inputFileAnnotation' }
