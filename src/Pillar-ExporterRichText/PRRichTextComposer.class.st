@@ -64,6 +64,15 @@ PRRichTextComposer class >> bulletForLevel: level [
 		ifTrue: [ ^ $- asText ]
 ]
 
+{ #category : #stylers }
+PRRichTextComposer class >> codeStylerFor: aString [
+	<codeblockStylerFor: 'Smalltalk'>
+	
+	^SHRBTextStyler new 
+		isForWorkspace: true; 
+		styledTextFor: aString asText
+]
+
 { #category : #private }
 PRRichTextComposer class >> counterFor: counter atLevel: level [
 	| kind |
@@ -74,6 +83,14 @@ PRRichTextComposer class >> counterFor: counter atLevel: level [
 		ifTrue: [ ^ ($a asInteger + (counter - 1)) asCharacter asText , ')' ].
 	kind = 2
 		ifTrue: [ ^ ($A asInteger + (counter - 1)) asCharacter asText , ')' ]
+]
+
+{ #category : #stylers }
+PRRichTextComposer class >> defaultStyler: aString [
+	<codeblockStylerFor:'default'>
+	
+	"By default, render it as code"
+	^self codeStylerFor: aString
 ]
 
 { #category : #examples }
@@ -204,6 +221,27 @@ PRRichTextComposer class >> initialize [
 	OffLine := false
 ]
 
+{ #category : #stylers }
+PRRichTextComposer class >> languageStylerFor: aLanguage [
+	| stylers |
+	stylers := Dictionary
+		newFromAssociations: ((PragmaCollector
+						filter: [ :prg | prg selector = 'codeblockStylerFor:' ]) reset
+						collected collect: [ :p | p arguments first -> p method ]).
+	^ stylers
+		at: aLanguage
+		ifAbsent: [ self languageStylerFor: 'default' ]
+]
+
+{ #category : #stylers }
+PRRichTextComposer class >> methodStylerFor: aString [
+	<codeblockStylerFor:'Smalltalk'>
+	
+	^SHRBTextStyler new 
+		isForWorkspace: false; 
+		styledTextFor: aString asText
+]
+
 { #category : #'class initialization' }
 PRRichTextComposer class >> putOffline [
 
@@ -214,6 +252,24 @@ PRRichTextComposer class >> putOffline [
 PRRichTextComposer class >> putOnline [
 
 	OffLine := false
+]
+
+{ #category : #stylers }
+PRRichTextComposer class >> style: aString asLanguage: aLanguage [
+	"render aString according to the styler named aLanguage"
+	
+	| styler |
+	styler := self languageStylerFor: aLanguage.
+	^ styler
+		valueWithReceiver: styler methodClass soleInstance 
+		arguments: (Array with: aString)
+]
+
+{ #category : #stylers }
+PRRichTextComposer class >> textStyler: aString [
+	<codeblockStylerFor:'text'>
+	
+	^aString asText
 ]
 
 { #category : #accessing }
@@ -371,7 +427,7 @@ PRRichTextComposer >> visitCodeblock: aCodeBlock [
 		indentIn: [  
 			canvas
 				indentIn: [ 
-					canvas << (PRRichTextCodeblockStyler  
+					canvas << (self class  
 						style: aCodeBlock text 
 						asLanguage: aCodeBlock language originalName)
 			] ].
@@ -567,7 +623,7 @@ PRRichTextComposer >> visitPreformatted: aPreformatted [
 	canvas
 		indentIn: [ 
 			aPreformatted children do: [ :each | 
-				canvas << (PRRichTextCodeblockStyler textStyler: each text).
+				canvas << (self class textStyler: each text).
 				canvas newLine ].
 			"This is not really correct since the text should be interpreted."
 			"canvas << (PRRichTextCodeblockStyler textStyler: aPreformatted text)"].
