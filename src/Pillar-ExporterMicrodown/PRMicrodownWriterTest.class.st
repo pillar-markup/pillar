@@ -235,7 +235,7 @@ PRMicrodownWriterTest >> testInternalLink [
 PRMicrodownWriterTest >> testItalic [
 	"_Hello Pharo_"
 	
-	self testWithInitialText: (builder italic: self exampleText; contents)
+	self testWithInitialText: (builder paragraph: [ builder italic: self exampleText] ; contents)
 ]
 
 { #category : #'tests - formatting' }
@@ -243,14 +243,14 @@ PRMicrodownWriterTest >> testItalicMultipleLines [
 	"_Hello
 	Pharo_"
 	
-	self testWithInitialText: (builder italic: self exampleTextMultipleLines; contents)
+	self testWithInitialText: (builder paragraph: [ builder italic: self exampleTextMultipleLines]; contents)
 ]
 
 { #category : #'tests - formatting' }
 PRMicrodownWriterTest >> testMonospace [
 	"`Hello Pharo`"
 	
-	self testWithInitialText: (builder monospace: self exampleText; contents)
+	self testWithInitialText: (builder paragraph: [ builder monospace: self exampleText]; contents)
 ]
 
 { #category : #'tests - formatting' }
@@ -258,7 +258,7 @@ PRMicrodownWriterTest >> testMonospaceMultipleLines [
 	"`Hello
 	Pharo`"
 	
-	self testWithInitialText: (builder monospace: self exampleTextMultipleLines; contents)
+	self testWithInitialText: (builder paragraph: [ builder monospace: self exampleTextMultipleLines] ; contents)
 ]
 
 { #category : #'tests - paragraph' }
@@ -362,7 +362,7 @@ PRMicrodownWriterTest >> testSimpleCodeBlock [
 PRMicrodownWriterTest >> testStrike [
 	"~Hello Pharo~"
 	
-	self testWithInitialText: (builder strike: self exampleText; contents)
+	self testWithInitialText: (builder paragraph: [ builder strike: self exampleText]; contents)
 ]
 
 { #category : #'tests - formatting' }
@@ -370,7 +370,7 @@ PRMicrodownWriterTest >> testStrikeMultipleLines [
 	"~Hello
 	Pharo~"
 	
-	self testWithInitialText: (builder strike: self exampleTextMultipleLines; contents)
+	self testWithInitialText: (builder paragraph: [ builder strike: self exampleTextMultipleLines]; contents)
 ]
 
 { #category : #'tests - paragraph' }
