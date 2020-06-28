@@ -109,6 +109,17 @@ and this is just ""first"" line
 ]
 
 { #category : #examples }
+PRRichTextComposer class >> example10 [
+	<example>
+	(self asText:
+					'
+[[[language=PharoMethod
+1 + 2 * 3
+]]]
+') inspect
+]
+
+{ #category : #examples }
 PRRichTextComposer class >> example2 [
 	<example>
 	(self asText:
@@ -188,6 +199,29 @@ PRRichTextComposer class >> example7 [
 ]
 
 { #category : #examples }
+PRRichTextComposer class >> example8 [
+	<example>
+	(self asText:
+					'
+[[[language=PharoExpression
+1 + 2 * 3  
+]]]
+') inspect
+]
+
+{ #category : #examples }
+PRRichTextComposer class >> example9 [
+	<example>
+	(self asText:
+					'
+[[[language=PharoMethod
+foo: arg
+	^ arg + self
+]]]
+') inspect
+]
+
+{ #category : #examples }
 PRRichTextComposer class >> exampleLatexMath [
 	<example>
 	(PRRichTextComposer  asText:
@@ -199,6 +233,15 @@ V_i = C_0 - C_3
 ]]]
 Cool eh?
 ') inspect
+]
+
+{ #category : #stylers }
+PRRichTextComposer class >> expressionStylerFor: aString [
+	<codeblockStylerFor: 'PharoExpression'>
+	
+	^SHRBTextStyler new 
+		isForWorkspace: true; 
+		styledTextFor: aString asText
 ]
 
 { #category : #private }
@@ -235,11 +278,12 @@ PRRichTextComposer class >> languageStylerFor: aLanguage [
 
 { #category : #stylers }
 PRRichTextComposer class >> methodStylerFor: aString [
-	<codeblockStylerFor:'Smalltalk'>
+	<codeblockStylerFor:'PharoMethod'>
 	
-	^SHRBTextStyler new 
+	"when we use a pharo method for an expression the styler breaks for method pattern. So it should be fixed in the future but for now we make sure that at least it does not breaks."
+	^[ SHRBTextStyler new 
 		isForWorkspace: false; 
-		styledTextFor: aString asText
+		styledTextFor: aString asText ] on: SubscriptOutOfBounds do: [ aString asText ]
 ]
 
 { #category : #'class initialization' }
@@ -542,7 +586,7 @@ PRRichTextComposer >> visitHeader: aHeader [
 PRRichTextComposer >> visitHorizontalRule: anObject [
 	canvas newLineIfNotAlready.
 	canvas newLine.	
-	
+	canvas
 ]
 
 { #category : #'visiting -  format' }

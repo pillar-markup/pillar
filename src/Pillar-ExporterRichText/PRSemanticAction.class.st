@@ -1,3 +1,12 @@
+"
+I'm a simple class to determine what should be done when a monospaced text is displayed.
+
+```language=PharoExpression
+PRSemanticAction from: 'Point class>>#setX:setY:.
+sem hasEntity
+>>> true 
+```
+"
 Class {
 	#name : #PRSemanticAction,
 	#superclass : #Object,
@@ -6,7 +15,7 @@ Class {
 		'entity',
 		'tokens'
 	],
-	#category : #'Pillar-ExporterRichText'
+	#category : #'Pillar-ExporterRichText-Core'
 }
 
 { #category : #'instance creation' }
@@ -16,10 +25,11 @@ PRSemanticAction class >> from: aString [
 
 { #category : #'instance creation' }
 PRSemanticAction >> computeEntity [
-	"Try to guess what 
+	"Try to guess what the text is:
 		Point
 		Point >> #setX:setY: 
-		Point class >> 
+		Point class >> #setX:setY: 
+		#'PackageNameWithDashes'
 		"
 	| size |
 	tokens := RBScanner scanTokens: string.

@@ -1,13 +1,7 @@
 "
-I am a Canvas in the Canvas-Brush pattern.
-
-I keep an output stream of type `Text`.
-
+I am a Canvas in the Canvas-Brush pattern. I keep an output stream of type `Text`.
 As texts can have multiple annotations, I have a stack of brushes to paint a text with. 
-
 My only method for adding text to my stream is `<<`.
-
-To change the brushes used for the text you use my `pushBrush:` and `popBrush` methods.
 "
 Class {
 	#name : #PRRichTextCanvas,
@@ -47,6 +41,7 @@ PRRichTextCanvas >> includeAttribute: attr in: aBlock [
 
 { #category : #public }
 PRRichTextCanvas >> includeBrush: aBrush in: aBlock [
+	"Add for the course of aBlock, a brush (aBrush) to the currently used brushes."
 	brushes addLast: aBrush.
 	aBlock value.
 	brushes removeLast
