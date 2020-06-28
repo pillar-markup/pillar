@@ -1,6 +1,8 @@
 "
+***
 I am a visitor that produces rich text (class Text) based on a pillar document model.
 I am implemented using a canvas/brush pattern.
+
 
 !!Note The composer should be improved to render better and in nicer ways elements. 
 
@@ -421,6 +423,7 @@ PRRichTextComposer >> visitAnchor: anObject [
 PRRichTextComposer >> visitAnnotatedParagraph: anAnnotatedParagraph [
 	
 	canvas newLineIfNotAlready.
+	canvas newLine.
 	canvas
 		includeAttribute: self annotatedParagrapAlignment
 		in: [ 
@@ -583,10 +586,10 @@ PRRichTextComposer >> visitHeader: aHeader [
 ]
 
 { #category : #'visiting - document' }
-PRRichTextComposer >> visitHorizontalRule: anObject [
-	canvas newLineIfNotAlready.
+PRRichTextComposer >> visitHorizontalRule: anHorizontalLine [
+
+	canvas includeAttribute: TextEmphasis underlined in: [ canvas << ('     ' repeat: 20) asText ].
 	canvas newLine.	
-	canvas
 ]
 
 { #category : #'visiting -  format' }
@@ -655,7 +658,6 @@ PRRichTextComposer >> visitParagraph: anObject [
 	"canvas newLineIfNotAlready."
 	canvas newLine.
 	super visitParagraph: anObject.
-	canvas newLine.
 	canvas newLine.
 ]
 
