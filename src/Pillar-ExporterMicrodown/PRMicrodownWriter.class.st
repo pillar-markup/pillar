@@ -1,7 +1,8 @@
 "
 I'm an pillar to microdown exporter.
 
-### Known todo or limits  
+
+#### Known todo or limits  
 - externallink url is printing / and we should check it.
 - externallink should be tested with real URL.
 "
@@ -142,8 +143,7 @@ PRMicrodownWriter >> visitOrderedList: anUnorderedList [
 
 	canvas orderedListDuring: [
 		anUnorderedList children
-			do: [ :child | self visit: child ]
-			separatedBy: [ canvas newLine ] ]
+			do: [ :child | canvas orderedItem: [ self visit: child ] ] ]
 ]
 
 { #category : #'visiting - document' }
@@ -179,8 +179,7 @@ PRMicrodownWriter >> visitUnorderedList: anUnorderedList [
 
 	canvas unorderedListDuring: [
 		anUnorderedList children
-			do: [ :child | self visit: child ]
-			separatedBy: [ canvas newLine ] ]
+			do: [ :child | canvas item: [self visit: child ] ] ]
 ]
 
 { #category : #writing }

@@ -280,9 +280,9 @@ PRMicrodownWriterTest >> testOrderedList [
 	- Pharo"
 	| mictext |
 	mictext := (builder orderedListDuring: [
-		builder item: [ builder text: 'Hello' ].
-		builder item: [ builder text: 'Beautiful' ].
-		builder item: [ builder text: 'Microdown item list' ]];
+		builder orderedItem: [ builder text: 'Hello' ].
+		builder orderedItem: [ builder text: 'Beautiful' ].
+		builder orderedItem: [ builder text: 'Microdown item list' ]];
 		contents).
 	self testWithInitialText: mictext.
 	self assert: (mictext occurrencesOf: $.) equals: 3
@@ -296,8 +296,8 @@ PRMicrodownWriterTest >> testOrderedListWithFormat [
 	
 	| mictext |
 	mictext := (builder orderedListDuring: [
-						builder item: [ builder bold: 'Hello'; space; text: 'beautiful' ].
-						builder item: [ builder text: 'Pharo' ] ] ;
+						builder orderedItem: [ builder bold: 'Hello'; space; text: 'beautiful' ].
+						builder orderedItem: [ builder text: 'Pharo' ] ] ;
 						contents).
 	self testWithInitialText: mictext.
 	self assert: (mictext occurrencesOf: $.) equals: 2
@@ -415,7 +415,7 @@ PRMicrodownWriterTest >> testWithInitialText: expectedString [
 	
 	parsedBloc := self parser parse: expectedString readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
-	self assert: writtenText equals: expectedString.
+	self assert: expectedString equals: writtenText.
 	
 ]
 
