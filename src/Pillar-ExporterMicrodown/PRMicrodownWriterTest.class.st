@@ -261,6 +261,19 @@ PRMicrodownWriterTest >> testMonospaceMultipleLines [
 	self testWithInitialText: (builder monospace: self exampleTextMultipleLines; contents)
 ]
 
+{ #category : #'tests - paragraph' }
+PRMicrodownWriterTest >> testOneParagraph [
+
+	self testWithInitialText: (builder paragraph: [ builder text: 'Pharo is super cool']; contents)
+]
+
+{ #category : #'tests - paragraph' }
+PRMicrodownWriterTest >> testOneParagraphWithAdorment [
+	"**Pharo** is `COOL`"
+
+	self testWithInitialText: (builder paragraph: [ builder bold: 'Microdown'; text: ' is '; monospace: 'COOL' ])
+]
+
 { #category : #'tests - list' }
 PRMicrodownWriterTest >> testOrderedList [
 	"- Hello
@@ -271,7 +284,8 @@ PRMicrodownWriterTest >> testOrderedList [
 		builder item: [ builder text: 'Beautiful' ].
 		builder item: [ builder text: 'Microdown item list' ]];
 		contents).
-	self testWithInitialText: mictext
+	self testWithInitialText: mictext.
+	self assert: (mictext occurrencesOf: $.) equals: 3
 	
 ]
 
@@ -282,10 +296,11 @@ PRMicrodownWriterTest >> testOrderedListWithFormat [
 	
 	| mictext |
 	mictext := (builder orderedListDuring: [
-						builder item: [ builder bold: 'Hello'; space; text: 'beautiful...' ].
+						builder item: [ builder bold: 'Hello'; space; text: 'beautiful' ].
 						builder item: [ builder text: 'Pharo' ] ] ;
 						contents).
-	self testWithInitialText: mictext
+	self testWithInitialText: mictext.
+	self assert: (mictext occurrencesOf: $.) equals: 2
 ]
 
 { #category : #'tests - quote block' }
@@ -376,7 +391,8 @@ PRMicrodownWriterTest >> testUnorderedList [
 		builder item: [ builder text: 'Beautiful' ].
 		builder item: [ builder text: 'Microdown item list' ]];
 		contents).
-	self testWithInitialText: mictext
+	self testWithInitialText: mictext.
+	self assert: (mictext occurrencesOf: $-) equals: 3
 	
 ]
 
@@ -390,15 +406,16 @@ PRMicrodownWriterTest >> testUnorderedListWithFormat [
 						builder item: [ builder bold: 'Hello'; space; text: 'beautiful...' ].
 						builder item: [ builder text: 'Pharo' ] ] ;
 						contents).
-	self testWithInitialText: mictext
+	self testWithInitialText: mictext.
+	self assert: (mictext occurrencesOf: $-) equals: 2
 ]
 
 { #category : #running }
-PRMicrodownWriterTest >> testWithInitialText: aString [
-	initialText := aString.
-	parsedBloc := self parser parse: initialText readStream.
+PRMicrodownWriterTest >> testWithInitialText: expectedString [
+	
+	parsedBloc := self parser parse: expectedString readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
-	self assert: writtenText equals: initialText.
+	self assert: writtenText equals: expectedString.
 	
 ]
 

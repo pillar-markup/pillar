@@ -147,6 +147,14 @@ PRMicrodownWriter >> visitOrderedList: anUnorderedList [
 ]
 
 { #category : #'visiting - document' }
+PRMicrodownWriter >> visitParagraph: aParagraph [
+	
+	
+	aParagraph children do: [ :each | self visit: each ].
+	canvas newLine.
+]
+
+{ #category : #'visiting - document' }
 PRMicrodownWriter >> visitPreformatted: aPreformatted [
 
 	canvas writeQuoteCodeBlockDuring: [
@@ -173,4 +181,12 @@ PRMicrodownWriter >> visitUnorderedList: anUnorderedList [
 		anUnorderedList children
 			do: [ :child | self visit: child ]
 			separatedBy: [ canvas newLine ] ]
+]
+
+{ #category : #writing }
+PRMicrodownWriter >> writeParagraphDuring: aBlockClosure [ 
+	
+	canvas newLine.
+	aBlockClosure value.
+	canvas newLine
 ]
