@@ -72,7 +72,7 @@ and microdown too'; contents).
 PRMicrodownWriterTest >> testBold [
 	"**Hello Pharo**"
 	
-	self testWithInitialText: (builder bold: self exampleText; contents)
+	self testWithInitialText: (builder paragraph: [ builder bold: self exampleText]; contents)
 ]
 
 { #category : #'tests - formatting' }
@@ -80,16 +80,7 @@ PRMicrodownWriterTest >> testBoldMultipleLines [
 	"**Hello 
 	Pharo**"
 	
-	self testWithInitialText: (builder bold: self exampleTextMultipleLines; contents)
-]
-
-{ #category : #'tests - formatting' }
-PRMicrodownWriterTest >> testBoldMultipleLinesWithNewLine [
-	"**Hello 
-	
-	Pharo**"
-	
-	self testWithInitialText: (builder bold: self exampleTextMultipleLinesWithNewLine; contents)
+	self testWithInitialText: (builder paragraph: [ builder bold: self exampleTextMultipleLines] ; contents)
 ]
 
 { #category : #'tests - comments' }
@@ -111,26 +102,26 @@ PRMicrodownWriterTest >> testCommentOnMultipleLines [
 PRMicrodownWriterTest >> testExternalLink [
 	"[Hello Pharo](url)"
 	
-	self testWithInitialText: (builder externalLink: '/url' withDescription: self exampleText; contents)
+	self testWithInitialText: (builder paragraph: [builder externalLink: '/url' withDescription: self exampleText]; contents)
 ]
 
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigure [
 	"![Hello Pharo](url)"
 	
-	self testWithInitialText: (builder figure: 'url' withDescription: self exampleText; contents)
+	self testWithInitialText: (builder paragraph: [ builder figure: 'url' withDescription: self exampleText]; contents)
 ]
 
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithArgument [
 	"![Hello Pharo](url|label=fig&caption=This is a caption."
-	self testWithInitialText: (builder figure: 'url|label=fig1&caption=This is **a** caption.&width=80' withDescription: self exampleText; contents)
+	self testWithInitialText: (builder paragraph: [ builder figure: 'url|label=fig1&caption=This is **a** caption.&width=80' withDescription: self exampleText] ; contents)
 ]
 
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithArgumentContainingFormatting [
 	"![Hello Pharo](url|label=fig&caption=This is a caption and it can contain **bol** but also `code`."
-	self testWithInitialText: (builder figure: 'url|label=fig&caption=This is a caption and it can contain **bol** but also `code`' withDescription: self exampleText; contents)
+	self testWithInitialText: (builder paragraph: [ (builder figure: 'url|label=fig&caption=This is a caption and it can contain **bol** but also `code`' withDescription: self exampleText) ]; contents)
 ]
 
 { #category : #'tests - header' }
@@ -228,7 +219,7 @@ PRMicrodownWriterTest >> testHorizontalLineWithIgnoredText [
 PRMicrodownWriterTest >> testInternalLink [
 	"*@fig1*"
 	
-	self testWithInitialText: (builder internalLink: 'fig1' ; contents)
+	self testWithInitialText: (builder paragraph: [ builder internalLink: 'fig1' ]; contents)
 ]
 
 { #category : #'tests - formatting' }
@@ -271,7 +262,7 @@ PRMicrodownWriterTest >> testOneParagraph [
 PRMicrodownWriterTest >> testOneParagraphWithAdorment [
 	"**Pharo** is `COOL`"
 
-	self testWithInitialText: (builder paragraph: [ builder bold: 'Microdown'; text: ' is '; monospace: 'COOL' ])
+	self testWithInitialText: (builder paragraph: [ builder bold: 'Microdown'; text: ' is '; monospace: 'COOL' ]; contents)
 ]
 
 { #category : #'tests - list' }
@@ -378,7 +369,8 @@ PRMicrodownWriterTest >> testTwoParagraphs [
 	"Hello
 	
 	Pharo"
-	self testWithInitialText: (builder text: self exampleTextMultipleLinesWithNewLine ; contents)
+	self testWithInitialText: (builder paragraph: [builder text: 'hello'] ;
+												paragraph: [ builder text: 'Pharo' ] ; contents)
 ]
 
 { #category : #'tests - list' }
