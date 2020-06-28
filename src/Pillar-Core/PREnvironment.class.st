@@ -1,9 +1,10 @@
 "
 I represent an environment (as in LaTeX).
-I'm a PRDocumentGroup with a name and a parameter list. 
+I'm a `PRDocumentGroup` with a name and a parameter list. 
 Syntactically I'm delimited by a start and an end annotation. 
 I can be nested inside other environment. 
 
+```
 ${begin:card}$
 
 !! I'm Cool
@@ -12,7 +13,7 @@ A paragraph about the card.
 I will be interpreted as part of the card.
 
 ${end:card}$ 
-
+```
 
 "
 Class {
