@@ -54,6 +54,18 @@ PRPearPresenter class >> defaultSpec [
 	yourself
 ]
 
+{ #category : #'world menu' }
+PRPearPresenter class >> menuCommandOn: aBuilder [
+	<worldMenu>
+	(aBuilder item: #'Pear')
+		parent: #Tools;
+		action: [ self open ];
+		order: 40;
+		help: 'Pillar Editor And Renderer';
+		icon: (self iconNamed: #glamorousBrowseIcon).
+	aBuilder withSeparatorAfter
+]
+
 { #category : #examples }
 PRPearPresenter class >> open [
 	<example>
