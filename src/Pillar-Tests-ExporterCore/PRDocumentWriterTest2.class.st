@@ -329,7 +329,7 @@ PRDocumentWriterTest2 >> testCommentedLineNotVisibleInOutput [
 	| item result |
 	item := PRCommentedLine content: 'some comment'.
 	result := self write: item.
-	self assert: result isEmpty.
+	self assertEmpty: result
 ]
 
 { #category : #tests }
@@ -494,7 +494,7 @@ PRDocumentWriterTest2 >> testFootnote [
 
 { #category : #tests }
 PRDocumentWriterTest2 >> testHasName [
-	self assert: self actualClass writerName isNotEmpty
+	self denyEmpty: self actualClass writerName
 ]
 
 { #category : #tests }
@@ -879,9 +879,8 @@ PRDocumentWriterTest2 >> testScriptsHaveACaption [
 { #category : #tests }
 PRDocumentWriterTest2 >> testSpecifyPackageNamesUnderTest [
 	self assert: self packageNamesUnderTest isCollection.
-	self deny: self packageNamesUnderTest isEmpty.
-	self packageNamesUnderTest
-		do: [ :packageName | self deny: (RPackage organizer packageNamed: packageName) methodReferences isEmpty ]
+	self denyEmpty: self packageNamesUnderTest.
+	self packageNamesUnderTest do: [ :packageName | self denyEmpty: (RPackage organizer packageNamed: packageName) methodReferences ]
 ]
 
 { #category : #tests }
