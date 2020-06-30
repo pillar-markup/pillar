@@ -31,6 +31,10 @@ BaselineOfPillarMicro >> baseline: spec [
 		spec 
 			package: 'Pillar-Pear' 	
 			with: [ spec requires: #('Pillar-ExporterMicrodown' 'FileDialog') ].
+		
+		spec 
+			package: 'Pillar-Microdown' 
+			with: [ spec requires: #('Pillar' 'Microdown') ].
 			
 		spec 
 			package: 'Pillar-ExporterMicrodown' 
