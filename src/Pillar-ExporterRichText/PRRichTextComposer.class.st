@@ -535,6 +535,8 @@ PRRichTextComposer >> visitEndEnvironmentAnnotation: aEndEnvironmentAnnotation [
 
 { #category : #'visiting - document' }
 PRRichTextComposer >> visitEnvironment: anObject [
+	self flag: #fixme.
+	"What is this textBlock idea? Clean!"
 	anObject name = 'textBlock'
 		ifTrue:[
 			canvas indentIn: [  

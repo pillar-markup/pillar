@@ -96,11 +96,11 @@ PRVisitor >> visitEmptyParagraph: anObject [
 ]
 
 { #category : #'visiting-document' }
-PRVisitor >> visitEnvironment: anObject [
+PRVisitor >> visitEnvironment: anEnvironment [
 	"An environment object has been created based on the begin and end annotations.
 	My subclasses may want to introduce a preAction and postAction triggering. By default just visit all children."
-	
-	^ self visitDocumentGroup: anObject
+	self visitParameters: anEnvironment parameters.
+	^ self visitDocumentGroup: anEnvironment
 ]
 
 { #category : #'visiting-document' }
@@ -162,6 +162,13 @@ PRVisitor >> visitListItem: anObject [
 { #category : #'visiting-document' }
 PRVisitor >> visitMailLink: anObject [
 	^ self visitExternalLink: anObject
+]
+
+{ #category : #'visiting-document' }
+PRVisitor >> visitMathEnvironment: aMathEnvironment [
+	
+	self visitParameters: aMathEnvironment parameters.
+	^ self visitDocumentGroup: aMathEnvironment
 ]
 
 { #category : #'visiting-document' }

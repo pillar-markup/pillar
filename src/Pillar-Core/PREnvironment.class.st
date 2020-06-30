@@ -1,6 +1,6 @@
 "
 I represent an environment (as in LaTeX).
-I'm a `PRDocumentGroup` with a name and a parameter list. 
+I'm a `PRDocumentGroup` with a name. 
 Syntactically I'm delimited by a start and an end annotation. 
 I can be nested inside other environment. 
 
@@ -15,12 +15,18 @@ I will be interpreted as part of the card.
 ${end:card}$ 
 ```
 
+### Known Limits
+For now the parameters should be tested and available from the syntax and this is probably not the case. 
+
 "
 Class {
 	#name : #PREnvironment,
 	#superclass : #PRDocumentGroup,
+	#traits : 'PRTParametrizable',
+	#classTraits : 'PRTParametrizable classTrait',
 	#instVars : [
-		'name'
+		'name',
+		'parameters'
 	],
 	#category : #'Pillar-Core-Model'
 }
@@ -39,6 +45,12 @@ PREnvironment class >> named: aString [
 { #category : #visiting }
 PREnvironment >> accept: aVisitor [
 	^ aVisitor visitEnvironment: self
+]
+
+{ #category : #initialization }
+PREnvironment >> initialize [
+	super initialize.
+	parameters := OrderedDictionary new
 ]
 
 { #category : #accessing }
