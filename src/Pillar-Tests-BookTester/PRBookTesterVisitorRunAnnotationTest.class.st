@@ -71,7 +71,7 @@ ${run:testClass=PRBookTestDummyRunAnnotationTest}$'.
 
 { #category : #'tests-annotations' }
 PRBookTesterVisitorRunAnnotationTest >> testRunAnnotationReportGreenTests [
-	| doc docText bookTester|
+	| doc docText bookTester |
 	docText := '
 [[[methodDefinition=true
 PRBookTestDummyRunAnnotationTest>>test1
@@ -88,7 +88,7 @@ PRBookTestDummyRunAnnotationTest >>test2
 	self assert: self methodTest2 equals: ''test2''
 ]]]
 
-${run:testClass=PRBookTestDummyRunAnnotationTest}$'. 
+${run:testClass=PRBookTestDummyRunAnnotationTest}$'.
 	doc := PRPillarParser new parse: docText.
 	bookTester := PRBookTesterVisitor new.
 	bookTester start: doc.
@@ -96,12 +96,7 @@ ${run:testClass=PRBookTestDummyRunAnnotationTest}$'.
 	self assert: (PRBookTestDummyRunAnnotationTest methodDict keys includes: #methodTest2).
 	self assert: (PRBookTestDummyRunAnnotationTest methodDict keys includes: #test1).
 	self assert: (PRBookTestDummyRunAnnotationTest methodDict keys includes: #test2).
-	self assert: bookTester failedTests isEmpty.
+	self assertEmpty: bookTester failedTests.
 	"Three methodDefinition checking the compilation of those three methods + two test methods running"
-	self assert: bookTester validTests size equals: 5.
-
-	
-	
-	
-	
+	self assert: bookTester validTests size equals: 5
 ]

@@ -30,7 +30,6 @@ PRBookTesterVisitorTest >> setUp [
 
 { #category : #'tests - examples' }
 PRBookTesterVisitorTest >> testExampleCodeblock [
-	
 	| docText bTester |
 	docText := '[[[example=true
 3 + 4 
@@ -38,13 +37,12 @@ PRBookTesterVisitorTest >> testExampleCodeblock [
 ]]]
 '.
 	bTester := self parseAndTest: docText.
-	self assert: bTester failedTests isEmpty.
-	self assert: bTester validTests size equals: 1.
+	self assertEmpty: bTester failedTests.
+	self assert: bTester validTests size equals: 1
 ]
 
 { #category : #'tests - examples' }
 PRBookTesterVisitorTest >> testExampleCodeblockWithFailingTest [
-	
 	| docText bTester |
 	docText := '[[[example=true
 3 + ''12''
@@ -52,13 +50,12 @@ PRBookTesterVisitorTest >> testExampleCodeblockWithFailingTest [
 ]]]
 '.
 	bTester := self parseAndTest: docText.
-	self assert: bTester validTests isEmpty.
-	self assert: bTester failedTests size equals: 1.
+	self assertEmpty: bTester validTests.
+	self assert: bTester failedTests size equals: 1
 ]
 
 { #category : #'tests - examples' }
 PRBookTesterVisitorTest >> testExampleCodeblockWithFalseTest [
-	
 	| docText bTester |
 	docText := '[[[example=true
 3 + 4 
@@ -66,26 +63,24 @@ PRBookTesterVisitorTest >> testExampleCodeblockWithFalseTest [
 ]]]
 '.
 	bTester := self parseAndTest: docText.
-	self assert: bTester validTests isEmpty.
-	self assert: bTester failedTests size equals: 1.
+	self assertEmpty: bTester validTests.
+	self assert: bTester failedTests size equals: 1
 ]
 
 { #category : #'tests - examples' }
 PRBookTesterVisitorTest >> testExampleCodeblockWithNoBrakets [
-	
 	| docText bTester |
 	docText := '[[[example=true
 3 + 12	
 ]]]
 '.
 	bTester := self parseAndTest: docText.
-	self assert: bTester validTests isEmpty.
-	self assert: bTester failedTests size equals: 1.
+	self assertEmpty: bTester validTests.
+	self assert: bTester failedTests size equals: 1
 ]
 
 { #category : #'tests - examples' }
 PRBookTesterVisitorTest >> testExampleCodeblockWithTwoBrackets [
-	
 	| docText bTester |
 	docText := '[[[example=true
 3 + 12
@@ -93,43 +88,38 @@ PRBookTesterVisitorTest >> testExampleCodeblockWithTwoBrackets [
 ]]]
 '.
 	bTester := self parseAndTest: docText.
-	self assert: bTester validTests isEmpty.
-	self assert: bTester failedTests size equals: 1.
+	self assertEmpty: bTester validTests.
+	self assert: bTester failedTests size equals: 1
 ]
 
 { #category : #'tests - examples' }
 PRBookTesterVisitorTest >> testExpectedFailureForAFailure [
-
 	| docText bTester |
-	docText := 
-'[[[example=true|expectedFailure=true
+	docText := '[[[example=true|expectedFailure=true
 3 + 4 
 >>> 12		
 ]]]
 '.
 	bTester := self parseAndTest: docText.
-	self assert: bTester failedTests isEmpty.
-	self assert: bTester validTests size equals: 1.
+	self assertEmpty: bTester failedTests.
+	self assert: bTester validTests size equals: 1
 ]
 
 { #category : #'tests - examples' }
 PRBookTesterVisitorTest >> testExpectedFailureForARaisedException [
-
 	| docText bTester |
-	docText := 
-'[[[example=true|expectedFailure=true
+	docText := '[[[example=true|expectedFailure=true
 3 + ''a'' 
 >>> 12		
 ]]]
 '.
 	bTester := self parseAndTest: docText.
-	self assert: bTester failedTests isEmpty.
-	self assert: (bTester validTests size) equals: 1.
+	self assertEmpty: bTester failedTests.
+	self assert: bTester validTests size equals: 1
 ]
 
 { #category : #'tests - explanation' }
 PRBookTesterVisitorTest >> testExplanationIsExceptionCatchedInFailingTest [
-	
 	| docText doc bTester |
 	docText := '[[[example=true
 3 + ''12''
@@ -138,16 +128,14 @@ PRBookTesterVisitorTest >> testExplanationIsExceptionCatchedInFailingTest [
 '.
 	doc := PRPillarParser new parse: docText.
 	bTester := PRBookTesterVisitor new.
-	bTester start: doc. 
-	self assert: bTester validTests isEmpty.
+	bTester start: doc.
+	self assertEmpty: bTester validTests.
 	self assert: bTester failedTests size equals: 1.
-	self assert: bTester failedTests first explanation 
-		  equals: 'MessageNotUnderstood: Character>> #adaptToNumber:andSend:'.
+	self assert: bTester failedTests first explanation equals: 'MessageNotUnderstood: Character>> #adaptToNumber:andSend:'
 ]
 
 { #category : #'tests - explanation' }
 PRBookTesterVisitorTest >> testExplanationIsTestFailedWithoutException [
-	
 	| docText doc bTester |
 	docText := '[[[example=true
 3 + 13
@@ -156,15 +144,14 @@ PRBookTesterVisitorTest >> testExplanationIsTestFailedWithoutException [
 '.
 	doc := PRPillarParser new parse: docText.
 	bTester := PRBookTesterVisitor new.
-	bTester start: doc. 
-	self assert: bTester validTests isEmpty.
+	bTester start: doc.
+	self assertEmpty: bTester validTests.
 	self assert: bTester failedTests size equals: 1.
-	self assert: bTester failedTests first explanation equals: 'Test failed without raising an exception'.
+	self assert: bTester failedTests first explanation equals: 'Test failed without raising an exception'
 ]
 
 { #category : #'tests - explanation' }
 PRBookTesterVisitorTest >> testExplanationIsTestPassed [
-	
 	| docText doc bTester |
 	docText := '[[[example=true
 3 + 12
@@ -173,10 +160,10 @@ PRBookTesterVisitorTest >> testExplanationIsTestPassed [
 '.
 	doc := PRPillarParser new parse: docText.
 	bTester := PRBookTesterVisitor new.
-	bTester start: doc. 
+	bTester start: doc.
 	self assert: bTester validTests size equals: 1.
-	self assert: bTester failedTests isEmpty.
-	self assert: bTester validTests first explanation equals: 'Test passed'.
+	self assertEmpty: bTester failedTests.
+	self assert: bTester validTests first explanation equals: 'Test passed'
 ]
 
 { #category : #'Please FIX ME' }
@@ -264,17 +251,15 @@ PRBookTesterVisitorTest >> testLoaderAnnotationLoadsPackageChapter3 [
 
 { #category : #'tests - examples' }
 PRBookTesterVisitorTest >> testNoExampleCodeblock [
-
 	| docText bTester |
-	docText := 
-'[[[
+	docText := '[[[
 3 + 4 
 >>> 7		
 ]]]
 '.
 	bTester := self parseAndTest: docText.
-	self assert: bTester failedTests isEmpty.
-	self assert: bTester validTests isEmpty.
+	self assertEmpty: bTester failedTests.
+	self assertEmpty: bTester validTests
 ]
 
 { #category : #'tests - examples' }

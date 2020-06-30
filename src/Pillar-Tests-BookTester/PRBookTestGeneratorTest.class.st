@@ -60,13 +60,11 @@ PRBookTestGeneratorTest >> tearDown [
 { #category : #running }
 PRBookTestGeneratorTest >> testMethodCreationFailingCodeblock [
 	| codeBlock run |
-	testGenerator resultPackage: self packageName .
+	testGenerator resultPackage: self packageName.
 	testGenerator fileName: 'PRTTestMethodCreationFail'.
 	testGenerator createClassFrom: testGenerator fileName.
 	testGenerator codeBlockIndex: 1.
-	codeBlock := PRCodeblock
-		content: '3+7>>>11'
-		parameters: 'example=true'.
+	codeBlock := PRCodeblock content: '3+7>>>11' parameters: 'example=true'.
 	testGenerator createTestMethodFrom: codeBlock.
 	self assert: (self methodCreationFail methodDict includesKey: #test1).
 	self
@@ -76,24 +74,19 @@ PRBookTestGeneratorTest >> testMethodCreationFailingCodeblock [
 	
 	self assert: ((3+7)>>>11) isPaired'.
 	run := self methodCreationFail suite run.
-	self
-		assert: run failures size
-		equals: 1.
-	self assert: run errors isEmpty.
-	self assert: run passed isEmpty
+	self assert: run failures size equals: 1.
+	self assertEmpty: run errors.
+	self assertEmpty: run passed
 ]
 
 { #category : #running }
 PRBookTestGeneratorTest >> testMethodCreationSuccessfulCodeblock [
-
 	| codeBlock run |
 	testGenerator resultPackage: self packageName.
 	testGenerator fileName: 'PRTTestMethodCreationSuccess'.
 	testGenerator createClassFrom: testGenerator fileName.
 	testGenerator codeBlockIndex: 1.
-	codeBlock := PRCodeblock
-		content: '3+4>>>7'
-		parameters: 'testcase=true'.
+	codeBlock := PRCodeblock content: '3+4>>>7' parameters: 'testcase=true'.
 	testGenerator createTestMethodFrom: codeBlock.
 	self assert: (self methodCreationSuccess methodDict includesKey: #test1).
 	self
@@ -103,16 +96,13 @@ PRBookTestGeneratorTest >> testMethodCreationSuccessfulCodeblock [
 	
 	self assert: ((3+4)>>>7) isPaired'.
 	run := self methodCreationSuccess suite run.
-	self assert: run failures isEmpty.
-	self assert: run errors isEmpty.
-	self
-		assert: run passed size
-		equals: 1
+	self assertEmpty: run failures.
+	self assertEmpty: run errors.
+	self assert: run passed size equals: 1
 ]
 
 { #category : #running }
 PRBookTestGeneratorTest >> testMethodCreationSyntaxErrorCodeblock [
-
 	| codeBlock run |
 	testGenerator fileName: 'PRTTestMethodCreationError'.
 	testGenerator resultPackage: self packageName.
@@ -121,16 +111,18 @@ PRBookTestGeneratorTest >> testMethodCreationSyntaxErrorCodeblock [
 	codeBlock := PRCodeblock content: '(a1 at: 1) at: 1 put: ''sally''. a1 >>> #(#(''sally''))' parameters: 'testcase=true'.
 	testGenerator createTestMethodFrom: codeBlock.
 	self assert: (self methodCreationError methodDict includesKey: #test1).
-	self assert: (self methodCreationError methodDict at: #test1) sourceCode equals: 'test1
+	self
+		assert: (self methodCreationError methodDict at: #test1) sourceCode
+		equals:
+			'test1
 
 	self assert: Error signal description: ''A code block failed''. 
 	"SyntaxErrorNotification was raised with: '')'' expected"
 	"by the codeblock: ((a1 at: 1) at: 1 put: ''sally''. a1)>>>#(#(''sally''))"'.
 	run := self methodCreationError suite run.
-	self assert: run failures isEmpty.
+	self assertEmpty: run failures.
 	self assert: run errors size equals: 1.
-	self assert: run passed isEmpty.
-	
+	self assertEmpty: run passed
 ]
 
 { #category : #running }
