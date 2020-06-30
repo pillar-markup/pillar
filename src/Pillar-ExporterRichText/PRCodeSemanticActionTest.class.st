@@ -7,6 +7,30 @@ Class {
 	#category : #'Pillar-ExporterRichText-Tests'
 }
 
+{ #category : #'test - bogus entry' }
+PRCodeSemanticActionTest >> testDoubleDollars [
+
+	self deny: (PRSemanticAction from: '$$') hasEntity 
+]
+
+{ #category : #'test - bogus entry' }
+PRCodeSemanticActionTest >> testEmptyString [
+
+	self deny: (PRSemanticAction from: '') hasEntity 
+]
+
+{ #category : #'test - bogus entry' }
+PRCodeSemanticActionTest >> testMoreSpaces [
+
+	self deny: (PRSemanticAction from: '    ') hasEntity 
+]
+
+{ #category : #'test - bogus entry' }
+PRCodeSemanticActionTest >> testOneSpace [
+
+	self deny: (PRSemanticAction from: ' ') hasEntity 
+]
+
 { #category : #'tests - metaclass' }
 PRCodeSemanticActionTest >> testReferenceToABrokenMetaClass [
 
@@ -97,4 +121,10 @@ PRCodeSemanticActionTest >> testReferenceToNonExistingClass [
 	| text |
 	text := (PRMonospaceFormat with: (PRText content: 'Point22')) children first text.
 	self deny: (PRSemanticAction from: text) hasEntity
+]
+
+{ #category : #'test - bogus entry' }
+PRCodeSemanticActionTest >> testTwoSpaces [
+
+	self deny: (PRSemanticAction from: '  ') hasEntity 
 ]

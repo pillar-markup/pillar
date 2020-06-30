@@ -34,13 +34,13 @@ PRSemanticAction >> computeEntity [
 	| size |
 	tokens := RBScanner scanTokens: string.
 	size := tokens size.
-	
+	size = 0 ifTrue: [ ^ self ].
 	"either 'Point' for a class or #'''System-Caching''' for a package"
 	size = 1 
 		ifTrue: [ self getClassOrNil
 						ifNil: [self getPackageOrNil ].
 					^ self  ].
-
+	
 	"only 'Point class'"
 	size = 2
 		ifTrue: [ self getMetaClassOrNil. ^ self ].
@@ -59,7 +59,8 @@ PRSemanticAction >> entity [
 
 { #category : #'instance creation' }
 PRSemanticAction >> from: aString [
-
+	
+	aString ifEmpty: [ ^ self].
 	string := aString.
 	self computeEntity.
 ]
