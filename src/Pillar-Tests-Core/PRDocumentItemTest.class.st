@@ -26,11 +26,6 @@ Class {
 	#category : #'Pillar-Tests-Core'
 }
 
-{ #category : #testing }
-PRDocumentItemTest class >> isAbstract [
-	^ true
-]
-
 { #category : #private }
 PRDocumentItemTest >> actualClass [
 	^ PRDocumentItem

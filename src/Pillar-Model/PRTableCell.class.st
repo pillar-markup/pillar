@@ -19,11 +19,6 @@ PRTableCell class >> align: aSymbolePosition heading: aBoolean withAll: aCollect
 		yourself
 ]
 
-{ #category : #testing }
-PRTableCell class >> isAbstract [
-	^ false
-]
-
 { #category : #comparing }
 PRTableCell >> = anObject [
 	^ super = anObject

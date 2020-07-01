@@ -4,11 +4,6 @@ Class {
 	#category : #'Pillar-Tests-Core'
 }
 
-{ #category : #testing }
-PRDocumentGroupTest class >> isAbstract [
-	^ true
-]
-
 { #category : #private }
 PRDocumentGroupTest >> actualClass [
 	^ PRDocumentGroup

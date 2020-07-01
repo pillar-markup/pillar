@@ -7,11 +7,6 @@ Class {
 	#category : #'Pillar-Model-Document'
 }
 
-{ #category : #testing }
-PRDefinitionList class >> isAbstract [
-	^ false
-]
-
 { #category : #visiting }
 PRDefinitionList >> accept: aVisitor [
 	^ aVisitor visitDefinitionList: self

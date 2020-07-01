@@ -4,11 +4,6 @@ Class {
 	#category : #'Pillar-Tests-Core'
 }
 
-{ #category : #testing }
-PRListTest class >> isAbstract [
-	^ true
-]
-
 { #category : #private }
 PRListTest >> actualClass [
 	^ PRList

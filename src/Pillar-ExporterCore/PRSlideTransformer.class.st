@@ -30,12 +30,6 @@ PRSlideTransformer >> goal: aPRBuildGoal [
 	goal := aPRBuildGoal
 ]
 
-{ #category : #preparing }
-PRSlideTransformer >> prepareForExecutionOn: aPRProject [ 
-	
-	"Nothing"
-]
-
 { #category : #visiting }
 PRSlideTransformer >> start: anObject [
 

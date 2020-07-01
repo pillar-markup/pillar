@@ -4,11 +4,6 @@ Class {
 	#category : #'Pillar-ExporterCore-Base'
 }
 
-{ #category : #accessing }
-PRWritingTarget class >> builderName [
-	^ self subclassResponsibility 
-]
-
 { #category : #testing }
 PRWritingTarget class >> isAbstract [
 	^ self == PRWritingTarget

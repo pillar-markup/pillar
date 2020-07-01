@@ -8,11 +8,6 @@ Class {
 	#category : #'Pillar-Tests-Core'
 }
 
-{ #category : #testing }
-PRFormatTest class >> isAbstract [
-	^ true
-]
-
 { #category : #private }
 PRFormatTest >> actualClass [
 	^ PRFormat

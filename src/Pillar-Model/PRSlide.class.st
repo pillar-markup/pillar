@@ -15,11 +15,6 @@ Class {
 	#category : #'Pillar-Model-Document'
 }
 
-{ #category : #testing }
-PRSlide class >> isAbstract [
-	^ false
-]
-
 { #category : #'instance creation' }
 PRSlide class >> titled: aTitle [
 	^ self new

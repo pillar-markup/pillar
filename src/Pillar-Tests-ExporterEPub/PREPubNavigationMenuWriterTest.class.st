@@ -4,11 +4,6 @@ Class {
 	#category : #'Pillar-Tests-ExporterEPub'
 }
 
-{ #category : #testing }
-PREPubNavigationMenuWriterTest class >> isAbstract [
-	^false
-]
-
 { #category : #private }
 PREPubNavigationMenuWriterTest >> actualClass [
 	^PREPubNavigationMenuWriter 

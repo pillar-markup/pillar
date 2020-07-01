@@ -3,17 +3,12 @@ Class {
 	#superclass : #PRHTMLWriterTest,
 	#traits : 'PRTSliderWriterTest',
 	#classTraits : 'PRTSliderWriterTest classTrait',
-	#category : 'Pillar-Tests-ExporterDeckJS'
+	#category : #'Pillar-Tests-ExporterDeckJS'
 }
 
 { #category : #private }
 PRDeckJSWriterTest >> actualClass [
 	^ PRDeckJSWriter
-]
-
-{ #category : #private }
-PRDeckJSWriterTest >> configurationClass [
-	^ ConfigurationForPillar
 ]
 
 { #category : #requirements }

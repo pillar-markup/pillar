@@ -33,12 +33,6 @@ PRColumnsTransformer >> goal: aPRBuildGoal [
 	goal := aPRBuildGoal
 ]
 
-{ #category : #plugin }
-PRColumnsTransformer >> prepareForExecutionOn: aPRProject [ 
-	
-	"None"
-]
-
 { #category : #visiting }
 PRColumnsTransformer >> start: aDocumentItem [
 	| object |

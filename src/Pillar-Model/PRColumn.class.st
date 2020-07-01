@@ -10,11 +10,6 @@ Class {
 	#category : #'Pillar-Model-Document'
 }
 
-{ #category : #testing }
-PRColumn class >> isAbstract [
-	^ false
-]
-
 { #category : #'instance creation' }
 PRColumn class >> width: aNumber [
 	^ self new

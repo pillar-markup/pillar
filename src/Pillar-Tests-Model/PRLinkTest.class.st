@@ -1,13 +1,8 @@
 Class {
 	#name : #PRLinkTest,
 	#superclass : #PRReferenceTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#category : #'Pillar-Tests-Model-Document'
 }
-
-{ #category : #testing }
-PRLinkTest class >> isAbstract [
-	^ true
-]
 
 { #category : #private }
 PRLinkTest >> actualClass [
@@ -17,11 +12,6 @@ PRLinkTest >> actualClass [
 { #category : #private }
 PRLinkTest >> markup [
 	^ PRPillarParser markups at: PRLink
-]
-
-{ #category : #private }
-PRLinkTest >> referenceString [
-	self subclassResponsibility
 ]
 
 { #category : #tests }
