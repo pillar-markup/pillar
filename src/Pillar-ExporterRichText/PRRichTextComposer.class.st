@@ -470,6 +470,7 @@ PRRichTextComposer >> visitCitationAnnotation: aCitation [
 { #category : #'visiting - document' }
 PRRichTextComposer >> visitCodeblock: aCodeBlock [
 	canvas newLineIfNotAlready.
+	canvas newLine.
 	canvas
 		indentIn: [  
 			canvas
@@ -479,7 +480,7 @@ PRRichTextComposer >> visitCodeblock: aCodeBlock [
 						asLanguage: aCodeBlock language originalName)
 			] ].
 	canvas newLine.
-	canvas newLine
+
 ]
 
 { #category : #'visiting - unsupported' }
