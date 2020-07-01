@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'project'
 	],
-	#category : 'Pillar-Tests-ExporterHTML'
+	#category : #'Pillar-Tests-ExporterHTML'
 }
 
 { #category : #tests }
@@ -102,23 +102,24 @@ Where are you !!
 
 { #category : #initialization }
 PRHtmlDocumentTest >> setUp [
+	super setUp.
 	self createPillarFile1.
 	self createMustacheTemplateFile.
 	self createPillarConfFile.
-	project := PRProject new baseDirectory: FileSystem workingDirectory.
+	project := PRProject new baseDirectory: FileSystem workingDirectory
 	"htmlDocument := PRHtmlDocument new.
 	projectDirectory := '../test' asFileReference.
 	projectDirectory ensureDeleteAll.
 	projectDirectory ensureCreateDirectory.
 	project := PRProject on: projectDirectory."
-	
 ]
 
 { #category : #running }
 PRHtmlDocumentTest >> tearDown [
 	(FileSystem workingDirectory / 'input1.pillar') delete.
 	(FileSystem workingDirectory / 'pillar.conf') delete.
-	(FileSystem workingDirectory / 'html.mustache') delete
+	(FileSystem workingDirectory / 'html.mustache') delete.
+	super tearDown
 ]
 
 { #category : #tests }
