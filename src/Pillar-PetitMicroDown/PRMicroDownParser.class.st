@@ -353,12 +353,6 @@ PRMicroDownParser >> parameterUntilEndAnnotation [
 ]
 
 { #category : #'grammar - Parameter' }
-PRMicroDownParser >> parameterUntilNewline [
-	^ super parameterUntilNewline "==>
-			[ :array | self parameterFrom: array ]"
-]
-
-{ #category : #'grammar - Parameter' }
 PRMicroDownParser >> parameterValueFrom: array [
 	^ (PRParameterValue value: (self literalFrom: array third))
 		start: array second start;
@@ -436,11 +430,6 @@ PRMicroDownParser >> parametersObjectFrom: array [
 	^ (PRParameters with: array fourth first withAll: array fourth second)
 			start: array third start;
 			stop: array fifth stop
-]
-
-{ #category : #'grammar - Parameter' }
-PRMicroDownParser >> parametersUntilNewline [
-	^ super parametersUntilNewline
 ]
 
 { #category : #helpers }

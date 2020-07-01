@@ -357,12 +357,6 @@ PRPillarParser >> parameterUntilEndAnnotation [
 ]
 
 { #category : #'grammar - Parameter' }
-PRPillarParser >> parameterUntilNewline [
-	^ super parameterUntilNewline "==>
-			[ :array | self parameterFrom: array ]"
-]
-
-{ #category : #'grammar - Parameter' }
 PRPillarParser >> parameterValueFrom: array [
 	^ (PRParameterValue value: (self literalFrom: array third))
 		start: array second start;
@@ -440,11 +434,6 @@ PRPillarParser >> parametersObjectFrom: array [
 	^ (PRParameters with: array fourth first withAll: array fourth second)
 			start: array third start;
 			stop: array fifth stop
-]
-
-{ #category : #'grammar - Parameter' }
-PRPillarParser >> parametersUntilNewline [
-	^ super parametersUntilNewline
 ]
 
 { #category : #helpers }
