@@ -4,7 +4,7 @@ Strikethrough format
 Class {
 	#name : #PRStrikethroughFormat,
 	#superclass : #PRFormat,
-	#category : #'Pillar-Model-Document'
+	#category : #'Pillar-Core'
 }
 
 { #category : #testing }
