@@ -6,7 +6,7 @@ We will have to fix this.
 Class {
 	#name : #PRMathInTextAnnotation,
 	#superclass : #PRAbstractAnnotation,
-	#category : #'Pillar-Model-Document'
+	#category : #'Pillar-Core'
 }
 
 { #category : #protected }
