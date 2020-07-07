@@ -172,6 +172,11 @@ PRVisitor >> visitMathEnvironment: aMathEnvironment [
 ]
 
 { #category : #'visiting-document' }
+PRVisitor >> visitMathFormat: anObject [
+	^ self visitFormat: anObject
+]
+
+{ #category : #'visiting-document' }
 PRVisitor >> visitMonospaceFormat: anObject [
 	^ self visitFormat: anObject
 ]
