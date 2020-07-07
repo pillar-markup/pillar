@@ -1,7 +1,8 @@
 "
-Mockup of the annotation for math in text. We do not have a syntax from the pillar side 
-but this is for microdown. 
-We will have to fix this.
+Mockup of the annotation for math in text. 
+We do not have a syntax from the pillar side  but this is for Microdown where I correspond to `$ math here $`.
+May be this is better to have a subclass of PRFormat.
+We will have to revisit this.
 "
 Class {
 	#name : #PRMathInTextAnnotation,
