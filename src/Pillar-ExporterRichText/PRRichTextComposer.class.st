@@ -39,26 +39,16 @@ Class {
 
 { #category : #private }
 PRRichTextComposer class >> browse: urlString [
-	"I am a url on the form: browse://Class or browse://Class/method"
-
+	"urlString is of the form: browse://Class or browse://Class>>#method"
+	"self browse: 'browse://Class'"
+	"self browse: 'browse://Point>>#x'"
 	| parts sem |
-	parts := urlString substrings: '/'. 
-	self halt. 
-	sem := PRSemanticAction from: parts allButFirst
+	parts := urlString substrings: '/'.  
+	sem := PRSemanticAction from: parts second.
 	sem hasEntity 
 		ifTrue: [ sem entity browse ].
 	
-	"classPart := parts at: 2."
-	"handle class side also"
-	"theClass := (classPart endsWith: ' class')
-		ifFalse: [ classPart asClass ]
-		ifTrue: [ (classPart withoutSuffix: ' class') asClass class ].
-	method := parts size > 2
-		ifTrue: [ (parts at: 3) asSymbol ]
-		ifFalse: [ nil ].
-	method
-		ifNil: [ theClass browse ]
-		ifNotNil: [ (theClass >> method) browse ]"
+
 ]
 
 { #category : #private }
