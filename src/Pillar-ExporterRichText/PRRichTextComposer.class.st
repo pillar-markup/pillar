@@ -1,5 +1,4 @@
 "
-***
 I am a visitor that produces rich text (class Text) based on a pillar document model.
 I am implemented using a canvas/brush pattern.
 
@@ -281,7 +280,7 @@ PRRichTextComposer class >> headerLevelFont: level [
 PRRichTextComposer class >> initialize [ 
 	"self initialize"
 	OffLine := false.
-	self headerFontSizes: #(22 20 18 16 14 14).
+	self headerFontSizes: #(18 14 12 11 10 10).
 ]
 
 { #category : #stylers }
