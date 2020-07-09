@@ -32,6 +32,8 @@ Class {
 		'annotatedParagraphAlignment'
 	],
 	#classVars : [
+		'HeaderFontSizes',
+		'HeaderFonts',
 		'OffLine'
 	],
 	#category : #'Pillar-ExporterRichText-Core'
@@ -68,6 +70,20 @@ PRRichTextComposer class >> codeStylerFor: aString [
 	^SHRBTextStyler new 
 		isForWorkspace: true; 
 		styledTextFor: aString asText
+]
+
+{ #category : #private }
+PRRichTextComposer class >> computeHeaderFonts [
+	
+	HeaderFonts := Array new:  HeaderFontSizes size.
+	1 to: HeaderFontSizes size do: [ :index |
+		HeaderFonts at: index put: 
+			(TextFontReference
+				toFont:
+					(StrikeFont
+						familyName: 'Bitmap Source Sans Pro'
+						pointSize: (HeaderFontSizes at: index)))
+			  ]
 ]
 
 { #category : #private }
@@ -242,23 +258,30 @@ PRRichTextComposer class >> expressionStylerFor: aString [
 ]
 
 { #category : #private }
+PRRichTextComposer class >> headerFontSizes: anArray [
+
+	HeaderFontSizes := anArray.
+	self computeHeaderFonts 
+]
+
+{ #category : #private }
+PRRichTextComposer class >> headerFonts: anArray [
+
+	HeaderFontSizes := anArray
+]
+
+{ #category : #private }
 PRRichTextComposer class >> headerLevelFont: level [
 	"I return a font annotation to be used with Attributes"
 
-	"StrikeFont actualFamilyNames an OrderedCollection(#'Bitmap DejaVu Sans' #'Bitmap Source Code Pro' #'Bitmap Source Sans Pro')"
-
-	| fontSizes |
-	fontSizes := #(22 20 18 16 14 14).
-	^ TextFontReference
-		toFont:
-			(StrikeFont
-				familyName: 'Bitmap Source Sans Pro'
-				pointSize: (fontSizes at: level))
+	^ HeaderFonts at: level
 ]
 
 { #category : #'class initialization' }
 PRRichTextComposer class >> initialize [ 
-	OffLine := false
+	"self initialize"
+	OffLine := false.
+	self headerFontSizes: #(22 20 18 16 14 14).
 ]
 
 { #category : #stylers }
