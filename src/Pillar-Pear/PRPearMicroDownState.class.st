@@ -6,34 +6,34 @@ Class {
 
 { #category : #accessing }
 PRPearMicroDownState >> exampleText [
-	^ '# Heading one 
+	^ '# Header
 
-##Heading Twoo 
+A figure:
+![Pharologo](https://files.pharo.org/media/logo/logo.png|size=80&caption=Our great figure.)
 
-**this is bold**
+A link: [http://pharo.org](http://pharo.org)
 
-This is not bold 
-
-This is a list
-- item 1 **this is bold again my friend**
+Lists:
+- item 1
+  1. sub item 1
+  3. sub item 2
 - item 2
 
-This is an ordered collection
-1. one
-2. two 
+Horizontal line:
+***
 
-The following code shows the definition of the method `printOn:`
+Common formats: **Bold**, _italic_, `monospace`
 
-``` 
-Point class >> new
-	self foo	
-``` 
+Pharo hyperlinks in code: 
+- class `Point`, 
+- method `Point class`, `Point>>#setX:setY:`, and 
+- package `#’Microdown-Tests’ (for packages).
 
-```language=smalltalk 
-1 + 2 
+A codeblock:
+
+```language=Pharo&caption=Beautiful&label=Fig1
+   this is a codeblock
 ```
-
-# Heading one 
 
 '
 ]
