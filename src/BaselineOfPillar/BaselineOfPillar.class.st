@@ -21,7 +21,11 @@ BaselineOfPillar >> baseline: spec [
 	
 	spec 
 		for: #'pharo8.x'
-		do: [ spec  baseline: 'Clap' with: [ spec repository: 'github://cdlm/clap-st:pharo-pr5761' ]].
+		do: [ 
+				spec  baseline: 'Clap' with: [ spec repository: 'github://cdlm/clap-st:pharo-pr5761' ].
+				spec package: 'Pillar-Cli' with: [ 
+					spec requires: #( 'Clap' 'Pillar-ExporterCore' 'Pillar-Chrysal') ]
+			].
 		
 	spec
 		for: #common
@@ -45,7 +49,7 @@ BaselineOfPillar >> baseline: spec [
 				package: 'Pillar-Chrysal-Generator' with: [ spec requires: #('Chrysal') ];
 				"Only needed to regenerate the pillar configuration: it depends on Chrysal and Chrysal-Runtime"
 				package: 'Pillar-Cli' with: [ 
-					spec requires: #( 'Clap' 'Pillar-ExporterCore' 'Pillar-Chrysal') ];
+					spec requires: #( 'Pillar-ExporterCore' 'Pillar-Chrysal') ];
 				package: 'Pillar-Chrysal' with: [ spec requires: #('Pillar-ExporterCore') ];
 				"Pillar-Chrysal should only depend on Chrysal-Runtime but right now I do not know how to express that the
 				Chrysal (builder) is different from Chrysal-Runtime"
@@ -69,7 +73,7 @@ BaselineOfPillar >> baseline: spec [
 			
 				"Going from Pillar model to richText"
 				package: 'Pillar-ExporterRichText' 
-					with: [ spec requires: #('Pillar-Core' ) ];
+					with: [ spec requires: #('Pillar-Core' 'Pillar-Pear') ];
 				"Going from Pillar text to richText"
 				package: 'Pillar-PillarTextRichTextExporter' 
 					with: [ spec requires: #('Pillar-ExporterRichText' 'Pillar-PetitPillar') ];
@@ -131,7 +135,7 @@ BaselineOfPillar >> baseline: spec [
 				group: 'ePub exporter tests' with: #(#'Pillar-Tests-ExporterEPub');
 				
 				"from pillar model to richtext"
-				group: 'rich text exporter' with: #('Pillar-ExporterRichText');
+				group: 'rich text exporter' with: #('Pillar-ExporterRichText' 'Pillar-Pear');
 				
 				group: 'html exporter' with: #('Pillar-ExporterHTML');
 				group: 'html exporter tests' with: #('Pillar-Tests-ExporterHTML');
