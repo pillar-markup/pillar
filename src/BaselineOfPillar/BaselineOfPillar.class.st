@@ -19,7 +19,10 @@ BaselineOfPillar >> baseline: spec [
 		do: [ spec baseline: 'OSSubprocess' with: [ spec repository: 'github://pharo-contributions/OSSubprocess:v1.2.1/repository' ].
 			spec package: 'Pillar-Project' with: [ spec requires: 'OSSubprocess' ] ].
 	
-	
+	spec 
+		for: #'pharo8.x'
+		do: [ spec  baseline: 'Clap' with: [ spec repository: 'github://cdlm/clap-st:pharo-pr5761' ]].
+		
 	spec
 		for: #common
 		do: [ spec blessing: #baseline.
@@ -33,7 +36,7 @@ BaselineOfPillar >> baseline: spec [
 					spec
 					 	repository: 'github://kursjan/petitparser2' ];
 				baseline: 'Chrysal' with: [ spec repository: 'github://Ducasse/Chrysal:v1.0.0/src' ];
-				baseline: 'Clap' with: [ spec repository: 'github://cdlm/clap-st:pharo-pr5761' ];
+				"baseline: 'Clap' with: [ spec repository: 'github://cdlm/clap-st:pharo-pr5761' ];"
 				baseline: 'Mustache'
 					with: [ spec
 						repository: 'github://noha/mustache:v1.0/repository';
