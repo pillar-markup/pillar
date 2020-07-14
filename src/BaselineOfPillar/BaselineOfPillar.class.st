@@ -24,8 +24,7 @@ BaselineOfPillar >> baseline: spec [
 		do: [ 
 				spec  baseline: 'Clap' with: [ spec repository: 'github://cdlm/clap-st:pharo-pr5761' ].
 				spec package: 'Pillar-Cli' with: [ 
-					spec requires: #( 'Clap' 'Pillar-ExporterCore' 'Pillar-Chrysal') ]
-			].
+					spec requires: #( 'Clap' 'Pillar-ExporterCore' 'Pillar-Chrysal') ] ].
 		
 	spec
 		for: #common
@@ -36,9 +35,15 @@ BaselineOfPillar >> baseline: spec [
 				
 			spec
 				baseline: 'PetitParser2Core' with: [ spec repository: 'github://kursjan/petitparser2' ];
-				baseline: 'Chrysal' with: [ spec repository: 'github://Ducasse/Chrysal:v1.0.0/src' ];
-				"baseline: 'Clap' with: [ spec repository: 'github://cdlm/clap-st:pharo-pr5761' ];"
-				baseline: 'Mustache'
+				baseline: 'Chrysal' with: [ spec repository: 'github://Ducasse/Chrysal:v1.0.0/src' ].
+		
+			spec baseline: 'Clap' with: [ 
+					| repository |
+					repository := self packageRepositoryURL.
+					repository = '' ifTrue: [ repository := 'github://cdlm/clap-st:pharo-pr5761' ].
+					spec repository: repository ].
+		
+			spec baseline: 'Mustache'
 					with: [ spec
 						repository: 'github://noha/mustache:v1.0/repository';
 						loads: #('Core' 'Tests') ].
