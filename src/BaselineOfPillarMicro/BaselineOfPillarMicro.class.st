@@ -19,10 +19,12 @@ BaselineOfPillarMicro >> baseline: spec [
 	
 	spec for: #'common' do: [
 		spec baseline: 'Pillar' with: [ spec 
-				"loads: #('rich text exporter');"
+				loads: #('Pillar-ExporterCore');
 				repository: 'github://pillar-markup/pillar:dev-8/src' ].
 		spec baseline: 'Microdown' with: [ 
-			spec repository: 'github://pillar-markup/Microdown/src' ].	
+			spec 
+				loads: #('Microdown');
+				repository: 'github://pillar-markup/Microdown/src' ].	
 		
 		spec
 			baseline: 'FileDialog'
