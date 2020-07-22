@@ -1,3 +1,8 @@
+"
+This class contains tests designed in the way that we will be able to remove the pillar transformation in the future and still reuse the tests.
+Therefore the input is Microdown generated via the Microdown builder, then 
+such Microdown text is parsed and transformed as Pillar, then compare that the output is the same as the orginal generated code. 
+"
 Class {
 	#name : #PRMicrodownWriterTest,
 	#superclass : #TestCase,
@@ -235,6 +240,20 @@ PRMicrodownWriterTest >> testItalicMultipleLines [
 	Pharo_"
 	
 	self testWithInitialText: (builder paragraph: [ builder italic: self exampleTextMultipleLines]; contents)
+]
+
+{ #category : #'tests - meta data' }
+PRMicrodownWriterTest >> testMetaData [
+	
+	| mictext |
+	self skip.
+	"Pillar does not have a document element for metadata. Argh"
+	'{ "authors": "S. Ducasse", "title" : "Pharo by Example" }'.
+	mictext := (builder metaDataFromAssociation: { 'authors' -> 'S. Ducasse' .  'title' -> 'Pharo by Example' };
+		contents).
+	self testWithInitialText: mictext.
+	self assert: (mictext includes: '*authors*')
+	
 ]
 
 { #category : #'tests - formatting' }
