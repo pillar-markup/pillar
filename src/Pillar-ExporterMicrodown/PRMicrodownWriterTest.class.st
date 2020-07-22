@@ -247,8 +247,10 @@ PRMicrodownWriterTest >> testMetaData [
 	
 	| mictext |
 	self skip.
-	"Pillar does not have a document element for metadata. Argh"
-	'{ "authors": "S. Ducasse", "title" : "Pharo by Example" }'.
+	self flag: #stef.
+	'{ 
+	"authors": "S. Ducasse", "title" : "Pharo by Example" 
+	}'.
 	mictext := (builder metaDataFromAssociation: { 'authors' -> 'S. Ducasse' .  'title' -> 'Pharo by Example' };
 		contents).
 	self testWithInitialText: mictext.

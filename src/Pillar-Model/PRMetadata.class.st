@@ -11,6 +11,11 @@ Class {
 	#category : #'Pillar-Model-Document'
 }
 
+{ #category : #testing }
+PRMetadata class >> isAbstract [
+	^ false
+]
+
 { #category : #initialization }
 PRMetadata >> initialize [ 
 	super initialize.
