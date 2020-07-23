@@ -8,7 +8,7 @@ Class {
 	#instVars : [
 		'metadata'
 	],
-	#category : #'Pillar-Model-Document'
+	#category : #'Pillar-Core'
 }
 
 { #category : #testing }
