@@ -48,13 +48,10 @@ PRBookTestGeneratorTest >> setUp [
 
 { #category : #running }
 PRBookTestGeneratorTest >> tearDown [
-	
 	| pak |
-	super tearDown.
-	pak := RPackageOrganizer default packageNamed: self packageName ifAbsent: [^ self ].
+	pak := RPackageOrganizer default packageNamed: self packageName ifAbsent: [ ^ self ].
 	pak removeFromSystem.
-
-
+	super tearDown
 ]
 
 { #category : #running }

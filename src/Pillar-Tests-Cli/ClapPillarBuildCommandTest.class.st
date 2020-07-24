@@ -25,15 +25,17 @@ ClapPillarBuildCommandTest >> configContent [
 { #category : #running }
 ClapPillarBuildCommandTest >> setUp [
 	"Create a setup project with: index.pillar, a conf, and Chapters with Chap1 and Chap2"
+
 	| workingDir |
-	workingDir := FileSystem workingDirectory .
-	workingDir / 'pillar.conf'
-		writeStreamDo: [ :st | st nextPutAll: self configContent ].
+	super setUp.
+	workingDir := FileSystem workingDirectory.
+	workingDir / 'pillar.conf' writeStreamDo: [ :st | st nextPutAll: self configContent ]
 ]
 
 { #category : #running }
 ClapPillarBuildCommandTest >> tearDown [
 	(FileSystem workingDirectory / 'pillar.conf') delete.
+	super tearDown
 ]
 
 { #category : #adding }

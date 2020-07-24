@@ -1,5 +1,4 @@
 "
-***
 I am a visitor that produces rich text (class Text) based on a pillar document model.
 I am implemented using a canvas/brush pattern.
 
@@ -32,6 +31,8 @@ Class {
 		'annotatedParagraphAlignment'
 	],
 	#classVars : [
+		'HeaderFontSizes',
+		'HeaderFonts',
 		'OffLine'
 	],
 	#category : #'Pillar-ExporterRichText-Core'
@@ -39,21 +40,16 @@ Class {
 
 { #category : #private }
 PRRichTextComposer class >> browse: urlString [
-	"I am a url on the form: browse://Class or browse://Class/method"
+	"urlString is of the form: browse://Class or browse://Class>>#method"
+	"self browse: 'browse://Class'"
+	"self browse: 'browse://Point>>#x'"
+	| parts sem |
+	parts := urlString substrings: '/'.  
+	sem := PRSemanticAction from: parts second.
+	sem hasEntity 
+		ifTrue: [ sem entity browse ].
+	
 
-	| parts classPart theClass method |
-	parts := urlString substrings: '/'. 
-	classPart := parts at: 2.
-	"handle class side also"
-	theClass := (classPart endsWith: ' class')
-		ifFalse: [ classPart asClass ]
-		ifTrue: [ (classPart withoutSuffix: ' class') asClass class ].
-	method := parts size > 2
-		ifTrue: [ (parts at: 3) asSymbol ]
-		ifFalse: [ nil ].
-	method
-		ifNil: [ theClass browse ]
-		ifNotNil: [ (theClass >> method) browse ]
 ]
 
 { #category : #private }
@@ -73,6 +69,20 @@ PRRichTextComposer class >> codeStylerFor: aString [
 	^SHRBTextStyler new 
 		isForWorkspace: true; 
 		styledTextFor: aString asText
+]
+
+{ #category : #private }
+PRRichTextComposer class >> computeHeaderFonts [
+	
+	HeaderFonts := Array new:  HeaderFontSizes size.
+	1 to: HeaderFontSizes size do: [ :index |
+		HeaderFonts at: index put: 
+			(TextFontReference
+				toFont:
+					(StrikeFont
+						familyName: 'Bitmap Source Sans Pro'
+						pointSize: (HeaderFontSizes at: index)))
+			  ]
 ]
 
 { #category : #private }
@@ -96,7 +106,7 @@ PRRichTextComposer class >> defaultStyler: aString [
 ]
 
 { #category : #examples }
-PRRichTextComposer class >> example1 [
+PRRichTextComposer class >> examplePillar1 [
 	<example>
 	(self asText:
 					'!!!First section
@@ -111,7 +121,7 @@ and this is just ""first"" line
 ]
 
 { #category : #examples }
-PRRichTextComposer class >> example10 [
+PRRichTextComposer class >> examplePillar10 [
 	<example>
 	(self asText:
 					'
@@ -122,7 +132,7 @@ PRRichTextComposer class >> example10 [
 ]
 
 { #category : #examples }
-PRRichTextComposer class >> example2 [
+PRRichTextComposer class >> examplePillar2 [
 	<example>
 	(self asText:
 					'!!!Description lists
@@ -136,7 +146,7 @@ this is just ""first"" line
 ]
 
 { #category : #examples }
-PRRichTextComposer class >> example3 [
+PRRichTextComposer class >> examplePillar3 [
 	<example>
 	(self asText:
 					'!!!Code sections
@@ -150,7 +160,7 @@ Metacello new
 ]
 
 { #category : #examples }
-PRRichTextComposer class >> example4 [
+PRRichTextComposer class >> examplePillar4 [
 	<example>
 	(self asText:
 					'!!!Annotations
@@ -160,7 +170,7 @@ and this is the second line') inspect
 ]
 
 { #category : #examples }
-PRRichTextComposer class >> example5 [
+PRRichTextComposer class >> examplePillar5 [
 	<example>
 	(self asText:
 					'!!!Links
@@ -170,13 +180,13 @@ this is just ""first"" line
 
 *String>browse://String*
 
-*String»trim>browse://String/trim*
+*String»trim>browse://String>>#trim*
 
 and this is the second line') inspect
 ]
 
 { #category : #examples }
-PRRichTextComposer class >> example6 [
+PRRichTextComposer class >> examplePillar6 [
 	<example>
 	(self asText:
 					'!!!Figures
@@ -188,7 +198,7 @@ and this is the second line') inspect
 ]
 
 { #category : #examples }
-PRRichTextComposer class >> example7 [
+PRRichTextComposer class >> examplePillar7 [
 	<example>
 	(self asText:
 					'!First section
@@ -201,7 +211,7 @@ PRRichTextComposer class >> example7 [
 ]
 
 { #category : #examples }
-PRRichTextComposer class >> example8 [
+PRRichTextComposer class >> examplePillar8 [
 	<example>
 	(self asText:
 					'
@@ -212,7 +222,7 @@ PRRichTextComposer class >> example8 [
 ]
 
 { #category : #examples }
-PRRichTextComposer class >> example9 [
+PRRichTextComposer class >> examplePillar9 [
 	<example>
 	(self asText:
 					'
@@ -224,7 +234,7 @@ foo: arg
 ]
 
 { #category : #examples }
-PRRichTextComposer class >> exampleLatexMath [
+PRRichTextComposer class >> examplePillarLatexMath [
 	<example>
 	(PRRichTextComposer  asText:
 '!!!Latex mathematics 
@@ -247,23 +257,30 @@ PRRichTextComposer class >> expressionStylerFor: aString [
 ]
 
 { #category : #private }
+PRRichTextComposer class >> headerFontSizes: anArray [
+
+	HeaderFontSizes := anArray.
+	self computeHeaderFonts 
+]
+
+{ #category : #private }
+PRRichTextComposer class >> headerFonts: anArray [
+
+	HeaderFontSizes := anArray
+]
+
+{ #category : #private }
 PRRichTextComposer class >> headerLevelFont: level [
 	"I return a font annotation to be used with Attributes"
 
-	"StrikeFont actualFamilyNames an OrderedCollection(#'Bitmap DejaVu Sans' #'Bitmap Source Code Pro' #'Bitmap Source Sans Pro')"
-
-	| fontSizes |
-	fontSizes := #(22 20 18 16 14 14).
-	^ TextFontReference
-		toFont:
-			(StrikeFont
-				familyName: 'Bitmap Source Sans Pro'
-				pointSize: (fontSizes at: level))
+	^ HeaderFonts at: level
 ]
 
 { #category : #'class initialization' }
 PRRichTextComposer class >> initialize [ 
-	OffLine := false
+	"self initialize"
+	OffLine := false.
+	self headerFontSizes: #(18 14 12 11 10 10).
 ]
 
 { #category : #stylers }
@@ -582,6 +599,7 @@ PRRichTextComposer >> visitFigure: aFigure [
 PRRichTextComposer >> visitHeader: aHeader [
 
 	canvas newLineIfNotAlready.
+	canvas newLine.
 	canvas
 		includeAttribute: (self class headerLevelFont: aHeader level)
 		in: [ self visitDocumentGroup: aHeader ].

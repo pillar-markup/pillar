@@ -236,17 +236,10 @@ PRPearPresenter >> menu [
 				addItem: [ :item | 
 					item
 						name: 'Render';
-						icon: (self iconNamed: #smallFindIcon);
+						icon: (self iconNamed: #smallDoItIcon);
 						description: 'Render your input text';
 						action: [ self renderAction	]
 				].
-			group
-				addItem: [ :item | 
-					item
-						name: 'Get example';
-						description: 'Give a text input example in current syntax';
-						icon: (self iconNamed: #smallDoItIcon);
-						action: [ self exampleAction ] ].
 			group
 				addItem: [ :item | 
 					item
@@ -255,6 +248,13 @@ PRPearPresenter >> menu [
 						icon: (self iconNamed: #changeUpdateIcon);
 						action: [ self changeAction ] 
 				].
+			group
+				addItem: [ :item | 
+					item
+						name: 'Get example';
+						description: 'Give a text input example in current syntax';
+						icon: (self iconNamed: #smallFindIcon);
+						action: [ self exampleAction ] ].
 			group
 				addItem: [ :item | 
 					item

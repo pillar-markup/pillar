@@ -4,7 +4,7 @@ I am a horizontal rule.
 Class {
 	#name : #PRHorizontalRule,
 	#superclass : #PRDocumentItem,
-	#category : #'Pillar-Model-Document'
+	#category : #'Pillar-Core-Model'
 }
 
 { #category : #testing }

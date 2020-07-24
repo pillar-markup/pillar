@@ -7,13 +7,14 @@ PRDocListNameSorter with: aCollectionOfReferences
 Class {
 	#name : #PRDocumentListNameSorter,
 	#superclass : #PRDocumentListSorter,
-	#category : 'Pillar-ExporterCore-Document-List'
+	#category : #'Pillar-ExporterCore-Document-List'
 }
 
 { #category : #initialization }
 PRDocumentListNameSorter >> initialize [
+	super initialize.
 	files := OrderedCollection new.
-	direction := 1.
+	direction := 1
 ]
 
 { #category : #initialization }

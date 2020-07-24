@@ -60,18 +60,14 @@ PRBuildStrategyTest >> indexContent [
 { #category : #running }
 PRBuildStrategyTest >> setUp [
 	"Create a setup project with: index.pillar, a conf, and Chapters with Chap1 and Chap2"
+
 	| fileSystem |
+	super setUp.
 	fileSystem := FileSystem memory root.
-	fileSystem / 'index.pillar'
-		writeStreamDo: [ :st | st nextPutAll: self indexContent ].
-	fileSystem / 'pillar.conf'
-		writeStreamDo: [ :st | st nextPutAll: self configContent ].
-	(fileSystem / 'Chapters' / 'Chapter1') ensureCreateDirectory
-		/ 'chapter1.pillar'
-		writeStreamDo: [ :st | st nextPutAll: self chap1Content ].
-	(fileSystem / 'Chapters' / 'Chapter2') ensureCreateDirectory
-		/ 'chapter2.pillar'
-		writeStreamDo: [ :st | st nextPutAll: self chap2Content ].
+	fileSystem / 'index.pillar' writeStreamDo: [ :st | st nextPutAll: self indexContent ].
+	fileSystem / 'pillar.conf' writeStreamDo: [ :st | st nextPutAll: self configContent ].
+	(fileSystem / 'Chapters' / 'Chapter1') ensureCreateDirectory / 'chapter1.pillar' writeStreamDo: [ :st | st nextPutAll: self chap1Content ].
+	(fileSystem / 'Chapters' / 'Chapter2') ensureCreateDirectory / 'chapter2.pillar' writeStreamDo: [ :st | st nextPutAll: self chap2Content ].
 	project := PRProject new baseDirectory: fileSystem
 ]
 

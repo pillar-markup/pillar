@@ -12,8 +12,10 @@ PRValidatorVisitorTest >> allValidatorResults [
 { #category : #'setup & teardown' }
 PRValidatorVisitorTest >> setUp [
 	"Create a setup directory with: validator_figures/useCustom.png & validator_inputFiles/my_test_file.pillar "
+
 	| workingDir |
-	workingDir := FileSystem workingDirectory .
+	super setUp.
+	workingDir := FileSystem workingDirectory.
 	(workingDir / 'validator_figures' / 'useCustom.png') ensureCreateFile.
 	(workingDir / 'validator_figures' / 'aFileWithNoExtension') ensureCreateFile.
 	(workingDir / 'validator_inputFiles' / 'my_test_file.pillar') ensureCreateFile
@@ -22,9 +24,10 @@ PRValidatorVisitorTest >> setUp [
 { #category : #'setup & teardown' }
 PRValidatorVisitorTest >> tearDown [
 	| workingDir |
-	workingDir := FileSystem workingDirectory .
-	(workingDir / 'validator_figures' ) deleteAll.
-	(workingDir / 'validator_inputFiles' ) deleteAll.
+	workingDir := FileSystem workingDirectory.
+	(workingDir / 'validator_figures') deleteAll.
+	(workingDir / 'validator_inputFiles') deleteAll.
+	super tearDown
 ]
 
 { #category : #'test-anchor-reference' }

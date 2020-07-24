@@ -17,7 +17,7 @@ PRRichTextWriterTest >> boldFormat [
 	^ TextEmphasis bold
 ]
 
-{ #category : #initialization }
+{ #category : #helpers }
 PRRichTextWriterTest >> composer [
 	^ PRRichTextComposer new
 ]
@@ -85,7 +85,7 @@ PRRichTextWriterTest >> runsOf: aPRDocument [
 	^ (self richTextFor: aPRDocument) runs
 ]
 
-{ #category : #initialization }
+{ #category : #running }
 PRRichTextWriterTest >> setUp [
 	super setUp.
 	sample := PRDocumentSample new.

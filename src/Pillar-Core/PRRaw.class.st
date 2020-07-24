@@ -9,7 +9,7 @@ Class {
 	#instVars : [
 		'type'
 	],
-	#category : #'Pillar-Model-Document'
+	#category : #'Pillar-Core-Model'
 }
 
 { #category : #'instance creation' }

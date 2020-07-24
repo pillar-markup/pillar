@@ -20,9 +20,9 @@ PRBookTesterVisitorRunAnnotationTest >> setUp [
 { #category : #running }
 PRBookTesterVisitorRunAnnotationTest >> tearDown [
 	"Hooks that subclasses may override to define the fixture of test."
-	
-	PRBookTestDummyRunAnnotationTest methods do: [ :each | each removeFromSystem ]
 
+	PRBookTestDummyRunAnnotationTest methods do: [ :each | each removeFromSystem ].
+	super tearDown
 ]
 
 { #category : #'tests-annotations' }

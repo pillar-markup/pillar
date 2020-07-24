@@ -120,6 +120,13 @@ PRMicrodownWriter >> visitItalicFormat: aFormat [
 	canvas italic: aFormat text
 ]
 
+{ #category : #'visiting - document' }
+PRMicrodownWriter >> visitMetadata: aMetaData [
+
+	canvas metaDataFrom: aMetaData metaData
+	
+]
+
 { #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitMonospaceFormat: aFormat [
 	canvas monospace: aFormat text
