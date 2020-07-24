@@ -25,23 +25,6 @@ PRPillarGrammarTest >> factory: aFactory [
 ]
 
 { #category : #accessing }
-PRPillarGrammarTest >> parse: aString rule: aSymbol [
-	
-	"PillarSnippetFactory compile: (testSelector allButFirst: 4) uncapitalized , 'Sample', String cr, String tab, '^ ''', aString , '''' classified: 'sample'."
-	
-	"| method newSelector astCopy |
-	method := thisContext sender method.
-	newSelector := (method selector allButFirst: 4) uncapitalized , 'Sample'.
-	astCopy := method ast copy.
-	astCopy statements first arguments first
-		replaceWith: (RBMessageNode 
-			receiver: (RBVariableNode named: 'factory')
-			selector: newSelector asSymbol).
-	self class compile: astCopy formattedCode."
-	^ super parse: aString rule: aSymbol
-]
-
-{ #category : #accessing }
 PRPillarGrammarTest >> parserClass [
 	^ PRPillarGrammar
 ]
