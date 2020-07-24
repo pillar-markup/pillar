@@ -6,7 +6,7 @@ Each line to be commented should start with %.
 Class {
 	#name : #PRCommentedLine,
 	#superclass : #PRText,
-	#category : #'Pillar-Model-Document'
+	#category : #'Pillar-Core-Model'
 }
 
 { #category : #visiting }

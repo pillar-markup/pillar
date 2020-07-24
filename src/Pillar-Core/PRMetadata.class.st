@@ -8,7 +8,7 @@ Class {
 	#instVars : [
 		'metadata'
 	],
-	#category : #'Pillar-Core'
+	#category : #'Pillar-Core-Model'
 }
 
 { #category : #testing }

@@ -9,7 +9,7 @@ Class {
 	#instVars : [
 		'annotation'
 	],
-	#category : #'Pillar-Core'
+	#category : #'Pillar-Core-Model'
 }
 
 { #category : #'instance creation' }

@@ -7,7 +7,7 @@ We will have to revisit this.
 Class {
 	#name : #PRMathInTextAnnotation,
 	#superclass : #PRAbstractAnnotation,
-	#category : #'Pillar-Core'
+	#category : #'Pillar-Core-Model'
 }
 
 { #category : #protected }
