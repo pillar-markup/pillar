@@ -75,7 +75,7 @@ PRMicrodownWriter >> visitCommentedLine: aCommentedLine [
 PRMicrodownWriter >> visitDocument: aDocument [
 	aDocument children
 		do: [ :child | self visit: child ]
-		separatedBy: [ canvas newLine. canvas newLine ]
+		separatedBy: [ canvas newLine ]
 ]
 
 { #category : #'visiting - document' }
@@ -95,11 +95,9 @@ PRMicrodownWriter >> visitFigure: aFigure [
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitHeader: aHeader [
 	| level |
-	canvas newLine.
 	level := aHeader level min: 6 max: 1.
 	canvas duringHeaderLevel: level do: [ super visitHeader: aHeader ].
-	canvas newLine.
-	
+	canvas newLine
 ]
 
 { #category : #'visiting - document' }
@@ -156,9 +154,8 @@ PRMicrodownWriter >> visitOrderedList: anUnorderedList [
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitParagraph: aParagraph [
 	
-	
 	aParagraph children do: [ :each | self visit: each ].
-	canvas newLine.
+	canvas potentialNewLine.
 ]
 
 { #category : #'visiting - document' }
