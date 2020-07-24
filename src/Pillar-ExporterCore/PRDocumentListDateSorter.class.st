@@ -7,13 +7,14 @@ PRDocListDateSorter with: aCollectionOfReferences
 Class {
 	#name : #PRDocumentListDateSorter,
 	#superclass : #PRDocumentListSorter,
-	#category : 'Pillar-ExporterCore-Document-List'
+	#category : #'Pillar-ExporterCore-Document-List'
 }
 
 { #category : #accessing }
 PRDocumentListDateSorter >> initialize [
+	super initialize.
 	files := OrderedCollection new.
-	direction := -1.
+	direction := -1
 ]
 
 { #category : #sorting }

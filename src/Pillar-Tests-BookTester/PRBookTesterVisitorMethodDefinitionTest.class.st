@@ -20,11 +20,12 @@ PRBookTesterVisitorMethodDefinitionTest >> setUp [
 { #category : #running }
 PRBookTesterVisitorMethodDefinitionTest >> tearDown [
 	"Hooks that subclasses may override to define the fixture of test."
-	
+
 	PRBookTestDummyMethodDefinitionTest methods do: [ :each | each removeFromSystem ].
-	(PRBookTestDummyMethodDefinitionTest class) methods do: [ :each | each removeFromSystem ].
+	PRBookTestDummyMethodDefinitionTest class methods do: [ :each | each removeFromSystem ].
 	(PRBookTestDummyClassTest allSubclasses includes: PRBookTestDummyClassCreationTest)
-		ifTrue: [SystemDictionary new removeClassNamed: #PRBookTestDummyClassCreationTest].
+		ifTrue: [ SystemDictionary new removeClassNamed: #PRBookTestDummyClassCreationTest ].
+	super tearDown
 ]
 
 { #category : #'tests-class/method definition' }

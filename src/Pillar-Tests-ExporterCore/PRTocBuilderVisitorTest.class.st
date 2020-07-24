@@ -8,7 +8,7 @@ Class {
 		'builder',
 		'complexToc'
 	],
-	#category : 'Pillar-Tests-ExporterCore-Toc'
+	#category : #'Pillar-Tests-ExporterCore-Toc'
 }
 
 { #category : #private }
@@ -147,7 +147,8 @@ PRTocBuilderVisitorTest >> tearDown [
 	(FileSystem workingDirectory / 'input1.pillar') delete.
 	(FileSystem workingDirectory / 'input2.pillar') delete.
 	(FileSystem workingDirectory / 'input3.pillar') delete.
-	(FileSystem workingDirectory / 'cyclic1.pillar') delete
+	(FileSystem workingDirectory / 'cyclic1.pillar') delete.
+	super tearDown
 ]
 
 { #category : #tests }
