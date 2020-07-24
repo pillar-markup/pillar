@@ -54,11 +54,6 @@ PREnvironmentTransformer >> popEnvironment [
 	^ environmentStack removeFirst
 ]
 
-{ #category : #plugin }
-PREnvironmentTransformer >> prepareForExecutionOn: aPRProject [ 
-	"None"
-]
-
 { #category : #environment }
 PREnvironmentTransformer >> pushEnvironment: anEnvironment [
 

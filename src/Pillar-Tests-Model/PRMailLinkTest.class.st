@@ -4,11 +4,6 @@ Class {
 	#category : #'Pillar-Tests-Model-Document'
 }
 
-{ #category : #testing }
-PRMailLinkTest class >> isAbstract [
-	^ false
-]
-
 { #category : #private }
 PRMailLinkTest >> actualClass [
 	^ PRMailLink

@@ -10,23 +10,8 @@ PRGithubMarkdownWriterTest >> actualClass [
 ]
 
 { #category : #requirements }
-PRGithubMarkdownWriterTest >> scriptWithCaptionBegin [
-	^ self configuration newLine , '```'
-]
-
-{ #category : #requirements }
-PRGithubMarkdownWriterTest >> scriptWithoutCaptionBegin [
-	^ self configuration newLine , '```'
-]
-
-{ #category : #requirements }
 PRGithubMarkdownWriterTest >> strikethroughFoo [
 	^ '~foo~'
-]
-
-{ #category : #requirements }
-PRGithubMarkdownWriterTest >> supportSyntaxHighlighting [
-	^ true
 ]
 
 { #category : #requirements }
@@ -112,9 +97,4 @@ PRGithubMarkdownWriterTest >> testTableWithHeader [
 						add: (PRTableCell align: nil heading: false withAll: {PRText content: 'foo'}))).
 	self assertWriting: item includesText: '| foo |'.
 	self assertWriting: item includesText: '| --- |'
-]
-
-{ #category : #requirements }
-PRGithubMarkdownWriterTest >> underlineFoo [
-	^ 'foo'
 ]

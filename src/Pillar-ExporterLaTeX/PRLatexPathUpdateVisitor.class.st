@@ -10,7 +10,7 @@ C:/Program Files/Something
 Class {
 	#name : #PRLatexPathUpdateVisitor,
 	#superclass : #PRNodeTransformer,
-	#category : 'Pillar-ExporterLaTeX'
+	#category : #'Pillar-ExporterLaTeX'
 }
 
 { #category : #visiting }
@@ -33,12 +33,6 @@ PRLatexPathUpdateVisitor class >> start: aDocument [
 PRLatexPathUpdateVisitor >> newReferenceFor: aReference [
 	
 	^ aReference reference copyReplaceAll: '\' with: '/'
-]
-
-{ #category : #visiting }
-PRLatexPathUpdateVisitor >> start: anObject [
-	super start: anObject.
-	^ anObject
 ]
 
 { #category : #visiting }

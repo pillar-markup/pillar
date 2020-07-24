@@ -7,11 +7,6 @@ Class {
 	#category : #'Pillar-Model-Document'
 }
 
-{ #category : #testing }
-PRSubscriptFormat class >> isAbstract [
-	^ false
-]
-
 { #category : #visiting }
 PRSubscriptFormat >> accept: aVisitor [
 	^ aVisitor visitSubscriptFormat: self

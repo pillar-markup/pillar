@@ -220,11 +220,6 @@ PRMarkdownWriterTest >> strikethroughFoo [
 ]
 
 { #category : #requirements }
-PRMarkdownWriterTest >> supportSyntaxHighlighting [
-	^ true
-]
-
-{ #category : #requirements }
 PRMarkdownWriterTest >> tableBegin [
 	
 	"Markdown does not provide tables by default"

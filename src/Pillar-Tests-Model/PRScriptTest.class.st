@@ -8,11 +8,6 @@ Class {
 	#category : #'Pillar-Tests-Model-Document'
 }
 
-{ #category : #testing }
-PRScriptTest class >> isAbstract [
-	^ false
-]
-
 { #category : #private }
 PRScriptTest >> actualClass [
 	^ PRCodeblock

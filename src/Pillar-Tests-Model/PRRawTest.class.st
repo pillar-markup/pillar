@@ -4,11 +4,6 @@ Class {
 	#category : #'Pillar-Tests-Model-Document'
 }
 
-{ #category : #testing }
-PRRawTest class >> isAbstract [
-	^ false
-]
-
 { #category : #private }
 PRRawTest >> actualClass [
 	^ PRRaw
@@ -154,12 +149,6 @@ PRRawTest >> testParseTypeText [
 	self assertWiki: wiki equalsTree: tree.
 	self assertTree: tree equalsWiki: wiki.
 	self assertTree: tree equalsText: text
-]
-
-{ #category : #'tests-accessing' }
-PRRawTest >> testText [
-	self instance text: 'zork'.
-	self assert: self instance text equals: 'zork'
 ]
 
 { #category : #'tests-accessing' }

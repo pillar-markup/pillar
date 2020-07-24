@@ -26,11 +26,6 @@ Class {
 	#category : #'Pillar-Tests-Model-ScriptLanguage'
 }
 
-{ #category : #testing }
-PRAbstractScriptLanguageTest class >> isAbstract [
-	^ true
-]
-
 { #category : #private }
 PRAbstractScriptLanguageTest >> actualClass [
 	^ PRAbstractScriptLanguage

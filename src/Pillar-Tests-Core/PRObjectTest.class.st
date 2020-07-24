@@ -7,21 +7,6 @@ Class {
 	#category : #'Pillar-Tests-Core'
 }
 
-{ #category : #testing }
-PRObjectTest class >> isAbstract [
-	^ true
-]
-
-{ #category : #accessing }
-PRObjectTest class >> packageNamesUnderTest [
-	^ #('Pillar-Model')
-]
-
-{ #category : #testing }
-PRObjectTest class >> shouldInheritSelectors [
-	^ true
-]
-
 { #category : #'tests-copying' }
 PRObjectTest >> testCopyProperties [
 	self deny: self instance properties identicalTo: self instance copy properties
