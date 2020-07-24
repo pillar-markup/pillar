@@ -17,9 +17,20 @@ PRMetadata class >> isAbstract [
 ]
 
 { #category : #initialization }
+PRMetadata >> accept: aVisitor [
+
+	^ aVisitor visitMetadata: self
+]
+
+{ #category : #initialization }
 PRMetadata >> initialize [ 
 	super initialize.
 	metadata := Dictionary new
+]
+
+{ #category : #'as yet unclassified' }
+PRMetadata >> metaData [
+	^ metadata
 ]
 
 { #category : #initialization }

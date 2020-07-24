@@ -246,15 +246,41 @@ PRMicrodownWriterTest >> testItalicMultipleLines [
 PRMicrodownWriterTest >> testMetaData [
 	
 	| mictext |
-	self skip.
-	self flag: #stef.
 	'{ 
 	"authors": "S. Ducasse", "title" : "Pharo by Example" 
 	}'.
-	mictext := (builder metaDataFromAssociation: { 'authors' -> 'S. Ducasse' .  'title' -> 'Pharo by Example' };
+	mictext := (builder metaDataFromAssociations: { 'authors' -> 'S. Ducasse' .  'title' -> 'Pharo by Example' };
 		contents).
 	self testWithInitialText: mictext.
-	self assert: (mictext includes: '*authors*')
+	self assert: ('*authors*' match: mictext)
+	
+]
+
+{ #category : #'tests - meta data' }
+PRMicrodownWriterTest >> testMetaData2 [
+	
+	| mictext |
+	'{ 
+	"authors": "S. Ducasse"
+	}'.
+	mictext := (builder metaDataFromAssociations: { 'authors' -> 'S. Ducasse' };
+		contents).
+	self testWithInitialText: mictext.
+	self assert: ('*authors*' match: mictext)
+	
+]
+
+{ #category : #'tests - meta data' }
+PRMicrodownWriterTest >> testMetaData3 [
+	
+	| mictext |
+	'{ 
+	"authors": "S. Ducasse"
+	}'.
+	mictext := (builder metaDataFromAssociations: { 'authors' -> 'S. Ducasse' };
+		contents).
+	self testWithInitialText: mictext.
+	self assert: ('*authors*' match: mictext)
 	
 ]
 
