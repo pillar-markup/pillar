@@ -37,12 +37,13 @@ PRPillarToMicrodownConverterTest >> testThreeSectionsNoExtraLines [
 PRPillarToMicrodownConverterTest >> testTwoSections [
 
 	| pillarobject result |
-	self skip.
 	pillarobject := pillarParser parse: '! Section 1
 
 !Section 2'.
 	result := writer start: pillarobject ; contents.
+	"we get an extra line because the structure holds an empty paragraph and by default there is a new line emitted after any children."
 	self assert: result equals: '# Section 1
+
 
 # Section 2
 '.

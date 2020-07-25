@@ -79,6 +79,12 @@ PRMicrodownWriter >> visitDocument: aDocument [
 ]
 
 { #category : #'visiting - document' }
+PRMicrodownWriter >> visitEmptyParagraph: aParagraph [
+	"canvas potentialNewLine"
+
+]
+
+{ #category : #'visiting - document' }
 PRMicrodownWriter >> visitExternalLink: anExternalLink [
 
 	canvas externalLink: anExternalLink reference printString withDescription: anExternalLink text
@@ -153,7 +159,7 @@ PRMicrodownWriter >> visitOrderedList: anUnorderedList [
 
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitParagraph: aParagraph [
-	
+
 	aParagraph children do: [ :each | self visit: each ].
 	"canvas potentialNewLine."
 ]
