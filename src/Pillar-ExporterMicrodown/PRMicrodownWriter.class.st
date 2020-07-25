@@ -96,7 +96,7 @@ PRMicrodownWriter >> visitFigure: aFigure [
 PRMicrodownWriter >> visitHeader: aHeader [
 	| level |
 	level := aHeader level min: 6 max: 1.
-	canvas duringHeaderLevel: level do: [ super visitHeader: aHeader ].
+	canvas rawHeader:  [ :b| super visitHeader: aHeader ] withLevel: level.
 	canvas newLine
 ]
 
