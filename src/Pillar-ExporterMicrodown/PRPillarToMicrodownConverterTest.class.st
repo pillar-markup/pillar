@@ -17,6 +17,49 @@ PRPillarToMicrodownConverterTest >> setUp [
 	
 ]
 
+{ #category : #'tests paragraph list' }
+PRPillarToMicrodownConverterTest >> testNestedLists [
+
+	| pillarobject result |
+	self skip.
+	pillarobject := pillarParser parse: 'This is a list
+- item 1 ""this is bold again my friend"" and not
+-- item 11
+-- item 12
+- item 2
+-- item 21
+- item 3
+'.
+	result := writer start: pillarobject ; contents.
+	self assert: result equals: 'This is a list
+- item 1 **this is bold again my friend** and not
+  - item 11
+  - item 12
+- item 2
+  - item 21
+- item 3
+'
+]
+
+{ #category : #'tests paragraph list' }
+PRPillarToMicrodownConverterTest >> testParagraphList [
+
+	| pillarobject result |
+	pillarobject := pillarParser parse: 'This is not bold 
+
+This is a list
+- item 1 ""this is bold again my friend""
+- item 2
+'.
+	result := writer start: pillarobject ; contents.
+	self assert: result equals: 'This is not bold 
+
+This is a list
+- item 1 **this is bold again my friend**
+- item 2
+'.
+]
+
 { #category : #tests }
 PRPillarToMicrodownConverterTest >> testSectionParagraphWithBold [
 
@@ -49,6 +92,30 @@ PRPillarToMicrodownConverterTest >> testThreeSectionsNoExtraLines [
 # Section 2
 
 # Section 3
+'
+]
+
+{ #category : #'tests paragraph list' }
+PRPillarToMicrodownConverterTest >> testTwoLists [
+
+	| pillarobject result |
+	pillarobject := pillarParser parse: 'This is list 1
+- item 11 ""this is bold again my friend""
+- item 12
+
+This is list 2
+- item 21 ""this is bold again my friend""
+- item 22 and not bold
+'.
+	result := writer start: pillarobject ; contents.
+	self assert: result equals: 'This is list 1
+- item 11 **this is bold again my friend**
+- item 12
+
+
+This is list 2
+- item 21 **this is bold again my friend**
+- item 22 and not bold
 '
 ]
 

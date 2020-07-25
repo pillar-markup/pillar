@@ -1,6 +1,10 @@
 "
 I'm an pillar to microdown exporter.
 
+The current strategy is that there is one line separating every elements of the document. 
+But we do not have enough information (such as am I the latest of the list and is my container another list or the root document) to control the fact that we should not emit a newline for the last item.
+Therefore we generate an extra line while ideally it should not be the case.
+
 
 #### Known todo or limits  
 - externallink url is printing / and we should check it.
@@ -186,7 +190,7 @@ PRMicrodownWriter >> visitText: aText [
 
 { #category : #'visiting - list' }
 PRMicrodownWriter >> visitUnorderedList: anUnorderedList [
-
+	"We do not have enough information (such as am I the latest of the list and is my container another list or the root document) to control the fact that we should not emit a newline for the last item."
 	canvas unorderedListDuring: [
 		anUnorderedList children
 			do: [ :child | canvas item: [self visit: child ] ] ]
