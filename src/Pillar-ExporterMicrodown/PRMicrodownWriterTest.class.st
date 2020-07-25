@@ -61,14 +61,14 @@ PRMicrodownWriterTest >> setUp [
 PRMicrodownWriterTest >> testAnnotated [
 	"!!Note Pharo is cool and microdown too."
 	
-	self testWithInitialText: (builder annotated: 'Note' paragraph:  'Pharo is cool and microdown too'; contents).
+	self testWithInitialText: (builder rawAnnotated: 'Note' paragraph:  'Pharo is cool and microdown too'; contents).
 	self assert: parsedBloc children first label equals: 'Note'.
 ]
 
 { #category : #'tests - annotated' }
 PRMicrodownWriterTest >> testAnnotatedOnMultipleLines [
 
-	self testWithInitialText: (builder annotated: 'Note' paragraph:  'Pharo is cool
+	self testWithInitialText: (builder rawAnnotated: 'Note' paragraph:  'Pharo is cool
 and microdown too'; contents).
 	self assert: parsedBloc children first label equals: 'Note'.
 ]
@@ -77,7 +77,7 @@ and microdown too'; contents).
 PRMicrodownWriterTest >> testBold [
 	"**Hello Pharo**"
 	
-	self testWithInitialText: (builder paragraph: [ builder bold: self exampleText]; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder bold: self exampleText]; contents)
 ]
 
 { #category : #'tests - formatting' }
@@ -85,7 +85,7 @@ PRMicrodownWriterTest >> testBoldMultipleLines [
 	"**Hello 
 	Pharo**"
 	
-	self testWithInitialText: (builder paragraph: [ builder bold: self exampleTextMultipleLines] ; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder bold: self exampleTextMultipleLines] ; contents)
 ]
 
 { #category : #'tests - comments' }
@@ -107,26 +107,26 @@ PRMicrodownWriterTest >> testCommentOnMultipleLines [
 PRMicrodownWriterTest >> testExternalLink [
 	"[Hello Pharo](url)"
 	
-	self testWithInitialText: (builder paragraph: [builder externalLink: '/url' withDescription: self exampleText]; contents)
+	self testWithInitialText: (builder rawParagraph: [builder externalLink: '/url' withDescription: self exampleText]; contents)
 ]
 
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigure [
 	"![Hello Pharo](url)"
 	
-	self testWithInitialText: (builder paragraph: [ builder figure: 'url' withDescription: self exampleText]; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder figure: 'url' withDescription: self exampleText]; contents)
 ]
 
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithArgument [
 	"![Hello Pharo](url|label=fig&caption=This is a caption."
-	self testWithInitialText: (builder paragraph: [ builder figure: 'url|label=fig1&caption=This is **a** caption.&width=80' withDescription: self exampleText] ; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder figure: 'url|label=fig1&caption=This is **a** caption.&width=80' withDescription: self exampleText] ; contents)
 ]
 
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithArgumentContainingFormatting [
 	"![Hello Pharo](url|label=fig&caption=This is a caption and it can contain **bol** but also `code`."
-	self testWithInitialText: (builder paragraph: [ (builder figure: 'url|label=fig&caption=This is a caption and it can contain **bol** but also `code`' withDescription: self exampleText) ]; contents)
+	self testWithInitialText: (builder rawParagraph: [ (builder figure: 'url|label=fig&caption=This is a caption and it can contain **bol** but also `code`' withDescription: self exampleText) ]; contents)
 ]
 
 { #category : #'tests - header' }
@@ -224,14 +224,14 @@ PRMicrodownWriterTest >> testHorizontalLineWithIgnoredText [
 PRMicrodownWriterTest >> testInternalLink [
 	"*@fig1*"
 	
-	self testWithInitialText: (builder paragraph: [ builder internalLink: 'fig1' ]; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder internalLink: 'fig1' ]; contents)
 ]
 
 { #category : #'tests - formatting' }
 PRMicrodownWriterTest >> testItalic [
 	"_Hello Pharo_"
 	
-	self testWithInitialText: (builder paragraph: [ builder italic: self exampleText] ; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder italic: self exampleText] ; contents)
 ]
 
 { #category : #'tests - formatting' }
@@ -239,7 +239,7 @@ PRMicrodownWriterTest >> testItalicMultipleLines [
 	"_Hello
 	Pharo_"
 	
-	self testWithInitialText: (builder paragraph: [ builder italic: self exampleTextMultipleLines]; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder italic: self exampleTextMultipleLines]; contents)
 ]
 
 { #category : #'tests - meta data' }
@@ -288,7 +288,7 @@ PRMicrodownWriterTest >> testMetaData3 [
 PRMicrodownWriterTest >> testMonospace [
 	"`Hello Pharo`"
 	
-	self testWithInitialText: (builder paragraph: [ builder monospace: self exampleText]; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder monospace: self exampleText]; contents)
 ]
 
 { #category : #'tests - formatting' }
@@ -296,20 +296,20 @@ PRMicrodownWriterTest >> testMonospaceMultipleLines [
 	"`Hello
 	Pharo`"
 	
-	self testWithInitialText: (builder paragraph: [ builder monospace: self exampleTextMultipleLines] ; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder monospace: self exampleTextMultipleLines] ; contents)
 ]
 
 { #category : #'tests - paragraph' }
 PRMicrodownWriterTest >> testOneParagraph [
 
-	self testWithInitialText: (builder paragraph: [ builder text: 'Pharo is super cool']; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder text: 'Pharo is super cool']; contents)
 ]
 
 { #category : #'tests - paragraph' }
 PRMicrodownWriterTest >> testOneParagraphWithAdorment [
 	"**Pharo** is `COOL`"
 
-	self testWithInitialText: (builder paragraph: [ builder bold: 'Microdown'; text: ' is '; monospace: 'COOL' ]; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder bold: 'Microdown'; text: ' is '; monospace: 'COOL' ]; contents)
 ]
 
 { #category : #'tests - list' }
@@ -400,7 +400,7 @@ PRMicrodownWriterTest >> testSimpleCodeBlock [
 PRMicrodownWriterTest >> testStrike [
 	"~Hello Pharo~"
 	
-	self testWithInitialText: (builder paragraph: [ builder strike: self exampleText]; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder strike: self exampleText]; contents)
 ]
 
 { #category : #'tests - formatting' }
@@ -408,7 +408,7 @@ PRMicrodownWriterTest >> testStrikeMultipleLines [
 	"~Hello
 	Pharo~"
 	
-	self testWithInitialText: (builder paragraph: [ builder strike: self exampleTextMultipleLines]; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder strike: self exampleTextMultipleLines]; contents)
 ]
 
 { #category : #'tests - paragraph' }
@@ -416,8 +416,8 @@ PRMicrodownWriterTest >> testTwoParagraphs [
 	"Hello
 	
 	Pharo"
-	self testWithInitialText: (builder paragraph: [builder text: 'hello'] ;
-												paragraph: [ builder text: 'Pharo' ] ; contents)
+	self testWithInitialText: (builder rawParagraph: [builder text: 'hello'] ; newLine;
+												rawParagraph: [ builder text: 'Pharo' ] ; contents)
 ]
 
 { #category : #'tests - list' }

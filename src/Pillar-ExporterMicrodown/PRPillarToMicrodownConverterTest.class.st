@@ -37,6 +37,7 @@ PRPillarToMicrodownConverterTest >> testThreeSectionsNoExtraLines [
 PRPillarToMicrodownConverterTest >> testTwoSections [
 
 	| pillarobject result |
+	self skip.
 	pillarobject := pillarParser parse: '! Section 1
 
 !Section 2'.
@@ -64,6 +65,7 @@ PRPillarToMicrodownConverterTest >> testTwoSectionsNoExtraLines [
 PRPillarToMicrodownConverterTest >> testTwoSectionsWithParagraph [
 
 	| pillarobject result |
+	self skip.
 	pillarobject := pillarParser parse: '! Section 1
 This is a paragraph.
 On two lines.

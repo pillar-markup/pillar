@@ -155,7 +155,7 @@ PRMicrodownWriter >> visitOrderedList: anUnorderedList [
 PRMicrodownWriter >> visitParagraph: aParagraph [
 	
 	aParagraph children do: [ :each | self visit: each ].
-	canvas potentialNewLine.
+	"canvas potentialNewLine."
 ]
 
 { #category : #'visiting - document' }
@@ -189,7 +189,5 @@ PRMicrodownWriter >> visitUnorderedList: anUnorderedList [
 { #category : #writing }
 PRMicrodownWriter >> writeParagraphDuring: aBlockClosure [ 
 	
-	canvas newLine.
-	aBlockClosure value.
-	canvas newLine
+	canvas rawParagraph: aBlockClosure
 ]
