@@ -13,11 +13,26 @@ A figure:
 
 A link: [http://pharo.org](http://pharo.org)
 
-Lists:
+Unordered Lists:
+- item 1
+  - item 1.1
+  - item 1.2
+- item 2
+- item 3
+  - item 3.1
+
+Ordered Lists:
+1. sub item 1
+3. sub item 2
+
+and nested 
+
 - item 1
   1. sub item 1
   3. sub item 2
 - item 2
+
+
 
 Horizontal line:
 ***
