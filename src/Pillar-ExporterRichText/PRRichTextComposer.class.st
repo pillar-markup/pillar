@@ -13,6 +13,12 @@ You can also turn it off/on doing
 PRRichTextComposer putOffLine
 ```
 
+In addition, images are cached to avoid multiple http requests.
+The cache can be reset executing `PRRichTextComposer resetCache`. When the system is off line and an image is requested, a placeholder is computed but not put in the cache. This way when the system is put online the requested elements will be requested and put in the cache (without needing to flush placeholders from the cache).
+
+
+
+
 #### Known limits
 Monospaced text (e.g., `Point`, `Point class`,  `Point>>#setX:setY:`, or `#'Pillar-ExporterPillar'`) uses TextAction to trigger browser opening on the corresponding element. It would be better to use a TextLink because the styler is aware of them. 
 
@@ -315,21 +321,47 @@ PRRichTextComposer class >> methodStylerFor: aString [
 ]
 
 { #category : #'class initialization' }
+PRRichTextComposer class >> offline [
+
+	^ OffLine
+]
+
+{ #category : #'class initialization' }
+PRRichTextComposer class >> offline: aBoolean [
+
+	OffLine := aBoolean.
+	aBoolean 
+		ifFalse: [  ] 
+]
+
+{ #category : #settings }
+PRRichTextComposer class >> preferencesSettingsOn: aBuilder [
+	<systemsettings>
+	
+	(aBuilder setting: #offline)
+		label: 'To set the online mode';
+		parent: #appearance;
+		default: true;
+		target: self;
+		description: 'When true, external figures are displayed in comments. The requests to external images are performed, and this may lead of latency the first time the request is done. Each figure is cached, so the request is at most done one per external references.'
+]
+
+{ #category : #'class initialization' }
 PRRichTextComposer class >> putOffline [
 
-	OffLine := true
+	self offline: true
 ]
 
 { #category : #'class initialization' }
 PRRichTextComposer class >> putOnline [
 
-	OffLine := false
+	self offline: false
 ]
 
 { #category : #'class initialization' }
 PRRichTextComposer class >> resetCache [
 
-	ImageCache := LRUCache new
+	ImageCache := Dictionary new
 ]
 
 { #category : #stylers }
@@ -389,11 +421,19 @@ PRRichTextComposer >> defaultSuperscriptColor [
 PRRichTextComposer >> imageFromUrl: aUrl [
 	"next iteration should propose something when OffLine and timeout."
 	
-	^ ImageCache 
-		at: aUrl 
-		ifAbsentPut: [ 
-			 ZnEasy getPng: aUrl
-		].
+	^ OffLine 
+		ifFalse: [
+			ImageCache 
+				at: aUrl asString
+				ifAbsentPut: [ ZnEasy getPng: aUrl ] ]
+		ifTrue: [ 
+			"we are off but the image is there so we return it,"
+			^ ImageCache 
+				at: aUrl asString
+				ifPresent: [ :i | ^ i  ]
+				ifAbsent: [ (StringMorph contents: 'In Offline mode! 
+When online, you should see: ' , aUrl asString) imageForm  ]
+			]
 ]
 
 { #category : #initialization }
@@ -613,11 +653,15 @@ PRRichTextComposer >> visitExternalLink: aLink [
 PRRichTextComposer >> visitFigure: aFigure [
 	| anchoredImage |
 	"Try to read a png file (only one supported right now), else use alt text"
-	[ anchoredImage := (String value: 1) asText
+	
+	"for now I cancel the catching of all exceptions because it is a blackhole."
+	"[" 
+	anchoredImage := (String value: 1) asText
 		addAttribute: (TextAnchor new anchoredMorph: (self imageFromUrl: aFigure reference)).
-		canvas << anchoredImage ] 
-		on: Exception 
-		do: [self visitAll: aFigure children].
+		canvas << anchoredImage 
+		"] 
+		on: Exception  
+		do: [self visitAll: aFigure children]."
 ]
 
 { #category : #'visiting - document' }
