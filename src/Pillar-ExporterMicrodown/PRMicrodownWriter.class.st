@@ -147,7 +147,7 @@ PRMicrodownWriter >> visitOrderedList2: anOrderedList [
 	i := 1.
 	anOrderedList children
 			do: [ :child | 
-				canvas writeOrderedListIndex: i.
+				canvas writeStartOfOrderedListIndex: i.
 				i := i + 1. 
 				self visit: child ]
 			separatedBy: [ canvas newLine ]

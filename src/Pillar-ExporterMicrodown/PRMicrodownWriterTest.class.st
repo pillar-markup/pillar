@@ -299,6 +299,27 @@ PRMicrodownWriterTest >> testMonospaceMultipleLines [
 	self testWithInitialText: (builder rawParagraph: [ builder monospace: self exampleTextMultipleLines] ; contents)
 ]
 
+{ #category : #'tests - list' }
+PRMicrodownWriterTest >> testNestedUnorderedList [
+	"- Hello
+	- Pharo"
+	| mictext |
+	mictext := (builder unorderedListDuring: [ 
+					builder item: [ builder text: 'Level 1' ].
+					builder unorderedListDuring: [ 
+								builder item: [ builder text: 'Level 2 1' ].
+								builder item: [ builder text: 'Level 2 2' ] ] .
+					builder item: [ builder text: 'Microdown item list' ]];
+		contents).
+	self testWithInitialText: mictext.
+	self assert: mictext equals: '- Level 1
+  - Level 2 1
+  - Level 2 2
+- Microdown item list
+'.
+	
+]
+
 { #category : #'tests - paragraph' }
 PRMicrodownWriterTest >> testOneParagraph [
 
