@@ -33,6 +33,7 @@ Class {
 	#classVars : [
 		'HeaderFontSizes',
 		'HeaderFonts',
+		'ImageCache',
 		'OffLine'
 	],
 	#category : #'Pillar-ExporterRichText-Core'
@@ -277,9 +278,17 @@ PRRichTextComposer class >> headerLevelFont: level [
 ]
 
 { #category : #'class initialization' }
+PRRichTextComposer class >> imageAt: urlString put: aForm [	
+	"the cache contains results of for example ZnEasy getPng:, i.e., a form"
+	
+	ImageCache at: urlString put: aForm
+]
+
+{ #category : #'class initialization' }
 PRRichTextComposer class >> initialize [ 
 	"self initialize"
 	OffLine := false.
+	self resetCache.
 	self headerFontSizes: #(18 14 12 11 10 10).
 ]
 
@@ -315,6 +324,12 @@ PRRichTextComposer class >> putOffline [
 PRRichTextComposer class >> putOnline [
 
 	OffLine := false
+]
+
+{ #category : #'class initialization' }
+PRRichTextComposer class >> resetCache [
+
+	ImageCache := LRUCache new
 ]
 
 { #category : #stylers }
@@ -368,6 +383,17 @@ PRRichTextComposer >> defaultAnnotatedParagraphColor [
 { #category : #initialization }
 PRRichTextComposer >> defaultSuperscriptColor [
 	^ TextColor blue
+]
+
+{ #category : #'visiting - document' }
+PRRichTextComposer >> imageFromUrl: aUrl [
+	"next iteration should propose something when OffLine and timeout."
+	
+	^ ImageCache 
+		at: aUrl 
+		ifAbsentPut: [ 
+			 ZnEasy getPng: aUrl
+		].
 ]
 
 { #category : #initialization }
@@ -585,11 +611,10 @@ PRRichTextComposer >> visitExternalLink: aLink [
 
 { #category : #'visiting - document' }
 PRRichTextComposer >> visitFigure: aFigure [
-	| serverUrl anchoredImage |
-	serverUrl := aFigure reference.
+	| anchoredImage |
 	"Try to read a png file (only one supported right now), else use alt text"
-	[anchoredImage := (String value: 1) asText
-		addAttribute: (TextAnchor new anchoredMorph: (ZnEasy getPng: serverUrl)).
+	[ anchoredImage := (String value: 1) asText
+		addAttribute: (TextAnchor new anchoredMorph: (self imageFromUrl: aFigure reference)).
 		canvas << anchoredImage ] 
 		on: Exception 
 		do: [self visitAll: aFigure children].
