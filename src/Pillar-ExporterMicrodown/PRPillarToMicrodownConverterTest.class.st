@@ -18,6 +18,25 @@ PRPillarToMicrodownConverterTest >> setUp [
 ]
 
 { #category : #tests }
+PRPillarToMicrodownConverterTest >> testSectionParagraphWithBold [
+
+	| pillarobject result |
+	pillarobject := pillarParser parse: '!!Heading Twoo 
+
+""this is bold""
+
+This is not bold '.
+	result := writer start: pillarobject ; contents.
+	"we get extra lines because the pillar parser generates empty paragraphs the structure holds an empty paragraph and by default there is a new line emitted after any children."
+	self assert: result equals: '## Heading Twoo 
+
+
+**this is bold**
+
+This is not bold '.
+]
+
+{ #category : #tests }
 PRPillarToMicrodownConverterTest >> testThreeSectionsNoExtraLines [
 
 	| pillarobject result |
