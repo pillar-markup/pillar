@@ -21,7 +21,6 @@ PRPillarToMicrodownConverterTest >> setUp [
 PRPillarToMicrodownConverterTest >> testNestedLists [
 
 	| pillarobject result |
-	self skip.
 	pillarobject := pillarParser parse: 'This is a list
 - item 1 ""this is bold again my friend"" and not
 -- item 11
