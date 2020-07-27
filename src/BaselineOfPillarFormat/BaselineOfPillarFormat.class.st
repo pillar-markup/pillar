@@ -29,9 +29,10 @@ BaselineOfPillarFormat >> baseline: spec [
 				package: 'Pillar-Microdown' with: [ 
 					spec requires: #('PillarCore' 'Microdown') ];
 				package: 'Pillar-ExporterMicrodown' with: [ 
-					spec requires: #('PillarCore' 'Microdown') ]";
-				package: 'Pillar-Tests-ExporterMicrodown' with: [ 
-					spec requires: #('PillarCore' 'Microdown') ]".
+					spec requires: #('PillarCore' 'Microdown') ];
+				"# rich text"
+				package: 'Pillar-ExporterRichText' with: [ 
+					spec requires: #('PillarCore' "pillar pear?") ].
 		spec 
 			group: 'default' with: #('pillar');
 			"# pillar "
@@ -40,12 +41,17 @@ BaselineOfPillarFormat >> baseline: spec [
 			group: 'pillar-parser-tests' with: #('Pillar-Tests-PetitPillar');
 			group: 'pillar-exporter' with: #('Pillar-ExporterPillar');
 			group: 'pillar-exporter-tests' with: #('Pillar-Tests-ExporterPillar');
+			
 			"# microdown"
 			group: 'microdown' with: #('microdown-parser' "'microdown-parser-tests'" 'microdown-exporter' "'microdown-exporter-tests'");
 			group: 'microdown-parser' with: #('Pillar-Microdown');
 			"group: 'pillar-parser-tests' with: #('Pillar-Tests-PetitPillar');"
 			group: 'microdown-exporter' with: #('Pillar-ExporterMicrodown')";
-			group: 'microdown-exporter-tests' with: #('Pillar-Tests-ExporterMicrodown')".
+			group: 'microdown-exporter-tests' with: #('Pillar-Tests-ExporterMicrodown')";
+			
+			"# rich text"
+			group: 'richtext' with: #('richtext-exporter');
+			group: 'richtext-exporter' with: #('Pillar-ExporterRichText').
 		
 		self 
 			pillarCore: spec;
