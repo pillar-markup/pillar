@@ -18,6 +18,8 @@ BaselineOfPillarFormat >> baseline: spec [
 					spec requires: #( 'Pillar-PetitPillar' ) ];
 				package: 'Pillar-ExporterCore' with: [ 
 					spec requires: #('PillarCore' 'ContainersPropertyEnvironment') ];
+				package: 'Pillar-Tests-ExporterCore' with: [ 
+					spec requires: #('Pillar-ExporterCore') ];
 				package: 'Pillar-ExporterPillar' with: [ 
 					spec requires: #('Pillar-ExporterCore' 'Pillar-PetitPillar') ];
 				package: 'Pillar-Tests-ExporterPillar' with: [ 
