@@ -15,11 +15,17 @@ BaselineOfPillarFormat >> baseline: spec [
 				package: 'Pillar-PetitPillar' with: [ 
 					spec requires: #( 'PetitParser2Core' 'PillarCore' ) ];
 				package: 'Pillar-Tests-PetitPillar' with: [ 
-					spec requires: #( 'Pillar-PetitPillar' )  ].
+					spec requires: #( 'Pillar-PetitPillar' ) ].
+		spec 
+			group: 'default' with: #('pillar');
+			group: 'pillar' with: #('pillar-parser' 'pillar-parser-tests');
+			group: 'pillar-parser' with: #('Pillar-PetitPillar');
+			group: 'pillar-parser-tests' with: #('Pillar-Tests-PetitPillar').
+		
 		self 
-				pillarCore: spec;
-				containerPropertyEnvironment: spec;
-				petitParser2Core: spec ]
+			pillarCore: spec;
+			containerPropertyEnvironment: spec;
+			petitParser2Core: spec ]
 
 ]
 
