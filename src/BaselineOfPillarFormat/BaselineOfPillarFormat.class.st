@@ -12,7 +12,7 @@ BaselineOfPillarFormat >> baseline: spec [
 		for: #common
 		do: [
 			spec 
-				"# pillar"
+				"# pillar" 
 				package: 'Pillar-PetitPillar' with: [ 
 					spec requires: #( 'PetitParser2Core' 'PillarCore' ) ];
 				package: 'Pillar-Tests-PetitPillar' with: [ 
@@ -29,7 +29,9 @@ BaselineOfPillarFormat >> baseline: spec [
 				package: 'Pillar-Microdown' with: [ 
 					spec requires: #('PillarCore' 'Microdown') ];
 				package: 'Pillar-ExporterMicrodown' with: [ 
-					spec requires: #('PillarCore' 'Microdown') ].
+					spec requires: #('PillarCore' 'Microdown') ]";
+				package: 'Pillar-Tests-ExporterMicrodown' with: [ 
+					spec requires: #('PillarCore' 'Microdown') ]".
 		spec 
 			group: 'default' with: #('pillar');
 			"# pillar "
@@ -39,14 +41,15 @@ BaselineOfPillarFormat >> baseline: spec [
 			group: 'pillar-exporter' with: #('Pillar-ExporterPillar');
 			group: 'pillar-exporter-tests' with: #('Pillar-Tests-ExporterPillar');
 			"# microdown"
-			group: 'microdown' with: #('microdown-parser' 'microdown-parser-tests' 'microdown-exporter' 'microdown-exporter-tests');
+			group: 'microdown' with: #('microdown-parser' "'microdown-parser-tests'" 'microdown-exporter' "'microdown-exporter-tests'");
 			group: 'microdown-parser' with: #('Pillar-Microdown');
 			"group: 'pillar-parser-tests' with: #('Pillar-Tests-PetitPillar');"
-			group: 'microdown-exporter' with: #('Pillar-ExporterMicrodown');
-			group: 'microdown-exporter-tests' with: #('Pillar-Tests-ExporterMicrodown').
+			group: 'microdown-exporter' with: #('Pillar-ExporterMicrodown')";
+			group: 'microdown-exporter-tests' with: #('Pillar-Tests-ExporterMicrodown')".
 		
 		self 
 			pillarCore: spec;
+			microdown: spec;
 			containerPropertyEnvironment: spec;
 			petitParser2Core: spec ]
 ]
@@ -64,7 +67,7 @@ BaselineOfPillarFormat >> microdown: spec [
 	spec 
 		baseline: 'Microdown' with: [ 
 			spec
-				repository: 'github://pillar-markup/Micordown/src' ]
+				repository: 'github://pillar-markup/MicroDown/src' ]
 ]
 
 { #category : #baselines }
