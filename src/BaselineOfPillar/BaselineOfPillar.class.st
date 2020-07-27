@@ -100,7 +100,7 @@ BaselineOfPillar >> baseline: spec [
 				group: 'ALL' with: #('All tests' 'All but tests');
 				
 				group: 'All but tests'
-					with: #('All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'Pillar-GitBook' 'parser' 'Pillar-Project' 'Pillar-BookTester' 'Pillar-CodeBlockEvaluator' 'Pillar-PillarTextRichTextExporter');
+					with: #('All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'parser' 'Pillar-Project' 'Pillar-BookTester' 'Pillar-CodeBlockEvaluator' 'Pillar-PillarTextRichTextExporter');
 				
 				group: 'All exporter tests'
 					with:
