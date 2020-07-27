@@ -12,6 +12,7 @@ BaselineOfPillarFormat >> baseline: spec [
 		for: #common
 		do: [
 			spec 
+				"# pillar"
 				package: 'Pillar-PetitPillar' with: [ 
 					spec requires: #( 'PetitParser2Core' 'PillarCore' ) ];
 				package: 'Pillar-Tests-PetitPillar' with: [ 
@@ -23,20 +24,31 @@ BaselineOfPillarFormat >> baseline: spec [
 				package: 'Pillar-ExporterPillar' with: [ 
 					spec requires: #('Pillar-ExporterCore' 'Pillar-PetitPillar') ];
 				package: 'Pillar-Tests-ExporterPillar' with: [ 
-					spec requires: #('Pillar-ExporterPillar' 'Pillar-Tests-ExporterCore') ].
+					spec requires: #('Pillar-ExporterPillar' 'Pillar-Tests-ExporterCore') ];
+				"# microdown"
+				package: 'Pillar-Microdown' with: [ 
+					spec requires: #('PillarCore' 'Microdown') ];
+				package: 'Pillar-ExporterMicrodown' with: [ 
+					spec requires: #('PillarCore' 'Microdown') ].
 		spec 
 			group: 'default' with: #('pillar');
+			"# pillar "
 			group: 'pillar' with: #('pillar-parser' 'pillar-parser-tests' 'pillar-exporter' 'pillar-exporter-tests');
 			group: 'pillar-parser' with: #('Pillar-PetitPillar');
 			group: 'pillar-parser-tests' with: #('Pillar-Tests-PetitPillar');
 			group: 'pillar-exporter' with: #('Pillar-ExporterPillar');
-			group: 'pillar-exporter-tests' with: #('Pillar-Tests-ExporterPillar').
+			group: 'pillar-exporter-tests' with: #('Pillar-Tests-ExporterPillar');
+			"# microdown"
+			group: 'microdown' with: #('microdown-parser' 'microdown-parser-tests' 'microdown-exporter' 'microdown-exporter-tests');
+			group: 'microdown-parser' with: #('Pillar-Microdown');
+			"group: 'pillar-parser-tests' with: #('Pillar-Tests-PetitPillar');"
+			group: 'microdown-exporter' with: #('Pillar-ExporterMicrodown');
+			group: 'microdown-exporter-tests' with: #('Pillar-Tests-ExporterMicrodown').
 		
 		self 
 			pillarCore: spec;
 			containerPropertyEnvironment: spec;
 			petitParser2Core: spec ]
-
 ]
 
 { #category : #baselines }
@@ -45,6 +57,14 @@ BaselineOfPillarFormat >> containerPropertyEnvironment: spec [
 		baseline: 'ContainersPropertyEnvironment' with: [ 
 			spec 
 				repository: 'github://Ducasse/Containers-PropertyEnvironment' ]
+]
+
+{ #category : #baselines }
+BaselineOfPillarFormat >> microdown: spec [ 
+	spec 
+		baseline: 'Microdown' with: [ 
+			spec
+				repository: 'github://pillar-markup/Micordown/src' ]
 ]
 
 { #category : #baselines }
