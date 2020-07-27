@@ -17,7 +17,29 @@ PRPillarToMicrodownConverterTest >> setUp [
 	
 ]
 
-{ #category : #'tests paragraph list' }
+{ #category : #'tests - code blocks' }
+PRPillarToMicrodownConverterTest >> testCodeBlock [
+
+	| pillarobject result |
+		self skip.
+		self flag: #stef.
+		"working here"
+	pillarobject := pillarParser parse: 
+'[[[language=pharo|caption=Pointclass
+Point class >> new
+	self foo	
+]]] 	
+'.
+	result := writer start: pillarobject ; contents.
+	self assert: result equals: 
+'```language=pharo&caption=Pointclass
+Point class >> new
+	self foo	
+```
+'
+]
+
+{ #category : #'tests - paragraph list' }
 PRPillarToMicrodownConverterTest >> testNestedLists [
 
 	| pillarobject result |
@@ -40,7 +62,7 @@ PRPillarToMicrodownConverterTest >> testNestedLists [
 '
 ]
 
-{ #category : #'tests paragraph list' }
+{ #category : #'tests - paragraph list' }
 PRPillarToMicrodownConverterTest >> testParagraphList [
 
 	| pillarobject result |
@@ -59,7 +81,7 @@ This is a list
 '.
 ]
 
-{ #category : #tests }
+{ #category : #'tests - sections' }
 PRPillarToMicrodownConverterTest >> testSectionParagraphWithBold [
 
 	| pillarobject result |
@@ -78,7 +100,23 @@ This is not bold '.
 This is not bold '.
 ]
 
-{ #category : #tests }
+{ #category : #'tests - code blocks' }
+PRPillarToMicrodownConverterTest >> testSimpleCodeBlock [
+
+	| pillarobject result |
+	pillarobject := pillarParser parse: '[[[
+Point class >> new
+	self foo	
+]]]'.
+	result := writer start: pillarobject ; contents.
+	self assert: result equals: 
+'```
+Point class >> new
+	self foo	
+```'
+]
+
+{ #category : #'tests - sections' }
 PRPillarToMicrodownConverterTest >> testThreeSectionsNoExtraLines [
 
 	| pillarobject result |
@@ -94,7 +132,7 @@ PRPillarToMicrodownConverterTest >> testThreeSectionsNoExtraLines [
 '
 ]
 
-{ #category : #'tests paragraph list' }
+{ #category : #'tests - paragraph list' }
 PRPillarToMicrodownConverterTest >> testTwoLists [
 
 	| pillarobject result |
@@ -118,7 +156,7 @@ This is list 2
 '
 ]
 
-{ #category : #tests }
+{ #category : #'tests - sections' }
 PRPillarToMicrodownConverterTest >> testTwoSections [
 
 	| pillarobject result |
@@ -134,7 +172,7 @@ PRPillarToMicrodownConverterTest >> testTwoSections [
 '.
 ]
 
-{ #category : #tests }
+{ #category : #'tests - sections' }
 PRPillarToMicrodownConverterTest >> testTwoSectionsNoExtraLines [
 
 	| pillarobject result |
@@ -147,7 +185,7 @@ PRPillarToMicrodownConverterTest >> testTwoSectionsNoExtraLines [
 '.
 ]
 
-{ #category : #tests }
+{ #category : #'tests - sections' }
 PRPillarToMicrodownConverterTest >> testTwoSectionsWithParagraph [
 
 	| pillarobject result |

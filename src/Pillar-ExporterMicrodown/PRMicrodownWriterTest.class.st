@@ -417,6 +417,20 @@ PRMicrodownWriterTest >> testSimpleCodeBlock [
 	self testWithInitialText: (builder codeblock: self exampleTextMultipleLines ; contents)
 ]
 
+{ #category : #'tests - code block' }
+PRMicrodownWriterTest >> testSimpleCodeBlockWithFirstTag [
+	"```language=Pharo
+	Hello
+	Pharo
+	```"
+	| mictext |
+	self skip.
+	self flag: #stef.
+	mictext := builder codeblock: self exampleTextMultipleLines ; contents.
+	self testWithInitialText: mictext.
+	self assert: ('*language*' match: mictext) 
+]
+
 { #category : #'tests - formatting' }
 PRMicrodownWriterTest >> testStrike [
 	"~Hello Pharo~"
