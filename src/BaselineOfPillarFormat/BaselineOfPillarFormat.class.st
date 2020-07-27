@@ -15,12 +15,20 @@ BaselineOfPillarFormat >> baseline: spec [
 				package: 'Pillar-PetitPillar' with: [ 
 					spec requires: #( 'PetitParser2Core' 'PillarCore' ) ];
 				package: 'Pillar-Tests-PetitPillar' with: [ 
-					spec requires: #( 'Pillar-PetitPillar' ) ].
+					spec requires: #( 'Pillar-PetitPillar' ) ];
+				package: 'Pillar-ExporterCore' with: [ 
+					spec requires: #('PillarCore' 'ContainersPropertyEnvironment') ];
+				package: 'Pillar-ExporterPillar' with: [ 
+					spec requires: #('Pillar-ExporterCore' 'Pillar-PetitPillar') ];
+				package: 'Pillar-Tests-ExporterPillar' with: [ 
+					spec requires: #('Pillar-ExporterPillar' 'Pillar-Tests-ExporterCore') ].
 		spec 
 			group: 'default' with: #('pillar');
-			group: 'pillar' with: #('pillar-parser' 'pillar-parser-tests');
+			group: 'pillar' with: #('pillar-parser' 'pillar-parser-tests' 'pillar-exporter' 'pillar-exporter-tests');
 			group: 'pillar-parser' with: #('Pillar-PetitPillar');
-			group: 'pillar-parser-tests' with: #('Pillar-Tests-PetitPillar').
+			group: 'pillar-parser-tests' with: #('Pillar-Tests-PetitPillar');
+			group: 'pillar-exporter' with: #('Pillar-ExporterPillar');
+			group: 'pillar-exporter-tests' with: #('Pillar-Tests-ExporterPillar').
 		
 		self 
 			pillarCore: spec;
