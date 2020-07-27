@@ -18,9 +18,9 @@ BaselineOfPillarCore >> baseline: spec [
 				package: 'Pillar-Tests-Core' with: [ spec 
 					requires: #( 'Pillar-Core' ) ];
 				package: 'Pillar-Tests-Model' with: [ spec 
-					requires: #( 'Pillar-Tests-Core' ) ].
+					requires: #( 'Pillar-Tests-Core' 'Pillar-Model') ].
 		spec
-			group: 'default' with: #('tests')	;
+			group: 'default' with: #('model' 'tests')	;
 			group: 'core' with: #('Pillar-Core');
 			group: 'model' with: #('Pillar-Model');
 			group: 'tests' with: #('Pillar-Tests-Core' 'Pillar-Tests-Model')					
