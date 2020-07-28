@@ -114,6 +114,7 @@ PRRichTextWriterTest >> superscriptFormat [
 
 { #category : #'tests - Format' }
 PRRichTextWriterTest >> testBoldFormat [
+
 	self assertWriting: sample bold include: self boldFormat
 ]
 

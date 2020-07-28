@@ -15,9 +15,7 @@ PRRichTextComposer putOffLine
 
 In addition, images are cached to avoid multiple http requests.
 The cache can be reset executing `PRRichTextComposer resetCache`. When the system is off line and an image is requested, a placeholder is computed but not put in the cache. This way when the system is put online the requested elements will be requested and put in the cache (without needing to flush placeholders from the cache).
-
-
-
+When the system is online but the request failed we return a placeholder.
 
 #### Known limits
 Monospaced text (e.g., `Point`, `Point class`,  `Point>>#setX:setY:`, or `#'Pillar-ExporterPillar'`) uses TextAction to trigger browser opening on the corresponding element. It would be better to use a TextLink because the styler is aware of them. 
@@ -423,17 +421,27 @@ PRRichTextComposer >> imageFromUrl: aUrl [
 	
 	^ OffLine 
 		ifFalse: [
-			ImageCache 
+			[ ImageCache 
 				at: aUrl asString
-				ifAbsentPut: [ ZnEasy getPng: aUrl ] ]
+				ifAbsentPut: [ ZnEasy getPng: aUrl ]] 
+					on: ZnHttpUnsuccessful 
+					do: [ :ex | self imageOffLineFromUrl: aUrl ] ] 
 		ifTrue: [ 
 			"we are off but the image is there so we return it,"
-			^ ImageCache 
-				at: aUrl asString
-				ifPresent: [ :i | ^ i  ]
-				ifAbsent: [ (StringMorph contents: 'In Offline mode! 
-When online, you should see: ' , aUrl asString) imageForm  ]
+			self imageOffLineFromUrl: aUrl
 			]
+]
+
+{ #category : #'visiting - document' }
+PRRichTextComposer >> imageOffLineFromUrl: aUrl [
+
+	"we are off but the image is there so we return it,"
+	^ ImageCache 
+			at: aUrl asString
+			ifPresent: [ :i | i ]
+			ifAbsent: [ (StringMorph contents: 'In Offline mode! 
+When online, you should see: ' , aUrl asString) imageForm  ]
+			
 ]
 
 { #category : #initialization }
