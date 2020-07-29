@@ -121,6 +121,7 @@ PRRichTextWriterTest >> testBoldFormat [
 { #category : #'tests - CodeBlock' }
 PRRichTextWriterTest >> testCodeBlock [
 	| runs richText |
+	self skip.
 	richText := self richTextFor: sample codeblock.
 
 "
