@@ -126,7 +126,7 @@ BaselineOfPillar >> baseline: spec [
 				group: 'ePub exporter tests' with: #(#'Pillar-Tests-ExporterEPub');
 				
 				"from pillar model to richtext"
-				group: 'rich text exporter' with: #('Pillar-ExporterRichText' 'Pillar-Pear');
+				group: 'rich text exporter' with: #('Pillar-ExporterRichText');
 				
 				group: 'html exporter' with: #('Pillar-ExporterHTML');
 				group: 'html exporter tests' with: #('Pillar-Tests-ExporterHTML');
