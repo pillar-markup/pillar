@@ -153,16 +153,6 @@ PRDocumentSample >> simpleUnorderedList [
 				(PRListItem with: (PRText content: 'Second'))})
 ]
 
-{ #category : #formats }
-PRDocumentSample >> superscript [
-	^ self withFormat: PRSuperscriptFormat 
-]
-
-{ #category : #formats }
-PRDocumentSample >> underline [
-	^ self withFormat: PRUnderlineFormat 
-]
-
 { #category : #list }
 PRDocumentSample >> unorderedList [
 	^ PRDocument new

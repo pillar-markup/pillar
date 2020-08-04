@@ -9,7 +9,7 @@ Class {
 
 { #category : #helpers }
 PRRichTextWriterTest >> assertWriting: aPRDocument include: expectedAttribute [
-	self assert: ((self runsOf: aPRDocument) includes: expectedAttribute asArray)
+	self assert: ((self runsOf: aPRDocument) includes: {expectedAttribute})
 ]
 
 { #category : #'tests - Format' }
@@ -289,16 +289,6 @@ PRRichTextWriterTest >> testSubscriptFormat [
 	
 	self skip.
 	
-]
-
-{ #category : #'tests - Format' }
-PRRichTextWriterTest >> testSuperscriptFormat [
-	self assertWriting: sample superscript include: self superscriptFormat
-]
-
-{ #category : #'tests - Format' }
-PRRichTextWriterTest >> testUnderlineFormat [ 
-	self assertWriting: sample underline include: self underlineFormat
 ]
 
 { #category : #'tests - List' }
