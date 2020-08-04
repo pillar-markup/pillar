@@ -63,13 +63,13 @@ BaselineOfPillar >> baseline: spec [
 				package: 'Pillar-ExporterText' with: [ spec requires: #('Pillar-ExporterCore') ];
 				
 				package: 'Pillar-Core';
-				package: 'Pillar-Pear';
+				package: 'Pillar-Pear' with: [ spec requires: #('Pillar-ExporterRichText')];
 				package: 'Pillar-Model' with: [ spec requires: #('Pillar-Core')];
 				package: 'Pillar-CodeBlockEvaluator' with: [ spec requires: #('Pillar-Core')];
 				package: 'Pillar-PetitPillar' with: [ spec requires: #('PetitParser2Core' 'Pillar-Model') ];	
 				"Going from Pillar model to richText"
 				package: 'Pillar-ExporterRichText' 
-					with: [ spec requires: #('Pillar-Core' 'Pillar-Pear') ];
+					with: [ spec requires: #('Pillar-Core') ];
 				"Going from Pillar text to richText"
 				package: 'Pillar-PillarTextRichTextExporter' 
 					with: [ spec requires: #('Pillar-ExporterRichText' 'Pillar-PetitPillar') ];
