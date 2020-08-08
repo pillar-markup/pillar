@@ -5,7 +5,11 @@ Basically I load the full pillar baseline, the full microdown version and in add
 It was necessary to do it that because we have circular dependencies.
 In the future we may move Microdown-Pillar to this project, this way microdown will not depend from pillar. 
 
- 
+Pay attention that this baseline has been changed to point to BaselineOfMicrodownDev so that we 
+can work on Dev once PillarMicro will arrive to a stabler point we may want to introduce 
+BaselineOfPillarMicro and BaselineOfPillarMicroDev 
+
+
 "
 Class {
 	#name : #BaselineOfPillarMicro,
