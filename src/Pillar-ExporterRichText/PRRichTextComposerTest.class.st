@@ -296,7 +296,7 @@ PRRichTextComposerTest >> testRenderCommentOfNotRendering [
 	[ old := self composerClass notRendering.
 	self composerClass notRendering: true.
 	self assert: (self composerClass renderComment: 'Cocorico' of: Point) equals: 'Cocorico'.
-	 ] ensure: [ self composerClass notRendering: old ]
+	] ensure: [ self composerClass notRendering: old ]
 	
 
 
