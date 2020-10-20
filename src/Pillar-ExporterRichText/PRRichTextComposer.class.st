@@ -50,7 +50,8 @@ Class {
 		'HeaderFonts',
 		'ImageCache',
 		'NotRendering',
-		'OffLine'
+		'OffLine',
+		'Stylers'
 	],
 	#category : #'Pillar-ExporterRichText-Core'
 }
@@ -79,7 +80,7 @@ PRRichTextComposer class >> bulletForLevel: level [
 		ifTrue: [ ^ $- asText ]
 ]
 
-{ #category : #stylers }
+{ #category : #'styler - declaration' }
 PRRichTextComposer class >> codeStylerFor: aString [
 	<codeblockStylerFor: 'Smalltalk'>
 	
@@ -114,15 +115,15 @@ PRRichTextComposer class >> counterFor: counter atLevel: level [
 		ifTrue: [ ^ ($A asInteger + (counter - 1)) asCharacter asText , ')' ]
 ]
 
-{ #category : #stylers }
+{ #category : #'styler - declaration' }
 PRRichTextComposer class >> defaultStyler: aString [
-	<codeblockStylerFor:'default'>
+	<codeblockStylerFor: 'default'>
+	"Pay attention without this one the logic can loop."
 	
-	"By default, render it as code"
-	^self codeStylerFor: aString
+	^ self codeStylerFor: aString
 ]
 
-{ #category : #stylers }
+{ #category : #'styler - declaration' }
 PRRichTextComposer class >> expressionStylerFor: aString [
 	<codeblockStylerFor: 'PharoExpression'>
 	
@@ -165,21 +166,27 @@ PRRichTextComposer class >> initialize [
 	self notRendering: false.
 	self resetCache.
 	self headerFontSizes: #(18 14 12 11 10 10).
+	self initializeStylers.
+]
+
+{ #category : #'class initialization' }
+PRRichTextComposer class >> initializeStylers [
+	"self initializeStylers"
+	Stylers := Dictionary
+		newFromAssociations: ((PragmaCollector
+						filter: [ :prg | prg selector = 'codeblockStylerFor:' ]) reset
+						collected collect: [ :p | p arguments first asLowercase-> p method ])
 ]
 
 { #category : #stylers }
 PRRichTextComposer class >> languageStylerFor: aLanguage [
-	| stylers |
-	stylers := Dictionary
-		newFromAssociations: ((PragmaCollector
-						filter: [ :prg | prg selector = 'codeblockStylerFor:' ]) reset
-						collected collect: [ :p | p arguments first -> p method ]).
-	^ stylers
-		at: aLanguage
+
+	^ Stylers
+		at: aLanguage asLowercase
 		ifAbsent: [ self languageStylerFor: 'default' ]
 ]
 
-{ #category : #stylers }
+{ #category : #'styler - declaration' }
 PRRichTextComposer class >> methodStylerFor: aString [
 	<codeblockStylerFor:'PharoMethod'>
 	
@@ -264,15 +271,15 @@ PRRichTextComposer class >> style: aString asLanguage: aLanguage [
 	"render aString according to the styler named aLanguage"
 	
 	| styler |
-	styler := self languageStylerFor: aLanguage.
+	styler := self languageStylerFor: aLanguage asLowercase.
 	^ styler
 		valueWithReceiver: styler methodClass soleInstance 
 		arguments: (Array with: aString)
 ]
 
-{ #category : #stylers }
+{ #category : #'styler - declaration' }
 PRRichTextComposer class >> textStyler: aString [
-	<codeblockStylerFor:'text'>
+	<codeblockStylerFor: 'text'>
 	
 	^aString asText
 ]
