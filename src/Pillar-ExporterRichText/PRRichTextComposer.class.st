@@ -25,6 +25,12 @@ When the system is online but the request failed I display an uncached placehold
 
 It means that web-based images can be prefilled and Pharo images can be provided preloaded. 
 
+When you want to get all the errors (typically to debug and fix them), you can configure the system to stop capturing errors using 
+
+```
+PRRichTextComposer captureErrors: false
+
+```
 
 
 
@@ -46,6 +52,7 @@ Class {
 		'annotatedParagraphAlignment'
 	],
 	#classVars : [
+		'CaptureErrors',
 		'HeaderFontSizes',
 		'HeaderFonts',
 		'ImageCache',
@@ -78,6 +85,18 @@ PRRichTextComposer class >> bulletForLevel: level [
 		ifTrue: [ ^ $• asText ].
 	kind = 1
 		ifTrue: [ ^ $- asText ]
+]
+
+{ #category : #'class initialization' }
+PRRichTextComposer class >> captureErrors [
+	
+	^ CaptureErrors
+]
+
+{ #category : #'class initialization' }
+PRRichTextComposer class >> captureErrors: aBoolean [
+	
+	CaptureErrors := aBoolean
 ]
 
 { #category : #'styler - declaration' }
@@ -167,6 +186,7 @@ PRRichTextComposer class >> initialize [
 	self resetCache.
 	self headerFontSizes: #(18 14 12 11 10 10).
 	self initializeStylers.
+	self captureErrors: true.
 ]
 
 { #category : #'class initialization' }
@@ -217,9 +237,8 @@ PRRichTextComposer class >> offline [
 { #category : #'class initialization' }
 PRRichTextComposer class >> offline: aBoolean [
 
-	OffLine := aBoolean.
-	aBoolean 
-		ifFalse: [  ] 
+	OffLine := aBoolean
+
 ]
 
 { #category : #settings }
@@ -380,6 +399,9 @@ PRRichTextComposer >> rawImageFrom: aURL [
 	| block |
 	self flag: #fixMeOnceNewExceptionIsAvailable.
 	block := [ ZnEasy getImageOfType: (ZnMimeType main: 'image' sub: '*') fromUrl: aURL ].
+	CaptureErrors
+		ifFalse: [ ^ block value ].
+
 	^ [ block
 		on: ZnHttpUnsuccessful 
 		do: [ :ex | self unsuccessfulRequestFromUrl: aURL ]]
