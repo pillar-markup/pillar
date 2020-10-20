@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'sample'
 	],
-	#category : #'Pillar-ExporterRichText-Tests'
+	#category : #'Pillar-ExporterRichText'
 }
 
 { #category : #'test - bogus entry' }

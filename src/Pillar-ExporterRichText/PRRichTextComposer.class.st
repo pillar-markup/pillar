@@ -302,6 +302,17 @@ PRRichTextComposer >> annotatedParagraphColor: aColor [
 	annotatedParagraphColor := aColor
 ]
 
+{ #category : #images }
+PRRichTextComposer >> cachedImageFromUrl: aUrl [
+	
+	^ OffLine 
+		ifFalse: [
+			ImageCache 
+				at: aUrl asString
+				ifAbsentPut: [ self rawImageFrom: aUrl ] ] 
+		ifTrue: [ self imageOffLineFromUrl: aUrl ]
+]
+
 { #category : #initialization }
 PRRichTextComposer >> defaultAnnotatedParagraphColor [
 	^ TextColor blue
@@ -312,32 +323,25 @@ PRRichTextComposer >> defaultSuperscriptColor [
 	^ TextColor blue
 ]
 
-{ #category : #'visiting - document' }
-PRRichTextComposer >> imageFromUrl: aUrl [
-	"next iteration should propose something when OffLine and timeout."
-	
-	^ OffLine 
-		ifFalse: [
-			[ ImageCache 
-				at: aUrl asString
-				ifAbsentPut: [ ZnEasy getPng: aUrl ]] 
-					on: ZnHttpUnsuccessful 
-					do: [ :ex | self imageOffLineFromUrl: aUrl ] ] 
-		ifTrue: [ 
-			"we are off but the image is there so we return it,"
-			self imageOffLineFromUrl: aUrl
-			]
-]
-
-{ #category : #'visiting - document' }
+{ #category : #'images internal' }
 PRRichTextComposer >> imageOffLineFromUrl: aUrl [
-
 	"we are off but the image is there so we return it,"
 	^ ImageCache 
 			at: aUrl asString
 			ifPresent: [ :i | i ]
-			ifAbsent: [ (StringMorph contents: 'In Offline mode! 
-When online, you should see: ' , aUrl asString) imageForm  ]
+			ifAbsent: [ (StringMorph contents: 'The HTTP request got unsuccessful. 
+When you will be online, you should see: ' , aUrl asString) imageForm  ]
+			
+]
+
+{ #category : #'images internal' }
+PRRichTextComposer >> imageUnexpectedContentFromUrl: aUrl [
+	"The request got unexpected content if the image is there so we return it. We do not cache the failing case image form so that we do not polute the cache."
+	
+	^ ImageCache 
+			at: aUrl asString
+			ifPresent: [ :i | i ]
+			ifAbsent: [ (StringMorph contents: 'The HTTP request ', aUrl asString, ' returned an unexpected content.' ) imageForm  ]
 			
 ]
 
@@ -362,6 +366,19 @@ PRRichTextComposer >> monospaceBackgroundColor [
 PRRichTextComposer >> monospaceBackgroundColor: aColor [
 
 	monospaceBackgroundColor := aColor
+]
+
+{ #category : #'images internal' }
+PRRichTextComposer >> rawImageFrom: aURL [
+	| block |
+	self flag: #fixMeOnceNewExceptionIsAvailable.
+	block := [ ZnEasy getImageOfType: (ZnMimeType main: 'image' sub: '*') fromUrl: aURL ].
+	^ [ block
+		on: ZnHttpUnsuccessful 
+		do: [ :ex | self unsuccessfulRequestFromUrl: aURL ]]
+			on: ZnUnexpectedContentType 
+			do: [ :ex | self imageUnexpectedContentFromUrl: aURL ]
+		
 ]
 
 { #category : #visiting }
@@ -395,6 +412,16 @@ PRRichTextComposer >> superscriptColor: anObject [
 PRRichTextComposer >> theme [
 
 	^  Smalltalk ui theme
+]
+
+{ #category : #'images internal' }
+PRRichTextComposer >> unsuccessfulRequestFromUrl: aUrl [
+	
+	^ ImageCache 
+			at: aUrl asString
+			ifPresent: [ :i | i ]
+			ifAbsent: [ (StringMorph contents: 'The HTTP request ',  aUrl asString,  ' got unsuccessful.') imageForm  ]
+			
 ]
 
 { #category : #visiting }
@@ -562,7 +589,7 @@ PRRichTextComposer >> visitFigure: aFigure [
 	"for now I cancel the catching of all exceptions because it is a blackhole."
 	"[" 
 	anchoredImage := (String value: 1) asText
-		addAttribute: (TextAnchor new anchoredMorph: (self imageFromUrl: aFigure reference)).
+		addAttribute: (TextAnchor new anchoredMorph: (self cachedImageFromUrl: aFigure reference)).
 		canvas << anchoredImage 
 		"] 
 		on: Exception  
