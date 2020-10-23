@@ -3,10 +3,16 @@ I should be merged into PRRichTextComposer
 
 I am a class that provides Pillar codebloc extensions for Latex (and others in the future).
 
-That mean you can write latex formulas using a codeblock `language=latexMath`:
+```
+&
+\sum_{i=1}^{n} a[i]
+&
+```
 
-
-&\sum_{i=1}^{n} a[i]&
+renders as: 
+&
+\sum_{i=1}^{n} a[i]
+&
 
 "
 Class {
@@ -49,16 +55,17 @@ PRCodeblockStylerExtensions class >> latexMathStylerFor: aString [
 { #category : #private }
 PRCodeblockStylerExtensions class >> loadExternalImageFromURL: aUrl errorText: errorDesc [
 	"I return a Text instance with an loaded from a url"
-	| anchoredImage|
+	
+	| anchoredImage |
 	self flag: #cleanAndRevisit.
 	anchoredImage := self imageCache 
 		at: aUrl 
 		ifAbsentPut: [ 
 			[ anchoredImage := (String value: 1) asText
-				addAttribute: (TextAnchor new anchoredMorph: (ZnEasy getPng: aUrl)).
+					addAttribute: (TextAnchor new anchoredMorph: (ZnEasy getPng: aUrl)).
 				anchoredImage ] 
 			on: Exception 
-			do: [errorDesc  asText addAttribute: (TextColor red)]
+			do: [ errorDesc asText addAttribute: TextColor red ]
 		].
 	^ anchoredImage 
 ]

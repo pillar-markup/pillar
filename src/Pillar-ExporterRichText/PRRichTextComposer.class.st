@@ -399,7 +399,7 @@ PRRichTextComposer >> rawImageFrom: aURL [
 	| block |
 	self flag: #fixMeOnceNewExceptionIsAvailable.
 	block := [ ZnEasy getImageOfType: (ZnMimeType main: 'image' sub: '*') fromUrl: aURL ].
-	CaptureErrors
+	self class captureErrors
 		ifFalse: [ ^ block value ].
 
 	^ [ block
@@ -408,6 +408,12 @@ PRRichTextComposer >> rawImageFrom: aURL [
 			on: ZnUnexpectedContentType 
 			do: [ :ex | self imageUnexpectedContentFromUrl: aURL ]
 		
+]
+
+{ #category : #'visiting - document' }
+PRRichTextComposer >> renderMathExpression: aString [
+	
+	canvas << (PRCodeblockStylerExtensions latexMathStylerFor: aString)
 ]
 
 { #category : #visiting }
@@ -663,9 +669,25 @@ PRRichTextComposer >> visitListItem: anItem [
 ]
 
 { #category : #'visiting - document' }
+PRRichTextComposer >> visitMathEnvironment:  aPRMathEnvironment [
+	"we could plug some math rendering for Polymath following the implementation of Kasper.
+	See PRCodeblockStylerExtensions"
+	| text |
+	text := aPRMathEnvironment text. 
+	(OffLine | text isNil)
+		ifTrue: [ text 
+						ifNotNil: [ canvas << '&'; cr; << text; << '&']
+						ifNil: [ canvas << '&'; cr; << 'Your math environment is strange its body is nil'; << '&' ] ]
+		ifFalse: [ canvas cr.
+					canvas indentIn: [ self renderMathExpression: text ].
+					 canvas cr ]
+]
+
+{ #category : #'visiting - document' }
 PRRichTextComposer >> visitMathInTextAnnotation: aPRMathInTextAnnotation [ 
 	"we could plug some math rendering for Polymath following the implementation of Kasper.
 	See PRCodeblockStylerExtensions"
+	
 	OffLine 
 		ifTrue: [ canvas << '$', aPRMathInTextAnnotation text, '$' ]
 		ifFalse: [ canvas << (PRCodeblockStylerExtensions latexMathStylerFor: aPRMathInTextAnnotation text)]
@@ -710,6 +732,13 @@ PRRichTextComposer >> visitParagraph: anObject [
 	canvas newLine.
 	super visitParagraph: anObject.
 	canvas newLine.
+]
+
+{ #category : #'visiting - document' }
+PRRichTextComposer >> visitParameters: anObject [
+	"do nothing for now"
+	
+	^ self
 ]
 
 { #category : #'visiting - document' }
