@@ -9,7 +9,7 @@ Class {
 		'currentsArray',
 		'maxHeader'
 	],
-	#category : 'Pillar-ExporterEPub'
+	#category : #'Pillar-ExporterEPub'
 }
 
 { #category : #accessing }
@@ -33,7 +33,7 @@ PREPubMenuJustHeaderTransformer >> actionOn: anInput [
 
 { #category : #private }
 PREPubMenuJustHeaderTransformer >> initCurrentsArray [
-	currentsArray := #(nil nil nil nil nil nil nil)
+	currentsArray := #(nil nil nil nil nil nil nil) copy.
 ]
 
 { #category : #private }
