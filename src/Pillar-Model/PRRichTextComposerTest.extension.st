@@ -1,11 +1,11 @@
-Extension { #name : #PRRichTextWriterTest }
+Extension { #name : #PRRichTextComposerTest }
 
 { #category : #'*Pillar-Model' }
-PRRichTextWriterTest >> testSuperscriptFormat [
+PRRichTextComposerTest >> testSuperscriptFormat [
 	self assertWriting: sample superscript include: self superscriptFormat
 ]
 
 { #category : #'*Pillar-Model' }
-PRRichTextWriterTest >> testUnderlineFormat [ 
+PRRichTextComposerTest >> testUnderlineFormat [ 
 	self assertWriting: sample underline include: self underlineFormat
 ]
