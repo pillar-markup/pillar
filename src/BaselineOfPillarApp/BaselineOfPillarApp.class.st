@@ -22,13 +22,14 @@ BaselineOfPillarApp >> baseline: spec [
 	spec 
 		for: #'pharo8.x'
 		do: [ 
-				spec  baseline: 'Clap' with: [ spec repository: 'github://cdlm/clap-st:pharo-pr5761' ].
+				spec baseline: 'Clap' with: [ spec repository: 'github://cdlm/clap-st:pharo-pr5761' ].
 				spec package: 'Pillar-Cli' with: [ 
 					spec requires: #( 'Clap' 'Pillar-ExporterCore' 'Pillar-Chrysal') ]
 			].
 		
 	"Microdown - we want it in App."
 	spec baseline: 'Microdown' with: [ 
+		   spec className: 'MicrodownDev'.
 			spec repository: 'github://pillar-markup/Microdown:dev/src' ].
 	spec package: 'Pillar-Microdown' with: [ spec requires: #('Microdown' #'Pillar-Model') ].
 	spec package: 'Pillar-ExporterMicrodown' with: [ spec requires: #('Microdown' 'Pillar-PetitPillar' 'Pillar-ExporterCore') ].
