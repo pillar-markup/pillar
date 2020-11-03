@@ -25,16 +25,9 @@ BaselineOfPillarMicro >> baseline: spec [
 		spec baseline: 'Pillar' with: [ spec 
 				"loads: #('rich text exporter');"
 				repository: 'github://pillar-markup/pillar:dev-8/src' ].
+			
 		spec baseline: 'Microdown' with: [ 
 			spec repository: 'github://pillar-markup/Microdown/src' ].	
-		
-		spec
-			baseline: 'FileDialog'
-			with: [ spec repository: 'github://Ducasse/file-dialog/repository' ].	
-					
-		spec 
-			package: 'Pillar-Pear' 	
-			with: [ spec requires: #('Pillar-ExporterMicrodown' 'FileDialog') ].
 		
 		spec 
 			package: 'Pillar-Microdown' 
