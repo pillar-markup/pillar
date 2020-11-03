@@ -49,7 +49,8 @@ BaselineOfPillarApp >> baseline: spec [
 						repository: 'github://noha/mustache:v1.0/repository';
 						loads: #('Core' 'Tests') ].
 					
-			spec baseline: 'PillarDocumentModel' with: [ spec repository: self packageRepositoryURL ].		
+			spec baseline: 'PillarDocumentModel' with: [ spec repository: 'github://Pillar-markup/pillar' 
+					"self packageRepositoryURL" ].		
 					
 			spec
 				package: 'Pillar-Chrysal-Generator' with: [ spec requires: #('Chrysal') ];
