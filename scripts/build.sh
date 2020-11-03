@@ -41,7 +41,7 @@ if [ "$OS" == "win" ]; then
     REPOSITORY_PATH=$(cygpath $REPOSITORY_PATH --windows)
 fi
 
-${PHARO} eval --save "Metacello new baseline: 'Pillar'; repository: 'gitlocal://${REPOSITORY_PATH}'; load"
+${PHARO} eval --save "Metacello new baseline: 'PillarApp'; repository: 'gitlocal://${REPOSITORY_PATH}'; load"
 
 ${PHARO} eval --save "Deprecation raiseWarning: false."
 ${PHARO} eval --save "Deprecation showWarning: false."
@@ -49,7 +49,7 @@ ${PHARO} eval --save "StartupPreferencesLoader allowStartupScript: false."
 
 # UserManager was remove on Pharo5. We need to check if there is an other way to do this.
 ${PHARO} eval --save "PharoFilesOpener default unsetInformAboutReadOnlyChanges."
-${PHARO} eval --save "Smalltalk logFileName: '/tmp/pillar.log'"
+${PHARO} eval --save "Smalltalk logFileName: '/tmp/pillarApp.log'"
 
 cp "${__dir}/wrappers/"* "${__builddir}"
 cp -r "${__dir}/../archetypes" "${__builddir}/archetypes"
