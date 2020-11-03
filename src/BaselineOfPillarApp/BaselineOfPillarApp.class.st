@@ -27,6 +27,12 @@ BaselineOfPillarApp >> baseline: spec [
 					spec requires: #( 'Clap' 'Pillar-ExporterCore' 'Pillar-Chrysal') ]
 			].
 		
+	"Microdown - we want it in App."
+	spec baseline: 'Microdown' with: [ 
+			spec repository: 'github://pillar-markup/Microdown/src' ].
+	spec package: 'Pillar-Microdown' with: [ spec requires: #('Microdown' #'Pillar-Model') ].
+	spec package: 'Pillar-ExporterMicrodown' with: [ spec requires: #('Microdown' 'Pillar-PetitPillar' 'Pillar-ExporterCore') ].
+		
 	spec
 		for: #common
 		do: [ spec blessing: #baseline.
