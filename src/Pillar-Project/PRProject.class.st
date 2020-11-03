@@ -183,7 +183,7 @@ PRProject >> isTemplatable [
 { #category : #accessing }
 PRProject >> outputDirectory [
 	
-	^ self configuration baseDirectory resolve: self configuration outputDirectory
+	^ self baseDirectory resolve: self configuration outputDirectory
 ]
 
 { #category : #accessing }

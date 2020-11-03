@@ -61,6 +61,15 @@ Then add that directory to the `PILLAR_HOME` and `HOME` environment variables, f
 
 ```bash
 export PILLAR_HOME="$HOME/.pillar"
+```
+
+To make the `pillar` command available in your shell you can:
+- either symlink the `pillar` script into your `~/bin` (or `~/.local/bin` on some environments) folder using:
+```bash
+ln -s $PILLAR_HOME/build/pillar ~/bin/pillar
+```
+- or add the build folder into the your `PATH` envirnment variable, for example by adding into your `.bashrc` (or shell startup):
+```bash
 export PATH="$PATH:$PILLAR_HOME/build"
 ```
 
@@ -94,8 +103,8 @@ And requires to install this specific package MiKTeX package:
 - supp-pdf
 
 #### Tailored installation (for non-full lovers)
-Producing pdf documents with Pillar requires a `LaTeX` installation with certain packages. 
-Pillar 7.7.3 introduced the possibility to use LaTeX 2018 or the rolling version of 2019. 
+Producing pdf documents with Pillar requires a `LaTeX` installation with certain packages.
+Pillar 7.7.3 introduced the possibility to use LaTeX 2018 or the rolling version of 2019.
 Check the ensure-deps.sh files and companion travis file (if you want to run in travis) in the support/latex of the archetype.
 
 
@@ -164,7 +173,7 @@ Please note that chapter on "Pharo a web Perspective" is obsolete since it refer
 - 8.0.2 current stable version. Tagged versions from 8.0.4 to 8.0.12 excluded got broken due to a class renaming. 8.0.12 is now green tests and loads. It is the future candidate for stable.
 - 7.7.4 Last version before moving to P8.
 - 7.7.3 introduces the possibility to use LaTeX 2018 or the rolling version of 2019. Check the ensure-deps.sh and companion travis file in the support/latex of the archetype.
-- 7.7.0 cleaned useless features, plus travis builds. 
+- 7.7.0 cleaned useless features, plus travis builds.
 - 7.5.0 introduces environments (${begin:card|x=12}$ ... ${end:card}$
 - 7.4.1 introduces element-based templating (templates found in a given folder are used to output one given element).
 
