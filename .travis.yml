@@ -11,7 +11,7 @@ env:
   - PATH="$HOME/texlive/bin/x86_64-linux:$HOME/texlive/bin/x86_64-darwin:$HOME/pillar/build:$PATH"
   
   matrix:
-  - JOB=test TYPE=Integration
+  - JOB=test TYPE=Integration.App
   - JOB=test TYPE=System ARCHETYPE=book OUTPUT=pdf TEXLIVE_RELEASE=2017
   - JOB=test TYPE=System ARCHETYPE=book OUTPUT=pdf TEXLIVE_RELEASE=2018
   - JOB=test TYPE=System ARCHETYPE=book OUTPUT=pdf TEXLIVE_RELEASE=2019 TEXLIVE_MIRROR="http://mirror.ctan.org/systems/texlive/tlnet"
@@ -24,7 +24,8 @@ env:
   - JOB=test TYPE=System ARCHETYPE=basic-latex OUTPUT=html
   - JOB=test TYPE=System ARCHETYPE=tester-example OUTPUT=checkBook
   - JOB=build
-  - JOB=test TYPE=Unit
+  - JOB=test TYPE=Unit.App
+  - JOB=test TYPE=Unit.DocumentModel
 
 install:
   - if [[ ${TYPE} == "Integration" ]] || [[ ${TYPE} == "System" ]]; then ./scripts/ci/install-texlive; fi
