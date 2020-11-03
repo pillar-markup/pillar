@@ -49,7 +49,8 @@ BaselineOfPillarApp >> baseline: spec [
 						repository: 'github://noha/mustache:v1.0/repository';
 						loads: #('Core' 'Tests') ].
 					
-			spec baseline: 'PillarDocumentModel' with: [ spec repository: 'github://Pillar-markup/pillar' 
+			spec baseline: 'PillarDocumentModel' 
+					with: [ spec repository: 'github://Pillar-markup/pillar:dev-8' 
 					"self packageRepositoryURL" ].		
 					
 			spec
