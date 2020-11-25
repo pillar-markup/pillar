@@ -13,7 +13,7 @@ For SSH setup, execute the `build.sh` script found in the `scripts` directory:
 ```bash
 $ git clone git@github.com:pillar-markup/pillar.git
 $ cd pillar
-$ git checkout v8.0.2
+$ git checkout v8.0.12
 $ chmod a+x ./scripts/build.sh
 $ ./scripts/build.sh
 ```
@@ -24,7 +24,7 @@ For HTTPS setup, execute the `build.sh` script found in the `scripts` directory:
 ```bash
 $ git clone https://github.com/pillar-markup/pillar.git
 $ cd pillar
-$ git checkout v8.0.2
+$ git checkout v8.0.12
 $ chmod a+x ./scripts/build.sh
 $ ./scripts/build.sh
 ```
@@ -170,7 +170,7 @@ Read the documentation at [https://github.com/SquareBracketAssociates/Booklet-Pu
 Please note that chapter on "Pharo a web Perspective" is obsolete since it refers to Pharo 60.
 
 ## History
-- 8.0.2 current stable version. Tagged versions from 8.0.4 to 8.0.12 excluded got broken due to a class renaming. 8.0.12 is now green tests and loads. It is the future candidate for stable.
+- 8.0.12 current stable version. Tagged versions from 8.0.4 to 8.0.12 excluded got broken due to a class renaming. 8.0.12 is now green tests and loads. It is the future candidate for stable.
 - 7.7.4 Last version before moving to P8.
 - 7.7.3 introduces the possibility to use LaTeX 2018 or the rolling version of 2019. Check the ensure-deps.sh and companion travis file in the support/latex of the archetype.
 - 7.7.0 cleaned useless features, plus travis builds.
