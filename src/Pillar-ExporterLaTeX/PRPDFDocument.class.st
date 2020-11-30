@@ -76,12 +76,11 @@ PRPDFDocument >> postWriteTransform: aFile [
 	outputFileReference := outputDirectory resolve: relativePath parent.
 	self
 		executeCommand: 'latexmk'
-		arguments: { 
-			'-pdflatex=lualatex' .
-			'-pdf' .
+		arguments: {
+			'-lualatex=lualatex --file-line-error --halt-on-error %O %S' .
+			'-pdflua' .
 			'-ps-' .
-			'-f' .
-			'-interaction=nonstopmode' .
+			'-silent' .
 			'-outdir=', (self toCommandPath: outputFileReference fullName).
 			self toCommandPath: (PRLaTeXWriter toLatexPath: (aFile relativeTo: outputDirectory) pillarPrintString) }
 		workingDirectory: outputDirectory fullName
