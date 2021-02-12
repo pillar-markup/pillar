@@ -19,6 +19,8 @@ jobs:
     strategy:
       matrix:
         platform: [ubuntu-latest, macos-latest ]
+        archetype: [book, presentation, welcome, basic-latex]
+        output: [html, pdf]
     runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v2
@@ -26,6 +28,6 @@ jobs:
         id: smalltalkci
         with:
           smalltalk-version: Pharo64-8.0
-      - run: scripts/system-tests/testarchetype.sh ${ARCHETYPE} ${OUTPUT}
+      - run: scripts/system-tests/testarchetype.sh  ${{ matrix.archetype }} ${OUTPUT}
         shell: bash
         timeout-minutes: 15
