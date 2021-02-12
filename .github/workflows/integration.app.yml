@@ -34,4 +34,4 @@ jobs:
         run: |
           cp -r archetypes ${SMALLTALK_CI_BUILD}
           mkdir -p ${SMALLTALK_CI_BUILD}
-          smalltalkci -s  ${{ steps.smalltalkci.outputs.smalltalk-version }} .smalltalk.Integration.App.ston
+          SMALLTALK_CI_BUILD=${SMALLTALK_CI_BUILD} smalltalkci -s  ${{ steps.smalltalkci.outputs.smalltalk-version }} .smalltalk.Integration.App.ston
