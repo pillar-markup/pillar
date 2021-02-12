@@ -2,6 +2,7 @@ name: integration.app
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  SMALLTALK_CI_BUILD: /tmp/build
 
 # Controls when the action will run. 
 on:
@@ -27,8 +28,8 @@ jobs:
         with:
           smalltalk-version: Pharo64-8.0
       - run: |
-          cp -r archetypes ${{ steps.smalltalkci.SMALLTALK_CI_BUILD }}
-          mkdir -p $SMALLTALK_CI_BUILD
-      - run: smalltalkci -s ${{ steps.smalltalkci.SMALLTALK_CI_BUILD }} .smalltalk.Integration.App.ston
+          cp -r archetypes "${SMALLTALK_CI_BUILD}"
+          mkdir -p "${SMALLTALK_CI_BUILD}"
+      - run: smalltalkci -s "${SMALLTALK_CI_BUILD}" .smalltalk.Integration.App.ston
         shell: bash
         timeout-minutes: 15
