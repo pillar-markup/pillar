@@ -2,7 +2,7 @@ name: system
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  
+  TEXLIVE_RELEASE: 2018  
 
 # Controls when the action will run. 
 on:
