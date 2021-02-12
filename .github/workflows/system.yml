@@ -32,11 +32,14 @@ jobs:
         id: smalltalkci
         with:
           smalltalk-version: Pharo64-8.0
-      - name: install latex
+      - name: prepare PATH
         shell: bash
         run: |
           echo "$HOME/texlive/bin/x86_64-linux" >> $GITHUB_PATH
           echo "$HOME/texlive/bin/x86_64-darwin" >> $GITHUB_PATH
+      - name: install latex
+        shell: bash
+        run: |
           ./scripts/ci/install-texlive
           ./archetypes/book/support/latex/ensure-dependencies-${TEXLIVE_RELEASE:=2017}.sh
       - shell: bash
