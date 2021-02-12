@@ -52,4 +52,6 @@ ${PHARO} eval --save "PharoFilesOpener default unsetInformAboutReadOnlyChanges."
 ${PHARO} eval --save "Smalltalk logFileName: '/tmp/pillarApp.log'"
 
 cp "${__dir}/wrappers/"* "${__builddir}"
+chmod +x "${__builddir}"/pillar
+chmod +x "${__builddir}"/pillar-db
 cp -r "${__dir}/../archetypes" "${__builddir}/archetypes"

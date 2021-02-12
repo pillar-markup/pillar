@@ -2,6 +2,7 @@ name: system
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  TEXLIVE_RELEASE: 2018  
 
 # Controls when the action will run. 
 on:
@@ -17,6 +18,7 @@ on:
 jobs:
   build:
     strategy:
+      fail-fast: false
       matrix:
         platform: [ubuntu-latest, macos-latest ]
         archetype: [book, presentation, welcome, basic-latex]
@@ -24,10 +26,24 @@ jobs:
     runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v2
+        with:  
+          fetch-depth: 0
       - uses: hpi-swa/setup-smalltalkCI@v1
         id: smalltalkci
         with:
           smalltalk-version: Pharo64-8.0
-      - run: scripts/system-tests/testarchetype.sh  ${{ matrix.archetype }} ${OUTPUT}
+      - name: prepare PATH
         shell: bash
+        run: |
+          echo "$HOME/texlive/bin/x86_64-linux" >> $GITHUB_PATH
+          echo "$HOME/texlive/bin/x86_64-darwin" >> $GITHUB_PATH
+      - name: install latex
+        shell: bash
+        run: |
+          ./scripts/ci/install-texlive
+          ./archetypes/book/support/latex/ensure-dependencies-${TEXLIVE_RELEASE:=2018}.sh
+      - shell: bash
         timeout-minutes: 15
+        run: |
+          scripts/system-tests/testarchetype.sh  ${{ matrix.archetype }} ${{ matrix.output }}
+        
