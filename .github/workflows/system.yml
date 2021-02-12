@@ -2,6 +2,7 @@ name: system
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  PATH: "$HOME/texlive/bin/x86_64-linux:$HOME/texlive/bin/x86_64-darwin:$HOME/pillar/build:$PATH"
 
 # Controls when the action will run. 
 on:
