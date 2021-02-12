@@ -27,7 +27,7 @@ jobs:
         with:
           smalltalk-version: Pharo64-8.0
       - run: |
-          cp -r archetypes $SMALLTALK_CI_BUILD \ 
+          cp -r archetypes $SMALLTALK_CI_BUILD
           mkdir -p $SMALLTALK_CI_BUILD
       - run: smalltalkci -s ${{ steps.smalltalkci.outputs.smalltalk-version }} .smalltalk.Integration.App.ston
         shell: bash
