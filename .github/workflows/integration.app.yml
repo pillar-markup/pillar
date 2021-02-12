@@ -26,12 +26,12 @@ jobs:
         id: smalltalkci
         with:
           smalltalk-version: Pharo64-8.0
-          smalltalk-build-dir: ${SMALLTALK_CI_BUILD}
       - name: go
         shell: bash
+        env:
+          SMALLTALK_CI_BUILD: /tmp/build
         timeout-minutes: 15
         run: |
-          env
-          cp -r archetypes ${{ steps.smalltalkci.outputs.smalltalk-build-dir }}
-          mkdir -p ${{ steps.smalltalkci.outputs.smalltalk-build-dir }}
+          cp -r archetypes ${SMALLTALK_CI_BUILD}
+          mkdir -p ${SMALLTALK_CI_BUILD}
           smalltalkci -s  ${{ steps.smalltalkci.outputs.smalltalk-version }} .smalltalk.Integration.App.ston
