@@ -41,7 +41,7 @@ jobs:
         shell: bash
         run: |
           ./scripts/ci/install-texlive
-          ./archetypes/book/support/latex/ensure-dependencies-${TEXLIVE_RELEASE:=2017}.sh
+          ./archetypes/book/support/latex/ensure-dependencies-${TEXLIVE_RELEASE:=2018}.sh
       - shell: bash
         timeout-minutes: 15
         run: |
