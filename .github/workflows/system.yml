@@ -35,12 +35,12 @@ jobs:
       - name: install latex
         shell: bash
         run: |
+          echo "$HOME/texlive/bin/x86_64-linux" >> $GITHUB_PATH
+          echo "$HOME/texlive/bin/x86_64-darwin" >> $GITHUB_PATH
           ./scripts/ci/install-texlive
           ./archetypes/book/support/latex/ensure-dependencies-${TEXLIVE_RELEASE:=2017}.sh
       - shell: bash
         timeout-minutes: 15
         run: |
-          echo "$HOME/texlive/bin/x86_64-linux" >> $GITHUB_PATH
-          echo "$HOME/texlive/bin/x86_64-darwin" >> $GITHUB_PATH
           scripts/system-tests/testarchetype.sh  ${{ matrix.archetype }} ${{ matrix.output }}
         
