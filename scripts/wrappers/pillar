@@ -6,8 +6,10 @@ set -o pipefail
 set -o nounset
 
 #does not work on osx __dir=`readlink -f $0` # resolve symlink i.e. works if ~/bin/pillar is a symlink to this file
+#__dir=`dirname "$__dir"` #obtain dir of the resolved path
+
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-__dir=`dirname "$__dir"` #obtain dir of the resolved path
+
 
 PHARO_VM="${__dir}/pharo"
 PILLAR_IMAGE="${__dir}/Pharo.image"
