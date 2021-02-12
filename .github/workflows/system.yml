@@ -32,6 +32,11 @@ jobs:
         id: smalltalkci
         with:
           smalltalk-version: Pharo64-8.0
+      - name: install latex
+        shell: bash
+        run: |
+          ./scripts/ci/install-texlive
+          ./archetypes/book/support/latex/ensure-dependencies-${TEXLIVE_RELEASE:=2017}.sh
       - shell: bash
         timeout-minutes: 15
         run: |
