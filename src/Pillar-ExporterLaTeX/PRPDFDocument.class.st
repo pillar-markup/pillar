@@ -77,7 +77,9 @@ PRPDFDocument >> postWriteTransform: aFile [
 	self
 		executeCommand: 'latexmk'
 		arguments: {
-			'-lualatex=lualatex --file-line-error --halt-on-error %O %S' .
+			'-lualatex=lualatex' . 
+			'--file-line-error' .
+			'--halt-on-error' . '%O' . '%S' .
 			'-pdflua' .
 			'-ps-' .
 			'-silent' .
