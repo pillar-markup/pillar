@@ -16,6 +16,7 @@ on:
   
 jobs:
   build:
+    continue-on-error: true
     strategy:
       matrix:
         platform: [ubuntu-latest, macos-latest ]
