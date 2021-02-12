@@ -35,3 +35,7 @@ jobs:
           cp -r archetypes ${SMALLTALK_CI_BUILD}
           mkdir -p ${SMALLTALK_CI_BUILD}
           smalltalkci -s  ${{ steps.smalltalkci.outputs.smalltalk-version }} .smalltalk.Integration.App.ston
+      - name: DEBUG
+        shell: bash
+        timeout-minutes: 15
+        run: tree ${SMALLTALK_CI_BUILD}
