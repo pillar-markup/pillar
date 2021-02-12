@@ -277,45 +277,6 @@ barwith a space
 	self assert: richText string second equals: $f
 ]
 
-{ #category : #'tests - not rendering mode' }
-PRRichTextComposerTest >> testRenderCommentOf [
-	
-	| old |
-	[ old := self composerClass notRendering.
-	self composerClass notRendering: true.
-	self assert: (self composerClass renderComment: 'Cocorico' of: Point) equals: 'Cocorico'.
-	 ] ensure: [ self composerClass notRendering: old ]
-	
-
-
-]
-
-{ #category : #'tests - not rendering mode' }
-PRRichTextComposerTest >> testRenderCommentOfNotRendering [
-	
-	| old |
-	[ old := self composerClass notRendering.
-	self composerClass notRendering: true.
-	self assert: (self composerClass renderComment: 'Cocorico' of: Point) equals: 'Cocorico'.
-	] ensure: [ self composerClass notRendering: old ]
-	
-
-
-]
-
-{ #category : #'tests - not rendering mode' }
-PRRichTextComposerTest >> testRenderCommentOfRendering [
-	
-	| old |
-	[ old := self composerClass notRendering.
-	self composerClass notRendering: false.
-	self deny: (self composerClass renderComment: 'Cocorico' of: Point) equals: 'Cocorico'.
-	 ] ensure: [ self composerClass notRendering: old ]
-	
-
-
-]
-
 { #category : #'skipped tests' }
 PRRichTextComposerTest >> testStrikethroughFormat [ 
 	"Test fails: strikethrough is recognized only if spaces surround text
