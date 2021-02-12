@@ -33,7 +33,7 @@ jobs:
         run: |
           echo "SMALLTALKCIBUILD: " ${SMALLTALK_CI_BUILD}
           echo "PWD: " `pwd`
-          cp -r archetypes ${SMALLTALK_CI_BUILD}
+          cp -r archetypes ${SMALLTALK_CI_BUILD}/archetypes
           mkdir -p ${SMALLTALK_CI_BUILD}
           smalltalkci -s  ${{ steps.smalltalkci.outputs.smalltalk-version }} .smalltalk.Integration.App.ston || true
       - name: DEBUG
