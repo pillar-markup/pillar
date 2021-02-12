@@ -52,7 +52,11 @@ BaselineOfPillarApp >> baseline: spec [
 					
 			spec baseline: 'PillarDocumentModel' 
 					with: [ spec repository: 'github://Pillar-markup/pillar:dev-8' 
-					"self packageRepositoryURL" ].		
+					"self packageRepositoryURL" ].
+
+			spec package: 'Pillar-Tests-Core' with: [ spec 
+					requires: #( 'PillarDocumentModel' 'Pillar-ExporterText' 'Pillar-ExporterPillar' 'Pillar-PetitPillar' ) ].
+
 					
 			spec
 				package: 'Pillar-Chrysal-Generator' with: [ spec requires: #('Chrysal') ];

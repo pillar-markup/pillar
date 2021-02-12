@@ -13,8 +13,6 @@ BaselineOfPillarDocumentModel >> baseline: spec [
 		do: [ spec blessing: #baseline.
 			spec 
 				package: 'Pillar-Core';
-				package: 'Pillar-Tests-Core' with: [ spec 
-					requires: #( 'Pillar-Core' ) ];
 				package: 'Pillar-ExporterRichText' 
 					with: [ spec requires: #('Pillar-Core') ].
 		]
