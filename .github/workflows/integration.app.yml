@@ -28,10 +28,8 @@ jobs:
           smalltalk-version: Pharo64-8.0
       - name: go
         shell: bash
-        env:
-          SMALLTALK_CI_BUILD: /tmp/build
         timeout-minutes: 15
         run: |
           cp -r archetypes ${SMALLTALK_CI_BUILD}
           mkdir -p ${SMALLTALK_CI_BUILD}
-          SMALLTALK_CI_BUILD=${SMALLTALK_CI_BUILD} smalltalkci -s  ${{ steps.smalltalkci.outputs.smalltalk-version }} .smalltalk.Integration.App.ston
+          smalltalkci -s  ${{ steps.smalltalkci.outputs.smalltalk-version }} .smalltalk.Integration.App.ston
