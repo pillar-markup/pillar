@@ -2,8 +2,13 @@
 
 Pillar is a markup syntax and tool-suite to generate documentation, books, websites and slides. Pillar is not new, it was invented around 2000 as a supporting language for [SmallWiki](https://www.slideshare.net/esug/smallwiki-smalltalk-wiki-towards-cms): one of the first wiki using OOP for real. Its ancestor was the markup for the Pier CMS and we extracted it from Pier to make it more applicable to different domains. The Pillar syntax is similar to markdown but its emphasis is on publishing and how it handles different types of links.
 
-[![Build Status](https://travis-ci.org/pillar-markup/pillar.svg?branch=stable)](https://travis-ci.org/pillar-markup/pillar)
-[![Documentation](https://img.shields.io/badge/Documentation-download-green.svg)](https://github.com/SquareBracketAssociates/Booklet-PublishingAPillarBooklet)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://img.shields.io/badge/license-MIT-blue.svg)
+![https://github.com/pharo-markup/pillar/workflows/unit.app/badge.svg](https://github.com/pharo-markup/pillar/workflows/unit.app/badge.svg)
+![https://github.com/pharo-markup/pillar/workflows/unitTests/badge.svg](https://github.com/pharo-markup/pillar/workflows/unitTests.app/badge.svg)
+![https://github.com/pharo-markup/pillar/workflows/integration.app/badge.svg](https://github.com/pharo-markup/pillar/workflows/integration.app/badge.svg)
+![https://github.com/pharo-markup/pillar/workflows/system/badge.svg](https://github.com/pharo-markup/pillar/workflows/system/badge.svg)
+
+[![Coverage Status](https://coveralls.io/repos/github/pharo-containers/Containers-RunArray/badge.svg?branch=master)](https://coveralls.io/github/pharo-markup/pillar/?branch=dev-8)
 
 ## Installation
 
