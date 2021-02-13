@@ -4,7 +4,7 @@ Pillar is a markup syntax and tool-suite to generate documentation, books, websi
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://img.shields.io/badge/license-MIT-blue.svg)
 ![https://github.com/pillar-markup/pillar/workflows/unit.app/badge.svg](https://github.com/pillar-markup/pillar/workflows/unit.app/badge.svg)
-![https://github.com/pillar-markup/pillar/workflows/unitTests/badge.svg](https://github.com/pillar-markup/pillar/workflows/unitTests.app/badge.svg)
+![https://github.com/pillar-markup/pillar/workflows/unitTests/badge.svg](https://github.com/pillar-markup/pillar/workflows/unitTests/badge.svg)
 ![https://github.com/pillar-markup/pillar/workflows/integration.app/badge.svg](https://github.com/pillar-markup/pillar/workflows/integration.app/badge.svg)
 ![https://github.com/pillar-markup/pillar/workflows/system/badge.svg](https://github.com/pharo-markup/pillar/workflows/system/badge.svg)
 
