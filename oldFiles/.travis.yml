@@ -1,0 +1,52 @@
+language: smalltalk
+sudo: false
+os:
+  - linux
+  
+smalltalk:
+  - Pharo64-8.0
+
+env:
+  global:
+  - PATH="$HOME/texlive/bin/x86_64-linux:$HOME/texlive/bin/x86_64-darwin:$HOME/pillar/build:$PATH"
+  
+  matrix:
+  - JOB=test TYPE=Integration.App
+  - JOB=test TYPE=System ARCHETYPE=book OUTPUT=pdf TEXLIVE_RELEASE=2017
+  - JOB=test TYPE=System ARCHETYPE=book OUTPUT=pdf TEXLIVE_RELEASE=2018
+  - JOB=test TYPE=System ARCHETYPE=book OUTPUT=pdf TEXLIVE_RELEASE=2019 TEXLIVE_MIRROR="http://mirror.ctan.org/systems/texlive/tlnet"
+  - JOB=test TYPE=System ARCHETYPE=book OUTPUT=html
+  - JOB=test TYPE=System ARCHETYPE=presentation OUTPUT=pdf
+  - JOB=test TYPE=System ARCHETYPE=presentation OUTPUT=html
+  - JOB=test TYPE=System ARCHETYPE=welcome OUTPUT=pdf
+  - JOB=test TYPE=System ARCHETYPE=welcome OUTPUT=html
+  - JOB=test TYPE=System ARCHETYPE=basic-latex OUTPUT=pdf
+  - JOB=test TYPE=System ARCHETYPE=basic-latex OUTPUT=html
+  - JOB=test TYPE=System ARCHETYPE=tester-example OUTPUT=checkBook
+  - JOB=build
+  - JOB=test TYPE=Unit.App
+  - JOB=test TYPE=Unit.DocumentModel
+
+install:
+  - if [[ ${TYPE} == "Integration" ]] || [[ ${TYPE} == "System" ]]; then ./scripts/ci/install-texlive; fi
+  - if [[ ${TYPE} == "Integration" ]] || [[ ${OUTPUT} == "pdf" ]]; then ./archetypes/book/support/latex/ensure-dependencies-${TEXLIVE_RELEASE:=2017}.sh; fi
+  - if [[ ${TYPE} == "Integration" ]]; then mkdir -p $SMALLTALK_CI_BUILD; fi
+  - if [[ ${TYPE} == "Integration" ]]; then cp -r archetypes $SMALLTALK_CI_BUILD; fi
+
+script:
+  - if [[ ${JOB} == "test" ]] && [[ ${TYPE} != "System" ]]; then "$SMALLTALK_CI_HOME/run.sh" ".smalltalk.${TYPE}.ston"; fi
+  - if [[ ${TYPE} == "System" ]]; then "scripts/system-tests/testarchetype.sh" ${ARCHETYPE} ${OUTPUT}; fi
+  - if [[ ${JOB} == "build" ]]; then "scripts/build.sh"; fi
+  - if [[ ${JOB} == "build" ]]; then zip -ry9 pillar-${TRAVIS_OS_NAME}-${TRAVIS_SMALLTALK_VERSION}.zip build; fi
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  file_glob: true
+  file: "*.zip"
+  api_key:
+    secure: nfdSLWRhZXwfdWEARen8igx8egTeIetEXuklwobPAAG8Z/Vdl9lOFio6HFsUsNRaSBU2ot+bKaU5EIpr5tBpx+9PmHGutu9etP1jeXV07HLFAnqCYfI3vwDdMtRtbLnc21hWIXqdUwu3zyhxAOzFWBxJc1loCbyCsjuxjeEa6pKCNEviDdaeyxqnNzVP1vvd6YPN2+hw+YS4/NAoN6c4Z6H9qnqevfcrfYAbUtXDV4BMwvTvvw7m+G6MxspSQUDZ0un8f59OjYPLMANMO+A91/NZ+Qxshj/U4mZsrI2dYRM64S1J4I78QRbAjZ45QGter4bIfY3ErHZNLJ8gMlRuFpr4L2uY1Qeub0yeky8sliJxyNvZmV30h6Gpmb/bGBRpqY/LVQY8ItrPPnfWmczzv1fUPbAilBFVVHn3ThmZnEMG+aA9/5HANA13aL5RvOOKZLUy/gRA65J3CK1TF2cShOFz6mJRsOv+GXCPN4RwiKVq5/XKLw6yDJlCxH8s1FeUd4WK71kAlhjrqYXFT8EV8HJd9Lgjfjr3UIEVceIRlxfNO0epd0S+tyxXPhN/d++B6QTq5GhrFaAIq0JfYoIvKZzDeynosK1Vpm4gulWRynt+olPXNV4nwhWu1fNH8AvaS+Sf1mvgP/S2qeCKZr9Hev3WhSEeTPnt+fMCgWTijkA=
+  on:
+    repo: pillar-markup/pillar
+    tags: true
+    condition: $JOB = "build"

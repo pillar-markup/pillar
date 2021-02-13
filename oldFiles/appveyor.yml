@@ -1,0 +1,76 @@
+environment:
+  CYG_ROOT: C:\cygwin
+  CYG_BASH: C:\cygwin\bin\bash
+  CYG_CACHE: C:\cygwin\var\cache\setup
+  CYG_EXE: C:\cygwin\setup-x86.exe
+  CYG_MIRROR: http://cygwin.mirror.constant.com
+  SMALLTALK_CI_BUILD: /cygdrive/c/SMALLTALKCI-master/_builds
+  SCI_RUN: /cygdrive/c/SMALLTALKCI-master/run.sh
+
+  matrix:
+    - SMALLTALK: Pharo-7.0
+      JOB: build
+    - SMALLTALK: Pharo-7.0
+      SMALLTALK_CONFIG: .smalltalk.Unit.ston
+      JOB: test
+    - SMALLTALK: Pharo-6.1
+      SMALLTALK_CONFIG: .smalltalk.Unit.ston
+      JOB: test
+    - SMALLTALK: Pharo-7.0
+      SMALLTALK_CONFIG: .smalltalk.Integration.ston
+      JOB: test
+    - SMALLTALK: Pharo-6.1
+      SMALLTALK_CONFIG: .smalltalk.Integration.ston
+      JOB: test
+
+platform:
+  - x86
+
+install:
+  - '%CYG_EXE% -dgnqNO -R "%CYG_ROOT%" -s "%CYG_MIRROR%" -l "%CYG_CACHE%" -P unzip'
+  - '%CYG_EXE% -dgnqNO -R "%CYG_ROOT%" -s "%CYG_MIRROR%" -l "%CYG_CACHE%" -P zip'
+
+for:
+-
+  matrix:
+    only:
+      - JOB: test
+  # MiKTeX installation inspired from https://github.com/open62541/open62541/blob/master/appveyor.yml
+  install:
+    - ps: Start-FileDownload "https://github.com/hpi-swa/SMALLTALKCI/archive/master.zip" "C:\SMALLTALKCI.zip"
+    - 7z x C:\SMALLTALKCI.zip -oC:\ -y > NULL
+    # Install miktex to get pdflatex, if we don't get it from the cache
+    - if not exist c:\miktex\texmfs\install\miktex\bin\pdflatex.exe appveyor DownloadFile http://mirrors.ctan.org/systems/windows/miktex/setup/windows-x86/miktex-portable.exe
+    - if not exist c:\miktex\texmfs\install\miktex\bin\pdflatex.exe 7z x miktex-portable.exe -oc:\miktex >NUL
+    - set "PATH=%PATH%;c:\miktex\texmfs\install\miktex\bin"
+    # autoinstall latex packages (0=no, 1=autoinstall, 2=ask)
+    # this adds this to the registry!
+    - initexmf --set-config-value [MPM]AutoInstall=1
+    - initexmf --update-fndb
+    # Copy archetypes to build folder to run integration tests
+    - '%CYG_BASH% -lc "cd $APPVEYOR_BUILD_FOLDER; mkdir -p $SMALLTALK_CI_BUILD; cp -r archetypes $SMALLTALK_CI_BUILD"'
+  test_script:
+    - '%CYG_BASH% -lc "cd $APPVEYOR_BUILD_FOLDER; exec 0</dev/null; $SCI_RUN $SMALLTALK_CONFIG"'
+-
+  matrix:
+    only:
+      - JOB: build
+  test_script:
+    - '%CYG_BASH% -lc "cd $APPVEYOR_BUILD_FOLDER; exec 0</dev/null; ./scripts/build.sh;"'
+    - '%CYG_BASH% -lc "cd $APPVEYOR_BUILD_FOLDER; exec 0</dev/null; zip -ry9 pillar-win-${SMALLTALK}.zip build;"'
+    
+
+build: false
+
+artifacts:
+  - path: 'pillar-win-*.zip'
+
+deploy:
+  provider: GitHub
+  auth_token:
+    secure: jGFy6wHCCZ+MlfochnuWpKfjuBXhGUCNUrBDwAYezdYlwyrF1ciAPMP5zJrKVqR8
+  artifact: /pillar.*.zip/
+  release: $(appveyor_repo_tag_name)
+  on:
+    APPVEYOR_REPO_TAG: true        # deploy on tag push only
+    JOB: build
