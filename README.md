@@ -9,7 +9,7 @@ Pillar is a markup syntax and tool-suite to generate documentation, books, websi
 ![https://github.com/pillar-markup/pillar/workflows/system/badge.svg](https://github.com/pillar-markup/pillar/workflows/system/badge.svg)
 ![https://github.com/pillar-markup/pillar/workflows/integration.app/badge.svg](https://github.com/pillar-markup/pillar/workflows/integration.app/badge.svg)
 
-[![Coverage Status](https://coveralls.io/repos/github/pharo-containers/Containers-RunArray/badge.svg?branch=master)](https://coveralls.io/github/pharo-markup/pillar/?branch=dev-8)
+[![Coverage Status](https://coveralls.io/repos/github/pillar-markup/pillar/badge.svg?branch=dev-8)](https://coveralls.io/github/pillar-markup/pillar?branch=dev-8)
 
 ## Installation
 
