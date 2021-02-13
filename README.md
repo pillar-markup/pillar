@@ -42,8 +42,8 @@ LICENSE  README.md  appveyor.yml  archetypes  ==>>build<<==  download.sh  script
 
 #### Current version
 
-- Current version is Pillar v8.1.0
-- Most Pharo booklets are using v7.7.4 and are under migration to v8.1.0.
+- Current version is Pillar v8.0.12
+- Most Pharo booklets are using v7.7.4 and are under migration to v8.0.12
 
 
 
