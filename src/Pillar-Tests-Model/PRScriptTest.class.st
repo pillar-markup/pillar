@@ -66,9 +66,9 @@ PRScriptTest >> testParseEscape [
 				language: 'foo|';
 				yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -87,9 +87,9 @@ PRScriptTest >> testParseRealLanguage [
 				language: PRSmalltalkScriptLanguage default;
 				yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -101,9 +101,9 @@ PRScriptTest >> testParseSimple [
 	tree := PRDocument new
 		add: (PRCodeblock content: 'foo');
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -115,7 +115,7 @@ PRScriptTest >> testParseSimpleOn1Line [
 	tree := PRDocument new
 		add: (self addText: '[[[foo]]]' to: PRParagraph new);
 		yourself.
-	self assertWiki: wiki equalsTree: tree
+	self parserAssertWiki: wiki equalsTree: tree
 ]
 
 { #category : #'tests-parsing' }
@@ -130,9 +130,9 @@ PRScriptTest >> testParseWithSimpleCaption [
 				caption: 'foo';
 				yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #tests }

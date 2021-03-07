@@ -19,9 +19,9 @@ PRRawTest >> testParseBasic [
 			add: (PRRaw content: 'abc');
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -34,9 +34,9 @@ PRRawTest >> testParseEmpty [
 			add: (PRRaw content: '');
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -50,9 +50,9 @@ PRRawTest >> testParseMultiline [
 			add: (PRRaw content: 'a' , nLine , 'b');
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -67,9 +67,9 @@ PRRawTest >> testParseMultiple [
 			add: (PRRaw content: 'c');
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -86,9 +86,9 @@ PRRawTest >> testParseMultipleMultiline [
 						add: (PRRaw content: 'd' , nLine , 'e');
 						yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -101,9 +101,9 @@ PRRawTest >> testParseStrange [
 			add: (PRRaw content: 'a{{||}}b');
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -116,9 +116,9 @@ PRRawTest >> testParseTypeHtml [
 			add: (PRRaw content: 'abc' type: 'html');
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -131,9 +131,9 @@ PRRawTest >> testParseTypeLatex [
 			add: (PRRaw content: 'abc' type: 'latex');
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -146,9 +146,9 @@ PRRawTest >> testParseTypeText [
 			add: (PRRaw content: 'abc' type: 'text');
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-accessing' }

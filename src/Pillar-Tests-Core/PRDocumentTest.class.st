@@ -20,9 +20,9 @@ PRDocumentTest >> testParseEmpty [
 	wiki := String new.
 	text := String new.
 	tree := PRDocument new.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -34,9 +34,9 @@ PRDocumentTest >> testParseMultipleProperties [
 		propertyAt: 'title' put: 'The title';
 		propertyAt: 'authors' put: 'Someone else and me';
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text.
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text.
 	document := self parser parse: wiki.
 	self assert: document properties equals: tree properties
 ]
@@ -49,9 +49,9 @@ PRDocumentTest >> testParseProperties [
 	tree := PRDocument new
 		propertyAt: 'title' put: 'The title';
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text.
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text.
 	document := self parser parse: wiki.
 	self assert: document properties equals: tree properties
 ]
@@ -68,9 +68,9 @@ PRDocumentTest >> testParsePropertiesWithText [
 						add: (PRText content: 'foobar');
 						yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text.
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text.
 	document := self parser parse: wiki.
 	self assert: document properties equals: tree properties
 ]

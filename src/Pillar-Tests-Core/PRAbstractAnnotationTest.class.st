@@ -71,8 +71,8 @@ PRAbstractAnnotationTest >> testParse [
 				add: (self actualClass withParameters: self referenceParameters);
 				yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
 	
 ]
 

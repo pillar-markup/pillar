@@ -42,9 +42,9 @@ PRParagraphTest >> testParseEmptyLineAtBeginning [
 						add: (PRText content: 'Lorem ipsum dolor sit amet.');
 						yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -57,9 +57,9 @@ PRParagraphTest >> testParseOneLine [
 			add: (PRText content: wiki);
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -80,9 +80,9 @@ PRParagraphTest >> testParseThreeEmptyLines [
 						add: (PRText content: 'Nulla mattis elementum nulla.');
 						yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -104,9 +104,9 @@ PRParagraphTest >> testParseTwoConsecutiveNonTextLines [
 						add: (PRText content: title);
 						yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -126,7 +126,7 @@ PRParagraphTest >> testParseTwoEmptyLines [
 						add: (PRText content: 'Nulla mattis elementum nulla.');
 						yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]

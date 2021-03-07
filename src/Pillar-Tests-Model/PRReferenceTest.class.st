@@ -72,9 +72,9 @@ PRReferenceTest >> testNonTextAlias [
 				yourself);
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parameters' }
@@ -146,9 +146,9 @@ PRReferenceTest >> testParseAliased [
 				yourself);
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -166,9 +166,9 @@ PRReferenceTest >> testParseAliasedEmpty [
 						yourself);
 				yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -185,9 +185,9 @@ PRReferenceTest >> testParseBasic [
 				yourself);
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -204,10 +204,10 @@ PRReferenceTest >> testParseEasyness [
 				add: (PRText content: self markup , self referenceString);
 				yourself);
 		yourself.
-	self assertWiki: wiki1 equalsTree: tree.
-	self assertWiki: wiki2 equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki2.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki1 equalsTree: tree.
+	self parserAssertWiki: wiki2 equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki2.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -222,10 +222,10 @@ PRReferenceTest >> testParseEmpty [
 				add: (PRText content: self markup , self markup);
 				yourself);
 		yourself.
-	self assertWiki: wiki1 equalsTree: tree.
-	self assertWiki: wiki2 equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki2.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki1 equalsTree: tree.
+	self parserAssertWiki: wiki2 equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki2.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -241,9 +241,9 @@ PRReferenceTest >> testParseEscaped [
 						add: (PRText content: 'Cross +' , self referenceString , '+');
 						yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -267,9 +267,9 @@ PRReferenceTest >> testParseParameters [
 										yourself);
 						yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -292,8 +292,8 @@ PRReferenceTest >> testParseParametersEmpty [
 										yourself);
 						yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -316,9 +316,9 @@ PRReferenceTest >> testParseParametersEscaped [
 										yourself);
 						yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-accessing' }

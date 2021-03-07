@@ -29,9 +29,9 @@ PRLineBreakTest >> testParseOneEmptyLine [
 		add: (PRParagraph new add: (PRText content: 'Nulla quis urna.') yourself);
 		yourself.
 		
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -50,9 +50,9 @@ PRLineBreakTest >> testParseTreeLines [
 						add: (PRText content: 'Vestibulum turpis.');
 						yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -70,9 +70,9 @@ PRLineBreakTest >> testParseTwoEmptyLines [
 		add: PREmptyParagraph new;
 		add: (PRParagraph new add: (PRText content: 'Nulla quis urna.') yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: text.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: text.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -87,7 +87,7 @@ PRLineBreakTest >> testParseTwoLines [
 						add: PRLineBreak new;
 						add: (PRText content: 'Nulla quis urna.') yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]

@@ -1,7 +1,7 @@
 Class {
 	#name : #PRHorizontalRuleTest,
 	#superclass : #PRDocumentItemTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#category : #'Pillar-Tests-Model-Document'
 }
 
 { #category : #testing }
@@ -22,9 +22,9 @@ PRHorizontalRuleTest >> testParseBasic [
 	tree := PRDocument new
 		add: PRHorizontalRule new;
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -41,10 +41,10 @@ PRHorizontalRuleTest >> testParseLink [
 				yourself);
 			yourself);
 		yourself.
-	self assertWiki: wiki1 equalsTree: tree.
-	self assertWiki: wiki2 equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki2.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki1 equalsTree: tree.
+	self parserAssertWiki: wiki2 equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki2.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -59,9 +59,9 @@ PRHorizontalRuleTest >> testParseMultiple [
 		add: PREmptyParagraph new;
 		add: PRHorizontalRule new;
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -74,9 +74,9 @@ PRHorizontalRuleTest >> testParseParagraph [
 			add: (PRText content: '_ is parsed as paragraph');
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -87,9 +87,9 @@ PRHorizontalRuleTest >> testParseSpaces [
 	tree := PRDocument new
 		add: PRHorizontalRule new;
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: '_'.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: '_'.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #private }

@@ -31,9 +31,9 @@ PRListTest >> testParseEmpty [
 			add: self listItemClass new;
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -51,9 +51,9 @@ PRListTest >> testParseFlat [
 						add: (self listItemWithText: '3rd');
 						yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -75,9 +75,9 @@ PRListTest >> testParseMultiple [
 						add: (self listItemWithText: '3rd');
 						yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -90,7 +90,7 @@ PRListTest >> testParseWithTrailingSpaces [
 				add: (self listItemWithText: '1st');
 				yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree
+	self parserAssertWiki: wiki equalsTree: tree
 ]
 
 { #category : #private }

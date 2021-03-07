@@ -1,7 +1,7 @@
 Class {
 	#name : #PRDefinitionTermTest,
 	#superclass : #PRListTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#category : #'Pillar-Tests-Model-Document'
 }
 
 { #category : #testing }
@@ -45,8 +45,8 @@ PRDefinitionTermTest >> testParseMixed [
 										yourself);
 						yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #private }

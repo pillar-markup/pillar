@@ -90,9 +90,9 @@ PRTableCellTest >> testParseAlign1 [
 				yourself);
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -120,9 +120,9 @@ PRTableCellTest >> testParseAlign2 [
 				yourself);
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -149,9 +149,9 @@ PRTableCellTest >> testParseEncoding [
 				yourself);
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -184,9 +184,9 @@ PRTableCellTest >> testParseHeading1 [
 				yourself);
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -220,7 +220,7 @@ PRTableCellTest >> testParseHeading2 [
 				yourself);
 			yourself);
 		yourself.
-	self assertWiki: wiki1 equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki2.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki1 equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki2.
+	self textWriterAssertTree: tree equalsText: text
 ]

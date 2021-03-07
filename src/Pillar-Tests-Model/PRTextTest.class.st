@@ -34,8 +34,8 @@ PRTextTest >> testEscapeCpp [
 			add: (PRText content: 'Text: ++');
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }
@@ -64,8 +64,8 @@ PRTextTest >> testEscapeFirst [
 						add: (PRText content: '- text');
 						yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }
@@ -80,8 +80,8 @@ PRTextTest >> testEscapeStrange [
 						add: (PRText content: '> text');
 						yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }
@@ -93,8 +93,8 @@ PRTextTest >> testEscapeText [
 			add: (PRText content: 'Text: *+');
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }
@@ -106,8 +106,8 @@ PRTextTest >> testEscapeWiki [
 			add: (PRText content: 'Wiki: =, |, !, #, {, }, |{, ||, |}, [, ] and -');
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }
@@ -119,8 +119,8 @@ PRTextTest >> testParseBasic [
 			add: (PRText content: 'abcdefghijklmnopqrstuvwxyz... ABCDEFGHIJKLMNOPQRSTUVWXYZ... 0123456789...');
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }
@@ -132,8 +132,8 @@ PRTextTest >> testParseHtml [
 			add: (PRText content: '<strong>strong <emph>strong, emph</emph></strong>');
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }
@@ -146,9 +146,9 @@ PRTextTest >> testParseLatex [
 			add: (PRText content: '\begin{foo}[bar]$zork$\end{foo}');
 			yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki.
-	self assertTree: tree equalsText: text
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
@@ -161,8 +161,8 @@ PRTextTest >> testParseSpecial [
 										content: '????????????¬å???????????????¬ú??¬ü¬¬°¬¢¬£¬§¬·?¬ß?¬©¬¬´¬¨?¬Æ¬Ø¬¬±???¬µ¬¬??¬¬ª???¬ø¦Ä¦Å¦Ç¦É¦Ñ¦Ö¦Ü¦á¦à¦â¦ä¦ã¦å¦ç¦é¦è?¦ë¦í¦ì¦î¦ï¦ñ?¦ò¦ô¦ö¦õ¦ú??¦ü¦¦°¦¢¦£¦§¦·¦¶¦ß¦®¦©¦¦´¦¨¦¦Æ¦Ø?¦±¦¦¦¥¦µ¦¦¦¦¦¦ª¦º??');
 							yourself);
 				yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }
@@ -174,8 +174,8 @@ PRTextTest >> testParseWiki [
 							add: (PRText content: ' !_#-|=]@:<>*');
 							yourself);
 				yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-printing' }

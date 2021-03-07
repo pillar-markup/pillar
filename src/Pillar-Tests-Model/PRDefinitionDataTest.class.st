@@ -1,7 +1,7 @@
 Class {
 	#name : #PRDefinitionDataTest,
 	#superclass : #PRListTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#category : #'Pillar-Tests-Model-Document'
 }
 
 { #category : #testing }
@@ -47,9 +47,9 @@ PRDefinitionDataTest >> testParseBug [
 										yourself);
 						yourself);
 		yourself.
-	self assertWiki: wiki1 equalsTree: tree.
-	self assertWiki: wiki2 equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki2
+	self parserAssertWiki: wiki1 equalsTree: tree.
+	self parserAssertWiki: wiki2 equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki2
 ]
 
 { #category : #tests }
@@ -69,8 +69,8 @@ PRDefinitionDataTest >> testParseMixed [
 										yourself);
 						yourself);
 		yourself.
-	self assertWiki: wiki equalsTree: tree.
-	self assertTree: tree equalsWiki: wiki
+	self parserAssertWiki: wiki equalsTree: tree.
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #private }
