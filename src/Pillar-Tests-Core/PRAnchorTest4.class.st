@@ -1,6 +1,6 @@
 Class {
 	#name : #PRAnchorTest4,
-	#superclass : #PRPillarWriterDocumentItemTest,
+	#superclass : #PRPillarWriterDocumentItemTest4,
 	#category : #'Pillar-Tests-Core'
 }
 

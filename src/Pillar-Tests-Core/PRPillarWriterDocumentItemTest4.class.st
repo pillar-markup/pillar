@@ -1,43 +1,43 @@
 Class {
-	#name : #PRPillarWriterDocumentItemTest,
+	#name : #PRPillarWriterDocumentItemTest4,
 	#superclass : #PRBasicObjectTest,
 	#category : #'Pillar-Tests-Core'
 }
 
 { #category : #private }
-PRPillarWriterDocumentItemTest >> actualClass [
+PRPillarWriterDocumentItemTest4 >> actualClass [
 	^ PRDocumentItem
 ]
 
 { #category : #utilities }
-PRPillarWriterDocumentItemTest >> addText: aString to: aDocumentItem [
+PRPillarWriterDocumentItemTest4 >> addText: aString to: aDocumentItem [
 	^ aDocumentItem
 		add: (PRText content: aString);
 		yourself
 ]
 
 { #category : #private }
-PRPillarWriterDocumentItemTest >> barInstance [
+PRPillarWriterDocumentItemTest4 >> barInstance [
 	^ PRText content: 'bar'
 ]
 
 { #category : #private }
-PRPillarWriterDocumentItemTest >> fooInstance [
+PRPillarWriterDocumentItemTest4 >> fooInstance [
 	^ PRText content: 'foo'
 ]
 
 { #category : #private }
-PRPillarWriterDocumentItemTest >> foobarInstances [
+PRPillarWriterDocumentItemTest4 >> foobarInstances [
 	^ Array with: self fooInstance with: self barInstance
 ]
 
 { #category : #helper }
-PRPillarWriterDocumentItemTest >> parser [
+PRPillarWriterDocumentItemTest4 >> parser [
 	^ PRDocument parser
 ]
 
 { #category : #utilities }
-PRPillarWriterDocumentItemTest >> parserAssertWiki: aString equalsTree: aDocument [
+PRPillarWriterDocumentItemTest4 >> parserAssertWiki: aString equalsTree: aDocument [
 	"Assert that parsing aString results in aDocument."
 
 	self
@@ -46,13 +46,13 @@ PRPillarWriterDocumentItemTest >> parserAssertWiki: aString equalsTree: aDocumen
 ]
 
 { #category : #utilities }
-PRPillarWriterDocumentItemTest >> pillarWriterAssertTree: aDocument equalsWiki: aString [
+PRPillarWriterDocumentItemTest4 >> pillarWriterAssertTree: aDocument equalsWiki: aString [
 	"Assert that traversing aDocument using the wiki writer results in aString."
 
 	self assert: (PRPillarWriter write: aDocument) = aString description: aString resumable: false
 ]
 
 { #category : #utilities }
-PRPillarWriterDocumentItemTest >> textWriterAssertTree: aDocument equalsText: aString [
+PRPillarWriterDocumentItemTest4 >> textWriterAssertTree: aDocument equalsText: aString [
 	self assert: (PRTextWriter write: aDocument) = aString description: aString resumable: true
 ]
