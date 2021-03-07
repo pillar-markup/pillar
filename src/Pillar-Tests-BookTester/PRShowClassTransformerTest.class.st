@@ -45,7 +45,8 @@ PRShowClassTransformerTest >> setUp [
 
 { #category : #running }
 PRShowClassTransformerTest >> testTransformerCreatesClassDefinitionCodeblock [
-
+	self skip. 
+	self flag: #todo. 
 	self helper: 'Integer' result: Integer definitionString
 ]
 
