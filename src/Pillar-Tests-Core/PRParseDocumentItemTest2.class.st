@@ -4,6 +4,11 @@ Class {
 	#category : #'Pillar-Tests-Core'
 }
 
+{ #category : #testing }
+PRParseDocumentItemTest2 class >> isAbstract [
+	^ self = PRParseDocumentItemTest2
+]
+
 { #category : #private }
 PRParseDocumentItemTest2 >> actualClass [
 	^ PRDocumentItem
