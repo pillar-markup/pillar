@@ -46,10 +46,7 @@ PRShowClassTransformerTest >> setUp [
 { #category : #running }
 PRShowClassTransformerTest >> testTransformerCreatesClassDefinitionCodeblock [
 
-	self helper: 'Integer' result:  Integer definition
-	
-	
-	
+	self helper: 'Integer' result: Integer definitionString
 ]
 
 { #category : #running }

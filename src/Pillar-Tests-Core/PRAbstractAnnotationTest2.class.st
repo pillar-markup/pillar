@@ -6,7 +6,7 @@ Class {
 
 { #category : #testing }
 PRAbstractAnnotationTest2 class >> isAbstract [
-	^ self = PRAbstractAnnotationTest
+	^ self = PRAbstractAnnotationTest2
 ]
 
 { #category : #helpers }
