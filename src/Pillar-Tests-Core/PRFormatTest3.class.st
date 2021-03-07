@@ -1,6 +1,6 @@
 Class {
 	#name : #PRFormatTest3,
-	#superclass : #PRDocumentGroupTest,
+	#superclass : #PRDocumentGroupTest3,
 	#instVars : [
 		'otherClass',
 		'markup'

@@ -1,16 +1,16 @@
 Class {
-	#name : #PRDocumentGroupTest4,
-	#superclass : #PRDocumentItemTest,
+	#name : #PRPillarWriterDocumentGroupTest4,
+	#superclass : #PRPillarWriterDocumentItemTest4,
 	#category : #'Pillar-Tests-Core'
 }
 
 { #category : #private }
-PRDocumentGroupTest4 >> actualClass [
+PRPillarWriterDocumentGroupTest4 >> actualClass [
 	^ PRDocumentGroup
 ]
 
 { #category : #'tests-adding' }
-PRDocumentGroupTest4 >> testAdd [
+PRPillarWriterDocumentGroupTest4 >> testAdd [
 	self instance add: self fooInstance.
 	self assert: self instance children size equals: 1.
 	self assert: self instance children first equals: self fooInstance.
@@ -22,7 +22,7 @@ PRDocumentGroupTest4 >> testAdd [
 ]
 
 { #category : #'tests-adding' }
-PRDocumentGroupTest4 >> testAddAll [
+PRPillarWriterDocumentGroupTest4 >> testAddAll [
 	self instance addAll: self foobarInstances.
 	self assert: self instance children size equals: 2.
 	self assert: self instance children first equals: self fooInstance.
@@ -30,7 +30,7 @@ PRDocumentGroupTest4 >> testAddAll [
 ]
 
 { #category : #'tests-copying' }
-PRDocumentGroupTest4 >> testCopyChildren [
+PRPillarWriterDocumentGroupTest4 >> testCopyChildren [
 	self instance addAll: self foobarInstances.
 	self assert: self instance children equals: self instance copy children.
 	self deny: self instance children identicalTo: self instance copy children.
@@ -42,34 +42,34 @@ PRDocumentGroupTest4 >> testCopyChildren [
 ]
 
 { #category : #'tests-testing' }
-PRDocumentGroupTest4 >> testHasChildren [
+PRPillarWriterDocumentGroupTest4 >> testHasChildren [
 	self deny: self instance hasChildren.
 	self instance add: self fooInstance.
 	self assert: self instance hasChildren
 ]
 
 { #category : #'tests-accessing' }
-PRDocumentGroupTest4 >> testSize [
+PRPillarWriterDocumentGroupTest4 >> testSize [
 	self assert: self instance size equals: 0.
 	self instance add: self fooInstance.
 	self assert: self instance size equals: 1
 ]
 
 { #category : #'tests-accessing' }
-PRDocumentGroupTest4 >> testText [
+PRPillarWriterDocumentGroupTest4 >> testText [
 	self instance addAll: self foobarInstances.
 	self assert: self instance text equals: 'foobar'
 ]
 
 { #category : #'tests-instantiation' }
-PRDocumentGroupTest4 >> testWith [
+PRPillarWriterDocumentGroupTest4 >> testWith [
 	instance := self actualClass with: self fooInstance.
 	self assert: instance children size equals: 1.
 	self assert: instance children first equals: self fooInstance
 ]
 
 { #category : #'tests-instantiation' }
-PRDocumentGroupTest4 >> testWithAll [
+PRPillarWriterDocumentGroupTest4 >> testWithAll [
 	instance := self actualClass withAll: self foobarInstances.
 	self assert: instance children size equals: 2.
 	self assert: instance children first equals: self fooInstance.

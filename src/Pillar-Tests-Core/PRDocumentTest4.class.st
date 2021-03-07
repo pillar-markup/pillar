@@ -1,6 +1,6 @@
 Class {
 	#name : #PRDocumentTest4,
-	#superclass : #PRDocumentGroupTest,
+	#superclass : #PRPillarWriterDocumentGroupTest4,
 	#category : #'Pillar-Tests-Core'
 }
 

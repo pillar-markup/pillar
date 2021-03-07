@@ -14,63 +14,19 @@ PRDocumentTest >> actualClass [
 	^ PRDocument
 ]
 
-{ #category : #'tests-parsing' }
-PRDocumentTest >> testParseEmpty [
-	| wiki text tree |
-	wiki := String new.
-	text := String new.
-	tree := PRDocument new.
-	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
-]
-
-{ #category : #'tests-parsing' }
-PRDocumentTest >> testParseMultipleProperties [
-	| wiki text tree document|
-	wiki := '{''title'':''The title'',''authors'':''Someone else and me''}'.
-	text := String new.
+{ #category : #tests }
+PRDocumentTest >> testTitle [
+	| tree |
 	tree := PRDocument new
-		propertyAt: 'title' put: 'The title';
-		propertyAt: 'authors' put: 'Someone else and me';
+		propertyAt: 'title' put: 'Atom heart mother';
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text.
-	document := self parser parse: wiki.
-	self assert: document properties equals: tree properties
-]
-
-{ #category : #'tests-parsing' }
-PRDocumentTest >> testParseProperties [
-	| wiki text tree document |
-	wiki := '{''title'':''The title''}'.
-	text := String new.
+	self assert: tree title equals: 'Atom heart mother'.
 	tree := PRDocument new
-		propertyAt: 'title' put: 'The title';
-		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text.
-	document := self parser parse: wiki.
-	self assert: document properties equals: tree properties
-]
-
-{ #category : #'tests-parsing' }
-PRDocumentTest >> testParsePropertiesWithText [
-	| wiki text tree document |
-	wiki := '{''title'':''The title''}' , Smalltalk os lineEnding , 'foobar'.
-	text := 'foobar'.
-	tree := PRDocument new
-		propertyAt: 'title' put: 'The title';
 		add:
-				(PRParagraph new
-						add: (PRText content: 'foobar');
-						yourself);
-		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text.
-	document := self parser parse: wiki.
-	self assert: document properties equals: tree properties
+			(PRHeader new
+				level: 1;
+				add: (PRText content: 'Echoes');
+				yourself).
+	self assert: tree title equals: 'Echoes'.
+	self assert: PRDocument new title equals: 'No title'
 ]

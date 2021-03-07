@@ -18,7 +18,7 @@ PRFormatTest >> otherClass [
 	^ otherClass ifNil: [ otherClass := PRFormat allSubclasses detect: [ :each | self actualClass ~= each ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 PRFormatTest >> setUp [
 	super setUp.
 	markup := PRPillarGrammar markups at: self actualClass

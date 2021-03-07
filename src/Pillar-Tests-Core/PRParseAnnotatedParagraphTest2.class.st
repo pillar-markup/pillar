@@ -1,24 +1,23 @@
 Class {
-	#name : #PRAnnotatedParagraphTest2,
-	#superclass : #PRDocumentGroupTest,
+	#name : #PRParseAnnotatedParagraphTest2,
+	#superclass : #PRParseDocumentGroupTest2,
 	#category : #'Pillar-Tests-Core'
 }
 
 { #category : #testing }
-PRAnnotatedParagraphTest2 class >> isAbstract [
+PRParseAnnotatedParagraphTest2 class >> isAbstract [
 	^ false
 ]
 
 { #category : #private }
-PRAnnotatedParagraphTest2 >> actualClass [
+PRParseAnnotatedParagraphTest2 >> actualClass [
 	^ PRAnnotatedParagraph
 ]
 
 { #category : #'tests-parsing' }
-PRAnnotatedParagraphTest2 >> testParseBasic [
-	| wiki text tree |
+PRParseAnnotatedParagraphTest2 >> testParseBasic [
+	| wiki  tree |
 	wiki := '@@foo bar zork'.
-	text := 'bar zork'.
 	tree := PRDocument new
 		add: (PRAnnotatedParagraph new
 			annotation: 'foo';
@@ -26,16 +25,14 @@ PRAnnotatedParagraphTest2 >> testParseBasic [
 			yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
-PRAnnotatedParagraphTest2 >> testParseEmptyFollwedByPreformatted [
-	| wiki text tree nLine|
+PRParseAnnotatedParagraphTest2 >> testParseEmptyFollowedByPreformatted [
+	| wiki tree nLine|
 	nLine := Smalltalk os lineEnding.
 	wiki := '@@foo' , nLine , '= bar'.
-	text := nLine , 'bar'.
 	tree := PRDocument new
 		add: (PRAnnotatedParagraph new
 			annotation: 'foo';
@@ -45,45 +42,39 @@ PRAnnotatedParagraphTest2 >> testParseEmptyFollwedByPreformatted [
 			yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
-PRAnnotatedParagraphTest2 >> testParseOnlyAnnotation [
-	| wiki text tree |
+PRParseAnnotatedParagraphTest2 >> testParseOnlyAnnotation [
+	| wiki tree |
 	wiki := '@@foo'.
-	text := ''.
 	tree := PRDocument new
 		add: (PRAnnotatedParagraph new
 			annotation: 'foo';
 			yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]
 
 { #category : #'tests-parsing' }
-PRAnnotatedParagraphTest2 >> testParseOnlyNothing [
-	| wiki text tree |
+PRParseAnnotatedParagraphTest2 >> testParseOnlyNothing [
+	| wiki tree |
 	wiki := '@@'.
-	text := ''.
 	tree := PRDocument new
 		add: (PRAnnotatedParagraph new
 			annotation: '';
 			yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]
 
 { #category : #'tests-parsing' }
-PRAnnotatedParagraphTest2 >> testParseOnlyText [
-	| wiki text tree |
+PRParseAnnotatedParagraphTest2 >> testParseOnlyText [
+	| wiki tree |
 	wiki := '@@ foo bar'.
-	text := 'foo bar'.
 	tree := PRDocument new
 		add: (PRAnnotatedParagraph new
 			add: (PRText content: 'foo bar');
@@ -91,6 +82,5 @@ PRAnnotatedParagraphTest2 >> testParseOnlyText [
 			yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]

@@ -1,16 +1,16 @@
 Class {
-	#name : #PRDocumentGroupTest2,
-	#superclass : #PRDocumentItemTest,
+	#name : #PRParseDocumentGroupTest2,
+	#superclass : #PRParseDocumentItemTest2,
 	#category : #'Pillar-Tests-Core'
 }
 
 { #category : #private }
-PRDocumentGroupTest2 >> actualClass [
+PRParseDocumentGroupTest2 >> actualClass [
 	^ PRDocumentGroup
 ]
 
 { #category : #'tests-adding' }
-PRDocumentGroupTest2 >> testAdd [
+PRParseDocumentGroupTest2 >> testAdd [
 	self instance add: self fooInstance.
 	self assert: self instance children size equals: 1.
 	self assert: self instance children first equals: self fooInstance.
@@ -22,7 +22,7 @@ PRDocumentGroupTest2 >> testAdd [
 ]
 
 { #category : #'tests-adding' }
-PRDocumentGroupTest2 >> testAddAll [
+PRParseDocumentGroupTest2 >> testAddAll [
 	self instance addAll: self foobarInstances.
 	self assert: self instance children size equals: 2.
 	self assert: self instance children first equals: self fooInstance.
@@ -30,7 +30,7 @@ PRDocumentGroupTest2 >> testAddAll [
 ]
 
 { #category : #'tests-copying' }
-PRDocumentGroupTest2 >> testCopyChildren [
+PRParseDocumentGroupTest2 >> testCopyChildren [
 	self instance addAll: self foobarInstances.
 	self assert: self instance children equals: self instance copy children.
 	self deny: self instance children identicalTo: self instance copy children.
@@ -42,34 +42,34 @@ PRDocumentGroupTest2 >> testCopyChildren [
 ]
 
 { #category : #'tests-testing' }
-PRDocumentGroupTest2 >> testHasChildren [
+PRParseDocumentGroupTest2 >> testHasChildren [
 	self deny: self instance hasChildren.
 	self instance add: self fooInstance.
 	self assert: self instance hasChildren
 ]
 
 { #category : #'tests-accessing' }
-PRDocumentGroupTest2 >> testSize [
+PRParseDocumentGroupTest2 >> testSize [
 	self assert: self instance size equals: 0.
 	self instance add: self fooInstance.
 	self assert: self instance size equals: 1
 ]
 
 { #category : #'tests-accessing' }
-PRDocumentGroupTest2 >> testText [
+PRParseDocumentGroupTest2 >> testText [
 	self instance addAll: self foobarInstances.
 	self assert: self instance text equals: 'foobar'
 ]
 
 { #category : #'tests-instantiation' }
-PRDocumentGroupTest2 >> testWith [
+PRParseDocumentGroupTest2 >> testWith [
 	instance := self actualClass with: self fooInstance.
 	self assert: instance children size equals: 1.
 	self assert: instance children first equals: self fooInstance
 ]
 
 { #category : #'tests-instantiation' }
-PRDocumentGroupTest2 >> testWithAll [
+PRParseDocumentGroupTest2 >> testWithAll [
 	instance := self actualClass withAll: self foobarInstances.
 	self assert: instance children size equals: 2.
 	self assert: instance children first equals: self fooInstance.

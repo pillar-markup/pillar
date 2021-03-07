@@ -1,6 +1,6 @@
 Class {
 	#name : #PRAnnotatedParagraphTest3,
-	#superclass : #PRDocumentGroupTest,
+	#superclass : #PRDocumentGroupTest3,
 	#category : #'Pillar-Tests-Core'
 }
 
