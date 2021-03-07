@@ -1,46 +1,38 @@
 Class {
-	#name : #PRAbstractAnnotationTest4,
-	#superclass : #PRPillarWriterDocumentItemTest4,
+	#name : #PRParseAbstractAnnotationTest,
+	#superclass : #PRParseDocumentItemTest2,
 	#category : #'Pillar-Tests-Core'
 }
 
 { #category : #testing }
-PRAbstractAnnotationTest4 class >> isAbstract [
-	^ self = PRAbstractAnnotationTest4
+PRParseAbstractAnnotationTest class >> isAbstract [
+	^ self = PRParseAbstractAnnotationTest
 ]
 
 { #category : #helpers }
-PRAbstractAnnotationTest4 >> actualClass [
+PRParseAbstractAnnotationTest >> actualClass [
 	^ self subclassResponsibility
 ]
 
 { #category : #helpers }
-PRAbstractAnnotationTest4 >> annoteName [
+PRParseAbstractAnnotationTest >> annoteName [
 	^ self actualClass tag
 ]
 
 { #category : #helpers }
-PRAbstractAnnotationTest4 >> referenceParameters [
+PRParseAbstractAnnotationTest >> referenceParameters [
 	self subclassResponsibility
 ]
 
 { #category : #helpers }
-PRAbstractAnnotationTest4 >> referenceString [
+PRParseAbstractAnnotationTest >> referenceString [
 	"Pay attention to order the parameters according to sorted"
 	self
 		subclassResponsibility
 ]
 
 { #category : #tests }
-PRAbstractAnnotationTest4 >> testAsPillar [
-	| wiki tree |
-	wiki := '${' , self referenceString , '}$'.
-	tree := self actualClass withParameters: self referenceParameters.
-	self assert: tree asPillar equals: wiki
-]
-
-{ #category : #tests }
-PRAbstractAnnotationTest4 >> testParse [
+PRParseAbstractAnnotationTest >> testParse [
 	| wiki tree |
 	wiki := '${' , self referenceString , '}$'.
 	tree := PRDocument new
@@ -50,12 +42,12 @@ PRAbstractAnnotationTest4 >> testParse [
 				yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	
+	self pillarWriterAssertTree: tree equalsWiki: wiki.
 	
 ]
 
 { #category : #tests }
-PRAbstractAnnotationTest4 >> testParsedHadAllKeys [
+PRParseAbstractAnnotationTest >> testParsedHadAllKeys [
 
 	self assert: (self parser parse:  '${' , self referenceString , '}$') children first children first hadAllKeys
 ]

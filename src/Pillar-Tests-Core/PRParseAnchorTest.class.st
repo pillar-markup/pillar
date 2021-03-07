@@ -1,21 +1,21 @@
 Class {
-	#name : #PRAnchorTest2,
+	#name : #PRParseAnchorTest,
 	#superclass : #PRParseDocumentItemTest2,
 	#category : #'Pillar-Tests-Core'
 }
 
 { #category : #testing }
-PRAnchorTest2 class >> isAbstract [
+PRParseAnchorTest class >> isAbstract [
 	^ false
 ]
 
 { #category : #private }
-PRAnchorTest2 >> actualClass [
+PRParseAnchorTest >> actualClass [
 	^ PRAnchor
 ]
 
 { #category : #'tests-parsing' }
-PRAnchorTest2 >> testBasic [
+PRParseAnchorTest >> testBasic [
 	| wiki tree |
 	wiki := '@name'.
 	tree := PRDocument new add: (PRAnchor named: 'name'); yourself.
@@ -24,7 +24,7 @@ PRAnchorTest2 >> testBasic [
 ]
 
 { #category : #'tests-parsing' }
-PRAnchorTest2 >> testMultiple [
+PRParseAnchorTest >> testMultiple [
 	| wiki tree nLine|
 	nLine := Smalltalk os lineEnding.
 	wiki := '@one' , nLine , '@two' , nLine , nLine , '@tree'.
@@ -41,7 +41,7 @@ PRAnchorTest2 >> testMultiple [
 ]
 
 { #category : #'tests-parsing' }
-PRAnchorTest2 >> testSpaces [
+PRParseAnchorTest >> testSpaces [
 	| wiki tree |
 	wiki := '@one two'.
 	tree := PRDocument new add: (PRAnchor named: 'one two'); yourself.

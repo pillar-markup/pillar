@@ -1,16 +1,16 @@
 Class {
-	#name : #PRBeginEnvironmentAnnotationTest2,
-	#superclass : #PRAbstractAnnotationTest2,
+	#name : #PRParseBeginEnvironmentAnnotationTest,
+	#superclass : #PRParseAbstractAnnotationTest,
 	#category : #'Pillar-Tests-Core'
 }
 
 { #category : #helpers }
-PRBeginEnvironmentAnnotationTest2 >> actualClass [
+PRParseBeginEnvironmentAnnotationTest >> actualClass [
 	^ PRBeginEnvironmentAnnotation
 ]
 
 { #category : #helpers }
-PRBeginEnvironmentAnnotationTest2 >> referenceParameters [
+PRParseBeginEnvironmentAnnotationTest >> referenceParameters [
 	^ PRParameters withAll: { 
 		PRParameter 
 			keyNode: (PRParameterKey named: 'name')
@@ -28,6 +28,6 @@ PRBeginEnvironmentAnnotationTest2 >> referenceParameters [
 ]
 
 { #category : #helpers }
-PRBeginEnvironmentAnnotationTest2 >> referenceString [
+PRParseBeginEnvironmentAnnotationTest >> referenceString [
 	^ 'begin:name=card|number=10|string=a string|boolean=true'
 ]
