@@ -50,7 +50,7 @@ PRAbstractAnnotationTest4 >> testParse [
 				yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	
 	
 ]
 
@@ -58,10 +58,4 @@ PRAbstractAnnotationTest4 >> testParse [
 PRAbstractAnnotationTest4 >> testParsedHadAllKeys [
 
 	self assert: (self parser parse:  '${' , self referenceString , '}$') children first children first hadAllKeys
-]
-
-{ #category : #tests }
-PRAbstractAnnotationTest4 >> testWithParameters [
-
-	self assert: (self actualClass withParameters: self referenceParameters) hadAllKeys
 ]
