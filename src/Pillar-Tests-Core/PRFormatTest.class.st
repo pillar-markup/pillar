@@ -20,6 +20,7 @@ PRFormatTest >> otherClass [
 
 { #category : #running }
 PRFormatTest >> setUp [
+	self halt.
 	super setUp.
 	markup := PRPillarGrammar markups at: self actualClass
 ]

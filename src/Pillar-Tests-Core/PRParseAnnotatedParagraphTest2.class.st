@@ -1,6 +1,6 @@
 Class {
 	#name : #PRParseAnnotatedParagraphTest2,
-	#superclass : #PRParseDocumentGroupTest2,
+	#superclass : #PRParseDocumentGroupTest,
 	#category : #'Pillar-Tests-Core'
 }
 

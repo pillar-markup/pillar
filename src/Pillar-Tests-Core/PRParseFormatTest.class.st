@@ -1,6 +1,6 @@
 Class {
-	#name : #PRParseFormatTest2,
-	#superclass : #PRParseDocumentGroupTest2,
+	#name : #PRParseFormatTest,
+	#superclass : #PRParseDocumentGroupTest,
 	#instVars : [
 		'otherClass',
 		'markup'
@@ -9,23 +9,24 @@ Class {
 }
 
 { #category : #private }
-PRParseFormatTest2 >> actualClass [
+PRParseFormatTest >> actualClass [
 	^ PRFormat
 ]
 
 { #category : #accessing }
-PRParseFormatTest2 >> otherClass [
+PRParseFormatTest >> otherClass [
 	^ otherClass ifNil: [ otherClass := PRFormat allSubclasses detect: [ :each | self actualClass ~= each ] ]
 ]
 
 { #category : #running }
-PRParseFormatTest2 >> setUp [
+PRParseFormatTest >> setUp [
+
 	super setUp.
 	markup := PRPillarGrammar markups at: self actualClass
 ]
 
 { #category : #'tests-parsing' }
-PRParseFormatTest2 >> testParseBasic [
+PRParseFormatTest >> testParseBasic [
 	| wiki tree |
 	wiki := '1' , markup , '2' , markup , '3'.
 
@@ -42,7 +43,7 @@ PRParseFormatTest2 >> testParseBasic [
 ]
 
 { #category : #'tests-parsing' }
-PRParseFormatTest2 >> testParseEnd [
+PRParseFormatTest >> testParseEnd [
 	| wiki tree |
 	wiki := '1' , markup , '2' , markup.
 	
@@ -58,7 +59,7 @@ PRParseFormatTest2 >> testParseEnd [
 ]
 
 { #category : #'tests-parsing' }
-PRParseFormatTest2 >> testParseEscaped [
+PRParseFormatTest >> testParseEscaped [
 	| wiki text tree |
 	wiki := ' ' , (PRPillarWriter escapeMarkup: markup) , (PRPillarWriter escapeMarkup: markup).
 	tree := PRDocument new
@@ -72,7 +73,7 @@ PRParseFormatTest2 >> testParseEscaped [
 ]
 
 { #category : #'tests-parsing' }
-PRParseFormatTest2 >> testParseIncomplete [
+PRParseFormatTest >> testParseIncomplete [
 	| wiki1 wiki2 tree |
 	wiki1 := '1' , markup , '2'.
 	wiki2 := '1' , (PRPillarWriter escapeMarkup: markup) , '2'.
@@ -89,7 +90,7 @@ PRParseFormatTest2 >> testParseIncomplete [
 ]
 
 { #category : #'tests-parsing' }
-PRParseFormatTest2 >> testParseMany [
+PRParseFormatTest >> testParseMany [
 	| wiki tree |
 	wiki := '1' , markup , '2' , markup , '3' , markup , '4' , markup , '5'.
 	
@@ -108,7 +109,7 @@ PRParseFormatTest2 >> testParseMany [
 ]
 
 { #category : #'tests-parsing' }
-PRParseFormatTest2 >> testParseNested [
+PRParseFormatTest >> testParseNested [
 	| wiki tree |
 	wiki := '1' , markup , '2' , (PRPillarGrammar markups at: self otherClass) , '3'
 		, (PRPillarGrammar markups at: self otherClass) , '4' , markup , '5'.
@@ -134,7 +135,7 @@ PRParseFormatTest2 >> testParseNested [
 ]
 
 { #category : #'tests-parsing' }
-PRParseFormatTest2 >> testParseNestedTight [
+PRParseFormatTest >> testParseNestedTight [
 	| wiki tree |
 	wiki := ' ' , markup , (PRPillarGrammar markups at: self otherClass)
 		, (PRPillarGrammar markups at: self otherClass) , markup.
@@ -150,7 +151,7 @@ PRParseFormatTest2 >> testParseNestedTight [
 ]
 
 { #category : #'tests-parsing' }
-PRParseFormatTest2 >> testParseWithNewLine [
+PRParseFormatTest >> testParseWithNewLine [
 	| wiki text tree |
 	wiki := '1' , markup , '2', Smalltalk os lineEnding, '3' , markup , '4'.
 	
@@ -167,7 +168,7 @@ PRParseFormatTest2 >> testParseWithNewLine [
 ]
 
 { #category : #'tests-parsing' }
-PRParseFormatTest2 >> testParseWithSpace [
+PRParseFormatTest >> testParseWithSpace [
 	| wiki tree |
 	wiki := '1' , markup , '2 3' , markup , '4'.
 
