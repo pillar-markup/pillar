@@ -1,5 +1,5 @@
 Class {
-	#name : #PRFormatTest4,
+	#name : #PRPillarWriterFormatTest,
 	#superclass : #PRPillarWriterDocumentGroupTest4,
 	#instVars : [
 		'otherClass',
@@ -9,26 +9,26 @@ Class {
 }
 
 { #category : #private }
-PRFormatTest4 >> actualClass [
+PRPillarWriterFormatTest >> actualClass [
 	^ PRFormat
 ]
 
 { #category : #accessing }
-PRFormatTest4 >> otherClass [
+PRPillarWriterFormatTest >> otherClass [
 	^ otherClass ifNil: [ otherClass := PRFormat allSubclasses detect: [ :each | self actualClass ~= each ] ]
 ]
 
-{ #category : #'as yet unclassified' }
-PRFormatTest4 >> setUp [
+{ #category : #running }
+PRPillarWriterFormatTest >> setUp [
 	super setUp.
 	markup := PRPillarGrammar markups at: self actualClass
 ]
 
 { #category : #'tests-parsing' }
-PRFormatTest4 >> testParseBasic [
-	| wiki text tree |
+PRPillarWriterFormatTest >> testParseBasic [
+	| wiki tree |
 	wiki := '1' , markup , '2' , markup , '3'.
-	text := '123'.
+	
 	tree := PRDocument new
 		add:
 			(PRParagraph new
@@ -37,16 +37,16 @@ PRFormatTest4 >> testParseBasic [
 				add: (PRText content: '3');
 				yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
-PRFormatTest4 >> testParseEnd [
-	| wiki text tree |
+PRPillarWriterFormatTest >> testParseEnd [
+	| wiki tree |
 	wiki := '1' , markup , '2' , markup.
-	text := '12'.
+	
 	tree := PRDocument new
 		add:
 			(PRParagraph new
@@ -54,50 +54,49 @@ PRFormatTest4 >> testParseEnd [
 				add: (self actualClass with: (PRText content: '2'));
 				yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]
 
 { #category : #'tests-parsing' }
-PRFormatTest4 >> testParseEscaped [
-	| wiki text tree |
+PRPillarWriterFormatTest >> testParseEscaped [
+	| wiki  tree |
 	wiki := ' ' , (PRPillarWriter escapeMarkup: markup) , (PRPillarWriter escapeMarkup: markup).
-	text := ' ' , markup , markup.
+
 	tree := PRDocument new
 		add:
 			(PRParagraph new
 				add: (PRText content: ' ' , markup , markup);
 				yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+	
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
-PRFormatTest4 >> testParseIncomplete [
-	| wiki1 wiki2 text tree |
+PRPillarWriterFormatTest >> testParseIncomplete [
+	| wiki1 wiki2  tree |
 	wiki1 := '1' , markup , '2'.
 	wiki2 := '1' , (PRPillarWriter escapeMarkup: markup) , '2'.
-	text := '1' , markup , '2'.
+	
 	tree := PRDocument new
 		add:
 			(PRParagraph new
 				add: (PRText content: '1' , markup , '2');
 				yourself);
 		yourself.
-	self parserAssertWiki: wiki1 equalsTree: tree.
-	self parserAssertWiki: wiki2 equalsTree: tree.
+		
 	self pillarWriterAssertTree: tree equalsWiki: wiki2.
-	self textWriterAssertTree: tree equalsText: text
+
 ]
 
 { #category : #'tests-parsing' }
-PRFormatTest4 >> testParseMany [
-	| wiki text tree |
+PRPillarWriterFormatTest >> testParseMany [
+	| wiki tree |
 	wiki := '1' , markup , '2' , markup , '3' , markup , '4' , markup , '5'.
-	text := '12345'.
+
 	tree := PRDocument new
 		add:
 			(PRParagraph new
@@ -108,17 +107,17 @@ PRFormatTest4 >> testParseMany [
 				add: (PRText content: '5');
 				yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
-PRFormatTest4 >> testParseNested [
-	| wiki text tree |
+PRPillarWriterFormatTest >> testParseNested [
+	| wiki tree |
 	wiki := '1' , markup , '2' , (PRPillarGrammar markups at: self otherClass) , '3'
 		, (PRPillarGrammar markups at: self otherClass) , '4' , markup , '5'.
-	text := '12345'.
+	
 	tree := PRDocument new
 		add:
 			(PRParagraph new
@@ -135,17 +134,17 @@ PRFormatTest4 >> testParseNested [
 				add: (PRText content: '5');
 				yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+	
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]
 
 { #category : #'tests-parsing' }
-PRFormatTest4 >> testParseNestedTight [
-	| wiki text tree |
+PRPillarWriterFormatTest >> testParseNestedTight [
+	| wiki  tree |
 	wiki := ' ' , markup , (PRPillarGrammar markups at: self otherClass)
 		, (PRPillarGrammar markups at: self otherClass) , markup.
-	text := ' '.
+
 	tree := PRDocument new
 		add:
 			(PRParagraph new
@@ -153,16 +152,15 @@ PRFormatTest4 >> testParseNestedTight [
 				add: (self actualClass new add: self otherClass new yourself);
 				yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+	
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
-PRFormatTest4 >> testParseWithNewLine [
-	| wiki text tree |
+PRPillarWriterFormatTest >> testParseWithNewLine [
+	| wiki  tree |
 	wiki := '1' , markup , '2', Smalltalk os lineEnding, '3' , markup , '4'.
-	text := '12', Smalltalk os lineEnding, '34'.
 	tree := PRDocument new
 		add:
 			(PRParagraph new
@@ -171,16 +169,16 @@ PRFormatTest4 >> testParseWithNewLine [
 				add: (PRText content: '4');
 				yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+	
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
-PRFormatTest4 >> testParseWithSpace [
-	| wiki text tree |
+PRPillarWriterFormatTest >> testParseWithSpace [
+	| wiki tree |
 	wiki := '1' , markup , '2 3' , markup , '4'.
-	text := '12 34'.
+
 	tree := PRDocument new
 		add:
 			(PRParagraph new
@@ -189,7 +187,7 @@ PRFormatTest4 >> testParseWithSpace [
 				add: (PRText content: '4');
 				yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+	
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
