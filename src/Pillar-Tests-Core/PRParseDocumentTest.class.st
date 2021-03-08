@@ -1,21 +1,21 @@
 Class {
-	#name : #PRParseDocumentTest2,
+	#name : #PRParseDocumentTest,
 	#superclass : #PRParseDocumentGroupTest,
 	#category : #'Pillar-Tests-Core'
 }
 
 { #category : #testing }
-PRParseDocumentTest2 class >> isAbstract [
+PRParseDocumentTest class >> isAbstract [
 	^ false
 ]
 
 { #category : #private }
-PRParseDocumentTest2 >> actualClass [
+PRParseDocumentTest >> actualClass [
 	^ PRDocument
 ]
 
 { #category : #'tests-parsing' }
-PRParseDocumentTest2 >> testParseEmpty [
+PRParseDocumentTest >> testParseEmpty [
 	| wiki tree |
 	wiki := String new.
 	tree := PRDocument new.
@@ -24,7 +24,7 @@ PRParseDocumentTest2 >> testParseEmpty [
 ]
 
 { #category : #'tests-parsing' }
-PRParseDocumentTest2 >> testParseMultipleProperties [
+PRParseDocumentTest >> testParseMultipleProperties [
 	| wiki tree document|
 	wiki := '{''title'':''The title'',''authors'':''Someone else and me''}'.
 	tree := PRDocument new
@@ -37,7 +37,7 @@ PRParseDocumentTest2 >> testParseMultipleProperties [
 ]
 
 { #category : #'tests-parsing' }
-PRParseDocumentTest2 >> testParseProperties [
+PRParseDocumentTest >> testParseProperties [
 	| wiki  tree document |
 	wiki := '{''title'':''The title''}'.
 	tree := PRDocument new
@@ -49,7 +49,7 @@ PRParseDocumentTest2 >> testParseProperties [
 ]
 
 { #category : #'tests-parsing' }
-PRParseDocumentTest2 >> testParsePropertiesWithText [
+PRParseDocumentTest >> testParsePropertiesWithText [
 	| wiki tree document |
 	wiki := '{''title'':''The title''}' , Smalltalk os lineEnding , 'foobar'.
 	tree := PRDocument new

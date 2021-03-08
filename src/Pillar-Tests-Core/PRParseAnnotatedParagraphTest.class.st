@@ -1,22 +1,22 @@
 Class {
-	#name : #PRParseAnnotatedParagraphTest2,
+	#name : #PRParseAnnotatedParagraphTest,
 	#superclass : #PRParseDocumentGroupTest,
 	#category : #'Pillar-Tests-Core'
 }
 
 { #category : #testing }
-PRParseAnnotatedParagraphTest2 class >> isAbstract [
+PRParseAnnotatedParagraphTest class >> isAbstract [
 	^ false
 ]
 
 { #category : #private }
-PRParseAnnotatedParagraphTest2 >> actualClass [
+PRParseAnnotatedParagraphTest >> actualClass [
 	^ PRAnnotatedParagraph
 ]
 
 { #category : #'tests-parsing' }
-PRParseAnnotatedParagraphTest2 >> testParseBasic [
-	| wiki  tree |
+PRParseAnnotatedParagraphTest >> testParseBasic [
+	| wiki tree |
 	wiki := '@@foo bar zork'.
 	tree := PRDocument new
 		add: (PRAnnotatedParagraph new
@@ -29,7 +29,7 @@ PRParseAnnotatedParagraphTest2 >> testParseBasic [
 ]
 
 { #category : #'tests-parsing' }
-PRParseAnnotatedParagraphTest2 >> testParseEmptyFollowedByPreformatted [
+PRParseAnnotatedParagraphTest >> testParseEmptyFollowedByPreformatted [
 	| wiki tree nLine|
 	nLine := Smalltalk os lineEnding.
 	wiki := '@@foo' , nLine , '= bar'.
@@ -46,7 +46,7 @@ PRParseAnnotatedParagraphTest2 >> testParseEmptyFollowedByPreformatted [
 ]
 
 { #category : #'tests-parsing' }
-PRParseAnnotatedParagraphTest2 >> testParseOnlyAnnotation [
+PRParseAnnotatedParagraphTest >> testParseOnlyAnnotation [
 	| wiki tree |
 	wiki := '@@foo'.
 	tree := PRDocument new
@@ -59,7 +59,7 @@ PRParseAnnotatedParagraphTest2 >> testParseOnlyAnnotation [
 ]
 
 { #category : #'tests-parsing' }
-PRParseAnnotatedParagraphTest2 >> testParseOnlyNothing [
+PRParseAnnotatedParagraphTest >> testParseOnlyNothing [
 	| wiki tree |
 	wiki := '@@'.
 	tree := PRDocument new
@@ -72,7 +72,7 @@ PRParseAnnotatedParagraphTest2 >> testParseOnlyNothing [
 ]
 
 { #category : #'tests-parsing' }
-PRParseAnnotatedParagraphTest2 >> testParseOnlyText [
+PRParseAnnotatedParagraphTest >> testParseOnlyText [
 	| wiki tree |
 	wiki := '@@ foo bar'.
 	tree := PRDocument new

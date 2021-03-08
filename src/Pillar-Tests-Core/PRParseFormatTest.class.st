@@ -60,7 +60,7 @@ PRParseFormatTest >> testParseEnd [
 
 { #category : #'tests-parsing' }
 PRParseFormatTest >> testParseEscaped [
-	| wiki text tree |
+	| wiki tree |
 	wiki := ' ' , (PRPillarWriter escapeMarkup: markup) , (PRPillarWriter escapeMarkup: markup).
 	tree := PRDocument new
 		add:
@@ -152,7 +152,7 @@ PRParseFormatTest >> testParseNestedTight [
 
 { #category : #'tests-parsing' }
 PRParseFormatTest >> testParseWithNewLine [
-	| wiki text tree |
+	| wiki tree |
 	wiki := '1' , markup , '2', Smalltalk os lineEnding, '3' , markup , '4'.
 	
 	tree := PRDocument new
