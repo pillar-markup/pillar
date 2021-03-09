@@ -1,21 +1,21 @@
 Class {
-	#name : #PROrderedListTest4,
-	#superclass : #PRListTest4,
+	#name : #PRPillarWriterOrderedListTest,
+	#superclass : #PRPillarWriterListTest,
 	#category : #'Pillar-Tests-Core'
 }
 
 { #category : #testing }
-PROrderedListTest4 class >> isAbstract [
+PRPillarWriterOrderedListTest class >> isAbstract [
 	^ false
 ]
 
 { #category : #private }
-PROrderedListTest4 >> actualClass [
+PRPillarWriterOrderedListTest >> actualClass [
 	^ PROrderedList
 ]
 
 { #category : #'tests-parsing' }
-PROrderedListTest4 >> testParseMixed [
+PRPillarWriterOrderedListTest >> testParseMixed [
 	| wiki tree nLine |
 	nLine := Smalltalk os lineEnding.
 	wiki := '#1' , nLine , '#2' , nLine , '-3'.
@@ -30,18 +30,15 @@ PROrderedListTest4 >> testParseMixed [
 						add: (self listItemWithText: '3');
 						yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }
-PROrderedListTest4 >> testParseNested [
-	| wiki text tree nLine |
+PRPillarWriterOrderedListTest >> testParseNested [
+	| wiki tree nLine |
 	nLine := Smalltalk os lineEnding.
-	wiki := self wikiString , '1' , nLine , self wikiString , self wikiString , '1.1' , nLine , self wikiString
-		, self wikiString , '1.2'.
-	text := (self textString: 1 level: 1) , '1' , nLine , (self textString: 1 level: 2) , '1.1' , nLine
-		, (self textString: 2 level: 2) , '1.2'.
+	wiki := self wikiString , '1' , nLine , self wikiString , self wikiString , '1.1' , nLine , self wikiString	, self wikiString , '1.2'.
 	tree := PRDocument new
 		add:
 				(self actualClass new
@@ -56,19 +53,19 @@ PROrderedListTest4 >> testParseNested [
 										yourself);
 						yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]
 
 { #category : #private }
-PROrderedListTest4 >> textString: anObject level: anInteger [ 
+PRPillarWriterOrderedListTest >> textString: anObject level: anInteger [ 
 	^ (super 
 		textString: anObject
 		level: anInteger) , anObject asString , '. '
 ]
 
 { #category : #private }
-PROrderedListTest4 >> wikiString [
+PRPillarWriterOrderedListTest >> wikiString [
 	^ '#'
 ]

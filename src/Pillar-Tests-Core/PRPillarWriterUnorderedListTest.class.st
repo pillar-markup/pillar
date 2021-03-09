@@ -1,26 +1,24 @@
 Class {
-	#name : #PRUnorderedListTest4,
-	#superclass : #PRListTest4,
+	#name : #PRPillarWriterUnorderedListTest,
+	#superclass : #PRPillarWriterListTest,
 	#category : #'Pillar-Tests-Core'
 }
 
 { #category : #testing }
-PRUnorderedListTest4 class >> isAbstract [
+PRPillarWriterUnorderedListTest class >> isAbstract [
 	^ false
 ]
 
 { #category : #private }
-PRUnorderedListTest4 >> actualClass [
+PRPillarWriterUnorderedListTest >> actualClass [
 	^ PRUnorderedList
 ]
 
 { #category : #'tests-parsing' }
-PRUnorderedListTest4 >> testParseMixed [
-	| wiki tree text nLine |
+PRPillarWriterUnorderedListTest >> testParseMixed [
+	| wiki tree nLine |
 	nLine := Smalltalk os lineEnding.
 	wiki := '#1' , nLine , '##2' , nLine , '###3' , nLine , '#-4' , nLine , '#-5' , nLine , '##6' , nLine , '#7'.
-	text := '1. 1' , nLine , '	1. 2' , nLine , '		1. 3' , nLine , '	* 4' , nLine , '	* 5' , nLine , '	1. 6' , nLine
-		, '2. 7'.
 	tree := PRDocument new
 		add:
 				(PROrderedList new
@@ -51,19 +49,18 @@ PRUnorderedListTest4 >> testParseMixed [
 						add: (self listItemWithText: '7');
 						yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]
 
 { #category : #'tests-parsing' }
-PRUnorderedListTest4 >> testParseNested [
-	| wiki text tree nLine |
+PRPillarWriterUnorderedListTest >> testParseNested [
+	| wiki tree nLine |
 	nLine := Smalltalk os lineEnding.
 	wiki := self wikiString , '1' , nLine , self wikiString , self wikiString , '1.1' , nLine , self wikiString
 		, self wikiString , self wikiString , '1.1.1'.
-	text := (self textString: 1 level: 1) , '1' , nLine , (self textString: 1 level: 2) , '1.1' , nLine
-		, (self textString: 1 level: 3) , '1.1.1'.
+
 	tree := PRDocument new
 		add:
 				(self actualClass new
@@ -84,17 +81,17 @@ PRUnorderedListTest4 >> testParseNested [
 										yourself);
 						yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+	
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]
 
 { #category : #private }
-PRUnorderedListTest4 >> textString: anObject level: anInteger [
+PRPillarWriterUnorderedListTest >> textString: anObject level: anInteger [
 	^ (super textString: anObject level: anInteger) , '* '
 ]
 
 { #category : #private }
-PRUnorderedListTest4 >> wikiString [
+PRPillarWriterUnorderedListTest >> wikiString [
 	^ '-'
 ]
