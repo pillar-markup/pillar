@@ -1,21 +1,21 @@
 Class {
-	#name : #PROrderedListTest,
-	#superclass : #PRListTest,
+	#name : #PRTextWriterOrderedListTest,
+	#superclass : #PRTextWriterListTest,
 	#category : #'Pillar-Tests-Core'
 }
 
 { #category : #testing }
-PROrderedListTest class >> isAbstract [
+PRTextWriterOrderedListTest class >> isAbstract [
 	^ false
 ]
 
 { #category : #private }
-PROrderedListTest >> actualClass [
+PRTextWriterOrderedListTest >> actualClass [
 	^ PROrderedList
 ]
 
 { #category : #'tests-parsing' }
-PROrderedListTest >> testParseNested [
+PRTextWriterOrderedListTest >> testParseNested [
 	| text tree nLine |
 	nLine := Smalltalk os lineEnding.
 	text := (self textString: 1 level: 1) , '1' , nLine , (self textString: 1 level: 2) , '1.1' , nLine
@@ -34,18 +34,17 @@ PROrderedListTest >> testParseNested [
 										yourself);
 						yourself);
 		yourself.
-
 	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #private }
-PROrderedListTest >> textString: anObject level: anInteger [ 
+PRTextWriterOrderedListTest >> textString: anObject level: anInteger [ 
 	^ (super 
 		textString: anObject
 		level: anInteger) , anObject asString , '. '
 ]
 
 { #category : #private }
-PROrderedListTest >> wikiString [
+PRTextWriterOrderedListTest >> wikiString [
 	^ '#'
 ]
