@@ -1,48 +1,44 @@
 Class {
-	#name : #PRListTest2,
+	#name : #PRParserListTest,
 	#superclass : #PRParseDocumentGroupTest,
 	#category : #'Pillar-Tests-Core'
 }
 
 { #category : #private }
-PRListTest2 >> actualClass [
+PRParserListTest >> actualClass [
 	^ PRList
 ]
 
 { #category : #private }
-PRListTest2 >> listItemClass [
+PRParserListTest >> listItemClass [
 	^ PRListItem
 ]
 
 { #category : #private }
-PRListTest2 >> listItemWithText: aString [
+PRParserListTest >> listItemWithText: aString [
 	^ self listItemClass new
 		add: (PRText content: aString);
 		yourself
 ]
 
 { #category : #'tests-parsing' }
-PRListTest2 >> testParseEmpty [
-	| wiki text tree |
+PRParserListTest >> testParseEmpty [
+	| wiki tree |
 	wiki := self wikiString.
-	text := self textString: 1 level: 1.
 	tree := PRDocument new
 		add: (self actualClass new
 			add: self listItemClass new;
 			yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
-PRListTest2 >> testParseFlat [
-	| wiki text tree nLine |
+PRParserListTest >> testParseFlat [
+	| wiki tree nLine |
 	nLine := Smalltalk os lineEnding.
 	wiki := self wikiString , '1st' , nLine , self wikiString , '2nd' , nLine , self wikiString , '3rd'.
-	text := (self textString: 1 level: 1) , '1st' , nLine , (self textString: 2 level: 1) , '2nd' , nLine
-		, (self textString: 3 level: 1) , '3rd'.
 	tree := PRDocument new
 		add:
 				(self actualClass new
@@ -52,17 +48,14 @@ PRListTest2 >> testParseFlat [
 						yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]
 
 { #category : #'tests-parsing' }
-PRListTest2 >> testParseMultiple [
-	| wiki text tree nLine |
+PRParserListTest >> testParseMultiple [
+	| wiki  tree nLine |
 	nLine := Smalltalk os lineEnding.
 	wiki := self wikiString , '1st' , nLine , self wikiString , '2nd' , nLine , nLine , self wikiString , '3rd'.
-	text := (self textString: 1 level: 1) , '1st' , nLine , (self textString: 2 level: 1) , '2nd' , nLine , nLine
-		, (self textString: 1 level: 1) , '3rd'.
 	tree := PRDocument new
 		add:
 				(self actualClass new
@@ -76,12 +69,11 @@ PRListTest2 >> testParseMultiple [
 						yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]
 
 { #category : #'tests-parsing' }
-PRListTest2 >> testParseWithTrailingSpaces [
+PRParserListTest >> testParseWithTrailingSpaces [
 	| wiki tree |
 	wiki := self wikiString , ' 1st'.
 	tree := PRDocument new
@@ -94,11 +86,11 @@ PRListTest2 >> testParseWithTrailingSpaces [
 ]
 
 { #category : #private }
-PRListTest2 >> textString: anObject level: anInteger [
+PRParserListTest >> textString: anObject level: anInteger [
 	^ (2 to: anInteger) inject: '' into: [ :result :each | result , '	' ]
 ]
 
 { #category : #private }
-PRListTest2 >> wikiString [
+PRParserListTest >> wikiString [
 	self subclassResponsibility
 ]

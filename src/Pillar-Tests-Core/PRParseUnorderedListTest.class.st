@@ -1,21 +1,21 @@
 Class {
-	#name : #PRUnorderedListTest2,
-	#superclass : #PRListTest2,
+	#name : #PRParseUnorderedListTest,
+	#superclass : #PRParserListTest,
 	#category : #'Pillar-Tests-Core'
 }
 
 { #category : #testing }
-PRUnorderedListTest2 class >> isAbstract [
+PRParseUnorderedListTest class >> isAbstract [
 	^ false
 ]
 
 { #category : #private }
-PRUnorderedListTest2 >> actualClass [
+PRParseUnorderedListTest >> actualClass [
 	^ PRUnorderedList
 ]
 
 { #category : #'tests-parsing' }
-PRUnorderedListTest2 >> testParseMixed [
+PRParseUnorderedListTest >> testParseMixed [
 	| wiki tree text nLine |
 	nLine := Smalltalk os lineEnding.
 	wiki := '#1' , nLine , '##2' , nLine , '###3' , nLine , '#-4' , nLine , '#-5' , nLine , '##6' , nLine , '#7'.
@@ -57,13 +57,11 @@ PRUnorderedListTest2 >> testParseMixed [
 ]
 
 { #category : #'tests-parsing' }
-PRUnorderedListTest2 >> testParseNested [
-	| wiki text tree nLine |
+PRParseUnorderedListTest >> testParseNested [
+	| wiki tree nLine |
 	nLine := Smalltalk os lineEnding.
 	wiki := self wikiString , '1' , nLine , self wikiString , self wikiString , '1.1' , nLine , self wikiString
 		, self wikiString , self wikiString , '1.1.1'.
-	text := (self textString: 1 level: 1) , '1' , nLine , (self textString: 1 level: 2) , '1.1' , nLine
-		, (self textString: 1 level: 3) , '1.1.1'.
 	tree := PRDocument new
 		add:
 				(self actualClass new
@@ -85,16 +83,14 @@ PRUnorderedListTest2 >> testParseNested [
 						yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #private }
-PRUnorderedListTest2 >> textString: anObject level: anInteger [
+PRParseUnorderedListTest >> textString: anObject level: anInteger [
 	^ (super textString: anObject level: anInteger) , '* '
 ]
 
 { #category : #private }
-PRUnorderedListTest2 >> wikiString [
+PRParseUnorderedListTest >> wikiString [
 	^ '-'
 ]

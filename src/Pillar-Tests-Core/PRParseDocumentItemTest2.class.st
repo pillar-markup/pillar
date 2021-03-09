@@ -1,43 +1,43 @@
 Class {
-	#name : #PRParseDocumentItemTest,
+	#name : #PRParseDocumentItemTest2,
 	#superclass : #PRBasicObjectTest,
 	#category : #'Pillar-Tests-Core'
 }
 
 { #category : #private }
-PRParseDocumentItemTest >> actualClass [
+PRParseDocumentItemTest2 >> actualClass [
 	^ PRDocumentItem
 ]
 
 { #category : #utilities }
-PRParseDocumentItemTest >> addText: aString to: aDocumentItem [
+PRParseDocumentItemTest2 >> addText: aString to: aDocumentItem [
 	^ aDocumentItem
 		add: (PRText content: aString);
 		yourself
 ]
 
 { #category : #private }
-PRParseDocumentItemTest >> barInstance [
+PRParseDocumentItemTest2 >> barInstance [
 	^ PRText content: 'bar'
 ]
 
 { #category : #private }
-PRParseDocumentItemTest >> fooInstance [
+PRParseDocumentItemTest2 >> fooInstance [
 	^ PRText content: 'foo'
 ]
 
 { #category : #private }
-PRParseDocumentItemTest >> foobarInstances [
+PRParseDocumentItemTest2 >> foobarInstances [
 	^ Array with: self fooInstance with: self barInstance
 ]
 
 { #category : #helper }
-PRParseDocumentItemTest >> parser [
+PRParseDocumentItemTest2 >> parser [
 	^ PRDocument parser
 ]
 
 { #category : #utilities }
-PRParseDocumentItemTest >> parserAssertWiki: aString equalsTree: aDocument [
+PRParseDocumentItemTest2 >> parserAssertWiki: aString equalsTree: aDocument [
 	"Assert that parsing aString results in aDocument."
 
 	self
@@ -46,13 +46,13 @@ PRParseDocumentItemTest >> parserAssertWiki: aString equalsTree: aDocument [
 ]
 
 { #category : #utilities }
-PRParseDocumentItemTest >> pillarWriterAssertTree: aDocument equalsWiki: aString [
+PRParseDocumentItemTest2 >> pillarWriterAssertTree: aDocument equalsWiki: aString [
 	"Assert that traversing aDocument using the wiki writer results in aString."
 
 	self assert: (PRPillarWriter write: aDocument) = aString description: aString resumable: false
 ]
 
 { #category : #utilities }
-PRParseDocumentItemTest >> textWriterAssertTree: aDocument equalsText: aString [
+PRParseDocumentItemTest2 >> textWriterAssertTree: aDocument equalsText: aString [
 	self assert: (PRTextWriter write: aDocument) = aString description: aString resumable: true
 ]
