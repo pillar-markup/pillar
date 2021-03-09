@@ -39,12 +39,5 @@ PRTextWriterOrderedListTest >> testParseNested [
 
 { #category : #private }
 PRTextWriterOrderedListTest >> textString: anObject level: anInteger [ 
-	^ (super 
-		textString: anObject
-		level: anInteger) , anObject asString , '. '
-]
-
-{ #category : #private }
-PRTextWriterOrderedListTest >> wikiString [
-	^ '#'
+	^ (super textString: anObject level: anInteger) , anObject asString , '. '
 ]

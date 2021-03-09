@@ -88,8 +88,3 @@ PRTextWriterUnorderedListTest >> testParseNested [
 PRTextWriterUnorderedListTest >> textString: anObject level: anInteger [
 	^ (super textString: anObject level: anInteger) , '* '
 ]
-
-{ #category : #private }
-PRTextWriterUnorderedListTest >> wikiString [
-	^ '-'
-]

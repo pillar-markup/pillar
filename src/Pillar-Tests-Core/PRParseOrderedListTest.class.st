@@ -59,13 +59,6 @@ PRParseOrderedListTest >> testParseNested [
 ]
 
 { #category : #private }
-PRParseOrderedListTest >> textString: anObject level: anInteger [ 
-	^ (super 
-		textString: anObject
-		level: anInteger) , anObject asString , '. '
-]
-
-{ #category : #private }
 PRParseOrderedListTest >> wikiString [
 	^ '#'
 ]
