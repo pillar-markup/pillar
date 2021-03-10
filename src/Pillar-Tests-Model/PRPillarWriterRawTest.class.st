@@ -1,65 +1,61 @@
 Class {
-	#name : #PRRawTest4,
-	#superclass : #PRTextTest4,
+	#name : #PRPillarWriterRawTest,
+	#superclass : #PRPillarWriterTextTest,
 	#category : #'Pillar-Tests-Model-Document'
 }
 
 { #category : #private }
-PRRawTest4 >> actualClass [
+PRPillarWriterRawTest >> actualClass [
 	^ PRRaw
 ]
 
 { #category : #'tests-parsing' }
-PRRawTest4 >> testParseBasic [
+PRPillarWriterRawTest >> testParseBasic [
 	| wiki text tree |
 	wiki := '{{{abc}}}'.
-	text := 'abc'.
 	tree := PRDocument new
 		add: (PRParagraph new
 			add: (PRRaw content: 'abc');
 			yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
-PRRawTest4 >> testParseEmpty [
-	| wiki text tree |
+PRPillarWriterRawTest >> testParseEmpty [
+	| wiki tree |
 	wiki := '{{{}}}'.
-	text := ''.
+
 	tree := PRDocument new
 		add: (PRParagraph new
 			add: (PRRaw content: '');
 			yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
-PRRawTest4 >> testParseMultiline [
-	| wiki text tree nLine|
+PRPillarWriterRawTest >> testParseMultiline [
+	| wiki tree nLine|
 	nLine := Smalltalk os lineEnding.
 	wiki := '{{{a' , nLine , 'b}}}'.
-	text := 'a' , nLine , 'b'.
 	tree := PRDocument new
 		add: (PRParagraph new
 			add: (PRRaw content: 'a' , nLine , 'b');
 			yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]
 
 { #category : #'tests-parsing' }
-PRRawTest4 >> testParseMultiple [
-	| wiki text tree |
+PRPillarWriterRawTest >> testParseMultiple [
+	| wiki tree |
 	wiki := '{{{a}}}b{{{c}}}'.
-	text := 'abc'.
+
 	tree := PRDocument new
 		add: (PRParagraph new
 			add: (PRRaw content: 'a');
@@ -67,17 +63,17 @@ PRRawTest4 >> testParseMultiple [
 			add: (PRRaw content: 'c');
 			yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]
 
 { #category : #'tests-parsing' }
-PRRawTest4 >> testParseMultipleMultiline [
-	| wiki text tree nLine |
+PRPillarWriterRawTest >> testParseMultipleMultiline [
+	| wiki tree nLine |
 	nLine := Smalltalk os lineEnding.
 	wiki := '{{{a' , nLine , 'b}}}c{{{d' , nLine , 'e}}}'.
-	text := 'a' , nLine , 'bcd' , nLine , 'e'.
+
 	tree := PRDocument new
 		add:
 				(PRParagraph new
@@ -86,73 +82,65 @@ PRRawTest4 >> testParseMultipleMultiline [
 						add: (PRRaw content: 'd' , nLine , 'e');
 						yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+	
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
-PRRawTest4 >> testParseStrange [
-	| wiki text tree |
+PRPillarWriterRawTest >> testParseStrange [
+	| wiki tree |
 	wiki := '{{{a{{||}}b}}}'.
-	text := 'a{{||}}b'.
 	tree := PRDocument new
 		add: (PRParagraph new
 			add: (PRRaw content: 'a{{||}}b');
 			yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]
 
 { #category : #'tests-parsing' }
-PRRawTest4 >> testParseTypeHtml [
-	| wiki text tree |
+PRPillarWriterRawTest >> testParseTypeHtml [
+	| wiki tree |
 	wiki := '{{{html:abc}}}'.
-	text := ''.
+
 	tree := PRDocument new
 		add: (PRParagraph new
 			add: (PRRaw content: 'abc' type: 'html');
 			yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
-PRRawTest4 >> testParseTypeLatex [
+PRPillarWriterRawTest >> testParseTypeLatex [
 	| wiki text tree |
 	wiki := '{{{latex:abc}}}'.
-	text := ''.
 	tree := PRDocument new
 		add: (PRParagraph new
 			add: (PRRaw content: 'abc' type: 'latex');
 			yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+	
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
-PRRawTest4 >> testParseTypeText [
-	| wiki text tree |
+PRPillarWriterRawTest >> testParseTypeText [
+	| wiki tree |
 	wiki := '{{{text:abc}}}'.
-	text := 'abc'.
+
 	tree := PRDocument new
 		add: (PRParagraph new
 			add: (PRRaw content: 'abc' type: 'text');
 			yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+	
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
-]
-
-{ #category : #'tests-accessing' }
-PRRawTest4 >> testType [
-	self instance type: 'html'.
-	self assert: self instance type equals: 'html'
+	
 ]
