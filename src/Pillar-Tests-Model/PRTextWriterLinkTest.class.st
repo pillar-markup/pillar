@@ -14,30 +14,10 @@ PRTextWriterLinkTest >> markup [
 	^ PRPillarParser markups at: PRLink
 ]
 
-{ #category : #tests }
-PRTextWriterLinkTest >> testIsBroken [
-	self assert: (self instance isBroken or: [ self instance isBroken not ])
-]
-
-{ #category : #tests }
-PRTextWriterLinkTest >> testIsExternal [
-	self deny: self instance isExternal
-]
-
-{ #category : #tests }
-PRTextWriterLinkTest >> testIsInternal [
-	self deny: self instance isInternal
-]
-
-{ #category : #tests }
-PRTextWriterLinkTest >> testIsLink [
-	self assert: self instance isLink
-]
-
 { #category : #'tests-parsing' }
 PRTextWriterLinkTest >> testParseAliased [
-	| wiki text tree |
-	wiki := '*Alias>' , self referenceString , '*'.
+	| text tree |
+
 	text := 'Alias'.
 	tree := PRDocument new
 		add: (PRParagraph new
@@ -47,15 +27,14 @@ PRTextWriterLinkTest >> testParseAliased [
 				yourself);
 			yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	
 	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
 PRTextWriterLinkTest >> testParseAliasedEmpty [
-	| wiki text tree |
-	wiki := '*>' , self referenceString , '*'.
+	| text tree |
+
 	text := ''.
 	tree := PRDocument new
 		add: (PRParagraph new
@@ -65,15 +44,14 @@ PRTextWriterLinkTest >> testParseAliasedEmpty [
 				yourself);
 			yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	
 	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
 PRTextWriterLinkTest >> testParseBasic [
-	| wiki text tree |
-	wiki := '*' , self referenceString , '*'.
+	| text tree |
+
 	text := self actualClass new
 		reference: self referenceString;
 		title.
@@ -84,15 +62,14 @@ PRTextWriterLinkTest >> testParseBasic [
 				yourself);
 			yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	
 	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
 PRTextWriterLinkTest >> testParseParameters [
-	| wiki text tree |
-	wiki := '*Alias>' , self referenceString , '|a=1|b=2|c=true*'.
+	| text tree |
+	
 	text := 'Alias'.
 	tree := PRDocument new
 		add:
@@ -110,15 +87,14 @@ PRTextWriterLinkTest >> testParseParameters [
 										yourself);
 						yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
+
 	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
 PRTextWriterLinkTest >> testParseParametersEmpty [
-	| wiki text tree |
-	wiki := '*Alias>' , self referenceString , '|a||b|*'.
+	| text tree |
+	
 	text := 'Alias'.
 	tree := PRDocument new
 		add:
@@ -135,14 +111,14 @@ PRTextWriterLinkTest >> testParseParametersEmpty [
 										yourself);
 						yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+	
 	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
 PRTextWriterLinkTest >> testParseParametersEscaped [
-	| wiki text tree |
-	wiki := '*Alias>' , self referenceString , '|2=\|\=|\|\==1*'.
+	|  text tree |
+	
 	text := 'Alias'.
 	tree := PRDocument new
 		add:
@@ -159,7 +135,6 @@ PRTextWriterLinkTest >> testParseParametersEscaped [
 										yourself);
 						yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
+	
 	self textWriterAssertTree: tree equalsText: text
 ]
