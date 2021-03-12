@@ -119,6 +119,12 @@ PRTarget >> addPillarDocumentTransformation: aTransformation [
 ]
 
 { #category : #building }
+PRTarget >> allFilesStrategy [
+
+	self buildStrategy: PRBuildAllStrategy new
+]
+
+{ #category : #building }
 PRTarget >> buildOn: aProject [
 	"Set the pipeline and execute it for each file of the project."
 	| status |
@@ -132,12 +138,6 @@ PRTarget >> buildOn: aProject [
 		status := status and: ((self documentFor: each) buildOn: aProject) ].
 
 	^ status
-]
-
-{ #category : #building }
-PRTarget >> buildOnly: aListOfFileReferences [
-
-	buildStrategy := PRBuildListStrategy list: aListOfFileReferences
 ]
 
 { #category : #accessing }
@@ -158,6 +158,12 @@ PRTarget >> documentFor: aFile [
 ]
 
 { #category : #building }
+PRTarget >> explicitFilesStrategyOn: aListOfFileReferences [
+
+	self buildStrategy: (PRBuildListStrategy list: aListOfFileReferences)
+]
+
+{ #category : #building }
 PRTarget >> filesToBuildOn: aPRProject [ 
 	
 	^ buildStrategy filesToBuildOn: aPRProject
@@ -169,6 +175,12 @@ PRTarget >> initialize [
 	transformations := Set new.
 	"self buildAll"
 	buildStrategy := PRBuildRootMainStrategy new.
+]
+
+{ #category : #building }
+PRTarget >> onlyMainRootStrategy [
+
+	self buildStrategy: PRBuildRootMainStrategy new
 ]
 
 { #category : #preparation }

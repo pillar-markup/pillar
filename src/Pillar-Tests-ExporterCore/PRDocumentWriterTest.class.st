@@ -326,7 +326,7 @@ PRDocumentWriterTest >> testBibFileIsCorrectlyTransformed [
 	
 	"the following test shows how the value of configuration is correctly transformed into a string that can be 
 	used in a Mustache template."
-	self assert: ((MustacheToken new token: 'bibFile') valueInContext: self configuration) equals: 'book.bib'
+	self assert: ((MustacheToken new token: 'bibFile') valueInContext: self configuration) asString equals: 'book.bib'
 ]
 
 { #category : #tests }
