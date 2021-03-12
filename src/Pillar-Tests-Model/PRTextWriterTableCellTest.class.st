@@ -1,6 +1,6 @@
 Class {
 	#name : #PRTextWriterTableCellTest,
-	#superclass : #PRDocumentGroupTest,
+	#superclass : #PRTextWriterDocumentGroupTest,
 	#category : #'Pillar-Tests-Model-TextWriter'
 }
 
@@ -14,63 +14,10 @@ PRTextWriterTableCellTest >> actualClass [
 	^ PRTableCell
 ]
 
-{ #category : #'tests-accessing' }
-PRTextWriterTableCellTest >> testAlign [
-	self instance align: #right.
-	self assert: self instance align equals: #right
-]
-
-{ #category : #'tests-accessing' }
-PRTextWriterTableCellTest >> testBeAlignedCenter [
-	self instance beAlignedCenter.
-	self assert: self instance align equals: #center.
-	self assert: self instance isAlignedCenter.
-	self deny: self instance isAlignedLeft.
-	self deny: self instance isAlignedRight
-]
-
-{ #category : #'tests-accessing' }
-PRTextWriterTableCellTest >> testBeAlignedLeft [
-	self instance beAlignedLeft.
-	self assert: self instance align equals: #left.
-	self deny: self instance isAlignedCenter.
-	self assert: self instance isAlignedLeft.
-	self deny: self instance isAlignedRight
-]
-
-{ #category : #'tests-accessing' }
-PRTextWriterTableCellTest >> testBeAlignedRight [
-	self instance beAlignedRight.
-	self assert: self instance align equals: #right.
-	self deny: self instance isAlignedCenter.
-	self deny: self instance isAlignedLeft.
-	self assert: self instance isAlignedRight
-]
-
-{ #category : #'tests-comparing' }
-PRTextWriterTableCellTest >> testEqualAlign [
-	self deny: self actualClass new beAlignedRight equals: self actualClass new beAlignedCenter.
-	self deny: self actualClass new beAlignedCenter equals: self actualClass new beAlignedLeft
-]
-
-{ #category : #'tests-accessing' }
-PRTextWriterTableCellTest >> testHeading [
-	self deny: self instance heading.
-	self deny: self instance isHeading.
-	
-	self instance heading: true.
-	self assert: self instance heading.
-	self assert: self instance isHeading.
-	
-	self instance heading: false.
-	self deny: self instance heading.
-	self deny: self instance isHeading
-]
-
 { #category : #'tests-parsing' }
 PRTextWriterTableCellTest >> testParseAlign1 [
-	| wiki text tree |
-	wiki := '|{left||center|}right'.
+	| text tree |
+	
 	text := 'left	center	right'.
 	tree := PRDocument new
 		add: (PRTable new
@@ -90,15 +37,14 @@ PRTextWriterTableCellTest >> testParseAlign1 [
 				yourself);
 			yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
+
 	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
 PRTextWriterTableCellTest >> testParseAlign2 [
-	| wiki text tree |
-	wiki := '|}right|none|{left|none'.
+	|  text tree |
+
 	text := 'right	none	left	none'.
 	tree := PRDocument new
 		add: (PRTable new
@@ -120,15 +66,13 @@ PRTextWriterTableCellTest >> testParseAlign2 [
 				yourself);
 			yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
+
 	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
 PRTextWriterTableCellTest >> testParseEncoding [
-	| wiki text tree |
-	wiki := '|*link*|+file://embedded.png+|foo{}'.
+	| text tree |
 	text := 'link	file://embedded.png	foo{}'.
 	tree := PRDocument new
 		add: (PRTable new
@@ -149,15 +93,14 @@ PRTextWriterTableCellTest >> testParseEncoding [
 				yourself);
 			yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
+
 	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
 PRTextWriterTableCellTest >> testParseHeading1 [
-	| wiki text tree |
-	wiki := '|!head|{!left||!center|}!right'.
+	| text tree |
+	
 	text := 'head	left	center	right'.
 	tree := PRDocument new
 		add: (PRTable new
@@ -184,16 +127,14 @@ PRTextWriterTableCellTest >> testParseHeading1 [
 				yourself);
 			yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
+
 	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
 PRTextWriterTableCellTest >> testParseHeading2 [
-	| wiki1 wiki2 text tree |
-	wiki1 := '|!head|!{left|!|center|!}right'.
-	wiki2 := '|!head|{!left||!center|}!right'.
+	| text tree |
+
 	text := 'head	left	center	right'.
 	tree := PRDocument new
 		add: (PRTable new
@@ -220,7 +161,6 @@ PRTextWriterTableCellTest >> testParseHeading2 [
 				yourself);
 			yourself);
 		yourself.
-	self parserAssertWiki: wiki1 equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki2.
+
 	self textWriterAssertTree: tree equalsText: text
 ]
