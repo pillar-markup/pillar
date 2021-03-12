@@ -1,49 +1,19 @@
 Class {
-	#name : #PRScriptTest2,
-	#superclass : #PRTextTest2,
+	#name : #PRParseScriptTest,
+	#superclass : #PRParseTextTest,
 	#category : #'Pillar-Tests-Model-Document'
 }
 
 { #category : #private }
-PRScriptTest2 >> actualClass [
+PRParseScriptTest >> actualClass [
 	^ PRCodeblock
 ]
 
 { #category : #tests }
-PRScriptTest2 >> testEqualScript [
-	self assert: (self actualClass content: 'foo')  ~= (self actualClass content: 'bar').
-	self assert: (self actualClass content: 'foo') equals: (self actualClass content: 'foo')
-]
-
-{ #category : #tests }
-PRScriptTest2 >> testEqualScriptWithLanguage [
-	| param1 param2 |
-	param1 := SmallDictionary new
-		at: 'language' put: 'smalltalk';
-		yourself.
-	param2 := SmallDictionary new
-		at: 'language' put: 'html';
-		yourself.
-	self
-		assert: (self actualClass content: 'foo' parameters: param1) ~= (self actualClass content: 'foo' parameters: param2).
-	self
-		assert:
-			(self actualClass content: 'foo' parameters: param1)
-				equals: (self actualClass content: 'foo' parameters: param1)
-]
-
-{ #category : #'tests-comparing' }
-PRScriptTest2 >> testHash [
-	| a b |
-	a := self actualClass content: 'foo'.
-	b := self actualClass content: 'foo'.
-	self assert: a hash equals: a copy hash.
-	self assert: a hash equals: b hash
-]
-
-{ #category : #tests }
-PRScriptTest2 >> testIsStructure [
+PRParseScriptTest >> testIsStructure [
 	| ston nLine script |
+	self flag: #toRemove.
+	"we do not support structure?"
 	nLine := Smalltalk os lineEnding.
 	ston := '[[[structure=Test' , nLine , 'Foo' , nLine , ']]]'.
 	script := (self parser parse: ston) children first.
@@ -51,11 +21,10 @@ PRScriptTest2 >> testIsStructure [
 ]
 
 { #category : #'tests-parsing' }
-PRScriptTest2 >> testParseEscape [
-	| wiki text tree nLine |
+PRParseScriptTest >> testParseEscape [
+	| wiki tree nLine |
 	nLine := Smalltalk os lineEnding.
 	wiki := '[[[language=foo\|' , nLine , 'foo' , nLine , ']]]'.
-	text := 'foo'.
 	tree := PRDocument new
 		add:
 			((PRCodeblock content: 'foo')
@@ -63,16 +32,11 @@ PRScriptTest2 >> testParseEscape [
 				yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
-PRScriptTest2 >> testParseLanguage [
-]
-
-{ #category : #'tests-parsing' }
-PRScriptTest2 >> testParseRealLanguage [
+PRParseScriptTest >> testParseRealLanguage [
 	| wiki text tree nLine |
 	nLine := Smalltalk os lineEnding.
 	wiki := '[[[language=smalltalk' , nLine , 'foo' , nLine , ']]]'.
@@ -89,21 +53,19 @@ PRScriptTest2 >> testParseRealLanguage [
 ]
 
 { #category : #'tests-parsing' }
-PRScriptTest2 >> testParseSimple [
-	| wiki text tree nLine |
+PRParseScriptTest >> testParseSimple [
+	| wiki tree nLine |
 	nLine := Smalltalk os lineEnding.
 	wiki := '[[[' , nLine , 'foo' , nLine , ']]]'.
-	text := 'foo'.
 	tree := PRDocument new
 		add: (PRCodeblock content: 'foo');
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
-PRScriptTest2 >> testParseSimpleOn1Line [
+PRParseScriptTest >> testParseSimpleOn1Line [
 	"This test does *not* specify a valid usage of script. This test is here to ensure that there is a sensible default when writing invalid Pillar text."
 
 	| wiki tree |
@@ -115,11 +77,10 @@ PRScriptTest2 >> testParseSimpleOn1Line [
 ]
 
 { #category : #'tests-parsing' }
-PRScriptTest2 >> testParseWithSimpleCaption [
-	| wiki text tree nLine |
+PRParseScriptTest >> testParseWithSimpleCaption [
+	| wiki tree nLine |
 	nLine := Smalltalk os lineEnding.
 	wiki := '[[[caption=foo' , nLine , 'foo' , nLine , ']]]'.
-	text := 'foo'.
 	tree := PRDocument new
 		add:
 			((PRCodeblock content: 'foo')
@@ -127,13 +88,14 @@ PRScriptTest2 >> testParseWithSimpleCaption [
 				yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #tests }
-PRScriptTest2 >> testStructureName [
+PRParseScriptTest >> testStructureName [
 	| ston nLine script |
+	self flag: #toRemove.
+	"we do not support structure?"
 	nLine := Smalltalk os lineEnding.
 	ston := '[[[structure=Test' , nLine , 'Foo' , nLine , ']]]'.
 	script := (self parser parse: ston) children first.

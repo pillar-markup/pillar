@@ -72,10 +72,6 @@ PRScriptTest >> testParseEscape [
 ]
 
 { #category : #'tests-parsing' }
-PRScriptTest >> testParseLanguage [
-]
-
-{ #category : #'tests-parsing' }
 PRScriptTest >> testParseRealLanguage [
 	| wiki text tree nLine |
 	nLine := Smalltalk os lineEnding.

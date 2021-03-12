@@ -1,33 +1,30 @@
 Class {
-	#name : #PRCommentedLineTest2,
-	#superclass : #PRTextTest2,
+	#name : #PRParseCommentedLineTest,
+	#superclass : #PRParseTextTest,
 	#category : #'Pillar-Tests-Model-Document'
 }
 
 { #category : #private }
-PRCommentedLineTest2 >> actualClass [
+PRParseCommentedLineTest >> actualClass [
 	^ PRCommentedLine
 ]
 
 { #category : #'tests-parsing' }
-PRCommentedLineTest2 >> testParseBasic [
-	| wiki text tree |
+PRParseCommentedLineTest >> testParseBasic [
+	| wiki tree |
 	wiki := '%some comment'.
-	text := ''.
 	tree := PRDocument new
 		add: (PRCommentedLine content: 'some comment');
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
-PRCommentedLineTest2 >> testParseDontInterruptLists [
-	| wiki text tree nLine |
+PRParseCommentedLineTest >> testParseDontInterruptLists [
+	| wiki tree nLine |
 	nLine := Smalltalk os lineEnding.
 	wiki := '#item one' , nLine , '##item one-point-one' , nLine , '%comment' , nLine , '##item one-point-two'.
-	text := '1. item one' , nLine , '	1. item one-point-one' , nLine , '	2. item one-point-two'.
 	tree := PRDocument new
 		add:
 				(PROrderedList new
@@ -50,19 +47,16 @@ PRCommentedLineTest2 >> testParseDontInterruptLists [
 						yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]
 
 { #category : #'tests-parsing' }
-PRCommentedLineTest2 >> testParseDontParseContent [
-	| wiki text tree |
+PRParseCommentedLineTest >> testParseDontParseContent [
+	| wiki tree |
 	wiki := '%some *comment*'.
-	text := ''.
 	tree := PRDocument new
 		add: (PRCommentedLine content: 'some *comment*');
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]

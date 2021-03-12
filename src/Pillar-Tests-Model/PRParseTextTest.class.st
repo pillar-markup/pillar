@@ -1,32 +1,21 @@
 Class {
-	#name : #PRTextTest2,
+	#name : #PRParseTextTest,
 	#superclass : #PRParseDocumentItemTest2,
 	#category : #'Pillar-Tests-Model-Document'
 }
 
 { #category : #testing }
-PRTextTest2 class >> isAbstract [
+PRParseTextTest class >> isAbstract [
 	^ false
 ]
 
 { #category : #private }
-PRTextTest2 >> actualClass [
+PRParseTextTest >> actualClass [
 	^ PRText
 ]
 
-{ #category : #'tests-instantiation' }
-PRTextTest2 >> testContent [
-	instance := self actualClass content: 'zork'.
-	self assert: self instance text equals: 'zork'
-]
-
-{ #category : #'tests-comparing' }
-PRTextTest2 >> testEqualText [
-	self deny: (self actualClass content: 'foo') equals: (self actualClass content: 'bar')
-]
-
 { #category : #'tests-parsing' }
-PRTextTest2 >> testEscapeCpp [
+PRParseTextTest >> testEscapeCpp [
 	| wiki tree |
 	wiki := 'Text: \+\+'.
 	tree := PRDocument new
@@ -35,11 +24,11 @@ PRTextTest2 >> testEscapeCpp [
 			yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki
+	
 ]
 
 { #category : #'tests-parsing' }
-PRTextTest2 >> testEscapeFirst [
+PRParseTextTest >> testEscapeFirst [
 	| wiki tree nLine |
 	nLine := Smalltalk os lineEnding.
 	wiki := '\* text' , nLine , '\+ text' , nLine , '\= text' , nLine , '\@ text' , nLine , '\! text' , nLine , '\| text'
@@ -65,11 +54,11 @@ PRTextTest2 >> testEscapeFirst [
 						yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki
+
 ]
 
 { #category : #'tests-parsing' }
-PRTextTest2 >> testEscapeStrange [
+PRParseTextTest >> testEscapeStrange [
 	| wiki tree |
 	wiki := '< text' , Smalltalk os lineEnding , '> text'.
 	tree := PRDocument new
@@ -81,11 +70,11 @@ PRTextTest2 >> testEscapeStrange [
 						yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki
+
 ]
 
 { #category : #'tests-parsing' }
-PRTextTest2 >> testEscapeText [
+PRParseTextTest >> testEscapeText [
 	| wiki tree |
 	wiki := 'Text: \*\+'.
 	tree := PRDocument new
@@ -94,11 +83,11 @@ PRTextTest2 >> testEscapeText [
 			yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki
+
 ]
 
 { #category : #'tests-parsing' }
-PRTextTest2 >> testEscapeWiki [
+PRParseTextTest >> testEscapeWiki [
 	| wiki tree |
 	wiki := 'Wiki: =, |, !, #, {, }, |{, ||, |}, [, ] and -'.
 	tree := PRDocument new
@@ -107,11 +96,11 @@ PRTextTest2 >> testEscapeWiki [
 			yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki
+
 ]
 
 { #category : #'tests-parsing' }
-PRTextTest2 >> testParseBasic [
+PRParseTextTest >> testParseBasic [
 	| wiki tree |
 	wiki := 'abcdefghijklmnopqrstuvwxyz... ABCDEFGHIJKLMNOPQRSTUVWXYZ... 0123456789...'.
 	tree := PRDocument new
@@ -120,11 +109,11 @@ PRTextTest2 >> testParseBasic [
 			yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki
+
 ]
 
 { #category : #'tests-parsing' }
-PRTextTest2 >> testParseHtml [
+PRParseTextTest >> testParseHtml [
 	| wiki tree |
 	wiki := '<strong>strong <emph>strong, emph</emph></strong>'.
 	tree := PRDocument new
@@ -133,11 +122,11 @@ PRTextTest2 >> testParseHtml [
 			yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki
+
 ]
 
 { #category : #'tests-parsing' }
-PRTextTest2 >> testParseLatex [
+PRParseTextTest >> testParseLatex [
 	| wiki text tree |
 	wiki := '\\begin{foo}[bar]$zork$\\end{foo}'.
 	text := '\begin{foo}[bar]$zork$\end{foo}'.
@@ -147,12 +136,11 @@ PRTextTest2 >> testParseLatex [
 			yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]
 
 { #category : #'tests-parsing' }
-PRTextTest2 >> testParseSpecial [
+PRParseTextTest >> testParseSpecial [
 	| wiki tree |
 	wiki := '????????????¬å???????????????¬ú??¬ü¬¬°¬¢¬£¬§¬·?¬ß?¬©¬¬´¬¨?¬Æ¬Ø¬¬±???¬µ¬¬??¬¬ª???¬ø¦Ä¦Å¦Ç¦É¦Ñ¦Ö¦Ü¦á¦à¦â¦ä¦ã¦å¦ç¦é¦è?¦ë¦í¦ì¦î¦ï¦ñ?¦ò¦ô¦ö¦õ¦ú??¦ü¦¦°¦¢¦£¦§¦·¦¶¦ß¦®¦©¦¦´¦¨¦¦Æ¦Ø?¦±¦¦¦¥¦µ¦¦¦¦¦¦ª¦º??'.
 	tree := (PRDocument new)
@@ -162,11 +150,11 @@ PRTextTest2 >> testParseSpecial [
 							yourself);
 				yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki
+	
 ]
 
 { #category : #'tests-parsing' }
-PRTextTest2 >> testParseWiki [
+PRParseTextTest >> testParseWiki [
 	| wiki tree |
 	wiki := ' !_#-|=]@:<>\*'.
 	tree := (PRDocument new)
@@ -175,18 +163,5 @@ PRTextTest2 >> testParseWiki [
 							yourself);
 				yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki
-]
 
-{ #category : #'tests-printing' }
-PRTextTest2 >> testPrinting [
-	| text |
-	text := PRText content: 'abcdef'.
-	'*abcdef*' match: text printString
-]
-
-{ #category : #'tests-accessing' }
-PRTextTest2 >> testText [
-	self instance text: 'zork'.
-	self assert: self instance text equals: 'zork'
 ]
