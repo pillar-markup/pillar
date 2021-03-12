@@ -1,6 +1,6 @@
 Class {
 	#name : #PRBasicObjectTest,
-	#superclass : #TestCase,
+	#superclass : #ParametrizedTestCase,
 	#instVars : [
 		'instance'
 	],

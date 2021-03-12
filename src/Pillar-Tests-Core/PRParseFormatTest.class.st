@@ -3,14 +3,31 @@ Class {
 	#superclass : #PRParseDocumentGroupTest,
 	#instVars : [
 		'otherClass',
-		'markup'
+		'markup',
+		'actualClass'
 	],
 	#category : #'Pillar-Tests-Core'
 }
 
+{ #category : #testing }
+PRParseFormatTest class >> isAbstract [
+	^ false
+]
+
+{ #category : #testing }
+PRParseFormatTest class >> testParameters [
+	^ (ParametrizedTestMatrix new
+			forSelector: #actualClass addOptions: PRFormat subclasses )
+]
+
 { #category : #private }
 PRParseFormatTest >> actualClass [
-	^ PRFormat
+	^ actualClass
+]
+
+{ #category : #private }
+PRParseFormatTest >> actualClass: aClass [
+	actualClass := aClass
 ]
 
 { #category : #accessing }
