@@ -1,7 +1,7 @@
 Class {
 	#name : #PRAnchorTest,
 	#superclass : #PRDocumentItemTest,
-	#category : #'Pillar-Tests-Core'
+	#category : #'Pillar-Tests-Core-Structural'
 }
 
 { #category : #testing }

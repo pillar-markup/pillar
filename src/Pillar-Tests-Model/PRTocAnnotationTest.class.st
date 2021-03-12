@@ -1,7 +1,7 @@
 Class {
 	#name : #PRTocAnnotationTest,
 	#superclass : #PRAbstractAnnotationTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#category : #'Pillar-Tests-Model-Toc'
 }
 
 { #category : #helpers }

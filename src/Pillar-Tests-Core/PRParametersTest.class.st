@@ -1,7 +1,7 @@
 Class {
 	#name : #PRParametersTest,
 	#superclass : #TestCase,
-	#category : #'Pillar-Tests-Core'
+	#category : #'Pillar-Tests-Core-Structural'
 }
 
 { #category : #tests }

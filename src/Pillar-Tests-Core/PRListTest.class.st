@@ -1,7 +1,7 @@
 Class {
 	#name : #PRListTest,
 	#superclass : #PRDocumentGroupTest,
-	#category : #'Pillar-Tests-Core'
+	#category : #'Pillar-Tests-Core-Structural'
 }
 
 { #category : #private }
@@ -24,9 +24,4 @@ PRListTest >> listItemWithText: aString [
 { #category : #private }
 PRListTest >> textString: anObject level: anInteger [
 	^ (2 to: anInteger) inject: '' into: [ :result :each | result , '	' ]
-]
-
-{ #category : #private }
-PRListTest >> wikiString [
-	self subclassResponsibility
 ]

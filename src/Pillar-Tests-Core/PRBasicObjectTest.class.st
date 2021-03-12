@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'instance'
 	],
-	#category : #'Pillar-Tests-Core'
+	#category : #'Pillar-Tests-Core-Structural'
 }
 
 { #category : #testing }

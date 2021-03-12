@@ -23,7 +23,7 @@ Internal Representation and Key Implementation Points.
 Class {
 	#name : #PRDocumentItemTest,
 	#superclass : #PRBasicObjectTest,
-	#category : #'Pillar-Tests-Core'
+	#category : #'Pillar-Tests-Core-Structural'
 }
 
 { #category : #private }

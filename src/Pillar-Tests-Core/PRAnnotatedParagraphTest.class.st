@@ -1,7 +1,7 @@
 Class {
 	#name : #PRAnnotatedParagraphTest,
 	#superclass : #PRDocumentGroupTest,
-	#category : #'Pillar-Tests-Core'
+	#category : #'Pillar-Tests-Core-Structural'
 }
 
 { #category : #testing }

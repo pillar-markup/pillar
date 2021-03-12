@@ -4,7 +4,7 @@ Tests for expectations that must be valid on all pillar objects
 Class {
 	#name : #PRObjectTest,
 	#superclass : #PRBasicObjectTest,
-	#category : #'Pillar-Tests-Core'
+	#category : #'Pillar-Tests-Core-Structural'
 }
 
 { #category : #'tests-copying' }

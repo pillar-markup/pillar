@@ -1,7 +1,7 @@
 Class {
 	#name : #PREmptyParagraphTest,
 	#superclass : #PRParagraphTest,
-	#category : #'Pillar-Tests-Core'
+	#category : #'Pillar-Tests-Core-Structural'
 }
 
 { #category : #private }
