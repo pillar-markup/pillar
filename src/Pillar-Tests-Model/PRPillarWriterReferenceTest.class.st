@@ -38,62 +38,6 @@ PRPillarWriterReferenceTest >> testNonTextAlias [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parameters' }
-PRPillarWriterReferenceTest >> testParameterAt [
-	self instance parameters: (Dictionary with: 'foo' -> 'bar').
-	self assert: (self instance parameters at: 'foo' ifAbsent: [ nil ]) equals: 'bar'.
-	self assert: (self instance parameters at: 'bar' ifAbsent: [ nil ]) isNil
-]
-
-{ #category : #'tests-parameters' }
-PRPillarWriterReferenceTest >> testParameterAtIfAbsent [
-	self instance parameters: (Dictionary with: 'foo' -> 'bar').
-	self assert: (self instance parameters at: 'foo' ifAbsent: [ 'zork' ]) equals: 'bar'.
-	self assert: (self instance parameters at: 'bar' ifAbsent: [ 'zork' ]) equals: 'zork'
-]
-
-{ #category : #'tests-parameters' }
-PRPillarWriterReferenceTest >> testParameterAtIfPresent [
-	self instance parameters: (Dictionary with: 'foo' -> 'bar').
-	self assert: (self instance parameters at: 'foo' ifPresent: [ :value | '!' , value ]) equals: '!bar'.
-	self assert: (self instance parameters at: 'bar' ifPresent: [ :value | '!' , value ]) isNil
-]
-
-{ #category : #'tests-parameters' }
-PRPillarWriterReferenceTest >> testParameterAtPut [
-	self assert: (self instance parameters at: 'foo' put: 'bar') equals: 'bar'.
-	self assert: self instance parameters size equals: 1.
-	self assert: self instance parameters keys first equals: 'foo'.
-	self assert: self instance parameters values first equals: 'bar'.
-
-	self assert: (self instance parameters at: 'foo' put: 'zork') equals: 'zork'.
-	self assert: self instance parameters size equals: 1.
-	self assert: self instance parameters keys first equals: 'foo'.
-	self assert: self instance parameters values first equals: 'zork'
-]
-
-{ #category : #'tests-parameters' }
-PRPillarWriterReferenceTest >> testParameterCopy [
-	| copy |
-	self instance parameters at: 'class' put: 'active'.
-	copy := self instance copy.
-	copy parameters at: 'class' put: 'inactive'.
-	copy parameters at: 'foo' put: 'bar'.
-
-	self assert: (self instance parameters at: 'class') equals: 'active'.
-	self deny: (self instance hasParameter: 'foo').
-
-	self assert: (copy parameters at: 'class') equals: 'inactive'.
-	self assert: (copy parameters at: 'foo') equals: 'bar'
-]
-
-{ #category : #'tests-parameters' }
-PRPillarWriterReferenceTest >> testParameters [
-	self assertEmpty: self instance parameters.
-	self instance parameters: (Array with: 'foo' -> 'bar').
-	self assert: self instance parameters size equals: 1
-]
-
 { #category : #'tests-parsing' }
 PRPillarWriterReferenceTest >> testParseAliased [
 	| wiki text tree |

@@ -21,9 +21,8 @@ PRParseReferenceTest >> referenceString [
 
 { #category : #tests }
 PRParseReferenceTest >> testNonTextAlias [
-	| wiki text tree |
+	| wiki tree |
 	wiki := self markup , 'foo ""Alias"">' , self referenceString , self markup.
-	text := 'foo Alias'.
 	tree := PRDocument new
 		add: (PRParagraph new
 			add: (self actualClass new
@@ -34,71 +33,13 @@ PRParseReferenceTest >> testNonTextAlias [
 			yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
-]
 
-{ #category : #'tests-parameters' }
-PRParseReferenceTest >> testParameterAt [
-	self instance parameters: (Dictionary with: 'foo' -> 'bar').
-	self assert: (self instance parameters at: 'foo' ifAbsent: [ nil ]) equals: 'bar'.
-	self assert: (self instance parameters at: 'bar' ifAbsent: [ nil ]) isNil
-]
-
-{ #category : #'tests-parameters' }
-PRParseReferenceTest >> testParameterAtIfAbsent [
-	self instance parameters: (Dictionary with: 'foo' -> 'bar').
-	self assert: (self instance parameters at: 'foo' ifAbsent: [ 'zork' ]) equals: 'bar'.
-	self assert: (self instance parameters at: 'bar' ifAbsent: [ 'zork' ]) equals: 'zork'
-]
-
-{ #category : #'tests-parameters' }
-PRParseReferenceTest >> testParameterAtIfPresent [
-	self instance parameters: (Dictionary with: 'foo' -> 'bar').
-	self assert: (self instance parameters at: 'foo' ifPresent: [ :value | '!' , value ]) equals: '!bar'.
-	self assert: (self instance parameters at: 'bar' ifPresent: [ :value | '!' , value ]) isNil
-]
-
-{ #category : #'tests-parameters' }
-PRParseReferenceTest >> testParameterAtPut [
-	self assert: (self instance parameters at: 'foo' put: 'bar') equals: 'bar'.
-	self assert: self instance parameters size equals: 1.
-	self assert: self instance parameters keys first equals: 'foo'.
-	self assert: self instance parameters values first equals: 'bar'.
-
-	self assert: (self instance parameters at: 'foo' put: 'zork') equals: 'zork'.
-	self assert: self instance parameters size equals: 1.
-	self assert: self instance parameters keys first equals: 'foo'.
-	self assert: self instance parameters values first equals: 'zork'
-]
-
-{ #category : #'tests-parameters' }
-PRParseReferenceTest >> testParameterCopy [
-	| copy |
-	self instance parameters at: 'class' put: 'active'.
-	copy := self instance copy.
-	copy parameters at: 'class' put: 'inactive'.
-	copy parameters at: 'foo' put: 'bar'.
-
-	self assert: (self instance parameters at: 'class') equals: 'active'.
-	self deny: (self instance hasParameter: 'foo').
-
-	self assert: (copy parameters at: 'class') equals: 'inactive'.
-	self assert: (copy parameters at: 'foo') equals: 'bar'
-]
-
-{ #category : #'tests-parameters' }
-PRParseReferenceTest >> testParameters [
-	self assertEmpty: self instance parameters.
-	self instance parameters: (Array with: 'foo' -> 'bar').
-	self assert: self instance parameters size equals: 1
 ]
 
 { #category : #'tests-parsing' }
 PRParseReferenceTest >> testParseAliased [
-	| wiki text tree |
+	| wiki tree |
 	wiki := self markup , 'Alias>' , self referenceString , self markup.
-	text := 'Alias'.
 	tree := PRDocument new
 		add: (PRParagraph new
 			add: (self actualClass new
@@ -108,15 +49,13 @@ PRParseReferenceTest >> testParseAliased [
 			yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]
 
 { #category : #'tests-parsing' }
 PRParseReferenceTest >> testParseAliasedEmpty [
-	| wiki text tree |
+	| wiki tree |
 	wiki := self markup , '>' , self referenceString , self markup.
-	text := ''.
 	tree := PRDocument new
 		add:
 			(PRParagraph new
@@ -128,17 +67,14 @@ PRParseReferenceTest >> testParseAliasedEmpty [
 				yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
 PRParseReferenceTest >> testParseBasic [
-	| wiki text tree |
+	| wiki tree |
 	wiki := self markup  , self referenceString , self markup .
-	text := self actualClass new
-		reference: self referenceString;
-		title.
+
 	tree := PRDocument new
 		add: (PRParagraph new
 			add: (self actualClass new
@@ -147,16 +83,14 @@ PRParseReferenceTest >> testParseBasic [
 			yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]
 
 { #category : #'tests-parsing' }
 PRParseReferenceTest >> testParseEasyness [
-	| wiki1 wiki2 text tree |
+	| wiki1 wiki2 tree |
 	wiki1 := self markup , Smalltalk os lineEnding , self markup , self referenceString.
 	wiki2 := '\' , self markup , Smalltalk os lineEnding , '\' , self markup , self referenceString.
-	text := self markup , Smalltalk os lineEnding , self markup , self referenceString.
 	tree := PRDocument new
 		add:
 			(PRParagraph new
@@ -167,16 +101,14 @@ PRParseReferenceTest >> testParseEasyness [
 		yourself.
 	self parserAssertWiki: wiki1 equalsTree: tree.
 	self parserAssertWiki: wiki2 equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki2.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
 PRParseReferenceTest >> testParseEmpty [
-	| wiki1 wiki2 text tree |
+	| wiki1 wiki2 tree |
 	wiki1 := self markup , self markup.
 	wiki2 := '\' , self markup , '\' , self markup.
-	text := self markup , self markup.
 	tree := PRDocument new
 		add:
 			(PRParagraph new
@@ -185,15 +117,13 @@ PRParseReferenceTest >> testParseEmpty [
 		yourself.
 	self parserAssertWiki: wiki1 equalsTree: tree.
 	self parserAssertWiki: wiki2 equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki2.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
 PRParseReferenceTest >> testParseEscaped [
-	| wiki text tree |
+	| wiki  tree |
 	wiki := 'Star \*' , self referenceString , '\*' , Smalltalk os lineEnding , 'Cross \+' , self referenceString , '\+'.
-	text := 'Star *' , self referenceString , '*' , Smalltalk os lineEnding , 'Cross +' , self referenceString , '+'.
 	tree := PRDocument new
 		add:
 				(PRParagraph new
@@ -203,15 +133,13 @@ PRParseReferenceTest >> testParseEscaped [
 						yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]
 
 { #category : #'tests-parsing' }
 PRParseReferenceTest >> testParseParameters [
-	| wiki text tree |
+	| wiki tree |
 	wiki := self markup , 'Alias>' , self referenceString , '|a=1|b=2|c=true' , self markup .
-	text := 'Alias'.
 	tree := PRDocument new
 		add:
 				(PRParagraph new
@@ -229,15 +157,13 @@ PRParseReferenceTest >> testParseParameters [
 						yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
 PRParseReferenceTest >> testParseParametersEmpty [
-	| wiki text tree |
+	| wiki tree |
 	wiki := self markup , 'Alias>' , self referenceString , '|a||b|' , self markup  .
-	text := 'Alias'.
 	tree := PRDocument new
 		add:
 				(PRParagraph new
@@ -254,14 +180,13 @@ PRParseReferenceTest >> testParseParametersEmpty [
 						yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
 PRParseReferenceTest >> testParseParametersEscaped [
-	| wiki text tree |
+	| wiki tree |
 	wiki := self markup , 'Alias>' , self referenceString , '|2=\|\=|\|\==1' , self markup .
-	text := 'Alias'.
 	tree := PRDocument new
 		add:
 				(PRParagraph new
@@ -278,6 +203,5 @@ PRParseReferenceTest >> testParseParametersEscaped [
 						yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]

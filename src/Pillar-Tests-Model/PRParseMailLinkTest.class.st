@@ -21,9 +21,9 @@ PRParseMailLinkTest >> testLinkToAFigureIsExternalLink [
 
 { #category : #'tests-parsing' }
 PRParseMailLinkTest >> testParseBogus [
-	| wiki text tree |
+	| wiki tree |
 	wiki := '*ab12@x.com*'.
-	text := 'ab12@x.com'.
+	
 	tree := PRDocument new
 		add: (PRParagraph new
 			add: (self actualClass new
@@ -32,22 +32,5 @@ PRParseMailLinkTest >> testParseBogus [
 			yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
-]
-
-{ #category : #'tests-accessing' }
-PRParseMailLinkTest >> testTitle [
-	super testTitle.
-	self instance reference: self referenceString.
-	self assert: self instance title equals: self referenceString
-]
-
-{ #category : #'tests-accessing' }
-PRParseMailLinkTest >> testUrl [
-	self instance reference: self referenceString.
-	self assert: (self instance url beginsWith: 'mailto:').
-	self assert: self instance url ~= ('mailto:' , self referenceString).
-	self assert: self instance scrambledUrl ~= ('mailto:' , self referenceString).
-	self assert: self instance unscrambledUrl equals: 'mailto:' , self referenceString
+	
 ]
