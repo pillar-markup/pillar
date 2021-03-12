@@ -20,45 +20,6 @@ PRParseReferenceTest >> referenceString [
 ]
 
 { #category : #tests }
-PRParseReferenceTest >> testAlias [
-	self deny: self instance hasAlias.
-
-	self instance add: self fooInstance.
-	self assert: self instance hasAlias.
-	self assert: self instance alias equals: 'foo'.
-
-	self instance add: self barInstance.
-	self assert: self instance hasAlias.
-	self assert: self instance alias equals: 'foobar'
-]
-
-{ #category : #'tests-accessing' }
-PRParseReferenceTest >> testAnchor [
-	self deny: self instance hasAnchor
-]
-
-{ #category : #'tests-comparing' }
-PRParseReferenceTest >> testEqualReference [
-	self
-		deny:
-			(self actualClass new
-				reference: 'foo';
-				yourself)
-		equals:
-			(self actualClass new
-				reference: 'bar';
-				yourself)
-]
-
-{ #category : #'tests-parameters' }
-PRParseReferenceTest >> testHasParameter [
-	self instance parameters: (Dictionary with: 'foo' -> 'zork' with: 'bar' -> nil).
-	self assert: (self instance hasParameter: 'foo').
-	self assert: (self instance hasParameter: 'bar').
-	self deny: (self instance hasParameter: 'zork')
-]
-
-{ #category : #tests }
 PRParseReferenceTest >> testNonTextAlias [
 	| wiki text tree |
 	wiki := self markup , 'foo ""Alias"">' , self referenceString , self markup.
@@ -319,15 +280,4 @@ PRParseReferenceTest >> testParseParametersEscaped [
 	self parserAssertWiki: wiki equalsTree: tree.
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
 	self textWriterAssertTree: tree equalsText: text
-]
-
-{ #category : #'tests-accessing' }
-PRParseReferenceTest >> testReference [
-	self instance reference: 'zork'.
-	self assert: self instance reference equals: 'zork'
-]
-
-{ #category : #'tests-accessing' }
-PRParseReferenceTest >> testTitle [
-	self deny: self instance title isNotNil
 ]

@@ -20,45 +20,6 @@ PRPillarWriterReferenceTest >> referenceString [
 ]
 
 { #category : #tests }
-PRPillarWriterReferenceTest >> testAlias [
-	self deny: self instance hasAlias.
-
-	self instance add: self fooInstance.
-	self assert: self instance hasAlias.
-	self assert: self instance alias equals: 'foo'.
-
-	self instance add: self barInstance.
-	self assert: self instance hasAlias.
-	self assert: self instance alias equals: 'foobar'
-]
-
-{ #category : #'tests-accessing' }
-PRPillarWriterReferenceTest >> testAnchor [
-	self deny: self instance hasAnchor
-]
-
-{ #category : #'tests-comparing' }
-PRPillarWriterReferenceTest >> testEqualReference [
-	self
-		deny:
-			(self actualClass new
-				reference: 'foo';
-				yourself)
-		equals:
-			(self actualClass new
-				reference: 'bar';
-				yourself)
-]
-
-{ #category : #'tests-parameters' }
-PRPillarWriterReferenceTest >> testHasParameter [
-	self instance parameters: (Dictionary with: 'foo' -> 'zork' with: 'bar' -> nil).
-	self assert: (self instance hasParameter: 'foo').
-	self assert: (self instance hasParameter: 'bar').
-	self deny: (self instance hasParameter: 'zork')
-]
-
-{ #category : #tests }
 PRPillarWriterReferenceTest >> testNonTextAlias [
 	| wiki text tree |
 	wiki := self markup , 'foo ""Alias"">' , self referenceString , self markup.
@@ -319,15 +280,4 @@ PRPillarWriterReferenceTest >> testParseParametersEscaped [
 	self parserAssertWiki: wiki equalsTree: tree.
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
 	self textWriterAssertTree: tree equalsText: text
-]
-
-{ #category : #'tests-accessing' }
-PRPillarWriterReferenceTest >> testReference [
-	self instance reference: 'zork'.
-	self assert: self instance reference equals: 'zork'
-]
-
-{ #category : #'tests-accessing' }
-PRPillarWriterReferenceTest >> testTitle [
-	self deny: self instance title isNotNil
 ]
