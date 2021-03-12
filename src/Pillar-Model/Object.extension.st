@@ -21,5 +21,5 @@ Object >> asMustachableValue [
 	"'1' asMustachableValue >>> '1'"
 	"(Path * 'foo.bib') asMustachableValue >>> 'foo.bib'"
 	
-	^ self asString
+	^ self
 ]

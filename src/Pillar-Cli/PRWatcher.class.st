@@ -9,7 +9,7 @@ Class {
 		'process',
 		'project'
 	],
-	#category : 'Pillar-Cli-Handlers'
+	#category : #'Pillar-Cli-Handlers'
 }
 
 { #category : #'as yet unclassified' }
@@ -21,8 +21,13 @@ PRWatcher class >> stopAll [
 { #category : #'as yet unclassified' }
 PRWatcher >> generateHtml [
 
-	[ project build: PRHtmlOutput new ]
-		on: Error do: [ : error | self logError: error ]
+	| target |
+	target := PRHtmlOutput new.
+	target allFilesStrategy.
+	"[" project 
+		beTemplatable; 
+		build: target "]
+		on: Error do: [ : error | self logError: error ]"
 ]
 
 { #category : #private }
@@ -45,10 +50,11 @@ PRWatcher >> project: anObject [
 { #category : #accessing }
 PRWatcher >> start [
 
-	Stdio stdout nextPutAll: 'Watching: true';lf.
-	process := [ [true] whileTrue: [ 
+	Stdio stdout nextPutAll: 'Watching: true'; lf.
+	"so that pharo does not quit"
+	[true] whileTrue: [ 
 		3 seconds wait.
-		self generateHtml. ]] fork
+		self generateHtml ] 
 ]
 
 { #category : #accessing }
