@@ -24,25 +24,6 @@ PRExternalLinkTest >> testIsExternal [
 	self assert: self instance isExternal
 ]
 
-{ #category : #tests }
-PRExternalLinkTest >> testLinkToAFigureIsExternalLink [
-	| wiki text tree |
-	wiki := '*file://foo.png*'.
-	text := self actualClass new
-		reference: 'file://foo.png';
-		title.
-	tree := PRDocument new
-		add: (PRParagraph new
-			add: (self actualClass new
-				reference: 'file://foo.png';
-				yourself);
-			yourself);
-		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
-]
-
 { #category : #'tests-accessing' }
 PRExternalLinkTest >> testTitle [
 	self instance reference: 'http://www.lukas-renggli.ch'.

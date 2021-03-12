@@ -14,11 +14,6 @@ PRMailLinkTest >> referenceString [
 	^ 'renggli@gmail.com'
 ]
 
-{ #category : #'as yet unclassified' }
-PRMailLinkTest >> testLinkToAFigureIsExternalLink [
-	"This test has no meaning in PRMailLinkTest."
-]
-
 { #category : #'tests-parsing' }
 PRMailLinkTest >> testParseBogus [
 	| wiki text tree |

@@ -35,19 +35,3 @@ PRPillarWriterMailLinkTest >> testParseBogus [
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
 	self textWriterAssertTree: tree equalsText: text
 ]
-
-{ #category : #'tests-accessing' }
-PRPillarWriterMailLinkTest >> testTitle [
-	super testTitle.
-	self instance reference: self referenceString.
-	self assert: self instance title equals: self referenceString
-]
-
-{ #category : #'tests-accessing' }
-PRPillarWriterMailLinkTest >> testUrl [
-	self instance reference: self referenceString.
-	self assert: (self instance url beginsWith: 'mailto:').
-	self assert: self instance url ~= ('mailto:' , self referenceString).
-	self assert: self instance scrambledUrl ~= ('mailto:' , self referenceString).
-	self assert: self instance unscrambledUrl equals: 'mailto:' , self referenceString
-]

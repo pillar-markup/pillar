@@ -21,12 +21,9 @@ PRPillarWriterInternalLinkTest >> referenceString [
 
 { #category : #'tests-parsing' }
 PRPillarWriterInternalLinkTest >> testParseAnchored [
-	| wiki text tree |
+	| wiki tree |
 	wiki := '*' , self referenceString , '@Anchor*'.
-	text := self actualClass new
-		reference: self referenceString;
-		anchor: 'Anchor';
-		title.
+	
 	tree := PRDocument new
 		add: (PRParagraph new
 			add: (self actualClass new
@@ -35,16 +32,16 @@ PRPillarWriterInternalLinkTest >> testParseAnchored [
 				yourself);
 			yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
 
 { #category : #'tests-parsing' }
 PRPillarWriterInternalLinkTest >> testParseEverything [
-	| wiki text tree |
+	| wiki  tree |
 	wiki := '*Alias>' , self referenceString , '@Anchor*'.
-	text := 'Alias'.
+
 	tree := PRDocument new
 		add: (PRParagraph new
 			add: (self actualClass new
@@ -54,7 +51,7 @@ PRPillarWriterInternalLinkTest >> testParseEverything [
 				yourself);
 			yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
+	
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]
