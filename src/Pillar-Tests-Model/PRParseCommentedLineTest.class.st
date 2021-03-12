@@ -1,7 +1,7 @@
 Class {
 	#name : #PRParseCommentedLineTest,
 	#superclass : #PRParseTextTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#category : #'Pillar-Tests-Model-Parser'
 }
 
 { #category : #private }

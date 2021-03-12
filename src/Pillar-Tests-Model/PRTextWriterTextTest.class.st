@@ -1,7 +1,7 @@
 Class {
 	#name : #PRTextWriterTextTest,
 	#superclass : #PRTextWriterDocumentItemTest3,
-	#category : #'Pillar-Tests-Model-Document'
+	#category : #'Pillar-Tests-Model-TextWriter'
 }
 
 { #category : #testing }

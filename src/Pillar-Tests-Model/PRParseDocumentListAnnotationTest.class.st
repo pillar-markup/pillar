@@ -1,16 +1,16 @@
 Class {
-	#name : #PRDocumentListAnnotationTest,
-	#superclass : #PRAbstractAnnotationTest,
-	#category : #'Pillar-Tests-Model-Document-List'
+	#name : #PRParseDocumentListAnnotationTest,
+	#superclass : #PRParseAbstractAnnotationTest,
+	#category : #'Pillar-Tests-Model-Parser'
 }
 
 { #category : #helpers }
-PRDocumentListAnnotationTest >> actualClass [
+PRParseDocumentListAnnotationTest >> actualClass [
 	^ PRDocumentListAnnotation
 ]
 
 { #category : #helpers }
-PRDocumentListAnnotationTest >> referenceParameters [
+PRParseDocumentListAnnotationTest >> referenceParameters [
 	^ PRParameters withAll: { 
 		PRParameter 
 			keyNode: (PRParameterKey named: 'path')
@@ -30,6 +30,17 @@ PRDocumentListAnnotationTest >> referenceParameters [
 ]
 
 { #category : #helpers }
-PRDocumentListAnnotationTest >> referenceString [
+PRParseDocumentListAnnotationTest >> referenceString [
 	^ 'docList:path=blogs|limit=10|sort=date|templates=#(''templates/docArticle.mustache'')|summaryMaxSize=500'
+]
+
+{ #category : #helpers }
+PRParseDocumentListAnnotationTest >> testParsedHadAllKeys [
+
+	| annotation |
+	annotation :=  (self parser parse:  '${' , self referenceString , '}$') children first children first.
+	self assert: annotation path equals: 'blogs'.
+	self assert: annotation limit equals: 10.
+	self assert: annotation sort equals: 'date'.
+	self assert: annotation templates equals: #('templates/docArticle.mustache').
 ]

@@ -1,7 +1,7 @@
 Class {
 	#name : #PRTextWriterAnnotatedParagraphTest,
 	#superclass : #PRTextWriterDocumentGroupTest,
-	#category : #'Pillar-Tests-Core'
+	#category : #'Pillar-Tests-Core-TextWriter'
 }
 
 { #category : #testing }

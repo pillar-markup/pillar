@@ -1,38 +1,46 @@
 Class {
-	#name : #PRParseAbstractAnnotationTest,
+	#name : #PRParseAbstractAnnotationTest2,
 	#superclass : #PRParseDocumentItemTest2,
 	#category : #'Pillar-Tests-Core-Parse'
 }
 
 { #category : #testing }
-PRParseAbstractAnnotationTest class >> isAbstract [
-	^ self = PRParseAbstractAnnotationTest
+PRParseAbstractAnnotationTest2 class >> isAbstract [
+	^ self = PRAbstractAnnotationTest
 ]
 
 { #category : #helpers }
-PRParseAbstractAnnotationTest >> actualClass [
+PRParseAbstractAnnotationTest2 >> actualClass [
 	^ self subclassResponsibility
 ]
 
 { #category : #helpers }
-PRParseAbstractAnnotationTest >> annoteName [
+PRParseAbstractAnnotationTest2 >> annoteName [
 	^ self actualClass tag
 ]
 
 { #category : #helpers }
-PRParseAbstractAnnotationTest >> referenceParameters [
+PRParseAbstractAnnotationTest2 >> referenceParameters [
 	self subclassResponsibility
 ]
 
 { #category : #helpers }
-PRParseAbstractAnnotationTest >> referenceString [
+PRParseAbstractAnnotationTest2 >> referenceString [
 	"Pay attention to order the parameters according to sorted"
 	self
 		subclassResponsibility
 ]
 
 { #category : #tests }
-PRParseAbstractAnnotationTest >> testParse [
+PRParseAbstractAnnotationTest2 >> testAsPillar [
+	| wiki tree |
+	wiki := '${' , self referenceString , '}$'.
+	tree := self actualClass withParameters: self referenceParameters.
+	self assert: tree asPillar equals: wiki
+]
+
+{ #category : #tests }
+PRParseAbstractAnnotationTest2 >> testParse [
 	| wiki tree |
 	wiki := '${' , self referenceString , '}$'.
 	tree := PRDocument new
@@ -47,7 +55,13 @@ PRParseAbstractAnnotationTest >> testParse [
 ]
 
 { #category : #tests }
-PRParseAbstractAnnotationTest >> testParsedHadAllKeys [
+PRParseAbstractAnnotationTest2 >> testParsedHadAllKeys [
 
 	self assert: (self parser parse:  '${' , self referenceString , '}$') children first children first hadAllKeys
+]
+
+{ #category : #tests }
+PRParseAbstractAnnotationTest2 >> testWithParameters [
+
+	self assert: (self actualClass withParameters: self referenceParameters) hadAllKeys
 ]

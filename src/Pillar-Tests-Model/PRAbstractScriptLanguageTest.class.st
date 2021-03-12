@@ -31,6 +31,11 @@ PRAbstractScriptLanguageTest >> actualClass [
 	^ PRAbstractScriptLanguage
 ]
 
+{ #category : #private }
+PRAbstractScriptLanguageTest >> actualClass: aClass [
+	actualClass := aClass
+]
+
 { #category : #tests }
 PRAbstractScriptLanguageTest >> testEqual [
 	self assert: self instance equals: self instance.
