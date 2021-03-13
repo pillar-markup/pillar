@@ -14,23 +14,6 @@ PRMailLinkTest >> referenceString [
 	^ 'renggli@gmail.com'
 ]
 
-{ #category : #'tests-parsing' }
-PRMailLinkTest >> testParseBogus [
-	| wiki text tree |
-	wiki := '*ab12@x.com*'.
-	text := 'ab12@x.com'.
-	tree := PRDocument new
-		add: (PRParagraph new
-			add: (self actualClass new
-				reference: 'ab12@x.com';
-				yourself);
-			yourself);
-		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
-]
-
 { #category : #'tests-accessing' }
 PRMailLinkTest >> testTitle [
 	super testTitle.

@@ -1,6 +1,6 @@
 Class {
 	#name : #PRParsePreformattedTest,
-	#superclass : #PRDocumentGroupTest,
+	#superclass : #PRParseDocumentGroupTest,
 	#category : #'Pillar-Tests-Model-Parser'
 }
 

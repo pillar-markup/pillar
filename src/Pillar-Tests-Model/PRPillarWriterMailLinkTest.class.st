@@ -21,9 +21,8 @@ PRPillarWriterMailLinkTest >> testLinkToAFigureIsExternalLink [
 
 { #category : #'tests-parsing' }
 PRPillarWriterMailLinkTest >> testParseBogus [
-	| wiki text tree |
+	| wiki tree |
 	wiki := '*ab12@x.com*'.
-	text := 'ab12@x.com'.
 	tree := PRDocument new
 		add: (PRParagraph new
 			add: (self actualClass new
@@ -31,7 +30,6 @@ PRPillarWriterMailLinkTest >> testParseBogus [
 				yourself);
 			yourself);
 		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+	
 ]

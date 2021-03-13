@@ -42,7 +42,7 @@ PRParseAbstractAnnotationTest >> testParse [
 				yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
+
 	
 ]
 

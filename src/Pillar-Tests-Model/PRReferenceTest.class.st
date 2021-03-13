@@ -58,25 +58,6 @@ PRReferenceTest >> testHasParameter [
 	self deny: (self instance hasParameter: 'zork')
 ]
 
-{ #category : #tests }
-PRReferenceTest >> testNonTextAlias [
-	| wiki text tree |
-	wiki := self markup , 'foo ""Alias"">' , self referenceString , self markup.
-	text := 'foo Alias'.
-	tree := PRDocument new
-		add: (PRParagraph new
-			add: (self actualClass new
-				add: (PRText content: 'foo ');
-				add: (self addText: 'Alias' to: PRBoldFormat new);
-				reference: self referenceString;
-				yourself);
-			yourself);
-		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
-]
-
 { #category : #'tests-parameters' }
 PRReferenceTest >> testParameterAt [
 	self instance parameters: (Dictionary with: 'foo' -> 'bar').

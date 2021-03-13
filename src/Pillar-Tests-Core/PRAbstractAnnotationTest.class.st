@@ -62,21 +62,6 @@ PRAbstractAnnotationTest >> testAsPillar [
 ]
 
 { #category : #tests }
-PRAbstractAnnotationTest >> testParse [
-	| wiki tree |
-	wiki := '${' , self referenceString , '}$'.
-	tree := PRDocument new
-		add:
-			(PRParagraph new
-				add: (self actualClass withParameters: self referenceParameters);
-				yourself);
-		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	
-]
-
-{ #category : #tests }
 PRAbstractAnnotationTest >> testParsedHadAllKeys [
 
 	self assert: (self parser parse:  '${' , self referenceString , '}$') children first children first hadAllKeys

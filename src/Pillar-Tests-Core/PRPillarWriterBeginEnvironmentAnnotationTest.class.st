@@ -1,6 +1,6 @@
 Class {
 	#name : #PRPillarWriterBeginEnvironmentAnnotationTest,
-	#superclass : #PRAbstractPillarWriterAnnotationTest,
+	#superclass : #PRPillarWriterAbstractAnnotationTest,
 	#category : #'Pillar-Tests-Core-PillarWriter'
 }
 
