@@ -46,13 +46,6 @@ PRParseDocumentItemTest >> parserAssertWiki: aString equalsTree: aDocument [
 ]
 
 { #category : #utilities }
-PRParseDocumentItemTest >> pillarWriterAssertTree: aDocument equalsWiki: aString [
-	"Assert that traversing aDocument using the wiki writer results in aString."
-
-	self assert: (PRPillarWriter write: aDocument) = aString description: aString resumable: false
-]
-
-{ #category : #utilities }
 PRParseDocumentItemTest >> textWriterAssertTree: aDocument equalsText: aString [
 	self assert: (PRTextWriter write: aDocument) = aString description: aString resumable: true
 ]
