@@ -16,46 +16,44 @@ PRPillarWriterOrderedListTest >> actualClass [
 
 { #category : #'tests-parsing' }
 PRPillarWriterOrderedListTest >> testParseMixed [
+
 	| wiki tree nLine |
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 	wiki := '#1' , nLine , '#2' , nLine , '-3'.
 	tree := PRDocument new
-		add:
-				(PROrderedList new
-						add: (self listItemWithText: '1');
-						add: (self listItemWithText: '2');
-						yourself);
-		add:
-				(PRUnorderedList new
-						add: (self listItemWithText: '3');
-						yourself);
-		yourself.
+		        add: (PROrderedList new
+				         add: (self listItemWithText: '1');
+				         add: (self listItemWithText: '2');
+				         yourself);
+		        add: (PRUnorderedList new
+				         add: (self listItemWithText: '3');
+				         yourself);
+		        yourself.
 
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }
 PRPillarWriterOrderedListTest >> testParseNested [
+
 	| wiki tree nLine |
-	nLine := Smalltalk os lineEnding.
-	wiki := self wikiString , '1' , nLine , self wikiString , self wikiString , '1.1' , nLine , self wikiString	, self wikiString , '1.2'.
+	nLine := self lineEnding.
+	wiki := self wikiString , '1' , nLine , self wikiString
+	        , self wikiString , '1.1' , nLine , self wikiString
+	        , self wikiString , '1.2'.
 	tree := PRDocument new
-		add:
-				(self actualClass new
-						add:
-								(PRListItem new
-										add: (PRText content: '1');
-										add:
-												(self actualClass new
-														add: (self listItemWithText: '1.1');
-														add: (self listItemWithText: '1.2');
-														yourself);
-										yourself);
-						yourself);
-		yourself.
+		        add: (self actualClass new
+				         add: (PRListItem new
+						          add: (PRText content: '1');
+						          add: (self actualClass new
+								           add: (self listItemWithText: '1.1');
+								           add: (self listItemWithText: '1.2');
+								           yourself);
+						          yourself);
+				         yourself);
+		        yourself.
 
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #private }

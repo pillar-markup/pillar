@@ -30,6 +30,12 @@ PRParseFormatTest >> actualClass: aClass [
 	actualClass := aClass
 ]
 
+{ #category : #'tests-parsing' }
+PRParseFormatTest >> lineEnding [
+
+	^ Smalltalk os lineEnding
+]
+
 { #category : #accessing }
 PRParseFormatTest >> otherClass [
 	^ otherClass ifNil: [ otherClass := PRFormat allSubclasses detect: [ :each | self actualClass ~= each ] ]
@@ -169,19 +175,20 @@ PRParseFormatTest >> testParseNestedTight [
 
 { #category : #'tests-parsing' }
 PRParseFormatTest >> testParseWithNewLine [
+
 	| wiki tree |
-	wiki := '1' , markup , '2', Smalltalk os lineEnding, '3' , markup , '4'.
-	
+	wiki := '1' , markup , '2' , self lineEnding , '3' , markup , '4'.
+
 	tree := PRDocument new
-		add:
-			(PRParagraph new
-				add: (PRText content: '1');
-				add: (self actualClass with: (PRText content: '2', Smalltalk os lineEnding, '3'));
-				add: (PRText content: '4');
-				yourself);
-		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	
+		        add: (PRParagraph new
+				         add: (PRText content: '1');
+				         add:
+					         (self actualClass with:
+							          (PRText content: '2' , self lineEnding , '3'));
+				         add: (PRText content: '4');
+				         yourself);
+		        yourself.
+	self parserAssertWiki: wiki equalsTree: tree
 ]
 
 { #category : #'tests-parsing' }

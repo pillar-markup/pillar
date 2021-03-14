@@ -9,6 +9,12 @@ PRPillarWriterListTest >> actualClass [
 	^ PRList
 ]
 
+{ #category : #'tests-parsing' }
+PRPillarWriterListTest >> lineEnding [
+
+	^ Smalltalk os lineEnding
+]
+
 { #category : #private }
 PRPillarWriterListTest >> listItemClass [
 	^ PRListItem
@@ -37,42 +43,41 @@ PRPillarWriterListTest >> testParseEmpty [
 
 { #category : #'tests-parsing' }
 PRPillarWriterListTest >> testParseFlat [
+
 	| wiki tree nLine |
-	nLine := Smalltalk os lineEnding.
-	wiki := self wikiString , '1st' , nLine , self wikiString , '2nd' , nLine , self wikiString , '3rd'.
+	nLine := self lineEnding.
+	wiki := self wikiString , '1st' , nLine , self wikiString , '2nd'
+	        , nLine , self wikiString , '3rd'.
 	tree := PRDocument new
-		add:
-				(self actualClass new
-						add: (self listItemWithText: '1st');
-						add: (self listItemWithText: '2nd');
-						add: (self listItemWithText: '3rd');
-						yourself);
-		yourself.
-	
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	
+		        add: (self actualClass new
+				         add: (self listItemWithText: '1st');
+				         add: (self listItemWithText: '2nd');
+				         add: (self listItemWithText: '3rd');
+				         yourself);
+		        yourself.
+
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }
 PRPillarWriterListTest >> testParseMultiple [
+
 	| wiki tree nLine |
-	nLine := Smalltalk os lineEnding.
-	wiki := self wikiString , '1st' , nLine , self wikiString , '2nd' , nLine , nLine , self wikiString , '3rd'.
+	nLine := self lineEnding.
+	wiki := self wikiString , '1st' , nLine , self wikiString , '2nd'
+	        , nLine , nLine , self wikiString , '3rd'.
 	tree := PRDocument new
-		add:
-				(self actualClass new
-						add: (self listItemWithText: '1st');
-						add: (self listItemWithText: '2nd');
-						yourself);
-		add: PREmptyParagraph new;
-		add:
-				(self actualClass new
-						add: (self listItemWithText: '3rd');
-						yourself);
-		yourself.
-	
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	
+		        add: (self actualClass new
+				         add: (self listItemWithText: '1st');
+				         add: (self listItemWithText: '2nd');
+				         yourself);
+		        add: PREmptyParagraph new;
+		        add: (self actualClass new
+				         add: (self listItemWithText: '3rd');
+				         yourself);
+		        yourself.
+
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #private }

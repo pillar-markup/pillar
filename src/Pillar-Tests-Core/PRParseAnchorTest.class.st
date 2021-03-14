@@ -15,6 +15,12 @@ PRParseAnchorTest >> actualClass [
 ]
 
 { #category : #'tests-parsing' }
+PRParseAnchorTest >> lineEnding [
+
+	^ Smalltalk os lineEnding
+]
+
+{ #category : #'tests-parsing' }
 PRParseAnchorTest >> testBasic [
 	| wiki tree |
 	wiki := '@name'.
@@ -25,19 +31,17 @@ PRParseAnchorTest >> testBasic [
 
 { #category : #'tests-parsing' }
 PRParseAnchorTest >> testMultiple [
-	| wiki tree nLine|
-	nLine := Smalltalk os lineEnding.
+
+	| wiki tree nLine |
+	nLine := self lineEnding.
 	wiki := '@one' , nLine , '@two' , nLine , nLine , '@tree'.
 	tree := PRDocument new
-		add: (PRAnchor named: 'one');
-		add: (PRAnchor named: 'two');
-		add: PREmptyParagraph new ;
-				add: (PRAnchor named: 'tree');
-		yourself.
-	self 
-		parserAssertWiki: wiki
-		equalsTree: tree.
-
+		        add: (PRAnchor named: 'one');
+		        add: (PRAnchor named: 'two');
+		        add: PREmptyParagraph new;
+		        add: (PRAnchor named: 'tree');
+		        yourself.
+	self parserAssertWiki: wiki equalsTree: tree
 ]
 
 { #category : #'tests-parsing' }

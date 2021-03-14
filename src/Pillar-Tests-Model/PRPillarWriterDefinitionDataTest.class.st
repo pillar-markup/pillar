@@ -21,51 +21,44 @@ PRPillarWriterDefinitionDataTest >> listItemClass [
 
 { #category : #tests }
 PRPillarWriterDefinitionDataTest >> testParseBug [
+
 	| wiki2 tree nLine |
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 	wiki2 := ':' , nLine , '::1' , nLine , '::-2'.
 	tree := PRDocument new
-		add:
-				(PRDefinitionList new
-						add:
-								(PRDataItem new
-										add:
-												(PRDefinitionList new
-														add:
-																(PRDataItem new
-																		add: (PRText content: '1');
-																		add:
-																				(PRUnorderedList new
-																						add:
-																								(PRListItem new
-																										add: (PRText content: '2');
-																										yourself);
-																						yourself);
-																		yourself);
-														yourself);
-										yourself);
-						yourself);
-		yourself.
+		        add: (PRDefinitionList new
+				         add: (PRDataItem new
+						          add: (PRDefinitionList new
+								           add: (PRDataItem new
+										            add: (PRText content: '1');
+										            add: (PRUnorderedList new
+												             add: (PRListItem new
+														              add: (PRText content: '2');
+														              yourself);
+												             yourself);
+										            yourself);
+								           yourself);
+						          yourself);
+				         yourself);
+		        yourself.
 	self pillarWriterAssertTree: tree equalsWiki: wiki2
 ]
 
 { #category : #tests }
 PRPillarWriterDefinitionDataTest >> testParseMixed [
+
 	| wiki tree |
-	wiki := ';1' , Smalltalk os lineEnding , ':2'.
+	wiki := ';1' , self lineEnding , ':2'.
 	tree := PRDocument new
-		add:
-				(PRDefinitionList new
-						add:
-								(PRTermItem new
-										add: (PRText content: '1');
-										yourself);
-						add:
-								(PRDataItem new
-										add: (PRText content: '2');
-										yourself);
-						yourself);
-		yourself.
+		        add: (PRDefinitionList new
+				         add: (PRTermItem new
+						          add: (PRText content: '1');
+						          yourself);
+				         add: (PRDataItem new
+						          add: (PRText content: '2');
+						          yourself);
+				         yourself);
+		        yourself.
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 

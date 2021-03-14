@@ -15,6 +15,12 @@ PRParseDocumentTest >> actualClass [
 ]
 
 { #category : #'tests-parsing' }
+PRParseDocumentTest >> lineEnding [
+
+	^ Smalltalk os lineEnding
+]
+
+{ #category : #'tests-parsing' }
 PRParseDocumentTest >> testParseEmpty [
 	| wiki tree |
 	wiki := String new.
@@ -50,15 +56,15 @@ PRParseDocumentTest >> testParseProperties [
 
 { #category : #'tests-parsing' }
 PRParseDocumentTest >> testParsePropertiesWithText [
+
 	| wiki tree document |
-	wiki := '{''title'':''The title''}' , Smalltalk os lineEnding , 'foobar'.
+	wiki := '{''title'':''The title''}' , self lineEnding , 'foobar'.
 	tree := PRDocument new
-		propertyAt: 'title' put: 'The title';
-		add:
-				(PRParagraph new
-						add: (PRText content: 'foobar');
-						yourself);
-		yourself.
+		        propertyAt: 'title' put: 'The title';
+		        add: (PRParagraph new
+				         add: (PRText content: 'foobar');
+				         yourself);
+		        yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
 	document := self parser parse: wiki.
 	self assert: document properties equals: tree properties
