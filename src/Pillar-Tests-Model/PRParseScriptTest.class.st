@@ -37,10 +37,9 @@ PRParseScriptTest >> testParseEscape [
 
 { #category : #'tests-parsing' }
 PRParseScriptTest >> testParseRealLanguage [
-	| wiki text tree nLine |
+	| wiki tree nLine |
 	nLine := Smalltalk os lineEnding.
 	wiki := '[[[language=smalltalk' , nLine , 'foo' , nLine , ']]]'.
-	text := 'foo'.
 	tree := PRDocument new
 		add:
 			((PRCodeblock content: 'foo')
@@ -48,8 +47,6 @@ PRParseScriptTest >> testParseRealLanguage [
 				yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }

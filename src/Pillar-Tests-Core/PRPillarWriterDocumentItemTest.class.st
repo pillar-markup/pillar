@@ -42,8 +42,3 @@ PRPillarWriterDocumentItemTest >> pillarWriterAssertTree: aDocument equalsWiki: 
 
 	self assert: (PRPillarWriter write: aDocument) = aString description: aString resumable: false
 ]
-
-{ #category : #utilities }
-PRPillarWriterDocumentItemTest >> textWriterAssertTree: aDocument equalsText: aString [
-	self assert: (PRTextWriter write: aDocument) = aString description: aString resumable: true
-]

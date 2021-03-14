@@ -107,8 +107,3 @@ PRDocumentItemTest >> testIsLink [
 PRDocumentItemTest >> testText [
 	self assert: self instance text isString
 ]
-
-{ #category : #utilities }
-PRDocumentItemTest >> textWriterAssertTree: aDocument equalsText: aString [
-	self assert: (PRTextWriter write: aDocument) = aString description: aString resumable: true
-]

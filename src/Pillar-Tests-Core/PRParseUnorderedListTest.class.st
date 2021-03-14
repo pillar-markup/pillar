@@ -16,11 +16,9 @@ PRParseUnorderedListTest >> actualClass [
 
 { #category : #'tests-parsing' }
 PRParseUnorderedListTest >> testParseMixed [
-	| wiki tree text nLine |
+	| wiki tree nLine |
 	nLine := Smalltalk os lineEnding.
 	wiki := '#1' , nLine , '##2' , nLine , '###3' , nLine , '#-4' , nLine , '#-5' , nLine , '##6' , nLine , '#7'.
-	text := '1. 1' , nLine , '	1. 2' , nLine , '		1. 3' , nLine , '	* 4' , nLine , '	* 5' , nLine , '	1. 6' , nLine
-		, '2. 7'.
 	tree := PRDocument new
 		add:
 				(PROrderedList new
@@ -52,8 +50,7 @@ PRParseUnorderedListTest >> testParseMixed [
 						yourself);
 		yourself.
 	self parserAssertWiki: wiki equalsTree: tree.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	self textWriterAssertTree: tree equalsText: text
+
 ]
 
 { #category : #'tests-parsing' }

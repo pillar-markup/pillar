@@ -44,8 +44,3 @@ PRParseDocumentItemTest >> parserAssertWiki: aString equalsTree: aDocument [
 		assert: (self parser parse: aString) = aDocument
 		description: aString resumable: true
 ]
-
-{ #category : #utilities }
-PRParseDocumentItemTest >> textWriterAssertTree: aDocument equalsText: aString [
-	self assert: (PRTextWriter write: aDocument) = aString description: aString resumable: true
-]
