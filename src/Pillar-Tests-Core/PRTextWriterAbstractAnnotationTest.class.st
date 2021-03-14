@@ -1,5 +1,5 @@
 Class {
 	#name : #PRTextWriterAbstractAnnotationTest,
-	#superclass : #PRTextWriterDocumentItemTest3,
+	#superclass : #PRTextWriterDocumentItemTest,
 	#category : #'Pillar-Tests-Core-TextWriter'
 }

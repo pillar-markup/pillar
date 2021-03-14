@@ -1,6 +1,6 @@
 Class {
 	#name : #PRTextWriterAnchorTest,
-	#superclass : #PRTextWriterDocumentItemTest3,
+	#superclass : #PRTextWriterDocumentItemTest,
 	#category : #'Pillar-Tests-Core-TextWriter'
 }
 
