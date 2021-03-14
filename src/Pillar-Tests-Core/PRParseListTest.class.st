@@ -1,28 +1,28 @@
 Class {
-	#name : #PRParserListTest,
+	#name : #PRParseListTest,
 	#superclass : #PRParseDocumentGroupTest,
 	#category : #'Pillar-Tests-Core-Parse'
 }
 
 { #category : #private }
-PRParserListTest >> actualClass [
+PRParseListTest >> actualClass [
 	^ PRList
 ]
 
 { #category : #private }
-PRParserListTest >> listItemClass [
+PRParseListTest >> listItemClass [
 	^ PRListItem
 ]
 
 { #category : #private }
-PRParserListTest >> listItemWithText: aString [
+PRParseListTest >> listItemWithText: aString [
 	^ self listItemClass new
 		add: (PRText content: aString);
 		yourself
 ]
 
 { #category : #'tests-parsing' }
-PRParserListTest >> testParseEmpty [
+PRParseListTest >> testParseEmpty [
 	| wiki tree |
 	wiki := self wikiString.
 	tree := PRDocument new
@@ -35,7 +35,7 @@ PRParserListTest >> testParseEmpty [
 ]
 
 { #category : #'tests-parsing' }
-PRParserListTest >> testParseFlat [
+PRParseListTest >> testParseFlat [
 	| wiki tree nLine |
 	nLine := Smalltalk os lineEnding.
 	wiki := self wikiString , '1st' , nLine , self wikiString , '2nd' , nLine , self wikiString , '3rd'.
@@ -52,7 +52,7 @@ PRParserListTest >> testParseFlat [
 ]
 
 { #category : #'tests-parsing' }
-PRParserListTest >> testParseMultiple [
+PRParseListTest >> testParseMultiple [
 	| wiki  tree nLine |
 	nLine := Smalltalk os lineEnding.
 	wiki := self wikiString , '1st' , nLine , self wikiString , '2nd' , nLine , nLine , self wikiString , '3rd'.
@@ -73,7 +73,7 @@ PRParserListTest >> testParseMultiple [
 ]
 
 { #category : #'tests-parsing' }
-PRParserListTest >> testParseWithTrailingSpaces [
+PRParseListTest >> testParseWithTrailingSpaces [
 	| wiki tree |
 	wiki := self wikiString , ' 1st'.
 	tree := PRDocument new
@@ -86,6 +86,6 @@ PRParserListTest >> testParseWithTrailingSpaces [
 ]
 
 { #category : #private }
-PRParserListTest >> wikiString [
+PRParseListTest >> wikiString [
 	self subclassResponsibility
 ]

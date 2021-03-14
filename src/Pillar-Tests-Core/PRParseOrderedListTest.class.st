@@ -1,6 +1,6 @@
 Class {
 	#name : #PRParseOrderedListTest,
-	#superclass : #PRParserListTest,
+	#superclass : #PRParseListTest,
 	#category : #'Pillar-Tests-Core-Parse'
 }
 
