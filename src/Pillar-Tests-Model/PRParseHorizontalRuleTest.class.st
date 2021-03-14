@@ -1,6 +1,6 @@
 Class {
 	#name : #PRParseHorizontalRuleTest,
-	#superclass : #PRDocumentItemTest,
+	#superclass : #PRParseDocumentItemTest2,
 	#category : #'Pillar-Tests-Model-Parser'
 }
 
