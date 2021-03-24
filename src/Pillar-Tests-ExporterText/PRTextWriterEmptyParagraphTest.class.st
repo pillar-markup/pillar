@@ -1,7 +1,7 @@
 Class {
 	#name : #PRTextWriterEmptyParagraphTest,
 	#superclass : #PRTextWriterParagraphTest,
-	#category : #'Pillar-Tests-Core'
+	#category : #'Pillar-Tests-ExporterText'
 }
 
 { #category : #private }
