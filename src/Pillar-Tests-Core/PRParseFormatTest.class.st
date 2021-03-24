@@ -30,6 +30,11 @@ PRParseFormatTest >> actualClass: aClass [
 	actualClass := aClass
 ]
 
+{ #category : #'tests-parsing' }
+PRParseFormatTest >> escapeMarkup:  aMarkup [
+	^ String streamContents: [ :str | aMarkup do: [ :each | str nextPut: $\; nextPut: each ] ]
+]
+
 { #category : #accessing }
 PRParseFormatTest >> otherClass [
 	^ otherClass ifNil: [ otherClass := PRFormat allSubclasses detect: [ :each | self actualClass ~= each ] ]
@@ -78,7 +83,7 @@ PRParseFormatTest >> testParseEnd [
 { #category : #'tests-parsing' }
 PRParseFormatTest >> testParseEscaped [
 	| wiki tree |
-	wiki := ' ' , (PRPillarWriter escapeMarkup: markup) , (PRPillarWriter escapeMarkup: markup).
+	wiki := ' ' , (self escapeMarkup: markup) , (self escapeMarkup: markup).
 	tree := PRDocument new
 		add:
 			(PRParagraph new
@@ -93,7 +98,7 @@ PRParseFormatTest >> testParseEscaped [
 PRParseFormatTest >> testParseIncomplete [
 	| wiki1 wiki2 tree |
 	wiki1 := '1' , markup , '2'.
-	wiki2 := '1' , (PRPillarWriter escapeMarkup: markup) , '2'.
+	wiki2 := '1' , (self escapeMarkup: markup) , '2'.
 	
 	tree := PRDocument new
 		add:

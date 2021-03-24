@@ -1,7 +1,7 @@
 Class {
 	#name : #PRPillarWriterDocumentItemTest,
 	#superclass : #PRBasicObjectTest,
-	#category : #'Pillar-Tests-Core-PillarWriter'
+	#category : #'Pillar-Tests-ExporterPillar'
 }
 
 { #category : #private }
