@@ -35,10 +35,3 @@ PRFormatTest >> actualClass: anObject [
 PRFormatTest >> otherClass [
 	^ otherClass ifNil: [ otherClass := PRFormat allSubclasses detect: [ :each | self actualClass ~= each ] ]
 ]
-
-{ #category : #running }
-PRFormatTest >> setUp [
-
-	super setUp.
-	markup := PRPillarGrammar markups at: self actualClass
-]
