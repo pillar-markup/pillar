@@ -6,7 +6,7 @@ Class {
 		'markup',
 		'actualClass'
 	],
-	#category : #'Pillar-Tests-Core-Parse'
+	#category : #'Pillar-Tests-PetitPillar'
 }
 
 { #category : #testing }

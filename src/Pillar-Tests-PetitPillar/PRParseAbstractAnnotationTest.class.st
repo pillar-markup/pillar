@@ -1,7 +1,7 @@
 Class {
 	#name : #PRParseAbstractAnnotationTest,
 	#superclass : #PRParseDocumentItemTest,
-	#category : #'Pillar-Tests-Core-Parse'
+	#category : #'Pillar-Tests-PetitPillar'
 }
 
 { #category : #testing }

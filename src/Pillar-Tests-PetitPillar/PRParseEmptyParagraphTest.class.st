@@ -1,7 +1,7 @@
 Class {
 	#name : #PRParseEmptyParagraphTest,
 	#superclass : #PRParseParagraphTest,
-	#category : #'Pillar-Tests-Core-Parse'
+	#category : #'Pillar-Tests-PetitPillar'
 }
 
 { #category : #private }
