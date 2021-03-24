@@ -6,7 +6,7 @@ Class {
 		'markup',
 		'actualClass'
 	],
-	#category : #'Pillar-Tests-Core-Structural'
+	#category : #'Pillar-Tests-Core'
 }
 
 { #category : #'building suites' }

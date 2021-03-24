@@ -1,7 +1,7 @@
 Class {
 	#name : #PRBeginEnvironmentAnnotationTest,
 	#superclass : #PRAbstractAnnotationTest,
-	#category : #'Pillar-Tests-Core-Structural'
+	#category : #'Pillar-Tests-Core'
 }
 
 { #category : #helpers }

@@ -1,7 +1,7 @@
 Class {
 	#name : #PROrderedListTest,
 	#superclass : #PRListTest,
-	#category : #'Pillar-Tests-Core-Structural'
+	#category : #'Pillar-Tests-Core'
 }
 
 { #category : #testing }
