@@ -30,12 +30,6 @@ PRParseFormatTest >> actualClass: aClass [
 	actualClass := aClass
 ]
 
-{ #category : #'tests-parsing' }
-PRParseFormatTest >> lineEnding [
-
-	^ Smalltalk os lineEnding
-]
-
 { #category : #accessing }
 PRParseFormatTest >> otherClass [
 	^ otherClass ifNil: [ otherClass := PRFormat allSubclasses detect: [ :each | self actualClass ~= each ] ]

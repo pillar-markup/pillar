@@ -11,64 +11,61 @@ PRPillarWriterScriptTest >> actualClass [
 
 { #category : #'tests-parsing' }
 PRPillarWriterScriptTest >> testParseEscape [
+
 	| wiki tree nLine |
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 	wiki := '[[[language=foo\|' , nLine , 'foo' , nLine , ']]]'.
 	tree := PRDocument new
-		add:
-			((PRCodeblock content: 'foo')
-				language: 'foo|';
-				yourself);
-		yourself.
+		        add: ((PRCodeblock content: 'foo')
+				         language: 'foo|';
+				         yourself);
+		        yourself.
 
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }
 PRPillarWriterScriptTest >> testParseRealLanguage [
+
 	| wiki text tree nLine |
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 	wiki := '[[[language=smalltalk' , nLine , 'foo' , nLine , ']]]'.
 
 	tree := PRDocument new
-		add:
-			((PRCodeblock content: 'foo')
-				language: PRSmalltalkScriptLanguage default;
-				yourself);
-		yourself.
+		        add: ((PRCodeblock content: 'foo')
+				         language: PRSmalltalkScriptLanguage default;
+				         yourself);
+		        yourself.
 
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }
 PRPillarWriterScriptTest >> testParseSimple [
+
 	| wiki tree nLine |
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 	wiki := '[[[' , nLine , 'foo' , nLine , ']]]'.
 
 	tree := PRDocument new
-		add: (PRCodeblock content: 'foo');
-		yourself.
+		        add: (PRCodeblock content: 'foo');
+		        yourself.
 
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }
 PRPillarWriterScriptTest >> testParseWithSimpleCaption [
+
 	| wiki tree nLine |
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 	wiki := '[[[caption=foo' , nLine , 'foo' , nLine , ']]]'.
 
 	tree := PRDocument new
-		add:
-			((PRCodeblock content: 'foo')
-				caption: 'foo';
-				yourself);
-		yourself.
-	
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
+		        add: ((PRCodeblock content: 'foo')
+				         caption: 'foo';
+				         yourself);
+		        yourself.
 
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]

@@ -152,16 +152,18 @@ PRTextWriterFormatTest >> testParseNestedTight [
 
 { #category : #'tests-parsing' }
 PRTextWriterFormatTest >> testParseWithNewLine [
+
 	| text tree |
-	text := '12', Smalltalk os lineEnding, '34'.
+	text := '12' , self lineEnding , '34'.
 	tree := PRDocument new
-		add:
-			(PRParagraph new
-				add: (PRText content: '1');
-				add: (self actualClass with: (PRText content: '2', Smalltalk os lineEnding, '3'));
-				add: (PRText content: '4');
-				yourself);
-		yourself.
+		        add: (PRParagraph new
+				         add: (PRText content: '1');
+				         add:
+					         (self actualClass with:
+							          (PRText content: '2' , self lineEnding , '3'));
+				         add: (PRText content: '4');
+				         yourself);
+		        yourself.
 	self textWriterAssertTree: tree equalsText: text
 ]
 

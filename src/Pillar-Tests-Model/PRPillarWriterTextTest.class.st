@@ -28,45 +28,46 @@ PRPillarWriterTextTest >> testEscapeCpp [
 
 { #category : #'tests-parsing' }
 PRPillarWriterTextTest >> testEscapeFirst [
+
 	| wiki tree nLine |
-	nLine := Smalltalk os lineEnding.
-	wiki := '\* text' , nLine , '\+ text' , nLine , '\= text' , nLine , '\@ text' , nLine , '\! text' , nLine , '\| text'
-		, nLine , '\# text' , nLine , '\- text'.
+	nLine := self lineEnding.
+	wiki := '\* text' , nLine , '\+ text' , nLine , '\= text' , nLine
+	        , '\@ text' , nLine , '\! text' , nLine , '\| text' , nLine
+	        , '\# text' , nLine , '\- text'.
 	tree := PRDocument new
-		add:
-				(PRParagraph new
-						add: (PRText content: '* text');
-						add: PRLineBreak new;
-						add: (PRText content: '+ text');
-						add: PRLineBreak new;
-						add: (PRText content: '= text');
-						add: PRLineBreak new;
-						add: (PRText content: '@ text');
-						add: PRLineBreak new;
-						add: (PRText content: '! text');
-						add: PRLineBreak new;
-						add: (PRText content: '| text');
-						add: PRLineBreak new;
-						add: (PRText content: '# text');
-						add: PRLineBreak new;
-						add: (PRText content: '- text');
-						yourself);
-		yourself.
+		        add: (PRParagraph new
+				         add: (PRText content: '* text');
+				         add: PRLineBreak new;
+				         add: (PRText content: '+ text');
+				         add: PRLineBreak new;
+				         add: (PRText content: '= text');
+				         add: PRLineBreak new;
+				         add: (PRText content: '@ text');
+				         add: PRLineBreak new;
+				         add: (PRText content: '! text');
+				         add: PRLineBreak new;
+				         add: (PRText content: '| text');
+				         add: PRLineBreak new;
+				         add: (PRText content: '# text');
+				         add: PRLineBreak new;
+				         add: (PRText content: '- text');
+				         yourself);
+		        yourself.
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }
 PRPillarWriterTextTest >> testEscapeStrange [
+
 	| wiki tree |
-	wiki := '< text' , Smalltalk os lineEnding , '> text'.
+	wiki := '< text' , self lineEnding , '> text'.
 	tree := PRDocument new
-		add:
-				(PRParagraph new
-						add: (PRText content: '< text');
-						add: PRLineBreak new;
-						add: (PRText content: '> text');
-						yourself);
-		yourself.
+		        add: (PRParagraph new
+				         add: (PRText content: '< text');
+				         add: PRLineBreak new;
+				         add: (PRText content: '> text');
+				         yourself);
+		        yourself.
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 

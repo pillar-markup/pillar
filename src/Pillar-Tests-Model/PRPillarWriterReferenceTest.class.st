@@ -94,21 +94,20 @@ PRPillarWriterReferenceTest >> testParseBasic [
 
 { #category : #'tests-parsing' }
 PRPillarWriterReferenceTest >> testParseEasyness [
+
 	| wiki2 tree |
-	
-	wiki2 := '\' , self markup , Smalltalk os lineEnding , '\' , self markup , self referenceString.
+	wiki2 := '\' , self markup , self lineEnding , '\' , self markup
+	         , self referenceString.
 
 	tree := PRDocument new
-		add:
-			(PRParagraph new
-				add: (PRText content: self markup);
-				add: PRLineBreak new;
-				add: (PRText content: self markup , self referenceString);
-				yourself);
-		yourself.
+		        add: (PRParagraph new
+				         add: (PRText content: self markup);
+				         add: PRLineBreak new;
+				         add: (PRText content: self markup , self referenceString);
+				         yourself);
+		        yourself.
 
-	self pillarWriterAssertTree: tree equalsWiki: wiki2.
-	
+	self pillarWriterAssertTree: tree equalsWiki: wiki2
 ]
 
 { #category : #'tests-parsing' }
@@ -129,20 +128,22 @@ PRPillarWriterReferenceTest >> testParseEmpty [
 
 { #category : #'tests-parsing' }
 PRPillarWriterReferenceTest >> testParseEscaped [
+
 	| wiki tree |
-	wiki := 'Star \*' , self referenceString , '\*' , Smalltalk os lineEnding , 'Cross \+' , self referenceString , '\+'.
+	wiki := 'Star \*' , self referenceString , '\*' , self lineEnding
+	        , 'Cross \+' , self referenceString , '\+'.
 
 	tree := PRDocument new
-		add:
-				(PRParagraph new
-						add: (PRText content: 'Star *' , self referenceString , '*');
-						add: PRLineBreak new;
-						add: (PRText content: 'Cross +' , self referenceString , '+');
-						yourself);
-		yourself.
+		        add: (PRParagraph new
+				         add:
+					         (PRText content: 'Star *' , self referenceString , '*');
+				         add: PRLineBreak new;
+				         add:
+					         (PRText content: 'Cross +' , self referenceString , '+');
+				         yourself);
+		        yourself.
 
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }

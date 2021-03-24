@@ -30,21 +30,21 @@ PRPillarWriterAnnotatedParagraphTest >> testParseBasic [
 
 { #category : #'tests-parsing' }
 PRPillarWriterAnnotatedParagraphTest >> testParseEmptyFollwedByPreformatted [
-	| wiki tree nLine|
-	nLine := Smalltalk os lineEnding.
+
+	| wiki tree nLine |
+	nLine := self lineEnding.
 	wiki := '@@foo' , nLine , '= bar'.
 
 	tree := PRDocument new
-		add: (PRAnnotatedParagraph new
-			annotation: 'foo';
-			yourself);
-		add: (PRPreformatted new
-			add: (PRText content: 'bar');
-			yourself);
-		yourself.
+		        add: (PRAnnotatedParagraph new
+				         annotation: 'foo';
+				         yourself);
+		        add: (PRPreformatted new
+				         add: (PRText content: 'bar');
+				         yourself);
+		        yourself.
 
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }

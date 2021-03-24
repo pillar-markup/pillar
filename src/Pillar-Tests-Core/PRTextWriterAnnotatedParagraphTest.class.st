@@ -29,17 +29,18 @@ PRTextWriterAnnotatedParagraphTest >> testParseBasic [
 
 { #category : #'tests-parsing' }
 PRTextWriterAnnotatedParagraphTest >> testParseEmptyFollwedByPreformatted [
-	| text tree nLine|
-	nLine := Smalltalk os lineEnding.
+
+	| text tree nLine |
+	nLine := self lineEnding.
 	text := nLine , 'bar'.
 	tree := PRDocument new
-		add: (PRAnnotatedParagraph new
-			annotation: 'foo';
-			yourself);
-		add: (PRPreformatted new
-			add: (PRText content: 'bar');
-			yourself);
-		yourself.
+		        add: (PRAnnotatedParagraph new
+				         annotation: 'foo';
+				         yourself);
+		        add: (PRPreformatted new
+				         add: (PRText content: 'bar');
+				         yourself);
+		        yourself.
 	self textWriterAssertTree: tree equalsText: text
 ]
 

@@ -26,18 +26,17 @@ PRTextWriterAnchorTest >> testBasic [
 
 { #category : #'tests-parsing' }
 PRTextWriterAnchorTest >> testMultiple [
-	| text tree nLine|
-	nLine := Smalltalk os lineEnding.
+
+	| text tree nLine |
+	nLine := self lineEnding.
 	text := ''.
 	tree := PRDocument new
-		add: (PRAnchor named: 'one');
-		add: (PRAnchor named: 'two');
-		add: PREmptyParagraph new;
-			add: (PRAnchor named: 'tree');
-		yourself.
-	self 
-		textWriterAssertTree: tree
-		equalsText: text
+		        add: (PRAnchor named: 'one');
+		        add: (PRAnchor named: 'two');
+		        add: PREmptyParagraph new;
+		        add: (PRAnchor named: 'tree');
+		        yourself.
+	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }

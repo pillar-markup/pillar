@@ -91,17 +91,17 @@ PRTextWriterReferenceTest >> testParseBasic [
 
 { #category : #'tests-parsing' }
 PRTextWriterReferenceTest >> testParseEasyness [
-	| text tree |
 
-	text := self markup , Smalltalk os lineEnding , self markup , self referenceString.
+	| text tree |
+	text := self markup , self lineEnding , self markup
+	        , self referenceString.
 	tree := PRDocument new
-		add:
-			(PRParagraph new
-				add: (PRText content: self markup);
-				add: PRLineBreak new;
-				add: (PRText content: self markup , self referenceString);
-				yourself);
-		yourself.
+		        add: (PRParagraph new
+				         add: (PRText content: self markup);
+				         add: PRLineBreak new;
+				         add: (PRText content: self markup , self referenceString);
+				         yourself);
+		        yourself.
 
 	self textWriterAssertTree: tree equalsText: text
 ]
@@ -123,18 +123,20 @@ PRTextWriterReferenceTest >> testParseEmpty [
 
 { #category : #'tests-parsing' }
 PRTextWriterReferenceTest >> testParseEscaped [
+
 	| text tree |
-	
-	text := 'Star *' , self referenceString , '*' , Smalltalk os lineEnding , 'Cross +' , self referenceString , '+'.
+	text := 'Star *' , self referenceString , '*' , self lineEnding
+	        , 'Cross +' , self referenceString , '+'.
 	tree := PRDocument new
-		add:
-				(PRParagraph new
-						add: (PRText content: 'Star *' , self referenceString , '*');
-						add: PRLineBreak new;
-						add: (PRText content: 'Cross +' , self referenceString , '+');
-						yourself);
-		yourself.
-	
+		        add: (PRParagraph new
+				         add:
+					         (PRText content: 'Star *' , self referenceString , '*');
+				         add: PRLineBreak new;
+				         add:
+					         (PRText content: 'Cross +' , self referenceString , '+');
+				         yourself);
+		        yourself.
+
 	self textWriterAssertTree: tree equalsText: text
 ]
 

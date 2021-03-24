@@ -37,16 +37,16 @@ PRParseRawTest >> testParseEmpty [
 
 { #category : #'tests-parsing' }
 PRParseRawTest >> testParseMultiline [
-	| wiki tree nLine|
-	nLine := Smalltalk os lineEnding.
+
+	| wiki tree nLine |
+	nLine := self lineEnding.
 	wiki := '{{{a' , nLine , 'b}}}'.
 	tree := PRDocument new
-		add: (PRParagraph new
-			add: (PRRaw content: 'a' , nLine , 'b');
-			yourself);
-		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	
+		        add: (PRParagraph new
+				         add: (PRRaw content: 'a' , nLine , 'b');
+				         yourself);
+		        yourself.
+	self parserAssertWiki: wiki equalsTree: tree
 ]
 
 { #category : #'tests-parsing' }
@@ -66,19 +66,18 @@ PRParseRawTest >> testParseMultiple [
 
 { #category : #'tests-parsing' }
 PRParseRawTest >> testParseMultipleMultiline [
+
 	| wiki tree nLine |
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 	wiki := '{{{a' , nLine , 'b}}}c{{{d' , nLine , 'e}}}'.
 	tree := PRDocument new
-		add:
-				(PRParagraph new
-						add: (PRRaw content: 'a' , nLine , 'b');
-						add: (PRText content: 'c');
-						add: (PRRaw content: 'd' , nLine , 'e');
-						yourself);
-		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-
+		        add: (PRParagraph new
+				         add: (PRRaw content: 'a' , nLine , 'b');
+				         add: (PRText content: 'c');
+				         add: (PRRaw content: 'd' , nLine , 'e');
+				         yourself);
+		        yourself.
+	self parserAssertWiki: wiki equalsTree: tree
 ]
 
 { #category : #'tests-parsing' }

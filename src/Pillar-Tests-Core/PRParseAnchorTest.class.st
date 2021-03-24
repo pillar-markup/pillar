@@ -15,12 +15,6 @@ PRParseAnchorTest >> actualClass [
 ]
 
 { #category : #'tests-parsing' }
-PRParseAnchorTest >> lineEnding [
-
-	^ Smalltalk os lineEnding
-]
-
-{ #category : #'tests-parsing' }
 PRParseAnchorTest >> testBasic [
 	| wiki tree |
 	wiki := '@name'.

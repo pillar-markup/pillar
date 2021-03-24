@@ -47,9 +47,10 @@ PRScriptTest >> testHash [
 
 { #category : #tests }
 PRScriptTest >> testIsStructure [
+
 	| ston nLine script |
 	self flag: #toRemove. "we do not support structure anymore dow e?"
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 	ston := '[[[structure=Test' , nLine , 'Foo' , nLine , ']]]'.
 	script := (self parser parse: ston) children first.
 	self assert: script isStructure
@@ -57,9 +58,10 @@ PRScriptTest >> testIsStructure [
 
 { #category : #tests }
 PRScriptTest >> testStructureName [
+
 	| ston nLine script |
 	self flag: #toRemove. "we do not support structure anymore dow e?"
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 	ston := '[[[structure=Test' , nLine , 'Foo' , nLine , ']]]'.
 	script := (self parser parse: ston) children first.
 	self assert: script structureName equals: 'Test'

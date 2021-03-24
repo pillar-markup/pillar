@@ -39,16 +39,17 @@ PRTextWriterRawTest >> testParseEmpty [
 
 { #category : #'tests-parsing' }
 PRTextWriterRawTest >> testParseMultiline [
-	| text tree nLine|
-	nLine := Smalltalk os lineEnding.
-	
+
+	| text tree nLine |
+	nLine := self lineEnding.
+
 	text := 'a' , nLine , 'b'.
 	tree := PRDocument new
-		add: (PRParagraph new
-			add: (PRRaw content: 'a' , nLine , 'b');
-			yourself);
-		yourself.
-	
+		        add: (PRParagraph new
+				         add: (PRRaw content: 'a' , nLine , 'b');
+				         yourself);
+		        yourself.
+
 	self textWriterAssertTree: tree equalsText: text
 ]
 
@@ -70,19 +71,19 @@ PRTextWriterRawTest >> testParseMultiple [
 
 { #category : #'tests-parsing' }
 PRTextWriterRawTest >> testParseMultipleMultiline [
+
 	| text tree nLine |
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 
 	text := 'a' , nLine , 'bcd' , nLine , 'e'.
 	tree := PRDocument new
-		add:
-				(PRParagraph new
-						add: (PRRaw content: 'a' , nLine , 'b');
-						add: (PRText content: 'c');
-						add: (PRRaw content: 'd' , nLine , 'e');
-						yourself);
-		yourself.
-	
+		        add: (PRParagraph new
+				         add: (PRRaw content: 'a' , nLine , 'b');
+				         add: (PRText content: 'c');
+				         add: (PRRaw content: 'd' , nLine , 'e');
+				         yourself);
+		        yourself.
+
 	self textWriterAssertTree: tree equalsText: text
 ]
 

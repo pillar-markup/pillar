@@ -30,19 +30,19 @@ PRParseAnnotatedParagraphTest >> testParseBasic [
 
 { #category : #'tests-parsing' }
 PRParseAnnotatedParagraphTest >> testParseEmptyFollowedByPreformatted [
-	| wiki tree nLine|
-	nLine := Smalltalk os lineEnding.
+
+	| wiki tree nLine |
+	nLine := self lineEnding.
 	wiki := '@@foo' , nLine , '= bar'.
 	tree := PRDocument new
-		add: (PRAnnotatedParagraph new
-			annotation: 'foo';
-			yourself);
-		add: (PRPreformatted new
-			add: (PRText content: 'bar');
-			yourself);
-		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	
+		        add: (PRAnnotatedParagraph new
+				         annotation: 'foo';
+				         yourself);
+		        add: (PRPreformatted new
+				         add: (PRText content: 'bar');
+				         yourself);
+		        yourself.
+	self parserAssertWiki: wiki equalsTree: tree
 ]
 
 { #category : #'tests-parsing' }

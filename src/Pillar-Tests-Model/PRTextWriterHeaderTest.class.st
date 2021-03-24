@@ -107,19 +107,22 @@ PRTextWriterHeaderTest >> testParseLevel6 [
 
 { #category : #'tests-parsing' }
 PRTextWriterHeaderTest >> testParseMultiline [
+
 	| text tree nLine |
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 	text := 'Hello This is' , nLine , 'bold end' , nLine , 'new'.
 	tree := PRDocument new
-		add:
-				(PRHeader new
-						level: 2;
-						add: (PRText content: 'Hello ');
-						add: (self addText: 'This is' , nLine , 'bold' to: PRBoldFormat new);
-						add: (PRText content: ' end');
-						yourself);
-		add: (self addText: 'new' to: PRParagraph new);
-		yourself.
+		        add: (PRHeader new
+				         level: 2;
+				         add: (PRText content: 'Hello ');
+				         add:
+					         (self
+						          addText: 'This is' , nLine , 'bold'
+						          to: PRBoldFormat new);
+				         add: (PRText content: ' end');
+				         yourself);
+		        add: (self addText: 'new' to: PRParagraph new);
+		        yourself.
 
 	self textWriterAssertTree: tree equalsText: text
 ]

@@ -36,40 +36,39 @@ PRParseListTest >> testParseEmpty [
 
 { #category : #'tests-parsing' }
 PRParseListTest >> testParseFlat [
-	| wiki tree nLine |
-	nLine := Smalltalk os lineEnding.
-	wiki := self wikiString , '1st' , nLine , self wikiString , '2nd' , nLine , self wikiString , '3rd'.
-	tree := PRDocument new
-		add:
-				(self actualClass new
-						add: (self listItemWithText: '1st');
-						add: (self listItemWithText: '2nd');
-						add: (self listItemWithText: '3rd');
-						yourself);
-		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
 
+	| wiki tree nLine |
+	nLine := self lineEnding.
+	wiki := self wikiString , '1st' , nLine , self wikiString , '2nd'
+	        , nLine , self wikiString , '3rd'.
+	tree := PRDocument new
+		        add: (self actualClass new
+				         add: (self listItemWithText: '1st');
+				         add: (self listItemWithText: '2nd');
+				         add: (self listItemWithText: '3rd');
+				         yourself);
+		        yourself.
+	self parserAssertWiki: wiki equalsTree: tree
 ]
 
 { #category : #'tests-parsing' }
 PRParseListTest >> testParseMultiple [
-	| wiki  tree nLine |
-	nLine := Smalltalk os lineEnding.
-	wiki := self wikiString , '1st' , nLine , self wikiString , '2nd' , nLine , nLine , self wikiString , '3rd'.
-	tree := PRDocument new
-		add:
-				(self actualClass new
-						add: (self listItemWithText: '1st');
-						add: (self listItemWithText: '2nd');
-						yourself);
-		add: PREmptyParagraph new;
-		add:
-				(self actualClass new
-						add: (self listItemWithText: '3rd');
-						yourself);
-		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
 
+	| wiki tree nLine |
+	nLine := self lineEnding.
+	wiki := self wikiString , '1st' , nLine , self wikiString , '2nd'
+	        , nLine , nLine , self wikiString , '3rd'.
+	tree := PRDocument new
+		        add: (self actualClass new
+				         add: (self listItemWithText: '1st');
+				         add: (self listItemWithText: '2nd');
+				         yourself);
+		        add: PREmptyParagraph new;
+		        add: (self actualClass new
+				         add: (self listItemWithText: '3rd');
+				         yourself);
+		        yourself.
+	self parserAssertWiki: wiki equalsTree: tree
 ]
 
 { #category : #'tests-parsing' }

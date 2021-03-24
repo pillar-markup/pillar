@@ -11,56 +11,57 @@ PRTextWriterScriptTest >> actualClass [
 
 { #category : #'tests-parsing' }
 PRTextWriterScriptTest >> testParseEscape [
+
 	| text tree nLine |
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 	text := 'foo'.
 	tree := PRDocument new
-		add:
-			((PRCodeblock content: 'foo')
-				language: 'foo|';
-				yourself);
-		yourself.
+		        add: ((PRCodeblock content: 'foo')
+				         language: 'foo|';
+				         yourself);
+		        yourself.
 	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
 PRTextWriterScriptTest >> testParseRealLanguage [
+
 	| text tree nLine |
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 	text := 'foo'.
 	tree := PRDocument new
-		add:
-			((PRCodeblock content: 'foo')
-				language: PRSmalltalkScriptLanguage default;
-				yourself);
-		yourself.
+		        add: ((PRCodeblock content: 'foo')
+				         language: PRSmalltalkScriptLanguage default;
+				         yourself);
+		        yourself.
 
 	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
 PRTextWriterScriptTest >> testParseSimple [
+
 	| text tree nLine |
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 	text := 'foo'.
 	tree := PRDocument new
-		add: (PRCodeblock content: 'foo');
-		yourself.
+		        add: (PRCodeblock content: 'foo');
+		        yourself.
 	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
 PRTextWriterScriptTest >> testParseWithSimpleCaption [
+
 	| text tree nLine |
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 
 	text := 'foo'.
 	tree := PRDocument new
-		add:
-			((PRCodeblock content: 'foo')
-				caption: 'foo';
-				yourself);
-		yourself.
+		        add: ((PRCodeblock content: 'foo')
+				         caption: 'foo';
+				         yourself);
+		        yourself.
 
 	self textWriterAssertTree: tree equalsText: text
 ]

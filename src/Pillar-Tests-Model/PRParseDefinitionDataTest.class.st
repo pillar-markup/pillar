@@ -21,56 +21,47 @@ PRParseDefinitionDataTest >> listItemClass [
 
 { #category : #tests }
 PRParseDefinitionDataTest >> testParseBug [
+
 	| wiki1 wiki2 tree nLine |
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 	wiki1 := '::1' , nLine , '::-2'.
 	wiki2 := ':' , nLine , '::1' , nLine , '::-2'.
 	tree := PRDocument new
-		add:
-				(PRDefinitionList new
-						add:
-								(PRDataItem new
-										add:
-												(PRDefinitionList new
-														add:
-																(PRDataItem new
-																		add: (PRText content: '1');
-																		add:
-																				(PRUnorderedList new
-																						add:
-																								(PRListItem new
-																										add: (PRText content: '2');
-																										yourself);
-																						yourself);
-																		yourself);
-														yourself);
-										yourself);
-						yourself);
-		yourself.
+		        add: (PRDefinitionList new
+				         add: (PRDataItem new
+						          add: (PRDefinitionList new
+								           add: (PRDataItem new
+										            add: (PRText content: '1');
+										            add: (PRUnorderedList new
+												             add: (PRListItem new
+														              add: (PRText content: '2');
+														              yourself);
+												             yourself);
+										            yourself);
+								           yourself);
+						          yourself);
+				         yourself);
+		        yourself.
 	self parserAssertWiki: wiki1 equalsTree: tree.
-	self parserAssertWiki: wiki2 equalsTree: tree.
-	
+	self parserAssertWiki: wiki2 equalsTree: tree
 ]
 
 { #category : #tests }
 PRParseDefinitionDataTest >> testParseMixed [
-	| wiki tree |
-	wiki := ';1' , Smalltalk os lineEnding , ':2'.
-	tree := PRDocument new
-		add:
-				(PRDefinitionList new
-						add:
-								(PRTermItem new
-										add: (PRText content: '1');
-										yourself);
-						add:
-								(PRDataItem new
-										add: (PRText content: '2');
-										yourself);
-						yourself);
-		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
 
+	| wiki tree |
+	wiki := ';1' , self lineEnding , ':2'.
+	tree := PRDocument new
+		        add: (PRDefinitionList new
+				         add: (PRTermItem new
+						          add: (PRText content: '1');
+						          yourself);
+				         add: (PRDataItem new
+						          add: (PRText content: '2');
+						          yourself);
+				         yourself);
+		        yourself.
+	self parserAssertWiki: wiki equalsTree: tree
 ]
 
 { #category : #private }

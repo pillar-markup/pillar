@@ -22,33 +22,29 @@ PRPillarWriterCommentedLineTest >> testParseBasic [
 
 { #category : #'tests-parsing' }
 PRPillarWriterCommentedLineTest >> testParseDontInterruptLists [
-	| wiki tree nLine |
-	nLine := Smalltalk os lineEnding.
-	wiki := '#item one' , nLine , '##item one-point-one' , nLine , '%comment' , nLine , '##item one-point-two'.
-	tree := PRDocument new
-		add:
-				(PROrderedList new
-						add:
-								(PRListItem new
-										add: (PRText content: 'item one');
-										add:
-												(PROrderedList new
-														add:
-																(PRListItem new
-																		add: (PRText content: 'item one-point-one');
-																		add: (PRCommentedLine content: 'comment');
-																		yourself);
-														add:
-																(PRListItem new
-																		add: (PRText content: 'item one-point-two');
-																		yourself);
-														yourself);
-										yourself);
-						yourself);
-		yourself.
-	
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
 
+	| wiki tree nLine |
+	nLine := self lineEnding.
+	wiki := '#item one' , nLine , '##item one-point-one' , nLine
+	        , '%comment' , nLine , '##item one-point-two'.
+	tree := PRDocument new
+		        add: (PROrderedList new
+				         add: (PRListItem new
+						          add: (PRText content: 'item one');
+						          add: (PROrderedList new
+								           add: (PRListItem new
+										            add: (PRText content: 'item one-point-one');
+										            add: (PRCommentedLine content: 'comment');
+										            yourself);
+								           add: (PRListItem new
+										            add: (PRText content: 'item one-point-two');
+										            yourself);
+								           yourself);
+						          yourself);
+				         yourself);
+		        yourself.
+
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }

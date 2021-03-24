@@ -176,19 +176,20 @@ PRPillarWriterFormatTest >> testParseNestedTight [
 
 { #category : #'tests-parsing' }
 PRPillarWriterFormatTest >> testParseWithNewLine [
-	| wiki  tree |
-	wiki := '1' , markup , '2', Smalltalk os lineEnding, '3' , markup , '4'.
+
+	| wiki tree |
+	wiki := '1' , markup , '2' , self lineEnding , '3' , markup , '4'.
 	tree := PRDocument new
-		add:
-			(PRParagraph new
-				add: (PRText content: '1');
-				add: (self actualClass with: (PRText content: '2', Smalltalk os lineEnding, '3'));
-				add: (PRText content: '4');
-				yourself);
-		yourself.
-	
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	
+		        add: (PRParagraph new
+				         add: (PRText content: '1');
+				         add:
+					         (self actualClass with:
+							          (PRText content: '2' , self lineEnding , '3'));
+				         add: (PRText content: '4');
+				         yourself);
+		        yourself.
+
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }

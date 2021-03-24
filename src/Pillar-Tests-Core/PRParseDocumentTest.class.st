@@ -15,12 +15,6 @@ PRParseDocumentTest >> actualClass [
 ]
 
 { #category : #'tests-parsing' }
-PRParseDocumentTest >> lineEnding [
-
-	^ Smalltalk os lineEnding
-]
-
-{ #category : #'tests-parsing' }
 PRParseDocumentTest >> testParseEmpty [
 	| wiki tree |
 	wiki := String new.

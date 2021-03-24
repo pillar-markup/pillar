@@ -114,21 +114,23 @@ PRPillarWriterHeaderTest >> testParseLevel6 [
 
 { #category : #'tests-parsing' }
 PRPillarWriterHeaderTest >> testParseMultiline [
+
 	| wiki tree nLine |
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 	wiki := '!!Hello ""This is' , nLine , 'bold"" end' , nLine , 'new'.
 	tree := PRDocument new
-		add:
-				(PRHeader new
-						level: 2;
-						add: (PRText content: 'Hello ');
-						add: (self addText: 'This is' , nLine , 'bold' to: PRBoldFormat new);
-						add: (PRText content: ' end');
-						yourself);
-		add: (self addText: 'new' to: PRParagraph new);
-		yourself.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	
+		        add: (PRHeader new
+				         level: 2;
+				         add: (PRText content: 'Hello ');
+				         add:
+					         (self
+						          addText: 'This is' , nLine , 'bold'
+						          to: PRBoldFormat new);
+				         add: (PRText content: ' end');
+				         yourself);
+		        add: (self addText: 'new' to: PRParagraph new);
+		        yourself.
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }

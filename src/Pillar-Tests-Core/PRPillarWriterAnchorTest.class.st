@@ -28,20 +28,18 @@ PRPillarWriterAnchorTest >> testBasic [
 
 { #category : #'tests-parsing' }
 PRPillarWriterAnchorTest >> testMultiple [
+
 	| wiki tree nLine |
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 	wiki := '@one' , nLine , '@two' , nLine , nLine , '@tree'.
 	tree := PRDocument new
-		add: (PRAnchor named: 'one');
-		add: (PRAnchor named: 'two');
-		add: PREmptyParagraph new;
-		add: (PRAnchor named: 'tree');
-		yourself.
+		        add: (PRAnchor named: 'one');
+		        add: (PRAnchor named: 'two');
+		        add: PREmptyParagraph new;
+		        add: (PRAnchor named: 'tree');
+		        yourself.
 
-	self 
-		pillarWriterAssertTree: tree
-		equalsWiki: wiki.
-	
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }

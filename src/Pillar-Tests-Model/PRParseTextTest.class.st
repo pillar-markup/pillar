@@ -29,48 +29,47 @@ PRParseTextTest >> testEscapeCpp [
 
 { #category : #'tests-parsing' }
 PRParseTextTest >> testEscapeFirst [
-	| wiki tree nLine |
-	nLine := Smalltalk os lineEnding.
-	wiki := '\* text' , nLine , '\+ text' , nLine , '\= text' , nLine , '\@ text' , nLine , '\! text' , nLine , '\| text'
-		, nLine , '\# text' , nLine , '\- text'.
-	tree := PRDocument new
-		add:
-				(PRParagraph new
-						add: (PRText content: '* text');
-						add: PRLineBreak new;
-						add: (PRText content: '+ text');
-						add: PRLineBreak new;
-						add: (PRText content: '= text');
-						add: PRLineBreak new;
-						add: (PRText content: '@ text');
-						add: PRLineBreak new;
-						add: (PRText content: '! text');
-						add: PRLineBreak new;
-						add: (PRText content: '| text');
-						add: PRLineBreak new;
-						add: (PRText content: '# text');
-						add: PRLineBreak new;
-						add: (PRText content: '- text');
-						yourself);
-		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
 
+	| wiki tree nLine |
+	nLine := self lineEnding.
+	wiki := '\* text' , nLine , '\+ text' , nLine , '\= text' , nLine
+	        , '\@ text' , nLine , '\! text' , nLine , '\| text' , nLine
+	        , '\# text' , nLine , '\- text'.
+	tree := PRDocument new
+		        add: (PRParagraph new
+				         add: (PRText content: '* text');
+				         add: PRLineBreak new;
+				         add: (PRText content: '+ text');
+				         add: PRLineBreak new;
+				         add: (PRText content: '= text');
+				         add: PRLineBreak new;
+				         add: (PRText content: '@ text');
+				         add: PRLineBreak new;
+				         add: (PRText content: '! text');
+				         add: PRLineBreak new;
+				         add: (PRText content: '| text');
+				         add: PRLineBreak new;
+				         add: (PRText content: '# text');
+				         add: PRLineBreak new;
+				         add: (PRText content: '- text');
+				         yourself);
+		        yourself.
+	self parserAssertWiki: wiki equalsTree: tree
 ]
 
 { #category : #'tests-parsing' }
 PRParseTextTest >> testEscapeStrange [
-	| wiki tree |
-	wiki := '< text' , Smalltalk os lineEnding , '> text'.
-	tree := PRDocument new
-		add:
-				(PRParagraph new
-						add: (PRText content: '< text');
-						add: PRLineBreak new;
-						add: (PRText content: '> text');
-						yourself);
-		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
 
+	| wiki tree |
+	wiki := '< text' , self lineEnding , '> text'.
+	tree := PRDocument new
+		        add: (PRParagraph new
+				         add: (PRText content: '< text');
+				         add: PRLineBreak new;
+				         add: (PRText content: '> text');
+				         yourself);
+		        yourself.
+	self parserAssertWiki: wiki equalsTree: tree
 ]
 
 { #category : #'tests-parsing' }

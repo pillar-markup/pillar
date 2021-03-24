@@ -28,15 +28,17 @@ PRTextWriterHorizontalRuleTest >> testParseBasic [
 
 { #category : #'tests-parsing' }
 PRTextWriterHorizontalRuleTest >> testParseMultiple [
+
 	| text tree nLine |
-	nLine := Smalltalk os lineEnding.
-	text := self textString , nLine , self textString , nLine , nLine , self textString.
+	nLine := self lineEnding.
+	text := self textString , nLine , self textString , nLine , nLine
+	        , self textString.
 	tree := PRDocument new
-		add: PRHorizontalRule new;
-		add: PRHorizontalRule new;
-		add: PREmptyParagraph new;
-		add: PRHorizontalRule new;
-		yourself.
+		        add: PRHorizontalRule new;
+		        add: PRHorizontalRule new;
+		        add: PREmptyParagraph new;
+		        add: PRHorizontalRule new;
+		        yourself.
 	self textWriterAssertTree: tree equalsText: text
 ]
 

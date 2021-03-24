@@ -36,40 +36,41 @@ PRTextWriterListTest >> testParseEmpty [
 
 { #category : #'tests-parsing' }
 PRTextWriterListTest >> testParseFlat [
+
 	| text tree nLine |
-	nLine := Smalltalk os lineEnding.
-	text := (self textString: 1 level: 1) , '1st' , nLine , (self textString: 2 level: 1) , '2nd' , nLine
-		, (self textString: 3 level: 1) , '3rd'.
+	nLine := self lineEnding.
+	text := (self textString: 1 level: 1) , '1st' , nLine
+	        , (self textString: 2 level: 1) , '2nd' , nLine
+	        , (self textString: 3 level: 1) , '3rd'.
 	tree := PRDocument new
-		add:
-				(self actualClass new
-						add: (self listItemWithText: '1st');
-						add: (self listItemWithText: '2nd');
-						add: (self listItemWithText: '3rd');
-						yourself);
-		yourself.
+		        add: (self actualClass new
+				         add: (self listItemWithText: '1st');
+				         add: (self listItemWithText: '2nd');
+				         add: (self listItemWithText: '3rd');
+				         yourself);
+		        yourself.
 
 	self textWriterAssertTree: tree equalsText: text
 ]
 
 { #category : #'tests-parsing' }
 PRTextWriterListTest >> testParseMultiple [
+
 	| text tree nLine |
-	nLine := Smalltalk os lineEnding.
-	text := (self textString: 1 level: 1) , '1st' , nLine , (self textString: 2 level: 1) , '2nd' , nLine , nLine
-		, (self textString: 1 level: 1) , '3rd'.
+	nLine := self lineEnding.
+	text := (self textString: 1 level: 1) , '1st' , nLine
+	        , (self textString: 2 level: 1) , '2nd' , nLine , nLine
+	        , (self textString: 1 level: 1) , '3rd'.
 	tree := PRDocument new
-		add:
-				(self actualClass new
-						add: (self listItemWithText: '1st');
-						add: (self listItemWithText: '2nd');
-						yourself);
-		add: PREmptyParagraph new;
-		add:
-				(self actualClass new
-						add: (self listItemWithText: '3rd');
-						yourself);
-		yourself.
+		        add: (self actualClass new
+				         add: (self listItemWithText: '1st');
+				         add: (self listItemWithText: '2nd');
+				         yourself);
+		        add: PREmptyParagraph new;
+		        add: (self actualClass new
+				         add: (self listItemWithText: '3rd');
+				         yourself);
+		        yourself.
 
 	self textWriterAssertTree: tree equalsText: text
 ]

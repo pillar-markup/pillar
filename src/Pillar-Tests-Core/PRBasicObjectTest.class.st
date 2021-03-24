@@ -37,6 +37,12 @@ PRBasicObjectTest >> instance [
 	^ instance
 ]
 
+{ #category : #tests }
+PRBasicObjectTest >> lineEnding [
+
+	^ Smalltalk os lineEnding
+]
+
 { #category : #running }
 PRBasicObjectTest >> setUp [
 	super setUp.

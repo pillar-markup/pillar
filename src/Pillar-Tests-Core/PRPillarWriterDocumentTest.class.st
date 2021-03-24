@@ -52,16 +52,15 @@ PRPillarWriterDocumentTest >> testParseProperties [
 
 { #category : #'tests-parsing' }
 PRPillarWriterDocumentTest >> testParsePropertiesWithText [
-	| wiki tree |
-	wiki := '{''title'':''The title''}' , Smalltalk os lineEnding , 'foobar'.
-	tree := PRDocument new
-		propertyAt: 'title' put: 'The title';
-		add:
-				(PRParagraph new
-						add: (PRText content: 'foobar');
-						yourself);
-		yourself.
 
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	
+	| wiki tree |
+	wiki := '{''title'':''The title''}' , self lineEnding , 'foobar'.
+	tree := PRDocument new
+		        propertyAt: 'title' put: 'The title';
+		        add: (PRParagraph new
+				         add: (PRText content: 'foobar');
+				         yourself);
+		        yourself.
+
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]

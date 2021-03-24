@@ -45,17 +45,17 @@ PRParseHorizontalRuleTest >> testParseLink [
 
 { #category : #'tests-parsing' }
 PRParseHorizontalRuleTest >> testParseMultiple [
+
 	| wiki tree nLine |
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 	wiki := '_' , nLine , '_' , nLine , nLine , '_'.
 	tree := PRDocument new
-		add: PRHorizontalRule new;
-		add: PRHorizontalRule new;
-		add: PREmptyParagraph new;
-		add: PRHorizontalRule new;
-		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
-	
+		        add: PRHorizontalRule new;
+		        add: PRHorizontalRule new;
+		        add: PREmptyParagraph new;
+		        add: PRHorizontalRule new;
+		        yourself.
+	self parserAssertWiki: wiki equalsTree: tree
 ]
 
 { #category : #'tests-parsing' }

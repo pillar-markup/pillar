@@ -88,20 +88,21 @@ PRParseReferenceTest >> testParseBasic [
 
 { #category : #'tests-parsing' }
 PRParseReferenceTest >> testParseEasyness [
+
 	| wiki1 wiki2 tree |
-	wiki1 := self markup , Smalltalk os lineEnding , self markup , self referenceString.
-	wiki2 := '\' , self markup , Smalltalk os lineEnding , '\' , self markup , self referenceString.
+	wiki1 := self markup , self lineEnding , self markup
+	         , self referenceString.
+	wiki2 := '\' , self markup , self lineEnding , '\' , self markup
+	         , self referenceString.
 	tree := PRDocument new
-		add:
-			(PRParagraph new
-				add: (PRText content: self markup);
-				add: PRLineBreak new;
-				add: (PRText content: self markup , self referenceString);
-				yourself);
-		yourself.
+		        add: (PRParagraph new
+				         add: (PRText content: self markup);
+				         add: PRLineBreak new;
+				         add: (PRText content: self markup , self referenceString);
+				         yourself);
+		        yourself.
 	self parserAssertWiki: wiki1 equalsTree: tree.
-	self parserAssertWiki: wiki2 equalsTree: tree.
-	
+	self parserAssertWiki: wiki2 equalsTree: tree
 ]
 
 { #category : #'tests-parsing' }
@@ -122,18 +123,20 @@ PRParseReferenceTest >> testParseEmpty [
 
 { #category : #'tests-parsing' }
 PRParseReferenceTest >> testParseEscaped [
-	| wiki  tree |
-	wiki := 'Star \*' , self referenceString , '\*' , Smalltalk os lineEnding , 'Cross \+' , self referenceString , '\+'.
-	tree := PRDocument new
-		add:
-				(PRParagraph new
-						add: (PRText content: 'Star *' , self referenceString , '*');
-						add: PRLineBreak new;
-						add: (PRText content: 'Cross +' , self referenceString , '+');
-						yourself);
-		yourself.
-	self parserAssertWiki: wiki equalsTree: tree.
 
+	| wiki tree |
+	wiki := 'Star \*' , self referenceString , '\*' , self lineEnding
+	        , 'Cross \+' , self referenceString , '\+'.
+	tree := PRDocument new
+		        add: (PRParagraph new
+				         add:
+					         (PRText content: 'Star *' , self referenceString , '*');
+				         add: PRLineBreak new;
+				         add:
+					         (PRText content: 'Cross +' , self referenceString , '+');
+				         yourself);
+		        yourself.
+	self parserAssertWiki: wiki equalsTree: tree
 ]
 
 { #category : #'tests-parsing' }

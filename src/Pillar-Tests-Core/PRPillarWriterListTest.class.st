@@ -9,12 +9,6 @@ PRPillarWriterListTest >> actualClass [
 	^ PRList
 ]
 
-{ #category : #'tests-parsing' }
-PRPillarWriterListTest >> lineEnding [
-
-	^ Smalltalk os lineEnding
-]
-
 { #category : #private }
 PRPillarWriterListTest >> listItemClass [
 	^ PRListItem

@@ -33,86 +33,69 @@ PRPillarWriterTableTest >> testParseBasic [
 
 { #category : #'tests-parsing' }
 PRPillarWriterTableTest >> testParseSquare [
+
 	| wiki tree nLine |
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 	wiki := '|a11|a12' , nLine , '|a21|a22'.
 	tree := PRDocument new
-		add:
-				(PRTable new
-						add:
-								(PRTableRow new
-										add:
-												(PRTableCell new
-														add: (PRText content: 'a11');
-														yourself);
-										add:
-												(PRTableCell new
-														add: (PRText content: 'a12');
-														yourself);
-										yourself);
-						add:
-								(PRTableRow new
-										add:
-												(PRTableCell new
-														add: (PRText content: 'a21');
-														yourself);
-										add:
-												(PRTableCell new
-														add: (PRText content: 'a22');
-														yourself);
-										yourself);
-						yourself);
-		yourself.
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	
+		        add: (PRTable new
+				         add: (PRTableRow new
+						          add: (PRTableCell new
+								           add: (PRText content: 'a11');
+								           yourself);
+						          add: (PRTableCell new
+								           add: (PRText content: 'a12');
+								           yourself);
+						          yourself);
+				         add: (PRTableRow new
+						          add: (PRTableCell new
+								           add: (PRText content: 'a21');
+								           yourself);
+						          add: (PRTableCell new
+								           add: (PRText content: 'a22');
+								           yourself);
+						          yourself);
+				         yourself);
+		        yourself.
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }
 PRPillarWriterTableTest >> testParseTriangle [
+
 	| wiki tree nLine |
-	nLine := Smalltalk os lineEnding.
+	nLine := self lineEnding.
 	wiki := '|a11' , nLine , '|a21|a22' , nLine , '|a31|a32|a33'.
 	tree := PRDocument new
-		add:
-				(PRTable new
-						add:
-								(PRTableRow new
-										add:
-												(PRTableCell new
-														add: (PRText content: 'a11');
-														yourself);
-										yourself);
-						add:
-								(PRTableRow new
-										add:
-												(PRTableCell new
-														add: (PRText content: 'a21');
-														yourself);
-										add:
-												(PRTableCell new
-														add: (PRText content: 'a22');
-														yourself);
-										yourself);
-						add:
-								(PRTableRow new
-										add:
-												(PRTableCell new
-														add: (PRText content: 'a31');
-														yourself);
-										add:
-												(PRTableCell new
-														add: (PRText content: 'a32');
-														yourself);
-										add:
-												(PRTableCell new
-														add: (PRText content: 'a33');
-														yourself);
-										yourself);
-						yourself);
-		yourself.
+		        add: (PRTable new
+				         add: (PRTableRow new
+						          add: (PRTableCell new
+								           add: (PRText content: 'a11');
+								           yourself);
+						          yourself);
+				         add: (PRTableRow new
+						          add: (PRTableCell new
+								           add: (PRText content: 'a21');
+								           yourself);
+						          add: (PRTableCell new
+								           add: (PRText content: 'a22');
+								           yourself);
+						          yourself);
+				         add: (PRTableRow new
+						          add: (PRTableCell new
+								           add: (PRText content: 'a31');
+								           yourself);
+						          add: (PRTableCell new
+								           add: (PRText content: 'a32');
+								           yourself);
+						          add: (PRTableCell new
+								           add: (PRText content: 'a33');
+								           yourself);
+						          yourself);
+				         yourself);
+		        yourself.
 
-	self pillarWriterAssertTree: tree equalsWiki: wiki.
-	
+	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
 { #category : #'tests-parsing' }
