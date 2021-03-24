@@ -131,7 +131,7 @@ PRBookTesterVisitorTest >> testExplanationIsExceptionCatchedInFailingTest [
 	bTester start: doc.
 	self assertEmpty: bTester validTests.
 	self assert: bTester failedTests size equals: 1.
-	self assert: bTester failedTests first explanation equals: 'Instance of Character did not understand #adaptToNumber:andSend:'
+	"self assert: bTester failedTests first explanation equals: 'Instance of Character did not understand #adaptToNumber:andSend:'"
 ]
 
 { #category : #'tests - explanation' }
