@@ -101,7 +101,7 @@ BaselineOfPillarApp >> baseline: spec [
 				package: 'Pillar-Tests-ExporterPillar' with: [ spec requires: #('Pillar-ExporterPillar' 'Pillar-Tests-ExporterCore') ];
 				package: 'Pillar-Tests-ExporterText' with: [ spec requires: #('Pillar-ExporterText' 'Pillar-Tests-ExporterCore') ];
 				package: 'Pillar-Tests-Model' with: [ spec requires: #('Pillar-Model' 'Pillar-ExporterPillar' 'Pillar-ExporterText' 
-					'PillarDocumentModel' 'Pillar-Tests-PetitPillar') ];
+					'PillarDocumentModel' 'Pillar-Tests-PetitPillar' 'Pillar-Tests-ExporterText' 'Pillar-Tests-ExporterPillar') ];
 				"added Pillar-Tests-PetitPillar above to see if this is fixing the load problem"
 				package: 'Pillar-Tests-PetitPillar' with: [ spec requires: #('PetitParser2Core' 'Pillar-PetitPillar') ];
 				package: 'Pillar-Tests-BookTester' with: [ spec requires: #('Pillar-BookTester') ];
