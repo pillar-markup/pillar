@@ -21,9 +21,6 @@ PRPillarToMicrodownConverterTest >> setUp [
 PRPillarToMicrodownConverterTest >> testCodeBlock [
 
 	| pillarobject result |
-		self skip.
-		self flag: #stef.
-		"working here"
 	pillarobject := pillarParser parse: 
 '[[[language=pharo|caption=Pointclass
 Point class >> new
@@ -35,8 +32,23 @@ Point class >> new
 '```language=pharo&caption=Pointclass
 Point class >> new
 	self foo	
-```
-'
+```'
+]
+
+{ #category : #'tests - code blocks' }
+PRPillarToMicrodownConverterTest >> testCodeBlockWithTags [
+
+	| pillarobject result |
+	pillarobject := pillarParser parse: '[[[language=smalltalk
+Point class >> new
+	self foo	
+]]]'.
+	result := writer start: pillarobject ; contents.
+	self assert: result equals: 
+'```language=smalltalk
+Point class >> new
+	self foo	
+```'
 ]
 
 { #category : #'tests - paragraph list' }

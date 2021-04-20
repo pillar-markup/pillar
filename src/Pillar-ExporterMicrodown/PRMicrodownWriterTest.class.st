@@ -424,9 +424,7 @@ PRMicrodownWriterTest >> testSimpleCodeBlockWithFirstTag [
 	Pharo
 	```"
 	| mictext |
-	self skip.
-	self flag: #stef.
-	mictext := builder codeblock: self exampleTextMultipleLines ; contents.
+	mictext := builder codeblock: self exampleTextMultipleLines firstLineAssociations: {'language' -> 'Pharo'} ; contents.
 	self testWithInitialText: mictext.
 	self assert: ('*language*' match: mictext) 
 ]

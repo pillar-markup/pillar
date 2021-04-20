@@ -67,7 +67,7 @@ PRMicrodownWriter >> visitBoldFormat: aFormat [
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitCodeblock: aCodeBlock [ 
 
-	canvas codeblock: aCodeBlock text
+	canvas codeblock: aCodeBlock text firstLineAssociations: aCodeBlock parameters associations
 ]
 
 { #category : #'visiting - document' }
