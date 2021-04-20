@@ -26,7 +26,7 @@ jobs:
       - uses: hpi-swa/setup-smalltalkCI@v1
         id: smalltalkci
         with:
-          smalltalk-version: Pharo64-8.0
+          smalltalk-image: Pharo64-8.0
       - name: go
         shell: bash
         timeout-minutes: 15
@@ -35,7 +35,7 @@ jobs:
           echo "PWD: " `pwd`
           cp -r archetypes ${SMALLTALK_CI_BUILD}/archetypes
           mkdir -p ${SMALLTALK_CI_BUILD}
-          smalltalkci -s  ${{ steps.smalltalkci.outputs.smalltalk-version }} .smalltalk.Integration.App.ston
+          smalltalkci -s  ${{ steps.smalltalkci.outputs.smalltalk-image }} .smalltalk.Integration.App.ston
       - name: DEBUG
         shell: bash
         timeout-minutes: 15
