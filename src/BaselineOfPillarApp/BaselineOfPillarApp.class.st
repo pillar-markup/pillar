@@ -105,10 +105,10 @@ BaselineOfPillarApp >> baseline: spec [
 				
 				
 				package: 'Pillar-Tests-Model-PetitPillar' with: [ spec requires: 
-					#('Pillar-Core' 'Pillar-Model' 'Pillar-Tests-Core' 'Pillar-Tests-Model' 'Pillar-PetitPillar' 'Pillar-Model' 'Pillar-Tests-PetitPillar') ];
+					#('PillarDocumentModel' 'Pillar-Tests-Core' 'Pillar-Tests-Model' 'Pillar-PetitPillar' 'Pillar-Model' 'Pillar-Tests-PetitPillar') ];
 				
 				package: 'Pillar-Tests-Model-ExporterText' with: [ spec requires: 
-						#('Pillar-Model' 'Pillar-Core' 'Pillar-PetitPillar' 'Pillar-Tests-ExporterText') ];
+						#('PillarDocumentModel'  'Pillar-PetitPillar' 'Pillar-Tests-ExporterText') ];
 					
 				package: 'Pillar-Tests-Model-ExporterPillar' with: [ spec requires: #('Pillar-Model'  'Pillar-PetitPillar' 
 					 'Pillar-Tests-ExporterPillar') ];
