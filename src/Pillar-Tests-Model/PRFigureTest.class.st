@@ -1,7 +1,7 @@
 Class {
 	#name : #PRFigureTest,
 	#superclass : #PRReferenceTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#category : #'Pillar-Tests-Model-Document'
 }
 
 { #category : #testing }
@@ -12,11 +12,6 @@ PRFigureTest class >> isAbstract [
 { #category : #private }
 PRFigureTest >> actualClass [
 	^ PRFigure
-]
-
-{ #category : #private }
-PRFigureTest >> markup [
-	^ PRPillarParser markups at: PRFigure
 ]
 
 { #category : #private }

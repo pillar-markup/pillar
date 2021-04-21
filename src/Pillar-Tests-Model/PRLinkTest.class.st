@@ -9,11 +9,6 @@ PRLinkTest >> actualClass [
 	^ PRLink
 ]
 
-{ #category : #private }
-PRLinkTest >> markup [
-	^ PRPillarParser markups at: PRLink
-]
-
 { #category : #tests }
 PRLinkTest >> testIsBroken [
 	self assert: (self instance isBroken or: [ self instance isBroken not ])
