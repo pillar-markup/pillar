@@ -59,6 +59,7 @@ BaselineOfPillarApp >> baseline: spec [
 
 					
 			spec
+				package: 'Pillar-Model' with: [ spec requires: #('PillarDocumentModel')];
 				package: 'Pillar-Chrysal-Generator' with: [ spec requires: #('Chrysal') ];
 				"Only needed to regenerate the pillar configuration: it depends on Chrysal and Chrysal-Runtime"
 				package: 'Pillar-Cli' with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-Chrysal') ];
@@ -71,14 +72,21 @@ BaselineOfPillarApp >> baseline: spec [
 				package: 'Pillar-ExporterBeamer' with: [ spec requires: #('Pillar-ExporterLaTeX') ];
 				package: 'Pillar-ExporterCore' with: [ spec requires: #('Pillar-Model' 'ContainersPropertyEnvironment') ];
 				package: 'Pillar-ExporterDeckJS' with: [ spec requires: #('Pillar-ExporterHTML') ];
-				package: 'Pillar-ExporterEPub' with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-ExporterHTML') ];
+				
+				
+				package: 'Pillar-ExporterEPub' with: [ spec requires: 
+					#('Pillar-ExporterCore' 'Pillar-ExporterHTML') ];
+				package: 'Pillar-Tests-ExporterEPub' with: [ spec requires: 
+					#('Pillar-ExporterEPub' 'Pillar-Tests-ExporterCore' 'Pillar-Tests-ExporterHTML') ];
+				
+				
 				package: 'Pillar-ExporterHTML' with: [ spec requires: #('Pillar-ExporterCore') ];
 				package: 'Pillar-ExporterLaTeX' with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-ExporterPillar') ];
 				package: 'Pillar-ExporterMarkdown' with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-ExporterHTML') ];
 				package: 'Pillar-ExporterPillar' with: [ spec requires: #('Pillar-ExporterCore' 'Pillar-PetitPillar') ];
 				package: 'Pillar-ExporterText' with: [ spec requires: #('Pillar-ExporterCore') ];
 				
-				package: 'Pillar-Model' with: [ spec requires: #('PillarDocumentModel')];
+				
 				package: 'Pillar-CodeBlockEvaluator' with: [ spec requires: #('PillarDocumentModel')];
 				package: 'Pillar-PetitPillar' with: [ spec requires: #('PetitParser2Core' 'Pillar-Model') ];	
 				
@@ -94,7 +102,7 @@ BaselineOfPillarApp >> baseline: spec [
 				package: 'Pillar-Tests-ExporterBeamer' with: [ spec requires: #('Pillar-ExporterBeamer' 'Pillar-Tests-ExporterLaTeX') ];
 				package: 'Pillar-Tests-ExporterCore' with: [ spec requires: #('Pillar-Tests-Model' 'Pillar-ExporterCore') ];
 				package: 'Pillar-Tests-ExporterDeckJS' with: [ spec requires: #('Pillar-ExporterDeckJS' 'Pillar-Tests-ExporterHTML') ];
-				package: 'Pillar-Tests-ExporterEPub' with: [ spec requires: #('Pillar-ExporterEPub' 'Pillar-Tests-ExporterCore') ];
+				
 				package: 'Pillar-Tests-ExporterHTML' with: [ spec requires: #('Pillar-ExporterHTML' 'Pillar-Tests-ExporterCore') ];
 				package: 'Pillar-Tests-ExporterLaTeX' with: [ spec requires: #('Pillar-ExporterLaTeX' 'Pillar-Tests-ExporterCore') ];
 				package: 'Pillar-Tests-ExporterMarkdown' with: [ spec requires: #('Pillar-ExporterMarkdown' 'Pillar-Tests-ExporterCore' 'Pillar-Tests-ExporterHTML') ];
