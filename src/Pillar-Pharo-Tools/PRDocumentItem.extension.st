@@ -91,6 +91,50 @@ PRDocumentItem >> gtInspectorTextRepresentationIn: composite [
 ]
 
 { #category : #'*Pillar-Pharo-Tools' }
+PRDocumentItem >> inpectionHTMLWriter [
+	<inspectorPresentationOrder: 30 title: 'HTML'>
+
+	^ SpTextPresenter new 
+		text: (PRHTMLWriter write: self);
+		yourself
+			
+
+]
+
+{ #category : #'*Pillar-Pharo-Tools' }
+PRDocumentItem >> inpectionMicrodownWriter [
+	<inspectorPresentationOrder: 20 title: 'MuDown'>
+
+	^ SpTextPresenter new 
+		text: (PRMicrodownWriter write: self);
+		yourself
+			
+
+]
+
+{ #category : #'*Pillar-Pharo-Tools' }
+PRDocumentItem >> inpectionPillarWriter [
+	<inspectorPresentationOrder: 35 title: 'Pillar'>
+
+	^ SpTextPresenter new 
+		text: (PRPillarWriter write: self);
+		yourself
+			
+
+]
+
+{ #category : #'*Pillar-Pharo-Tools' }
+PRDocumentItem >> inpectionTextWriter [
+	<inspectorPresentationOrder: 30 title: 'Text'>
+
+	^ SpTextPresenter new 
+		text: (PRTextWriter write: self);
+		yourself
+			
+
+]
+
+{ #category : #'*Pillar-Pharo-Tools' }
 PRDocumentItem >> spotterForPillarDocumentFor: aStep [
 	<spotterOrder: 40>
 	aStep listProcessor 
