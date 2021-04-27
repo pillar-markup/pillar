@@ -35,8 +35,16 @@ Class {
 
 { #category : #'instance creation' }
 PRCodeblock class >> content: aString parameters: parameters [
+	"The pillar parser is sending us bogus parameters in the form of an orderedDictionary containing ('' -> true)
+	Since we do not know how to fix the parser we block the propagation of bogus parameters here."
+	
+	| param | 
+	param := parameters.
+	parameters isNotEmpty 
+		and: [ parameters at: '' ifPresent: [ param := OrderedDictionary new ] ].
+		
 	^ (self content: aString)
-		parameters: parameters;
+		parameters: param;
 		yourself
 ]
 

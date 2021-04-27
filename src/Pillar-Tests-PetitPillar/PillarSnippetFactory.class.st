@@ -609,6 +609,13 @@ foo
 ]
 
 { #category : #sample }
+PillarSnippetFactory >> scriptSampleWithTrailingBlankOnTheFirstLine [
+	^ '[[[ 
+foo
+]]]'
+]
+
+{ #category : #sample }
 PillarSnippetFactory >> scriptTwoParametersNoValueSample [
 	^ 'foo|bar
 '
