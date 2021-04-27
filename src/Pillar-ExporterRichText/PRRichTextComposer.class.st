@@ -31,7 +31,7 @@ When you want to get all the errors (typically to debug and fix them), you can c
 PRRichTextComposer captureErrors: false
 
 ```
-
+\'
 
 
 #### Known limits

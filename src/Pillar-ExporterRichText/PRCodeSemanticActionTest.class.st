@@ -8,6 +8,37 @@ Class {
 }
 
 { #category : #'test - bogus entry' }
+PRCodeSemanticActionTest >> testArrayShouldNotBreak [
+
+	self assert: (PRSemanticAction fromTokens:  #( 1 #+ 2 #* 3)) entity isNil.
+	self assert: (PRSemanticAction fromTokens:  #( 1 #+ 2 #*)) entity isNil.
+]
+
+{ #category : #'test - bogus entry' }
+PRCodeSemanticActionTest >> testChevronWithBrokenArguments [
+
+	self assert: (PRSemanticAction fromTokens:  #( Point #>> 2)) entity isNil.
+	self assert: (PRSemanticAction fromTokens:  #( Point class #>> 2)) entity isNil.
+	
+	self assert: (PRSemanticAction fromTokens:  #(Point #>> true )) entity isNil.
+	self assert: (PRSemanticAction fromTokens:  #(Point #>> Point )) entity isNil.
+
+]
+
+{ #category : #'test - bogus entry' }
+PRCodeSemanticActionTest >> testChevronWithBrokenReceiver [
+
+	self assert: (PRSemanticAction fromTokens:  #( 1 #>> 2)) entity isNil.
+	self assert: (PRSemanticAction fromTokens:  #( true #>> 2)) entity isNil.
+	self assert: (PRSemanticAction fromTokens:  #( $t #>> 2)) entity isNil.
+	self assert: (PRSemanticAction fromTokens:  #( ClassThatDoesNotExist #>> 2)) entity isNil.
+	
+	self assert: (PRSemanticAction fromTokens:  #( true class #>> 2)) entity isNil.
+	self assert: (PRSemanticAction fromTokens:  #( $t class #>> 2)) entity isNil.
+	self assert: (PRSemanticAction fromTokens:  #( ClassThatDoesNotExist class #>> 2)) entity isNil.
+]
+
+{ #category : #'test - bogus entry' }
 PRCodeSemanticActionTest >> testDoubleDollars [
 
 	self deny: (PRSemanticAction from: '$$') hasEntity 
@@ -121,6 +152,14 @@ PRCodeSemanticActionTest >> testReferenceToNonExistingClass [
 	| text |
 	text := (PRMonospaceFormat with: (PRText content: 'Point22')) children first text.
 	self deny: (PRSemanticAction from: text) hasEntity
+]
+
+{ #category : #'test - bogus entry' }
+PRCodeSemanticActionTest >> testTwoBogusElements [
+
+	self assert: (PRSemanticAction fromTokens:  #( 1 #+)) entity isNil.
+	self assert: (PRSemanticAction fromTokens:  #( true #foo)) entity isNil.
+	self assert: (PRSemanticAction fromTokens:  #( Point #foo)) entity isNil.
 ]
 
 { #category : #'test - bogus entry' }

@@ -42,6 +42,7 @@ PRSemanticAction >> computeEntity [
 		"
 	| size |
 	size := tokens size.
+	size > 4 ifTrue: [  ^ self ].
 	size = 0 ifTrue: [ ^ self ].
 	"either 'Point' for a class or #'''System-Caching''' for a package"
 	size = 1 
@@ -53,11 +54,15 @@ PRSemanticAction >> computeEntity [
 	size = 2
 		ifTrue: [ self getMetaClassOrNil. ^ self ].
 	
+	"Point >> #setX:setY:"
 	tokens second = '>>'
 		ifTrue: [ self getClassOrNil. 
 					 self getCompiledMethodFrom: 3  ]
-		ifFalse: [ self getMetaClassOrNil.
-					 self getCompiledMethodFrom: 4  ]
+				"Point class >> #x:y:"
+		ifFalse: [ tokens second = 'class'
+							ifTrue: [ self getMetaClassOrNil.
+					 					self getCompiledMethodFrom: 4 ]
+							ifFalse: [ ^ self  ] ]
 ]
 
 { #category : #accessing }
@@ -77,7 +82,7 @@ PRSemanticAction >> fromTokens: anArray [
 PRSemanticAction >> getClassOrNil [
 
 	self class environment 
-			at: tokens first asSymbol  
+			at: tokens first asString asSymbol  
 			ifPresent: [ :cl | entity := cl ]
 			ifAbsent: [ ].
 	^ entity
@@ -105,7 +110,7 @@ PRSemanticAction >> getCompiledMethodFrom: start [
 PRSemanticAction >> getMetaClassOrNil [
 
 	self class environment 
-			at: tokens first asSymbol  
+			at: tokens first asString asSymbol  
 			ifPresent: [ :cl | entity := cl. 
 					tokens second = 'class' 
 						ifTrue: [ entity := entity class ]
