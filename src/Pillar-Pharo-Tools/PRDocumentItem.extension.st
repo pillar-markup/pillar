@@ -91,11 +91,72 @@ PRDocumentItem >> gtInspectorTextRepresentationIn: composite [
 ]
 
 { #category : #'*Pillar-Pharo-Tools' }
+PRDocumentItem >> inpectionASCIIDOCWriter [
+	<inspectorPresentationOrder: 60 title: 'PRBeamerWriter'>
+
+	^ SpTextPresenter new 
+		text: (PRBeamerWriter write: self);
+		yourself
+
+]
+
+{ #category : #'*Pillar-Pharo-Tools' }
+PRDocumentItem >> inpectionBeamerWriter [
+	<inspectorPresentationOrder: 60 title: 'Beamer'>
+
+	^ SpTextPresenter new 
+		text: (PRBeamerWriter write: self);
+		yourself
+
+]
+
+{ #category : #'*Pillar-Pharo-Tools' }
+PRDocumentItem >> inpectionDeckJSWriter [
+	<inspectorPresentationOrder: 60 title: 'LaTeX'>
+
+	^ SpTextPresenter new 
+		text: (PRDeckJSWriter write: self);
+		yourself
+
+]
+
+{ #category : #'*Pillar-Pharo-Tools' }
 PRDocumentItem >> inpectionHTMLWriter [
 	<inspectorPresentationOrder: 30 title: 'HTML'>
 
 	^ SpTextPresenter new 
 		text: (PRHTMLWriter write: self);
+		yourself
+			
+
+]
+
+{ #category : #'*Pillar-Pharo-Tools' }
+PRDocumentItem >> inpectionLaTeXSBAWriter [
+	<inspectorPresentationOrder: 60 title: 'SBA'>
+
+	^ SpTextPresenter new 
+		text: (PRSBALaTeXWriter write: self);
+		yourself
+
+]
+
+{ #category : #'*Pillar-Pharo-Tools' }
+PRDocumentItem >> inpectionLaTeXWriter [
+	<inspectorPresentationOrder: 60 title: 'LaTeX'>
+
+	^ SpTextPresenter new 
+		text: (PRLaTeXWriter write: self);
+		yourself
+
+]
+
+{ #category : #'*Pillar-Pharo-Tools' }
+PRDocumentItem >> inpectionMarkdownWriter [
+	<inspectorPresentationOrder: 30 title: 'MarkDown'>
+
+	^ SpTextPresenter new 
+		text: (PRMarkdownWriter write: self);
 		yourself
 			
 
