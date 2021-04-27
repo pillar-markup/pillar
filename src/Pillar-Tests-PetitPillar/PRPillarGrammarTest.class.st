@@ -639,6 +639,16 @@ PRPillarGrammarTest >> testScriptSampleWithTrailingBlankOnTheFirstLine [
 ]
 
 { #category : #'tests - Script' }
+PRPillarGrammarTest >> testScriptSampleWithTrailingBlanksOnTheFirstLine [
+	self parse: factory scriptSampleWithTrailingBlanksOnTheFirstLine rule: #script
+]
+
+{ #category : #'tests - Script' }
+PRPillarGrammarTest >> testScriptSampleWithTrailingTabOnTheFirstLine [
+	self parse: factory scriptSampleWithTrailingTabOnTheFirstLine rule: #script
+]
+
+{ #category : #'tests - Script' }
 PRPillarGrammarTest >> testScriptTwoParametersNoValue [
 	self
 		parse: factory scriptTwoParametersNoValueSample

@@ -919,6 +919,24 @@ PRPillarParserTest >> testScriptSampleWithTrailingBlankOnTheFirstLine [
 ]
 
 { #category : #'tests - Script' }
+PRPillarParserTest >> testScriptSampleWithTrailingBlanksOnTheFirstLine [
+
+	super testScriptSampleWithTrailingBlanksOnTheFirstLine.
+	self assert: result equals: (PRCodeblock content: 'foo').
+	self assert: result parameters isEmpty.
+
+]
+
+{ #category : #'tests - Script' }
+PRPillarParserTest >> testScriptSampleWithTrailingTabOnTheFirstLine [
+
+	super testScriptSampleWithTrailingTabOnTheFirstLine.
+	self assert: result equals: (PRCodeblock content: 'foo').
+	self assert: result parameters isEmpty.
+
+]
+
+{ #category : #'tests - Script' }
 PRPillarParserTest >> testScriptTwoParametersNoValue [
 	super testScriptTwoParametersNoValue.
 	self
