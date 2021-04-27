@@ -10,8 +10,8 @@ Class {
 { #category : #'test - bogus entry' }
 PRCodeSemanticActionTest >> testArrayShouldNotBreak [
 
-	self assert: (PRSemanticAction fromTokens:  #( 1 #+ 2 #* 3)) entity isNil.
-	self assert: (PRSemanticAction fromTokens:  #( 1 #+ 2 #*)) entity isNil.
+	self deny: (PRSemanticAction fromTokens:  #( 1 #+ 2 #* 3)) hasEntity.
+	self deny: (PRSemanticAction fromTokens:  #( 1 #+ 2 #*)) hasEntity.
 ]
 
 { #category : #'test - bogus entry' }
@@ -48,6 +48,14 @@ PRCodeSemanticActionTest >> testDoubleDollars [
 PRCodeSemanticActionTest >> testEmptyString [
 
 	self deny: (PRSemanticAction from: '') hasEntity 
+]
+
+{ #category : #'test - bogus entry' }
+PRCodeSemanticActionTest >> testGlobalAccess [
+
+	self assert: (PRSemanticAction fromTokens: #(Transcript)) hasEntity.
+	"the semantics action is working even if it is refers to a global because the class of global is 
+	used by the browse invocation when clicking on it. "
 ]
 
 { #category : #'test - bogus entry' }
