@@ -174,6 +174,27 @@ PRDocumentItem >> inpectionMicrodownWriter [
 ]
 
 { #category : #'*Pillar-Pharo-Tools' }
+PRDocumentItem >> inpectionPillarTree [
+	<inspectorPresentationOrder: 35 title: 'PillarTree'>
+
+	^ SpTreePresenter new 
+		roots: { self };
+		children: [ :aNode | aNode children ];
+		display: [ :each | 
+			String
+				streamContents: [ :stream | 
+					stream
+						nextPutAll: each class name.
+						each class = PRHeader ifTrue: 
+							[ stream nextPutAll: '( level ';
+							nextPutAll: each level asString;
+							nextPutAll: ' )' ].
+			 ] ];
+		yourself
+
+]
+
+{ #category : #'*Pillar-Pharo-Tools' }
 PRDocumentItem >> inpectionPillarWriter [
 	<inspectorPresentationOrder: 35 title: 'Pillar'>
 

@@ -31,6 +31,11 @@ PRText >> accept: aVisitor [
 	^ aVisitor visitText: self
 ]
 
+{ #category : #accessing }
+PRText >> children [
+	^ OrderedCollection new
+]
+
 { #category : #comparing }
 PRText >> hash [
 	^ super hash bitXor: self text hash
