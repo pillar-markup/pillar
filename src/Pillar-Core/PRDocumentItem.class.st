@@ -41,6 +41,11 @@ PRDocumentItem >> accept: aVisitor [
 ]
 
 { #category : #accessing }
+PRDocumentItem >> children [
+	^ OrderedCollection new
+]
+
+{ #category : #accessing }
 PRDocumentItem >> counter [
 	^ counter
 ]
