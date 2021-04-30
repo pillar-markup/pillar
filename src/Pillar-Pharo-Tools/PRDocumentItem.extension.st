@@ -183,12 +183,7 @@ PRDocumentItem >> inpectionPillarTree [
 		display: [ :each | 
 			String
 				streamContents: [ :stream | 
-					stream
-						nextPutAll: each class name.
-						each class = PRHeader ifTrue: 
-							[ stream nextPutAll: '( level ';
-							nextPutAll: each level asString;
-							nextPutAll: ' )' ].
+					each displayStringOn: stream						
 			 ] ];
 		yourself
 
