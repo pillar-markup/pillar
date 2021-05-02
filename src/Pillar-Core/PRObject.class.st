@@ -45,6 +45,12 @@ PRObject >> accept: aVisitor [
 	"Dispatch to ==aVisitor== depending on the receiver."
 ]
 
+{ #category : #accessing }
+PRObject >> children [
+
+	^ #()
+]
+
 { #category : #private }
 PRObject >> errorPropertyNotFound: aSelector [
 	PRPropertyError signal: 'Property ' , aSelector , ' not found.'

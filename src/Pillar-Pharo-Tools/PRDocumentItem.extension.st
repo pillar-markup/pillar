@@ -174,6 +174,25 @@ PRDocumentItem >> inpectionMicrodownWriter [
 ]
 
 { #category : #'*Pillar-Pharo-Tools' }
+PRDocumentItem >> inpectionPillarTree [
+ 	<inspectorPresentationOrder: 35 title: 'PillarTree'>
+	"(PRPillarParser parse: '!This is a test 
+Pillar is cool but microdown Cooler. 
+
+Yes') inspect
+"
+ 	^ SpTreePresenter new 
+ 		roots: { self };
+ 		children: [ :aNode | aNode children ];
+ 		display: [ :each | 
+ 			String
+ 				streamContents: [ :stream | 
+ 					each displayStringOn: stream].
+ 			 ];
+ 		yourself
+]
+
+{ #category : #'*Pillar-Pharo-Tools' }
 PRDocumentItem >> inpectionPillarWriter [
 	<inspectorPresentationOrder: 35 title: 'Pillar'>
 
