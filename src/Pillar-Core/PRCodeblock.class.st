@@ -171,7 +171,12 @@ PRCodeblock >> language [
 					self language: realObject.
 					realObject ]
 				ifFalse: [ language ] ]
-		ifAbsent: [ PRUnspecifiedScriptLanguage default ]
+		ifAbsent: [ 
+			parameters values first 
+				ifNil: [
+					PRAbstractScriptLanguage for: parameters keys first ] 
+				ifNotNil: [ 
+					PRUnspecifiedScriptLanguage default ] ]
 ]
 
 { #category : #'accessing-delegated' }
