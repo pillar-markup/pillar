@@ -34,14 +34,14 @@ Class {
 }
 
 { #category : #'instance creation' }
-PRCodeblock class >> content: aString parameters: parameters [
+PRCodeblock class >> content: aString parameters: parameterDictionary [
 	"The pillar parser is sending us bogus parameters in the form of an orderedDictionary containing ('' -> true)
 	Since we do not know how to fix the parser we block the propagation of bogus parameters here."
 	
 	| param | 
-	param := parameters.
-	parameters isNotEmpty 
-		and: [ parameters at: '' ifPresent: [ param := OrderedDictionary new ] ].
+	param := parameterDictionary.
+	parameterDictionary isNotEmpty 
+		and: [ parameterDictionary at: '' ifPresent: [ param := OrderedDictionary new ] ].
 		
 	^ (self content: aString)
 		parameters: param;
@@ -66,17 +66,31 @@ PRCodeblock >> accept: aVisitor [
 
 { #category : #'accessing-delegated' }
 PRCodeblock >> caption [
+	"This method should be named: setAndReturnCaption"
+	self flag: #fixme. 
+
 	^ caption
 		ifNil: [ 
-			caption := self
-				parameters at: 'caption'
-				ifPresent: [ :string | (PRDocument parser parse: string) children first ]
-				ifAbsent: [ PRParagraph with: (PRText content: '') ] ]
+			self setCaption: (self
+						parameters 
+							at: 'caption'
+							ifPresent: [ :string | (PRDocument parser parse: string) children first ]
+							ifAbsent: [ self defaultCaptionWhenEmpty ]).
+			caption ]
 ]
 
 { #category : #'accessing-delegated' }
 PRCodeblock >> caption: aString [
+	"this method should be named: updateCaptionInParameters"
+	self flag: #fixme.
 	parameters := self parameters copyWith: 'caption' -> aString
+]
+
+{ #category : #'accessing-delegated' }
+PRCodeblock >> defaultCaptionWhenEmpty [
+	"When there is no caption and still we asked for it, the class sets the defaultCaptionWhenEmpty as caption.
+	"
+	^ PRParagraph with: (PRText content: '')
 ]
 
 { #category : #'accessing-delegated' }
@@ -205,6 +219,13 @@ PRCodeblock >> removePossibleParagraph: content [
 	^ content first class = PRParagraph
 		ifTrue:[ content first children ] 
 		ifFalse: [ content ]
+]
+
+{ #category : #'accessing-delegated' }
+PRCodeblock >> setCaption: aParagraph [
+	"pay attention this is the not the same than the setter"
+	
+	caption := aParagraph
 ]
 
 { #category : #'accessing-delegated' }

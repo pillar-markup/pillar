@@ -120,6 +120,7 @@ PRPillarToMicrodownConverterTest >> testSimpleCodeBlock [
 Point class >> new
 	self foo	
 ]]]'.
+
 	result := writer start: pillarobject ; contents.
 	self assert: result equals: 
 '```

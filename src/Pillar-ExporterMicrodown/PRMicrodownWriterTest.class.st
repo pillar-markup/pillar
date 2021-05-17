@@ -88,6 +88,25 @@ PRMicrodownWriterTest >> testBoldMultipleLines [
 	self testWithInitialText: (builder rawParagraph: [ builder bold: self exampleTextMultipleLines] ; contents)
 ]
 
+{ #category : #'tests - code block' }
+PRMicrodownWriterTest >> testCodeBlockCaptionContainsMonospace [
+
+	"```language2=Pharo&caption=`Color` is cool
+	Hello
+	Pharo
+	```"
+
+	| mictext |
+	mictext := builder
+		           codeblock: self exampleTextMultipleLines
+		           firstLineAssociations: { 
+				           ('language2' -> 'Pharo').
+				           ('caption' -> '`Color` is cool') };
+		           contents.
+	self testWithInitialText: mictext.
+	self assert: ('*language*' match: mictext)
+]
+
 { #category : #'tests - comments' }
 PRMicrodownWriterTest >> testComment [
 	"% Hello Pharo"
