@@ -18,6 +18,11 @@ PRMathEnvironment >> accept: aVisitor [
 	^ aVisitor visitMathEnvironment: self
 ]
 
+{ #category : #visiting }
+PRMathEnvironment >> caption [ 
+	^ self parameters at: 'caption'
+]
+
 { #category : #'accessing-parameters' }
 PRMathEnvironment >> text [ 
 	^ self children first text
