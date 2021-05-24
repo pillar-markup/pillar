@@ -43,14 +43,6 @@ PRInputDocument >> file: aFileReference [
 ]
 
 { #category : #accessing }
-PRInputDocument >> forFile: aFileReference [
-	
-	self subclasses 
-		detect: [ :each | each doesHandleExtension: aFileReference extension ] 
-		ifNone: [ PRNoInputDocument ]
-]
-
-{ #category : #accessing }
 PRInputDocument >> fullName [
 	^ file fullName
 ]
