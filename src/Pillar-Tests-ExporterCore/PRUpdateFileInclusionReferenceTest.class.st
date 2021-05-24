@@ -1,7 +1,7 @@
 Class {
 	#name : #PRUpdateFileInclusionReferenceTest,
 	#superclass : #PRVisitorTest,
-	#category : 'Pillar-Tests-ExporterCore'
+	#category : #'Pillar-Tests-ExporterCore-Various'
 }
 
 { #category : #private }
