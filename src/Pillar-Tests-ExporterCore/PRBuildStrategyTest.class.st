@@ -7,7 +7,7 @@ Class {
 	#category : #'Pillar-Tests-ExporterCore-Base'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #data }
 PRBuildStrategyTest >> chap1Content [
 	^
 	'
@@ -21,7 +21,7 @@ If you do not know Pillar, check its documentation at *http://github.com/pillar-
 '
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #data }
 PRBuildStrategyTest >> chap2Content [
 	^
 '
@@ -35,7 +35,7 @@ Some template are already written, but if you want to have your own, you had two
 '
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #data }
 PRBuildStrategyTest >> configContent [
 	^ '{
   "base_url": "",
@@ -49,12 +49,14 @@ PRBuildStrategyTest >> configContent [
 }'
 ]
 
-{ #category : #accessing }
+{ #category : #data }
 PRBuildStrategyTest >> indexContent [
 	^
 	'!My First book
 		${inputFile:path=Chapters/Chapter1/chapter1.pillar}$
-		${inputFile:path=Chapters/Chapter2/chapter2.pillar}$'
+		${inputFile:path=Chapters/Chapter2/chapter2.pillar}$
+		${inputFile:path=Chapters/Chapter2/chapter2.mic}$
+		'
 ]
 
 { #category : #running }
@@ -68,21 +70,26 @@ PRBuildStrategyTest >> setUp [
 	fileSystem / 'pillar.conf' writeStreamDo: [ :st | st nextPutAll: self configContent ].
 	(fileSystem / 'Chapters' / 'Chapter1') ensureCreateDirectory / 'chapter1.pillar' writeStreamDo: [ :st | st nextPutAll: self chap1Content ].
 	(fileSystem / 'Chapters' / 'Chapter2') ensureCreateDirectory / 'chapter2.pillar' writeStreamDo: [ :st | st nextPutAll: self chap2Content ].
+	(fileSystem / 'Chapters' / 'Chapter2') ensureCreateDirectory / 'chapter2.mic' writeStreamDo: [ :st | st nextPutAll: self chap2Content ].
 	project := PRProject new baseDirectory: fileSystem
 ]
 
 { #category : #tests }
 PRBuildStrategyTest >> testPRBuildAllStrategy [
-	| f |
+	| f fsorted|
 	f := PRBuildAllStrategy new filesToBuildOn: project.
-	self assert: f size equals: 3.
+	fsorted := (SortedCollection new sortBlock: [ :a :b | a basename < b basename ]) addAll: f.
+	self assert: fsorted size equals: 4.
 	self
-		assert: f first file fullName
+		assert: fsorted first file fullName
 		equals: '/Chapters/Chapter1/chapter1.pillar'.
 	self
-		assert: f second file fullName
+		assert: fsorted second file fullName
+		equals: '/Chapters/Chapter2/chapter2.mic'.
+	self
+		assert: fsorted third file fullName
 		equals: '/Chapters/Chapter2/chapter2.pillar'.
-	self assert: f third file fullName equals: '/index.pillar'
+	self assert: f fourth file fullName equals: '/index.pillar'
 ]
 
 { #category : #tests }

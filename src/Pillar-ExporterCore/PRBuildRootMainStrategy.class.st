@@ -15,7 +15,7 @@ PRBuildRootMainStrategy >> filesToBuildOn: aProject [
 	"select the only file with pillar extension in current directory ; if there is no OR several pillar files, relative error is raised"
 	
 	| pillarFiles|
-	pillarFiles := aProject baseDirectory children select: [ :each | each isFile and: [ each extension = 'pillar' ] ].
+	pillarFiles := aProject baseDirectory children select: [ :each | each isFile and: [ self isSupportedExtension: each  extension ] ].
 	pillarFiles ifEmpty: [ self error: 'There is no pillar file in the repository root.' ].
 	pillarFiles size = 1 ifTrue: [ ^ { PRInputDocument new
 			project: aProject;
