@@ -23,7 +23,7 @@ PRBuildAllStrategy >> filesToBuildOn: aProject [
 		each allChildren
 			select: [ :file | file isFile and: [ self isSupportedExtension: file extension ] ]
 			thenCollect: [ :file | 
-				PRInputDocument new
+				(PRInputDocument inputClassForFile: file) new
 					project: aProject;
 					file: file;
 					yourself ] ]
