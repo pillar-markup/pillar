@@ -11,6 +11,12 @@ PRPillarInputDocument class >> doesHandleExtension: anExtension [
 ]
 
 { #category : #accessing }
+PRPillarInputDocument >> parsedDocument [
+
+	^ self parserClass parse: file
+]
+
+{ #category : #accessing }
 PRPillarInputDocument >> parserClass [
 	
 	^ PRDocument parser 

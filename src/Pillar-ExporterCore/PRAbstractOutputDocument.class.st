@@ -94,7 +94,7 @@ PRAbstractOutputDocument >> outputDirectory: aFileReference [
 { #category : #building }
 PRAbstractOutputDocument >> parseInputFile: anInputFile [
 	
-	^ anInputFile parserClass parse: anInputFile file
+	^ anInputFile parsedDocument
 ]
 
 { #category : #building }

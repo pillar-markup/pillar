@@ -11,6 +11,12 @@ PRMicrodownInputDocument class >> doesHandleExtension: anExtension [
 ]
 
 { #category : #accessing }
+PRMicrodownInputDocument >> parsedDocument [
+
+	^ (self parserClass parse: file) asPillar
+]
+
+{ #category : #accessing }
 PRMicrodownInputDocument >> parserClass [
 	^ MicroDownParser
 ]

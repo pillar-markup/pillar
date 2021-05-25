@@ -5,6 +5,18 @@ Class {
 }
 
 { #category : #tests }
+PRMicrodownInputDocumentTest >> testParsedDocument [
+	
+	| doc |
+	doc := ((PRInputDocument inputClassForFile: memoryFileSystem / 'input1.mic') new 
+					file:  memoryFileSystem / 'input1.mic') parsedDocument.
+	self 
+		assert: doc class
+		equals: PRDocument
+
+]
+
+{ #category : #tests }
 PRMicrodownInputDocumentTest >> testParserClass [
 	
 	| input |

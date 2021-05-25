@@ -28,6 +28,33 @@ PRInputDocumentTest >> testBasicNoInput [
 ]
 
 { #category : #tests }
+PRInputDocumentTest >> testBasicPillarInputDocument [
+	
+	| input |
+	input := (PRPillarInputDocument new file: memoryFileSystem / 'input1.pillar').
+	self 
+		assert:  input parserClass 
+		equals: PRDocument parser.
+	self 
+		assert:  input basename 
+		equals: 'input1.pillar'.
+
+]
+
+{ #category : #tests }
+PRInputDocumentTest >> testParsedDocument [
+	
+	| doc |
+	doc := ((PRInputDocument inputClassForFile: memoryFileSystem / 'input1.pillar') new 
+					file:  memoryFileSystem / 'input1.pillar') parsedDocument.
+	self 
+		assert: doc class
+		equals: PRDocument
+
+
+]
+
+{ #category : #tests }
 PRInputDocumentTest >> testRegistration [
 	
 	| inputClass |
