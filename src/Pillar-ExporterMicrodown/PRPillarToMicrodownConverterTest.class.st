@@ -32,7 +32,8 @@ Point class >> new
 '```language=pharo&caption=Pointclass
 Point class >> new
 	self foo	
-```'
+```
+'
 ]
 
 { #category : #'tests - code blocks' }
@@ -48,7 +49,8 @@ Point class >> new
 '```language=smalltalk
 Point class >> new
 	self foo	
-```'
+```
+'
 ]
 
 { #category : #'tests - paragraph list' }
@@ -126,7 +128,8 @@ Point class >> new
 '```
 Point class >> new
 	self foo	
-```'
+```
+'
 ]
 
 { #category : #'tests - sections' }
