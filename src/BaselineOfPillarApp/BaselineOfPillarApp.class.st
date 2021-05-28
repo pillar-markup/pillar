@@ -31,7 +31,7 @@ BaselineOfPillarApp >> baseline: spec [
 	spec baseline: 'MicrodownDev' with: [ 
 		   "spec className: 'MicrodownDev'."
 			spec repository: 'github://pillar-markup/Microdown:dev/src' ].
-	spec package: 'Pillar-Microdown' with: [ spec requires: #('MicrodownDev' #'Pillar-Model') ].
+	spec package: 'Pillar-Microdown' with: [ spec requires: #('MicrodownDev' #'Pillar-Model' 'Pillar-ExporterCore' 'Pillar-Tests-ExporterCore') ].
 	spec package: 'Pillar-ExporterMicrodown' with: [ spec requires: #('MicrodownDev' 'Pillar-PetitPillar' 'Pillar-ExporterCore') ].
 		
 	spec
