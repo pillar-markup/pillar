@@ -133,19 +133,28 @@ PRMicrodownWriterTest >> testExternalLink [
 PRMicrodownWriterTest >> testFigure [
 	"![Hello Pharo](url)"
 	
-	self testWithInitialText: (builder rawParagraph: [ builder figure: 'url' withDescription: self exampleText]; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder figure: '/url' withDescription: [ builder text: self exampleText]]; contents)
 ]
 
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithArgument [
 	"![Hello Pharo](url|label=fig&caption=This is a caption."
-	self testWithInitialText: (builder rawParagraph: [ builder figure: 'url|label=fig1&caption=This is **a** caption.&width=80' withDescription: self exampleText] ; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder figure: '/url|label=fig1&caption=This is **a** caption.&width=80' withDescription: [ builder text: self exampleText]] ; contents)
 ]
 
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithArgumentContainingFormatting [
 	"![Hello Pharo](url|label=fig&caption=This is a caption and it can contain **bol** but also `code`."
-	self testWithInitialText: (builder rawParagraph: [ (builder figure: 'url|label=fig&caption=This is a caption and it can contain **bol** but also `code`' withDescription: self exampleText) ]; contents)
+	self testWithInitialText: (builder rawParagraph: [ (builder figure: '/url|label=fig&caption=This is a caption and it can contain **bol** but also `code`' withDescription: [ builder text: self exampleText]) ]; contents)
+]
+
+{ #category : #'tests - figures' }
+PRMicrodownWriterTest >> testFigureWithReferenceAsByteString [
+	"![Hello Pharo](url)"
+	
+	| pillar |
+	pillar := PRPillarParser new parse: '+PharoLauncher - GUI.>file://figures/PharoLauncher.png|width=70|label=fig:PharoLauncher+'.
+	self assert: (writer start: pillar) contents equals: '![PharoLauncher - GUI.](file://figures/PharoLauncher.png|width=70&label=fig:PharoLauncher)'
 ]
 
 { #category : #'tests - header' }
