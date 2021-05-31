@@ -76,8 +76,7 @@ and microdown too'; contents).
 { #category : #'tests - formatting' }
 PRMicrodownWriterTest >> testBold [
 	"**Hello Pharo**"
-	
-	self testWithInitialText: (builder rawParagraph: [ builder bold: self exampleText]; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder bold: [builder text: self exampleText]]; contents)
 ]
 
 { #category : #'tests - formatting' }
@@ -85,7 +84,7 @@ PRMicrodownWriterTest >> testBoldMultipleLines [
 	"**Hello 
 	Pharo**"
 	
-	self testWithInitialText: (builder rawParagraph: [ builder bold: self exampleTextMultipleLines] ; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder bold: [ builder text: self exampleTextMultipleLines]] ; contents)
 ]
 
 { #category : #'tests - code block' }
@@ -358,7 +357,7 @@ PRMicrodownWriterTest >> testOneParagraph [
 PRMicrodownWriterTest >> testOneParagraphWithAdorment [
 	"**Pharo** is `COOL`"
 
-	self testWithInitialText: (builder rawParagraph: [ builder bold: 'Microdown'; text: ' is '; monospace: 'COOL' ]; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder bold: [builder text:'Microdown']; text: ' is '; monospace: [ builder text: 'COOL'] ]; contents)
 ]
 
 { #category : #'tests - list' }
