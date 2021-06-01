@@ -141,7 +141,7 @@ PRMicrodownWriterTest >> testFigureWithArgument [
 	self flag: #fixme.
 	"we obtain stange characters like %7 or %20"
 	"![Hello Pharo](url|label=fig&caption=This is a caption."
-	self testWithInitialText: (builder rawParagraph: [ builder figureURL: '/url|label=fig1&caption=This is **a** caption.&width=80' withCaption: [ builder text: self exampleText]] ; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder figureURL: '/url?label=fig1&caption=This is **a** caption.&width=80' withCaption: [ builder text: self exampleText]] ; contents)
 ]
 
 { #category : #'tests - figures' }
@@ -150,7 +150,7 @@ PRMicrodownWriterTest >> testFigureWithArgumentContainingFormatting [
 	self flag: #fixme.
 	"we obtain stange characters like %7 or %20"
 	"![Hello Pharo](url|label=fig&caption=This is a caption and it can contain **bol** but also `code`."
-	self testWithInitialText: (builder rawParagraph: [ (builder figureURL: '/url|label=fig&caption=This is a caption and it can contain **bol** but also `code`' withCaption: [ builder text: self exampleText]) ]; contents)
+	self testWithInitialText: (builder rawParagraph: [ (builder figureURL: '/url?label=fig&caption=This is a caption and it can contain **bol** but also `code`' withCaption: [ builder text: self exampleText]) ]; contents)
 ]
 
 { #category : #'tests - figures' }
