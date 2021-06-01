@@ -156,14 +156,9 @@ PRMicrodownWriterTest >> testFigureWithArgumentContainingFormatting [
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithReferenceAsByteString [
 	
-	"![Hello Pharo](url)"
-	
 	| pillar |
-	self skip.
-	self flag: #fixme.
-	"we obtain stange characters like %7 or %20"
 	pillar := PRPillarParser new parse: '+PharoLauncher - GUI.>file://figures/PharoLauncher.png|width=70|label=fig:PharoLauncher+'.
-	self assert: (writer start: pillar) contents equals: '![PharoLauncher - GUI.](file://figures/PharoLauncher.png|width=70&label=fig:PharoLauncher)'
+	self assert: (writer start: pillar) contents equals: '![PharoLauncher - GUI.](file://figures/PharoLauncher.png?width=70&label=fig:PharoLauncher)'
 ]
 
 { #category : #'tests - header' }

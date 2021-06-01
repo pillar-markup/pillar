@@ -114,7 +114,7 @@ PRMicrodownWriter >> visitExternalLink: anExternalLink [
 PRMicrodownWriter >> visitFigure: aFigure [
 	| figureName figureLink |
 	figureName := aFigure text.
-	figureLink := aFigure reference.
+	figureLink := aFigure reference asUrl.
 	canvas figureURL: figureLink withCaption: [ canvas text: figureName] withParameters: aFigure parameters
 ]
 
