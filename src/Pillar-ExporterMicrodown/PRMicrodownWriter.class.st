@@ -115,7 +115,7 @@ PRMicrodownWriter >> visitFigure: aFigure [
 	| figureName figureLink |
 	figureName := aFigure text.
 	figureLink := aFigure reference asUrl.
-	canvas figureURL: figureLink withCaption: [ canvas text: figureName] withParameters: aFigure parameters
+	canvas figureURL: figureLink withCaption: [ aFigure children do: [:each | each accept: self]] withParameters: aFigure parameters
 ]
 
 { #category : #'visiting - document' }
