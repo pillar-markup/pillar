@@ -186,10 +186,10 @@ PRCodeblock >> language [
 					realObject ]
 				ifFalse: [ language ] ]
 		ifAbsent: [ 
-			parameters values first 
-				ifNil: [
+			parameters keys isEmpty  
+				ifFalse: [
 					PRAbstractScriptLanguage for: parameters keys first ] 
-				ifNotNil: [ 
+				ifTrue: [ 
 					PRUnspecifiedScriptLanguage default ] ]
 ]
 
