@@ -61,13 +61,29 @@ PRMicrodownWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
 { #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitBoldFormat: aFormat [
 
-	canvas bold: aFormat text
+	canvas bold: [aFormat children do: [:each |each accept: self]]
 ]
 
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitCodeblock: aCodeBlock [ 
-
-	canvas codeblock: aCodeBlock text firstLineAssociations: aCodeBlock parameters associations
+	
+	"the only parameter that could be contain a Pillar element is the caption so let us treat separately"
+	| microdownizedCaption associations caption isCaptionInParameters |
+	associations := aCodeBlock parameters associations.
+	"aCodeBlock hasCaption is not working well so use the accessor"
+	caption := aCodeBlock caption.
+	caption text isEmpty
+		ifFalse: [ microdownizedCaption := self class new start: caption; contents.
+					isCaptionInParameters := aCodeBlock parameters at: 'caption' ifAbsent: [ nil ].
+					isCaptionInParameters isNil not
+						ifTrue: [ associations := aCodeBlock parameters associations collect: [ :each |
+							each value = 'caption'
+								ifTrue: [ ('caption' -> microdownizedCaption) ]
+								ifFalse: [ each ]]] 
+						ifFalse: [ associations := aCodeBlock parameters associations ,  {('caption' -> microdownizedCaption)} ]].
+				
+	"may be we should change the builder to accept an orderedDictionary so that we can just change the caption."
+	canvas codeblock: aCodeBlock text firstLineAssociations: associations
 ]
 
 { #category : #'visiting - document' }
@@ -98,8 +114,8 @@ PRMicrodownWriter >> visitExternalLink: anExternalLink [
 PRMicrodownWriter >> visitFigure: aFigure [
 	| figureName figureLink |
 	figureName := aFigure text.
-	figureLink := aFigure reference path.
-	canvas figure: figureLink withDescription: figureName withParameters: aFigure parameters
+	figureLink := aFigure reference asUrl.
+	canvas figure: figureLink withDescription: [ canvas text: figureName] withParameters: aFigure parameters
 ]
 
 { #category : #'visiting - document' }
@@ -125,7 +141,7 @@ PRMicrodownWriter >> visitInternalLink: anInternalLink [
 
 { #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitItalicFormat: aFormat [
-	canvas italic: aFormat text
+	canvas italic: [aFormat children do: [:each |each accept: self]]
 ]
 
 { #category : #'visiting - document' }
@@ -137,7 +153,7 @@ PRMicrodownWriter >> visitMetadata: aMetaData [
 
 { #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitMonospaceFormat: aFormat [
-	canvas monospace: aFormat text
+	canvas monospace: [aFormat children do: [:each |each accept: self]]
 ]
 
 { #category : #'visiting - list' }
@@ -179,7 +195,7 @@ PRMicrodownWriter >> visitPreformatted: aPreformatted [
 
 { #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitStrikethroughFormat: aFormat [
-	canvas strike: aFormat text
+	canvas strike: [aFormat children do: [:each |each accept: self]]
 ]
 
 { #category : #'visiting - formatting' }

@@ -64,6 +64,11 @@ PREnvironment >> parameters [
 	^ parameters
 ]
 
+{ #category : #'accessing-parameters' }
+PREnvironment >> parameters: anOrderedDictionary [
+	parameters := anOrderedDictionary
+]
+
 { #category : #visiting }
 PREnvironment >> printOn: aStream [
 	

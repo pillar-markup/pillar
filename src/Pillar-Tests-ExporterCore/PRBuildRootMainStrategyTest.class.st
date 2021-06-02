@@ -8,7 +8,7 @@ Class {
 PRBuildRootMainStrategyTest >> testFilesToBuildOnCorrect [
 	| outputProject |
 	outputProject := PRBuildRootMainStrategy new filesToBuildOn: project.
-	self assert: outputProject first class equals: PRInputDocument.
+	self assert: outputProject first class equals: PRPillarInputDocument.
 	self assert: outputProject first file path equals: Path / 'index.pillar'
 ]
 

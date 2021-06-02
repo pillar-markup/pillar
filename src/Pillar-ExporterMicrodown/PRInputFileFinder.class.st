@@ -1,3 +1,6 @@
+"
+I'm a visitor that returns all the `${inputFile:path=xxx}$` in a document. 
+"
 Class {
 	#name : #PRInputFileFinder,
 	#superclass : #PRVisitor,

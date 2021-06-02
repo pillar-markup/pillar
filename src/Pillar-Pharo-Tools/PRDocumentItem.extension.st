@@ -167,7 +167,7 @@ PRDocumentItem >> inpectionMicrodownWriter [
 	<inspectorPresentationOrder: 20 title: 'MuDown'>
 
 	^ SpTextPresenter new 
-		text: (PRMicrodownWriter write: self);
+		text: ([ (PRMicrodownWriter write: self)] on: Error do: [:ex | 'Got an error']);
 		yourself
 			
 

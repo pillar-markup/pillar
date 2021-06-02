@@ -5,8 +5,16 @@ Class {
 		'project',
 		'file'
 	],
-	#category : 'Pillar-ExporterCore-Base'
+	#category : #'Pillar-ExporterCore-Base'
 }
+
+{ #category : #factory }
+PRInputDocument class >> inputClassForFile: aFile [
+	
+	^ self subclasses
+		detect: [ :each | each doesHandleExtension: aFile extension ]
+		ifNone: [ PRNoInputDocument  ]
+]
 
 { #category : #accessing }
 PRInputDocument >> basename [
@@ -37,14 +45,6 @@ PRInputDocument >> file: aFileReference [
 { #category : #accessing }
 PRInputDocument >> fullName [
 	^ file fullName
-]
-
-{ #category : #accessing }
-PRInputDocument >> parser [
-	
-	file extension = 'pillar'
-		ifTrue: [ ^ PRDocument parser ].
-	self error: 'No parser for document extension: ', file extension
 ]
 
 { #category : #accessing }

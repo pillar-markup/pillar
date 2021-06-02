@@ -32,7 +32,8 @@ Point class >> new
 '```language=pharo&caption=Pointclass
 Point class >> new
 	self foo	
-```'
+```
+'
 ]
 
 { #category : #'tests - code blocks' }
@@ -48,7 +49,8 @@ Point class >> new
 '```language=smalltalk
 Point class >> new
 	self foo	
-```'
+```
+'
 ]
 
 { #category : #'tests - paragraph list' }
@@ -120,12 +122,14 @@ PRPillarToMicrodownConverterTest >> testSimpleCodeBlock [
 Point class >> new
 	self foo	
 ]]]'.
+
 	result := writer start: pillarobject ; contents.
 	self assert: result equals: 
 '```
 Point class >> new
 	self foo	
-```'
+```
+'
 ]
 
 { #category : #'tests - sections' }

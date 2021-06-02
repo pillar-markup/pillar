@@ -4,7 +4,7 @@ I test the PRCascadingCounter class.
 Class {
 	#name : #PRCascadingCounterTest,
 	#superclass : #TestCase,
-	#category : 'Pillar-Tests-ExporterCore'
+	#category : #'Pillar-Tests-ExporterCore-Various'
 }
 
 { #category : #accessing }

@@ -76,8 +76,7 @@ and microdown too'; contents).
 { #category : #'tests - formatting' }
 PRMicrodownWriterTest >> testBold [
 	"**Hello Pharo**"
-	
-	self testWithInitialText: (builder rawParagraph: [ builder bold: self exampleText]; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder bold: [builder text: self exampleText]]; contents)
 ]
 
 { #category : #'tests - formatting' }
@@ -85,7 +84,26 @@ PRMicrodownWriterTest >> testBoldMultipleLines [
 	"**Hello 
 	Pharo**"
 	
-	self testWithInitialText: (builder rawParagraph: [ builder bold: self exampleTextMultipleLines] ; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder bold: [ builder text: self exampleTextMultipleLines]] ; contents)
+]
+
+{ #category : #'tests - code block' }
+PRMicrodownWriterTest >> testCodeBlockCaptionContainsMonospace [
+
+	"```language2=Pharo&caption=`Color` is cool
+	Hello
+	Pharo
+	```"
+
+	| mictext |
+	mictext := builder
+		           codeblock: self exampleTextMultipleLines
+		           firstLineAssociations: { 
+				           ('language2' -> 'Pharo').
+				           ('caption' -> '`Color` is cool') };
+		           contents.
+	self testWithInitialText: mictext.
+	self assert: ('*language*' match: mictext)
 ]
 
 { #category : #'tests - comments' }
@@ -114,19 +132,28 @@ PRMicrodownWriterTest >> testExternalLink [
 PRMicrodownWriterTest >> testFigure [
 	"![Hello Pharo](url)"
 	
-	self testWithInitialText: (builder rawParagraph: [ builder figure: 'url' withDescription: self exampleText]; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder figure: '/url' withDescription: [ builder text: self exampleText]]; contents)
 ]
 
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithArgument [
 	"![Hello Pharo](url|label=fig&caption=This is a caption."
-	self testWithInitialText: (builder rawParagraph: [ builder figure: 'url|label=fig1&caption=This is **a** caption.&width=80' withDescription: self exampleText] ; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder figure: '/url|label=fig1&caption=This is **a** caption.&width=80' withDescription: [ builder text: self exampleText]] ; contents)
 ]
 
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithArgumentContainingFormatting [
 	"![Hello Pharo](url|label=fig&caption=This is a caption and it can contain **bol** but also `code`."
-	self testWithInitialText: (builder rawParagraph: [ (builder figure: 'url|label=fig&caption=This is a caption and it can contain **bol** but also `code`' withDescription: self exampleText) ]; contents)
+	self testWithInitialText: (builder rawParagraph: [ (builder figure: '/url|label=fig&caption=This is a caption and it can contain **bol** but also `code`' withDescription: [ builder text: self exampleText]) ]; contents)
+]
+
+{ #category : #'tests - figures' }
+PRMicrodownWriterTest >> testFigureWithReferenceAsByteString [
+	"![Hello Pharo](url)"
+	
+	| pillar |
+	pillar := PRPillarParser new parse: '+PharoLauncher - GUI.>file://figures/PharoLauncher.png|width=70|label=fig:PharoLauncher+'.
+	self assert: (writer start: pillar) contents equals: '![PharoLauncher - GUI.](file://figures/PharoLauncher.png|width=70&label=fig:PharoLauncher)'
 ]
 
 { #category : #'tests - header' }
@@ -330,7 +357,7 @@ PRMicrodownWriterTest >> testOneParagraph [
 PRMicrodownWriterTest >> testOneParagraphWithAdorment [
 	"**Pharo** is `COOL`"
 
-	self testWithInitialText: (builder rawParagraph: [ builder bold: 'Microdown'; text: ' is '; monospace: 'COOL' ]; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder bold: [builder text:'Microdown']; text: ' is '; monospace: [ builder text: 'COOL'] ]; contents)
 ]
 
 { #category : #'tests - list' }

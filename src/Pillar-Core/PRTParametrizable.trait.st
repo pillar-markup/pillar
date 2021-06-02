@@ -20,6 +20,11 @@ PRTParametrizable >> hasParameters [
 ]
 
 { #category : #'accessing-parameters' }
+PRTParametrizable >> parameterAt: aKey [ 
+	^ self parameters at: aKey
+]
+
+{ #category : #'accessing-parameters' }
 PRTParametrizable >> parameterAt: aKey put: aValue [
 	^ self parameters at: aKey put: aValue
 ]

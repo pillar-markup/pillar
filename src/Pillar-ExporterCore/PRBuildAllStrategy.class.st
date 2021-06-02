@@ -1,7 +1,7 @@
 Class {
 	#name : #PRBuildAllStrategy,
 	#superclass : #PRBuildStrategy,
-	#category : 'Pillar-ExporterCore-Base'
+	#category : #'Pillar-ExporterCore-Base'
 }
 
 { #category : #'instance-creation' }
@@ -21,9 +21,9 @@ PRBuildAllStrategy >> filesToBuildOn: aProject [
 
 	^ children flatCollect: [ :each |
 		each allChildren
-			select: [ :file | file isFile and: [ file extension = 'pillar' ] ]
+			select: [ :file | file isFile and: [ self isSupportedExtension: file extension ] ]
 			thenCollect: [ :file | 
-				PRInputDocument new
+				(PRInputDocument inputClassForFile: file) new
 					project: aProject;
 					file: file;
 					yourself ] ]

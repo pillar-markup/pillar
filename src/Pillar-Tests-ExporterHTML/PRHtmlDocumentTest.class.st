@@ -1,11 +1,9 @@
-"
-For testing the menu in an HtmlDocument
-"
 Class {
 	#name : #PRHtmlDocumentTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'project'
+		'project',
+		'memoryFileSystem'
 	],
 	#category : #'Pillar-Tests-ExporterHTML'
 }
@@ -13,7 +11,7 @@ Class {
 { #category : #tests }
 PRHtmlDocumentTest >> createMustacheTemplateFile [
 	| mustacheTemplate |
-	mustacheTemplate := 'html.mustache' asFileReference.
+	mustacheTemplate := memoryFileSystem / 'html.mustache'.
 	
 	mustacheTemplate writeStreamDo: [ :stream |
 		stream nextPutAll: 
@@ -45,7 +43,7 @@ PRHtmlDocumentTest >> createMustacheTemplateFile [
 { #category : #tests }
 PRHtmlDocumentTest >> createPillarConfFile [
 	| pillarConf |
-	pillarConf := 'pillar.conf' asFileReference.
+	pillarConf := memoryFileSystem / 'pillar.conf'.
 	
 	pillarConf writeStreamDo: [ :stream |
 		stream nextPutAll: '{
@@ -67,7 +65,7 @@ PRHtmlDocumentTest >> createPillarConfFile [
 { #category : #tests }
 PRHtmlDocumentTest >> createPillarFile1 [
 	| pillarFile |
-	pillarFile := 'input1.pillar' asFileReference.
+	pillarFile := memoryFileSystem / 'input1.pillar'.
 	
 	pillarFile writeStreamDo: [ :stream |
 		stream nextPutAll: '!!! TestFile11
@@ -103,37 +101,31 @@ Where are you !!
 { #category : #initialization }
 PRHtmlDocumentTest >> setUp [
 	super setUp.
+	memoryFileSystem := FileSystem memory.
 	self createPillarFile1.
 	self createMustacheTemplateFile.
 	self createPillarConfFile.
-	project := PRProject new baseDirectory: FileSystem workingDirectory
-	"htmlDocument := PRHtmlDocument new.
-	projectDirectory := '../test' asFileReference.
-	projectDirectory ensureDeleteAll.
-	projectDirectory ensureCreateDirectory.
-	project := PRProject on: projectDirectory."
-]
+	project := PRProject new baseDirectory: memoryFileSystem workingDirectory
 
-{ #category : #running }
-PRHtmlDocumentTest >> tearDown [
-	(FileSystem workingDirectory / 'input1.pillar') delete.
-	(FileSystem workingDirectory / 'pillar.conf') delete.
-	(FileSystem workingDirectory / 'html.mustache') delete.
-	super tearDown
 ]
 
 { #category : #tests }
 PRHtmlDocumentTest >> testMustacheTemplateWithHtmlOutputContainsTocAnnotation [
-	| htmlDocument |
-	htmlDocument := PRHtmlDocument new project: project; file: 'input1.pillar' asFileReference readStream; target: PRHtmlOutput new.
 	
-	self assert: ((htmlDocument getMustacheTemplateValuesFromDocument: (PRPillarParser parse: 'input1.pillar' asFileReference contents)) includesKey: #toc)
+	| htmlDocument |
+	htmlDocument := PRHtmlDocument new 
+		project: project; 
+		file: (memoryFileSystem / 'input1.pillar'); 
+		target: PRHtmlOutput new.
+	self assert: ((htmlDocument getMustacheTemplateValuesFromDocument: (PRPillarParser parse: (memoryFileSystem / 'input1.pillar') contents)) includesKey: #toc)
 ]
 
 { #category : #tests }
 PRHtmlDocumentTest >> testMustacheTemplateWithPdfOutputDontContainsTocAnnotation [
 	| htmlDocument |
-	htmlDocument := PRPDFDocument new project: project; file: 'input1.pillar' asFileReference readStream; target: PRPdfOutput new.
+	htmlDocument := PRPDFDocument new project: project; 
+		file: memoryFileSystem / 'input1.pillar'; 
+		target: PRPdfOutput new.
 	
-	self deny: ((htmlDocument getMustacheTemplateValuesFromDocument: (PRPillarParser parse: 'input1.pillar' asFileReference contents)) includesKey: #toc)
+	self deny: ((htmlDocument getMustacheTemplateValuesFromDocument: (PRPillarParser parse: (memoryFileSystem / 'input1.pillar') contents)) includesKey: #toc)
 ]

@@ -3,7 +3,7 @@ I am a class of trait used to test different exporter of slide. (e.g. Beamer exp
 "
 Trait {
 	#name : #PRTSliderWriterTest,
-	#category : 'Pillar-Tests-ExporterCore'
+	#category : #'Pillar-Tests-ExporterCore-Various'
 }
 
 { #category : #private }

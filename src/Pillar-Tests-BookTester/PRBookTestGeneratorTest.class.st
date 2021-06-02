@@ -61,7 +61,7 @@ PRBookTestGeneratorTest >> testMethodCreationFailingCodeblock [
 	testGenerator fileName: 'PRTTestMethodCreationFail'.
 	testGenerator createClassFrom: testGenerator fileName.
 	testGenerator codeBlockIndex: 1.
-	codeBlock := PRCodeblock content: '3+7>>>11' parameters: 'example=true'.
+	codeBlock := PRCodeblock content: '3+7>>>11' parameters: (OrderedDictionary newFromPairs: { 'example' . true }).
 	testGenerator createTestMethodFrom: codeBlock.
 	self assert: (self methodCreationFail methodDict includesKey: #test1).
 	self
@@ -83,7 +83,7 @@ PRBookTestGeneratorTest >> testMethodCreationSuccessfulCodeblock [
 	testGenerator fileName: 'PRTTestMethodCreationSuccess'.
 	testGenerator createClassFrom: testGenerator fileName.
 	testGenerator codeBlockIndex: 1.
-	codeBlock := PRCodeblock content: '3+4>>>7' parameters: 'testcase=true'.
+	codeBlock := PRCodeblock content: '3+4>>>7' parameters: (OrderedDictionary newFromPairs: { 'testcase' . true }).
 	testGenerator createTestMethodFrom: codeBlock.
 	self assert: (self methodCreationSuccess methodDict includesKey: #test1).
 	self
@@ -105,7 +105,7 @@ PRBookTestGeneratorTest >> testMethodCreationSyntaxErrorCodeblock [
 	testGenerator resultPackage: self packageName.
 	testGenerator createClassFrom: testGenerator fileName.
 	testGenerator codeBlockIndex: 1.
-	codeBlock := PRCodeblock content: '(a1 at: 1) at: 1 put: ''sally''. a1 >>> #(#(''sally''))' parameters: 'testcase=true'.
+	codeBlock := PRCodeblock content: '(a1 at: 1) at: 1 put: ''sally''. a1 >>> #(#(''sally''))' parameters: (OrderedDictionary newFromPairs: { 'testcase' . true }).
 	testGenerator createTestMethodFrom: codeBlock.
 	self assert: (self methodCreationError methodDict includesKey: #test1).
 	self
