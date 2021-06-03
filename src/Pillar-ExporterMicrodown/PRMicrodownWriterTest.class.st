@@ -151,11 +151,14 @@ PRMicrodownWriterTest >> testFigureWithArgumentContainingFormatting [
 ]
 
 { #category : #'tests - figures' }
-PRMicrodownWriterTest >> testFigureWithReferenceAsByteString [
+PRMicrodownWriterTest >> testFigureWithFileUrl [
 	
 	| pillar |
-	pillar := PRPillarParser new parse: '+PharoLauncher - GUI.>PharoLauncher.png|width=70|label=fig:PharoLauncher+'.
-	self assert: (writer start: pillar) contents equals: '![PharoLauncher - GUI.](/PharoLauncher.png?width=70&label=fig:PharoLauncher)'
+	self skip.
+	self flag: #fixme.
+	"fix when we see how use file url"
+	pillar := PRPillarParser new parse: '+PharoLauncher - GUI.>file://figures/PharoLauncher.png|width=70|label=fig:PharoLauncher+'.
+	self assert: (writer start: pillar) contents equals: '![PharoLauncher - GUI.](file://figures/PharoLauncher.png?width=70&label=fig:PharoLauncher)'
 ]
 
 { #category : #'tests - header' }
