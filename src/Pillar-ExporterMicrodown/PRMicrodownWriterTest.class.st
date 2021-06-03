@@ -106,6 +106,22 @@ PRMicrodownWriterTest >> testCodeBlockCaptionContainsMonospace [
 	self assert: ('*language*' match: mictext)
 ]
 
+{ #category : #'tests - code block' }
+PRMicrodownWriterTest >> testCodeBlockParametersWithValueTrue [
+	"```
+	Hello
+	Pharo
+	```"
+	| pillar |
+	pillar := PRPillarParser new parse: '[[[testcase=true
+this is a code block
+]]]'.
+	self assert: (pillar accept: writer) contents equals: '```testcase=true
+this is a code block
+```
+'
+]
+
 { #category : #'tests - comments' }
 PRMicrodownWriterTest >> testComment [
 	"% Hello Pharo"
