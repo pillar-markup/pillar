@@ -61,7 +61,7 @@ PRMicrodownWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
 { #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitBoldFormat: aFormat [
 
-	canvas bold: aFormat text
+	canvas bold: [aFormat children do: [:each |each accept: self]]
 ]
 
 { #category : #'visiting - document' }
@@ -112,10 +112,11 @@ PRMicrodownWriter >> visitExternalLink: anExternalLink [
 
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitFigure: aFigure [
-	
-	canvas 
-		figureURL: aFigure reference asString 
-		withCaption: [ aFigure children do: [:each | each accept: self ] ]
+
+	| figureName figureLink |
+	figureName := aFigure text.
+	figureLink := aFigure reference asUrl.
+	canvas figureURL: figureLink withCaption: [ aFigure children do: [:each | each accept: self]] withParameters: aFigure parameters
 ]
 
 { #category : #'visiting - document' }
@@ -141,7 +142,7 @@ PRMicrodownWriter >> visitInternalLink: anInternalLink [
 
 { #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitItalicFormat: aFormat [
-	canvas italic: aFormat text
+	canvas italic: [aFormat children do: [:each |each accept: self]]
 ]
 
 { #category : #'visiting - document' }
@@ -153,7 +154,7 @@ PRMicrodownWriter >> visitMetadata: aMetaData [
 
 { #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitMonospaceFormat: aFormat [
-	canvas monospace: aFormat text
+	canvas monospace: [aFormat children do: [:each |each accept: self]]
 ]
 
 { #category : #'visiting - list' }
@@ -195,7 +196,7 @@ PRMicrodownWriter >> visitPreformatted: aPreformatted [
 
 { #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitStrikethroughFormat: aFormat [
-	canvas strike: aFormat text
+	canvas strike: [aFormat children do: [:each |each accept: self]]
 ]
 
 { #category : #'visiting - formatting' }
