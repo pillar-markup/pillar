@@ -112,6 +112,7 @@ PRMicrodownWriter >> visitExternalLink: anExternalLink [
 
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitFigure: aFigure [
+
 	| figureName figureLink |
 	figureName := aFigure text.
 	figureLink := aFigure reference asUrl.

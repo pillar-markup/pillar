@@ -146,9 +146,12 @@ PRMicrodownWriterTest >> testExternalLink [
 
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigure [
-	"![Hello Pharo](url)"
+	"![Hello Pharo](http://www.pharo.org/foo.png)"
 	
-	self testWithInitialText: (builder rawParagraph: [ builder figureURLString: '/url' withCaption: [ builder text: self exampleText]]; contents)
+	self testWithInitialText: (builder 
+		rawParagraph: [ builder 
+								figureURLString: 'http://www.pharo.org/foo.png' 
+								withCaption: [ builder text: self exampleText ]]; contents)
 ]
 
 { #category : #'tests - figures' }
@@ -169,12 +172,29 @@ PRMicrodownWriterTest >> testFigureWithArgumentContainingFormatting [
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithFileUrl [
 	
-	| pillar |
+	"![Hello Pharo](url?label=fig&caption=This is a caption."
+	
+	self testWithInitialText: 
+		(builder rawParagraph: [ 
+			builder 
+				figureURLString: 'http://pharo.org/?label=fig&width=120' 
+				withCaption: [ builder text: self exampleText]] ; contents)
+]
+
+{ #category : #'tests - figures' }
+PRMicrodownWriterTest >> testFigureWithCaptionContainingFormatting [
+	"![This is a caption and it can contain **bol** but also `code`.](http://pharo.org)"
 	self skip.
-	self flag: #fixme.
-	"fix when we see how use file url"
-	pillar := PRPillarParser new parse: '+PharoLauncher - GUI.>file://figures/PharoLauncher.png|width=70|label=fig:PharoLauncher+'.
-	self assert: (writer start: pillar) contents equals: '![PharoLauncher - GUI.](file://figures/PharoLauncher.png?width=70&label=fig:PharoLauncher)'
+	"for now this is unclear if the PRfigure got all the format. May be a bug in the asPillar"
+	
+	self testWithInitialText: 
+		(builder rawParagraph: [ 
+				(builder 
+					figureURLString: 'http://pharo.org/light.png' 
+					withCaption: [ builder text: 'This is a caption and it can contain ';
+											bold: 'bol';
+											text: ' but also ';
+											monospace: '`code`'] )] ; contents)
 ]
 
 { #category : #'tests - header' }
