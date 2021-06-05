@@ -170,18 +170,6 @@ PRMicrodownWriterTest >> testFigureWithArgumentContainingFormatting [
 ]
 
 { #category : #'tests - figures' }
-PRMicrodownWriterTest >> testFigureWithFileUrl [
-	
-	"![Hello Pharo](url?label=fig&caption=This is a caption."
-	
-	self testWithInitialText: 
-		(builder rawParagraph: [ 
-			builder 
-				figureURLString: 'http://pharo.org/?label=fig&width=120' 
-				withCaption: [ builder text: self exampleText]] ; contents)
-]
-
-{ #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithCaptionContainingFormatting [
 	"![This is a caption and it can contain **bol** but also `code`.](http://pharo.org)"
 	self skip.
@@ -195,6 +183,18 @@ PRMicrodownWriterTest >> testFigureWithCaptionContainingFormatting [
 											bold: 'bol';
 											text: ' but also ';
 											monospace: '`code`'] )] ; contents)
+]
+
+{ #category : #'tests - figures' }
+PRMicrodownWriterTest >> testFigureWithFileUrl [
+	
+	"![Hello Pharo](url?label=fig&caption=This is a caption."
+	
+	self testWithInitialText: 
+		(builder rawParagraph: [ 
+			builder 
+				figureURLString: 'http://pharo.org/?label=fig&width=120' 
+				withCaption: [ builder text: self exampleText]] ; contents)
 ]
 
 { #category : #'tests - header' }

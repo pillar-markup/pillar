@@ -112,11 +112,10 @@ PRMicrodownWriter >> visitExternalLink: anExternalLink [
 
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitFigure: aFigure [
-
-	| figureName figureLink |
-	figureName := aFigure text.
-	figureLink := aFigure reference asUrl.
-	canvas figureURL: figureLink withCaption: [ aFigure children do: [:each | each accept: self]] withParameters: aFigure parameters
+	
+	canvas figureURL: aFigure reference 
+		withCaption: [ aFigure children do: [:each | each accept: self]] 
+		withParameters: aFigure parameters
 ]
 
 { #category : #'visiting - document' }
