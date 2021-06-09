@@ -141,7 +141,7 @@ PRMicrodownWriterTest >> testCommentOnMultipleLines [
 PRMicrodownWriterTest >> testExternalLink [
 	"[Hello Pharo](url)"
 	
-	self testWithInitialText: (builder rawParagraph: [builder externalLink: '/url' withDescription: self exampleText]; contents)
+	self testWithInitialText: (builder rawParagraph: [builder externalLink: '/url' withDescription: [ builder text: self exampleText]]; contents)
 ]
 
 { #category : #'tests - figures' }
@@ -242,7 +242,7 @@ PRMicrodownWriterTest >> testHeaderWithExternalLink [
 	"# Hello [Pharo](http://pharo.org) is cool"
 	
 	self testWithInitialText: (builder header: [ :b | b text: 'Hello '.
-											 b externalLink: 'http://pharo.org/' withDescription: 'Pharo'.
+											 b externalLink: 'http://pharo.org/' withDescription: [ builder text: 'Pharo' ].
 											 b text: ' is cool'] 
 										withLevel: 1;			
 							contents)
