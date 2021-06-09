@@ -106,14 +106,14 @@ PRMicrodownWriter >> visitEmptyParagraph: aParagraph [
 
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitExternalLink: anExternalLink [
-
-	canvas externalLink: anExternalLink reference printString withDescription: anExternalLink text
+	
+	canvas externalLink: anExternalLink reference printString withDescription: [ canvas text: anExternalLink text ]
 ]
 
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitFigure: aFigure [
 	
-	canvas figureURL: aFigure reference 
+	canvas figureURL: aFigure reference
 		withCaption: [ aFigure children do: [:each | each accept: self]] 
 		withParameters: aFigure parameters
 ]
