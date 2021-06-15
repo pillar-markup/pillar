@@ -1,7 +1,7 @@
-Extension { #name : #MicInlineSplitterTest }
+Extension { #name : #MicInlineParserTest }
 
 { #category : #'*Pillar-Microdown' }
-MicInlineSplitterTest >> testAnnotationAsPillar [
+MicInlineParserTest >> testAnnotationAsPillar [
 	| res |
 	res := self splitter pillarFrom: 'abc<?cite|a=2&b=5?>def'.
 	self assert: res second class equals: PRCitationAnnotation.
