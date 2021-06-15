@@ -220,7 +220,7 @@ PRMicrodownWriterTest >> testHeaderWithBold [
 
 	self testWithInitialText: (builder 
 							header: [ :b | b text: 'Hello '.
-											 b bold: 'Pharo'.
+											 b bold: [ b text: 'Pharo'].
 											 b text: ' is cool'] 
 							withLevel: 1;					
 							contents)
@@ -232,7 +232,7 @@ PRMicrodownWriterTest >> testHeaderWithCode [
 	
 	self testWithInitialText: (builder 
 							header: [ :b | b text: 'Hello '.
-											 b monospace: 'Pharo'.
+											 b monospace: [ b text: 'Pharo'].
 											 b text: ' is cool']  withLevel: 1;				
 							contents)
 ]
@@ -254,7 +254,7 @@ PRMicrodownWriterTest >> testHeaderWithItalic [
 	
 	self testWithInitialText: (builder 
 							header: [ :b | b text: 'Hello '.
-											 b italic: 'Pharo'.
+											 b italic: [ b text: 'Pharo'].
 											 b text: ' is cool']  withLevel: 1;				
 							contents)
 ]
@@ -265,7 +265,7 @@ PRMicrodownWriterTest >> testHeaderWithStrike [
 
 	self testWithInitialText: (builder 
 							header: [ :b | b text: 'Hello '.
-											 b strike: 'Pharo'.
+											 b strike: [ b text: 'Pharo'].
 											 b text: ' is cool']  withLevel: 1;				
 							contents)
 ]
