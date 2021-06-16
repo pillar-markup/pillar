@@ -49,6 +49,12 @@ PRMicrodownWriter >> start: anObject [
 	super start: anObject
 ]
 
+{ #category : #visiting }
+PRMicrodownWriter >> visitAnchor: anAnchor [
+
+	canvas anchor: anAnchor name
+]
+
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
 	"!!label paragraph
