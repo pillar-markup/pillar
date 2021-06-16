@@ -58,6 +58,14 @@ PRMicrodownWriterTest >> setUp [
 ]
 
 { #category : #'tests - annotated' }
+PRMicrodownWriterTest >> testAnchor [
+	"!!Note Pharo is cool and microdown too."
+	
+	self testWithInitialText: (builder anchor: 'Note'; contents).
+	self assert: parsedBloc children first label equals: 'Note'.
+]
+
+{ #category : #'tests - annotated' }
 PRMicrodownWriterTest >> testAnnotated [
 	"!!Note Pharo is cool and microdown too."
 	
