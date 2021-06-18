@@ -45,7 +45,7 @@ PRMicrodownWriter >> canvasClass [
 
 { #category : #'as yet unclassified' }
 PRMicrodownWriter >> canvasSetLF [
-	canvas setLine: String lf.
+	canvas setNewLineCharacterString: String lf.
 ]
 
 { #category : #accessing }
