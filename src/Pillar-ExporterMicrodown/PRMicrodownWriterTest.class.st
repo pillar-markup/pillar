@@ -57,6 +57,14 @@ PRMicrodownWriterTest >> setUp [
 	
 ]
 
+{ #category : #'tests - anchor' }
+PRMicrodownWriterTest >> testAnchor [
+ 	"!!Note Pharo is cool and microdown too."
+
+ 	self testWithInitialText: (builder anchor: 'Note'; contents).
+ 	self assert: parsedBloc children first label equals: 'Note'.
+]
+
 { #category : #'tests - annotated' }
 PRMicrodownWriterTest >> testAnnotated [
 	"!!Note Pharo is cool and microdown too."
@@ -139,15 +147,16 @@ PRMicrodownWriterTest >> testCommentOnMultipleLines [
 
 { #category : #'tests - external link' }
 PRMicrodownWriterTest >> testExternalLink [
-	"[Hello Pharo](url)"
-	
-	self testWithInitialText: (builder rawParagraph: [builder externalLink: '/url' withDescription: self exampleText]; contents)
+ 	"[Hello Pharo](url)"
+
+ 	self testWithInitialText: (builder 
+										rawParagraph: [builder externalLink: 'http://pharo.org/' 
+											withDescription: [ builder text: self exampleText]]; contents)
 ]
 
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigure [
 	"![Hello Pharo](http://www.pharo.org/foo.png)"
-	
 	self testWithInitialText: (builder 
 		rawParagraph: [ builder 
 								figureURLString: 'http://www.pharo.org/foo.png' 
@@ -156,7 +165,17 @@ PRMicrodownWriterTest >> testFigure [
 
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithArgument [
-	self testWithInitialText: (builder rawParagraph: [ builder figureURLString: '/url?label=fig1&width=80' withCaption: [ builder text: self exampleText]] ; contents)
+
+	self testWithInitialText: (builder
+			 rawParagraph: [ 
+				 builder
+					 figureURLString: 'http://pharo.org/'
+					 withCaption: [ builder text: self exampleText ]
+					 withParameters: (OrderedDictionary new
+							  at: 'label' put: 'fig1';
+							  at: 'width' put: '80';
+							  yourself) ];
+			 contents)
 ]
 
 { #category : #'tests - figures' }
@@ -201,7 +220,7 @@ PRMicrodownWriterTest >> testFigureWithFileUrl [
 PRMicrodownWriterTest >> testHeader [
 	"# Hello Pharo"
 	| text |
-	text := (builder header: [:b |  b text: self exampleText] withLevel: 1; contents).
+	text := (builder header: [ builder text: self exampleText ] withLevel: 1; contents).
 	self assert: ('*Pharo*' match: text). 
 	self testWithInitialText: text
 ]
@@ -210,7 +229,7 @@ PRMicrodownWriterTest >> testHeader [
 PRMicrodownWriterTest >> testHeaderLvl3 [
 	"### Hello Pharo"
 	
-	self testWithInitialText: (builder header: [:b |  b text: self exampleText] withLevel: 3; contents)
+	self testWithInitialText: (builder header: [ builder text: self exampleText ] withLevel: 3; contents)
 
 ]
 
@@ -219,9 +238,9 @@ PRMicrodownWriterTest >> testHeaderWithBold [
 	"# Hello **Pharo** is cool"
 
 	self testWithInitialText: (builder 
-							header: [ :b | b text: 'Hello '.
-											 b bold: [ b text: 'Pharo'].
-											 b text: ' is cool'] 
+							header: [ builder text: 'Hello ';
+											 bold: [ builder text: 'Pharo'];
+											 text: ' is cool'] 
 							withLevel: 1;					
 							contents)
 ]
@@ -231,9 +250,9 @@ PRMicrodownWriterTest >> testHeaderWithCode [
 	"# Hello `Pharo` is cool"
 	
 	self testWithInitialText: (builder 
-							header: [ :b | b text: 'Hello '.
-											 b monospace: [ b text: 'Pharo'].
-											 b text: ' is cool']  withLevel: 1;				
+							header: [ builder text: 'Hello ';
+											 monospace: [ builder text: 'Pharo'];
+											 text: ' is cool']  withLevel: 1;				
 							contents)
 ]
 
@@ -241,9 +260,11 @@ PRMicrodownWriterTest >> testHeaderWithCode [
 PRMicrodownWriterTest >> testHeaderWithExternalLink [
 	"# Hello [Pharo](http://pharo.org) is cool"
 	
-	self testWithInitialText: (builder header: [ :b | b text: 'Hello '.
-											 b externalLink: 'http://pharo.org/' withDescription: 'Pharo'.
-											 b text: ' is cool'] 
+	self testWithInitialText: (builder 
+										header: [ builder 
+											text: 'Hello ';
+											externalLink: 'http://pharo.org/' withDescription: [ builder text: 'Pharo' ];
+											text: ' is cool'] 
 										withLevel: 1;			
 							contents)
 ]
@@ -253,9 +274,10 @@ PRMicrodownWriterTest >> testHeaderWithItalic [
 	"# Hello _Pharo_ is cool"
 	
 	self testWithInitialText: (builder 
-							header: [ :b | b text: 'Hello '.
-											 b italic: [ b text: 'Pharo'].
-											 b text: ' is cool']  withLevel: 1;				
+							header: [ builder 
+											text: 'Hello ';
+											italic: [ builder text: 'Pharo'];
+											text: ' is cool']  withLevel: 1;				
 							contents)
 ]
 
@@ -264,9 +286,10 @@ PRMicrodownWriterTest >> testHeaderWithStrike [
 	"# Hello ~Pharo~ is cool"
 
 	self testWithInitialText: (builder 
-							header: [ :b | b text: 'Hello '.
-											 b strike: [ b text: 'Pharo'].
-											 b text: ' is cool']  withLevel: 1;				
+							header: [ builder 
+											text: 'Hello ';
+											strike: [ builder text: 'Pharo'];
+											text: ' is cool']  withLevel: 1;				
 							contents)
 ]
 
@@ -552,11 +575,12 @@ PRMicrodownWriterTest >> testUnorderedListWithFormat [
 
 { #category : #running }
 PRMicrodownWriterTest >> testWithInitialText: expectedString [
-	
+
 	parsedBloc := self parser parse: expectedString readStream.
-	writtenText := self writer start: parsedBloc asPillar; contents.
-	self assert: expectedString equals: writtenText.
-	
+	writtenText := self writer
+		               start: parsedBloc asPillar;
+		               contents.
+	self assert: expectedString equals: writtenText
 ]
 
 { #category : #accessing }
