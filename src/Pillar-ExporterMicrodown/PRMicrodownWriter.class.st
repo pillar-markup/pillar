@@ -43,6 +43,11 @@ PRMicrodownWriter >> canvasClass [
 	^ MicMicrodownTextualBuilder
 ]
 
+{ #category : #'as yet unclassified' }
+PRMicrodownWriter >> canvasSetLF [
+	canvas setNewLineCharacterString: String lf.
+]
+
 { #category : #accessing }
 PRMicrodownWriter >> start: anObject [
 	nesting := OrderedCollection new.
