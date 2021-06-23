@@ -217,6 +217,28 @@ PRMicrodownWriter >> visitStrikethroughFormat: aFormat [
 	canvas strike: [aFormat children do: [:each |each accept: self]]
 ]
 
+{ #category : #visiting }
+PRMicrodownWriter >> visitTable: aTable [
+	self visitAll: aTable children
+]
+
+{ #category : #visiting }
+PRMicrodownWriter >> visitTableCell: aTableRow [
+	canvas cell: [self visitAll: aTableRow children]
+]
+
+{ #category : #visiting }
+PRMicrodownWriter >> visitTableRow: aTableRow [
+	canvas newLine.
+	self visitAll: aTableRow children.
+	canvas raw: '|'.
+	aTableRow isHeading 
+		ifTrue:[ canvas newLine.
+			aTableRow children do: [ :each | canvas headCell ].
+				canvas raw: '|' ]
+
+]
+
 { #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitText: aText [
 
