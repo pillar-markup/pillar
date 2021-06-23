@@ -111,7 +111,7 @@ PRReference >> reference: aString [
 
 { #category : #'accessing-dynamic' }
 PRReference >> text [
-	^ super text ifEmpty: [ self reference ] ifNotEmpty: #yourself
+	^ super text ifEmpty: [ self reference asString ] ifNotEmpty: #yourself
 ]
 
 { #category : #accessing }

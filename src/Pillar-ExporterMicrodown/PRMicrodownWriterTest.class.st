@@ -154,6 +154,19 @@ PRMicrodownWriterTest >> testExternalLink [
 											withDescription: [ builder text: self exampleText]]; contents)
 ]
 
+{ #category : #'tests - external link' }
+PRMicrodownWriterTest >> testExternalLinkWithMicroDownMarkup [
+
+	"[Hello Pharo](url)"
+
+	self testWithInitialText: (builder
+			 rawParagraph: [ 
+				 builder
+					 externalLink: 'http://pharo.org/'
+					 withDescription: [ builder text: 'Pharo \~is c\**ool' ] ];
+			 contents)
+]
+
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigure [
 	"![Hello Pharo](http://www.pharo.org/foo.png)"
@@ -190,18 +203,23 @@ PRMicrodownWriterTest >> testFigureWithArgumentContainingFormatting [
 
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithCaptionContainingFormatting [
+
 	"![This is a caption and it can contain **bol** but also `code`.](http://pharo.org)"
+
 	self skip.
-	"for now this is unclear if the PRfigure got all the format. May be a bug in the asPillar"
-	
-	self testWithInitialText: 
-		(builder rawParagraph: [ 
-				(builder 
-					figureURLString: 'http://pharo.org/light.png' 
-					withCaption: [ builder text: 'This is a caption and it can contain ';
-											bold: 'bol';
-											text: ' but also ';
-											monospace: '`code`'] )] ; contents)
+	"Caption is duplicate"
+
+	self testWithInitialText: (builder
+			 rawParagraph: [ 
+				 builder
+					 figureURLString: 'http://pharo.org/light.png'
+					 withCaption: [ 
+						 builder
+							 text: 'This is a caption and it can contain ';
+							 bold: [ builder text: 'bol' ];
+							 text: ' but also ';
+							 monospace: [ builder text: '`code`' ] ] ];
+			 contents)
 ]
 
 { #category : #'tests - figures' }
@@ -216,12 +234,31 @@ PRMicrodownWriterTest >> testFigureWithFileUrl [
 				withCaption: [ builder text: self exampleText]] ; contents)
 ]
 
+{ #category : #'tests - figures' }
+PRMicrodownWriterTest >> testFigureWithMicroDownMarkup [
+
+	self testWithInitialText: (builder
+			 rawParagraph: [ 
+				 builder
+					 figureURLString: 'http://pharo.org/'
+					 withCaption: [ builder text: 'Pharo \~is\_\**cool' ]
+					 withParameters: (OrderedDictionary new
+							  at: 'label' put: 'fig1';
+							  at: 'width' put: '80';
+							  yourself) ];
+			 contents)
+]
+
 { #category : #'tests - header' }
 PRMicrodownWriterTest >> testHeader [
+
 	"# Hello Pharo"
+
 	| text |
-	text := (builder header: [ builder text: self exampleText ] withLevel: 1; contents).
-	self assert: ('*Pharo*' match: text). 
+	text := builder
+		        header: [ builder text: self exampleText ] withLevel: 1;
+		        contents.
+	self assert: ('*Pharo*' match: text).
 	self testWithInitialText: text
 ]
 
@@ -279,6 +316,19 @@ PRMicrodownWriterTest >> testHeaderWithItalic [
 											italic: [ builder text: 'Pharo'];
 											text: ' is cool']  withLevel: 1;				
 							contents)
+]
+
+{ #category : #'tests - header' }
+PRMicrodownWriterTest >> testHeaderWithMircroDownMarkup [
+
+	"# Hello Pharo"
+
+	| text |
+	text := builder
+		        header: [ builder text: 'Pharo \~is c\**ool' ] withLevel: 1;
+		        contents.
+	self assert: ('*Pharo*' match: text).
+	self testWithInitialText: text
 ]
 
 { #category : #'tests - header' }
@@ -453,6 +503,32 @@ PRMicrodownWriterTest >> testOrderedListWithFormat [
 	self assert: (mictext occurrencesOf: $.) equals: 2
 ]
 
+{ #category : #'tests - list' }
+PRMicrodownWriterTest >> testOrderedListWithMicroDownMarkup [
+
+	"- Hello
+	- Pharo"
+
+	| mictext |
+	mictext := builder
+		           orderedListDuring: [ 
+			           builder orderedItem: [ builder text: '\~Hello' ].
+			           builder orderedItem: [ builder text: '\**Beautiful' ].
+			           builder orderedItem: [ 
+					           builder text: 'Microdown item list' ] ];
+		           contents.
+	self testWithInitialText: mictext.
+	self assert: (mictext occurrencesOf: $.) equals: 3
+]
+
+{ #category : #'tests - paragraph' }
+PRMicrodownWriterTest >> testParagraphWithMicroDownMarkup [
+
+	self testWithInitialText: (builder
+			 rawParagraph: [ builder text: 'Pharo \_is su\~per c\**ool' ];
+			 contents)
+]
+
 { #category : #'tests - quote block' }
 PRMicrodownWriterTest >> testQuoteBlock [
 	"> Hello Pharo"
@@ -571,6 +647,23 @@ PRMicrodownWriterTest >> testUnorderedListWithFormat [
 						contents).
 	self testWithInitialText: mictext.
 	self assert: (mictext occurrencesOf: $-) equals: 2
+]
+
+{ #category : #'tests - list' }
+PRMicrodownWriterTest >> testUnorderedListWithMicroDownMarkup [
+
+	"- Hello
+	- Pharo"
+
+	| mictext |
+	mictext := builder
+		           unorderedListDuring: [ 
+			           builder item: [ builder text: '\~Hello' ].
+			           builder item: [ builder text: '\**Beautiful' ].
+			           builder item: [ builder text: 'Microdown item list' ] ];
+		           contents.
+	self testWithInitialText: mictext.
+	self assert: (mictext occurrencesOf: $-) equals: 3
 ]
 
 { #category : #running }
