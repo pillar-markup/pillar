@@ -122,11 +122,11 @@ PRMicrodownWriter >> visitEmptyParagraph: aParagraph [
 ]
 
 { #category : #'visiting - document' }
-PRMicrodownWriter >> visitExternalLink: anExternalLink [ 
- 	
- 	canvas 
-		externalLink: anExternalLink reference 
-		withDescription: [ canvas text: anExternalLink text ]
+PRMicrodownWriter >> visitExternalLink: anExternalLink [
+
+	canvas
+		externalLink: anExternalLink reference
+		withDescription: [ canvas text: (self backSlacher backSlashString: anExternalLink text) ]
 ]
 
 { #category : #'visiting - document' }
