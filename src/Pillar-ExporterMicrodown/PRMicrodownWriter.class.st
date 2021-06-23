@@ -39,11 +39,17 @@ PRMicrodownWriter class >> writerName [
 ]
 
 { #category : #accessing }
+PRMicrodownWriter >> backSlacher [
+
+	^ MicrodownBackSlacher new
+]
+
+{ #category : #accessing }
 PRMicrodownWriter >> canvasClass [
 	^ MicMicrodownTextualBuilder
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PRMicrodownWriter >> canvasSetLF [
 	canvas setNewLineCharacterString: String lf.
 ]
@@ -213,8 +219,8 @@ PRMicrodownWriter >> visitStrikethroughFormat: aFormat [
 
 { #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitText: aText [
-	
-	canvas raw: aText text
+
+	canvas raw:  (self backSlacher backSlashString: aText text)
 ]
 
 { #category : #'visiting - list' }
