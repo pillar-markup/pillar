@@ -54,10 +54,10 @@ PRMicrodownWriter >> start: anObject [
 	super start: anObject
 ]
 
-{ #category : #visiting }
+{ #category : #'visiting - document' }
 PRMicrodownWriter >> visitAnchor: anAnchor [
 
-	canvas anchor: anAnchor name
+ 	canvas anchor: anAnchor name
 ]
 
 { #category : #'visiting - document' }
@@ -116,15 +116,17 @@ PRMicrodownWriter >> visitEmptyParagraph: aParagraph [
 ]
 
 { #category : #'visiting - document' }
-PRMicrodownWriter >> visitExternalLink: anExternalLink [
-	
-	canvas externalLink: anExternalLink reference printString withDescription: [ canvas text: anExternalLink text ]
+PRMicrodownWriter >> visitExternalLink: anExternalLink [ 
+ 	
+ 	canvas 
+		externalLink: anExternalLink reference 
+		withDescription: [ canvas text: anExternalLink text ]
 ]
 
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitFigure: aFigure [
 	
-	canvas figureURL: aFigure reference asUrl
+	canvas figureURLString: aFigure reference 
 		withCaption: [ aFigure children do: [:each | each accept: self]] 
 		withParameters: aFigure parameters
 ]
@@ -133,7 +135,7 @@ PRMicrodownWriter >> visitFigure: aFigure [
 PRMicrodownWriter >> visitHeader: aHeader [
 	| level |
 	level := aHeader level min: 6 max: 1.
-	canvas rawHeader:  [ :b| super visitHeader: aHeader ] withLevel: level.
+	canvas rawHeader:  [ super visitHeader: aHeader ] withLevel: level.
 	canvas newLine
 ]
 
