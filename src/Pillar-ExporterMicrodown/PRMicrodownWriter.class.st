@@ -113,6 +113,17 @@ PRMicrodownWriter >> visitCommentedLine: aCommentedLine [
 	canvas comment: aCommentedLine text
 ]
 
+{ #category : #'visiting - list' }
+PRMicrodownWriter >> visitDataItem: aDataItem [
+	self visitAll: aDataItem children
+]
+
+{ #category : #'visiting - list' }
+PRMicrodownWriter >> visitDefinitionList: aDefinitionList [
+	aDefinitionList children do: [ :child | 
+		child accept: self ]
+]
+
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitDocument: aDocument [
 	aDocument children
@@ -243,6 +254,13 @@ PRMicrodownWriter >> visitTableRow: aTableRow [
 			aTableRow children do: [ :each | canvas headCell ].
 				canvas raw: '|' ]
 
+]
+
+{ #category : #'visiting - list' }
+PRMicrodownWriter >> visitTermItem: aTermItem [
+	canvas newLine.
+	self visitAll: aTermItem children.
+	canvas raw: ' : '
 ]
 
 { #category : #'visiting - formatting' }
