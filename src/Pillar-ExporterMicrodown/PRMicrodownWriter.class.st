@@ -81,6 +81,11 @@ PRMicrodownWriter >> visitBoldFormat: aFormat [
 	canvas bold: [aFormat children do: [:each |each accept: self]]
 ]
 
+{ #category : #'visiting - formatting' }
+PRMicrodownWriter >> visitChildrenWithoutBackslash: aChildren [
+	aChildren do: [ :each | self visitTextWithoutBackslash: each ]
+]
+
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitCodeblock: aCodeBlock [ 
 	
@@ -172,7 +177,7 @@ PRMicrodownWriter >> visitMetadata: aMetaData [
 
 { #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitMonospaceFormat: aFormat [
-	canvas monospace: [aFormat children do: [:each |each accept: self]]
+	canvas monospace: [self visitChildrenWithoutBackslash: aFormat children]
 ]
 
 { #category : #'visiting - list' }
@@ -224,7 +229,8 @@ PRMicrodownWriter >> visitTable: aTable [
 
 { #category : #visiting }
 PRMicrodownWriter >> visitTableCell: aTableRow [
-	canvas cell: [self visitAll: aTableRow children]
+	canvas cell: [self visitAll: aTableRow children] 
+	
 ]
 
 { #category : #visiting }
@@ -243,6 +249,11 @@ PRMicrodownWriter >> visitTableRow: aTableRow [
 PRMicrodownWriter >> visitText: aText [
 
 	canvas raw:  (self backSlacher backSlashString: aText text)
+]
+
+{ #category : #'visiting - formatting' }
+PRMicrodownWriter >> visitTextWithoutBackslash: aText [
+	canvas text: aText text
 ]
 
 { #category : #'visiting - list' }
