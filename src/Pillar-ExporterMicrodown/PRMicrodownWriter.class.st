@@ -259,8 +259,9 @@ PRMicrodownWriter >> visitTableRow: aTableRow [
 { #category : #'visiting - list' }
 PRMicrodownWriter >> visitTermItem: aTermItem [
 	canvas newLine.
+	canvas newLine.
 	self visitAll: aTermItem children.
-	canvas raw: ' : '
+	canvas newLine
 ]
 
 { #category : #'visiting - formatting' }
