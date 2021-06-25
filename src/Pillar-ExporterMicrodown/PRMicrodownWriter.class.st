@@ -39,9 +39,9 @@ PRMicrodownWriter class >> writerName [
 ]
 
 { #category : #accessing }
-PRMicrodownWriter >> backSlacher [
+PRMicrodownWriter >> backSlasher [
 
-	^ MicrodownBackSlacher new
+	^ MicrodownBackSlasher new
 ]
 
 { #category : #accessing }
@@ -142,7 +142,7 @@ PRMicrodownWriter >> visitExternalLink: anExternalLink [
 
 	canvas
 		externalLink: anExternalLink reference
-		withDescription: [ canvas text: (self backSlacher backSlashString: anExternalLink text) ]
+		withDescription: [ canvas text: (self backSlasher backSlashString: anExternalLink text) ]
 ]
 
 { #category : #'visiting - document' }
@@ -267,7 +267,7 @@ PRMicrodownWriter >> visitTermItem: aTermItem [
 { #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitText: aText [
 
-	canvas raw:  (self backSlacher backSlashString: aText text)
+	canvas raw:  (self backSlasher backSlashString: aText text)
 ]
 
 { #category : #'visiting - formatting' }
