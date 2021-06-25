@@ -39,9 +39,9 @@ PRMicrodownWriter class >> writerName [
 ]
 
 { #category : #accessing }
-PRMicrodownWriter >> backSlacher [
+PRMicrodownWriter >> backSlasher [
 
-	^ MicrodownBackSlacher new
+	^ MicrodownBackSlasher new
 ]
 
 { #category : #accessing }
@@ -81,6 +81,11 @@ PRMicrodownWriter >> visitBoldFormat: aFormat [
 	canvas bold: [aFormat children do: [:each |each accept: self]]
 ]
 
+{ #category : #'visiting - formatting' }
+PRMicrodownWriter >> visitChildrenWithoutBackslash: aChildren [
+	aChildren do: [ :each | self visitTextWithoutBackslash: each ]
+]
+
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitCodeblock: aCodeBlock [ 
 	
@@ -108,6 +113,17 @@ PRMicrodownWriter >> visitCommentedLine: aCommentedLine [
 	canvas comment: aCommentedLine text
 ]
 
+{ #category : #'visiting - list' }
+PRMicrodownWriter >> visitDataItem: aDataItem [
+	self visitAll: aDataItem children
+]
+
+{ #category : #'visiting - list' }
+PRMicrodownWriter >> visitDefinitionList: aDefinitionList [
+	aDefinitionList children do: [ :child | 
+		child accept: self ]
+]
+
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitDocument: aDocument [
 	aDocument children
@@ -126,7 +142,7 @@ PRMicrodownWriter >> visitExternalLink: anExternalLink [
 
 	canvas
 		externalLink: anExternalLink reference
-		withDescription: [ canvas text: (self backSlacher backSlashString: anExternalLink text) ]
+		withDescription: [ canvas text: (self backSlasher backSlashString: anExternalLink text) ]
 ]
 
 { #category : #'visiting - document' }
@@ -172,7 +188,7 @@ PRMicrodownWriter >> visitMetadata: aMetaData [
 
 { #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitMonospaceFormat: aFormat [
-	canvas monospace: [aFormat children do: [:each |each accept: self]]
+	canvas monospace: [self visitChildrenWithoutBackslash: aFormat children]
 ]
 
 { #category : #'visiting - list' }
@@ -217,10 +233,46 @@ PRMicrodownWriter >> visitStrikethroughFormat: aFormat [
 	canvas strike: [aFormat children do: [:each |each accept: self]]
 ]
 
+{ #category : #visiting }
+PRMicrodownWriter >> visitTable: aTable [
+	self visitAll: aTable children
+]
+
+{ #category : #visiting }
+PRMicrodownWriter >> visitTableCell: aTableRow [
+	canvas cell: [self visitAll: aTableRow children] 
+	
+]
+
+{ #category : #visiting }
+PRMicrodownWriter >> visitTableRow: aTableRow [
+	canvas newLine.
+	self visitAll: aTableRow children.
+	canvas raw: '|'.
+	aTableRow isHeading 
+		ifTrue:[ canvas newLine.
+			aTableRow children do: [ :each | canvas headCell ].
+				canvas raw: '|' ]
+
+]
+
+{ #category : #'visiting - list' }
+PRMicrodownWriter >> visitTermItem: aTermItem [
+	canvas newLine.
+	canvas newLine.
+	self visitAll: aTermItem children.
+	canvas newLine
+]
+
 { #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitText: aText [
 
-	canvas raw:  (self backSlacher backSlashString: aText text)
+	canvas raw:  (self backSlasher backSlashString: aText text)
+]
+
+{ #category : #'visiting - formatting' }
+PRMicrodownWriter >> visitTextWithoutBackslash: aText [
+	canvas text: aText text
 ]
 
 { #category : #'visiting - list' }
