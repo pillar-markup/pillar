@@ -521,6 +521,25 @@ PRMicrodownWriterTest >> testOrderedListWithMicroDownMarkup [
 	self assert: (mictext occurrencesOf: $.) equals: 3
 ]
 
+{ #category : #tests }
+PRMicrodownWriterTest >> testPRInputFileAnnotation [
+	| pillar |
+	pillar := PRPillarParser new parse: '${inputFile:path=Chapters/Smacc/SmaccIntro.pillar}$
+
+${inputFile:path=Chapters/Smacc/SmaccTutorial.pillar}$
+
+${inputFile:path=Chapters/Smacc/SmaccScanner.pillar}$
+
+${inputFile:path=Chapters/Smacc/SmaccParser.pillar}$'.
+	self assert: (self writer start: pillar) contents equals: ' <? inputFile: |path=Chapters/Smacc/SmaccIntro.pillar?>
+
+ <? inputFile: |path=Chapters/Smacc/SmaccTutorial.pillar?>
+
+ <? inputFile: |path=Chapters/Smacc/SmaccScanner.pillar?>
+
+ <? inputFile: |path=Chapters/Smacc/SmaccParser.pillar?>'
+]
+
 { #category : #'tests - paragraph' }
 PRMicrodownWriterTest >> testParagraphWithMicroDownMarkup [
 
