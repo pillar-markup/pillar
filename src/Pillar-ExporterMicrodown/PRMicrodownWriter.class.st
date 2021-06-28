@@ -167,6 +167,21 @@ PRMicrodownWriter >> visitHorizontalRule: anHorizontalLine [
 	canvas horizontalLine
 ]
 
+{ #category : #visiting }
+PRMicrodownWriter >> visitInputFileAnnotation: anInput [
+	
+	canvas raw: ' <? inputFile: '.
+	anInput parameters ifNotEmpty: [ canvas raw: '|' ].
+	anInput parameters keysAndValuesDo: [ :key :value | canvas 
+						raw: key asString;
+						raw: '=';
+						raw: value asString.
+						anInput parameters keys last = key 	
+							ifFalse: [canvas raw: '&']].
+	canvas raw: '?>'
+	
+]
+
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitInternalLink: anInternalLink [
 	"Corresponding to *@fig1* in Pillar"
