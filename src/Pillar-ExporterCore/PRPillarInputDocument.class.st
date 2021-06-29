@@ -13,7 +13,7 @@ PRPillarInputDocument class >> doesHandleExtension: anExtension [
 { #category : #accessing }
 PRPillarInputDocument >> parsedDocument [
 
-	^ self parserClass parse: file
+	^ self parserClass parse: file contents
 ]
 
 { #category : #accessing }

@@ -87,7 +87,10 @@ PRFileInclusion >> visitInputFileAnnotation: anInputFileAnnotation [
 	includedFile := topFile parent resolve: anInputFileAnnotation path.
 	self validateInclusionOfFile: includedFile.
 	
-	includedPillarAST := PRDocument parser parse: includedFile.
+	includedPillarAST := ((PRInputDocument inputClassForFile: includedFile) new
+								"project: aProject;"
+								file: includedFile contents;
+								yourself) parsedDocument.
 	
 	cleanPillarAST := (PRCleanAnnotationInParagraphTransformer new
 		configuration: self configuration;
