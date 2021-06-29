@@ -9,6 +9,12 @@ Class {
 }
 
 { #category : #factory }
+PRInputDocument class >> forFile: aFile [
+	
+	^ (self inputClassForFile: aFile) new file: aFile ; yourself
+]
+
+{ #category : #factory }
 PRInputDocument class >> inputClassForFile: aFile [
 	
 	^ self subclasses

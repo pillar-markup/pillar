@@ -55,6 +55,18 @@ PRInputDocumentTest >> testParsedDocument [
 ]
 
 { #category : #tests }
+PRInputDocumentTest >> testParsedDocument2 [
+	
+	| doc |
+	doc := (PRInputDocument forFile: memoryFileSystem / 'input1.pillar') parsedDocument.
+	self 
+		assert: doc class
+		equals: PRDocument
+
+
+]
+
+{ #category : #tests }
 PRInputDocumentTest >> testRegistration [
 	
 	| inputClass |
@@ -70,6 +82,17 @@ PRInputDocumentTest >> testRegistrationNoCandidate [
 	
 	| inputClass |
 	inputClass := (PRInputDocument inputClassForFile: memoryFileSystem / 'input1.Zork').
+	self 
+		assert: inputClass 
+		equals: PRNoInputDocument
+
+]
+
+{ #category : #tests }
+PRInputDocumentTest >> testRegistrationNoCandidate2 [
+	
+	| inputClass |
+	inputClass := (PRInputDocument forFile: memoryFileSystem / 'input1.Zork') class.
 	self 
 		assert: inputClass 
 		equals: PRNoInputDocument

@@ -17,6 +17,17 @@ PRMicrodownInputDocumentTest >> testParsedDocument [
 ]
 
 { #category : #tests }
+PRMicrodownInputDocumentTest >> testParsedDocument2 [
+	
+	| doc |
+	doc := (PRInputDocument forFile: memoryFileSystem / 'input1.mic') parsedDocument.
+	self 
+		assert: doc class
+		equals: PRDocument
+
+]
+
+{ #category : #tests }
 PRMicrodownInputDocumentTest >> testParserClass [
 	
 	| input |
@@ -28,10 +39,32 @@ PRMicrodownInputDocumentTest >> testParserClass [
 ]
 
 { #category : #tests }
+PRMicrodownInputDocumentTest >> testParserClass2 [
+	
+	| input |
+	input := PRInputDocument forFile: memoryFileSystem / 'input1.mic'.
+	self 
+		assert: input parserClass 
+		equals: MicroDownParser
+
+]
+
+{ #category : #tests }
 PRMicrodownInputDocumentTest >> testRegistration [
 	
 	| inputClass |
 	inputClass := (PRInputDocument inputClassForFile: memoryFileSystem / 'input1.mic').
+	self 
+		assert: inputClass 
+		equals: PRMicrodownInputDocument
+
+]
+
+{ #category : #tests }
+PRMicrodownInputDocumentTest >> testRegistration2 [
+	
+	| inputClass |
+	inputClass := (PRInputDocument forFile: memoryFileSystem / 'input1.mic') class.
 	self 
 		assert: inputClass 
 		equals: PRMicrodownInputDocument

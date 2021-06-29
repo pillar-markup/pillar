@@ -24,8 +24,7 @@ PRBuildListStrategy >> files: aCollection [
 PRBuildListStrategy >> filesToBuildOn: aProject [
 
 	^ files collect: [ :file | 
-				(PRInputDocument inputClassForFile: file asFileReference) new
+				(PRInputDocument forFile: (aProject baseDirectory resolve: file))
 					project: aProject;
-					file: (aProject baseDirectory resolve: file);
 					yourself ]
 ]
