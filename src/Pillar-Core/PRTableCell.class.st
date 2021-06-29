@@ -8,7 +8,7 @@ Class {
 		'align',
 		'heading'
 	],
-	#category : #'Pillar-Model-Document'
+	#category : #'Pillar-Core'
 }
 
 { #category : #'instance creation' }

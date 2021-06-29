@@ -4,7 +4,7 @@ I am a row of a table. My children are instances of *PRTableCell*.
 Class {
 	#name : #PRTableRow,
 	#superclass : #PRDocumentGroup,
-	#category : #'Pillar-Model-Document'
+	#category : #'Pillar-Core'
 }
 
 { #category : #visiting }
