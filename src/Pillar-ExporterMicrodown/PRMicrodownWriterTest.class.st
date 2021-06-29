@@ -523,21 +523,29 @@ PRMicrodownWriterTest >> testOrderedListWithMicroDownMarkup [
 
 { #category : #tests }
 PRMicrodownWriterTest >> testPRInputFileAnnotation [
+
 	| pillar |
-	pillar := PRPillarParser new parse: '${inputFile:path=Chapters/Smacc/SmaccIntro.pillar}$
+	pillar := PRPillarParser new parse:
+		          '${inputFile:path=Chapters/Smacc/SmaccIntro.pillar}$
 
 ${inputFile:path=Chapters/Smacc/SmaccTutorial.pillar}$
 
 ${inputFile:path=Chapters/Smacc/SmaccScanner.pillar}$
 
 ${inputFile:path=Chapters/Smacc/SmaccParser.pillar}$'.
-	self assert: (self writer start: pillar) contents equals: ' <? inputFile: |path=Chapters/Smacc/SmaccIntro.pillar?>
+	self
+		assert: (self writer start: pillar) contents
+		equals: '<? inputFile: |path=Chapters/Smacc/SmaccIntro.pillar
+?>
 
- <? inputFile: |path=Chapters/Smacc/SmaccTutorial.pillar?>
+<? inputFile: |path=Chapters/Smacc/SmaccTutorial.pillar
+?>
 
- <? inputFile: |path=Chapters/Smacc/SmaccScanner.pillar?>
+<? inputFile: |path=Chapters/Smacc/SmaccScanner.pillar
+?>
 
- <? inputFile: |path=Chapters/Smacc/SmaccParser.pillar?>'
+<? inputFile: |path=Chapters/Smacc/SmaccParser.pillar
+?>'
 ]
 
 { #category : #'tests - paragraph' }

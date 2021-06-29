@@ -169,17 +169,17 @@ PRMicrodownWriter >> visitHorizontalRule: anHorizontalLine [
 
 { #category : #visiting }
 PRMicrodownWriter >> visitInputFileAnnotation: anInput [
-	
-	canvas raw: ' <? inputFile: '.
+
+	canvas raw: '<? inputFile: '.
 	anInput parameters ifNotEmpty: [ canvas raw: '|' ].
-	anInput parameters keysAndValuesDo: [ :key :value | canvas 
-						raw: key asString;
-						raw: '=';
-						raw: value asString.
-						anInput parameters keys last = key 	
-							ifFalse: [canvas raw: '&']].
+	anInput parameters keysAndValuesDo: [ :key :value | 
+		canvas
+			raw: key asString;
+			raw: '=';
+			raw: value asString.
+		anInput parameters keys last = key ifFalse: [ canvas raw: '&' ] ].
+	canvas newLine.
 	canvas raw: '?>'
-	
 ]
 
 { #category : #'visiting - document' }
