@@ -1,0 +1,8 @@
+! My First book
+
+
+${inputFile:path=Chapters/Chapter1/chapter1.mic}$
+
+${inputFile:path=Chapters/Chapter2/chapter2.mic}$
+
+
