@@ -19,7 +19,7 @@ For SSH setup, execute the `build.sh` script found in the `scripts` directory:
 ```bash
 $ git clone git@github.com:pillar-markup/pillar.git
 $ cd pillar
-$ git checkout v8.0.12
+$ git checkout v8.0.14
 $ chmod a+x ./scripts/build.sh
 $ ./scripts/build.sh
 ```
