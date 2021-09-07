@@ -51,7 +51,7 @@ BaselineOfPillarApp >> baseline: spec [
 						loads: #('Core' 'Tests') ].
 					
 			spec baseline: 'PillarDocumentModel' 
-					with: [ spec repository: 'github://Pillar-markup/pillar:dev-8' 
+					with: [ spec repository: 'github://pillar-markup/pillar:dev-8' 
 					"self packageRepositoryURL" ].
 
 			spec package: 'Pillar-Tests-Core' with: [ spec 
