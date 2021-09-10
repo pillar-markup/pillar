@@ -41,7 +41,7 @@ if [ "$OS" == "win" ]; then
     REPOSITORY_PATH=$(cygpath $REPOSITORY_PATH --windows)
 fi
 
-${PHARO} eval --save "Metacello new baseline: 'PillarApp'; repository: 'gitlocal://${REPOSITORY_PATH}'; load"
+${PHARO} eval --save "Iceberg remoteTypeSelector: #httpsUrl. Metacello new baseline: 'PillarApp'; repository: 'gitlocal://${REPOSITORY_PATH}'; load"
 
 ${PHARO} eval --save "Deprecation raiseWarning: false."
 ${PHARO} eval --save "Deprecation showWarning: false."
