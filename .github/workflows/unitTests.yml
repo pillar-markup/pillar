@@ -25,7 +25,7 @@ jobs:
       - uses: hpi-swa/setup-smalltalkCI@v1
         id: smalltalkci
         with:
-          smalltalk-version: Pharo64-8.0
+          smalltalk-version: Pharo64-9.0
       - run: smalltalkci -s ${{ steps.smalltalkci.outputs.smalltalk-version }} .smalltalk.Unit.DocumentModel.ston
         shell: bash
         timeout-minutes: 15
