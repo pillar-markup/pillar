@@ -41,7 +41,7 @@ if [ "$OS" == "win" ]; then
     REPOSITORY_PATH=$(cygpath $REPOSITORY_PATH --windows)
 fi
 
-${PHARO} st "${__dir}/unload_md.st"
+${PHARO} st --quit --save "${__dir}/unload_md.st"
 
 ${PHARO} eval --save "Iceberg remoteTypeSelector: #httpsUrl. Metacello new baseline: 'PillarApp'; repository: 'gitlocal://${REPOSITORY_PATH}'; load"
 
