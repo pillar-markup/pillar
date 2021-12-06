@@ -194,6 +194,12 @@ PRMicrodownWriter >> visitItalicFormat: aFormat [
 	canvas italic: [aFormat children do: [:each |each accept: self]]
 ]
 
+{ #category : #visiting }
+PRMicrodownWriter >> visitListItem: anObject [
+
+	^ self visitDocumentGroup: anObject
+]
+
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitMetadata: aMetaData [
 
@@ -220,10 +226,10 @@ PRMicrodownWriter >> visitOrderedList2: anOrderedList [
 ]
 
 { #category : #'visiting - list' }
-PRMicrodownWriter >> visitOrderedList: anUnorderedList [
+PRMicrodownWriter >> visitOrderedList: anOrderedList [
 
 	canvas orderedListDuring: [
-		anUnorderedList children
+		anOrderedList children
 			do: [ :child | canvas orderedItem: [ self visit: child ] ] ]
 ]
 
@@ -293,6 +299,8 @@ PRMicrodownWriter >> visitTextWithoutBackslash: aText [
 { #category : #'visiting - list' }
 PRMicrodownWriter >> visitUnorderedList: anUnorderedList [
 	"We do not have enough information (such as am I the latest of the list and is my container another list or the root document) to control the fact that we should not emit a newline for the last item."
+	
+	
 	canvas unorderedListDuring: [
 		anUnorderedList children
 			do: [ :child | canvas item: [self visit: child ] ] ]
