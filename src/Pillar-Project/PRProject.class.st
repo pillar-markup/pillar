@@ -41,7 +41,8 @@ Class {
 	#superclass : #PRObject,
 	#instVars : [
 		'baseDirectory',
-		'templatable'
+		'templatable',
+		'toc'
 	],
 	#category : #'Pillar-Project-Core'
 }
@@ -214,10 +215,13 @@ PRProject >> supportDirectory [
 { #category : #accessing }
 PRProject >> tableOfContents [
 	| tocFilePath tocFileName inputDoc |
+	toc ifNotNil: [ ^ toc ].
+	
 	tocFilePath := self configuration propertyAt: 'tocFile' ifAbsent: [ ^ PRToc new ].
 	tocFileName := self class pathToString: tocFilePath.
 	inputDoc := PRPillarParserMain parse: (self baseDirectory / tocFileName) contents.
-	^ PRTocBuilderVisitor new
+	
+	^ toc := PRTocBuilderVisitor new
 		documentSource: self baseDirectory / tocFileName;
 		currentFile: tocFileName;
 		inProcessFiles: (Array with: self baseDirectory / tocFileName);
