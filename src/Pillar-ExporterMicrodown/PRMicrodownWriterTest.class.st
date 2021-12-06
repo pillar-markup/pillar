@@ -193,7 +193,7 @@ PRMicrodownWriterTest >> testFigureWithArgument [
 
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithArgumentContainingFormatting [
-	self testWithInitialText: (builder rawParagraph: [ (builder figureURLString: '/url' 
+	self testWithInitialText: (builder rawParagraph: [ (builder figureURLString: 'file:///url' 
 																				  withCaption: [ builder rawParagraph: [builder text:'You can have '.
 																																	builder bold: [ builder text: 'bold' ].	
 																																	builder text: ' but also '.
@@ -230,7 +230,7 @@ PRMicrodownWriterTest >> testFigureWithFileUrl [
 	self testWithInitialText: 
 		(builder rawParagraph: [ 
 			builder 
-				figureURLString: 'http://pharo.org/?label=fig&width=120' 
+				figureURLString: 'http://pharo.org/label=fig&width=120' 
 				withCaption: [ builder text: self exampleText]] ; contents)
 ]
 
@@ -288,7 +288,7 @@ PRMicrodownWriterTest >> testHeaderWithCode [
 	
 	self testWithInitialText: (builder 
 							header: [ builder text: 'Hello ';
-											 monospace: [ builder text: 'Pharo'];
+											 monospace: 'Pharo';
 											 text: ' is cool']  withLevel: 1;				
 							contents)
 ]
@@ -471,7 +471,7 @@ PRMicrodownWriterTest >> testOneParagraph [
 PRMicrodownWriterTest >> testOneParagraphWithAdorment [
 	"**Pharo** is `COOL`"
 
-	self testWithInitialText: (builder rawParagraph: [ builder bold: [builder text:'Microdown']; text: ' is '; monospace: [ builder text: 'COOL'] ]; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder bold: [builder text:'Microdown']; text: ' is '; monospace: 'COOL' ]; contents)
 ]
 
 { #category : #'tests - list' }
