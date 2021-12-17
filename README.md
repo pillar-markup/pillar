@@ -14,17 +14,6 @@ Pillar is a markup syntax and tool-suite to generate documentation, books, websi
 ## Installation
 
 ### 1. Building from sources
-For SSH setup, execute the `build.sh` script found in the `scripts` directory:
-
-```bash
-$ git clone git@github.com:pillar-markup/pillar.git
-$ cd pillar
-$ git checkout v8.0.14
-$ chmod a+x ./scripts/build.sh
-$ ./scripts/build.sh
-```
-
-### 1. Building from sources
 For HTTPS setup, execute the `build.sh` script found in the `scripts` directory:
 
 ```bash
