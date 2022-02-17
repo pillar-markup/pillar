@@ -7,26 +7,27 @@ Class {
 	#category : #'Pillar-ExporterMicrodown'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #stuff }
 BookAsDocBuilder >> bookFiles [
 
-	^ PRInputFileFinder new 
-		fromIndexFile: self fileIndex; files
+	^ PRInputFileFinder 
+		fromFileIndex: self fileIndex; files
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #stuff }
 BookAsDocBuilder >> fileIndex [
-
 	"self new readingTitle"
+
 	| folder index | 
 	folder := '/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-PharoWithStyle' asFileReference.
 	index := folder asFileReference children detect: [ :f | f extension = 'pillar' ]. 
 	PRPillarParser parse: index contents
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #stuff }
 BookAsDocBuilder >> loadMetaData [
 	"self new readingTitle"
+	
 	| folder | 
 	folder := '/Users/ducasse/Workspace/FirstCircle/MyBooks/Bk-Writing/PharoBooks2/Booklet-PharoWithStyle' asFileReference.
 	metadata := STON fromStream: (folder / 'pillar.conf') readStream.
@@ -34,7 +35,7 @@ BookAsDocBuilder >> loadMetaData [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #stuff }
 BookAsDocBuilder >> title [ 
 	^ metadata at: #title ifAbsent: [ 'Strange there is no title' ]
 ]

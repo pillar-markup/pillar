@@ -13,6 +13,7 @@ Class {
 
 { #category : #creation }
 PRInputFileFinder class >> fromFileIndex: aFileReference [ 
+
 	^ self new 
 		fromFileIndex: aFileReference;
 		yourself

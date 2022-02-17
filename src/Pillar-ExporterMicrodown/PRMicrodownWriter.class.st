@@ -16,6 +16,9 @@ Class {
 	#instVars : [
 		'nesting'
 	],
+	#pools : [
+		'MicroSharedPool'
+	],
 	#category : #'Pillar-ExporterMicrodown'
 }
 
@@ -38,10 +41,16 @@ PRMicrodownWriter class >> writerName [
 	^ 'Microdown'
 ]
 
-{ #category : #accessing }
-PRMicrodownWriter >> backSlasher [
+{ #category : #'visiting - formatting' }
+PRMicrodownWriter >> backSlashString: aString [
 
-	^ MicrodownBackSlasher new
+	^ String streamContents: [ :st | 
+		aString doWithIndex: [ :each :i | 
+			((Delimiters includes: each asString) or:
+				 (Delimiters includes:
+					  each asString , (aString at: (i + 1 min: aString size)) asString)) 
+			ifTrue: [ st nextPutAll: '\' ].
+		st nextPutAll: each asString ]]
 ]
 
 { #category : #accessing }
@@ -142,7 +151,7 @@ PRMicrodownWriter >> visitExternalLink: anExternalLink [
 
 	canvas
 		externalLink: anExternalLink reference
-		withDescription: [ canvas text: (self backSlasher backSlashString: anExternalLink text) ]
+		withDescription: [ canvas text: (self backSlashString: anExternalLink text) ]
 ]
 
 { #category : #'visiting - document' }
@@ -249,6 +258,12 @@ PRMicrodownWriter >> visitPreformatted: aPreformatted [
 			separatedBy: [ canvas newLine ] ]
 ]
 
+{ #category : #'visiting - slides' }
+PRMicrodownWriter >> visitSlide: aPRSlide [
+	self halt.
+	super visitSlide: aPRSlide.
+]
+
 { #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitStrikethroughFormat: aFormat [
 	canvas strike: [aFormat children do: [:each |each accept: self]]
@@ -288,7 +303,7 @@ PRMicrodownWriter >> visitTermItem: aTermItem [
 { #category : #'visiting - formatting' }
 PRMicrodownWriter >> visitText: aText [
 
-	canvas raw:  (self backSlasher backSlashString: aText text)
+	canvas raw: (self backSlashString: aText text)
 ]
 
 { #category : #'visiting - formatting' }

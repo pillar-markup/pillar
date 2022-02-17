@@ -70,7 +70,6 @@ PRInputFileFinderTest >> setUp [
 { #category : #running }
 PRInputFileFinderTest >> testFinderFindInputFiles [
 
-	
 	| files |
 	files := PRInputFileFinder new 
 		start: (PRPillarParser parse: index contents);
