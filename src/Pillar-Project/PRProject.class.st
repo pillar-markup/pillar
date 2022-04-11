@@ -137,7 +137,7 @@ PRProject >> defaultOutputDirectoryName [
 { #category : #accessing }
 PRProject >> defaultTarget [
 	| defaultExport |
-	defaultExport := [self configuration defaultExport ifEmpty: [ ^ PRAbsentTarget]] ifError: [ ^ PRAbsentTarget ]  .
+	defaultExport := [self configuration defaultExport ifEmpty: [ ^ PRAbsentTarget]] on: Error do: [ ^ PRAbsentTarget ]  .
 	^ PRTarget targetByFormatName: defaultExport
 ]
 
