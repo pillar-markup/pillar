@@ -16,7 +16,7 @@ BaselineOfPillarApp >> baseline: spec [
 			spec package: 'Pillar-Project' with: [ spec requires: 'ProcessWrapper' ] ].
 	spec
 		for: #(unix osx)
-		do: [ spec baseline: 'OSSubprocess' with: [ spec repository: 'github://pharo-contributions/OSSubprocess:v1.3.0/repository' ].
+		do: [ spec baseline: 'OSSubprocess' with: [ spec repository: 'github://pharo-contributions/OSSubprocess:v1.4.0/repository' ].
 			spec package: 'Pillar-Project' with: [ spec requires: 'OSSubprocess' ] ].
 	
 	spec 
