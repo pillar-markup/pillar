@@ -31,7 +31,9 @@ BaselineOfPillarApp >> baseline: spec [
 	spec baseline: 'Microdown' with: [ 
 			spec repository: 'github://pillar-markup/Microdown:v1.1.0/src' ].
 	spec package: 'Pillar-Microdown' with: [ spec requires: #('Microdown' #'Pillar-Model' 'Pillar-ExporterCore' 'Pillar-Tests-ExporterCore') ].
-	spec package: 'Pillar-ExporterMicrodown' with: [ spec requires: #('Microdown' 'Pillar-PetitPillar' 'Pillar-ExporterCore') ].
+  
+ 	"we comment it for now because it used MD v2.0"
+	"spec package: 'Pillar-ExporterMicrodown' with: [ spec requires: #('Microdown' 'Pillar-PetitPillar' 'Pillar-ExporterCore') ]."
 		
 	spec
 		for: #common
@@ -119,11 +121,6 @@ BaselineOfPillarApp >> baseline: spec [
 					
 				package: 'Pillar-Tests-Model-ExporterPillar' with: [ spec requires: #('Pillar-Model'  'Pillar-PetitPillar' 
 					 'Pillar-Tests-ExporterPillar') ];
-				
-				
-				
-				
-				
 				
 				package: 'Pillar-Tests-PetitPillar' with: [ spec requires: #('PetitParser2Core' 'Pillar-PetitPillar') ];
 				package: 'Pillar-Tests-BookTester' with: [ spec requires: #('Pillar-BookTester') ];
