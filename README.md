@@ -19,7 +19,7 @@ For HTTPS setup, execute the `build.sh` script found in the `scripts` directory:
 ```bash
 $ git clone https://github.com/pillar-markup/pillar.git
 $ cd pillar
-$ git checkout v8.2.2
+$ git checkout v8.2.3
 $ chmod a+x ./scripts/build.sh
 $ ./scripts/build.sh
 ```
@@ -165,9 +165,10 @@ Read the documentation at [https://github.com/SquareBracketAssociates/Booklet-Pu
 Please note that chapter on "Pharo a web Perspective" is obsolete since it refers to Pharo 60.
 
 ## History
+- 8.2.3 remove temporary PRMicrodownWriter (since it was ported to MicrodownV2)
 - 8.2.2 
 -- cache table of contents to avoid quadratic search
--- Ready for P10 SubOsProcess 1.4, ifError:  
+-- Ready for P10 SubOSProcess 1.4, ifError:  
 - 8.2.1 remove pillar before loading
 - 8.2.0 Change microdownDev to Microdown 1.0.0
 - 8.0.15 
