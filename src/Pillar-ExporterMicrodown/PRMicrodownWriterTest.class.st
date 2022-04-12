@@ -14,6 +14,9 @@ Class {
 		'parsedBloc',
 		'builder'
 	],
+	#pools : [
+		'MicroSharedPool'
+	],
 	#category : #'Pillar-ExporterMicrodown'
 }
 
@@ -354,10 +357,10 @@ PRMicrodownWriterTest >> testHorizontalLine [
 PRMicrodownWriterTest >> testHorizontalLineWithIgnoredText [
 	"*** kjlkjkljkl"
 
-	initialText := (builder raw: self parser horizontalLineMarkup; space; raw: 'Blblblbl'; contents).
+	initialText := (builder raw: HorizontalLineMarkup; space; raw: 'Blblblbl'; contents).
 	parsedBloc := self parser parse: initialText readStream.
 	writtenText := self writer start: parsedBloc asPillar; contents.
-	self assert: writtenText equals: self parser horizontalLineMarkup, String cr.
+	self assert: writtenText equals: HorizontalLineMarkup, String cr.
 	
 ]
 
