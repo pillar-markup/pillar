@@ -117,6 +117,17 @@ PRMicrodownWriter >> visitCodeblock: aCodeBlock [
 	canvas codeblock: aCodeBlock text firstLineAssociations: associations
 ]
 
+{ #category : #'visiting - slides' }
+PRMicrodownWriter >> visitColumn: aColumn [
+	canvas columnWidth: aColumn width asString withBody: [ self visitDocumentGroup: aColumn ]
+]
+
+{ #category : #'visiting - slides' }
+PRMicrodownWriter >> visitColumns: aColumns [
+
+	canvas columnsWithBody: [ self visitDocumentGroup: aColumns ]
+]
+
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitCommentedLine: aCommentedLine [
 	canvas comment: aCommentedLine text
@@ -260,8 +271,8 @@ PRMicrodownWriter >> visitPreformatted: aPreformatted [
 
 { #category : #'visiting - slides' }
 PRMicrodownWriter >> visitSlide: aPRSlide [
-	self halt.
-	super visitSlide: aPRSlide.
+
+	canvas slideTitle: aPRSlide title withBody: [ self visitDocumentGroup: aPRSlide ]
 ]
 
 { #category : #'visiting - formatting' }
