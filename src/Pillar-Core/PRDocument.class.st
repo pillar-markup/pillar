@@ -46,3 +46,11 @@ PRDocument >> next [
 PRDocument >> next: aDocument [
 	^ self propertyAt: 'next' put: aDocument
 ]
+
+{ #category : #'pillar integration' }
+PRDocument >> transformDocumentFor: aPRPDFDocument [
+	"This is a hook to be able to have framework specific transformation hooks.
+	see PRAbstractOutputDocument>>#buildOn:"
+	
+	^ aPRPDFDocument transformDocument: self
+]

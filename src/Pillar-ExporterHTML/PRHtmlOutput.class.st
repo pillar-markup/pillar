@@ -1,7 +1,7 @@
 Class {
 	#name : #PRHtmlOutput,
 	#superclass : #PRWritingTarget,
-	#category : 'Pillar-ExporterHTML'
+	#category : #'Pillar-ExporterHTML'
 }
 
 { #category : #accessing }
@@ -36,8 +36,5 @@ PRHtmlOutput >> outputDirectoryName [
 { #category : #accessing }
 PRHtmlOutput >> writerFor: aPRPillarConfiguration [ 
 	
-	^ (PRDocumentWriter allSubclasses detect: [ :each | 
-		each isAbstract not
-			and: [ each writerName = (aPRPillarConfiguration propertyAt: #htmlWriter) ] ])
-				new
+	^ self writerFor: aPRPillarConfiguration forConfigurationTag: #htmlWriter
 ]
