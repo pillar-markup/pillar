@@ -21,7 +21,7 @@ PRBuildStrategy >> filesToBuildOn: aProject [
 PRBuildStrategy >> initialize [
 
 	super initialize.
-	supportedLanguageExtensions := #('pillar' 'mic')
+	supportedLanguageExtensions := #('pillar' 'mic' 'md' 'MIC' 'MD')
 ]
 
 { #category : #accessing }

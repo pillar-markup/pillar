@@ -58,3 +58,17 @@ PRWritingTarget >> writerFor: aPRPillarConfiguration [
 	
 	self subclassResponsibility
 ]
+
+{ #category : #accessing }
+PRWritingTarget >> writerFor: aPRPillarConfiguration forConfigurationTag: aTag [
+	
+	"(PRDocumentWriter allSubclasses detect: [ :each | 
+		each isAbstract not
+			and: [ each writerName = (aPRPillarConfiguration propertyAt: #latexWriter) ] ])
+				new"
+				
+	^ (((SystemNavigation default allImplementorsOf: #writerName) 
+		collect: [ :each | each methodClass instanceSide ]) 
+			 detect: [ :each | 	each isAbstract not 
+						and: [ each writerName asLowercase = (aPRPillarConfiguration propertyAt: aTag) asLowercase ] ]) new
+]

@@ -16,7 +16,7 @@ PRBuildRootMainStrategy >> filesToBuildOn: aProject [
 	
 	| pillarFiles|
 	pillarFiles := aProject baseDirectory children select: [ :each | each isFile and: [ self isSupportedExtension: each  extension ] ].
-	pillarFiles ifEmpty: [ self error: 'There is no pillar file in the repository root.' ].
+	pillarFiles ifEmpty: [ self error: 'There is no pillar (md or pillar) file in the repository root.' ].
 	pillarFiles size = 1 ifTrue: [ ^ { (PRInputDocument forFile: pillarFiles first) 
 			project: aProject;
 			yourself } ].

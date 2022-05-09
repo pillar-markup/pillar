@@ -28,7 +28,7 @@ PRAbstractOutputDocument >> buildOn: aPRProject [
 	| parsedDocument transformedDocument writtenFile |
 	parsedDocument := self parseInputFile: file.
 	parsedDocument properties: (self metadataConfigurationForDocument: parsedDocument).
-	transformedDocument := self transformDocument: parsedDocument.
+	transformedDocument := parsedDocument transformDocumentFor: self.
 	writtenFile := self writeDocument: transformedDocument.
 	self postWriteTransform: writtenFile.
 	^ PRSuccess new.

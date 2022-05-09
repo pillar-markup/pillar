@@ -16,8 +16,20 @@ PRInputDocument class >> forFile: aFile [
 
 { #category : #factory }
 PRInputDocument class >> inputClassForFile: aFile [
+	"In the future classes should register explicitely and not be based on subclasses or implementator tricks."
 	
-	^ self subclasses
+	
+	"^ self subclasses
+		detect: [ :each | each doesHandleExtension: aFile extension ]
+		ifNone: [ PRNoInputDocument  ]
+		
+	before microdown integration we only looked in the subclasses of PRInputDocument. 
+	Now MicInputDocument is not a subclass of PRInputDocument for dependency reasons.
+	It could be fixed with proper packaging."
+	
+	
+	^ ((SystemNavigation default allImplementorsOf: #doesHandleExtension:) 
+		collect: [ :each | each methodClass instanceSide ]) 
 		detect: [ :each | each doesHandleExtension: aFile extension ]
 		ifNone: [ PRNoInputDocument  ]
 ]

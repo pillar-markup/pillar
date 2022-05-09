@@ -1,7 +1,7 @@
 Class {
 	#name : #PRPdfOutput,
 	#superclass : #PRWritingTarget,
-	#category : 'Pillar-ExporterLaTeX'
+	#category : #'Pillar-ExporterLaTeX'
 }
 
 { #category : #accessing }
@@ -36,8 +36,5 @@ PRPdfOutput >> outputDirectoryName [
 { #category : #accessing }
 PRPdfOutput >> writerFor: aPRPillarConfiguration [ 
 	
-	^ (PRDocumentWriter allSubclasses detect: [ :each | 
-		each isAbstract not
-			and: [ each writerName = (aPRPillarConfiguration propertyAt: #latexWriter) ] ])
-				new
+	^ self writerFor: aPRPillarConfiguration forConfigurationTag: #latexWriter
 ]
