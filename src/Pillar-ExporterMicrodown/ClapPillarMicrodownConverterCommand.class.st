@@ -40,5 +40,5 @@ ClapPillarMicrodownConverterCommand >> execute [
 
 { #category : #activation }
 ClapPillarMicrodownConverterCommand >> requestedFile [
-	 ^ (arguments at: #file) value: self
+	 ^ (arguments at: #requestedFile) value: self
 ]
