@@ -12,7 +12,7 @@ Class {
 	#category : #'Pillar-ExporterMicrodown'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #conversion }
 PRConverterToMic >> go: aPath [
 	| input output fileReference firstParagraph dict metadata |
 	input := PRSlideTransformer new start: (PRPillarParser parse:  aPath readStream contents).
@@ -28,12 +28,12 @@ PRConverterToMic >> go: aPath [
 		start: input.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #conversion }
 PRConverterToMic >> goForBook: aPath [
 	| input output fileReference |
-	self halt.
-	input := PRSlideTransformer new start: (PRPillarParser parse:  aPath readStream contents).
+	"We should check that the path exists"
 	
+	input := PRSlideTransformer new start: (PRPillarParser parse:  aPath readStream contents).
 	fileReference := FileSystem workingDirectory / (aPath basenameWithoutExtension , '.md').
 	fileReference ensureDelete.
 	output := PRMicrodownWriter new 

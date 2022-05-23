@@ -34,7 +34,7 @@ PRMicrodownInputDocumentTest >> testParserClass [
 	input := (PRInputDocument inputClassForFile: memoryFileSystem / 'input1.mic') new.
 	self 
 		assert: input parserClass 
-		equals: MicroDownParser
+		equals: MicrodownParser
 
 ]
 
@@ -45,7 +45,7 @@ PRMicrodownInputDocumentTest >> testParserClass2 [
 	input := PRInputDocument forFile: memoryFileSystem / 'input1.mic'.
 	self 
 		assert: input parserClass 
-		equals: MicroDownParser
+		equals: MicrodownParser
 
 ]
 
