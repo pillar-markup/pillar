@@ -99,22 +99,17 @@ PRMicrodownWriter >> visitChildrenWithoutBackslash: aChildren [
 PRMicrodownWriter >> visitCodeblock: aCodeBlock [ 
 	
 	"the only parameter that could be contain a Pillar element is the caption so let us treat separately"
-	| microdownizedCaption associations caption isCaptionInParameters |
-	associations := aCodeBlock parameters associations.
+	| microdownizedCaption parameters caption |
+	parameters := aCodeBlock parameters .
 	"aCodeBlock hasCaption is not working well so use the accessor"
 	caption := aCodeBlock caption.
 	caption text isEmpty
 		ifFalse: [ microdownizedCaption := self class new start: caption; contents.
-					isCaptionInParameters := aCodeBlock parameters at: 'caption' ifAbsent: [ nil ].
-					isCaptionInParameters isNil not
-						ifTrue: [ associations := aCodeBlock parameters associations collect: [ :each |
-							each value = 'caption'
-								ifTrue: [ ('caption' -> microdownizedCaption) ]
-								ifFalse: [ each ]]] 
-						ifFalse: [ associations := aCodeBlock parameters associations ,  {('caption' -> microdownizedCaption)} ]].
+					parameters at: 'caption' put: microdownizedCaption].
 				
 	"may be we should change the builder to accept an orderedDictionary so that we can just change the caption."
-	canvas codeblock: aCodeBlock text firstLineAssociations: associations
+	canvas codeblock: aCodeBlock text firstLineAssociations: parameters associations.
+	
 ]
 
 { #category : #'visiting - slides' }
