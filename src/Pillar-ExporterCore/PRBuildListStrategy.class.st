@@ -1,3 +1,12 @@
+"
+On the command line we can pass a list of files to be processed: 
+
+```
+pillar build pdf file1.pillar file2.pillar
+```
+
+Note that there is a bug when using two files.
+"
 Class {
 	#name : #PRBuildListStrategy,
 	#superclass : #PRBuildStrategy,
