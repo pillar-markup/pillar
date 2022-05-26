@@ -1,3 +1,8 @@
+"
+This strategy will handle all the files in the root. 
+
+note that for now it does not work.
+"
 Class {
 	#name : #PRBuildAllStrategy,
 	#superclass : #PRBuildStrategy,

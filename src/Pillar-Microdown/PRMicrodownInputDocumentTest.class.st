@@ -12,7 +12,7 @@ PRMicrodownInputDocumentTest >> testParsedDocument [
 					file:  memoryFileSystem / 'input1.mic') parsedDocument.
 	self 
 		assert: doc class
-		equals: PRDocument
+		equals: MicRootBlock
 
 ]
 
@@ -23,7 +23,7 @@ PRMicrodownInputDocumentTest >> testParsedDocument2 [
 	doc := (PRInputDocument forFile: memoryFileSystem / 'input1.mic') parsedDocument.
 	self 
 		assert: doc class
-		equals: PRDocument
+		equals: MicRootBlock
 
 ]
 
@@ -34,7 +34,7 @@ PRMicrodownInputDocumentTest >> testParserClass [
 	input := (PRInputDocument inputClassForFile: memoryFileSystem / 'input1.mic') new.
 	self 
 		assert: input parserClass 
-		equals: MicroDownParser
+		equals: Microdown
 
 ]
 
@@ -45,7 +45,7 @@ PRMicrodownInputDocumentTest >> testParserClass2 [
 	input := PRInputDocument forFile: memoryFileSystem / 'input1.mic'.
 	self 
 		assert: input parserClass 
-		equals: MicroDownParser
+		equals: Microdown
 
 ]
 
@@ -56,7 +56,7 @@ PRMicrodownInputDocumentTest >> testRegistration [
 	inputClass := (PRInputDocument inputClassForFile: memoryFileSystem / 'input1.mic').
 	self 
 		assert: inputClass 
-		equals: PRMicrodownInputDocument
+		equals: MicMicrodownInputDocument
 
 ]
 
@@ -67,6 +67,6 @@ PRMicrodownInputDocumentTest >> testRegistration2 [
 	inputClass := (PRInputDocument forFile: memoryFileSystem / 'input1.mic') class.
 	self 
 		assert: inputClass 
-		equals: PRMicrodownInputDocument
+		equals: MicMicrodownInputDocument
 
 ]
