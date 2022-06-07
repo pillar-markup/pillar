@@ -215,6 +215,12 @@ PRMicrodownWriter >> visitListItem: anObject [
 	^ self visitDocumentGroup: anObject
 ]
 
+{ #category : #'visiting-document' }
+PRMicrodownWriter >> visitMathEnvironment: aMathEnv [
+
+    canvas mathblock: aMathEnv text
+]
+
 { #category : #'visiting - list' }
 PRMicrodownWriter >> visitMathInline: aMathLine [
     | text |
@@ -270,6 +276,22 @@ PRMicrodownWriter >> visitPreformatted: aPreformatted [
 		aPreformatted children
 			do: [ :child | self visit: child ]
 			separatedBy: [ canvas newLine ] ]
+]
+
+{ #category : #'visiting-document' }
+PRMicrodownWriter >> visitRaw: aRaw [
+
+	| text |
+	text := aRaw text trimBoth.
+
+	((text beginsWith: '[') and: [ text endsWith: ']' ])
+		ifTrue: [ self visitMathEnvironment: aRaw ]
+		ifFalse: [ 
+			((text beginsWith: '$') and: [ text endsWith: '$' ])
+				ifTrue: [ self visitMathInline: aRaw ]
+				ifFalse: [ 
+					(aRaw isForType: self writerName) ifTrue: [ 
+						self writeRawDuring: [ super visitRaw: aRaw ] ] ] ]
 ]
 
 { #category : #'visiting - slides' }
