@@ -215,6 +215,14 @@ PRMicrodownWriter >> visitListItem: anObject [
 	^ self visitDocumentGroup: anObject
 ]
 
+{ #category : #'visiting - list' }
+PRMicrodownWriter >> visitMathInline: aMathLine [
+    | text |
+    text := aMathLine text.
+    text := text copyFrom: 2 to: (text size - 1). 
+    canvas mathInline: text
+]
+
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitMetadata: aMetaData [
 

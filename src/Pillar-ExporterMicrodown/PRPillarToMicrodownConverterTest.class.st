@@ -54,6 +54,37 @@ Point class >> new
 ]
 
 { #category : #'tests - paragraph list' }
+PRPillarToMicrodownConverterTest >> testMathEnvironment [ 
+
+| pillarobject result |
+    pillarobject := pillarParser parse: 
+'{{{
+[ X = Y + 2 ]
+}}}
+'.
+    result := writer start: pillarobject ; contents.
+    self assert: result equals: 
+'$$
+
+[ X = Y + 2 ]
+
+$$
+
+'
+]
+
+{ #category : #'tests - paragraph list' }
+PRPillarToMicrodownConverterTest >> testMathInline [
+
+| pillarobject result |
+    pillarobject := pillarParser parse: 
+'{{{$X$}}}'.
+    result := writer start: pillarobject ; contents.
+    self assert: result equals: 
+'$X$'
+]
+
+{ #category : #'tests - paragraph list' }
 PRPillarToMicrodownConverterTest >> testNestedLists [
 
 	| pillarobject result |
