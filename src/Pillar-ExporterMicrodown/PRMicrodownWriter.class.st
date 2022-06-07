@@ -184,17 +184,24 @@ PRMicrodownWriter >> visitHorizontalRule: anHorizontalLine [
 
 { #category : #visiting }
 PRMicrodownWriter >> visitInputFileAnnotation: anInput [
+    | newParameters |
 
-	canvas raw: '<? inputFile: '.
-	anInput parameters ifNotEmpty: [ canvas raw: '|' ].
-	anInput parameters keysAndValuesDo: [ :key :value | 
-		canvas
-			raw: key asString;
-			raw: '=';
-			raw: value asString.
-		anInput parameters keys last = key ifFalse: [ canvas raw: '&' ] ].
-	canvas newLine.
-	canvas raw: '?>'
+    canvas raw: '{!inputFile'.
+    anInput parameters ifNotEmpty: [ canvas raw: '|' ].
+    newParameters := anInput parameters copy.
+    newParameters
+        at: 'path'
+        ifPresent: [ :pathString | | newPath |
+            newPath := (Path from: pathString) withExtension: 'md'.
+            newParameters at: 'path' put: newPath pathString ].
+    newParameters keysAndValuesDo: [ :key :value | 
+        canvas
+            raw: key asString;
+            raw: '=';
+            raw: value asString.
+        anInput parameters keys last = key ifFalse: [ canvas raw: '&' ] ].
+    canvas raw: '!}'
+
 ]
 
 { #category : #'visiting - document' }
