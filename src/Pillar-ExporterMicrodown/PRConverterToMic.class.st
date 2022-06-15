@@ -14,29 +14,32 @@ Class {
 
 { #category : #conversion }
 PRConverterToMic >> convertChapter: aPath [
-	| input output fileReference |
-	"We should check that the path exists"
-	
+	| input |
 	input := PRSlideTransformer new start: (PRPillarParser parse:  aPath readStream contents).
-	fileReference := FileSystem workingDirectory / (aPath basenameWithoutExtension , '.md').
-	fileReference ensureDelete.
-	output := PRMicrodownWriter new 
-		setStream: fileReference writeStream;
-		start: input.
+	self writeMicrodownOn: aPath forInput: input
 ]
 
 { #category : #conversion }
 PRConverterToMic >> convertSlide: aPath [
-	| input output fileReference firstParagraph dict metadata |
-	input := PRSlideTransformer new start: (PRPillarParser parse:  aPath readStream contents).
+
+	| input firstParagraph dict metadata |
+	input := PRSlideTransformer new start:
+		         (PRPillarParser parse: aPath readStream contents).
 	firstParagraph := input children first.
 	dict := STONJSON fromString: firstParagraph text.
 	metadata := PRMetadata new metadata: dict.
 	input children at: 1 put: metadata.
-	
-	fileReference := FileSystem workingDirectory / 'MyPresentation.md'.
+	self writeMicrodownOn: aPath forInput: input
+]
+
+{ #category : #conversion }
+PRConverterToMic >> writeMicrodownOn: aPath forInput: input [
+
+	| fileReference |
+	fileReference := FileSystem workingDirectory
+	                 / (aPath basenameWithoutExtension , '.md').
 	fileReference ensureDelete.
-	output := PRMicrodownWriter new 
-		setStream: fileReference writeStream;
-		start: input.
+	^ PRMicrodownWriter new
+		  setStream: fileReference writeStream;
+		  start: input
 ]
