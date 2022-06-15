@@ -13,7 +13,20 @@ Class {
 }
 
 { #category : #conversion }
-PRConverterToMic >> go: aPath [
+PRConverterToMic >> convertChapter: aPath [
+	| input output fileReference |
+	"We should check that the path exists"
+	
+	input := PRSlideTransformer new start: (PRPillarParser parse:  aPath readStream contents).
+	fileReference := FileSystem workingDirectory / (aPath basenameWithoutExtension , '.md').
+	fileReference ensureDelete.
+	output := PRMicrodownWriter new 
+		setStream: fileReference writeStream;
+		start: input.
+]
+
+{ #category : #conversion }
+PRConverterToMic >> convertSlide: aPath [
 	| input output fileReference firstParagraph dict metadata |
 	input := PRSlideTransformer new start: (PRPillarParser parse:  aPath readStream contents).
 	firstParagraph := input children first.
@@ -22,19 +35,6 @@ PRConverterToMic >> go: aPath [
 	input children at: 1 put: metadata.
 	
 	fileReference := FileSystem workingDirectory / 'MyPresentation.md'.
-	fileReference ensureDelete.
-	output := PRMicrodownWriter new 
-		setStream: fileReference writeStream;
-		start: input.
-]
-
-{ #category : #conversion }
-PRConverterToMic >> goForBook: aPath [
-	| input output fileReference |
-	"We should check that the path exists"
-	
-	input := PRSlideTransformer new start: (PRPillarParser parse:  aPath readStream contents).
-	fileReference := FileSystem workingDirectory / (aPath basenameWithoutExtension , '.md').
 	fileReference ensureDelete.
 	output := PRMicrodownWriter new 
 		setStream: fileReference writeStream;

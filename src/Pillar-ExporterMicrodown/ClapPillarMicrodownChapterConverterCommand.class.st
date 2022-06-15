@@ -3,27 +3,27 @@ I am a command line handler to convert a pillar file (for now) in a microdown fi
 
 ## Example of usage: 
 
-`./pillar convert SUnit.pillar`
+`./pillar convertChapter SUnit.pillar`
 "
 Class {
-	#name : #ClapPillarMicrodownConverterCommand,
+	#name : #ClapPillarMicrodownChapterConverterCommand,
 	#superclass : #ClapPillarCommand,
 	#category : #'Pillar-ExporterMicrodown'
 }
 
 { #category : #accessing }
-ClapPillarMicrodownConverterCommand class >> commandName [
-	^'convert'
+ClapPillarMicrodownChapterConverterCommand class >> commandName [
+	^'convertChapter'
 ]
 
 { #category : #'command line' }
-ClapPillarMicrodownConverterCommand class >> commandSpecification [ 
+ClapPillarMicrodownChapterConverterCommand class >> commandSpecification [ 
 	<commandline>
 	^ (ClapCommand id: self commandName asSymbol)
-		description: 'Create a microdown file in the current directory, which contains the conversion in microdown of the argument.';
+		description: 'Create a microdown book chapter in the current directory, which contains the conversion in microdown format of the argument.';
 		add: ClapFlag forHelp;
 		add: ((ClapPositional id: #requestedFile)
-			description: 'File you want to convert');
+			description: 'File for the book chapter you want to convert');
 		meaning:
 			[ :args |
 			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
@@ -31,14 +31,14 @@ ClapPillarMicrodownConverterCommand class >> commandSpecification [
 ]
 
 { #category : #execution }
-ClapPillarMicrodownConverterCommand >> execute [
+ClapPillarMicrodownChapterConverterCommand >> execute [
 	| file |
 	file :=  self requestedFile asString asFileReference. 
 	file exists ifTrue: [ 
-		PRConverterToMic new goForBook: file ]
+		PRConverterToMic new convertChapter: file ]
 ]
 
 { #category : #activation }
-ClapPillarMicrodownConverterCommand >> requestedFile [
+ClapPillarMicrodownChapterConverterCommand >> requestedFile [
 	 ^ (arguments at: #requestedFile) value: self
 ]
