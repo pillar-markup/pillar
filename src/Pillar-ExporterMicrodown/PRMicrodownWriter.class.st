@@ -184,17 +184,24 @@ PRMicrodownWriter >> visitHorizontalRule: anHorizontalLine [
 
 { #category : #visiting }
 PRMicrodownWriter >> visitInputFileAnnotation: anInput [
+    | newParameters |
 
-	canvas raw: '<? inputFile: '.
-	anInput parameters ifNotEmpty: [ canvas raw: '|' ].
-	anInput parameters keysAndValuesDo: [ :key :value | 
-		canvas
-			raw: key asString;
-			raw: '=';
-			raw: value asString.
-		anInput parameters keys last = key ifFalse: [ canvas raw: '&' ] ].
-	canvas newLine.
-	canvas raw: '?>'
+    canvas raw: '{!inputFile'.
+    anInput parameters ifNotEmpty: [ canvas raw: '|' ].
+    newParameters := anInput parameters copy.
+    newParameters
+        at: 'path'
+        ifPresent: [ :pathString | | newPath |
+            newPath := (Path from: pathString) withExtension: 'md'.
+            newParameters at: 'path' put: newPath pathString ].
+    newParameters keysAndValuesDo: [ :key :value | 
+        canvas
+            raw: key asString;
+            raw: '=';
+            raw: value asString.
+        anInput parameters keys last = key ifFalse: [ canvas raw: '&' ] ].
+    canvas raw: '!}'
+
 ]
 
 { #category : #'visiting - document' }
@@ -213,6 +220,20 @@ PRMicrodownWriter >> visitItalicFormat: aFormat [
 PRMicrodownWriter >> visitListItem: anObject [
 
 	^ self visitDocumentGroup: anObject
+]
+
+{ #category : #'visiting-document' }
+PRMicrodownWriter >> visitMathEnvironment: aMathEnv [
+
+    canvas mathblock: aMathEnv text
+]
+
+{ #category : #'visiting - list' }
+PRMicrodownWriter >> visitMathInline: aMathLine [
+    | text |
+    text := aMathLine text.
+    text := text copyFrom: 2 to: (text size - 1). 
+    canvas mathInline: text
 ]
 
 { #category : #'visiting - document' }
@@ -262,6 +283,22 @@ PRMicrodownWriter >> visitPreformatted: aPreformatted [
 		aPreformatted children
 			do: [ :child | self visit: child ]
 			separatedBy: [ canvas newLine ] ]
+]
+
+{ #category : #'visiting-document' }
+PRMicrodownWriter >> visitRaw: aRaw [
+
+	| text |
+	text := aRaw text trimBoth.
+
+	((text beginsWith: '[') and: [ text endsWith: ']' ])
+		ifTrue: [ self visitMathEnvironment: aRaw ]
+		ifFalse: [ 
+			((text beginsWith: '$') and: [ text endsWith: '$' ])
+				ifTrue: [ self visitMathInline: aRaw ]
+				ifFalse: [ 
+					(aRaw isForType: self writerName) ifTrue: [ 
+						self writeRawDuring: [ super visitRaw: aRaw ] ] ] ]
 ]
 
 { #category : #'visiting - slides' }

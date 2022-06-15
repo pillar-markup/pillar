@@ -54,6 +54,59 @@ Point class >> new
 ]
 
 { #category : #'tests - paragraph list' }
+PRPillarToMicrodownConverterTest >> testInputFile [
+
+    | pillarobject result |
+    pillarobject := pillarParser parse: 
+'${inputFile:path=Chapters/Preface/Preface.pillar}$'.
+    result := writer start: pillarobject ; contents.
+    self assert: result equals: 
+'{!inputFile|path=Chapters/Preface/Preface.md!}'
+]
+
+{ #category : #'tests - paragraph list' }
+PRPillarToMicrodownConverterTest >> testInputFileWithoutExtension [
+
+    | pillarobject result |
+    pillarobject := pillarParser parse: 
+'${inputFile:path=Chapters/Preface/Preface}$'.
+    result := writer start: pillarobject ; contents.
+    self assert: result equals: 
+'{!inputFile|path=Chapters/Preface/Preface.md!}'
+]
+
+{ #category : #'tests - paragraph list' }
+PRPillarToMicrodownConverterTest >> testMathEnvironment [ 
+
+| pillarobject result |
+    pillarobject := pillarParser parse: 
+'{{{
+[ X = Y + 2 ]
+}}}
+'.
+    result := writer start: pillarobject ; contents.
+    self assert: result equals: 
+'$$
+
+[ X = Y + 2 ]
+
+$$
+
+'
+]
+
+{ #category : #'tests - paragraph list' }
+PRPillarToMicrodownConverterTest >> testMathInline [
+
+| pillarobject result |
+    pillarobject := pillarParser parse: 
+'{{{$X$}}}'.
+    result := writer start: pillarobject ; contents.
+    self assert: result equals: 
+'$X$'
+]
+
+{ #category : #'tests - paragraph list' }
 PRPillarToMicrodownConverterTest >> testNestedLists [
 
 	| pillarobject result |
