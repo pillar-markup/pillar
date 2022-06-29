@@ -135,7 +135,11 @@ PRTarget >> buildOn: aProject [
 	
 	"For each file, we execute the pipeline"
 	(self filesToBuildOn: aProject) do: [ :each |
-		status := status and: ((self documentFor: each) buildOn: aProject) ].
+		each file exists ifTrue: [ 
+			status := status and: ((self documentFor: each) buildOn: aProject) ]
+		"I do not know how to report if a file does not exist. 
+		May be producing a failure is not adequate."
+	].
 
 	^ status
 ]
