@@ -34,8 +34,9 @@ ClapPillarMicrodownSlideConverterCommand class >> commandSpecification [
 ClapPillarMicrodownSlideConverterCommand >> execute [
 	| file |
 	file :=  self requestedFile asString asFileReference. 
-	file exists ifTrue: [ 
-		PRConverterToMic new convertSlide: file ]
+	file exists 
+		ifTrue: [ PRConverterToMic new convertSlide: file ]
+		ifFalse: [ self outputStreamDo: [ :str | str nextPutAll: 'File ', file fullName, ' does not exist'  ] ]
 ]
 
 { #category : #activation }

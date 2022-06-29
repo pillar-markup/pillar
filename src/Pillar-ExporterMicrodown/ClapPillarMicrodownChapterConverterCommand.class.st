@@ -34,8 +34,9 @@ ClapPillarMicrodownChapterConverterCommand class >> commandSpecification [
 ClapPillarMicrodownChapterConverterCommand >> execute [
 	| file |
 	file :=  self requestedFile asString asFileReference. 
-	file exists ifTrue: [ 
-		PRConverterToMic new convertChapter: file ]
+	file exists 
+		ifTrue: [ PRConverterToMic new convertChapter: file ]
+		ifFalse: [ self outputStreamDo: [ :str | str nextPutAll: 'File ', file fullName, ' does not exist'  ] ]
 ]
 
 { #category : #activation }
