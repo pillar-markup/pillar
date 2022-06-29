@@ -18,5 +18,5 @@ PRMicrodownInputDocument >> parsedDocument [
 
 { #category : #accessing }
 PRMicrodownInputDocument >> parserClass [
-	^ MicroDownParser
+	^ MicrodownParser
 ]
