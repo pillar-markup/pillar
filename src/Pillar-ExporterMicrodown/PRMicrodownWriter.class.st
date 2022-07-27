@@ -190,6 +190,11 @@ PRMicrodownWriter >> visitInputFileAnnotation: anInput [
     canvas raw: 'inputFile'.
     anInput parameters ifNotEmpty: [ canvas raw: '|' ].
     newParameters := anInput parameters copy.
+    newParameters
+        at: 'path'
+        ifPresent: [ :pathString | | newPath |
+            newPath := (Path from: pathString) withExtension: 'md'.
+            newParameters at: 'path' put: newPath pathString ].
     newParameters keysAndValuesDo: [ :key :value | 
         canvas
             raw: key asString;
