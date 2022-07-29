@@ -46,6 +46,12 @@ PRAbstractOutputDocument >> extension [
 ]
 
 { #category : #accessing }
+PRAbstractOutputDocument >> file [
+
+	^ file
+]
+
+{ #category : #accessing }
 PRAbstractOutputDocument >> file: aFile [
 	
 	file := aFile
@@ -81,12 +87,18 @@ PRAbstractOutputDocument >> metadataConfigurationForDocument: aDocument [
 
 { #category : #accessing }
 PRAbstractOutputDocument >> outputDirectory [
+		"pay attention the output directory of an output document is more precise than the one of a project. 
+	Indeed it will take into account the kind of document and add 'pdf', 'html'.... as subfolder.
+	See PRPdfOutput >> #documentFor: to see the logic."
 	
 	^ outputDirectory ifNil: [ project outputDirectory ]
 ]
 
 { #category : #accessing }
-PRAbstractOutputDocument >> outputDirectory: aFileReference [ 
+PRAbstractOutputDocument >> outputDirectory: aFileReference [
+	"pay attention the output directory of a output document is more precise than the one of a project. 
+	Indeed it will take into account the kind of document and add 'pdf', 'html'.... as subfolder.
+	See PRPdfOutput >> #documentFor: to see the logic."
 	
 	outputDirectory := aFileReference 
 ]
@@ -101,6 +113,12 @@ PRAbstractOutputDocument >> parseInputFile: anInputFile [
 PRAbstractOutputDocument >> postWriteTransform: aFile [
 
 	"Nothing. Hook for subclasses"
+]
+
+{ #category : #accessing }
+PRAbstractOutputDocument >> project [
+	
+	^ project
 ]
 
 { #category : #accessing }
@@ -141,23 +159,24 @@ PRAbstractOutputDocument >> templateFile: aDocument [
 
 { #category : #building }
 PRAbstractOutputDocument >> transformDocument: aDocument [
-	"Double dispatch hook invoked by document."
+	"Double dispatch hook invoked by document. In addition let the document control the inclusion process and the transformations."
 	
 	| withInclusions |
-	"| inclusionVisitor withInclusions |
-	inclusionVisitor := PRFileInclusion new.
-	inclusionVisitor topFile: file file.
-	withInclusions := inclusionVisitor start: (PRCleanAnnotationInParagraphTransformer new start: aDocument).
-	"
-	withInclusions := aDocument includeFor: file file.
+	withInclusions := aDocument includeFor: file.
 	
-	^ self transformations
+	^ (self transformationsFor: aDocument)
 		inject: withInclusions
 		into: [ :accum :each | each start: accum ]
 ]
 
 { #category : #accessing }
 PRAbstractOutputDocument >> transformations [
+	
+	^ target transformations
+]
+
+{ #category : #accessing }
+PRAbstractOutputDocument >> transformationsFor: aDocument [
 	
 	^ target transformations
 ]

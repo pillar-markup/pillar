@@ -68,6 +68,12 @@ PRPDFDocument >> extension [
 	^ 'pdf'
 ]
 
+{ #category : #accessing }
+PRPDFDocument >> pdfTransformationsFor: aDocument [
+
+	^ aDocument pdfTransformationsFor: self
+]
+
 { #category : #writing }
 PRPDFDocument >> postWriteTransform: aFile [
 
@@ -98,14 +104,16 @@ PRPDFDocument >> toCommandPath: aPathString [
 
 { #category : #accessing }
 PRPDFDocument >> transformations [
+	self halt.
+	^ super transformations
+		", self pdfTransformations to test if for MD we need them." 
+]
 
-	^ super transformations, { 
-		PRRelativeReferenceTransformer new
-			inputFile: self inputFile;
-			baseDirectory: project baseDirectory asAbsolute;
-			outputDirectory: self outputDirectory;
-			yourself.
-		PRLatexPathUpdateVisitor new }
+{ #category : #accessing }
+PRPDFDocument >> transformationsFor: aDocument [
+	
+	^ (super transformationsFor: aDocument)
+		, (self pdfTransformationsFor: aDocument)
 ]
 
 { #category : #writing }

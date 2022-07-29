@@ -224,6 +224,13 @@ PRVisitor >> visitReference: anObject [
 ]
 
 { #category : #'visiting-document' }
+PRVisitor >> visitRoot: anObject [
+	"Microdown compatibility"
+	
+	^ self visitDocumentGroup: anObject
+]
+
+{ #category : #'visiting-document' }
 PRVisitor >> visitSection: aSection [
 	^ self visitDocumentGroup: aSection
 ]

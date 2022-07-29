@@ -42,7 +42,7 @@ PRDocument >> includeFor: aFile [
 
 	| inclusionVisitor |
 	inclusionVisitor := PRFileInclusion new.
-	inclusionVisitor topFile: aFile.
+	inclusionVisitor topFile: aFile file.
 	^ inclusionVisitor start: (PRCleanAnnotationInParagraphTransformer new start: self).
 ]
 

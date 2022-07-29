@@ -183,6 +183,9 @@ PRProject >> isTemplatable [
 
 { #category : #accessing }
 PRProject >> outputDirectory [
+	"pay attention the output directory of a output document is more precise than the one of a project. 
+	Indeed it will take into account the kind of document and add 'pdf', 'html'.... as subfolder.
+	See PRPdfOutput >> #documentFor: to see the logic. For a project outputDirectory return the general place e.g. ..._result/"
 	
 	^ self baseDirectory resolve: self configuration outputDirectory
 ]
