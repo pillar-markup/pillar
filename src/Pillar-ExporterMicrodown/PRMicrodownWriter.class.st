@@ -186,7 +186,8 @@ PRMicrodownWriter >> visitHorizontalRule: anHorizontalLine [
 PRMicrodownWriter >> visitInputFileAnnotation: anInput [
     | newParameters |
 
-    canvas raw: '{!inputFile'.
+	 canvas raw: EnvironmentOpeningBlockMarkup.
+    canvas raw: 'inputFile'.
     anInput parameters ifNotEmpty: [ canvas raw: '|' ].
     newParameters := anInput parameters copy.
     newParameters
@@ -200,7 +201,8 @@ PRMicrodownWriter >> visitInputFileAnnotation: anInput [
             raw: '=';
             raw: value asString.
         anInput parameters keys last = key ifFalse: [ canvas raw: '&' ] ].
-    canvas raw: '!}'
+	 canvas newLine.
+    canvas raw: EnvironmentClosingBlockMarkup
 
 ]
 

@@ -61,7 +61,8 @@ PRPillarToMicrodownConverterTest >> testInputFile [
 '${inputFile:path=Chapters/Preface/Preface.pillar}$'.
     result := writer start: pillarobject ; contents.
     self assert: result equals: 
-'{!inputFile|path=Chapters/Preface/Preface.md!}'
+'<!inputFile|path=Chapters/Preface/Preface.md
+!>'
 ]
 
 { #category : #'tests - paragraph list' }
@@ -72,7 +73,8 @@ PRPillarToMicrodownConverterTest >> testInputFileWithoutExtension [
 '${inputFile:path=Chapters/Preface/Preface}$'.
     result := writer start: pillarobject ; contents.
     self assert: result equals: 
-'{!inputFile|path=Chapters/Preface/Preface.md!}'
+'<!inputFile|path=Chapters/Preface/Preface.md
+!>'
 ]
 
 { #category : #'tests - paragraph list' }

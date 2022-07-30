@@ -209,9 +209,6 @@ PRMicrodownWriterTest >> testFigureWithCaptionContainingFormatting [
 
 	"![This is a caption and it can contain **bol** but also `code`.](http://pharo.org)"
 
-	self skip.
-	"Caption is duplicate"
-
 	self testWithInitialText: (builder
 			 rawParagraph: [ 
 				 builder
@@ -221,7 +218,7 @@ PRMicrodownWriterTest >> testFigureWithCaptionContainingFormatting [
 							 text: 'This is a caption and it can contain ';
 							 bold: [ builder text: 'bol' ];
 							 text: ' but also ';
-							 monospace: [ builder text: '`code`' ] ] ];
+							 monospace: 'code' ] ];
 			 contents)
 ]
 
@@ -538,17 +535,17 @@ ${inputFile:path=Chapters/Smacc/SmaccScanner.pillar}$
 ${inputFile:path=Chapters/Smacc/SmaccParser.pillar}$'.
 	self
 		assert: (self writer start: pillar) contents
-		equals: '<? inputFile: |path=Chapters/Smacc/SmaccIntro.pillar
-?>
+		equals: '<!inputFile|path=Chapters/Smacc/SmaccIntro.md
+!>
 
-<? inputFile: |path=Chapters/Smacc/SmaccTutorial.pillar
-?>
+<!inputFile|path=Chapters/Smacc/SmaccTutorial.md
+!>
 
-<? inputFile: |path=Chapters/Smacc/SmaccScanner.pillar
-?>
+<!inputFile|path=Chapters/Smacc/SmaccScanner.md
+!>
 
-<? inputFile: |path=Chapters/Smacc/SmaccParser.pillar
-?>'
+<!inputFile|path=Chapters/Smacc/SmaccParser.md
+!>'
 ]
 
 { #category : #'tests - paragraph' }
