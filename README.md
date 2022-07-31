@@ -19,7 +19,7 @@ For HTTPS setup, execute the `build.sh` script found in the `scripts` directory:
 ```bash
 $ git clone https://github.com/pillar-markup/pillar.git
 $ cd pillar
-$ git checkout v8.2.3
+$ git checkout v8.2.6
 $ chmod a+x ./scripts/build.sh
 $ ./scripts/build.sh
 ```
@@ -165,6 +165,8 @@ Read the documentation at [https://github.com/SquareBracketAssociates/Booklet-Pu
 Please note that chapter on "Pharo a web Perspective" is obsolete since it refers to Pharo 60.
 
 ## History
+- 8.2.6 full support for microdown and pillar books.
+- 8.2.4-5 introduced hooks for file include in Pillar and microdown
 - 8.2.3 remove temporary PRMicrodownWriter (since it was ported to MicrodownV2)
 - 8.2.2 
 -- cache table of contents to avoid quadratic search
