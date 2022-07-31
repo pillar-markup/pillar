@@ -37,6 +37,15 @@ PRDocument >> defaultNext [
 	^ nil
 ]
 
+{ #category : #'pillar integration' }
+PRDocument >> includeFor: aFile [
+
+	| inclusionVisitor |
+	inclusionVisitor := PRFileInclusion new.
+	inclusionVisitor topFile: aFile file.
+	^ inclusionVisitor start: (PRCleanAnnotationInParagraphTransformer new start: self).
+]
+
 { #category : #'common-properties' }
 PRDocument >> next [
 	^ self propertyAt: 'next' ifAbsent: [ self defaultNext ]

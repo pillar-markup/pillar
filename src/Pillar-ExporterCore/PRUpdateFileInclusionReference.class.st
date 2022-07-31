@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'path'
 	],
-	#category : 'Pillar-ExporterCore-Utilities'
+	#category : #'Pillar-ExporterCore-Utilities'
 }
 
 { #category : #visiting }
@@ -50,6 +50,7 @@ PRUpdateFileInclusionReference >> start: anObject [
 
 { #category : #visiting }
 PRUpdateFileInclusionReference >> visitFigure: aFigure [
+	"self halt: 'PRUpdateFileInclusionReference'."
 	aFigure reference: (self newReferenceFor: aFigure).
 	super visitFigure: aFigure
 ]
