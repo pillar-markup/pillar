@@ -13,9 +13,18 @@ Class {
 }
 
 { #category : #conversion }
+PRConverterToMic >> convertBook: aPath [
+	| input paths |
+	paths := self getInputFilesPaths: aPath contents.
+	input := PRPillarParser parse:  aPath readStream contents.
+	self writeMicrodownOn: aPath forInput: input.
+	paths do: [ :path | self convertChapter: path ]
+]
+
+{ #category : #conversion }
 PRConverterToMic >> convertChapter: aPath [
 	| input |
-	input := PRSlideTransformer new start: (PRPillarParser parse:  aPath readStream contents).
+	input := PRPillarParser parse:  aPath readStream contents.
 	self writeMicrodownOn: aPath forInput: input
 ]
 
@@ -30,6 +39,19 @@ PRConverterToMic >> convertSlide: aPath [
 	metadata := PRMetadata new metadata: dict.
 	input children at: 1 put: metadata.
 	self writeMicrodownOn: aPath forInput: input
+]
+
+{ #category : #collect }
+PRConverterToMic >> getInputFilesPaths: aString [
+
+	| paths |
+	paths := aString substrings.
+
+	paths := paths select: [ :string | string beginsWith: '${inputFile:path=' ].
+	
+	paths replace: [ :string | FileSystem workingDirectory / (string copyFrom: 18 to: string size - 2)].
+	
+	^ paths
 ]
 
 { #category : #conversion }
