@@ -54,11 +54,49 @@ Point class >> new
 ]
 
 { #category : #'tests - paragraph list' }
+PRPillarToMicrodownConverterTest >> testFigure [
+
+    | pillarobject result |
+    pillarobject := pillarParser parse: 
+'+this is a caption>file://Chapters/Preface/Preface.pillar+'.
+
+    result := writer start: pillarobject ; contents.
+    self assert: result equals: 
+'![this is a caption](Chapters/Preface/Preface.pillar)'
+]
+
+{ #category : #'tests - paragraph list' }
+PRPillarToMicrodownConverterTest >> testFigureWithArguments [
+
+    | pillarobject result |
+    pillarobject := pillarParser parse: 
+'+this is a caption>file://Chapters/Preface/Preface.pillar|label=MyLabel&width=80+'.
+
+    result := writer start: pillarobject ; contents.
+    self assert: result equals: 
+'![this is a caption](Chapters/Preface/Preface.pillar label=MyLabel&width=80)'
+
+"not sure that we have size in microdow. may be this is width"
+]
+
+{ #category : #'tests - paragraph list' }
 PRPillarToMicrodownConverterTest >> testInputFile [
 
     | pillarobject result |
     pillarobject := pillarParser parse: 
 '${inputFile:path=Chapters/Preface/Preface.pillar}$'.
+    result := writer start: pillarobject ; contents.
+    self assert: result equals: 
+'<!inputFile|path=Chapters/Preface/Preface.md
+!>'
+]
+
+{ #category : #'tests - paragraph list' }
+PRPillarToMicrodownConverterTest >> testInputFileWithFileColumnColumn [
+
+    | pillarobject result |
+    pillarobject := pillarParser parse: 
+'${inputFile:path=file://Chapters/Preface/Preface}$'.
     result := writer start: pillarobject ; contents.
     self assert: result equals: 
 '<!inputFile|path=Chapters/Preface/Preface.md
@@ -75,6 +113,18 @@ PRPillarToMicrodownConverterTest >> testInputFileWithoutExtension [
     self assert: result equals: 
 '<!inputFile|path=Chapters/Preface/Preface.md
 !>'
+]
+
+{ #category : #'tests - paragraph list' }
+PRPillarToMicrodownConverterTest >> testLink [
+
+    | pillarobject result |
+    pillarobject := pillarParser parse: 
+'*this is a caption>file://Chapters/Preface/Preface.pillar*'.
+
+    result := writer start: pillarobject ; contents.
+    self assert: result equals: 
+'[this is a caption](Chapters/Preface/Preface.pillar)'
 ]
 
 { #category : #'tests - paragraph list' }

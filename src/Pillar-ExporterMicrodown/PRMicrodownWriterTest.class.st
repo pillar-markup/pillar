@@ -1,7 +1,9 @@
 "
-This class contains tests designed in the way that we will be able to remove the pillar transformation in the future and still reuse the tests.
+This class contains tests designed in the way that we will be able to remove the pillar transformation (asPillar in method textWithInitialText:) 
+in the future and still reuse the tests.
 Therefore the input is Microdown generated via the Microdown builder, then 
-such Microdown text is parsed and transformed as Pillar, then compare that the output is the same as the orginal generated code. 
+such Microdown text is parsed and transformed into pillar using the asPillar, 
+then compare that the output is the same as the orginal generated code. 
 "
 Class {
 	#name : #PRMicrodownWriterTest,
@@ -53,7 +55,7 @@ PRMicrodownWriterTest >> parser [
 { #category : #running }
 PRMicrodownWriterTest >> setUp [
 	super setUp.
-	parser := MicrodownParser new.
+	parser := Microdown new.
 	writer := PRMicrodownWriter new.
 	builder := MicMicrodownTextualBuilder on: String new writeStream
 
@@ -180,6 +182,16 @@ PRMicrodownWriterTest >> testFigure [
 ]
 
 { #category : #'tests - figures' }
+PRMicrodownWriterTest >> testFigureDoesNotAddFilePointPoint [
+	"![Hello Pharo](figures/CollectionHierarchy.png)"
+
+	self testWithInitialText: (builder 
+		rawParagraph: [ builder 
+								figureURLString: 'figures/CollectionHierarchy.png' 
+								withCaption: [ builder text: self exampleText ]]; contents)
+]
+
+{ #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithArgument [
 
 	self testWithInitialText: (builder
@@ -196,12 +208,24 @@ PRMicrodownWriterTest >> testFigureWithArgument [
 
 { #category : #'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithArgumentContainingFormatting [
-	self testWithInitialText: (builder rawParagraph: [ (builder figureURLString: 'file:///url' 
+	self testWithInitialText: (builder rawParagraph: [ (builder figureURLString: 'http://pharo.org/foo.png' 
 																				  withCaption: [ builder rawParagraph: [builder text:'You can have '.
 																																	builder bold: [ builder text: 'bold' ].	
 																																	builder text: ' but also '.
 																																	builder italic:	[builder text: 'italic']]]
 																				  withParameters: {'label'->'fig' . 'size'->80 } asDictionary)]; contents)
+]
+
+{ #category : #'tests - figures' }
+PRMicrodownWriterTest >> testFigureWithArguments [
+	
+	"![Hello Pharo](http://pharo.org/label=fig&width=120."
+	
+	self testWithInitialText: 
+		(builder rawParagraph: [ 
+			builder 
+				figureURLString: 'http://pharo.org/label=fig&width=120' 
+				withCaption: [ builder text: self exampleText]] ; contents)
 ]
 
 { #category : #'tests - figures' }
@@ -220,18 +244,6 @@ PRMicrodownWriterTest >> testFigureWithCaptionContainingFormatting [
 							 text: ' but also ';
 							 monospace: 'code' ] ];
 			 contents)
-]
-
-{ #category : #'tests - figures' }
-PRMicrodownWriterTest >> testFigureWithFileUrl [
-	
-	"![Hello Pharo](url?label=fig&caption=This is a caption."
-	
-	self testWithInitialText: 
-		(builder rawParagraph: [ 
-			builder 
-				figureURLString: 'http://pharo.org/label=fig&width=120' 
-				withCaption: [ builder text: self exampleText]] ; contents)
 ]
 
 { #category : #'tests - figures' }
@@ -697,6 +709,7 @@ PRMicrodownWriterTest >> testUnorderedListWithMicroDownMarkup [
 PRMicrodownWriterTest >> testWithInitialText: expectedString [
 
 	parsedBloc := self parser parse: expectedString readStream.
+	self parser resolveDocument: parsedBloc withBase: FileSystem workingDirectory.
 	writtenText := self writer
 		               start: parsedBloc asPillar;
 		               contents.

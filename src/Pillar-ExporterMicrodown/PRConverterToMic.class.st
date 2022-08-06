@@ -16,7 +16,7 @@ Class {
 PRConverterToMic >> convertBook: aPath [
 	| input paths |
 	paths := self getInputFilesPaths: aPath contents.
-	input := PRSlideTransformer new start: (PRPillarParser parse:  aPath readStream contents).
+	input := PRPillarParser parse:  aPath readStream contents.
 	self writeMicrodownOn: aPath forInput: input.
 	paths do: [ :path | self convertChapter: path ]
 ]
@@ -24,7 +24,7 @@ PRConverterToMic >> convertBook: aPath [
 { #category : #conversion }
 PRConverterToMic >> convertChapter: aPath [
 	| input |
-	input := PRSlideTransformer new start: (PRPillarParser parse:  aPath readStream contents).
+	input := (PRPillarParser parse:  aPath readStream contents).
 	self writeMicrodownOn: aPath forInput: input
 ]
 

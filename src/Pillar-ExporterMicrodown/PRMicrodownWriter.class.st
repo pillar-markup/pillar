@@ -1,5 +1,6 @@
 "
-I'm an pillar to microdown exporter.
+I'm a pillar visitor converting a pillar tree to microdown exporter text.
+
 
 The current strategy is that there is one line separating every elements of the document. 
 But we do not have enough information (such as am I the latest of the list and is my container another list or the root document) to control the fact that we should not emit a newline for the last item.
@@ -156,14 +157,15 @@ PRMicrodownWriter >> visitEmptyParagraph: aParagraph [
 PRMicrodownWriter >> visitExternalLink: anExternalLink [
 
 	canvas
-		externalLink: anExternalLink reference
+		externalLink: (self withoutFileColumnColumn: anExternalLink reference)
 		withDescription: [ canvas text: (self backSlashString: anExternalLink text) ]
 ]
 
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitFigure: aFigure [
-	
-	canvas figureURLString: aFigure reference 
+
+	 
+	canvas figureURLString: (self withoutFileColumnColumn: aFigure reference)
 		withCaption: [ aFigure children do: [:each | each accept: self]] 
 		withParameters: aFigure parameters
 ]
@@ -193,7 +195,7 @@ PRMicrodownWriter >> visitInputFileAnnotation: anInput [
     newParameters
         at: 'path'
         ifPresent: [ :pathString | | newPath |
-            newPath := (Path from: pathString) withExtension: 'md'.
+            newPath := (Path from: (self withoutFileColumnColumn: pathString)) withExtension: 'md'.
             newParameters at: 'path' put: newPath pathString ].
     newParameters keysAndValuesDo: [ :key :value | 
         canvas
@@ -364,6 +366,16 @@ PRMicrodownWriter >> visitUnorderedList: anUnorderedList [
 	canvas unorderedListDuring: [
 		anUnorderedList children
 			do: [ :child | canvas item: [self visit: child ] ] ]
+]
+
+{ #category : #'visiting - document' }
+PRMicrodownWriter >> withoutFileColumnColumn: aString [
+
+	| figref |
+	figref := aString.
+	(figref beginsWith: 'file://') ifTrue: [ figref :=  aString allButFirst: 7 ].
+	^ figref
+	
 ]
 
 { #category : #writing }
