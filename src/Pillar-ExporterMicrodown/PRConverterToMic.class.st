@@ -14,8 +14,10 @@ Class {
 
 { #category : #conversion }
 PRConverterToMic >> convertBook: aPath [
+
 	| input paths |
 	paths := self getInputFilesPaths: aPath contents.
+	self handleConfigFile.
 	input := PRPillarParser parse:  aPath readStream contents.
 	self writeMicrodownOn: aPath forInput: input.
 	paths do: [ :path | self convertChapter: path ]
@@ -54,12 +56,36 @@ PRConverterToMic >> getInputFilesPaths: aString [
 	^ paths
 ]
 
+{ #category : #config }
+PRConverterToMic >> handleConfigFile [
+	"We copy the config file to 'pillarconf.old'
+	then we migrate it."
+	| ston conf |
+	conf := (FileSystem workingDirectory / 'pillar.conf').
+	conf exists
+		ifTrue: [ 
+				| str |
+				(FileSystem workingDirectory / 'pillarconf.old') ensureDelete.
+				conf copyTo: (FileSystem workingDirectory / 'pillarconf.old').
+				ston := (STON reader on: conf readStream) next.
+				"unsure is this is like that for the plugin but no expansion is needed for annotation
+				in Microdown" 
+				ston removeKey: #plugins ifAbsent: [].
+				ston at: #latexWriter put: ('mic', (ston at: #latexWriter)) asSymbol.
+				self halt.
+				conf ensureDelete.
+				str := conf writeStream.
+				STON put: ston onStreamPretty: str.
+				str close.
+				]
+		ifFalse: [ Stdio stdout nextPutAll: conf fullName , ' does not exist']
+]
+
 { #category : #conversion }
 PRConverterToMic >> writeMicrodownOn: aPath forInput: input [
 
 	| fileReference |
-	fileReference := FileSystem workingDirectory
-	                 / (aPath basenameWithoutExtension , '.md').
+	fileReference := aPath parent / (aPath basenameWithoutExtension , '.md').
 	fileReference ensureDelete.
 	^ PRMicrodownWriter new
 		  setStream: fileReference writeStream;
