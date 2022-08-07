@@ -164,7 +164,6 @@ PRMicrodownWriter >> visitExternalLink: anExternalLink [
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitFigure: aFigure [
 
-	 
 	canvas figureURLString: (self withoutFileColumnColumn: aFigure reference)
 		withCaption: [ aFigure children do: [:each | each accept: self]] 
 		withParameters: aFigure parameters

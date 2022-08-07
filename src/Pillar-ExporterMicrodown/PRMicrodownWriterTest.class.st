@@ -709,7 +709,6 @@ PRMicrodownWriterTest >> testUnorderedListWithMicroDownMarkup [
 PRMicrodownWriterTest >> testWithInitialText: expectedString [
 
 	parsedBloc := self parser parse: expectedString readStream.
-	self parser resolveDocument: parsedBloc withBase: FileSystem workingDirectory.
 	writtenText := self writer
 		               start: parsedBloc asPillar;
 		               contents.

@@ -24,7 +24,7 @@ PRConverterToMic >> convertBook: aPath [
 { #category : #conversion }
 PRConverterToMic >> convertChapter: aPath [
 	| input |
-	input := (PRPillarParser parse:  aPath readStream contents).
+	input := PRPillarParser parse:  aPath readStream contents.
 	self writeMicrodownOn: aPath forInput: input
 ]
 
