@@ -29,7 +29,7 @@ BaselineOfPillarApp >> baseline: spec [
 		
 	"Microdown - we want it in App."
 	spec baseline: 'Microdown' with: [ 
-			spec repository: 'github://pillar-markup/Microdown:v2.1.0/src' ].
+			spec repository: 'github://pillar-markup/Microdown:v2.2.0/src' ].
 	spec package: 'Pillar-Microdown' with: [ spec requires: #('Microdown' #'Pillar-Model' 'Pillar-ExporterCore' 'Pillar-Tests-ExporterCore') ].
   
  	"Now reenabling it for MD 20"
