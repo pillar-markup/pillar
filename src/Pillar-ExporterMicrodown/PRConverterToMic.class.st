@@ -72,10 +72,9 @@ PRConverterToMic >> handleConfigFile [
 				in Microdown" 
 				ston removeKey: #plugins ifAbsent: [].
 				ston at: #latexWriter put: ('mic', (ston at: #latexWriter)) asSymbol.
-				self halt.
 				conf ensureDelete.
 				str := conf writeStream.
-				STON put: ston onStreamPretty: str.
+				STON put: ston asJsonOnStreamPretty: str.
 				str close.
 				]
 		ifFalse: [ Stdio stdout nextPutAll: conf fullName , ' does not exist']
