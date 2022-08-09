@@ -112,6 +112,7 @@ PRMicrodownWriterTest >> testCodeBlockCaptionContainsMonospace [
 	mictext := builder
 		           codeblock: self exampleTextMultipleLines
 		           firstLineAssociations: { 
+							  ('language' -> 'pharo').
 				           ('language2' -> 'Pharo').
 				           ('caption' -> '`Color` is cool') };
 		           contents.
@@ -620,7 +621,8 @@ PRMicrodownWriterTest >> testSimpleCodeBlock [
 	Pharo
 	```"
 	
-	self testWithInitialText: (builder codeblock: self exampleTextMultipleLines ; contents)
+	self testWithInitialText: (builder codeblock: self exampleTextMultipleLines 
+												 firstLineAssociations: {('language' -> 'pharo')}; contents)
 ]
 
 { #category : #'tests - code block' }
