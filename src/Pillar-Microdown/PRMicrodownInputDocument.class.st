@@ -7,7 +7,7 @@ Class {
 { #category : #registration }
 PRMicrodownInputDocument class >> doesHandleExtension: anExtension [
 
-	^ anExtension = 'mic'
+	^ anExtension asLowercase= 'md'
 ]
 
 { #category : #accessing }

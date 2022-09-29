@@ -8,8 +8,8 @@ Class {
 PRMicrodownInputDocumentTest >> testParsedDocument [
 	
 	| doc |
-	doc := ((PRInputDocument inputClassForFile: memoryFileSystem / 'input1.mic') new 
-					file:  memoryFileSystem / 'input1.mic') parsedDocument.
+	doc := ((PRInputDocument inputClassForFile: memoryFileSystem / 'input1.md') new 
+					file:  memoryFileSystem / 'input1.md') parsedDocument.
 	self 
 		assert: doc class
 		equals: MicRootBlock
@@ -20,7 +20,7 @@ PRMicrodownInputDocumentTest >> testParsedDocument [
 PRMicrodownInputDocumentTest >> testParsedDocument2 [
 	
 	| doc |
-	doc := (PRInputDocument forFile: memoryFileSystem / 'input1.mic') parsedDocument.
+	doc := (PRInputDocument forFile: memoryFileSystem / 'input1.md') parsedDocument.
 	self 
 		assert: doc class
 		equals: MicRootBlock
@@ -31,7 +31,7 @@ PRMicrodownInputDocumentTest >> testParsedDocument2 [
 PRMicrodownInputDocumentTest >> testParserClass [
 	
 	| input |
-	input := (PRInputDocument inputClassForFile: memoryFileSystem / 'input1.mic') new.
+	input := (PRInputDocument inputClassForFile: memoryFileSystem / 'input1.md') new.
 	self 
 		assert: input parserClass 
 		equals: MicrodownParser
@@ -42,7 +42,7 @@ PRMicrodownInputDocumentTest >> testParserClass [
 PRMicrodownInputDocumentTest >> testParserClass2 [
 	
 	| input |
-	input := PRInputDocument forFile: memoryFileSystem / 'input1.mic'.
+	input := PRInputDocument forFile: memoryFileSystem / 'input1.md'.
 	self 
 		assert: input parserClass 
 		equals: MicrodownParser
@@ -53,7 +53,7 @@ PRMicrodownInputDocumentTest >> testParserClass2 [
 PRMicrodownInputDocumentTest >> testRegistration [
 	
 	| inputClass |
-	inputClass := (PRInputDocument inputClassForFile: memoryFileSystem / 'input1.mic').
+	inputClass := (PRInputDocument inputClassForFile: memoryFileSystem / 'input1.md').
 	self 
 		assert: inputClass 
 		equals: MicMicrodownInputDocument
@@ -64,7 +64,7 @@ PRMicrodownInputDocumentTest >> testRegistration [
 PRMicrodownInputDocumentTest >> testRegistration2 [
 	
 	| inputClass |
-	inputClass := (PRInputDocument forFile: memoryFileSystem / 'input1.mic') class.
+	inputClass := (PRInputDocument forFile: memoryFileSystem / 'input1.md') class.
 	self 
 		assert: inputClass 
 		equals: MicMicrodownInputDocument

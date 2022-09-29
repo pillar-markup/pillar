@@ -10,7 +10,7 @@ Class {
 { #category : #tests }
 PRTestWithMemoryFileSystem >> createMicrodownFile1 [
  
-	(memoryFileSystem / 'input1.mic') writeStreamDo: [ :stream |
+	(memoryFileSystem / 'input1.md') writeStreamDo: [ :stream |
 		stream nextPutAll: '### TestFile11
 
 ```

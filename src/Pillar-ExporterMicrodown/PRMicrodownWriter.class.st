@@ -25,7 +25,7 @@ Class {
 
 { #category : #accessing }
 PRMicrodownWriter class >> fileExtension [
-	^ 'mic'
+	^ 'md'
 ]
 
 { #category : #accessing }
