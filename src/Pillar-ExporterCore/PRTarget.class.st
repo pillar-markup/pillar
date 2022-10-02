@@ -132,7 +132,6 @@ PRTarget >> buildOn: aProject [
 	
 	"Set the pipeline"
 	aProject contributeToPipelineBuilding: self.
-	
 	"For each file, we execute the pipeline"
 	(self filesToBuildOn: aProject) do: [ :each |
 		each file exists ifTrue: [ 
