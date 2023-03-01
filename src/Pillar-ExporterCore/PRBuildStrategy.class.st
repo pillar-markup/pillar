@@ -21,10 +21,11 @@ PRBuildStrategy >> filesToBuildOn: aProject [
 PRBuildStrategy >> initialize [
 
 	super initialize.
-	supportedLanguageExtensions := #('pillar' 'mic' 'md' 'MIC' 'MD')
+	supportedLanguageExtensions := #( 'pillar' 'mic' 'md' )
 ]
 
 { #category : #accessing }
 PRBuildStrategy >> isSupportedExtension: aString [
-	^ supportedLanguageExtensions includes: aString trimBoth
+
+	^ supportedLanguageExtensions includes: aString trimBoth asLowercase
 ]
