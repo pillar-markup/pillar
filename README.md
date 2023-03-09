@@ -19,7 +19,7 @@ For HTTPS setup, execute the `build.sh` script found in the `scripts` directory:
 ```bash
 $ git clone https://github.com/pillar-markup/pillar.git
 $ cd pillar
-$ git checkout v8.2.6
+$ git checkout v8.3.0
 $ chmod a+x ./scripts/build.sh
 $ ./scripts/build.sh
 ```
@@ -33,14 +33,6 @@ The script will create a `build` directory in your current working directory wit
 $ ls
 LICENSE  README.md  appveyor.yml  archetypes  ==>>build<<==  download.sh  scripts  src
 ```
-
-
-#### Current version
-
-- Current version is Pillar v8.0.15
-- Most Pharo booklets are using v7.7.4 and are under migration to v8.0.12
-
-
 
 ### 2. Setting up the environment
 
@@ -165,7 +157,9 @@ Read the documentation at [https://github.com/SquareBracketAssociates/Booklet-Pu
 Please note that chapter on "Pharo a web Perspective" is obsolete since it refers to Pharo 60.
 
 ## History
-- 8.2.6 full support for microdown and pillar books.
+- 8.3.0 full support for microdown and pillar books using MD v2.3.1
+- 8.2.7 [Bogus] full support for microdown and pillar books (but it did load the correct version of microdown)
+- 8.2.6 [Bogus] full support for microdown and pillar books (but it did load the correct version of microdown)
 - 8.2.4-5 introduced hooks for file include in Pillar and microdown
 - 8.2.3 remove temporary PRMicrodownWriter (since it was ported to MicrodownV2)
 - 8.2.2 
