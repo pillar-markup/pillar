@@ -11,10 +11,7 @@ on: [ push, pull_request ]
   
 jobs:
   build:
-    strategy:
-      matrix:
-        platform: [ubuntu-latest, macos-latest ]
-    runs-on: ${{ matrix.platform }}
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: hpi-swa/setup-smalltalkCI@v1
