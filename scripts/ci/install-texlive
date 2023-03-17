@@ -5,7 +5,7 @@ IFS=$'\n\t'
 # preamble from https://disconnected.systems/blog/another-bash-strict-mode/
 
 # ensure meaningful default values for required environment variables
-: "${TEXLIVE_RELEASE:=2019}"
+: "${TEXLIVE_RELEASE:=2022}"
 : "${TEXLIVE_MIRROR:="https://ftp.tu-chemnitz.de/pub/tug/historic/systems/texlive/${TEXLIVE_RELEASE}/tlnet-final/"}"
 : "${TEXLIVE_TARBALL:=install-tl-unx.tar.gz}"
 
