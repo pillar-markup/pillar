@@ -47,7 +47,7 @@ function install-texlive() {
 
     texlive-profile >> texlive.profile
     "$installer" --repository "$TEXLIVE_MIRROR" --profile texlive.profile
-    PATH=/usr/local/texlive/${TEXLIVE_RELEASE}/bin/$(ls /usr/local/texlive/${TEXLIVE_RELEASE}/bin/ 2>/dev/null | head -1):$PATH
+    #PATH=/usr/local/texlive/${TEXLIVE_RELEASE}/bin/$(ls /usr/local/texlive/${TEXLIVE_RELEASE}/bin/ 2>/dev/null | head -1):$PATH
     tlmgr init-usertree
     tlmgr install latexmk luatex85
 }
