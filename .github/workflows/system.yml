@@ -20,10 +20,9 @@ jobs:
     strategy:
 #      fail-fast: false
       matrix:
-        platform: [ubuntu-latest, macos-latest ]
         archetype: [book, presentation, welcome, basic-latex]
         output: [html, pdf]
-    runs-on: ${{ matrix.platform }}
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:  
