@@ -4,12 +4,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 # Controls when the action will run. 
-on:
-  # Triggers the workflow on push or pull request events but only for the dev-8 branch
-  push:
-    branches: [ dev-8 ]
-  pull_request:
-    branches: [ dev-8 ]
+on: [ push, pull_request ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -21,11 +16,11 @@ jobs:
         platform: [ubuntu-latest, macos-latest ]
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: hpi-swa/setup-smalltalkCI@v1
         id: smalltalkci
         with:
-          smalltalk-version: Pharo64-9.0
+          smalltalk-image: Pharo64-10
       - run: smalltalkci -s ${{ steps.smalltalkci.outputs.smalltalk-version }} .smalltalk.Unit.DocumentModel.ston
         shell: bash
         timeout-minutes: 15
