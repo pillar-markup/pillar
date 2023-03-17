@@ -18,11 +18,11 @@ on:
 jobs:
   build:
     strategy:
-#      fail-fast: false
       matrix:
+        platform: [ubuntu-latest, macos-latest ]
         archetype: [book, presentation, welcome, basic-latex]
         output: [html, pdf]
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v2
         with:  
