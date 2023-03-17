@@ -2,7 +2,7 @@ name: system
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  TEXLIVE_RELEASE: 2022
+  TEXLIVE_RELEASE: 2021
 
 # Controls when the action will run. 
 on:
