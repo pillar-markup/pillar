@@ -19,23 +19,18 @@ Class {
 
 { #category : #baselines }
 BaselineOfPillarMicro >> baseline: spec [
-	<baseline>
-	
-	spec for: #'common' do: [
-		spec baseline: 'Pillar' with: [ spec 
-				"loads: #('rich text exporter');"
-				repository: 'github://pillar-markup/pillar:dev-8/src' ].
-			
-		spec baseline: 'Microdown' with: [ 
-			spec repository: 'github://pillar-markup/Microdown/src' ].	
-		
-		spec 
-			package: 'Pillar-Microdown' 
-			with: [ spec requires: #('Pillar' 'Microdown') ].
-			
-		spec 
-			package: 'Pillar-ExporterMicrodown' 
-			with: [ spec requires: #('Pillar' 'Microdown') ].
-		]
 
+	<baseline>
+	spec for: #common do: [
+		spec baseline: 'Pillar' with: [
+			spec repository: 'github://pillar-markup/pillar:dev-8/src'
+			"loads: #('rich text exporter');" ].
+
+		spec baseline: 'Microdown' with: [ spec repository: 'github://pillar-markup/Microdown/src' ].
+
+		spec package: 'Pillar-MicrodownToPillarConverter' with: [ spec requires: #( 'Pillar' 'Microdown' ) ].
+
+		spec package: 'Pillar-Microdown' with: [ spec requires: #( 'Pillar-MicrodownToPillarConverter' 'Pillar' 'Microdown' ) ].
+
+		spec package: 'Pillar-ExporterMicrodown' with: [ spec requires: #( 'Pillar' 'Microdown' ) ] ]
 ]
