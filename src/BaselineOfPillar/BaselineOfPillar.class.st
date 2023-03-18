@@ -6,16 +6,9 @@ Class {
 
 { #category : #baselines }
 BaselineOfPillar >> baseline: spec [
-	<baseline>
 
-	spec
-		for: #common
-		do: [ spec blessing: #baseline.
-			spec
-				package: 'Pillar-Core';
-				"Going from Pillar model to richText"
-				package: 'Pillar-ExporterRichText' 
-					with: [ spec requires: #('Pillar-Core') ] ]
+	<baseline>
+	spec for: #common do: [ spec package: 'Pillar-Core' ]
 ]
 
 { #category : #baselines }
