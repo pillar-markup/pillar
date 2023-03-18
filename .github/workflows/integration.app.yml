@@ -25,8 +25,7 @@ jobs:
           echo "SMALLTALKCIBUILD: " ${SMALLTALK_CI_BUILD}
           echo "PWD: " `pwd`
           echo "ls: " `ls -a`
-          cp -r archetypes ${SMALLTALK_CI_BUILD}/archetypes
-          mkdir -p ${SMALLTALK_CI_BUILD}
+          cp -r archetypes ${SMALLTALK_CI_BUILD}
           smalltalkci -s  ${{ steps.smalltalkci.outputs.smalltalk-image }} .smalltalk.Integration.App.ston
       - name: DEBUG
         shell: bash
