@@ -8,49 +8,25 @@ Class {
 BaselineOfPillarApp >> baseline: spec [
 
 	<baseline>
-	spec for: #windows do: [
-		spec configuration: 'ProcessWrapper' with: [
-			spec
-				versionString: '1.2';
-				repository: 'http://smalltalkhub.com/mc/hernan/ProcessWrapper/main' ].
-		spec package: 'Pillar-Project' with: [ spec requires: 'ProcessWrapper' ] ].
-	spec for: #( unix osx ) do: [
-		spec baseline: 'OSSubprocess' with: [ spec repository: 'github://pharo-contributions/OSSubprocess:v1.4.0/repository' ].
-		spec package: 'Pillar-Project' with: [ spec requires: 'OSSubprocess' ] ].
-
-	"Microdown - we want it in App."
-	spec baseline: 'Microdown' with: [ spec repository: 'github://pillar-markup/Microdown:v2.3.1/src' ].
-	spec package: 'Pillar-MicrodownToPillarConverter' with: [ spec requires: #('Pillar-Core' 'Microdown') ].
-	spec package: 'Pillar-Microdown' with: [ spec requires: #('Pillar-MicrodownToPillarConverter' 'Microdown' #'Pillar-Model' 'Pillar-ExporterCore' 'Pillar-Tests-ExporterCore' ) ].
-
-	"Now reenabling it for MD 20"
-	spec package: 'Pillar-ExporterMicrodown' with: [ spec requires: #( 'Microdown' 'Pillar-PetitPillar' 'Pillar-ExporterCore' ) ].
-
 	spec for: #common do: [
-		spec blessing: #baseline.
-		spec baseline: 'ContainersPropertyEnvironment' with: [ spec repository: 'github://Ducasse/Containers-PropertyEnvironment:v1.0.0' ].
+		self
+			chrysal: spec;
+			containersPropertyEnvironment: spec;
+			microdown: spec;
+			mustache: spec;
+			petitParser2: spec.
 
 		spec
-			baseline: 'PetitParser2Core' with: [ spec repository: 'github://kursjan/petitparser2' ];
-			baseline: 'Chrysal' with: [ spec repository: 'github://Ducasse/Chrysal:v1.0.0/src' ];
-			"baseline: 'Clap' with: [ spec repository: 'github://cdlm/clap-st:pharo-pr5761' ];"baseline: 'Mustache' with: [
-				spec
-					repository: 'github://noha/mustache:v1.0/repository';
-					loads: #( 'Core' 'Tests' ) ].
-
-		spec package: 'Pillar-Core'.
-
-		spec package: 'Pillar-Tests-Core' with: [ spec requires: #( 'Pillar-Core' 'Pillar-ExporterText' 'Pillar-ExporterPillar' 'Pillar-PetitPillar' ) ].
-
-
-		spec
+			package: 'Pillar-MicrodownToPillarConverter' with: [ spec requires: #( 'Pillar-Core' 'Microdown' ) ];
+			package: 'Pillar-Microdown'
+			with: [ spec requires: #( 'Pillar-MicrodownToPillarConverter' 'Pillar-Model' 'Pillar-ExporterCore' 'Pillar-Tests-ExporterCore' ) ];
+			package: 'Pillar-ExporterMicrodown' with: [ spec requires: #( 'Microdown' 'Pillar-PetitPillar' 'Pillar-ExporterCore' ) ];
+			package: 'Pillar-Core';
+			package: 'Pillar-Tests-Core' with: [ spec requires: #( 'Pillar-Core' 'Pillar-ExporterText' 'Pillar-ExporterPillar' 'Pillar-PetitPillar' ) ];
 			package: 'Pillar-Model' with: [ spec requires: #( 'Pillar-Core' ) ];
 			package: 'Pillar-Chrysal-Generator' with: [ spec requires: #( 'Chrysal' ) ];
-			"Only needed to regenerate the pillar configuration: it depends on Chrysal and Chrysal-Runtime"
 			package: 'Pillar-Cli' with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-Chrysal' ) ];
-			"in common we do not need the clap dependency"package: 'Pillar-Chrysal' with: [ spec requires: #( 'Pillar-ExporterCore' ) ];
-			"Pillar-Chrysal should only depend on Chrysal-Runtime but right now I do not know how to express that the
-				Chrysal (builder) is different from Chrysal-Runtime"
+			package: 'Pillar-Chrysal' with: [ spec requires: #( 'Pillar-ExporterCore' ) ];
 			package: 'Pillar-ExporterAsciiDoc' with: [ spec requires: #( 'Pillar-ExporterCore' ) ];
 			package: 'Pillar-ExporterBeamer' with: [ spec requires: #( 'Pillar-ExporterLaTeX' ) ];
 			package: 'Pillar-ExporterCore' with: [ spec requires: #( 'Pillar-Model' 'ContainersPropertyEnvironment' ) ];
@@ -91,8 +67,7 @@ BaselineOfPillarApp >> baseline: spec [
 		spec
 			group: 'ALL' with: #( 'All tests' 'All but tests' );
 			group: 'All but tests'
-			with:
-				#( 'All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'parser' 'Pillar-Project' 'Pillar-BookTester' 'Pillar-CodeBlockEvaluator');
+			with: #( 'All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'parser' 'Pillar-Project' 'Pillar-BookTester' 'Pillar-CodeBlockEvaluator' );
 			group: 'All exporter tests'
 			with: #( 'html exporter tests' 'latex exporter tests' 'beamer exporter tests' 'deckjs exporter tests' 'markdown exporter tests' 'pillar exporter tests'
 				   'text exporter tests' 'asciidoc exporter tests' 'ePub exporter tests' );
@@ -123,7 +98,28 @@ BaselineOfPillarApp >> baseline: spec [
 			group: 'pillar exporter' with: #( 'Pillar-ExporterPillar' );
 			group: 'pillar exporter tests' with: #( 'Pillar-Tests-ExporterPillar' );
 			group: 'text exporter' with: #( 'Pillar-ExporterText' );
-			group: 'text exporter tests' with: #( 'Pillar-Tests-ExporterText' ) ]
+			group: 'text exporter tests' with: #( 'Pillar-Tests-ExporterText' ) ].
+
+	spec for: #windows do: [
+		self processWrapper: spec.
+		spec package: 'Pillar-Project' with: [ spec requires: 'ProcessWrapper' ] ].
+
+
+	spec for: #( unix osx ) do: [
+		self osSubProcess: spec.
+		spec package: 'Pillar-Project' with: [ spec requires: 'OSSubprocess' ] ]
+]
+
+{ #category : #dependencies }
+BaselineOfPillarApp >> chrysal: spec [
+
+	spec baseline: 'Chrysal' with: [ spec repository: 'github://Ducasse/Chrysal:v1.0.0/src' ]
+]
+
+{ #category : #dependencies }
+BaselineOfPillarApp >> containersPropertyEnvironment: spec [
+
+	spec baseline: 'ContainersPropertyEnvironment' with: [ spec repository: 'github://Ducasse/Containers-PropertyEnvironment:v1.0.0' ]
 ]
 
 { #category : #baselines }
@@ -137,4 +133,40 @@ BaselineOfPillarApp >> customProjectAttributes [
 	OSPlatform current isUnix    ifTrue: [ attributes add: #unix ].
 	OSPlatform current isMacOS   ifTrue: [ attributes add: #osx ].
 	^ attributes asArray
+]
+
+{ #category : #dependencies }
+BaselineOfPillarApp >> microdown: spec [
+
+	spec baseline: 'Microdown' with: [ spec repository: 'github://pillar-markup/Microdown:v2.3.1/src' ]
+]
+
+{ #category : #dependencies }
+BaselineOfPillarApp >> mustache: spec [
+
+	spec baseline: 'Mustache' with: [
+		spec
+			repository: 'github://noha/mustache:v1.0/repository';
+			loads: #( 'Core' 'Tests' ) ]
+]
+
+{ #category : #dependencies }
+BaselineOfPillarApp >> osSubProcess: spec [
+
+	spec baseline: 'OSSubprocess' with: [ spec repository: 'github://pharo-contributions/OSSubprocess:v1.4.0/repository' ]
+]
+
+{ #category : #dependencies }
+BaselineOfPillarApp >> petitParser2: spec [
+
+	spec baseline: 'PetitParser2Core' with: [ spec repository: 'github://kursjan/petitparser2' ]
+]
+
+{ #category : #dependencies }
+BaselineOfPillarApp >> processWrapper: spec [
+
+	spec configuration: 'ProcessWrapper' with: [
+		spec
+			versionString: '1.2';
+			repository: 'http://smalltalkhub.com/mc/hernan/ProcessWrapper/main' ]
 ]
