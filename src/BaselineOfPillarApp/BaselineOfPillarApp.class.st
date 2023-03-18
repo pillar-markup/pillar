@@ -51,16 +51,17 @@ BaselineOfPillarApp >> baseline: spec [
 						repository: 'github://noha/mustache:v1.0/repository';
 						loads: #('Core' 'Tests') ].
 					
-			spec baseline: 'PillarDocumentModel' 
-					with: [ spec repository: 'github://pillar-markup/pillar:dev-8' 
-					"self packageRepositoryURL" ].
+			spec 
+				package: 'Pillar-Core';
+				package: 'Pillar-ExporterRichText' 
+					with: [ spec requires: #('Pillar-Core') ].
 
 			spec package: 'Pillar-Tests-Core' with: [ spec 
-					requires: #( 'PillarDocumentModel' 'Pillar-ExporterText' 'Pillar-ExporterPillar' 'Pillar-PetitPillar' ) ].
+					requires: #( 'Pillar-Core' 'Pillar-ExporterText' 'Pillar-ExporterPillar' 'Pillar-PetitPillar' ) ].
 
 					
 			spec
-				package: 'Pillar-Model' with: [ spec requires: #('PillarDocumentModel')];
+				package: 'Pillar-Model' with: [ spec requires: #('Pillar-Core')];
 				package: 'Pillar-Chrysal-Generator' with: [ spec requires: #('Chrysal') ];
 				"Only needed to regenerate the pillar configuration: it depends on Chrysal and Chrysal-Runtime"
 				package: 'Pillar-Cli' with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-Chrysal') ];
@@ -88,12 +89,12 @@ BaselineOfPillarApp >> baseline: spec [
 				package: 'Pillar-ExporterText' with: [ spec requires: #('Pillar-ExporterCore') ];
 				
 				
-				package: 'Pillar-CodeBlockEvaluator' with: [ spec requires: #('PillarDocumentModel')];
+				package: 'Pillar-CodeBlockEvaluator' with: [ spec requires: #('Pillar-Core')];
 				package: 'Pillar-PetitPillar' with: [ spec requires: #('PetitParser2Core' 'Pillar-Model') ];	
 				
 				"Going from Pillar text to richText"
 				package: 'Pillar-PillarTextRichTextExporter' 
-					with: [ spec requires: #('PillarDocumentModel' 'Pillar-PetitPillar') ];
+					with: [ spec requires: #('Pillar-Core' 'Pillar-PetitPillar') ];
 					
 				package: 'Pillar-Pharo-Tools' with: [ spec requires: #('Pillar-Model' 'All exporters') ];
 				package: 'Pillar-Project' with: [ spec requires: #('Pillar-Model' 'All exporters') ];
@@ -110,14 +111,14 @@ BaselineOfPillarApp >> baseline: spec [
 				package: 'Pillar-Tests-ExporterPillar' with: [ spec requires: #('Pillar-ExporterPillar' 'Pillar-Tests-ExporterCore') ];
 				package: 'Pillar-Tests-ExporterText' with: [ spec requires: #('Pillar-ExporterText' 'Pillar-Tests-ExporterCore') ];
 				package: 'Pillar-Tests-Model' with: [ spec requires: #('Pillar-Model' 'Pillar-ExporterPillar' 'Pillar-ExporterText' 
-					'PillarDocumentModel' 'Pillar-Tests-PetitPillar') ];
+					'Pillar-Core' 'Pillar-Tests-PetitPillar') ];
 				
 				
 				package: 'Pillar-Tests-Model-PetitPillar' with: [ spec requires: 
-					#('PillarDocumentModel' 'Pillar-Tests-Core' 'Pillar-Tests-Model' 'Pillar-PetitPillar' 'Pillar-Model' 'Pillar-Tests-PetitPillar') ];
+					#('Pillar-Core' 'Pillar-Tests-Core' 'Pillar-Tests-Model' 'Pillar-PetitPillar' 'Pillar-Model' 'Pillar-Tests-PetitPillar') ];
 				
 				package: 'Pillar-Tests-Model-ExporterText' with: [ spec requires: 
-						#('PillarDocumentModel'  'Pillar-PetitPillar' 'Pillar-Tests-ExporterText') ];
+						#('Pillar-Core'  'Pillar-PetitPillar' 'Pillar-Tests-ExporterText') ];
 					
 				package: 'Pillar-Tests-Model-ExporterPillar' with: [ spec requires: #('Pillar-Model'  'Pillar-PetitPillar' 
 					 'Pillar-Tests-ExporterPillar') ];
