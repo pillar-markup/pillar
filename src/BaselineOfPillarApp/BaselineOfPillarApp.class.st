@@ -18,10 +18,6 @@ BaselineOfPillarApp >> baseline: spec [
 		spec baseline: 'OSSubprocess' with: [ spec repository: 'github://pharo-contributions/OSSubprocess:v1.4.0/repository' ].
 		spec package: 'Pillar-Project' with: [ spec requires: 'OSSubprocess' ] ].
 
-	spec for: #'pharo8.x' do: [
-		spec baseline: 'Clap' with: [ spec repository: 'github://cdlm/clap-st:pharo-pr5761' ].
-		spec package: 'Pillar-Cli' with: [ spec requires: #( 'Clap' 'Pillar-ExporterCore' 'Pillar-Chrysal' ) ] ].
-
 	"Microdown - we want it in App."
 	spec baseline: 'Microdown' with: [ spec repository: 'github://pillar-markup/Microdown:v2.3.1/src' ].
 	spec package: 'Pillar-MicrodownToPillarConverter' with: [ spec requires: #('Pillar-Core' 'Microdown') ].
@@ -50,13 +46,12 @@ BaselineOfPillarApp >> baseline: spec [
 		spec
 			package: 'Pillar-Model' with: [ spec requires: #( 'Pillar-Core' ) ];
 			package: 'Pillar-Chrysal-Generator' with: [ spec requires: #( 'Chrysal' ) ];
-			"Only needed to regenerate the pillar configuration: it depends on Chrysal and Chrysal-Runtime"package: 'Pillar-Cli'
-			with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-Chrysal' ) ];
+			"Only needed to regenerate the pillar configuration: it depends on Chrysal and Chrysal-Runtime"
+			package: 'Pillar-Cli' with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-Chrysal' ) ];
 			"in common we do not need the clap dependency"package: 'Pillar-Chrysal' with: [ spec requires: #( 'Pillar-ExporterCore' ) ];
 			"Pillar-Chrysal should only depend on Chrysal-Runtime but right now I do not know how to express that the
 				Chrysal (builder) is different from Chrysal-Runtime"
-			package: 'Pillar-ExporterAsciiDoc'
-			with: [ spec requires: #( 'Pillar-ExporterCore' ) ];
+			package: 'Pillar-ExporterAsciiDoc' with: [ spec requires: #( 'Pillar-ExporterCore' ) ];
 			package: 'Pillar-ExporterBeamer' with: [ spec requires: #( 'Pillar-ExporterLaTeX' ) ];
 			package: 'Pillar-ExporterCore' with: [ spec requires: #( 'Pillar-Model' 'ContainersPropertyEnvironment' ) ];
 			package: 'Pillar-ExporterDeckJS' with: [ spec requires: #( 'Pillar-ExporterHTML' ) ];
