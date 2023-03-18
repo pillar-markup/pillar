@@ -70,7 +70,6 @@ BaselineOfPillarApp >> baseline: spec [
 			package: 'Pillar-ExporterText' with: [ spec requires: #( 'Pillar-ExporterCore' ) ];
 			package: 'Pillar-CodeBlockEvaluator' with: [ spec requires: #( 'PillarDocumentModel' ) ];
 			package: 'Pillar-PetitPillar' with: [ spec requires: #( 'PetitParser2Core' 'Pillar-Model' ) ];
-			"Going from Pillar text to richText"package: 'Pillar-PillarTextRichTextExporter' with: [ spec requires: #( 'PillarDocumentModel' 'Pillar-PetitPillar' ) ];
 			package: 'Pillar-Pharo-Tools' with: [ spec requires: #( 'Pillar-Model' 'All exporters' ) ];
 			package: 'Pillar-Project' with: [ spec requires: #( 'Pillar-Model' 'All exporters' ) ];
 			package: 'Pillar-BookTester' with: [ spec requires: #( 'Pillar-Project' ) ];
@@ -99,7 +98,7 @@ BaselineOfPillarApp >> baseline: spec [
 			group: 'ALL' with: #( 'All tests' 'All but tests' );
 			group: 'All but tests'
 			with:
-				#( 'All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'parser' 'Pillar-Project' 'Pillar-BookTester' 'Pillar-CodeBlockEvaluator' 'Pillar-PillarTextRichTextExporter' );
+				#( 'All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'parser' 'Pillar-Project' 'Pillar-BookTester' 'Pillar-CodeBlockEvaluator');
 			group: 'All exporter tests'
 			with: #( 'html exporter tests' 'latex exporter tests' 'beamer exporter tests' 'deckjs exporter tests' 'markdown exporter tests' 'pillar exporter tests'
 				   'text exporter tests' 'asciidoc exporter tests' 'ePub exporter tests' );

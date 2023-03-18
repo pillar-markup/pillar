@@ -146,40 +146,6 @@ PRRichTextComposerTest >> testCodeBlock [
 '
 ]
 
-{ #category : #'skipped tests' }
-PRRichTextComposerTest >> testExternaLink [
-	| pillarLink target obj1 obj2 raised |
-	self skip.
-	raised := false.
-	[ pillarLink := '*SitePharo>https://get.pharo.org/64/*'.
-	target := 'https://get.pharo.org/64/'.
-
-	obj1 := ((PRRichTextComposer asText: pillarLink) runs at: 1) first.
-	obj2 := self externalLink: target ]
-		on: Error
-		do: [ raised := true ].
-	self deny: raised.
-	self assert: obj1 class equals: obj2 class.
-	self assert: obj1 class name equals: #TextAction
-]
-
-{ #category : #'skipped tests' }
-PRRichTextComposerTest >> testFigure [
-	| link pillarLink obj1 obj2 raised |
-	self skip.
-	raised := false.
-	[ pillarLink := '+Pharologo>https://files.pharo.org/media/logo/logo.png+'.
-	link := 'https://files.pharo.org/media/logo/logo.png'.
-
-	obj1 := ((PRRichTextComposer asText: pillarLink) runs at: 1) first.
-	obj2 := self figure: link ]
-		on: Error
-		do: [ raised := true ].
-	self deny: raised.
-	self assert: obj1 class equals: obj2 class.
-	self assert: obj1 class name equals: #TextAnchor
-]
-
 { #category : #'tests - Header' }
 PRRichTextComposerTest >> testHeaderLevel1 [
 	sample := sample headerLevel1.
