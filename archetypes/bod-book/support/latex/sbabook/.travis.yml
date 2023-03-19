@@ -1,0 +1,27 @@
+version: "~> 1.0"
+env:
+  global:
+    - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
+  jobs:
+    - TEXLIVE_RELEASE=rolling
+    - TEXLIVE_RELEASE=2018
+
+install:
+  - ./ci/install-texlive
+
+script:
+  - latexmk
+
+after_failure:
+  - cat sbabook.log
+
+deploy:
+  - provider: releases
+    edge: true
+    api_key:
+      secure: tOQFCGi5LjrbGVGh22mQmLZvo6aAjw17pj6Hd2mpcgaMGwjNG7gBbvODFfuyCZMorVBwTu5YBk2QSXY9lk0xhmSfZ5XdPAh6foC/vP+y8XZzZV/YsrFR0yltGp6CFL7QtxoTiK3h7VmlD2gM8pgThG3N68Dy/tKxuSEednOOjBI=
+    file: sbabook.pdf
+    on:
+      repo: cdlm/sbabook
+      tags: true
+      condition: $TEXLIVE_RELEASE = rolling

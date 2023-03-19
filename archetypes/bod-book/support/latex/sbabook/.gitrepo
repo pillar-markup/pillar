@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/cdlm/sbabook.git
+	branch = master
+	commit = 6ba943f40408c19528b5c62d5c498c9507e44335
+	parent = d9663feb3a92f12b7cc6268e6cc41a5d6aef60da
+	method = merge
+	cmdver = 0.4.1
