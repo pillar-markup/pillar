@@ -1,6 +1,10 @@
-# Pillar (P8)
+# Pillar
 
 Pillar is a markup syntax and tool-suite to generate documentation, books, websites and slides. Pillar is not new, it was invented around 2000 as a supporting language for [SmallWiki](https://www.slideshare.net/esug/smallwiki-smalltalk-wiki-towards-cms): one of the first wiki using OOP for real. Its ancestor was the markup for the Pier CMS and we extracted it from Pier to make it more applicable to different domains. The Pillar syntax is similar to markdown but its emphasis is on publishing and how it handles different types of links.
+
+Now in the latest version Pillar we are supporting Microdown syntax and migrating all the support to Microdown while supporting the Pillar syntax for backward compatibility reasons. We can migrate automatically books from Pillar syntax to Microdown syntax (compatible with markdown). 
+
+In the future Pillar will be the name of the compilation chain and the syntax language will be Microdown. 
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://img.shields.io/badge/license-MIT-blue.svg)
 ![https://github.com/pillar-markup/pillar/workflows/unit.app/badge.svg](https://github.com/pillar-markup/pillar/workflows/unit.app/badge.svg)
