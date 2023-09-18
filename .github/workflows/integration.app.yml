@@ -18,6 +18,41 @@ jobs:
         id: smalltalkci
         with:
           smalltalk-image: Pharo64-11
+      - name: Setup TeX Live
+        uses: teatimeguest/setup-texlive-action@v2
+        with:
+          version: 2021
+          packages: >-
+            scheme-small
+            latexmk
+            luatex85
+            ctablestack
+            environ
+            filehook
+            fira
+            fontaxes
+            fontspec
+            footmisc
+            gentium-tug
+            graphics
+            hyphen-english
+            import
+            listings
+            luatexbase
+            memoir
+            multirow
+            opensans
+            pgf
+            polyglossia
+            ragged2e
+            tcolorbox
+            tools
+            trimspaces
+            ulem
+            varwidth
+            xcolor
+            xtab
+            slantsc
       - name: go
         shell: bash
         timeout-minutes: 15
