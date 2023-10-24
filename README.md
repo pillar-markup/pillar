@@ -23,7 +23,7 @@ For HTTPS setup, execute the `build.sh` script found in the `scripts` directory:
 ```bash
 $ git clone https://github.com/pillar-markup/pillar.git
 $ cd pillar
-$ git checkout v8.3.0
+$ git checkout v8.3.1
 $ chmod a+x ./scripts/build.sh
 $ ./scripts/build.sh
 ```
