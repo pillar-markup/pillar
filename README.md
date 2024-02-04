@@ -192,10 +192,11 @@ Please note that chapter on "Pharo a web Perspective" is obsolete since it refer
 - 7.4.1 introduces element-based templating (templates found in a given folder are used to output one given element).
 
 ## Planned features
-- Up to date documentation
+- Check Seaside book conversion bug
+- Check support for math
+- Use Templating for LaTeX
 - Remodularize packaging to be able to use Pillar inside Pharo for class/package comments.
 - Integration with Citezen
-- Introduce a markdown brand (to be able to do full roundtrip pillar <-> markdown <-> pillar). It will not cover every features of markdown and it will cover pillar core features: environment, extensible tags.
 - Better templates for Web
-- More components (blog)
-- Reinitiate a small version of Pier to get live support
+- More components - Simple blog
+- 
