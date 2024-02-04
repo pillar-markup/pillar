@@ -163,10 +163,10 @@ Please note that chapter on "Pharo a web Perspective" is obsolete since it refer
 ## History
 
 ### For Pharo 11
-- 
+- v9.0.0 loading in Pharo 11. The development will now happen in P11.
 
 ### For Pharo 10
-- v8.3.2
+- v8.3.2 fixed baseline and updated readme
 - 8.3.0 full support for microdown and pillar books using MD v2.3.1
 - 8.2.7 [Bogus] full support for microdown and pillar books (but it did load the correct version of microdown)
 - 8.2.6 [Bogus] full support for microdown and pillar books (but it did load the correct version of microdown)
