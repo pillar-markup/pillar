@@ -155,6 +155,21 @@ The current pillar version is being developped using [Pharo11](www.pharo.org).
 To contribute, the easiest way to to follow the previous scripts and send PullRequests.
 Use the latest dev-8 as a root for your changes.
 
+### Cleaning first 
+
+First remove existing packages from the Pharo distribution.
+```
+IceRepository registry 
+	detect: [ :each | #('Microdown' 'NewTools-DocumentationReader') includes: each name ]
+	ifFound: [ :aRepository | aRepository forget ].
+"This, however, needs to stay :)"
+#( 'BeautifulComments' 'BaselineOfBeautifulComments' 'BaselineOfMicrodownDev' 'BaselineOfMicrodown' 'Microdown' 'Microdown-Tests' 'Microdown-MicrodownRichTextComposer' 'Microdown-ResolvePath' 
+'Microdown-ResolvePath-Tests' 'NewTools-DocumentationReader-Tests' 'BaselineOfNewToolsDocumentationReader' 'Microdown-RichTextComposer' 'Microdown-RichTextPresenter' 'Microdown-RichTextPresenter-Tests' 'Spec2-Microdown'
+'NewTools-DocumentationReader') do: [ :each | 
+	(RPackageOrganizer default packageNamed: each ifAbsent: [ nil ]) 
+		ifNotNil: [ :aPackage | aPackage removeFromSystem ] ]
+```
+
 The following script can be useful if you develop usin the launcher and want to try to execute the image as from a pillar command
 
 ```
