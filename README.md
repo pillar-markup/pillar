@@ -191,12 +191,13 @@ Please note that chapter on "Pharo a web Perspective" is obsolete since it refer
 - 7.5.0 introduces environments (${begin:card|x=12}$ ... ${end:card}$
 - 7.4.1 introduces element-based templating (templates found in a given folder are used to output one given element).
 
-## Planned features
+## Planned development
+- Release new Pillar for Pharo11.
 - Check Seaside book conversion bug
+- Check dev version of Microdown with new inline parser: when working, freeze MD with a new tagged version and freeze a new Pillar version. 
 - Check support for math
 - Use Templating for LaTeX
 - Remodularize packaging to be able to use Pillar inside Pharo for class/package comments.
 - Integration with Citezen
 - Better templates for Web
 - More components - Simple blog
-- 
