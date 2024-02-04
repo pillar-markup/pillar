@@ -138,7 +138,7 @@ BaselineOfPillarApp >> customProjectAttributes [
 { #category : #dependencies }
 BaselineOfPillarApp >> microdown: spec [
 
-	spec baseline: 'Microdown' with: [ spec repository: 'github://pillar-markup/Microdown:v2.3.1/src' ]
+	spec baseline: 'Microdown' with: [ spec repository: 'github://pillar-markup/Microdown:v2.4.1/src' ]
 ]
 
 { #category : #dependencies }
