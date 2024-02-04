@@ -210,8 +210,8 @@ PRMicrodownWriter >> visitInputFileAnnotation: anInput [
 { #category : #'visiting - document' }
 PRMicrodownWriter >> visitInternalLink: anInternalLink [
 	"Corresponding to *@fig1* in Pillar"
-	
-	canvas internalLink: anInternalLink anchor 
+	anInternalLink anchor ifNotNil: [ 
+		canvas internalLink: anInternalLink anchor ] 
 ]
 
 { #category : #'visiting - formatting' }
