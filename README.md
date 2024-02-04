@@ -20,6 +20,17 @@ In the future Pillar will be the name of the compilation chain and the syntax la
 ### 1. Building from sources
 For HTTPS setup, execute the `build.sh` script found in the `scripts` directory:
 
+
+```bash
+$ git clone https://github.com/pillar-markup/pillar.git
+$ cd pillar
+$ git checkout v9.0.0
+$ chmod a+x ./scripts/build.sh
+$ ./scripts/build.sh
+```
+
+
+### Here is the latest version for Pharo 10.
 ```bash
 $ git clone https://github.com/pillar-markup/pillar.git
 $ cd pillar
