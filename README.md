@@ -151,9 +151,15 @@ It builds by default the export format found in `pillar.conf` at `defaultExport`
 **pillar serve**
 
 ## Contributing to Pillar
-The current pillar version is being developped using both [Pharo10 (soon Pharo11)](www.pharo.org).
+The current pillar version is being developped using [Pharo11](www.pharo.org).
 To contribute, the easiest way to to follow the previous scripts and send PullRequests.
-Use the latest dev-branch as a root for your changes.
+Use the latest dev-8 as a root for your changes.
+
+The following script can be useful if you develop usin the launcher and want to try to execute the image as from a pillar command
+
+```
+/Users/ducasse/Documents/Pharo/vms/100-x64/Pharo.app/Contents/MacOS/Pharo  /Users/ducasse/Documents/Pharo/images/P11-PillarRealReference/P10-PillarRealReference.image clap build pdf index.pillar
+```
 
 ## More documentation
 
