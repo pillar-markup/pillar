@@ -154,7 +154,7 @@ BaselineOfPillarApp >> mustache: spec [
 { #category : 'dependencies' }
 BaselineOfPillarApp >> osSubProcess: spec [
 
-	spec baseline: 'OSSubprocess' with: [ spec repository: 'github://pharo-contributions/OSSubprocess:v1.4.0/repository' ]
+	spec baseline: 'OSSubprocess' with: [ spec repository: 'github://pharo-contributions/OSSubprocess:v2.0.0/repository' ]
 ]
 
 { #category : 'dependencies' }
