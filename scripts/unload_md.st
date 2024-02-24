@@ -7,18 +7,11 @@ IceRepository registry
 	ifFound: [ :aRepository | aRepository forget ].
 
 "This, however, needs to stay :)"
-#( 
-	'BaselineOfMicrodown'
-	'Microdown'
-	'Microdown-Calypso'
-	'Microdown-Pillar'
-	'Microdown-Pillar-Tests'
-	'Microdown-RichTextComposer'
-	'Microdown-Tests'
-	
-	'BaselineOfPillar'
-	'Pillar-Core'
-	'Pillar-ExporterRichText'
-	 ) do: [ :each | 
-	(RPackageOrganizer default packageNamed: each ifAbsent: [ nil ]) 
-		ifNotNil: [ :aPackage | aPackage removeFromSystem ] ]
+
+#( 'Microdown' 'BeautifulComments' 'DocumentBrowser' ) do: [ :name |
+		(IceRepository repositoryNamed: name)
+			ifNil: [ self inform: 'Project not found: ' , name ]
+			ifNotNil: [ :found |
+				found
+					unload;
+					forget ] ]
