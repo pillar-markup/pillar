@@ -1,10 +1,11 @@
 Class {
-	#name : #BaselineOfPillarApp,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfPillarApp
+	#name : 'BaselineOfPillarApp',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfPillarApp',
+	#package : 'BaselineOfPillarApp'
 }
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfPillarApp >> baseline: spec [
 
 	<baseline>
@@ -110,19 +111,19 @@ BaselineOfPillarApp >> baseline: spec [
 		spec package: 'Pillar-Project' with: [ spec requires: 'OSSubprocess' ] ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfPillarApp >> chrysal: spec [
 
 	spec baseline: 'Chrysal' with: [ spec repository: 'github://Ducasse/Chrysal:v1.0.0/src' ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfPillarApp >> containersPropertyEnvironment: spec [
 
 	spec baseline: 'ContainersPropertyEnvironment' with: [ spec repository: 'github://Ducasse/Containers-PropertyEnvironment:v1.0.0' ]
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfPillarApp >> customProjectAttributes [
     "Edit to return a collection of any custom attributes e.g. for conditional loading: Array with: #'Condition1' with: #'Condition2.
 	For more information see: http://code.google.com/p/metacello/wiki/CustomProjectAttrributes "
@@ -135,13 +136,13 @@ BaselineOfPillarApp >> customProjectAttributes [
 	^ attributes asArray
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfPillarApp >> microdown: spec [
 
-	spec baseline: 'Microdown' with: [ spec repository: 'github://pillar-markup/Microdown:v2.4.1/src' ]
+	spec baseline: 'Microdown' with: [ spec repository: 'github://pillar-markup/Microdown:v2.5.0/src' ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfPillarApp >> mustache: spec [
 
 	spec baseline: 'Mustache' with: [
@@ -150,19 +151,19 @@ BaselineOfPillarApp >> mustache: spec [
 			loads: #( 'Core' 'Tests' ) ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfPillarApp >> osSubProcess: spec [
 
 	spec baseline: 'OSSubprocess' with: [ spec repository: 'github://pharo-contributions/OSSubprocess:v1.4.0/repository' ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfPillarApp >> petitParser2: spec [
 
 	spec baseline: 'PetitParser2Core' with: [ spec repository: 'github://kursjan/petitparser2' ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfPillarApp >> processWrapper: spec [
 
 	spec configuration: 'ProcessWrapper' with: [

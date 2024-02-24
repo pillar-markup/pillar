@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfPillarApp }
+Package { #name : 'BaselineOfPillarApp' }
