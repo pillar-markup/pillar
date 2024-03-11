@@ -19,8 +19,6 @@ BaselineOfPillarApp >> baseline: spec [
 
 		spec
 			package: 'Pillar-MicrodownToPillarConverter' with: [ spec requires: #( 'Pillar-Core' 'Microdown' ) ];
-			package: 'Pillar-Microdown'
-			with: [ spec requires: #( 'Pillar-MicrodownToPillarConverter' 'Pillar-Model' 'Pillar-ExporterCore' 'Pillar-Tests-ExporterCore' ) ];
 			package: 'Pillar-ExporterMicrodown' with: [ spec requires: #( 'Microdown' 'Pillar-PetitPillar' 'Pillar-ExporterCore' ) ];
 			package: 'Pillar-Core';
 			package: 'Pillar-Tests-Core' with: [ spec requires: #( 'Pillar-Core' 'Pillar-ExporterText' 'Pillar-ExporterPillar' 'Pillar-PetitPillar' ) ];
