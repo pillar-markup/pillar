@@ -51,10 +51,8 @@ BaselineOfPillar >> baseline: spec [
 			package: 'Pillar-Tests-ExporterMarkdown' with: [ spec requires: #( 'Pillar-ExporterMarkdown' 'Pillar-Tests-ExporterCore' 'Pillar-Tests-ExporterHTML' ) ];
 			package: 'Pillar-Tests-ExporterPillar' with: [ spec requires: #( 'Pillar-ExporterPillar' 'Pillar-Tests-ExporterCore' ) ];
 			package: 'Pillar-Tests-ExporterText' with: [ spec requires: #( 'Pillar-ExporterText' 'Pillar-Tests-ExporterCore' ) ];
-			package: 'Pillar-Tests-Model'
-			with: [ spec requires: #( 'Pillar-Model' 'Pillar-ExporterPillar' 'Pillar-ExporterText' 'Pillar-Core' 'Pillar-Tests-PetitPillar' ) ];
-			package: 'Pillar-Tests-Model-PetitPillar'
-			with: [ spec requires: #( 'Pillar-Core' 'Pillar-Tests-Core' 'Pillar-Tests-Model' 'Pillar-PetitPillar' 'Pillar-Model' 'Pillar-Tests-PetitPillar' ) ];
+			package: 'Pillar-Tests-Model' with: [ spec requires: #( 'Pillar-Model' 'Pillar-ExporterPillar' 'Pillar-ExporterText' 'Pillar-Core' 'Pillar-Tests-PetitPillar' ) ];
+			package: 'Pillar-Tests-Model-PetitPillar' with: [ spec requires: #( 'Pillar-Core' 'Pillar-Tests-Core' 'Pillar-Tests-Model' 'Pillar-PetitPillar' 'Pillar-Model' 'Pillar-Tests-PetitPillar' ) ];
 			package: 'Pillar-Tests-Model-ExporterText' with: [ spec requires: #( 'Pillar-Core' 'Pillar-PetitPillar' 'Pillar-Tests-ExporterText' ) ];
 			package: 'Pillar-Tests-Model-ExporterPillar' with: [ spec requires: #( 'Pillar-Model' 'Pillar-PetitPillar' 'Pillar-Tests-ExporterPillar' ) ];
 			package: 'Pillar-Tests-PetitPillar' with: [ spec requires: #( 'PetitParser2Core' 'Pillar-PetitPillar' ) ];
@@ -64,17 +62,10 @@ BaselineOfPillar >> baseline: spec [
 
 		spec
 			group: 'ALL' with: #( 'All tests' 'All but tests' );
-			group: 'All but tests'
-			with: #( 'All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'parser' 'Pillar-Project' 'Pillar-BookTester' 'Pillar-CodeBlockEvaluator' );
-			group: 'All exporter tests'
-			with: #( 'html exporter tests' 'latex exporter tests' 'beamer exporter tests' 'deckjs exporter tests' 'markdown exporter tests' 'pillar exporter tests'
-				   'text exporter tests' 'asciidoc exporter tests' 'ePub exporter tests' );
-			group: 'All exporters'
-			with: #( 'html exporter' 'latex exporter' 'beamer exporter' 'deckjs exporter' 'markdown exporter' 'pillar exporter' 'text exporter' 'asciidoc exporter'
-				   'ePub exporter' );
-			group: 'All tests'
-			with:
-				#( 'All exporter tests' 'Pillar-Tests-Model' 'Pillar-Tests-ExporterCore' #'Pillar-Tests-Cli' 'parser tests' 'Pillar-Tests-Project' 'Pillar-Tests-Integration' );
+			group: 'All but tests' with: #( 'All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'parser' 'Pillar-Project' 'Pillar-BookTester' 'Pillar-CodeBlockEvaluator' );
+			group: 'All exporter tests' with: #( 'html exporter tests' 'latex exporter tests' 'beamer exporter tests' 'deckjs exporter tests' 'markdown exporter tests' 'pillar exporter tests' 'text exporter tests' 'asciidoc exporter tests' 'ePub exporter tests' );
+			group: 'All exporters' with: #( 'html exporter' 'latex exporter' 'beamer exporter' 'deckjs exporter' 'markdown exporter' 'pillar exporter' 'text exporter' 'asciidoc exporter' 'ePub exporter' );
+			group: 'All tests' with: #( 'All exporter tests' 'Pillar-Tests-Model' 'Pillar-Tests-ExporterCore' #'Pillar-Tests-Cli' 'parser tests' 'Pillar-Tests-Project' 'Pillar-Tests-Integration' );
 			group: 'asciidoc exporter' with: #( #'Pillar-ExporterAsciiDoc' );
 			group: 'asciidoc exporter tests' with: #( #'Pillar-Tests-ExporterAsciiDoc' 'ePub exporter' );
 			group: 'beamer exporter' with: #( 'Pillar-ExporterBeamer' );
@@ -96,7 +87,9 @@ BaselineOfPillar >> baseline: spec [
 			group: 'pillar exporter' with: #( 'Pillar-ExporterPillar' );
 			group: 'pillar exporter tests' with: #( 'Pillar-Tests-ExporterPillar' );
 			group: 'text exporter' with: #( 'Pillar-ExporterText' );
-			group: 'text exporter tests' with: #( 'Pillar-Tests-ExporterText' ) ].
+			group: 'text exporter tests' with: #( 'Pillar-Tests-ExporterText' );
+			group: 'Core' with: #( 'Pillar-Core' );
+			group: 'Model' with: #( 'Pillar-Model' ) ].
 
 	spec for: #windows do: [
 		self processWrapper: spec.
