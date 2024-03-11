@@ -1,4 +1,6 @@
-name: unit.app
+name: Unit tests (without integration)
+
+#This workflow will load Pillar and launch all tests except the integration tests that are using archetypes and requiring latex.
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -15,6 +17,6 @@ jobs:
         id: smalltalkci
         with:
           smalltalk-image: Pharo64-11
-      - run: smalltalkci -s ${{ steps.smalltalkci.outputs.smalltalk-image }} .smalltalk.Unit.App.ston
+      - run: smalltalkci -s ${{ steps.smalltalkci.outputs.smalltalk-image }} .smalltalk.Unit.ston
         shell: bash
         timeout-minutes: 15

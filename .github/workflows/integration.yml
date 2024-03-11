@@ -1,4 +1,6 @@
-name: integration.app
+name: Integration tests
+
+#This workflow will install Pillar and Latex and launch only the integration tests. Those tests are running archetypes and requiring Latex.
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -60,4 +62,4 @@ jobs:
           echo "SMALLTALKCIBUILD: " ${SMALLTALK_CI_BUILD}
           mkdir -p ${SMALLTALK_CI_BUILD}
           cp -R archetypes ${SMALLTALK_CI_BUILD}/
-          smalltalkci -s  ${{ steps.smalltalkci.outputs.smalltalk-image }} .smalltalk.Integration.App.ston
+          smalltalkci -s  ${{ steps.smalltalkci.outputs.smalltalk-image }} .smalltalk.Integration.ston

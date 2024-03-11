@@ -1,4 +1,6 @@
-name: system
+name: Test archetype
+
+# Use the pillar script to install pillar and build the test archetype.
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
