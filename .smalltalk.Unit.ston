@@ -1,7 +1,7 @@
 SmalltalkCISpec {
   #loading : [
     SCIMetacelloLoadSpec {
-      #baseline : 'PillarApp',
+      #baseline : 'Pillar',
       #directory : 'src',
       #platforms : [ #pharo ]
     }
