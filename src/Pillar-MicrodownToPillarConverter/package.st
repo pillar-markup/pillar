@@ -1,1 +1,1 @@
-Package { #name : #'Pillar-MicrodownToPillarConverter' }
+Package { #name : 'Pillar-MicrodownToPillarConverter' }

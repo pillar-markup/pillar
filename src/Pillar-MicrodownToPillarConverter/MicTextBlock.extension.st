@@ -1,6 +1,6 @@
-Extension { #name : #MicTextBlock }
+Extension { #name : 'MicTextBlock' }
 
-{ #category : #'*Pillar-MicrodownToPillarConverter' }
+{ #category : '*Pillar-MicrodownToPillarConverter' }
 MicTextBlock >> associatedPillarClass [
 	"special case"
 ]

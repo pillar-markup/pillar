@@ -1,6 +1,6 @@
-Extension { #name : #MicInlineElement }
+Extension { #name : 'MicInlineElement' }
 
-{ #category : #'*Pillar-MicrodownToPillarConverter' }
+{ #category : '*Pillar-MicrodownToPillarConverter' }
 MicInlineElement >> associatedPillarClass [
 	^ self subclassResponsibility
 ]

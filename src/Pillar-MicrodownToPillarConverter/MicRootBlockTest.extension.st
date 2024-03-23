@@ -1,6 +1,6 @@
-Extension { #name : #MicRootBlockTest }
+Extension { #name : 'MicRootBlockTest' }
 
-{ #category : #'*Pillar-MicrodownToPillarConverter-Tests' }
+{ #category : '*Pillar-MicrodownToPillarConverter-Tests' }
 MicRootBlockTest >> testRootAsPillar [
 	| source root pillar |
 	source := '####    Level four

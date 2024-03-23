@@ -1,6 +1,6 @@
-Extension { #name : #MicRawBlock }
+Extension { #name : 'MicRawBlock' }
 
-{ #category : #'*Pillar-MicrodownToPillarConverter' }
+{ #category : '*Pillar-MicrodownToPillarConverter' }
 MicRawBlock >> associatedPillarClass [
 	^ PRRaw 
 ]

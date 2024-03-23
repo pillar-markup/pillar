@@ -1,6 +1,6 @@
-Extension { #name : #MicAnchorBlockTest }
+Extension { #name : 'MicAnchorBlockTest' }
 
-{ #category : #'*Pillar-MicrodownToPillarConverter-Tests' }
+{ #category : '*Pillar-MicrodownToPillarConverter-Tests' }
 MicAnchorBlockTest >> testAnchorBlockAsPillar [
 	| source root pillar |
 	source := '@anchor'.

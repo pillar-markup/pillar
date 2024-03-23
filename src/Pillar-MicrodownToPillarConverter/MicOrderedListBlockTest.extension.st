@@ -1,6 +1,6 @@
-Extension { #name : #MicOrderedListBlockTest }
+Extension { #name : 'MicOrderedListBlockTest' }
 
-{ #category : #'*Pillar-MicrodownToPillarConverter-Tests' }
+{ #category : '*Pillar-MicrodownToPillarConverter-Tests' }
 MicOrderedListBlockTest >> testSingleLevelList2asPillar [
 	| source root list |
 	source := '19. item 1

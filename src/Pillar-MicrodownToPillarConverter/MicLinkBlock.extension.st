@@ -1,6 +1,6 @@
-Extension { #name : #MicLinkBlock }
+Extension { #name : 'MicLinkBlock' }
 
-{ #category : #'*Pillar-MicrodownToPillarConverter' }
+{ #category : '*Pillar-MicrodownToPillarConverter' }
 MicLinkBlock >> associatedPillarClass [
 	^ PRExternalLink
 ]

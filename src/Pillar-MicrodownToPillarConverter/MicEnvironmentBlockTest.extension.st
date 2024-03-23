@@ -1,6 +1,6 @@
-Extension { #name : #MicEnvironmentBlockTest }
+Extension { #name : 'MicEnvironmentBlockTest' }
 
-{ #category : #'*Pillar-MicrodownToPillarConverter-Tests' }
+{ #category : '*Pillar-MicrodownToPillarConverter-Tests' }
 MicEnvironmentBlockTest >> testEnvironmentBlockAsPillar [
 	| source root pillar |
 	source := '<!environment|name=aName
@@ -12,7 +12,7 @@ Hello this is a dull body.
 	
 ]
 
-{ #category : #'*Pillar-MicrodownToPillarConverter-Tests' }
+{ #category : '*Pillar-MicrodownToPillarConverter-Tests' }
 MicEnvironmentBlockTest >> testEnvironmentBlockWithParametersAsPillar [
 	| source root pillar |
 	source := '<!environment|toto=22&name=isAlreadyDefined

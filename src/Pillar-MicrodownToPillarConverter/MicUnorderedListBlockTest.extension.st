@@ -1,6 +1,6 @@
-Extension { #name : #MicUnorderedListBlockTest }
+Extension { #name : 'MicUnorderedListBlockTest' }
 
-{ #category : #'*Pillar-MicrodownToPillarConverter-Tests' }
+{ #category : '*Pillar-MicrodownToPillarConverter-Tests' }
 MicUnorderedListBlockTest >> testSingleLevelList2asPillar [
 	| source root list item |
 	source := '- item 1
@@ -19,7 +19,7 @@ MicUnorderedListBlockTest >> testSingleLevelList2asPillar [
 expanded'
 ]
 
-{ #category : #'*Pillar-MicrodownToPillarConverter-Tests' }
+{ #category : '*Pillar-MicrodownToPillarConverter-Tests' }
 MicUnorderedListBlockTest >> testSingleLevelList2asPillarWithFormatting [
 	| source root prlist item |
 	source := '- **item 1** expanded
@@ -41,7 +41,7 @@ MicUnorderedListBlockTest >> testSingleLevelList2asPillarWithFormatting [
 			' expanded'.
 ]
 
-{ #category : #'*Pillar-MicrodownToPillarConverter-Tests' }
+{ #category : '*Pillar-MicrodownToPillarConverter-Tests' }
 MicUnorderedListBlockTest >> testTwoLevelList1AsPillar [
 	| source root list secondItem subItem |
 	source := '- item 1
@@ -60,7 +60,7 @@ MicUnorderedListBlockTest >> testTwoLevelList1AsPillar [
 		equals: 'sublevel'	"item 1"	"unorded list"	"sub item"
 ]
 
-{ #category : #'*Pillar-MicrodownToPillarConverter-Tests' }
+{ #category : '*Pillar-MicrodownToPillarConverter-Tests' }
 MicUnorderedListBlockTest >> testTwoLevelList1AsPillarWithFormatting [
 	| source root list secondItem subItem |
 	source := '- item 1

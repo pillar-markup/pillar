@@ -1,6 +1,6 @@
-Extension { #name : #MicParagraphBlockTest }
+Extension { #name : 'MicParagraphBlockTest' }
 
-{ #category : #'*Pillar-MicrodownToPillarConverter-Tests' }
+{ #category : '*Pillar-MicrodownToPillarConverter-Tests' }
 MicParagraphBlockTest >> testSingleParagraphWithFormat [
 	| source root pillar |
 	source := 'This **paragraph** with spaces'.
@@ -16,7 +16,7 @@ MicParagraphBlockTest >> testSingleParagraphWithFormat [
 	
 ]
 
-{ #category : #'*Pillar-MicrodownToPillarConverter-Tests' }
+{ #category : '*Pillar-MicrodownToPillarConverter-Tests' }
 MicParagraphBlockTest >> testSingleParagraphWithIndentedTextAsPillar [
 	| source root expected pillar |
 	source := 'This is

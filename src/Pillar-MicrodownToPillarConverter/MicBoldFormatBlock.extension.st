@@ -1,6 +1,6 @@
-Extension { #name : #MicBoldFormatBlock }
+Extension { #name : 'MicBoldFormatBlock' }
 
-{ #category : #'*Pillar-MicrodownToPillarConverter' }
+{ #category : '*Pillar-MicrodownToPillarConverter' }
 MicBoldFormatBlock >> associatedPillarClass [
 	^ PRBoldFormat
 ]

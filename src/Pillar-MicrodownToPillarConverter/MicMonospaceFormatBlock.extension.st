@@ -1,6 +1,6 @@
-Extension { #name : #MicMonospaceFormatBlock }
+Extension { #name : 'MicMonospaceFormatBlock' }
 
-{ #category : #'*Pillar-MicrodownToPillarConverter' }
+{ #category : '*Pillar-MicrodownToPillarConverter' }
 MicMonospaceFormatBlock >> associatedPillarClass [
 	^ PRMonospaceFormat
 ]

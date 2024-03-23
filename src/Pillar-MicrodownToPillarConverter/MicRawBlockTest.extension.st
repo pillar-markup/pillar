@@ -1,6 +1,6 @@
-Extension { #name : #MicRawBlockTest }
+Extension { #name : 'MicRawBlockTest' }
 
-{ #category : #'*Pillar-MicrodownToPillarConverter-Tests' }
+{ #category : '*Pillar-MicrodownToPillarConverter-Tests' }
 MicRawBlockTest >> testRawAsBackslash [
 	"backslash should not be expanded in raw"
 	| source rawBlock pillar |
@@ -11,7 +11,7 @@ MicRawBlockTest >> testRawAsBackslash [
 	self assert: pillar text equals: ' aRaw\Text '
 ]
 
-{ #category : #'*Pillar-MicrodownToPillarConverter-Tests' }
+{ #category : '*Pillar-MicrodownToPillarConverter-Tests' }
 MicRawBlockTest >> testRawAsPillar [
 	| source rawBlock pillar |
 	source := 'bla {{ aRawText }} bla'.
