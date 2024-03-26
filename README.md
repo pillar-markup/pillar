@@ -24,7 +24,7 @@ For HTTPS setup, execute the `build.sh` script found in the `scripts` directory:
 ```bash
 $ git clone https://github.com/pillar-markup/pillar.git
 $ cd pillar
-$ git checkout v9.0.0
+$ git checkout v9.0.1
 $ chmod a+x ./scripts/build.sh
 $ ./scripts/build.sh
 ```
@@ -194,7 +194,11 @@ Please note that chapter on "Pharo a web Perspective" is obsolete since it refer
 
 ## History
 
-### For Pharo 11
+### For Pharo 12 
+- v10.0.0 but with some links problems due to new inline parser
+
+### For Pharo 12 (Current stable release)
+- v9.0.1 Fixing link problems.
 - v9.0.0 loading in Pharo 11. The development will now happen in P11.
 
 ### For Pharo 10
