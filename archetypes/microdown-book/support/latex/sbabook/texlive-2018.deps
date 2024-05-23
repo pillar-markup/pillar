@@ -27,6 +27,7 @@ ulem
 varwidth
 xcolor
 xstring
+xtab
 
 ifetex
 luaotfload
