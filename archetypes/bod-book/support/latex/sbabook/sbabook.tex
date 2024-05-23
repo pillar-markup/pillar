@@ -1,13 +1,8 @@
-\documentclass[twoside,openany,showtrims]{sbabook.bod}
+\documentclass[twoside,openany,showtrims]{sbabook}
 
-%\pagelayout{\paperbackpage}
-
-\newcommand{\bodpage}{
-	\setstocksize{220mm}{155mm} % final trimmed book dimensions
-	\setbleed{5mm} % additional paper, before trimming
-	\setlrmarginsandblock{.85in}{.65in}{*}
-	\setulmarginsandblock{.75in}{.75in}{*}}
-\pagelayout{\bodpage}
+% Setup paper format.
+% Defaults to US trade paperback unless another format is already setup (see sbabook.*.tex)
+\pagelayout{\paperbackpage}
 
 \usepackage[useregional]{datetime2}
 
