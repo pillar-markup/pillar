@@ -24,7 +24,7 @@ For HTTPS setup, execute the `build.sh` script found in the `scripts` directory:
 ```bash
 $ git clone https://github.com/pillar-markup/pillar.git
 $ cd pillar
-$ git checkout v10.0.0
+$ git checkout v10.0.1
 $ chmod a+x ./scripts/build.sh
 $ ./scripts/build.sh
 ```
@@ -100,37 +100,10 @@ The simplest way to install `LaTeX` on unix is to install texlive-full in your s
 
 Install a `LaTeX` distribution such as [MiKTeX](https://miktex.org/) and install the dependencies specified below using the provided package manager. Then, make sure the bin directory is in your PATH environment variable. For example this could be the following value:
 
-```
-C:\Program Files\MiKTeX 2.9\miktex\bin\x64
-```
-
-The automatic installer does this for you in general.
-
-Also, latexmk on MiKTeX depends on a perl interpreter, that could be obtained via:
-
-http://www.perl.org/get.html#win32
-
-And requires to install this specific package MiKTeX package:
-- supp-pdf
-
 #### Tailored installation (for non-full lovers)
 Producing pdf documents with Pillar requires a `LaTeX` installation with certain packages.
 Pillar 7.7.3 introduced the possibility to use LaTeX 2018 or the rolling version of 2019.
-Check the ensure-deps.sh files and companion travis file (if you want to run in travis) in the support/latex of the archetype.
-
-
-### 4. Test your installation
-
-To test your pillar installation, open a new terminal and execute the `pillar --version` command.
-If everything is ok, that should print out (as in the current version) the version of the Pharo VM.
-For example:
-
-```bash
-$  pillar --version
-M:    CoInterpreter VMMaker.oscog-eem.2265 uuid: 76b62109-629a-4c39-9641-67b53321df9a Aug 27 2017
-StackToRegisterMappingCogit VMMaker.oscog-eem.2262 uuid: 8b531242-de02-48aa-b418-8d2dde0bec6c Aug 27 2017
-VM: 201708271955 https://github.com/OpenSmalltalk/opensmalltalk-vm.git $ Date: Sun Aug 27 21:55:26 2017 +0200 $ Plugins: 201708271955 https://github.com/OpenSmalltalk/opensmalltalk-vm.git $
-```
+Check the ensure-deps.sh files and the support/latex.
 
 ## Getting started
 
@@ -139,7 +112,7 @@ To create a book, you can start by installing the book archetype in a directory 
 ```
 $ mkdir my-new-book
 $ cd my-new-book
-$ pillar archetype book
+$ pillar archetype bod-book
 ```
 
 You can then edit the pillar files and the pillar configuration file `pillar.conf`.
@@ -190,7 +163,7 @@ IceRepository registry
 		ifNotNil: [ :aPackage | aPackage removeFromSystem ] ]
 ```
 
-The following script can be useful if you develop usin the launcher and want to try to execute the image as from a pillar command
+The following script can be useful if you develop using the launcher and want to try to execute the image as from a pillar command
 
 ```
 /Users/ducasse/Documents/Pharo/vms/100-x64/Pharo.app/Contents/MacOS/Pharo  /Users/ducasse/Documents/Pharo/images/P11-PillarRealReference/P10-PillarRealReference.image clap build pdf index.pillar
@@ -205,7 +178,8 @@ Please note that chapter on "Pharo a web Perspective" is obsolete since it refer
 
 ### For Pharo 12 
 The development of Pillar and Microdown are now in Pharo 12.
-- v10.0.0 but with some links problems due to new inline parser
+- v10.0.1 Introduce figure arguments in caption instead of url for better integration with Github.
+- v10.0.0 bug fix with some links problems due to new inline parser.
 
 ### For Pharo 11 
 - v9.0.1 Fixing link problems.
