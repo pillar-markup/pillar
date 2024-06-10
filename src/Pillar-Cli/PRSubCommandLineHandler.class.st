@@ -112,9 +112,10 @@ PRSubCommandLineHandler >> project [
 
 { #category : 'accessing' }
 PRSubCommandLineHandler >> workingDirectory [
-
+	"We can specify --baseDirectory=aPath to define the working directory 
+	if not pillar will use the Pharo workingDirectory"
 	^ self
 		optionAt: 'baseDirectory'
 		ifPresent: [ :dir | ^ dir asFileReference ]
-		ifAbsent: [ self error: 'Should specify #baseDirectory option through command line' ]
+		ifAbsent: [ FileSystem workingDirectory ]
 ]
