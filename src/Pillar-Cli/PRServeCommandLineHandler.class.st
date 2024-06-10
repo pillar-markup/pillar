@@ -6,17 +6,19 @@ Example of usage:
 ./pillar serve -w
 "
 Class {
-	#name : #PRServeCommandLineHandler,
-	#superclass : #PRSubCommandLineHandler,
-	#category : 'Pillar-Cli-Handlers'
+	#name : 'PRServeCommandLineHandler',
+	#superclass : 'PRSubCommandLineHandler',
+	#category : 'Pillar-Cli-Handlers',
+	#package : 'Pillar-Cli',
+	#tag : 'Handlers'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRServeCommandLineHandler class >> commandName [
 	^ 'serve'
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 PRServeCommandLineHandler >> activate [
 	| baseurl watch port watcher |
 	baseurl := self optionAt: 'baseurl' ifAbsent: [ '' ].

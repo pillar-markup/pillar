@@ -14,15 +14,17 @@ PRDependencyScripter new
 	printDependencies
 "
 Class {
-	#name : #PRDependencyCommand,
-	#superclass : #PRAbstractCommand,
+	#name : 'PRDependencyCommand',
+	#superclass : 'PRAbstractCommand',
 	#instVars : [
 		'dependencyVisitor'
 	],
-	#category : 'Pillar-Cli-Model'
+	#category : 'Pillar-Cli-Model',
+	#package : 'Pillar-Cli',
+	#tag : 'Model'
 }
 
-{ #category : #api }
+{ #category : 'api' }
 PRDependencyCommand >> dependencies [
 	| cache inputFile |
 	cache := Set new.
@@ -31,39 +33,39 @@ PRDependencyCommand >> dependencies [
 	^ cache
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDependencyCommand >> dependencyVisitor [
 	^ dependencyVisitor 
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 PRDependencyCommand >> doIt [
 	self printDependencies
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 PRDependencyCommand >> forFiles [
 	dependencyVisitor := PRFileDependencies new
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 PRDependencyCommand >> forImages [
 	dependencyVisitor := PRImageDependencies new
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDependencyCommand >> initialize [
 
 	super initialize.
 	self forFiles.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDependencyCommand >> inputFile [
 	^ configuration propertyAt: 'inputFile'
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PRDependencyCommand >> printDependencies [
 	| path pathWithoutFile |
 	path := self inputFile pathString substrings: '/'.

@@ -12,22 +12,24 @@ A typical example is
 	
 "
 Class {
-	#name : #PRCommandLineHandler,
-	#superclass : #BasicCommandLineHandler,
-	#category : #'Pillar-Cli-Handlers'
+	#name : 'PRCommandLineHandler',
+	#superclass : 'BasicCommandLineHandler',
+	#category : 'Pillar-Cli-Handlers',
+	#package : 'Pillar-Cli',
+	#tag : 'Handlers'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCommandLineHandler class >> commandName [
 	^ 'pillar'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRCommandLineHandler class >> isResponsibleFor: aCommandLineArguments [
 	^ aCommandLineArguments includesSubCommand: self commandName
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRCommandLineHandler >> subCommandsRoot [
 	^ PRSubCommandLineHandler
 ]

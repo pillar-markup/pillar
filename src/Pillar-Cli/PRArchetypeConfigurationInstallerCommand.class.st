@@ -9,7 +9,9 @@ There should be a one to one mapping between the argument name and the github/pi
 
 "
 Class {
-	#name : #PRArchetypeConfigurationInstallerCommand,
-	#superclass : #PRAbstractCommand,
-	#category : 'Pillar-Cli-Model'
+	#name : 'PRArchetypeConfigurationInstallerCommand',
+	#superclass : 'PRAbstractCommand',
+	#category : 'Pillar-Cli-Model',
+	#package : 'Pillar-Cli',
+	#tag : 'Model'
 }

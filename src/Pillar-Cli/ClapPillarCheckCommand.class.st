@@ -2,17 +2,19 @@
 I am a commandline to **check the code in all the codeblocks of a file, then I generate a report**.
 "
 Class {
-	#name : #ClapPillarCheckCommand,
-	#superclass : #ClapPillarCommand,
-	#category : #'Pillar-Cli-Clap'
+	#name : 'ClapPillarCheckCommand',
+	#superclass : 'ClapPillarCommand',
+	#category : 'Pillar-Cli-Clap',
+	#package : 'Pillar-Cli',
+	#tag : 'Clap'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClapPillarCheckCommand class >> commandName [
 	^ 'check'
 ]
 
-{ #category : #'command line' }
+{ #category : 'command line' }
 ClapPillarCheckCommand class >> commandSpecification [
 	<commandline>
 	| target |

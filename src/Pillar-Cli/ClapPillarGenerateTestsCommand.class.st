@@ -2,17 +2,19 @@
 I am a commandline to **generate tests from examples in the codeblocks of some file(s)**.
 "
 Class {
-	#name : #ClapPillarGenerateTestsCommand,
-	#superclass : #ClapPillarCommand,
-	#category : #'Pillar-Cli-Clap'
+	#name : 'ClapPillarGenerateTestsCommand',
+	#superclass : 'ClapPillarCommand',
+	#category : 'Pillar-Cli-Clap',
+	#package : 'Pillar-Cli',
+	#tag : 'Clap'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClapPillarGenerateTestsCommand class >> commandName [
 	^ 'generateTests'
 ]
 
-{ #category : #'command line' }
+{ #category : 'command line' }
 ClapPillarGenerateTestsCommand class >> commandSpecification [
 	<commandline>
 	| target |

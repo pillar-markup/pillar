@@ -7,24 +7,26 @@ Example of usage:
 ./pillar archetype book
 "
 Class {
-	#name : #PRArchetypeCommandLineHandler,
-	#superclass : #PRSubCommandLineHandler,
-	#category : 'Pillar-Cli-Handlers'
+	#name : 'PRArchetypeCommandLineHandler',
+	#superclass : 'PRSubCommandLineHandler',
+	#category : 'Pillar-Cli-Handlers',
+	#package : 'Pillar-Cli',
+	#tag : 'Handlers'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRArchetypeCommandLineHandler class >> commandName [
 	^ 'archetype'
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 PRArchetypeCommandLineHandler >> activate [
 
 	self project installArchetypeNamed: self requestedArchetype.
 	self exitSuccess
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 PRArchetypeCommandLineHandler >> requestedArchetype [
 
 	| nonOptions |

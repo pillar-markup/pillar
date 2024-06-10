@@ -1,18 +1,20 @@
 Class {
-	#name : #ClapPillarCommand,
-	#superclass : #ClapApplication,
+	#name : 'ClapPillarCommand',
+	#superclass : 'ClapApplication',
 	#instVars : [
 		'project'
 	],
-	#category : #'Pillar-Cli-Clap'
+	#category : 'Pillar-Cli-Clap',
+	#package : 'Pillar-Cli',
+	#tag : 'Clap'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClapPillarCommand class >> commandName [
 	self subclassResponsibility
 ]
 
-{ #category : #'command line' }
+{ #category : 'command line' }
 ClapPillarCommand class >> commandSpecification [
 	<commandline>
 	
@@ -37,14 +39,14 @@ ClapPillarCommand class >> commandSpecification [
 		]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClapPillarCommand class >> pillarCommandsList [
 	^ self allSubclasses
 		select: [ :each | each isAbstract not ]
 		thenCollect: [ :each | each commandSpecification ]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 ClapPillarCommand class >> printVersion: stream [
 	stream newLine.
 	stream newLine.
@@ -60,7 +62,7 @@ ClapPillarCommand class >> printVersion: stream [
 	 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClapPillarCommand >> project [
 	^ project ifNil: [ project := PRProject on: FileSystem workingDirectory  ]
 ]

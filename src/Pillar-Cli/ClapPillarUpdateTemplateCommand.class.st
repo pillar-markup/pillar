@@ -6,17 +6,19 @@ I assume that the support folder is read only and the user did not modify it.
 **Example of usage:** `./pillar updateTemplate book`
 "
 Class {
-	#name : #ClapPillarUpdateTemplateCommand,
-	#superclass : #ClapPillarCommand,
-	#category : #'Pillar-Cli-Clap'
+	#name : 'ClapPillarUpdateTemplateCommand',
+	#superclass : 'ClapPillarCommand',
+	#category : 'Pillar-Cli-Clap',
+	#package : 'Pillar-Cli',
+	#tag : 'Clap'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClapPillarUpdateTemplateCommand class >> commandName [
 	^ 'updateTemplate'
 ]
 
-{ #category : #'command line' }
+{ #category : 'command line' }
 ClapPillarUpdateTemplateCommand class >> commandSpecification [
 	<commandline>
 	^ (ClapCommand id: self commandName asSymbol)
@@ -31,12 +33,12 @@ ClapPillarUpdateTemplateCommand class >> commandSpecification [
 	
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 ClapPillarUpdateTemplateCommand >> execute [
 	self project installTemplateNamed: self requestedTemplate
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 ClapPillarUpdateTemplateCommand >> requestedTemplate [
 	 ^ (arguments at: #requestedTemplate) value: self
 ]

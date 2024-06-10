@@ -5,17 +5,19 @@ The pillar project contains a basic template and skeleton pillar files following
 **Example of usage: **`./pillar archetype book`
 "
 Class {
-	#name : #ClapPillarArchetypeCommand,
-	#superclass : #ClapPillarCommand,
-	#category : #'Pillar-Cli-Clap'
+	#name : 'ClapPillarArchetypeCommand',
+	#superclass : 'ClapPillarCommand',
+	#category : 'Pillar-Cli-Clap',
+	#package : 'Pillar-Cli',
+	#tag : 'Clap'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClapPillarArchetypeCommand class >> commandName [
 	^'archetype'
 ]
 
-{ #category : #'command line' }
+{ #category : 'command line' }
 ClapPillarArchetypeCommand class >> commandSpecification [ 
 	<commandline>
 	^ (ClapCommand id: self commandName asSymbol)
@@ -31,12 +33,12 @@ ClapPillarArchetypeCommand class >> commandSpecification [
 			(self with: args) execute ]
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 ClapPillarArchetypeCommand >> execute [
 	self project installArchetypeNamed: self requestedArchetype asString.
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 ClapPillarArchetypeCommand >> requestedArchetype [
 	 ^ (arguments at: #requestedArchetype) value: self
 ]

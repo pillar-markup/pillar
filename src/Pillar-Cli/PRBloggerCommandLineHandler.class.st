@@ -14,7 +14,7 @@ pillar build -m pdf >> default build, only index.pillar is build
 NOTE: there is no flag for ""list"" as buildList is called only if files are given as positionals after format
 "
 Class {
-	#name : 'PRBuildCommandLineHandler',
+	#name : 'PRBloggerCommandLineHandler',
 	#superclass : 'PRSubCommandLineHandler',
 	#category : 'Pillar-Cli-Handlers',
 	#package : 'Pillar-Cli',
@@ -22,30 +22,21 @@ Class {
 }
 
 { #category : 'accessing' }
-PRBuildCommandLineHandler class >> commandName [
-	^ 'build'
+PRBloggerCommandLineHandler class >> commandName [
+	^ 'blog'
 ]
 
 { #category : 'activation' }
-PRBuildCommandLineHandler >> activate [
+PRBloggerCommandLineHandler >> activate [
 	
-	| target result |
-	target := PRTarget builderForName: self requestedBuilder.
-	self requestedFiles
-		ifEmpty: [ target onlyMainRootStrategy  ]
-		ifNotEmpty: [ :files | target explicitFilesStrategyOn: files ].
-	(self hasOption: 'templatable')
-		ifTrue: [ self project beTemplatable ].
-	(self hasOption: 'a')
-		ifTrue: [ target allFilesStrategy ].
-	(self hasOption: 'm')
-		ifTrue: [ target onlyMainRootStrategy ].
-	result := self project build: target.
-	result exitProcess
+	| blog | 
+	blog := MicBlogCreator 
+		createFrom: FileSystem workingDirectory / 'blogsrc' to: FileSystem workingDirectory / 'bloghtml'.
+		
 ]
 
 { #category : 'activation' }
-PRBuildCommandLineHandler >> requestedBuilder [
+PRBloggerCommandLineHandler >> requestedBuilder [
 
 	| nonOptions |
 	"also managed ./pillar build book (to be backward compatible)"
@@ -56,7 +47,7 @@ PRBuildCommandLineHandler >> requestedBuilder [
 ]
 
 { #category : 'activation' }
-PRBuildCommandLineHandler >> requestedFiles [
+PRBloggerCommandLineHandler >> requestedFiles [
 
 	| nonOptions |
 	nonOptions := self arguments reject: [ :a | a beginsWith: '-' ].

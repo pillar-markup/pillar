@@ -8,24 +8,26 @@ Example of usage:
 ./pillar updateTemplate book
 "
 Class {
-	#name : #PRUpdateTemplateCommandLineHandler,
-	#superclass : #PRSubCommandLineHandler,
-	#category : 'Pillar-Cli-Handlers'
+	#name : 'PRUpdateTemplateCommandLineHandler',
+	#superclass : 'PRSubCommandLineHandler',
+	#category : 'Pillar-Cli-Handlers',
+	#package : 'Pillar-Cli',
+	#tag : 'Handlers'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRUpdateTemplateCommandLineHandler class >> commandName [
 	^ 'updateTemplate'
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 PRUpdateTemplateCommandLineHandler >> activate [
 
 	self project installTemplateNamed: self requestedTemplate.
 	self exitSuccess
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 PRUpdateTemplateCommandLineHandler >> requestedTemplate [
 
 	| nonOptions |

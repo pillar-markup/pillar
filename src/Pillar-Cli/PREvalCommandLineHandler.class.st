@@ -1,15 +1,17 @@
 Class {
-	#name : #PREvalCommandLineHandler,
-	#superclass : #PRSubCommandLineHandler,
-	#category : #'Pillar-Cli-Handlers'
+	#name : 'PREvalCommandLineHandler',
+	#superclass : 'PRSubCommandLineHandler',
+	#category : 'Pillar-Cli-Handlers',
+	#package : 'Pillar-Cli',
+	#tag : 'Handlers'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PREvalCommandLineHandler class >> commandName [
 	^ 'eval'
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 PREvalCommandLineHandler >> activate [
 
 	| nonOptions |

@@ -4,21 +4,23 @@ I am a command line handler to **serve of the current project**.
 **Example of usage: **`./pillar serve -w`
 "
 Class {
-	#name : #ClapPillarServeCommand,
-	#superclass : #ClapPillarCommand,
+	#name : 'ClapPillarServeCommand',
+	#superclass : 'ClapPillarCommand',
 	#instVars : [
 		'port',
 		'baseurl'
 	],
-	#category : #'Pillar-Cli-Clap'
+	#category : 'Pillar-Cli-Clap',
+	#package : 'Pillar-Cli',
+	#tag : 'Clap'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClapPillarServeCommand class >> commandName [
 	^ 'serve'
 ]
 
-{ #category : #'command line' }
+{ #category : 'command line' }
 ClapPillarServeCommand class >> commandSpecification [
 	<commandline>
 	^ (ClapCommand id: self commandName asSymbol)
@@ -40,12 +42,12 @@ ClapPillarServeCommand class >> commandSpecification [
 	
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 ClapPillarServeCommand >> baseurl [
 	^ baseurl ifNil: [ baseurl := (arguments at: #baseurl) value]
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 ClapPillarServeCommand >> execute [
 	self port.
 	self baseurl.
@@ -68,12 +70,12 @@ ClapPillarServeCommand >> execute [
 	^ self watch.
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 ClapPillarServeCommand >> port [
 	^ port ifNil: [ port := (arguments at: #port) value]
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 ClapPillarServeCommand >> watch [
 	(arguments at: #watch) isExplicit
 		ifFalse: [ ^ self ]

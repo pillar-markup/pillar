@@ -22,8 +22,8 @@ You can obtain the same doing;
 		
 "
 Class {
-	#name : #PRAbstractCommand,
-	#superclass : #Object,
+	#name : 'PRAbstractCommand',
+	#superclass : 'Object',
 	#instVars : [
 		'configuration',
 		'baseDirectory',
@@ -31,10 +31,12 @@ Class {
 		'workingDirectory',
 		'extraArguments'
 	],
-	#category : 'Pillar-Cli-Model'
+	#category : 'Pillar-Cli-Model',
+	#package : 'Pillar-Cli',
+	#tag : 'Model'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractCommand >> buildConfiguration [
 
 	| confFileReference |
@@ -53,7 +55,7 @@ PRAbstractCommand >> buildConfiguration [
 			extendedWith: (extraArguments copyWith: ('baseDirectory' -> workingDirectory))
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractCommand >> configuration [
 
 	^ configuration ifNil: [ 
@@ -61,19 +63,19 @@ PRAbstractCommand >> configuration [
 		configuration ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractCommand >> configuration: aConfiguration [
 
 	configuration := aConfiguration
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractCommand >> configurationFileName: aFileName [
 
 	configurationFileName := aFileName
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 PRAbstractCommand >> createConfiguration: confFilename baseDirectory: baseDirectoryArg argDictionary: arguments [
 	| confFile |
 	baseDirectory := baseDirectoryArg.
@@ -92,20 +94,20 @@ PRAbstractCommand >> createConfiguration: confFilename baseDirectory: baseDirect
 		ifFalse: [ ConfigurationForPillar newFromDictionary: arguments ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 PRAbstractCommand >> doIt [
 	"by default does nothing. Now the relation with createConfiguration:... is not clear. 
 	For example the PRArchetypeConfiguratioInstaller should probably not override the 
 	createConfiguration: but define a doIt method performing the download and action."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractCommand >> extraArguments: aDictionary [
 
 	extraArguments := aDictionary
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractCommand >> workingDirectory: aDirectory [
 
 	workingDirectory := aDirectory

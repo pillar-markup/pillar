@@ -7,23 +7,25 @@ A typical example is
 	./pharo-ui Pillar.image pillar imageDependencies  --configurationFile=pillar.conf Chapters/Chapter1/chapter1.pillar
 "
 Class {
-	#name : #PRImageDependencyCommandLineHandler,
-	#superclass : #PRSubCommandLineHandler,
-	#category : 'Pillar-Cli-Handlers'
+	#name : 'PRImageDependencyCommandLineHandler',
+	#superclass : 'PRSubCommandLineHandler',
+	#category : 'Pillar-Cli-Handlers',
+	#package : 'Pillar-Cli',
+	#tag : 'Handlers'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRImageDependencyCommandLineHandler class >> commandName [
 	^ 'imageDependencies'
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 PRImageDependencyCommandLineHandler >> activate [
 	
 	self command doIt
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 PRImageDependencyCommandLineHandler >> newCommand [
 	
 	^ PRDependencyCommand new forImages

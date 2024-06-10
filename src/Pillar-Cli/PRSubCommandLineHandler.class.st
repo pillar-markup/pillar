@@ -10,42 +10,44 @@ and kick its execution.
 Subclasses should set the configurationInstaller
 "
 Class {
-	#name : #PRSubCommandLineHandler,
-	#superclass : #CommandLineHandler,
+	#name : 'PRSubCommandLineHandler',
+	#superclass : 'CommandLineHandler',
 	#instVars : [
 		'baseDirectory',
 		'configurationInstaller',
 		'configuration',
 		'project'
 	],
-	#category : 'Pillar-Cli-Handlers'
+	#category : 'Pillar-Cli-Handlers',
+	#package : 'Pillar-Cli',
+	#tag : 'Handlers'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRSubCommandLineHandler class >> argumentsOutOfConfiguration [
 	"such keys should get ignored after being treated by the command line"
 	^ #('configurationFile' 'to')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRSubCommandLineHandler class >> defaultConfigurationFileName [
 	^ 'pillar.conf'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRSubCommandLineHandler class >> isAbstract [
 
 	^ self == PRSubCommandLineHandler
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRSubCommandLineHandler >> add: argument to: arguments [
 	"From the argument string '--key=value', add the key/value pair to the arguments dictionary."
 	
 	^ arguments add: (self parseKeyValueArgument: argument)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRSubCommandLineHandler >> command [
 
 	| command |
@@ -56,7 +58,7 @@ PRSubCommandLineHandler >> command [
 	^ command
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRSubCommandLineHandler >> configurationFileName [
 
 	^ self
@@ -64,18 +66,18 @@ PRSubCommandLineHandler >> configurationFileName [
 		ifAbsent: [ self class defaultConfigurationFileName ]
 ]
 
-{ #category : #'error handling' }
+{ #category : 'error handling' }
 PRSubCommandLineHandler >> error: aString [
 	self stderr << aString; lf.
 	self exitFailure
 ]
 
-{ #category : #'error handling' }
+{ #category : 'error handling' }
 PRSubCommandLineHandler >> errorMissingParameter: aParameterName [
 	self error: 'Missing required parameter --', aParameterName 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRSubCommandLineHandler >> extraArguments [
 
 	"We parse the options --key=value into associations"
@@ -90,7 +92,7 @@ PRSubCommandLineHandler >> extraArguments [
 	^ argumentsDictionary
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRSubCommandLineHandler >> parseKeyValueArgument: argument [
 
 	| key value argumentStream |
@@ -102,13 +104,13 @@ PRSubCommandLineHandler >> parseKeyValueArgument: argument [
 	^ key -> value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRSubCommandLineHandler >> project [
 
 	^ project ifNil: [ project := PRProject on: self workingDirectory ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRSubCommandLineHandler >> workingDirectory [
 
 	^ self

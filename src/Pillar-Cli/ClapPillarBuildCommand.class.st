@@ -19,17 +19,19 @@ This method is based on existing writing targets and generate a CLAP command for
 2. Associate and create if needed, a PRDocument and a Writer
 "
 Class {
-	#name : #ClapPillarBuildCommand,
-	#superclass : #ClapPillarCommand,
-	#category : #'Pillar-Cli-Clap'
+	#name : 'ClapPillarBuildCommand',
+	#superclass : 'ClapPillarCommand',
+	#category : 'Pillar-Cli-Clap',
+	#package : 'Pillar-Cli',
+	#tag : 'Clap'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClapPillarBuildCommand class >> commandName [
 	^'build'
 ]
 
-{ #category : #'command line' }
+{ #category : 'command line' }
 ClapPillarBuildCommand class >> commandSpecification [
 	<commandline>
 	

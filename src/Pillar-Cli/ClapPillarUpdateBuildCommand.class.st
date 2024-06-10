@@ -6,17 +6,19 @@ Indeed, directory 'archetypes' used by CLAP isn't updated automatically by Git o
 So use me when a file in 'archetype' changed to update it.
 "
 Class {
-	#name : #ClapPillarUpdateBuildCommand,
-	#superclass : #ClapPillarCommand,
-	#category : #'Pillar-Cli-Clap'
+	#name : 'ClapPillarUpdateBuildCommand',
+	#superclass : 'ClapPillarCommand',
+	#category : 'Pillar-Cli-Clap',
+	#package : 'Pillar-Cli',
+	#tag : 'Clap'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClapPillarUpdateBuildCommand class >> commandName [
 	^ 'updateBuild'
 ]
 
-{ #category : #'command line' }
+{ #category : 'command line' }
 ClapPillarUpdateBuildCommand class >> commandSpecification [
 	<commandline>
 	^ (ClapCommand id: self commandName asSymbol)
@@ -29,7 +31,7 @@ ClapPillarUpdateBuildCommand class >> commandSpecification [
 	
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 ClapPillarUpdateBuildCommand >> execute [
 	self project updateBuild
 ]

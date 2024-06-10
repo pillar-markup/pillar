@@ -3,22 +3,24 @@ A class to watch served sites.
 Each 5 seconds, the website is regenerated
 "
 Class {
-	#name : #PRWatcher,
-	#superclass : #Object,
+	#name : 'PRWatcher',
+	#superclass : 'Object',
 	#instVars : [
 		'process',
 		'project'
 	],
-	#category : #'Pillar-Cli-Handlers'
+	#category : 'Pillar-Cli-Handlers',
+	#package : 'Pillar-Cli',
+	#tag : 'Handlers'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PRWatcher class >> stopAll [
 
 	self allInstancesDo: #stop
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PRWatcher >> generateHtml [
 
 	| target |
@@ -30,7 +32,7 @@ PRWatcher >> generateHtml [
 		on: Error do: [ : error | self logError: error ]"
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRWatcher >> logError: anError [
 
 	Smalltalk logStdErrorDuring: [ :stderr|
@@ -42,12 +44,12 @@ PRWatcher >> logError: anError [
 		anError signalerContext shortDebugStackOn: stderr.].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRWatcher >> project: anObject [
 	project := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRWatcher >> start [
 
 	Stdio stdout nextPutAll: 'Watching: true'; lf.
@@ -57,7 +59,7 @@ PRWatcher >> start [
 		self generateHtml ] 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRWatcher >> stop [
 
 	process terminate
