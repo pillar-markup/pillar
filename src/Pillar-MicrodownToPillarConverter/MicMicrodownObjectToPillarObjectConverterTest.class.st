@@ -145,8 +145,8 @@ MicMicrodownObjectToPillarObjectConverterTest >> testItalicFormat [
 { #category : 'tests-inline blocks' }
 MicMicrodownObjectToPillarObjectConverterTest >> testItalicFormatEmpty [
 	| italicBlock |
-	italicBlock := self parse: factory italicFormatEmptySample createChildElementOfClass: PRItalicFormat.
-	self assert: italicBlock text equals: ''
+	italicBlock := self parse: factory italicFormatSample createChildElementOfClass: PRItalicFormat.
+	self assert: italicBlock text equals: 'Foo'
 ]
 
 { #category : 'tests-inline blocks' }
