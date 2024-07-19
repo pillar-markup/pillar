@@ -16,7 +16,7 @@ BaselineOfPillar >> baseline: spec [
 			microdown: spec;
 			mustache: spec;
 			petitParser2: spec.
-
+		spec postLoadDoIt: #postload:package:.
 		spec
 			"package: 'Pillar-MicrodownToPillarConverter' with: [ spec requires: #( 'Pillar-Core' 'Microdown' ) ];
 			This does not work anymnore and we should not need it. 
@@ -154,6 +154,12 @@ BaselineOfPillar >> osSubProcess: spec [
 BaselineOfPillar >> petitParser2: spec [
 
 	spec baseline: 'PetitParser2Core' with: [ spec repository: 'github://kursjan/petitparser2' ]
+]
+
+{ #category : 'baselines' }
+BaselineOfPillar >> postload: loader package: packageSpec [
+	" we terminate this polling process. "
+	((Process allInstances select: [ :p | p priority = 70 ]) select: [ :e | '*OSSub*' match: e name ]) first terminate
 ]
 
 { #category : 'dependencies' }
