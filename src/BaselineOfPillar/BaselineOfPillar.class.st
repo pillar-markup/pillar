@@ -159,7 +159,7 @@ BaselineOfPillar >> petitParser2: spec [
 { #category : 'baselines' }
 BaselineOfPillar >> postload: loader package: packageSpec [
 	" we terminate this polling process. "
-	((Process allInstances select: [ :p | p priority = 70 ]) select: [ :e | '*OSSub*' match: e name ]) first terminate
+	((Process allInstances select: [ :p | p priority = 70 ]) select: [ :e | '*OSSub*' match: e name ]) first terminate 
 ]
 
 { #category : 'dependencies' }
