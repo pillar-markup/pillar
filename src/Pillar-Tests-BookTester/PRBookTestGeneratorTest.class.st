@@ -111,11 +111,10 @@ PRBookTestGeneratorTest >> testMethodCreationSyntaxErrorCodeblock [
 	self assert: (self methodCreationError methodDict includesKey: #test1).
 	self
 		assert: (self methodCreationError methodDict at: #test1) sourceCode
-		equals:
-			'test1
+		equals: 'test1
 
 	self assert: Error signal description: ''A code block failed''. 
-	"SyntaxErrorNotification was raised with: '')'' expected"
+	"CodeError was raised with: '')'' expected"
 	"by the codeblock: ((a1 at: 1) at: 1 put: ''sally''. a1)>>>#(#(''sally''))"'.
 	run := self methodCreationError suite run.
 	self assertEmpty: run failures.
