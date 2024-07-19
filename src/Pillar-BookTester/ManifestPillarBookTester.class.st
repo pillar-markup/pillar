@@ -33,7 +33,9 @@ pillar clap checkFile x.pillar
 
 "
 Class {
-	#name : #ManifestPillarBookTester,
-	#superclass : #PackageManifest,
-	#category : #'Pillar-BookTester-Manifest'
+	#name : 'ManifestPillarBookTester',
+	#superclass : 'PackageManifest',
+	#category : 'Pillar-BookTester-Manifest',
+	#package : 'Pillar-BookTester',
+	#tag : 'Manifest'
 }

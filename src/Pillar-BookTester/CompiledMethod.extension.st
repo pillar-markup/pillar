@@ -1,6 +1,6 @@
-Extension { #name : #CompiledMethod }
+Extension { #name : 'CompiledMethod' }
 
-{ #category : #'*Pillar-BookTester' }
+{ #category : '*Pillar-BookTester' }
 CompiledMethod >> definitionString [ 
 	^ self sourceCode
 ]

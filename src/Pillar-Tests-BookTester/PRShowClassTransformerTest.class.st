@@ -1,15 +1,16 @@
 Class {
-	#name : #PRShowClassTransformerTest,
-	#superclass : #PRTransformerEnvironmentTest,
-	#category : #'Pillar-Tests-BookTester'
+	#name : 'PRShowClassTransformerTest',
+	#superclass : 'PRTransformerEnvironmentTest',
+	#category : 'Pillar-Tests-BookTester',
+	#package : 'Pillar-Tests-BookTester'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRShowClassTransformerTest >> actualClass [
 	^ PRShowClassTransformer 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRShowClassTransformerTest >> helper: classString result: resultString [
 	| doc codeblock |
 	doc := PRDocument new
@@ -33,7 +34,7 @@ PRShowClassTransformerTest >> helper: classString result: resultString [
 	
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRShowClassTransformerTest >> setUp [
 
 	super setUp.
@@ -43,14 +44,14 @@ PRShowClassTransformerTest >> setUp [
 			stream nextPutAll: PRTransformerEnvironmentTest pillarAnnotationsContentsForTest ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRShowClassTransformerTest >> testTransformerCreatesClassDefinitionCodeblock [
 	self skip. 
 	self flag: #todo. 
 	self helper: 'Integer' result: Integer definitionString
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRShowClassTransformerTest >> testTransformerCreatesClassDefinitionForUnknownClass [
 	self helper: 'IntegRR' result: 'The system was looking for IntegRR but did not find it'.
 

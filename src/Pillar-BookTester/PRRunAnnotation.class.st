@@ -14,30 +14,32 @@ Note:
 	The visit of this annotation is performed by the PRBookTesterVisitor in charge of visiting the document and therefore there is not a PRRunAnnotationTransformer defined for a simple reason, this annotation does not transform anything.
 "
 Class {
-	#name : #PRRunAnnotation,
-	#superclass : #PRAbstractAnnotation,
-	#category : #'Pillar-BookTester-Annotations'
+	#name : 'PRRunAnnotation',
+	#superclass : 'PRAbstractAnnotation',
+	#category : 'Pillar-BookTester-Annotations',
+	#package : 'Pillar-BookTester',
+	#tag : 'Annotations'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRRunAnnotation class >> defaultParameterName [
 
 	^ 'testClass'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRRunAnnotation class >> possibleParameters [
 
 	^ #(testClass)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRRunAnnotation class >> tag [
 
 	^ #run
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRRunAnnotation >> accept: aVisitor [
 
 	^ aVisitor visitRunAnnotation: self

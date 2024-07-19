@@ -1,15 +1,16 @@
 Class {
-	#name : #PRScreenshotAnnotationTest,
-	#superclass : #PRAbstractAnnotationTest,
-	#category : #'Pillar-Tests-BookTester'
+	#name : 'PRScreenshotAnnotationTest',
+	#superclass : 'PRAbstractAnnotationTest',
+	#category : 'Pillar-Tests-BookTester',
+	#package : 'Pillar-Tests-BookTester'
 }
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRScreenshotAnnotationTest >> actualClass [
 	^ PRScreenshotAnnotation 
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRScreenshotAnnotationTest >> referenceParameters [
 ^ PRParameters withAll: { 
 		PRParameter 
@@ -30,13 +31,13 @@ PRScreenshotAnnotationTest >> referenceParameters [
 	
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRScreenshotAnnotationTest >> referenceString [
 	^ 'screenshot:class=PRScreenshotAnnotationTest|method=referenceString|caption=The referenceString method|width=50|label=refStr'
 		
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRScreenshotAnnotationTest >> testParsedHadAllKeys [
 
 	| annotation |

@@ -8,15 +8,17 @@ I have two main purposes:
 - I create a PNG file in the /figures subfolder (with the help of exportAsPNGForPillar)
 "
 Class {
-	#name : #PRScreenshotTransformer,
-	#superclass : #PRNodeTransformer,
+	#name : 'PRScreenshotTransformer',
+	#superclass : 'PRNodeTransformer',
 	#instVars : [
 		'workingDirectory'
 	],
-	#category : 'Pillar-BookTester-Annotations'
+	#category : 'Pillar-BookTester-Annotations',
+	#package : 'Pillar-BookTester',
+	#tag : 'Annotations'
 }
 
-{ #category : #'instance-creation' }
+{ #category : 'instance-creation' }
 PRScreenshotTransformer class >> withContext: aContext [
 
 	| inst |
@@ -25,14 +27,14 @@ PRScreenshotTransformer class >> withContext: aContext [
 	^ inst
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRScreenshotTransformer >> initialize [
 
 	super initialize.
 	workingDirectory := FileSystem workingDirectory
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRScreenshotTransformer >> visitScreenshotAnnotation: aPRShowMethodAnnotation [
 	
 	| className methodName browser fileName figure time doc |
@@ -56,7 +58,7 @@ PRScreenshotTransformer >> visitScreenshotAnnotation: aPRShowMethodAnnotation [
 	self replace: {figure}
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRScreenshotTransformer >> workingDirectory: aFileReference [
 
 	workingDirectory := aFileReference 

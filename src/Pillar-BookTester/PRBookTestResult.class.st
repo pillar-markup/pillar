@@ -29,18 +29,20 @@ fragmentedText: #('Plop' 'plop1' '^ ''1''')
 
 "
 Class {
-	#name : #PRBookTestResult,
-	#superclass : #Object,
+	#name : 'PRBookTestResult',
+	#superclass : 'Object',
 	#instVars : [
 		'text',
 		'fragmentedText',
 		'status',
 		'explanation'
 	],
-	#category : #'Pillar-BookTester-Visitor'
+	#category : 'Pillar-BookTester-Visitor',
+	#package : 'Pillar-BookTester',
+	#tag : 'Visitor'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTestResult >> characterizeMethodDefinition [
 	"Precondition: fragmentedText should be filled in before using this method"
 
@@ -52,25 +54,25 @@ PRBookTestResult >> characterizeMethodDefinition [
 	^ 'normalMethodDefinition'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTestResult >> explanation [
 
 	^ explanation
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTestResult >> explanation: anException [
 
 	explanation := anException
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTestResult >> fragmentedText [
 
 	^ fragmentedText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTestResult >> fragmentedText: aText [
 	"The Array contains: 
 		-Class Name
@@ -79,7 +81,7 @@ PRBookTestResult >> fragmentedText: aText [
 	fragmentedText := aText
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRBookTestResult >> initialize [
 
 	super initialize.
@@ -87,39 +89,39 @@ PRBookTestResult >> initialize [
 	explanation := 'Test failed without raising an exception'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRBookTestResult >> isFailed [
 
 	^ status not
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRBookTestResult >> isValid [
 
 	^ status 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTestResult >> status [ 
 	"true means that the test is valid, false means that the test got a problem or failed"
 	
 	^ status
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTestResult >> status: aBoolean [
 	"true means that the test is valid, false means that the test got a problem or failed"
 	
 	status := aBoolean
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTestResult >> text [
 
 	^ text 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTestResult >> text: aText [
 
 	text := aText

@@ -3,17 +3,19 @@ I'm the output of a book checking phase.
 I will report on stdout failing and working test.
 "
 Class {
-	#name : #PRCheckBookDocument,
-	#superclass : #PRAbstractOutputDocument,
-	#category : #'Pillar-BookTester-CommandLine'
+	#name : 'PRCheckBookDocument',
+	#superclass : 'PRAbstractOutputDocument',
+	#category : 'Pillar-BookTester-CommandLine',
+	#package : 'Pillar-BookTester',
+	#tag : 'CommandLine'
 }
 
-{ #category : #writing }
+{ #category : 'writing' }
 PRCheckBookDocument >> basicWriter [
 	" No basicWriter : do nothing"
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRCheckBookDocument >> buildOn: aPRProject [ 
 	
 	| parsedDocument transformedDocument |
@@ -22,12 +24,12 @@ PRCheckBookDocument >> buildOn: aPRProject [
 	^ self writeDocument: transformedDocument.
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRCheckBookDocument >> extension [
 	^ 'txt'
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRCheckBookDocument >> writeDocument: aDocument [
 	| bTester checkReport outputFile| 
 	bTester := PRBookTesterVisitor new.

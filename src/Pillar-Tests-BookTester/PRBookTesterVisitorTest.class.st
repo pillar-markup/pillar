@@ -1,13 +1,14 @@
 Class {
-	#name : #PRBookTesterVisitorTest,
-	#superclass : #PRBookTestEnvironmentTest,
+	#name : 'PRBookTesterVisitorTest',
+	#superclass : 'PRBookTestEnvironmentTest',
 	#instVars : [
 		'testingFileSystem'
 	],
-	#category : #'Pillar-Tests-BookTester'
+	#category : 'Pillar-Tests-BookTester',
+	#package : 'Pillar-Tests-BookTester'
 }
 
-{ #category : #'tests - examples' }
+{ #category : 'tests - examples' }
 PRBookTesterVisitorTest >> parseAndTest: docText [
 	| doc bTester |
 	doc := PRPillarParser new parse: docText.
@@ -16,7 +17,7 @@ PRBookTesterVisitorTest >> parseAndTest: docText [
 	^ bTester
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRBookTesterVisitorTest >> setUp [
 	"Hooks that subclasses may override to define the fixture of test."
 	
@@ -28,7 +29,7 @@ PRBookTesterVisitorTest >> setUp [
 
 ]
 
-{ #category : #'tests - examples' }
+{ #category : 'tests - examples' }
 PRBookTesterVisitorTest >> testExampleCodeblock [
 	| docText bTester |
 	docText := '[[[example=true
@@ -41,7 +42,7 @@ PRBookTesterVisitorTest >> testExampleCodeblock [
 	self assert: bTester validTests size equals: 1
 ]
 
-{ #category : #'tests - examples' }
+{ #category : 'tests - examples' }
 PRBookTesterVisitorTest >> testExampleCodeblockWithFailingTest [
 	| docText bTester |
 	docText := '[[[example=true
@@ -54,7 +55,7 @@ PRBookTesterVisitorTest >> testExampleCodeblockWithFailingTest [
 	self assert: bTester failedTests size equals: 1
 ]
 
-{ #category : #'tests - examples' }
+{ #category : 'tests - examples' }
 PRBookTesterVisitorTest >> testExampleCodeblockWithFalseTest [
 	| docText bTester |
 	docText := '[[[example=true
@@ -67,7 +68,7 @@ PRBookTesterVisitorTest >> testExampleCodeblockWithFalseTest [
 	self assert: bTester failedTests size equals: 1
 ]
 
-{ #category : #'tests - examples' }
+{ #category : 'tests - examples' }
 PRBookTesterVisitorTest >> testExampleCodeblockWithNoBrakets [
 	| docText bTester |
 	docText := '[[[example=true
@@ -79,7 +80,7 @@ PRBookTesterVisitorTest >> testExampleCodeblockWithNoBrakets [
 	self assert: bTester failedTests size equals: 1
 ]
 
-{ #category : #'tests - examples' }
+{ #category : 'tests - examples' }
 PRBookTesterVisitorTest >> testExampleCodeblockWithTwoBrackets [
 	| docText bTester |
 	docText := '[[[example=true
@@ -92,7 +93,7 @@ PRBookTesterVisitorTest >> testExampleCodeblockWithTwoBrackets [
 	self assert: bTester failedTests size equals: 1
 ]
 
-{ #category : #'tests - examples' }
+{ #category : 'tests - examples' }
 PRBookTesterVisitorTest >> testExpectedFailureForAFailure [
 	| docText bTester |
 	docText := '[[[example=true|expectedFailure=true
@@ -105,7 +106,7 @@ PRBookTesterVisitorTest >> testExpectedFailureForAFailure [
 	self assert: bTester validTests size equals: 1
 ]
 
-{ #category : #'tests - examples' }
+{ #category : 'tests - examples' }
 PRBookTesterVisitorTest >> testExpectedFailureForARaisedException [
 	| docText bTester |
 	docText := '[[[example=true|expectedFailure=true
@@ -118,7 +119,7 @@ PRBookTesterVisitorTest >> testExpectedFailureForARaisedException [
 	self assert: bTester validTests size equals: 1
 ]
 
-{ #category : #'tests - explanation' }
+{ #category : 'tests - explanation' }
 PRBookTesterVisitorTest >> testExplanationIsExceptionCatchedInFailingTest [
 	| docText doc bTester |
 	docText := '[[[example=true
@@ -134,7 +135,7 @@ PRBookTesterVisitorTest >> testExplanationIsExceptionCatchedInFailingTest [
 	"self assert: bTester failedTests first explanation equals: 'Instance of Character did not understand #adaptToNumber:andSend:'"
 ]
 
-{ #category : #'tests - explanation' }
+{ #category : 'tests - explanation' }
 PRBookTesterVisitorTest >> testExplanationIsTestFailedWithoutException [
 	| docText doc bTester |
 	docText := '[[[example=true
@@ -150,7 +151,7 @@ PRBookTesterVisitorTest >> testExplanationIsTestFailedWithoutException [
 	self assert: bTester failedTests first explanation equals: 'Test failed without raising an exception'
 ]
 
-{ #category : #'tests - explanation' }
+{ #category : 'tests - explanation' }
 PRBookTesterVisitorTest >> testExplanationIsTestPassed [
 	| docText doc bTester |
 	docText := '[[[example=true
@@ -166,7 +167,7 @@ PRBookTesterVisitorTest >> testExplanationIsTestPassed [
 	self assert: bTester validTests first explanation equals: 'Test passed'
 ]
 
-{ #category : #'Please FIX ME' }
+{ #category : 'Please FIX ME' }
 PRBookTesterVisitorTest >> testLoaderAnnotationLoadsPackageChapter1 [
 
 	| doc bookTester |
@@ -196,7 +197,7 @@ PRBookTesterVisitorTest >> testLoaderAnnotationLoadsPackageChapter1 [
 	
 ]
 
-{ #category : #'Please FIX ME' }
+{ #category : 'Please FIX ME' }
 PRBookTesterVisitorTest >> testLoaderAnnotationLoadsPackageChapter2 [
 	| doc bookTester|
 	self skip.
@@ -223,7 +224,7 @@ PRBookTesterVisitorTest >> testLoaderAnnotationLoadsPackageChapter2 [
 	
 ]
 
-{ #category : #'Please FIX ME' }
+{ #category : 'Please FIX ME' }
 PRBookTesterVisitorTest >> testLoaderAnnotationLoadsPackageChapter3 [
 	| doc bookTester|
 	self skip.
@@ -249,7 +250,7 @@ PRBookTesterVisitorTest >> testLoaderAnnotationLoadsPackageChapter3 [
 	self assert: (self class at: #Plop) new chapterThreeMethod equals: 'chapterThree'
 ]
 
-{ #category : #'tests - examples' }
+{ #category : 'tests - examples' }
 PRBookTesterVisitorTest >> testNoExampleCodeblock [
 	| docText bTester |
 	docText := '[[[
@@ -262,7 +263,7 @@ PRBookTesterVisitorTest >> testNoExampleCodeblock [
 	self assertEmpty: bTester validTests
 ]
 
-{ #category : #'tests - examples' }
+{ #category : 'tests - examples' }
 PRBookTesterVisitorTest >> testThreeCodeBlocksWithTwoExamples [
 
 	| docText bTester |
@@ -287,7 +288,7 @@ PRBookTesterVisitorTest >> testThreeCodeBlocksWithTwoExamples [
 	self assert: bTester validTests size equals: 1.
 ]
 
-{ #category : #'test - virtual file' }
+{ #category : 'test - virtual file' }
 PRBookTesterVisitorTest >> testVirtualFileSystem [
 
 	| bTester |

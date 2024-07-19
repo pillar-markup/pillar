@@ -42,36 +42,38 @@ definition can compile or that the method definition can compile.
 
 "
 Class {
-	#name : #PRBookTesterVisitor,
-	#superclass : #PRVisitor,
+	#name : 'PRBookTesterVisitor',
+	#superclass : 'PRVisitor',
 	#instVars : [
 		'allTestResults',
 		'workingDirectory',
 		'codeblockDict',
 		'finalStatus'
 	],
-	#category : #'Pillar-BookTester-Visitor'
+	#category : 'Pillar-BookTester-Visitor',
+	#package : 'Pillar-BookTester',
+	#tag : 'Visitor'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRBookTesterVisitor class >> isAbstract [
 	<ignoreForCoverage "This method is ignored for test coverage because it is overriden in all subclasses and these subclasses don't need to do a super-send.">
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTesterVisitor >> allTestResults [
 	
 	^ allTestResults
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTesterVisitor >> allTestResults: anObject [
 
 	allTestResults := anObject
 ]
 
-{ #category : #'visiting-codeblock' }
+{ #category : 'visiting-codeblock' }
 PRBookTesterVisitor >> checkAndReportFileNamed: aPath [
 	"The API we want to be using: 
 	Visitor checkAndReportFileNamed: path"
@@ -84,26 +86,26 @@ PRBookTesterVisitor >> checkAndReportFileNamed: aPath [
 
 ]
 
-{ #category : #others }
+{ #category : 'others' }
 PRBookTesterVisitor >> checkAssociation: aCodeBlock [
 	"Asserts that the association created in any codeBlock has equal arguments"
 	^ (self class compiler evaluate: aCodeBlock text) isPaired 
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTesterVisitor >> codeblockDict [
 	
 	^ codeblockDict
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTesterVisitor >> codeblockDict: aDictionary [
 
 	codeblockDict := aDictionary
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRBookTesterVisitor >> compileClassSideMethod: aResult [
 
 	| isCorrect |
@@ -119,7 +121,7 @@ PRBookTesterVisitor >> compileClassSideMethod: aResult [
 	
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRBookTesterVisitor >> compileMethod: aResult [
 
 	| isCorrect |
@@ -135,7 +137,7 @@ PRBookTesterVisitor >> compileMethod: aResult [
 	
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRBookTesterVisitor >> compileWrongSyntaxMethodDefinition: aResult [
 
 	| isCorrect |
@@ -145,13 +147,13 @@ PRBookTesterVisitor >> compileWrongSyntaxMethodDefinition: aResult [
 	
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 PRBookTesterVisitor >> evaluate: aCodeBlock [
 
 	^ aCodeBlock evaluate
 ]
 
-{ #category : #compiling }
+{ #category : 'compiling' }
 PRBookTesterVisitor >> executeAndReportClassDefinition: result [
 	"Executes a codeblock with parameter classDefinition=true.
 	It verifies the compilation occurs without raising any Error/Exception
@@ -166,10 +168,11 @@ PRBookTesterVisitor >> executeAndReportClassDefinition: result [
 	| isCorrect |
 	result explanation: 'Class did not compile without raising an exception'.
 	isCorrect := false.
-	[ self class evaluate: result text.
+	[self class compiler evaluate: result text.
 	isCorrect := true ]
 		on: Exception
 		do: [ :ex | 
+			self halt.
 			result explanation: ex asString.
 			isCorrect := false ].
 	result status: isCorrect.
@@ -177,7 +180,7 @@ PRBookTesterVisitor >> executeAndReportClassDefinition: result [
 		ifTrue: [ result explanation: 'Class created' ]
 ]
 
-{ #category : #compiling }
+{ #category : 'compiling' }
 PRBookTesterVisitor >> executeAndReportExample: result [
 	"Executes a codeblock with parameter example=true.
 	To determine whether or not the test passed, this method creates an association as follows:
@@ -202,7 +205,7 @@ PRBookTesterVisitor >> executeAndReportExample: result [
 
 ]
 
-{ #category : #compiling }
+{ #category : 'compiling' }
 PRBookTesterVisitor >> executeAndReportMethodDefinition: result [
 	"Executes the method definition in the given class with the right name
 	
@@ -227,25 +230,25 @@ PRBookTesterVisitor >> executeAndReportMethodDefinition: result [
 	isCorrect ifTrue: [ result explanation: 'Method compiled' ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRBookTesterVisitor >> failedTests [
 	"Returns the failed tests within the test results"
 	^ allTestResults select: [ :each | each isFailed ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTesterVisitor >> finalStatus [
 
 	^ finalStatus
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTesterVisitor >> finalStatus: anObject [
 
 	finalStatus := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRBookTesterVisitor >> initialize [
 	super initialize.
 	codeblockDict := { (#isEvaluated -> #evaluate:).
@@ -257,13 +260,13 @@ PRBookTesterVisitor >> initialize [
 	finalStatus := true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRBookTesterVisitor >> validTests [
 	"Returns all passed tests"
 	^ allTestResults select: [ :each | each isValid ]
 ]
 
-{ #category : #'visiting-codeblock' }
+{ #category : 'visiting-codeblock' }
 PRBookTesterVisitor >> visitCodeblock: aCodeBlock [
 
 	codeblockDict keys
@@ -272,22 +275,23 @@ PRBookTesterVisitor >> visitCodeblock: aCodeBlock [
 				ifTrue: [ self perform: (codeblockDict at: k) with: aCodeBlock ] ]
 ]
 
-{ #category : #'visiting-codeblock' }
+{ #category : 'visiting-codeblock' }
 PRBookTesterVisitor >> visitCodeblockClassDefinition: aCodeBlock [
 	"Creates an instance of PRBookTestResult with parameters depending of the type of the codeblock. 
 	Here it is for a class definition, it simply compiles the codeblock text"
 	
 	| result |
-	self withPillarAuthorDo: [
+
 		result := PRBookTestResult new.
 		result text: aCodeBlock text.
 		allTestResults add: result.
+		
 		self executeAndReportClassDefinition: result.
 		aCodeBlock isExpectedFailure
-			ifTrue: [ result status: result status not] ]
+			ifTrue: [ result status: result status not]
 ]
 
-{ #category : #'visiting-codeblock' }
+{ #category : 'visiting-codeblock' }
 PRBookTesterVisitor >> visitCodeblockExample: aCodeBlock [
 	"Creates an instance of PRBookTestResult with parameters depending of the type of the codeblock. 
 	Here it is for an example and therefore uses the specialized exmple methods
@@ -304,7 +308,7 @@ PRBookTesterVisitor >> visitCodeblockExample: aCodeBlock [
 		ifTrue: [ result status: result status not] 
 ]
 
-{ #category : #'visiting-codeblock' }
+{ #category : 'visiting-codeblock' }
 PRBookTesterVisitor >> visitCodeblockMethodDefinition: aCodeBlock [
 	"Creates an instance of PRBookTestResult with parameters depending of the type of the codeblock. 
 	Here it is for a test definition and therefore uses the specialized test definition methods
@@ -322,7 +326,7 @@ PRBookTesterVisitor >> visitCodeblockMethodDefinition: aCodeBlock [
 			ifTrue: [ result status: result status not] ]
 ]
 
-{ #category : #'visiting-annotations' }
+{ #category : 'visiting-annotations' }
 PRBookTesterVisitor >> visitLoaderAnnotation: aPRLoaderAnnotation [
 	
 	| projectName accountName tagName baselineName |
@@ -353,7 +357,7 @@ PRBookTesterVisitor >> visitLoaderAnnotation: aPRLoaderAnnotation [
 	
 ]
 
-{ #category : #'visiting-annotations' }
+{ #category : 'visiting-annotations' }
 PRBookTesterVisitor >> visitRunAnnotation: aPRRunAnnotation [
 
 	"Todo visitor specification + exception handling"
@@ -392,7 +396,7 @@ PRBookTesterVisitor >> visitRunAnnotation: aPRRunAnnotation [
 				 yourself) ]
 ]
 
-{ #category : #compiling }
+{ #category : 'compiling' }
 PRBookTesterVisitor >> withPillarAuthorDo: aBlock [
 
 	Author
@@ -400,14 +404,14 @@ PRBookTesterVisitor >> withPillarAuthorDo: aBlock [
 		during: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTesterVisitor >> workingDirectory [
 	
 	^ workingDirectory
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTesterVisitor >> workingDirectory: aDirectory [
 
 	workingDirectory := aDirectory

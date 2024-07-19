@@ -1,15 +1,16 @@
 Class {
-	#name : #PRValidatorVisitorTest,
-	#superclass : #TestCase,
-	#category : #'Pillar-Tests-BookTester'
+	#name : 'PRValidatorVisitorTest',
+	#superclass : 'TestCase',
+	#category : 'Pillar-Tests-BookTester',
+	#package : 'Pillar-Tests-BookTester'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRValidatorVisitorTest >> allValidatorResults [
 	^ PRValidatorResult allResults
 ]
 
-{ #category : #'setup & teardown' }
+{ #category : 'setup & teardown' }
 PRValidatorVisitorTest >> setUp [
 	"Create a setup directory with: validator_figures/useCustom.png & validator_inputFiles/my_test_file.pillar "
 
@@ -21,7 +22,7 @@ PRValidatorVisitorTest >> setUp [
 	(workingDir / 'validator_inputFiles' / 'my_test_file.pillar') ensureCreateFile
 ]
 
-{ #category : #'setup & teardown' }
+{ #category : 'setup & teardown' }
 PRValidatorVisitorTest >> tearDown [
 	| workingDir |
 	workingDir := FileSystem workingDirectory.
@@ -30,7 +31,7 @@ PRValidatorVisitorTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #'test-anchor-reference' }
+{ #category : 'test-anchor-reference' }
 PRValidatorVisitorTest >> testErrorAnchorIsMissing [
 
 	| doc validator |
@@ -45,7 +46,7 @@ A reference to header *@secheader1*
 	
 ]
 
-{ #category : #'test-figure' }
+{ #category : 'test-figure' }
 PRValidatorVisitorTest >> testErrorFigureIncorrectExtension [
 
 	| doc validator |
@@ -60,7 +61,7 @@ PRValidatorVisitorTest >> testErrorFigureIncorrectExtension [
 	
 ]
 
-{ #category : #'test-figure' }
+{ #category : 'test-figure' }
 PRValidatorVisitorTest >> testErrorFigureIncorrectExtensionExtensionMissing [
 
 	| doc validator |
@@ -75,7 +76,7 @@ PRValidatorVisitorTest >> testErrorFigureIncorrectExtensionExtensionMissing [
 	
 ]
 
-{ #category : #'test-figure' }
+{ #category : 'test-figure' }
 PRValidatorVisitorTest >> testErrorFigureIncorrectExtensionWithNoExtension [
 
 	| doc validator |
@@ -90,7 +91,7 @@ PRValidatorVisitorTest >> testErrorFigureIncorrectExtensionWithNoExtension [
 	
 ]
 
-{ #category : #'test-figure' }
+{ #category : 'test-figure' }
 PRValidatorVisitorTest >> testErrorFigureNotFound [
 	| doc validator |
 	doc := PRPillarParserMain parse: '
@@ -103,7 +104,7 @@ PRValidatorVisitorTest >> testErrorFigureNotFound [
 	self assert: validator allTestsResults first specification equals: 'file://validator_figures/unfoundPic.png'
 ]
 
-{ #category : #'test-inputFileAnnotation' }
+{ #category : 'test-inputFileAnnotation' }
 PRValidatorVisitorTest >> testErrorInputFileNotFound [
 	| doc validator |
 	doc := PRPillarParserMain parse: '
@@ -116,7 +117,7 @@ ${inputFile:validator_unfound_input_file.pillar}$
 	self assert: validator allTestsResults first specification equals: 'validator_unfound_input_file.pillar'
 ]
 
-{ #category : #'test-anchor-reference' }
+{ #category : 'test-anchor-reference' }
 PRValidatorVisitorTest >> testErrorTwoAnchorsSameName [
 
 	| doc validator |
@@ -137,7 +138,7 @@ A reference to header *@secheader1*
 	
 ]
 
-{ #category : #'test-anchor-reference' }
+{ #category : 'test-anchor-reference' }
 PRValidatorVisitorTest >> testErrorTwoAnchorsSameNameRelativeToFigure [
 
 	| doc validator | 
@@ -156,7 +157,7 @@ See this figure *@UseCustom*
 	self assert: validator allTestsResults first specification equals: 'UseCustom'
 ]
 
-{ #category : #'test-figure' }
+{ #category : 'test-figure' }
 PRValidatorVisitorTest >> testFigureExists [
 	| doc validator |
 	doc := PRPillarParserMain
@@ -170,7 +171,7 @@ PRValidatorVisitorTest >> testFigureExists [
 	self denyEmpty: validator anchors
 ]
 
-{ #category : #'test-anchor-reference' }
+{ #category : 'test-anchor-reference' }
 PRValidatorVisitorTest >> testIdentifiesAnchor [
 	| doc validator |
 	doc := PRPillarParserMain
@@ -187,7 +188,7 @@ A reference to header *@secheader1*
 	self denyEmpty: validator anchors
 ]
 
-{ #category : #'test-figure' }
+{ #category : 'test-figure' }
 PRValidatorVisitorTest >> testIdentifiesFigureWithLabel [
 	| doc validator |
 	doc := PRPillarParserMain
@@ -201,7 +202,7 @@ PRValidatorVisitorTest >> testIdentifiesFigureWithLabel [
 	self denyEmpty: validator anchors
 ]
 
-{ #category : #'test-figure' }
+{ #category : 'test-figure' }
 PRValidatorVisitorTest >> testIdentifiesFigureWithoutLabel [
 	| doc validator |
 	doc := PRPillarParserMain
@@ -215,7 +216,7 @@ PRValidatorVisitorTest >> testIdentifiesFigureWithoutLabel [
 	self assertEmpty: validator anchors
 ]
 
-{ #category : #'test-inputFileAnnotation' }
+{ #category : 'test-inputFileAnnotation' }
 PRValidatorVisitorTest >> testIdentifiesFileInclusion [
 	| doc validator |
 	doc := PRPillarParserMain parse: '
@@ -226,7 +227,7 @@ ${inputFile:validator_inputFiles/my_test_file.pillar}$
 	self assert: validator isSuccess.
 ]
 
-{ #category : #'test-anchor-reference' }
+{ #category : 'test-anchor-reference' }
 PRValidatorVisitorTest >> testOneReferenceRefersToASingleAnchor [
 
 	| doc validator | 
@@ -243,7 +244,7 @@ A reference to header *@secheader1*
 	
 ]
 
-{ #category : #'test-anchor-reference' }
+{ #category : 'test-anchor-reference' }
 PRValidatorVisitorTest >> testOneReferenceRefersToASingleFigure [
 
 	| doc validator | 
@@ -258,7 +259,7 @@ See this figure *@UseCustom*
 	self assert: validator references first equals: 'UseCustom'
 ]
 
-{ #category : #'test-anchor-reference' }
+{ #category : 'test-anchor-reference' }
 PRValidatorVisitorTest >> testTwoReferencesReferToASingleAnchor [
 
 	| doc validator | 

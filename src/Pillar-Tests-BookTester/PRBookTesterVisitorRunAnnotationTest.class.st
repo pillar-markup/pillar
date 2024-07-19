@@ -1,10 +1,11 @@
 Class {
-	#name : #PRBookTesterVisitorRunAnnotationTest,
-	#superclass : #PRBookTesterVisitorTest,
-	#category : #'Pillar-Tests-BookTester'
+	#name : 'PRBookTesterVisitorRunAnnotationTest',
+	#superclass : 'PRBookTesterVisitorTest',
+	#category : 'Pillar-Tests-BookTester',
+	#package : 'Pillar-Tests-BookTester'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PRBookTesterVisitorRunAnnotationTest >> setUp [
 	"Hooks that subclasses may override to define the fixture of test."
 	
@@ -17,7 +18,7 @@ PRBookTesterVisitorRunAnnotationTest >> setUp [
 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRBookTesterVisitorRunAnnotationTest >> tearDown [
 	"Hooks that subclasses may override to define the fixture of test."
 
@@ -25,7 +26,7 @@ PRBookTesterVisitorRunAnnotationTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #'tests-annotations' }
+{ #category : 'tests-annotations' }
 PRBookTesterVisitorRunAnnotationTest >> testRunAnnotationReportFailingTests [
 	| doc docText bookTester|
 
@@ -69,7 +70,7 @@ ${run:testClass=PRBookTestDummyRunAnnotationTest}$'.
 	
 ]
 
-{ #category : #'tests-annotations' }
+{ #category : 'tests-annotations' }
 PRBookTesterVisitorRunAnnotationTest >> testRunAnnotationReportGreenTests [
 	| doc docText bookTester |
 	docText := '

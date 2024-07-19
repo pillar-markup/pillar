@@ -1,10 +1,11 @@
 Class {
-	#name : #PRBookTesterVisitorMethodDefinitionTest,
-	#superclass : #PRBookTesterVisitorTest,
-	#category : #'Pillar-Tests-BookTester'
+	#name : 'PRBookTesterVisitorMethodDefinitionTest',
+	#superclass : 'PRBookTesterVisitorTest',
+	#category : 'Pillar-Tests-BookTester',
+	#package : 'Pillar-Tests-BookTester'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PRBookTesterVisitorMethodDefinitionTest >> setUp [
 	"Hooks that subclasses may override to define the fixture of test."
 	
@@ -17,7 +18,7 @@ PRBookTesterVisitorMethodDefinitionTest >> setUp [
 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRBookTesterVisitorMethodDefinitionTest >> tearDown [
 	"Hooks that subclasses may override to define the fixture of test."
 
@@ -28,13 +29,11 @@ PRBookTesterVisitorMethodDefinitionTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #'tests-class/method definition' }
+{ #category : 'tests-class/method definition' }
 PRBookTesterVisitorMethodDefinitionTest >> testVisitClassDefinitionValid [
 	| docText doc bTester |
 	docText := '[[[classDefinition=true
-PRBookTestDummyClassTest subclass: #PRBookTestDummyClassCreationTest
-	instanceVariableNames: ''''
-	classVariableNames: ''''
+PRBookTestDummyClassTest << #PRBookTestDummyClassCreationTest
 	package: ''Pillar-Tests-BookTester''
 ]]]
 '.
@@ -45,7 +44,7 @@ PRBookTestDummyClassTest subclass: #PRBookTestDummyClassCreationTest
 	self assert: bTester validTests size equals: 1
 ]
 
-{ #category : #'tests-class/method definition' }
+{ #category : 'tests-class/method definition' }
 PRBookTesterVisitorMethodDefinitionTest >> testVisitMethodDefinitionCreatesMethod [
 	
   | docText doc bTester |
@@ -60,7 +59,7 @@ PRBookTestDummyMethodDefinitionTest >> methodTestDefinitionCreatesTest
 	self assert: (PRBookTestDummyMethodDefinitionTest methodDict includesKey: #methodTestDefinitionCreatesTest).
 ]
 
-{ #category : #'tests-class/method definition' }
+{ #category : 'tests-class/method definition' }
 PRBookTesterVisitorMethodDefinitionTest >> testVisitMethodDefinitionFailing [
 	| docText doc bTester |
 	docText := '[[[methodDefinition=true
@@ -75,7 +74,7 @@ PRUnexistingClass >> methodTestDefinitionCreatesTest
 	self assertEmpty: bTester validTests
 ]
 
-{ #category : #'tests-class/method definition' }
+{ #category : 'tests-class/method definition' }
 PRBookTesterVisitorMethodDefinitionTest >> testVisitMethodDefinitionFailingWithExpectedFailure [
 	| docText doc bTester |
 	docText := '[[[methodDefinition=true|expectedFailure=true
@@ -90,7 +89,7 @@ PRUnexistingClass >> methodTestDefinitionCreatesTest
 	self assert: bTester validTests size equals: 1
 ]
 
-{ #category : #'tests-class/method definition' }
+{ #category : 'tests-class/method definition' }
 PRBookTesterVisitorMethodDefinitionTest >> testVisitMethodDefinitionOneBracket [
 	| docText doc bTester |
 	docText := '[[[methodDefinition=true
@@ -105,7 +104,7 @@ PRBookTestDummyMethodDefinition > methodTestDefinitionCreatesTest
 	self assertEmpty: bTester validTests
 ]
 
-{ #category : #'tests-class/method definition' }
+{ #category : 'tests-class/method definition' }
 PRBookTesterVisitorMethodDefinitionTest >> testVisitMethodDefinitionValid [
 	| docText doc bTester |
 	docText := '[[[methodDefinition=true
@@ -120,7 +119,7 @@ PRBookTestDummyMethodDefinitionTest >> methodTestDefinitionCreatesTest
 	self assert: bTester validTests size equals: 1
 ]
 
-{ #category : #'tests-class/method definition' }
+{ #category : 'tests-class/method definition' }
 PRBookTesterVisitorMethodDefinitionTest >> testVisitMethodDefinitionValidClassSide [
 	| docText doc bTester |
 	docText := '[[[methodDefinition=true
@@ -135,7 +134,7 @@ PRBookTestDummyMethodDefinitionTest class>> methodTestDefinitionCreatesTest
 	self assert: bTester validTests size equals: 1
 ]
 
-{ #category : #'tests-class/method definition' }
+{ #category : 'tests-class/method definition' }
 PRBookTesterVisitorMethodDefinitionTest >> testVisitTestDefinitionCreatesMethod [
 	
   | docText doc bTester |

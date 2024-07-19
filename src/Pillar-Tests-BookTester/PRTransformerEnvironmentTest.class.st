@@ -3,15 +3,16 @@ On my class side I define pillarAnnotationsContentsForTest and pillarAnnotations
 methods that are used by the tests to work in memory (and not to generate files on the disc).
 "
 Class {
-	#name : #PRTransformerEnvironmentTest,
-	#superclass : #PRNodeTransformerTest,
+	#name : 'PRTransformerEnvironmentTest',
+	#superclass : 'PRNodeTransformerTest',
 	#instVars : [
 		'testingFileSystem'
 	],
-	#category : #'Pillar-Tests-BookTester'
+	#category : 'Pillar-Tests-BookTester',
+	#package : 'Pillar-Tests-BookTester'
 }
 
-{ #category : #'test file creation' }
+{ #category : 'test file creation' }
 PRTransformerEnvironmentTest class >> pillarAnnotationsContentsForTest [
 "Needs completion"
 	^ 
@@ -59,7 +60,7 @@ ${showMethod:method=bla|class=PRTClass}$
 '
 ]
 
-{ #category : #'test file creation' }
+{ #category : 'test file creation' }
 PRTransformerEnvironmentTest class >> pillarAnnotationsFileNameForTest [
 	
 	^'test.pillar'

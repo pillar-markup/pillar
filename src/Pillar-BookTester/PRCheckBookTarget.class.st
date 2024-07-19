@@ -2,18 +2,20 @@
 Looks like a little hack to be able to pass extra parameters during the documentFor: invocation?
 "
 Class {
-	#name : #PRCheckBookTarget,
-	#superclass : #PRTarget,
-	#category : #'Pillar-BookTester-CommandLine'
+	#name : 'PRCheckBookTarget',
+	#superclass : 'PRTarget',
+	#category : 'Pillar-BookTester-CommandLine',
+	#package : 'Pillar-BookTester',
+	#tag : 'CommandLine'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCheckBookTarget class >> builderName [
 	
 	^ #checkBook
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRCheckBookTarget >> buildOn: aProject [
 	| status |
 	status := PRSuccess new.
@@ -25,7 +27,7 @@ PRCheckBookTarget >> buildOn: aProject [
 	^ status
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRCheckBookTarget >> documentFor: aFile [
 	^ PRCheckBookDocument new
 		project: aFile project;
@@ -35,17 +37,17 @@ PRCheckBookTarget >> documentFor: aFile [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCheckBookTarget >> extension [
 	^ 'txt'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCheckBookTarget >> outputDirectoryName [ 
 	^ '_check'
 ]
 
-{ #category : #preparation }
+{ #category : 'preparation' }
 PRCheckBookTarget >> prepareForExecutionOn: aPRProject [ 
 	
 	"Do nothing"

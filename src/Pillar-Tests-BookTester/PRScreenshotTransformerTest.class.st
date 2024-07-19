@@ -1,18 +1,19 @@
 Class {
-	#name : #PRScreenshotTransformerTest,
-	#superclass : #PRTransformerEnvironmentTest,
+	#name : 'PRScreenshotTransformerTest',
+	#superclass : 'PRTransformerEnvironmentTest',
 	#instVars : [
 		'testingWorkingDirectory'
 	],
-	#category : #'Pillar-Tests-BookTester'
+	#category : 'Pillar-Tests-BookTester',
+	#package : 'Pillar-Tests-BookTester'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PRScreenshotTransformerTest >> actualClass [
 	^ PRScreenshotTransformer 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRScreenshotTransformerTest >> setUp [
 
 	super setUp.
@@ -25,7 +26,7 @@ PRScreenshotTransformerTest >> setUp [
 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRScreenshotTransformerTest >> testTransformerCreatesFigureReference [
 	"It is needed to create the subfolder image/YourImage/figures as if it was a book in order for these tests to work"
 	| doc figure |
@@ -58,7 +59,7 @@ PRScreenshotTransformerTest >> testTransformerCreatesFigureReference [
 	
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRScreenshotTransformerTest >> testTransformerCreatesFile [
 	"The test may fail if launched at a when changing minutes if you are unlucky"
 

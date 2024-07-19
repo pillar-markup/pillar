@@ -8,7 +8,8 @@ Pillar-BookTesterResults splits in two packages:
 	- Books when using the command createTests on a book
 "
 Class {
-	#name : #PRBookTestDummyClassTest,
-	#superclass : #TestCase,
-	#category : #'Pillar-Tests-BookTester'
+	#name : 'PRBookTestDummyClassTest',
+	#superclass : 'TestCase',
+	#category : 'Pillar-Tests-BookTester',
+	#package : 'Pillar-Tests-BookTester'
 }

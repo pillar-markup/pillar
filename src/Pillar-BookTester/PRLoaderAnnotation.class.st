@@ -16,49 +16,51 @@ Note:
 	The visit of this annotation is performed by the PRBookTesterVisitor in charge of visiting the document and therefore there is not a PRLoaderAnnotationTransformer defined for a simple reason, this annotation does not transform anything.
 "
 Class {
-	#name : #PRLoaderAnnotation,
-	#superclass : #PRAbstractAnnotation,
-	#category : #'Pillar-BookTester-Annotations'
+	#name : 'PRLoaderAnnotation',
+	#superclass : 'PRAbstractAnnotation',
+	#category : 'Pillar-BookTester-Annotations',
+	#package : 'Pillar-BookTester',
+	#tag : 'Annotations'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRLoaderAnnotation class >> possibleParameters [
 
 	^ #(account project tag baseline)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRLoaderAnnotation class >> tag [
 
 	^ #loader
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRLoaderAnnotation >> accept: aVisitor [
 
 	^ aVisitor visitLoaderAnnotation: self
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRLoaderAnnotation >> account [
 
 	^ self parameters at: #account
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRLoaderAnnotation >> baseline [
 
 	"The baseline name may be different than the project name but we make it the same by default"
 	^ self parameters at: #baseline ifAbsent: [ self project ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRLoaderAnnotation >> gitTag [
 	"gitTag and not tag to avoid interfering with other methods with the same name"
 	^ self parameters at: #tag
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRLoaderAnnotation >> project [
 
 	^ self parameters at: #project

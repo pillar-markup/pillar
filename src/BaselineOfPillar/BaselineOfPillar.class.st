@@ -18,9 +18,7 @@ BaselineOfPillar >> baseline: spec [
 			petitParser2: spec.
 		spec postLoadDoIt: #postload:package:.
 		spec
-			"package: 'Pillar-MicrodownToPillarConverter' with: [ spec requires: #( 'Pillar-Core' 'Microdown' ) ];
-			This does not work anymnore and we should not need it. 
-			Else we migrate by hand the code to Microdown visitors."
+			package: 'Pillar-MicrodownToPillarConverter' with: [ spec requires: #( 'Pillar-Core' 'Microdown' ) ];
 			package: 'Pillar-ExporterMicrodown' with: [ spec requires: #( 'Microdown' 'Pillar-PetitPillar' 'Pillar-ExporterCore' 'Pillar-Tests-ExporterCore') ];
 			package: 'Pillar-Core';
 			package: 'Pillar-Tests-Core' with: [ spec requires: #( 'Pillar-Core' 'Pillar-ExporterText' 'Pillar-ExporterPillar' 'Pillar-PetitPillar' ) ];

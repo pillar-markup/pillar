@@ -19,54 +19,56 @@ Note:
 	Contrary to the loader or run annotations, there is a transformation going on here: a PRFigure is created in the end, so there is a need here to use a PRNodeTransformer subclass, PRScreenshotTransformer.
 "
 Class {
-	#name : #PRScreenshotAnnotation,
-	#superclass : #PRAbstractAnnotation,
-	#category : #'Pillar-BookTester-Annotations'
+	#name : 'PRScreenshotAnnotation',
+	#superclass : 'PRAbstractAnnotation',
+	#category : 'Pillar-BookTester-Annotations',
+	#package : 'Pillar-BookTester',
+	#tag : 'Annotations'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRScreenshotAnnotation class >> possibleParameters [
 
 	^ #(class method caption width label)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRScreenshotAnnotation class >> tag [
 
 	^ #screenshot
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRScreenshotAnnotation >> accept: aVisitor [
 
 	^ aVisitor visitScreenshotAnnotation: self
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRScreenshotAnnotation >> caption [
 
 	^ self parameters at: #caption ifAbsent: [ self className, '>>', self methodName ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRScreenshotAnnotation >> className [
 
 	^ self parameters at: #class
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRScreenshotAnnotation >> label [
 
 	^ self parameters at: #label ifAbsent: [ 'lab_', self methodName ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRScreenshotAnnotation >> methodName [
 
 	^ self parameters at: #method
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRScreenshotAnnotation >> width [
 
 	^ self parameters at: #width ifAbsent: [ 50 ]

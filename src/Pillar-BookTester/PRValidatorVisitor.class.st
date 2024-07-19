@@ -7,28 +7,30 @@ finalStatus variable returns true if there isn't any issue.
 
 "
 Class {
-	#name : #PRValidatorVisitor,
-	#superclass : #PRVisitor,
+	#name : 'PRValidatorVisitor',
+	#superclass : 'PRVisitor',
 	#instVars : [
 		'anchors',
 		'references',
 		'allTestsResults',
 		'finalStatus'
 	],
-	#category : #'Pillar-BookTester-Visitor'
+	#category : 'Pillar-BookTester-Visitor',
+	#package : 'Pillar-BookTester',
+	#tag : 'Visitor'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRValidatorVisitor >> allTestsResults [
 	^ allTestsResults 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRValidatorVisitor >> anchors [
 	^ anchors
 ]
 
-{ #category : #checking }
+{ #category : 'checking' }
 PRValidatorVisitor >> checkAllReferencesReferToAnExistingAnchor [
 	references do: [ :each | 
 			(anchors includes: each)
@@ -36,18 +38,18 @@ PRValidatorVisitor >> checkAllReferencesReferToAnExistingAnchor [
 	
 ]
 
-{ #category : #checking }
+{ #category : 'checking' }
 PRValidatorVisitor >> finalCheck [
 	
 	self checkAllReferencesReferToAnExistingAnchor.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRValidatorVisitor >> finalStatus [
 	^ allTestsResults isEmpty
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRValidatorVisitor >> initialize [
 
 	super initialize.
@@ -59,33 +61,33 @@ PRValidatorVisitor >> initialize [
 	references := OrderedCollection new. 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRValidatorVisitor >> isFailure [
 	^ self finalStatus not
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRValidatorVisitor >> isSuccess [
 	^ self finalStatus
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRValidatorVisitor >> references [
 	^ references
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRValidatorVisitor >> result [
 	^ PRValidatorResult
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRValidatorVisitor >> start: anObject [
 	super start: anObject.
 	self finalCheck.
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRValidatorVisitor >> visitAnchor: anAnchor [
 	super visitAnchor: anAnchor.
 	"check if anchor has a unique name"
@@ -94,7 +96,7 @@ PRValidatorVisitor >> visitAnchor: anAnchor [
 	
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRValidatorVisitor >> visitFigure: aFigure [
 	super visitFigure: aFigure.
 	"check if figure name considered like an anchor is unique"
@@ -117,7 +119,7 @@ PRValidatorVisitor >> visitFigure: aFigure [
 	
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRValidatorVisitor >> visitInputFileAnnotation: anInputFileAnnotation [
 	super visitInputFileAnnotation: anInputFileAnnotation.
 	"check if file with given path exists"
@@ -128,7 +130,7 @@ PRValidatorVisitor >> visitInputFileAnnotation: anInputFileAnnotation [
 							withSpecification: anInputFileAnnotation path) ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRValidatorVisitor >> visitReference: aReference [
 
 	super visitReference: aReference.

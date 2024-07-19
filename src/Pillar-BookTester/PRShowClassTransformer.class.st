@@ -6,12 +6,14 @@ I know how to  visit a showClass annotation and the way to transform it.
 I create a PRCodeblock with the class definition within it.
 "
 Class {
-	#name : #PRShowClassTransformer,
-	#superclass : #PRNodeTransformer,
-	#category : #'Pillar-BookTester-Annotations'
+	#name : 'PRShowClassTransformer',
+	#superclass : 'PRNodeTransformer',
+	#category : 'Pillar-BookTester-Annotations',
+	#package : 'Pillar-BookTester',
+	#tag : 'Annotations'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRShowClassTransformer >> visitShowClassAnnotation: aPRShowClassAnnotation [
 
 	| textOfClassDefinition |

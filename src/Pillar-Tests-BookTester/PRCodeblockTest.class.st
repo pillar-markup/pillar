@@ -1,10 +1,11 @@
 Class {
-	#name : #PRCodeblockTest,
-	#superclass : #PRTextTest,
-	#category : #'Pillar-Tests-BookTester'
+	#name : 'PRCodeblockTest',
+	#superclass : 'PRTextTest',
+	#category : 'Pillar-Tests-BookTester',
+	#package : 'Pillar-Tests-BookTester'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCodeblockTest >> testIsClassDefinition [
 
 	| cb1 |
@@ -17,7 +18,7 @@ package: ''PackageName'''
 	self assert: cb1 isClassDefinition.	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCodeblockTest >> testIsExample [
 
 	| cb1  |
@@ -32,7 +33,7 @@ PRCodeblockTest >> testIsExample [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCodeblockTest >> testIsExpectedFailure [
 
 	| cb1 |
@@ -47,7 +48,7 @@ PRCodeblockTest >> testIsExpectedFailure [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCodeblockTest >> testIsMethodDefinition [
 
 	| cb1 |
@@ -58,7 +59,7 @@ methodBody'
 	self assert: cb1 isMethodDefinition
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCodeblockTest >> testIsTestDefinition [
 
 	| cb1 |
@@ -69,7 +70,7 @@ testBody'
 	self assert: cb1 isTestDefinition
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCodeblockTest >> testTextForExample [
 
 	| cb |
@@ -80,7 +81,7 @@ PRCodeblockTest >> testTextForExample [
 	self assert: cb textForExample equals: '(3+4)>>>7'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCodeblockTest >> testTextForMethodDefinition [
 
 	| cb collection |
@@ -94,7 +95,7 @@ PRCodeblockTest >> testTextForMethodDefinition [
 		equals: (Array with: collection with: 'testTextForMethodDefinition' with: '^ ''testTextForMethodDefinition''')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCodeblockTest >> testTextForMethodDefinitionOnClassSide [
 
 	| cb collection |

@@ -6,12 +6,14 @@ I know how to  visit a showMethod annotation and the way to transform it.
 I create a PRCodeblock with the method definition within it.
 "
 Class {
-	#name : #PRShowMethodTransformer,
-	#superclass : #PRNodeTransformer,
-	#category : #'Pillar-BookTester-Annotations'
+	#name : 'PRShowMethodTransformer',
+	#superclass : 'PRNodeTransformer',
+	#category : 'Pillar-BookTester-Annotations',
+	#package : 'Pillar-BookTester',
+	#tag : 'Annotations'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRShowMethodTransformer >> visitShowMethodAnnotation: aPRShowMethodAnnotation [
 	| methodName methodDefinition |
 	methodName := aPRShowMethodAnnotation shownMethodName.

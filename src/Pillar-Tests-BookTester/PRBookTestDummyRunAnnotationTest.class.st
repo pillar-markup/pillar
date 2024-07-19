@@ -1,5 +1,6 @@
 Class {
-	#name : #PRBookTestDummyRunAnnotationTest,
-	#superclass : #PRBookTestDummyClassTest,
-	#category : #'Pillar-Tests-BookTester'
+	#name : 'PRBookTestDummyRunAnnotationTest',
+	#superclass : 'PRBookTestDummyClassTest',
+	#category : 'Pillar-Tests-BookTester',
+	#package : 'Pillar-Tests-BookTester'
 }

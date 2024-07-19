@@ -1,6 +1,6 @@
-Extension { #name : #Morph }
+Extension { #name : 'Morph' }
 
-{ #category : #'*Pillar-BookTester' }
+{ #category : '*Pillar-BookTester' }
 Morph >> exportAsPNGSilentlyForPillarFileNamed: aFileName [
 	"The png can be found under the file name YourBook/YourChapter/figures/screenshots/'YourChapter-SystemWindowName'.png"
 
@@ -15,7 +15,7 @@ Morph >> exportAsPNGSilentlyForPillarFileNamed: aFileName [
 		onFileNamed: filePath / aFileName
 ]
 
-{ #category : #'*Pillar-BookTester' }
+{ #category : '*Pillar-BookTester' }
 Morph >> exportAsPNGSilentlyForPillarFileNamed: aFileName in: aWorkingDirectory [
 	
 	"The png can be found under the file name YourBook/YourChapter/figures/screenshots/'YourChapter-SystemWindowName'.png"

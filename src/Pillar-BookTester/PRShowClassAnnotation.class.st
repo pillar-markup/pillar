@@ -14,36 +14,38 @@ Note:
 	Contrary to the loader or run annotations, there is a transformation going on here: a PRCodeblock is created in the end, so there is a need here to use a PRNodeTransformer subclass, PRShowClassTransformer.
 "
 Class {
-	#name : #PRShowClassAnnotation,
-	#superclass : #PRAbstractAnnotation,
-	#category : #'Pillar-BookTester-Annotations'
+	#name : 'PRShowClassAnnotation',
+	#superclass : 'PRAbstractAnnotation',
+	#category : 'Pillar-BookTester-Annotations',
+	#package : 'Pillar-BookTester',
+	#tag : 'Annotations'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRShowClassAnnotation class >> defaultParameterName [
 
 	^ 'class'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRShowClassAnnotation class >> possibleParameters [
 
 	^ #(class)
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRShowClassAnnotation class >> tag [
 
 	^ #showClass
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRShowClassAnnotation >> accept: aVisitor [
 
 	^ aVisitor visitShowClassAnnotation: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRShowClassAnnotation >> shownClassName [
 
 	^ (self parameters at: #class) asSymbol

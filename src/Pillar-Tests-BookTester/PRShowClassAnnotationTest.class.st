@@ -1,15 +1,16 @@
 Class {
-	#name : #PRShowClassAnnotationTest,
-	#superclass : #PRAbstractAnnotationTest,
-	#category : #'Pillar-Tests-BookTester'
+	#name : 'PRShowClassAnnotationTest',
+	#superclass : 'PRAbstractAnnotationTest',
+	#category : 'Pillar-Tests-BookTester',
+	#package : 'Pillar-Tests-BookTester'
 }
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRShowClassAnnotationTest >> actualClass [
 	^ PRShowClassAnnotation
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRShowClassAnnotationTest >> referenceParameters [
 	^ PRParameters withAll: { 
 		PRParameter 
@@ -19,13 +20,13 @@ PRShowClassAnnotationTest >> referenceParameters [
 
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRShowClassAnnotationTest >> referenceString [
 
 	^ 'showClass:class=PRBookTestDummyShowClassAnnotation'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRShowClassAnnotationTest >> testParsedHadAllKeys [
 
 	| annotation |

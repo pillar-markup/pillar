@@ -2,37 +2,38 @@
 Tests
 "
 Class {
-	#name : #PRBookTestGeneratorTest,
-	#superclass : #PRBookTestEnvironmentTest,
+	#name : 'PRBookTestGeneratorTest',
+	#superclass : 'PRBookTestEnvironmentTest',
 	#instVars : [
 		'testingFileSystem',
 		'testGenerator'
 	],
-	#category : #'Pillar-Tests-BookTester'
+	#category : 'Pillar-Tests-BookTester',
+	#package : 'Pillar-Tests-BookTester'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PRBookTestGeneratorTest >> methodCreationError [
 	^ self class environment at: #PRTTestMethodCreationError
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRBookTestGeneratorTest >> methodCreationFail [
 	^ self class environment at: #PRTTestMethodCreationFail
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRBookTestGeneratorTest >> methodCreationSuccess [
 	^ self class environment at: #PRTTestMethodCreationSuccess
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRBookTestGeneratorTest >> packageName [ 
 
 	^ #'Pillar-BookTesterResults-TestResults'
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRBookTestGeneratorTest >> setUp [
 	"Hooks that subclasses may override to define the fixture of test."
 	
@@ -46,7 +47,7 @@ PRBookTestGeneratorTest >> setUp [
 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRBookTestGeneratorTest >> tearDown [
 	| pak |
 	pak := RPackageOrganizer default packageNamed: self packageName ifAbsent: [ ^ self ].
@@ -54,7 +55,7 @@ PRBookTestGeneratorTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRBookTestGeneratorTest >> testMethodCreationFailingCodeblock [
 	| codeBlock run |
 	testGenerator resultPackage: self packageName.
@@ -76,7 +77,7 @@ PRBookTestGeneratorTest >> testMethodCreationFailingCodeblock [
 	self assertEmpty: run passed
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRBookTestGeneratorTest >> testMethodCreationSuccessfulCodeblock [
 	| codeBlock run |
 	testGenerator resultPackage: self packageName.
@@ -98,7 +99,7 @@ PRBookTestGeneratorTest >> testMethodCreationSuccessfulCodeblock [
 	self assert: run passed size equals: 1
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRBookTestGeneratorTest >> testMethodCreationSyntaxErrorCodeblock [
 	| codeBlock run |
 	testGenerator fileName: 'PRTTestMethodCreationError'.
@@ -122,7 +123,7 @@ PRBookTestGeneratorTest >> testMethodCreationSyntaxErrorCodeblock [
 	self assertEmpty: run passed
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRBookTestGeneratorTest >> testMethodsPassed [
 
 	testGenerator resultPackage: self packageName.
@@ -134,7 +135,7 @@ PRBookTestGeneratorTest >> testMethodsPassed [
 		equals: 6.
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRBookTestGeneratorTest >> testPrettyRename [
 
 	self assert: (testGenerator prettyRename: '/usr/Users/Library/test.pillar') 

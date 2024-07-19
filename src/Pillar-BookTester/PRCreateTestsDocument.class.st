@@ -1,15 +1,17 @@
 Class {
-	#name : #PRCreateTestsDocument,
-	#superclass : #PRAbstractOutputDocument,
-	#category : #'Pillar-BookTester-CommandLine'
+	#name : 'PRCreateTestsDocument',
+	#superclass : 'PRAbstractOutputDocument',
+	#category : 'Pillar-BookTester-CommandLine',
+	#package : 'Pillar-BookTester',
+	#tag : 'CommandLine'
 }
 
-{ #category : #writing }
+{ #category : 'writing' }
 PRCreateTestsDocument >> basicWriter [
 	" No basicWriter : do nothing"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCreateTestsDocument >> buildOn: aPRProject [ 
 	
 	| parsedDocument transformedDocument |
@@ -18,12 +20,12 @@ PRCreateTestsDocument >> buildOn: aPRProject [
 	^ self writeDocument: transformedDocument.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCreateTestsDocument >> extension [
 	^ 'txt'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCreateTestsDocument >> writeDocument: aDocument [
 	| testGen testReport outputFile |
 	testGen := PRBookTestGenerator new.

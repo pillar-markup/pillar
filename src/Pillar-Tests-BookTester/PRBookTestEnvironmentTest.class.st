@@ -2,12 +2,13 @@
 I contain on my class side some definition so that tests can run in memory.
 "
 Class {
-	#name : #PRBookTestEnvironmentTest,
-	#superclass : #TestCase,
-	#category : #'Pillar-Tests-BookTester'
+	#name : 'PRBookTestEnvironmentTest',
+	#superclass : 'TestCase',
+	#category : 'Pillar-Tests-BookTester',
+	#package : 'Pillar-Tests-BookTester'
 }
 
-{ #category : #'test file creation' }
+{ #category : 'test file creation' }
 PRBookTestEnvironmentTest class >> pillarContentsForTest [
 
 	^ 
@@ -73,7 +74,7 @@ A third testable test
 '
 ]
 
-{ #category : #'test file creation' }
+{ #category : 'test file creation' }
 PRBookTestEnvironmentTest class >> pillarFileNameForTest [
 	
 	^'test.pillar'

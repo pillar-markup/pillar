@@ -11,8 +11,8 @@ Use my constructor to instantiate me.
 
 "
 Class {
-	#name : #PRValidatorResult,
-	#superclass : #PRVisitor,
+	#name : 'PRValidatorResult',
+	#superclass : 'PRVisitor',
 	#instVars : [
 		'explanation',
 		'specification'
@@ -20,10 +20,12 @@ Class {
 	#classInstVars : [
 		'allResults'
 	],
-	#category : #'Pillar-BookTester-Visitor'
+	#category : 'Pillar-BookTester-Visitor',
+	#package : 'Pillar-BookTester',
+	#tag : 'Visitor'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PRValidatorResult class >> allResults [
 	^ allResults ifNil: [ 
 		allResults := Dictionary new.
@@ -37,33 +39,33 @@ PRValidatorResult class >> allResults [
 		^ allResults ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PRValidatorResult class >> explanation: aMethodSymbol withSpecification: aSpecification [
 	^ self new explanation: (self allResults at: aMethodSymbol); specification: aSpecification asString; yourself.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRValidatorResult >> explanation [
 	^ explanation
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRValidatorResult >> explanation: aString [
 	explanation := aString
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PRValidatorResult >> printOn: aStream [
 	aStream nextPutAll: 'Error explanation: "', self explanation asString, '", with specification: "', self specification asString, '"'
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRValidatorResult >> specification [
 	^ specification
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRValidatorResult >> specification: aString [
 	specification := aString
 ]

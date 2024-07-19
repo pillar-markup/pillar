@@ -2,17 +2,19 @@
 This visitor generates tests based on the information in the >>> expression. 
 "
 Class {
-	#name : #PRBookTestGenerator,
-	#superclass : #PRBookTesterVisitor,
+	#name : 'PRBookTestGenerator',
+	#superclass : 'PRBookTesterVisitor',
 	#instVars : [
 		'fileName',
 		'cbIndex',
 		'resultPackage'
 	],
-	#category : #'Pillar-BookTester-Visitor'
+	#category : 'Pillar-BookTester-Visitor',
+	#package : 'Pillar-BookTester',
+	#tag : 'Visitor'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRBookTestGenerator >> checkAndReportFileNamed: aPath [
 	
 	self fileName: (self prettyRename: aPath).
@@ -22,29 +24,32 @@ PRBookTestGenerator >> checkAndReportFileNamed: aPath [
 		
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTestGenerator >> codeBlockIndex [
 
 	^ cbIndex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTestGenerator >> codeBlockIndex: aCodeblockCounter [
 
 	cbIndex := aCodeblockCounter
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRBookTestGenerator >> createClassFrom: aPrettyFileName [
 
-	TestCase subclass: aPrettyFileName 
-   		instanceVariableNames: ''
-    	classVariableNames: ''
-    	package: resultPackage
-		
+	TestCase classInstaller make: [ :builder |
+		builder
+			superclass: TestCase;
+			name: aPrettyFileName;
+			slotsFromString: '';
+			sharedVariablesFromString: '';
+			package: resultPackage;
+			environment: TestCase environment ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRBookTestGenerator >> createTestMethodFrom: aCodeblock [
 	"The test method is compiled using the following template, either it raises no exception:
 	test(cbIndex)
@@ -92,19 +97,19 @@ PRBookTestGenerator >> createTestMethodFrom: aCodeblock [
 					classified: 'Broken book tests' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTestGenerator >> fileName [
 
 	^ fileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTestGenerator >> fileName: aFileName [
 
 	fileName := aFileName
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRBookTestGenerator >> initialize [
 
 	super initialize.
@@ -112,7 +117,7 @@ PRBookTestGenerator >> initialize [
 	resultPackage := 'Pillar-BookTesterResults-Books'.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBookTestGenerator >> prettyRename: aPath [
 
 	| basename |
@@ -120,19 +125,19 @@ PRBookTestGenerator >> prettyRename: aPath [
 	^ 'PRT', ((basename first asString capitalized), basename allButFirst) withoutPeriodSuffix
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRBookTestGenerator >> resultPackage [
 
 	^ resultPackage
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRBookTestGenerator >> resultPackage: aPackageName [
 
 	resultPackage := aPackageName
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRBookTestGenerator >> visitCodeblock: aCodeblock [
 
 	aCodeblock isEvaluated

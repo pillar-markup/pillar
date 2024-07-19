@@ -1,15 +1,16 @@
 Class {
-	#name : #PRLoaderAnnotationTest,
-	#superclass : #PRAbstractAnnotationTest,
-	#category : #'Pillar-Tests-BookTester'
+	#name : 'PRLoaderAnnotationTest',
+	#superclass : 'PRAbstractAnnotationTest',
+	#category : 'Pillar-Tests-BookTester',
+	#package : 'Pillar-Tests-BookTester'
 }
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRLoaderAnnotationTest >> actualClass [
 	^ PRLoaderAnnotation
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRLoaderAnnotationTest >> referenceParameters [
 	
 	^ PRParameters withAll: { 
@@ -29,14 +30,14 @@ PRLoaderAnnotationTest >> referenceParameters [
 
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRLoaderAnnotationTest >> referenceString [
 
 	^ 'loader:account=QDucasse|project=MetacelloTestBook-Code|tag=Chapter1|baseline=MetacelloTestBook'
 	
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRLoaderAnnotationTest >> testParsedHadAllKeys [
 
 	| annotation |

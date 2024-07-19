@@ -15,42 +15,44 @@ Note:
 	Contrary to the loader or run annotations, there is a transformation going on here: a PRCodeblock is created in the end, so there is a need here to use a PRNodeTransformer subclass, PRShowMethodTransformer.
 "
 Class {
-	#name : #PRShowMethodAnnotation,
-	#superclass : #PRAbstractAnnotation,
-	#category : #'Pillar-BookTester-Annotations'
+	#name : 'PRShowMethodAnnotation',
+	#superclass : 'PRAbstractAnnotation',
+	#category : 'Pillar-BookTester-Annotations',
+	#package : 'Pillar-BookTester',
+	#tag : 'Annotations'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRShowMethodAnnotation class >> defaultParameterName [
 
 	^ 'method'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRShowMethodAnnotation class >> possibleParameters [
 
 	^ #(method class)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRShowMethodAnnotation class >> tag [
 
 	^ #showMethod
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRShowMethodAnnotation >> accept: aVisitor [
 
 	^ aVisitor visitShowMethodAnnotation: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRShowMethodAnnotation >> shownClassName [
 
 	^ (self parameters at: #class) asSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRShowMethodAnnotation >> shownMethodName [
 
 	^ (self parameters at: #method) asSymbol

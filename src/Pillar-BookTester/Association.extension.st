@@ -1,6 +1,6 @@
-Extension { #name : #Association }
+Extension { #name : 'Association' }
 
-{ #category : #'*Pillar-BookTester' }
+{ #category : '*Pillar-BookTester' }
 Association >> isPaired [
 	"
 	7+3 >>> 10

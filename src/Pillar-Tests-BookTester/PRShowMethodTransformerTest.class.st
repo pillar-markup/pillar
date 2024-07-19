@@ -1,15 +1,16 @@
 Class {
-	#name : #PRShowMethodTransformerTest,
-	#superclass : #PRTransformerEnvironmentTest,
-	#category : #'Pillar-Tests-BookTester'
+	#name : 'PRShowMethodTransformerTest',
+	#superclass : 'PRTransformerEnvironmentTest',
+	#category : 'Pillar-Tests-BookTester',
+	#package : 'Pillar-Tests-BookTester'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRShowMethodTransformerTest >> actualClass [
 	^ PRShowMethodTransformer 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRShowMethodTransformerTest >> help: classString method: methodString result: aString [
 	| doc codeblock |
 	doc := PRDocument new
@@ -34,7 +35,7 @@ PRShowMethodTransformerTest >> help: classString method: methodString result: aS
 	
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRShowMethodTransformerTest >> setUp [
 
 	super setUp.
@@ -44,7 +45,7 @@ PRShowMethodTransformerTest >> setUp [
 			stream nextPutAll: PRTransformerEnvironmentTest pillarAnnotationsContentsForTest ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRShowMethodTransformerTest >> testTransformerCreatesMethodDefinitionCodeblock [
 
 	self help: 'Integer' method: 'isPowerOfTwo' result: 'Integer >> ',(Integer compiledMethodAt: #isPowerOfTwo) sourceCode
@@ -53,7 +54,7 @@ PRShowMethodTransformerTest >> testTransformerCreatesMethodDefinitionCodeblock [
 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRShowMethodTransformerTest >> testTransformerCreatesMethodDefinitionFromUnknownClass [
 
 	self help: 'IntegRR' method: 'isPowerOfTwo' result: 'The system was looking for IntegRR but did not find it'
@@ -62,7 +63,7 @@ PRShowMethodTransformerTest >> testTransformerCreatesMethodDefinitionFromUnknown
 	
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRShowMethodTransformerTest >> testTransformerCreatesMethodDefinitionFromUnknownMethod [
 	self help: 'Integer' method: 'isPowerOfTweuuu' result: 'The system was looking for Integer but did not find the method isPowerOfTweuuu'
 	
