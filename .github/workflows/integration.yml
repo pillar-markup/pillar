@@ -19,7 +19,7 @@ jobs:
       - uses: hpi-swa/setup-smalltalkCI@v1
         id: smalltalkci
         with:
-          smalltalk-image: Pharo64-11
+          smalltalk-image: Pharo64-12
       - name: Setup TeX Live
         uses: teatimeguest/setup-texlive-action@v2
         with:
