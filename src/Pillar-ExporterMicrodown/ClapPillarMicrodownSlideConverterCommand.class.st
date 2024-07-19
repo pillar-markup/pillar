@@ -6,17 +6,18 @@ I am a command line handler to convert a pillar slide file in a microdown file i
 `./pillar convertSlide SUnit.pillar`
 "
 Class {
-	#name : #ClapPillarMicrodownSlideConverterCommand,
-	#superclass : #ClapPillarCommand,
-	#category : #'Pillar-ExporterMicrodown'
+	#name : 'ClapPillarMicrodownSlideConverterCommand',
+	#superclass : 'ClapPillarCommand',
+	#category : 'Pillar-ExporterMicrodown',
+	#package : 'Pillar-ExporterMicrodown'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClapPillarMicrodownSlideConverterCommand class >> commandName [
 	^'convertSlide'
 ]
 
-{ #category : #'command line' }
+{ #category : 'command line' }
 ClapPillarMicrodownSlideConverterCommand class >> commandSpecification [ 
 	<commandline>
 	^ (ClapCommand id: self commandName asSymbol)
@@ -30,7 +31,7 @@ ClapPillarMicrodownSlideConverterCommand class >> commandSpecification [
 			(self with: args) execute ]
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 ClapPillarMicrodownSlideConverterCommand >> execute [
 	| file |
 	file :=  self requestedFile asString asFileReference. 
@@ -39,7 +40,7 @@ ClapPillarMicrodownSlideConverterCommand >> execute [
 		ifFalse: [ self outputStreamDo: [ :str | str nextPutAll: 'File ', file fullName, ' does not exist'  ] ]
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 ClapPillarMicrodownSlideConverterCommand >> requestedFile [
 	 ^ (arguments at: #requestedFile) value: self
 ]

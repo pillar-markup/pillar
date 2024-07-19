@@ -1,15 +1,16 @@
 Class {
-	#name : #PRInputFileFinderTest,
-	#superclass : #TestCase,
+	#name : 'PRInputFileFinderTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'memory',
 		'filesystem',
 		'index'
 	],
-	#category : #'Pillar-ExporterMicrodown'
+	#category : 'Pillar-ExporterMicrodown',
+	#package : 'Pillar-ExporterMicrodown'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRInputFileFinderTest class >> indexPillar [
 
 	^ '%reviewed SD: 4th of march
@@ -58,7 +59,7 @@ ${inputFile:path=Chapters/Reflection/Reflection.pillar}$
 '
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRInputFileFinderTest >> setUp [
 	super setUp.
 	filesystem := FileSystem memory.
@@ -67,7 +68,7 @@ PRInputFileFinderTest >> setUp [
 	
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRInputFileFinderTest >> testFinderFindInputFiles [
 
 	| files |
@@ -78,7 +79,7 @@ PRInputFileFinderTest >> testFinderFindInputFiles [
 		
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRInputFileFinderTest >> testFinderFindInputFilesFromFileIndex [
 
 	

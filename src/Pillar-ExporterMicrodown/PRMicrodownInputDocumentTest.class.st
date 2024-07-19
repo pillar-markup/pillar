@@ -1,10 +1,11 @@
 Class {
-	#name : #PRMicrodownInputDocumentTest,
-	#superclass : #PRInputDocumentTest,
-	#category : #'Pillar-ExporterMicrodown'
+	#name : 'PRMicrodownInputDocumentTest',
+	#superclass : 'PRInputDocumentTest',
+	#category : 'Pillar-ExporterMicrodown',
+	#package : 'Pillar-ExporterMicrodown'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRMicrodownInputDocumentTest >> testParsedDocument [
 
 	| doc |
@@ -12,7 +13,7 @@ PRMicrodownInputDocumentTest >> testParsedDocument [
 	self assert: doc class equals: MicRootBlock
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRMicrodownInputDocumentTest >> testParsedDocument2 [
 
 	| doc |
@@ -20,7 +21,7 @@ PRMicrodownInputDocumentTest >> testParsedDocument2 [
 	self assert: doc class equals: MicRootBlock
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRMicrodownInputDocumentTest >> testParserClass [
 
 	| input |
@@ -28,7 +29,7 @@ PRMicrodownInputDocumentTest >> testParserClass [
 	self assert: input parserClass equals: MicrodownParser
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRMicrodownInputDocumentTest >> testParserClass2 [
 
 	| input |
@@ -36,7 +37,7 @@ PRMicrodownInputDocumentTest >> testParserClass2 [
 	self assert: input parserClass equals: MicrodownParser
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRMicrodownInputDocumentTest >> testRegistration [
 
 	| inputClass |
@@ -44,7 +45,7 @@ PRMicrodownInputDocumentTest >> testRegistration [
 	self assert: inputClass equals: MicMicrodownInputDocument
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRMicrodownInputDocumentTest >> testRegistration2 [
 
 	| inputClass |

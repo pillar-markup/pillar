@@ -1,20 +1,21 @@
 Class {
-	#name : #BookAsDocBuilder,
-	#superclass : #Object,
+	#name : 'BookAsDocBuilder',
+	#superclass : 'Object',
 	#instVars : [
 		'metadata'
 	],
-	#category : #'Pillar-ExporterMicrodown'
+	#category : 'Pillar-ExporterMicrodown',
+	#package : 'Pillar-ExporterMicrodown'
 }
 
-{ #category : #stuff }
+{ #category : 'stuff' }
 BookAsDocBuilder >> bookFiles [
 
 	^ PRInputFileFinder 
 		fromFileIndex: self fileIndex; files
 ]
 
-{ #category : #stuff }
+{ #category : 'stuff' }
 BookAsDocBuilder >> fileIndex [
 	"self new readingTitle"
 
@@ -24,7 +25,7 @@ BookAsDocBuilder >> fileIndex [
 	PRPillarParser parse: index contents
 ]
 
-{ #category : #stuff }
+{ #category : 'stuff' }
 BookAsDocBuilder >> loadMetaData [
 	"self new readingTitle"
 	
@@ -35,7 +36,7 @@ BookAsDocBuilder >> loadMetaData [
 
 ]
 
-{ #category : #stuff }
+{ #category : 'stuff' }
 BookAsDocBuilder >> title [ 
 	^ metadata at: #title ifAbsent: [ 'Strange there is no title' ]
 ]

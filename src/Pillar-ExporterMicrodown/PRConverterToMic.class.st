@@ -4,15 +4,16 @@ PRConverterToMic new goForBook: '/Users/ducasse/Workspace/FirstCircle/ActiveRese
 ```
 "
 Class {
-	#name : #PRConverterToMic,
-	#superclass : #Object,
+	#name : 'PRConverterToMic',
+	#superclass : 'Object',
 	#pools : [
 		'MicroSharedPool'
 	],
-	#category : #'Pillar-ExporterMicrodown'
+	#category : 'Pillar-ExporterMicrodown',
+	#package : 'Pillar-ExporterMicrodown'
 }
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 PRConverterToMic >> convertBook: aPath [
 
 	| input paths |
@@ -23,14 +24,14 @@ PRConverterToMic >> convertBook: aPath [
 	paths do: [ :path | self convertChapter: path ]
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 PRConverterToMic >> convertChapter: aPath [
 	| input |
 	input := PRPillarParser parse:  aPath readStream contents.
 	self writeMicrodownOn: aPath forInput: input
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 PRConverterToMic >> convertSlide: aPath [
 
 	| input firstParagraph dict metadata |
@@ -43,7 +44,7 @@ PRConverterToMic >> convertSlide: aPath [
 	self writeMicrodownOn: aPath forInput: input
 ]
 
-{ #category : #collect }
+{ #category : 'collect' }
 PRConverterToMic >> getInputFilesPaths: aString [
 
 	| paths |
@@ -56,7 +57,7 @@ PRConverterToMic >> getInputFilesPaths: aString [
 	^ paths
 ]
 
-{ #category : #config }
+{ #category : 'config' }
 PRConverterToMic >> handleConfigFile [
 	"We copy the config file to 'pillarconf.old'
 	then we migrate it."
@@ -80,7 +81,7 @@ PRConverterToMic >> handleConfigFile [
 		ifFalse: [ Stdio stdout nextPutAll: conf fullName , ' does not exist']
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 PRConverterToMic >> writeMicrodownOn: aPath forInput: input [
 
 	| fileReference |

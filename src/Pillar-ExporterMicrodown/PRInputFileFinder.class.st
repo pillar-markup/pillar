@@ -2,16 +2,17 @@
 I'm a visitor that returns all the `${inputFile:path=xxx}$` in a document. 
 "
 Class {
-	#name : #PRInputFileFinder,
-	#superclass : #PRVisitor,
+	#name : 'PRInputFileFinder',
+	#superclass : 'PRVisitor',
 	#instVars : [
 		'metadata',
 		'files'
 	],
-	#category : #'Pillar-ExporterMicrodown'
+	#category : 'Pillar-ExporterMicrodown',
+	#package : 'Pillar-ExporterMicrodown'
 }
 
-{ #category : #creation }
+{ #category : 'creation' }
 PRInputFileFinder class >> fromFileIndex: aFileReference [ 
 
 	^ self new 
@@ -19,26 +20,26 @@ PRInputFileFinder class >> fromFileIndex: aFileReference [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRInputFileFinder >> files [
 	^ files 
 ]
 
-{ #category : #API }
+{ #category : 'API' }
 PRInputFileFinder >> fromFileIndex: aFileReference [
 
 	self start: (PRPillarParser parse: aFileReference contents)
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRInputFileFinder >> initialize [
 
 	super initialize.
 	files := OrderedCollection new.
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRInputFileFinder >> visitInputFileAnnotation: anInputFileAnnotation [
 
 	files add: anInputFileAnnotation path

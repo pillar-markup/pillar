@@ -6,8 +6,8 @@ such Microdown text is parsed and transformed into pillar using the asPillar,
 then compare that the output is the same as the orginal generated code. 
 "
 Class {
-	#name : #PRMicrodownWriterTest,
-	#superclass : #TestCase,
+	#name : 'PRMicrodownWriterTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'parser',
 		'writer',
@@ -19,40 +19,41 @@ Class {
 	#pools : [
 		'MicroSharedPool'
 	],
-	#category : #'Pillar-ExporterMicrodown'
+	#category : 'Pillar-ExporterMicrodown',
+	#package : 'Pillar-ExporterMicrodown'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PRMicrodownWriterTest >> exampleText [
 	^ 'Hello Pharo'
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRMicrodownWriterTest >> exampleTextMultipleLines [
 	^ 'Hello
 Pharo'
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRMicrodownWriterTest >> exampleTextMultipleLinesWithNewLine [
 	^ 'Hello
 
 Pharo'
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRMicrodownWriterTest >> exampleTextMultipleLinesWithNewLineBetween [
 	^ 'Hello
 
 Pharo'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRMicrodownWriterTest >> parser [
 	^ parser 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRMicrodownWriterTest >> setUp [
 	super setUp.
 	parser := Microdown new.
@@ -62,7 +63,7 @@ PRMicrodownWriterTest >> setUp [
 	
 ]
 
-{ #category : #'tests - anchor' }
+{ #category : 'tests - anchor' }
 PRMicrodownWriterTest >> testAnchor [
  	"!!Note Pharo is cool and microdown too."
 
@@ -70,7 +71,7 @@ PRMicrodownWriterTest >> testAnchor [
  	self assert: parsedBloc children first label equals: 'Note'.
 ]
 
-{ #category : #'tests - annotated' }
+{ #category : 'tests - annotated' }
 PRMicrodownWriterTest >> testAnnotated [
 	"!!Note Pharo is cool and microdown too."
 	
@@ -78,7 +79,7 @@ PRMicrodownWriterTest >> testAnnotated [
 	self assert: parsedBloc children first label equals: 'Note'.
 ]
 
-{ #category : #'tests - annotated' }
+{ #category : 'tests - annotated' }
 PRMicrodownWriterTest >> testAnnotatedOnMultipleLines [
 
 	self testWithInitialText: (builder rawAnnotated: 'Note' paragraph:  'Pharo is cool
@@ -86,13 +87,13 @@ and microdown too'; contents).
 	self assert: parsedBloc children first label equals: 'Note'.
 ]
 
-{ #category : #'tests - formatting' }
+{ #category : 'tests - formatting' }
 PRMicrodownWriterTest >> testBold [
 	"**Hello Pharo**"
 	self testWithInitialText: (builder rawParagraph: [ builder bold: [builder text: self exampleText]]; contents)
 ]
 
-{ #category : #'tests - formatting' }
+{ #category : 'tests - formatting' }
 PRMicrodownWriterTest >> testBoldMultipleLines [
 	"**Hello 
 	Pharo**"
@@ -100,7 +101,7 @@ PRMicrodownWriterTest >> testBoldMultipleLines [
 	self testWithInitialText: (builder rawParagraph: [ builder bold: [ builder text: self exampleTextMultipleLines]] ; contents)
 ]
 
-{ #category : #'tests - code block' }
+{ #category : 'tests - code block' }
 PRMicrodownWriterTest >> testCodeBlockCaptionContainsMonospace [
 
 	"```language2=Pharo&caption=`Color` is cool
@@ -120,7 +121,7 @@ PRMicrodownWriterTest >> testCodeBlockCaptionContainsMonospace [
 	self assert: ('*language*' match: mictext)
 ]
 
-{ #category : #'tests - code block' }
+{ #category : 'tests - code block' }
 PRMicrodownWriterTest >> testCodeBlockParametersWithValueTrue [
 	"```
 	Hello
@@ -136,14 +137,14 @@ this is a code block
 '
 ]
 
-{ #category : #'tests - comments' }
+{ #category : 'tests - comments' }
 PRMicrodownWriterTest >> testComment [
 	"% Hello Pharo"
 	
 	self testWithInitialText: (builder comment: self exampleText; contents).
 ]
 
-{ #category : #'tests - comments' }
+{ #category : 'tests - comments' }
 PRMicrodownWriterTest >> testCommentOnMultipleLines [
 	"% Hello 
 	% Pharo"
@@ -151,7 +152,7 @@ PRMicrodownWriterTest >> testCommentOnMultipleLines [
 	self testWithInitialText: (builder comment: self exampleTextMultipleLines ; contents)
 ]
 
-{ #category : #'tests - external link' }
+{ #category : 'tests - external link' }
 PRMicrodownWriterTest >> testExternalLink [
  	"[Hello Pharo](url)"
 
@@ -160,7 +161,7 @@ PRMicrodownWriterTest >> testExternalLink [
 											withDescription: [ builder text: self exampleText]]; contents)
 ]
 
-{ #category : #'tests - external link' }
+{ #category : 'tests - external link' }
 PRMicrodownWriterTest >> testExternalLinkWithMicroDownMarkup [
 
 	"[Hello Pharo](url)"
@@ -173,7 +174,7 @@ PRMicrodownWriterTest >> testExternalLinkWithMicroDownMarkup [
 			 contents)
 ]
 
-{ #category : #'tests - figures' }
+{ #category : 'tests - figures' }
 PRMicrodownWriterTest >> testFigure [
 	"![Hello Pharo](http://www.pharo.org/foo.png)"
 	self testWithInitialText: (builder 
@@ -182,7 +183,7 @@ PRMicrodownWriterTest >> testFigure [
 								withCaption: [ builder text: self exampleText ]]; contents)
 ]
 
-{ #category : #'tests - figures' }
+{ #category : 'tests - figures' }
 PRMicrodownWriterTest >> testFigureDoesNotAddFilePointPoint [
 	"![Hello Pharo](figures/CollectionHierarchy.png)"
 
@@ -192,7 +193,7 @@ PRMicrodownWriterTest >> testFigureDoesNotAddFilePointPoint [
 								withCaption: [ builder text: self exampleText ]]; contents)
 ]
 
-{ #category : #'tests - figures' }
+{ #category : 'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithArgument [
 
 	self testWithInitialText: (builder
@@ -207,7 +208,7 @@ PRMicrodownWriterTest >> testFigureWithArgument [
 			 contents)
 ]
 
-{ #category : #'tests - figures' }
+{ #category : 'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithArgumentContainingFormatting [
 	self testWithInitialText: (builder rawParagraph: [ (builder figureURLString: 'http://pharo.org/foo.png' 
 																				  withCaption: [ builder rawParagraph: [builder text:'You can have '.
@@ -217,7 +218,7 @@ PRMicrodownWriterTest >> testFigureWithArgumentContainingFormatting [
 																				  withParameters: {'label'->'fig' . 'size'->80 } asDictionary)]; contents)
 ]
 
-{ #category : #'tests - figures' }
+{ #category : 'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithArguments [
 	
 	"![Hello Pharo](http://pharo.org/label=fig&width=120."
@@ -229,7 +230,7 @@ PRMicrodownWriterTest >> testFigureWithArguments [
 				withCaption: [ builder text: self exampleText]] ; contents)
 ]
 
-{ #category : #'tests - figures' }
+{ #category : 'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithCaptionContainingFormatting [
 
 	"![This is a caption and it can contain **bol** but also `code`.](http://pharo.org)"
@@ -247,7 +248,7 @@ PRMicrodownWriterTest >> testFigureWithCaptionContainingFormatting [
 			 contents)
 ]
 
-{ #category : #'tests - figures' }
+{ #category : 'tests - figures' }
 PRMicrodownWriterTest >> testFigureWithMicroDownMarkup [
 
 	self testWithInitialText: (builder
@@ -262,7 +263,7 @@ PRMicrodownWriterTest >> testFigureWithMicroDownMarkup [
 			 contents)
 ]
 
-{ #category : #'tests - header' }
+{ #category : 'tests - header' }
 PRMicrodownWriterTest >> testHeader [
 
 	"# Hello Pharo"
@@ -275,7 +276,7 @@ PRMicrodownWriterTest >> testHeader [
 	self testWithInitialText: text
 ]
 
-{ #category : #'tests - header' }
+{ #category : 'tests - header' }
 PRMicrodownWriterTest >> testHeaderLvl3 [
 	"### Hello Pharo"
 	
@@ -283,7 +284,7 @@ PRMicrodownWriterTest >> testHeaderLvl3 [
 
 ]
 
-{ #category : #'tests - header' }
+{ #category : 'tests - header' }
 PRMicrodownWriterTest >> testHeaderWithBold [
 	"# Hello **Pharo** is cool"
 
@@ -295,7 +296,7 @@ PRMicrodownWriterTest >> testHeaderWithBold [
 							contents)
 ]
 
-{ #category : #'tests - header' }
+{ #category : 'tests - header' }
 PRMicrodownWriterTest >> testHeaderWithCode [
 	"# Hello `Pharo` is cool"
 	
@@ -306,7 +307,7 @@ PRMicrodownWriterTest >> testHeaderWithCode [
 							contents)
 ]
 
-{ #category : #'tests - header' }
+{ #category : 'tests - header' }
 PRMicrodownWriterTest >> testHeaderWithExternalLink [
 	"# Hello [Pharo](http://pharo.org) is cool"
 	
@@ -319,7 +320,7 @@ PRMicrodownWriterTest >> testHeaderWithExternalLink [
 							contents)
 ]
 
-{ #category : #'tests - header' }
+{ #category : 'tests - header' }
 PRMicrodownWriterTest >> testHeaderWithItalic [
 	"# Hello _Pharo_ is cool"
 	
@@ -331,7 +332,7 @@ PRMicrodownWriterTest >> testHeaderWithItalic [
 							contents)
 ]
 
-{ #category : #'tests - header' }
+{ #category : 'tests - header' }
 PRMicrodownWriterTest >> testHeaderWithMircroDownMarkup [
 
 	"# Hello Pharo"
@@ -344,7 +345,7 @@ PRMicrodownWriterTest >> testHeaderWithMircroDownMarkup [
 	self testWithInitialText: text
 ]
 
-{ #category : #'tests - header' }
+{ #category : 'tests - header' }
 PRMicrodownWriterTest >> testHeaderWithStrike [
 	"# Hello ~Pharo~ is cool"
 
@@ -356,14 +357,14 @@ PRMicrodownWriterTest >> testHeaderWithStrike [
 							contents)
 ]
 
-{ #category : #'tests - horizontal line' }
+{ #category : 'tests - horizontal line' }
 PRMicrodownWriterTest >> testHorizontalLine [
 	"***"
 	
 	self testWithInitialText: (builder horizontalLine; contents)
 ]
 
-{ #category : #'tests - horizontal line' }
+{ #category : 'tests - horizontal line' }
 PRMicrodownWriterTest >> testHorizontalLineWithIgnoredText [
 	"*** kjlkjkljkl"
 
@@ -374,29 +375,32 @@ PRMicrodownWriterTest >> testHorizontalLineWithIgnoredText [
 	
 ]
 
-{ #category : #'tests - internal link' }
+{ #category : 'tests - internal link' }
 PRMicrodownWriterTest >> testInternalLink [
 	"*@fig1*"
 	
 	self testWithInitialText: (builder rawParagraph: [ builder internalLink: 'fig1' ]; contents)
 ]
 
-{ #category : #'tests - formatting' }
+{ #category : 'tests - formatting' }
 PRMicrodownWriterTest >> testItalic [
 	"_Hello Pharo_"
+	| text| 
+	text := (builder rawParagraph: [ builder italic: [ builder text: self exampleText ]] ; contents).
+	self assert: (('*', self exampleText, '*') match: text). 
 	
-	self testWithInitialText: (builder rawParagraph: [ builder italic: self exampleText] ; contents)
+	self testWithInitialText: text
 ]
 
-{ #category : #'tests - formatting' }
+{ #category : 'tests - formatting' }
 PRMicrodownWriterTest >> testItalicMultipleLines [
 	"_Hello
 	Pharo_"
 	
-	self testWithInitialText: (builder rawParagraph: [ builder italic: self exampleTextMultipleLines]; contents)
+	self testWithInitialText: (builder rawParagraph: [ builder italic: [ builder text:  self exampleTextMultipleLines ] ] ; contents)
 ]
 
-{ #category : #'tests - meta data' }
+{ #category : 'tests - meta data' }
 PRMicrodownWriterTest >> testMetaData [
 	
 	| mictext |
@@ -410,7 +414,7 @@ PRMicrodownWriterTest >> testMetaData [
 	
 ]
 
-{ #category : #'tests - meta data' }
+{ #category : 'tests - meta data' }
 PRMicrodownWriterTest >> testMetaData2 [
 	
 	| mictext |
@@ -424,7 +428,7 @@ PRMicrodownWriterTest >> testMetaData2 [
 	
 ]
 
-{ #category : #'tests - meta data' }
+{ #category : 'tests - meta data' }
 PRMicrodownWriterTest >> testMetaData3 [
 	
 	| mictext |
@@ -438,14 +442,14 @@ PRMicrodownWriterTest >> testMetaData3 [
 	
 ]
 
-{ #category : #'tests - formatting' }
+{ #category : 'tests - formatting' }
 PRMicrodownWriterTest >> testMonospace [
 	"`Hello Pharo`"
 	
 	self testWithInitialText: (builder rawParagraph: [ builder monospace: self exampleText]; contents)
 ]
 
-{ #category : #'tests - formatting' }
+{ #category : 'tests - formatting' }
 PRMicrodownWriterTest >> testMonospaceMultipleLines [
 	"`Hello
 	Pharo`"
@@ -453,7 +457,7 @@ PRMicrodownWriterTest >> testMonospaceMultipleLines [
 	self testWithInitialText: (builder rawParagraph: [ builder monospace: self exampleTextMultipleLines] ; contents)
 ]
 
-{ #category : #'tests - list' }
+{ #category : 'tests - list' }
 PRMicrodownWriterTest >> testNestedUnorderedList [
 	"- Hello
 	- Pharo"
@@ -474,20 +478,20 @@ PRMicrodownWriterTest >> testNestedUnorderedList [
 	
 ]
 
-{ #category : #'tests - paragraph' }
+{ #category : 'tests - paragraph' }
 PRMicrodownWriterTest >> testOneParagraph [
 
 	self testWithInitialText: (builder rawParagraph: [ builder text: 'Pharo is super cool']; contents)
 ]
 
-{ #category : #'tests - paragraph' }
+{ #category : 'tests - paragraph' }
 PRMicrodownWriterTest >> testOneParagraphWithAdorment [
 	"**Pharo** is `COOL`"
 
 	self testWithInitialText: (builder rawParagraph: [ builder bold: [builder text:'Microdown']; text: ' is '; monospace: 'COOL' ]; contents)
 ]
 
-{ #category : #'tests - list' }
+{ #category : 'tests - list' }
 PRMicrodownWriterTest >> testOrderedList [
 	"- Hello
 	- Pharo"
@@ -502,7 +506,7 @@ PRMicrodownWriterTest >> testOrderedList [
 	
 ]
 
-{ #category : #'tests - list' }
+{ #category : 'tests - list' }
 PRMicrodownWriterTest >> testOrderedListWithFormat [
 	"1. **Hello**
 	2. Pharo"
@@ -516,7 +520,7 @@ PRMicrodownWriterTest >> testOrderedListWithFormat [
 	self assert: (mictext occurrencesOf: $.) equals: 2
 ]
 
-{ #category : #'tests - list' }
+{ #category : 'tests - list' }
 PRMicrodownWriterTest >> testOrderedListWithMicroDownMarkup [
 
 	"- Hello
@@ -534,7 +538,7 @@ PRMicrodownWriterTest >> testOrderedListWithMicroDownMarkup [
 	self assert: (mictext occurrencesOf: $.) equals: 3
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRMicrodownWriterTest >> testPRInputFileAnnotation [
 
 	| pillar |
@@ -561,7 +565,7 @@ ${inputFile:path=Chapters/Smacc/SmaccParser.pillar}$'.
 !>'
 ]
 
-{ #category : #'tests - paragraph' }
+{ #category : 'tests - paragraph' }
 PRMicrodownWriterTest >> testParagraphWithMicroDownMarkup [
 
 	self testWithInitialText: (builder
@@ -569,14 +573,14 @@ PRMicrodownWriterTest >> testParagraphWithMicroDownMarkup [
 			 contents)
 ]
 
-{ #category : #'tests - quote block' }
+{ #category : 'tests - quote block' }
 PRMicrodownWriterTest >> testQuoteBlock [
 	"> Hello Pharo"
 	
 	self testWithInitialText: (builder quoteBlock: self exampleText; contents)
 ]
 
-{ #category : #'tests - quote block' }
+{ #category : 'tests - quote block' }
 PRMicrodownWriterTest >> testQuoteBlockOnMultipleLines [
 	"> Hello Pharo"
 	self skip.
@@ -599,7 +603,7 @@ PRMicrodownWriterTest >> testQuoteBlockOnMultipleLines [
 	self testWithInitialText: (builder quoteBlock: self exampleText; newLine; quoteBlock: self exampleText ; contents)
 ]
 
-{ #category : #'tests - quote block' }
+{ #category : 'tests - quote block' }
 PRMicrodownWriterTest >> testQuoteBlockOnMultipleLinesWithFormatting [
 	"> Hello Pharo"
 	"to be changed explicit use of ** should only for testing strange human edition"
@@ -614,7 +618,7 @@ PRMicrodownWriterTest >> testQuoteBlockOnMultipleLinesWithFormatting [
 	"
 ]
 
-{ #category : #'tests - code block' }
+{ #category : 'tests - code block' }
 PRMicrodownWriterTest >> testSimpleCodeBlock [
 	"```
 	Hello
@@ -625,7 +629,7 @@ PRMicrodownWriterTest >> testSimpleCodeBlock [
 												 firstLineAssociations: {('language' -> 'pharo')}; contents)
 ]
 
-{ #category : #'tests - code block' }
+{ #category : 'tests - code block' }
 PRMicrodownWriterTest >> testSimpleCodeBlockWithFirstTag [
 	"```language=Pharo
 	Hello
@@ -637,14 +641,14 @@ PRMicrodownWriterTest >> testSimpleCodeBlockWithFirstTag [
 	self assert: ('*language*' match: mictext) 
 ]
 
-{ #category : #'tests - formatting' }
+{ #category : 'tests - formatting' }
 PRMicrodownWriterTest >> testStrike [
 	"~Hello Pharo~"
 	
 	self testWithInitialText: (builder rawParagraph: [ builder strike: self exampleText]; contents)
 ]
 
-{ #category : #'tests - formatting' }
+{ #category : 'tests - formatting' }
 PRMicrodownWriterTest >> testStrikeMultipleLines [
 	"~Hello
 	Pharo~"
@@ -652,7 +656,7 @@ PRMicrodownWriterTest >> testStrikeMultipleLines [
 	self testWithInitialText: (builder rawParagraph: [ builder strike: self exampleTextMultipleLines]; contents)
 ]
 
-{ #category : #'tests - paragraph' }
+{ #category : 'tests - paragraph' }
 PRMicrodownWriterTest >> testTwoParagraphs [
 	"Hello
 	
@@ -661,7 +665,7 @@ PRMicrodownWriterTest >> testTwoParagraphs [
 												rawParagraph: [ builder text: 'Pharo' ] ; contents)
 ]
 
-{ #category : #'tests - list' }
+{ #category : 'tests - list' }
 PRMicrodownWriterTest >> testUnorderedList [
 	"- Hello
 	- Pharo"
@@ -676,7 +680,7 @@ PRMicrodownWriterTest >> testUnorderedList [
 	
 ]
 
-{ #category : #'tests - list' }
+{ #category : 'tests - list' }
 PRMicrodownWriterTest >> testUnorderedListWithFormat [
 	"- **Hello**
 	- Pharo"
@@ -690,7 +694,7 @@ PRMicrodownWriterTest >> testUnorderedListWithFormat [
 	self assert: (mictext occurrencesOf: $-) equals: 2
 ]
 
-{ #category : #'tests - list' }
+{ #category : 'tests - list' }
 PRMicrodownWriterTest >> testUnorderedListWithMicroDownMarkup [
 
 	"- Hello
@@ -707,7 +711,7 @@ PRMicrodownWriterTest >> testUnorderedListWithMicroDownMarkup [
 	self assert: (mictext occurrencesOf: $-) equals: 3
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRMicrodownWriterTest >> testWithInitialText: expectedString [
 
 	parsedBloc := self parser parse: expectedString readStream.
@@ -717,7 +721,7 @@ PRMicrodownWriterTest >> testWithInitialText: expectedString [
 	self assert: expectedString equals: writtenText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRMicrodownWriterTest >> writer [
 	^ writer
 ]

@@ -1,14 +1,15 @@
 Class {
-	#name : #PRPillarToMicrodownConverterTest,
-	#superclass : #TestCase,
+	#name : 'PRPillarToMicrodownConverterTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'pillarParser',
 		'writer'
 	],
-	#category : #'Pillar-ExporterMicrodown'
+	#category : 'Pillar-ExporterMicrodown',
+	#package : 'Pillar-ExporterMicrodown'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PRPillarToMicrodownConverterTest >> setUp [ 
 	super setUp.
 	pillarParser := PRPillarParser new.
@@ -17,7 +18,7 @@ PRPillarToMicrodownConverterTest >> setUp [
 	
 ]
 
-{ #category : #'tests - code blocks' }
+{ #category : 'tests - code blocks' }
 PRPillarToMicrodownConverterTest >> testCodeBlock [
 
 	| pillarobject result |
@@ -36,7 +37,7 @@ Point class >> new
 '
 ]
 
-{ #category : #'tests - code blocks' }
+{ #category : 'tests - code blocks' }
 PRPillarToMicrodownConverterTest >> testCodeBlockWithTags [
 
 	| pillarobject result |
@@ -53,7 +54,7 @@ Point class >> new
 '
 ]
 
-{ #category : #'tests - paragraph list' }
+{ #category : 'tests - paragraph list' }
 PRPillarToMicrodownConverterTest >> testFigure [
 
     | pillarobject result |
@@ -65,7 +66,7 @@ PRPillarToMicrodownConverterTest >> testFigure [
 '![this is a caption](Chapters/Preface/Preface.pillar)'
 ]
 
-{ #category : #'tests - paragraph list' }
+{ #category : 'tests - paragraph list' }
 PRPillarToMicrodownConverterTest >> testFigureWithArguments [
 
     | pillarobject result |
@@ -79,7 +80,7 @@ PRPillarToMicrodownConverterTest >> testFigureWithArguments [
 "not sure that we have size in microdow. may be this is width"
 ]
 
-{ #category : #'tests - paragraph list' }
+{ #category : 'tests - paragraph list' }
 PRPillarToMicrodownConverterTest >> testInputFile [
 
     | pillarobject result |
@@ -91,7 +92,7 @@ PRPillarToMicrodownConverterTest >> testInputFile [
 !>'
 ]
 
-{ #category : #'tests - paragraph list' }
+{ #category : 'tests - paragraph list' }
 PRPillarToMicrodownConverterTest >> testInputFileWithFileColumnColumn [
 
     | pillarobject result |
@@ -103,7 +104,7 @@ PRPillarToMicrodownConverterTest >> testInputFileWithFileColumnColumn [
 !>'
 ]
 
-{ #category : #'tests - paragraph list' }
+{ #category : 'tests - paragraph list' }
 PRPillarToMicrodownConverterTest >> testInputFileWithoutExtension [
 
     | pillarobject result |
@@ -115,7 +116,7 @@ PRPillarToMicrodownConverterTest >> testInputFileWithoutExtension [
 !>'
 ]
 
-{ #category : #'tests - paragraph list' }
+{ #category : 'tests - paragraph list' }
 PRPillarToMicrodownConverterTest >> testLink [
 
     | pillarobject result |
@@ -127,7 +128,7 @@ PRPillarToMicrodownConverterTest >> testLink [
 '[this is a caption](Chapters/Preface/Preface.pillar)'
 ]
 
-{ #category : #'tests - paragraph list' }
+{ #category : 'tests - paragraph list' }
 PRPillarToMicrodownConverterTest >> testMathEnvironment [ 
 
 | pillarobject result |
@@ -147,7 +148,7 @@ $$
 '
 ]
 
-{ #category : #'tests - paragraph list' }
+{ #category : 'tests - paragraph list' }
 PRPillarToMicrodownConverterTest >> testMathInline [
 
 | pillarobject result |
@@ -158,7 +159,7 @@ PRPillarToMicrodownConverterTest >> testMathInline [
 '$X$'
 ]
 
-{ #category : #'tests - paragraph list' }
+{ #category : 'tests - paragraph list' }
 PRPillarToMicrodownConverterTest >> testNestedLists [
 
 	| pillarobject result |
@@ -181,7 +182,7 @@ PRPillarToMicrodownConverterTest >> testNestedLists [
 '
 ]
 
-{ #category : #'tests - paragraph list' }
+{ #category : 'tests - paragraph list' }
 PRPillarToMicrodownConverterTest >> testParagraphList [
 
 	| pillarobject result |
@@ -200,7 +201,7 @@ This is a list
 '.
 ]
 
-{ #category : #'tests - sections' }
+{ #category : 'tests - sections' }
 PRPillarToMicrodownConverterTest >> testSectionParagraphWithBold [
 
 	| pillarobject result |
@@ -219,7 +220,7 @@ This is not bold '.
 This is not bold '.
 ]
 
-{ #category : #'tests - code blocks' }
+{ #category : 'tests - code blocks' }
 PRPillarToMicrodownConverterTest >> testSimpleCodeBlock [
 
 	| pillarobject result |
@@ -237,7 +238,7 @@ Point class >> new
 '
 ]
 
-{ #category : #'tests - sections' }
+{ #category : 'tests - sections' }
 PRPillarToMicrodownConverterTest >> testThreeSectionsNoExtraLines [
 
 	| pillarobject result |
@@ -253,7 +254,7 @@ PRPillarToMicrodownConverterTest >> testThreeSectionsNoExtraLines [
 '
 ]
 
-{ #category : #'tests - paragraph list' }
+{ #category : 'tests - paragraph list' }
 PRPillarToMicrodownConverterTest >> testTwoLists [
 
 	| pillarobject result |
@@ -277,7 +278,7 @@ This is list 2
 '
 ]
 
-{ #category : #'tests - sections' }
+{ #category : 'tests - sections' }
 PRPillarToMicrodownConverterTest >> testTwoSections [
 
 	| pillarobject result |
@@ -293,7 +294,7 @@ PRPillarToMicrodownConverterTest >> testTwoSections [
 '.
 ]
 
-{ #category : #'tests - sections' }
+{ #category : 'tests - sections' }
 PRPillarToMicrodownConverterTest >> testTwoSectionsNoExtraLines [
 
 	| pillarobject result |
@@ -306,7 +307,7 @@ PRPillarToMicrodownConverterTest >> testTwoSectionsNoExtraLines [
 '.
 ]
 
-{ #category : #'tests - sections' }
+{ #category : 'tests - sections' }
 PRPillarToMicrodownConverterTest >> testTwoSectionsWithParagraph [
 
 	| pillarobject result |

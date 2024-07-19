@@ -6,17 +6,18 @@ I am a command line handler to convert a pillar file (for now) in a microdown fi
 `./pillar convertBook SUnit.pillar`
 "
 Class {
-	#name : #ClapPillarMicrodownBookConverterCommand,
-	#superclass : #ClapPillarCommand,
-	#category : #'Pillar-ExporterMicrodown'
+	#name : 'ClapPillarMicrodownBookConverterCommand',
+	#superclass : 'ClapPillarCommand',
+	#category : 'Pillar-ExporterMicrodown',
+	#package : 'Pillar-ExporterMicrodown'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClapPillarMicrodownBookConverterCommand class >> commandName [
 	^'convertBook'
 ]
 
-{ #category : #'command line' }
+{ #category : 'command line' }
 ClapPillarMicrodownBookConverterCommand class >> commandSpecification [ 
 	<commandline>
 	^ (ClapCommand id: self commandName asSymbol)
@@ -30,7 +31,7 @@ ClapPillarMicrodownBookConverterCommand class >> commandSpecification [
 			(self with: args) execute ]
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 ClapPillarMicrodownBookConverterCommand >> execute [
 	| file |
 	file :=  self requestedFile asString asFileReference. 
@@ -39,7 +40,7 @@ ClapPillarMicrodownBookConverterCommand >> execute [
 		ifFalse: [ self outputStreamDo: [ :str | str nextPutAll: 'File ', file fullName, ' does not exist'  ] ]
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 ClapPillarMicrodownBookConverterCommand >> requestedFile [
 	 ^ (arguments at: #requestedFile) value: self
 ]
