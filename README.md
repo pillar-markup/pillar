@@ -144,9 +144,9 @@ It builds by default the export format found in `pillar.conf` at `defaultExport`
 **pillar serve**
 
 ## Contributing to Pillar
-The current pillar version is being developped using [Pharo11](www.pharo.org).
+The current pillar version is being developped using [Pharo12](www.pharo.org).
 To contribute, the easiest way to to follow the previous scripts and send PullRequests.
-Use the latest dev-8 as a root for your changes.
+Use the latest dev as a root for your changes.
 
 ### Cleaning first 
 
