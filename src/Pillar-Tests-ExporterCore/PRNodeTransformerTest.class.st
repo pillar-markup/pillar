@@ -2,37 +2,39 @@
 Abstract class that should be subclassed for all subclasses of PRNodeTransformer.
 "
 Class {
-	#name : #PRNodeTransformerTest,
-	#superclass : #PRVisitorTest,
-	#category : 'Pillar-Tests-ExporterCore-Transformers'
+	#name : 'PRNodeTransformerTest',
+	#superclass : 'PRVisitorTest',
+	#category : 'Pillar-Tests-ExporterCore-Transformers',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRNodeTransformerTest class >> isAbstract [
 	^ self = PRNodeTransformerTest 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRNodeTransformerTest >> actualClass [
 	^ PRNodeTransformer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRNodeTransformerTest >> configuration [
 	^ self configurationClass new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRNodeTransformerTest >> configurationClass [
 	^ ConfigurationForPillar
 ]
 
-{ #category : #transformation }
+{ #category : 'transformation' }
 PRNodeTransformerTest >> executePhase: anInput [
 	^ self executePhase: anInput with: self configuration
 ]
 
-{ #category : #transformation }
+{ #category : 'transformation' }
 PRNodeTransformerTest >> executePhase: anInput with: aConfig [
 	^ (self actualClass
 		executeOn:

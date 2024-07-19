@@ -1,22 +1,24 @@
 Class {
-	#name : #PRHeaderCapitalizationTransformerTest,
-	#superclass : #PRNodeTransformerTest,
-	#category : 'Pillar-Tests-ExporterCore-Transformers'
+	#name : 'PRHeaderCapitalizationTransformerTest',
+	#superclass : 'PRNodeTransformerTest',
+	#category : 'Pillar-Tests-ExporterCore-Transformers',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRHeaderCapitalizationTransformerTest >> actualClass [
 	^ PRHeaderCapitalizationTransformer
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRHeaderCapitalizationTransformerTest >> testCapitalizeCapitalization [
 
 	self testTemplateForCapitalizationHeader: 'capitalize' text: 'i am a header' expected: 'I Am A Header'.
 	self testTemplateForCapitalizationHeaderWithBold: 'capitalize' text: 'i am a header' expected: 'I Am A Header'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRHeaderCapitalizationTransformerTest >> testCapitalizeEnglish [
 
 	self assert: (self actualClass new capitalizeEnglish: 'i am a header') equals: 'I Am a Header'.
@@ -24,21 +26,21 @@ PRHeaderCapitalizationTransformerTest >> testCapitalizeEnglish [
 	self assert: (self actualClass new capitalizeEnglish: 'i like to code in Pharo for a long time') equals: 'I Like to Code in Pharo for a Long Time'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRHeaderCapitalizationTransformerTest >> testCapitalizeEnglishCapitalization [
 
 	self testTemplateForCapitalizationHeader: 'capitalize english' text: 'i am a header' expected: 'I Am a Header'.
 	self testTemplateForCapitalizationHeaderWithBold: 'capitalize english' text: 'i like to code in Pharo for a long time' expected: 'I Like to Code in Pharo for a Long Time'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRHeaderCapitalizationTransformerTest >> testCapitalizeHeader [
 
 	self assert: (self actualClass new capitalizeHeader: 'i am a header') equals: 'I Am A Header'.
 	self assert: (self actualClass new capitalizeHeader: 'i am a header of level 1') equals: 'I Am A Header Of Level 1'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRHeaderCapitalizationTransformerTest >> testCapitalizeHeaderShouldntCapitalizeAllText [
 	| input printer spec  expected configuration |
 	configuration := self configuration. 
@@ -68,28 +70,28 @@ PRHeaderCapitalizationTransformerTest >> testCapitalizeHeaderShouldntCapitalizeA
 	self assert: (self executePhase: input with: configuration) equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRHeaderCapitalizationTransformerTest >> testDefaultValueForCapitalization [
 
 	self testTemplateForDefaultValueForCapitalization: 'i am a header'.
 	self testTemplateForDefaultValueForCapitalization: 'I am A hEader'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRHeaderCapitalizationTransformerTest >> testLowerCaseCapitalization [
 
 	self testTemplateForCapitalizationHeader: 'lower case' text: 'I AM A HEADER' expected: 'i am a header'.
 	self testTemplateForCapitalizationHeaderWithBold: 'lower case' text: 'I AM A HEADER' expected: 'i am a header'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRHeaderCapitalizationTransformerTest >> testNotUnderstandCapitalizationType [
 
 	self testTemplateForCapitalizationHeader: 'hello' text: 'i aM A HeaDer' expected: 'i aM A HeaDer'.
 	self testTemplateForCapitalizationHeaderWithBold: 'hello' text: 'i aM A HeaDer' expected: 'i aM A HeaDer'.
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRHeaderCapitalizationTransformerTest >> testTemplateForCapitalizationHeader: aType text: aString expected: anotherString [
 	| input printer spec expected configuration |
 	configuration := self configuration.
@@ -115,7 +117,7 @@ PRHeaderCapitalizationTransformerTest >> testTemplateForCapitalizationHeader: aT
 	
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRHeaderCapitalizationTransformerTest >> testTemplateForCapitalizationHeaderWithBold: aType text: aString expected: anotherString [
 	| input printer spec expected configuration |
 	configuration := self configuration. 
@@ -140,7 +142,7 @@ PRHeaderCapitalizationTransformerTest >> testTemplateForCapitalizationHeaderWith
 	self assert: (self executePhase: input with: configuration) equals: expected
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRHeaderCapitalizationTransformerTest >> testTemplateForDefaultValueForCapitalization: aString [
 	| input printer spec configuration |
 	configuration := self configuration.
@@ -157,7 +159,7 @@ PRHeaderCapitalizationTransformerTest >> testTemplateForDefaultValueForCapitaliz
 	self assert: (self executePhase: input with: configuration) equals: input
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRHeaderCapitalizationTransformerTest >> testUpperCaseCapitalization [
 
 	self testTemplateForCapitalizationHeader: 'upper case' text: 'i am a header' expected: 'I AM A HEADER'.

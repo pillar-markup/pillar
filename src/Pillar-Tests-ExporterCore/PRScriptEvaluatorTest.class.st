@@ -1,15 +1,17 @@
 Class {
-	#name : #PRScriptEvaluatorTest,
-	#superclass : #PRNodeTransformerTest,
-	#category : 'Pillar-Tests-ExporterCore-Transformers'
+	#name : 'PRScriptEvaluatorTest',
+	#superclass : 'PRNodeTransformerTest',
+	#category : 'Pillar-Tests-ExporterCore-Transformers',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRScriptEvaluatorTest >> actualClass [
 	^ PRScriptEvaluator 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptEvaluatorTest >> testScriptWithEvalThatDoesntReturnAParagraph [
 	| input expected |
 	input := PRDocument new
@@ -28,7 +30,7 @@ PRScriptEvaluatorTest >> testScriptWithEvalThatDoesntReturnAParagraph [
 	self assert: (self executePhase: input with: self configuration) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptEvaluatorTest >> testScriptWithProblematicEval [
 	| input |
 	input := PRDocument new
@@ -40,7 +42,7 @@ PRScriptEvaluatorTest >> testScriptWithProblematicEval [
 	self assert: (self executePhase: input with: self configuration) equals: input
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptEvaluatorTest >> testScriptWithoutEval [
 	| input expected |
 	input := PRDocument new

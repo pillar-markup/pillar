@@ -1,15 +1,17 @@
 Class {
-	#name : #PRCustomTagTransformerTest,
-	#superclass : #PRNodeTransformerTest,
-	#category : #'Pillar-Tests-ExporterCore-Transformers'
+	#name : 'PRCustomTagTransformerTest',
+	#superclass : 'PRNodeTransformerTest',
+	#category : 'Pillar-Tests-ExporterCore-Transformers',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRCustomTagTransformerTest >> actualClass [
 	^PRCitationTransformer
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCustomTagTransformerTest >> testTransformWithAnnotationAndText [
 	| input expected |
 	input := PRDocument new
@@ -29,7 +31,7 @@ PRCustomTagTransformerTest >> testTransformWithAnnotationAndText [
 	self assert: (self executePhase: input with: self configuration) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCustomTagTransformerTest >> testTransformWithListInList [
 	| input expected |
 	input := PRDocument new
@@ -51,7 +53,7 @@ PRCustomTagTransformerTest >> testTransformWithListInList [
 	self assert: (self executePhase: input with: self configuration) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCustomTagTransformerTest >> testTransformWithOneAnnotation [
 	| input expected |
 	input := PRDocument new
@@ -61,7 +63,7 @@ PRCustomTagTransformerTest >> testTransformWithOneAnnotation [
 	self assert: (self executePhase: input with: self configuration) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCustomTagTransformerTest >> testTransformWithOneAnnotationithRef [
 	| input expected |
 	input := PRDocument new

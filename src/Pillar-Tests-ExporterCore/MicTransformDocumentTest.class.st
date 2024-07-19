@@ -1,6 +1,6 @@
 Class {
-	#name : #MicTransformDocumentTest,
-	#superclass : #TestCase,
+	#name : 'MicTransformDocumentTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'filesystem',
 		'builder',
@@ -8,10 +8,12 @@ Class {
 		'file',
 		'aPRPDFDocument'
 	],
-	#category : #'Pillar-Tests-ExporterCore-Base'
+	#category : 'Pillar-Tests-ExporterCore-Base',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Base'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 MicTransformDocumentTest >> generateFilesystemExample [
 
 	| file |
@@ -26,7 +28,7 @@ Pharo is cool
     
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 MicTransformDocumentTest >> setUp [
 	super setUp.
 	filesystem := FileSystem memory.
@@ -40,7 +42,7 @@ MicTransformDocumentTest >> setUp [
 		target: PRPdfOutput new.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 MicTransformDocumentTest >> testTransformDocumentFor [
 	
 	| parsedDocument transformedDocument |

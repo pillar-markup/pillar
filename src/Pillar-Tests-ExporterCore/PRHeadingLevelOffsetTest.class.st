@@ -1,15 +1,17 @@
 Class {
-	#name : #PRHeadingLevelOffsetTest,
-	#superclass : #PRNodeTransformerTest,
-	#category : 'Pillar-Tests-ExporterCore-Transformers'
+	#name : 'PRHeadingLevelOffsetTest',
+	#superclass : 'PRNodeTransformerTest',
+	#category : 'Pillar-Tests-ExporterCore-Transformers',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRHeadingLevelOffsetTest >> actualClass [
 	^ PRHeadingLevelOffsetTransformer
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRHeadingLevelOffsetTest >> checkWithOffset: offset [
 	| result input configuration |
 	configuration := self configuration.
@@ -22,12 +24,12 @@ PRHeadingLevelOffsetTest >> checkWithOffset: offset [
 	self assert: result level equals: offset + 3
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRHeadingLevelOffsetTest >> testPositiveOffset [
 	self checkWithOffset: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRHeadingLevelOffsetTest >> testZeroOffset [
 	self checkWithOffset: 0
 ]

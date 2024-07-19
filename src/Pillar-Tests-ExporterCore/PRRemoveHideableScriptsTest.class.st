@@ -1,15 +1,17 @@
 Class {
-	#name : #PRRemoveHideableScriptsTest,
-	#superclass : #PRNodeTransformerTest,
-	#category : 'Pillar-Tests-ExporterCore-Transformers'
+	#name : 'PRRemoveHideableScriptsTest',
+	#superclass : 'PRNodeTransformerTest',
+	#category : 'Pillar-Tests-ExporterCore-Transformers',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PRRemoveHideableScriptsTest >> actualClass [
 	^ PRRemoveHideableScripts 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRRemoveHideableScriptsTest >> testScriptWhenHideable [
 	| input expected |
 	input := PRDocument new 
@@ -21,7 +23,7 @@ PRRemoveHideableScriptsTest >> testScriptWhenHideable [
 	self assert: (self executePhase: input with: self configuration) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRRemoveHideableScriptsTest >> testScriptWhenNotHideable [
 	| input |
 	input := PRDocument new 
@@ -32,7 +34,7 @@ PRRemoveHideableScriptsTest >> testScriptWhenNotHideable [
 	self assert: (self executePhase: input with: self configuration) equals: input
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRRemoveHideableScriptsTest >> testScriptWithoutHideableParameter [
 	| input |
 	input := PRDocument new 

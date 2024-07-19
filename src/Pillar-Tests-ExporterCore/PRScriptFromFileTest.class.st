@@ -1,13 +1,15 @@
 Class {
-	#name : #PRScriptFromFileTest,
-	#superclass : #PRNodeTransformerTest,
+	#name : 'PRScriptFromFileTest',
+	#superclass : 'PRNodeTransformerTest',
 	#instVars : [
 		'baseDirectory'
 	],
-	#category : 'Pillar-Tests-ExporterCore-Transformers'
+	#category : 'Pillar-Tests-ExporterCore-Transformers',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRScriptFromFileTest >> aCode [
 	| code |
 	code := String new writeStream.
@@ -18,17 +20,17 @@ PRScriptFromFileTest >> aCode [
 	^ code contents
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRScriptFromFileTest >> actualClass [
 	^ PRScriptFromFile
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PRScriptFromFileTest >> baseDirectory [
 	^ baseDirectory
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PRScriptFromFileTest >> configuration [
 	^ super configuration
 		baseDirectory: baseDirectory;
@@ -36,7 +38,7 @@ PRScriptFromFileTest >> configuration [
 		yourself.
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PRScriptFromFileTest >> createFile: aName With: text In: aDirectory [
 	| stream |
 	stream := (aDirectory / aName) writeStream.
@@ -44,7 +46,7 @@ PRScriptFromFileTest >> createFile: aName With: text In: aDirectory [
 	stream close
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRScriptFromFileTest >> endingCode [
 	| code |
 	code := String new writeStream.
@@ -53,12 +55,12 @@ PRScriptFromFileTest >> endingCode [
 	^ code contents
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRScriptFromFileTest >> firstLine [
 	^ 5
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRScriptFromFileTest >> headingCode [
 	| code |
 	code := String new writeStream.
@@ -66,7 +68,7 @@ PRScriptFromFileTest >> headingCode [
 	^ code contents
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRScriptFromFileTest >> middleCode [
 	| code |
 	code := String new writeStream.
@@ -79,7 +81,7 @@ PRScriptFromFileTest >> middleCode [
 	^ code contents
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRScriptFromFileTest >> setUp [
 	super setUp.
 	baseDirectory := FileSystem memory root.
@@ -89,7 +91,7 @@ PRScriptFromFileTest >> setUp [
 		In: baseDirectory
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptFromFileTest >> testCanGetFileInsideAnOtherDirectory [
 	| input expected |
 	(baseDirectory / 'foo') ensureCreateDirectory.
@@ -108,7 +110,7 @@ PRScriptFromFileTest >> testCanGetFileInsideAnOtherDirectory [
 		equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptFromFileTest >> testFirstAndLastLineDefine [
 	| input expected |
 	input := PRDocument new
@@ -128,7 +130,7 @@ PRScriptFromFileTest >> testFirstAndLastLineDefine [
 	self assert: (self executePhase: input with: self configuration) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptFromFileTest >> testFirstLineDefine [
 	| input expected |
 	input := PRDocument new
@@ -146,7 +148,7 @@ PRScriptFromFileTest >> testFirstLineDefine [
 	self assert: (self executePhase: input with: self configuration) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptFromFileTest >> testFirstLineOutOfBounds [
 	| input |
 	input := PRDocument new
@@ -158,7 +160,7 @@ PRScriptFromFileTest >> testFirstLineOutOfBounds [
 	self should: [ self executePhase: input with: self configuration ] raise: PRPropertyError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptFromFileTest >> testHasFileFrom [
 	| input expected |
 	input := PRDocument new
@@ -173,7 +175,7 @@ PRScriptFromFileTest >> testHasFileFrom [
 	self assert: (self executePhase: input with: self configuration) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptFromFileTest >> testHasWrongFileFrom [
 	| input |
 	input := PRDocument new
@@ -182,7 +184,7 @@ PRScriptFromFileTest >> testHasWrongFileFrom [
 	self should: [ self executePhase: input with: self configuration ] raise: PRInputFileError 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptFromFileTest >> testLastLineDefine [
 	| input expected |
 	input := PRDocument new
@@ -200,7 +202,7 @@ PRScriptFromFileTest >> testLastLineDefine [
 	self assert: (self executePhase: input with: self configuration) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptFromFileTest >> testLastLineLowestThanFirstLine [
 	| input |
 	input := PRDocument new
@@ -213,7 +215,7 @@ PRScriptFromFileTest >> testLastLineLowestThanFirstLine [
 	self should: [ self executePhase: input with: self configuration ] raise: PRPropertyError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptFromFileTest >> testLastLineOutOfBounds [
 	| input |
 	input := PRDocument new
@@ -225,7 +227,7 @@ PRScriptFromFileTest >> testLastLineOutOfBounds [
 	self should: [ self executePhase: input with: self configuration ] raise: PRPropertyError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptFromFileTest >> testWarningWhenScriptNotEmpty [
 	| input  |
 	input := PRDocument new
@@ -234,7 +236,7 @@ PRScriptFromFileTest >> testWarningWhenScriptNotEmpty [
 	self should: [ self executePhase: input with: self configuration ] raise: PRWarning
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptFromFileTest >> testtestFirstLineIsNotANumber [
 	| input |
 	input := PRDocument new

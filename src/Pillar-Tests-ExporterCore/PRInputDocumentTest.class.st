@@ -1,10 +1,12 @@
 Class {
-	#name : #PRInputDocumentTest,
-	#superclass : #PRTestWithMemoryFileSystem,
-	#category : #'Pillar-Tests-ExporterCore-Base'
+	#name : 'PRInputDocumentTest',
+	#superclass : 'PRTestWithMemoryFileSystem',
+	#category : 'Pillar-Tests-ExporterCore-Base',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Base'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRInputDocumentTest >> testBasic [
 	
 	| input |
@@ -18,7 +20,7 @@ PRInputDocumentTest >> testBasic [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRInputDocumentTest >> testBasicNoInput [
 	
 	| input |
@@ -27,7 +29,7 @@ PRInputDocumentTest >> testBasicNoInput [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRInputDocumentTest >> testBasicPillarInputDocument [
 	
 	| input |
@@ -41,7 +43,7 @@ PRInputDocumentTest >> testBasicPillarInputDocument [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRInputDocumentTest >> testParsedDocument [
 	
 	| doc |
@@ -54,7 +56,7 @@ PRInputDocumentTest >> testParsedDocument [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRInputDocumentTest >> testParsedDocument2 [
 	
 	| doc |
@@ -66,7 +68,7 @@ PRInputDocumentTest >> testParsedDocument2 [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRInputDocumentTest >> testRegistration [
 	
 	| inputClass |
@@ -77,7 +79,7 @@ PRInputDocumentTest >> testRegistration [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRInputDocumentTest >> testRegistrationNoCandidate [
 	
 	| inputClass |
@@ -88,7 +90,7 @@ PRInputDocumentTest >> testRegistrationNoCandidate [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRInputDocumentTest >> testRegistrationNoCandidate2 [
 	
 	| inputClass |

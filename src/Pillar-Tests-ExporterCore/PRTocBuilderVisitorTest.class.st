@@ -1,6 +1,6 @@
 Class {
-	#name : #PRTocBuilderVisitorTest,
-	#superclass : #PRVisitorTest,
+	#name : 'PRTocBuilderVisitorTest',
+	#superclass : 'PRVisitorTest',
 	#instVars : [
 		'simpleDocument',
 		'inputDocument',
@@ -8,15 +8,17 @@ Class {
 		'builder',
 		'complexToc'
 	],
-	#category : #'Pillar-Tests-ExporterCore-Toc'
+	#category : 'Pillar-Tests-ExporterCore-Toc',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Toc'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRTocBuilderVisitorTest >> actualClass [
 	^ PRTocBuilderVisitor 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTocBuilderVisitorTest >> createCyclicPillarFile1 [
 	| pillarFile |
 	pillarFile := 'cyclic1.pillar' asFileReference.
@@ -30,7 +32,7 @@ Look at my eyes'
 		 ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTocBuilderVisitorTest >> createPillarFile1 [
 	| pillarFile |
 	pillarFile := 'input1.pillar' asFileReference.
@@ -65,7 +67,7 @@ ${inputFile:path=input3.pillar}$
 		 ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTocBuilderVisitorTest >> createPillarFile2 [
 	| pillarFile |
 	pillarFile := 'input2.pillar' asFileReference.
@@ -80,7 +82,7 @@ Some template are already written, but if you want to have your own, you had two
 		 ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTocBuilderVisitorTest >> createPillarFile3 [
 	| pillarFile |
 	pillarFile := 'input3.pillar' asFileReference.
@@ -92,7 +94,7 @@ Look at my eyes'
 		 ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRTocBuilderVisitorTest >> setUp [
 	super setUp.
 	builder := PRTocBuilderVisitor new.
@@ -142,7 +144,7 @@ ${inputFile:path=input1.pillar}$
 	self createCyclicPillarFile1.
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRTocBuilderVisitorTest >> tearDown [
 	(FileSystem workingDirectory / 'input1.pillar') delete.
 	(FileSystem workingDirectory / 'input2.pillar') delete.
@@ -151,7 +153,7 @@ PRTocBuilderVisitorTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTocBuilderVisitorTest >> testDocumentWithCyclicInputShouldRaiseError [
 	| document |
 	document := PRPillarParser
@@ -172,7 +174,7 @@ ${inputFile:path=cyclic1.pillar}$
 	self should: [ builder visit: document ] raise: PRCyclicFileInclusionError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTocBuilderVisitorTest >> testDocumentWithInputAnnotationAndTitle [
 	| document expectedToc |
 	document := PRPillarParser
@@ -237,7 +239,7 @@ ${inputFile:path=input1.pillar}$
 	self assert: builder tableOfContents equals: expectedToc
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTocBuilderVisitorTest >> testDocumentWithInputAnnotationContainsMultipleTocs [
 	| expectedToc |
 	expectedToc := PRToc new
@@ -301,7 +303,7 @@ PRTocBuilderVisitorTest >> testDocumentWithInputAnnotationContainsMultipleTocs [
 	self assert: builder tableOfContents equals: expectedToc
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTocBuilderVisitorTest >> testDocumentWithInputAnnotationHasTocs [
 	| expectedToc |
 	expectedToc := PRToc new
@@ -357,7 +359,7 @@ PRTocBuilderVisitorTest >> testDocumentWithInputAnnotationHasTocs [
 	self assert: builder tableOfContents equals: expectedToc
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTocBuilderVisitorTest >> testDocumentWithOnlyInputAnnotation [
 	| document expectedToc |
 	document := PRPillarParser parse: '${inputFile:path=input2.pillar}$'.
@@ -376,7 +378,7 @@ PRTocBuilderVisitorTest >> testDocumentWithOnlyInputAnnotation [
 	self assert: builder tableOfContents equals: expectedToc
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTocBuilderVisitorTest >> testDocumentWithoutInputAnnotationOnlyContainsTitles [
 	| expectedToc |
 	expectedToc := PRToc new
@@ -393,7 +395,7 @@ PRTocBuilderVisitorTest >> testDocumentWithoutInputAnnotationOnlyContainsTitles 
 	self assert: builder tableOfContents equals: expectedToc
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTocBuilderVisitorTest >> testTitlesHaveGoodFileRefs [
 	| document expectedToc |
 	document := PRPillarParser
@@ -463,7 +465,7 @@ ${inputFile:path=input1.pillar}$
 	self assert: builder tableOfContents equals: expectedToc
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTocBuilderVisitorTest >> testTocChildrenHasTheSameLevel [
 	| document expectedToc |
 	document := PRPillarParser
@@ -484,7 +486,7 @@ PRTocBuilderVisitorTest >> testTocChildrenHasTheSameLevel [
 	self assert: builder tableOfContents equals: expectedToc
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTocBuilderVisitorTest >> testTocHasGoodLevelOfChildren [
 	| document expectedToc |
 	document := PRPillarParser
@@ -515,7 +517,7 @@ PRTocBuilderVisitorTest >> testTocHasGoodLevelOfChildren [
 	self assert: builder tableOfContents equals: expectedToc
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTocBuilderVisitorTest >> testTocHasOneChildren [
 	| document expectedToc |
 	document := PRPillarParser
@@ -536,7 +538,7 @@ PRTocBuilderVisitorTest >> testTocHasOneChildren [
 	self assert: builder tableOfContents equals: expectedToc
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTocBuilderVisitorTest >> testTocIsEmpty [
 	| document expectedToc |
 	document := PRPillarParser parse: 'Test1'.
@@ -545,7 +547,7 @@ PRTocBuilderVisitorTest >> testTocIsEmpty [
 	self assert: builder tableOfContents equals: expectedToc
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTocBuilderVisitorTest >> testTocOnlyContainsTocs [
 	| document expectedToc |
 	document := PRPillarParser

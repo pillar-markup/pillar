@@ -1,15 +1,17 @@
 Class {
-	#name : #PRUpdateFileInclusionReferenceTest,
-	#superclass : #PRVisitorTest,
-	#category : #'Pillar-Tests-ExporterCore-Various'
+	#name : 'PRUpdateFileInclusionReferenceTest',
+	#superclass : 'PRVisitorTest',
+	#category : 'Pillar-Tests-ExporterCore-Various',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Various'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRUpdateFileInclusionReferenceTest >> actualClass [
 	^PRUpdateFileInclusionReference 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRUpdateFileInclusionReferenceTest >> testNewReferenceFor [
 	|figure result expected |
 	figure := PRFigure new reference: 'file://foo.pillar'.

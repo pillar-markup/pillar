@@ -1,15 +1,17 @@
 Class {
-	#name : #PRAnchorOfSectionTest,
-	#superclass : #PRNodeTransformerTest,
-	#category : 'Pillar-Tests-ExporterCore-Transformers'
+	#name : 'PRAnchorOfSectionTest',
+	#superclass : 'PRNodeTransformerTest',
+	#category : 'Pillar-Tests-ExporterCore-Transformers',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRAnchorOfSectionTest >> actualClass [
 	^ PRAnchorOfSection
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRAnchorOfSectionTest >> testAnchorWithSimpleTitle [
 
 	| input expected config |
@@ -27,7 +29,7 @@ PRAnchorOfSectionTest >> testAnchorWithSimpleTitle [
 	self assert: (self executePhase: input with: config) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRAnchorOfSectionTest >> testAnchorWithSimpleTitleAndAnchorNumberName [
 	| input expected config |
 	config := self configuration.
@@ -48,7 +50,7 @@ PRAnchorOfSectionTest >> testAnchorWithSimpleTitleAndAnchorNumberName [
 	self assert: (self executePhase: input with: config) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRAnchorOfSectionTest >> testAnchorWithSimpleTitleAndAnchorWithSameName [
 	| input expected config |
 	config := self configuration.
@@ -70,7 +72,7 @@ PRAnchorOfSectionTest >> testAnchorWithSimpleTitleAndAnchorWithSameName [
 	self assert: (self executePhase: input with: config) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRAnchorOfSectionTest >> testAnchorWithTwoSameTitle [
 	| input expected config |
 	config := self configuration.
@@ -88,7 +90,7 @@ PRAnchorOfSectionTest >> testAnchorWithTwoSameTitle [
 	self assert: (self executePhase: input with: config) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRAnchorOfSectionTest >> testAnchorWithoutTitle [
 	| input config |
 	config := self configuration.

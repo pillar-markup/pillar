@@ -1,13 +1,15 @@
 Class {
-	#name : #PRBuildStrategyTest,
-	#superclass : #TestCase,
+	#name : 'PRBuildStrategyTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'project'
 	],
-	#category : #'Pillar-Tests-ExporterCore-Base'
+	#category : 'Pillar-Tests-ExporterCore-Base',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Base'
 }
 
-{ #category : #data }
+{ #category : 'data' }
 PRBuildStrategyTest >> chap1Content [
 	^
 	'
@@ -21,7 +23,7 @@ If you do not know Pillar, check its documentation at *http://github.com/pillar-
 '
 ]
 
-{ #category : #data }
+{ #category : 'data' }
 PRBuildStrategyTest >> chap2Content [
 	^
 '
@@ -35,7 +37,7 @@ Some template are already written, but if you want to have your own, you had two
 '
 ]
 
-{ #category : #data }
+{ #category : 'data' }
 PRBuildStrategyTest >> configContent [
 	^ '{
   "base_url": "",
@@ -49,7 +51,7 @@ PRBuildStrategyTest >> configContent [
 }'
 ]
 
-{ #category : #data }
+{ #category : 'data' }
 PRBuildStrategyTest >> indexContent [
 	^
 	'!My First book
@@ -59,7 +61,7 @@ PRBuildStrategyTest >> indexContent [
 		'
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRBuildStrategyTest >> setUp [
 	"Create a setup project with: index.pillar, a conf, and Chapters with Chap1 and Chap2"
 
@@ -74,7 +76,7 @@ PRBuildStrategyTest >> setUp [
 	project := PRProject new baseDirectory: fileSystem
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRBuildStrategyTest >> testPRBuildAllStrategy [
 	| f fsorted|
 	f := PRBuildAllStrategy new filesToBuildOn: project.
@@ -92,7 +94,7 @@ PRBuildStrategyTest >> testPRBuildAllStrategy [
 	self assert: f fourth file fullName equals: '/index.pillar'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRBuildStrategyTest >> testPRBuildListStrategy [
 	| f |
 	f := PRBuildListStrategy new
@@ -103,7 +105,7 @@ PRBuildStrategyTest >> testPRBuildListStrategy [
 							includesAll: #('/index.pillar' '/chapter1.pillar')).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRBuildStrategyTest >> testPRBuildListStrategyDoubleEntry [
 	| f |
 	f := PRBuildListStrategy new
@@ -113,7 +115,7 @@ PRBuildStrategyTest >> testPRBuildListStrategyDoubleEntry [
 	self assert: f anyOne file fullName equals: '/chapter1.pillar'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRBuildStrategyTest >> testPRBuildRootMainStrategy [
 	| f |
 	f := PRBuildRootMainStrategy new filesToBuildOn: project.

@@ -1,15 +1,17 @@
 Class {
-	#name : #PRColumnsTransformerTest,
-	#superclass : #PRNodeTransformerTest,
-	#category : 'Pillar-Tests-ExporterCore-Transformers'
+	#name : 'PRColumnsTransformerTest',
+	#superclass : 'PRNodeTransformerTest',
+	#category : 'Pillar-Tests-ExporterCore-Transformers',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRColumnsTransformerTest >> actualClass [
 	^ PRColumnsTransformer
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRColumnsTransformerTest >> testTransformationBeginningColumnsWithoutEnding [
 	| input |
 	input := PRDocument
@@ -25,14 +27,14 @@ PRColumnsTransformerTest >> testTransformationBeginningColumnsWithoutEnding [
 	self should: [ self executePhase: input ] raise: PRError whoseDescriptionIncludes: 'Missing end' description: 'Code must detect the absence of end annotation'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRColumnsTransformerTest >> testTransformationEndColumnsWithoutBeginning [
 	| input |
 	input := PRDocument with: PREndColumnsAnnotation new.
 	self should: [ (self executePhase: input with: self configuration) ] raise: PRError whoseDescriptionIncludes: 'out of a column environment' description: 'Code should detect a missing annotation'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRColumnsTransformerTest >> testTransformationOnColumn [
 	| input expected |
 	input := PRDocument new
@@ -64,7 +66,7 @@ PRColumnsTransformerTest >> testTransformationOnColumn [
 	self assert: (self executePhase: input) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRColumnsTransformerTest >> testTransformationTwoColumns [
 	| input expected |
 	input := PRDocument new
@@ -113,7 +115,7 @@ PRColumnsTransformerTest >> testTransformationTwoColumns [
 	self assert: (self executePhase: input with: self configuration) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRColumnsTransformerTest >> testTransformationWithColumnWithoutColumns [
 	| input |
 	input := PRDocument new
@@ -131,7 +133,7 @@ PRColumnsTransformerTest >> testTransformationWithColumnWithoutColumns [
 		description: 'Code is missing a check'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRColumnsTransformerTest >> testTransformationWithColumnsInColumns [
 	| input |
 	input := PRDocument new
@@ -147,7 +149,7 @@ PRColumnsTransformerTest >> testTransformationWithColumnsInColumns [
 	self should: [ self executePhase: input ] raise: PRError whoseDescriptionIncludes: 'close a columns environment' description: 'Code is missing a check'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRColumnsTransformerTest >> testTransformationWithContentInsideColumnsBeforeColumn [
 	| input expected |
 	input := PRDocument new
@@ -174,7 +176,7 @@ PRColumnsTransformerTest >> testTransformationWithContentInsideColumnsBeforeColu
 	self assert: (self executePhase: input) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRColumnsTransformerTest >> testTransformationWithNonGroupItemAtTopLevel [
 	| input expected |
 	"This test makes sure that a document item which is not a document group can be a direct child of a column"
@@ -201,7 +203,7 @@ PRColumnsTransformerTest >> testTransformationWithNonGroupItemAtTopLevel [
 	self assert: (self executePhase: input) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRColumnsTransformerTest >> testTransformationWithoutColumns [
 	| input |
 	input := PRDocument new

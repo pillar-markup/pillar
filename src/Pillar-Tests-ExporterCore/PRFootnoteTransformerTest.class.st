@@ -1,15 +1,17 @@
 Class {
-	#name : #PRFootnoteTransformerTest,
-	#superclass : #PRNodeTransformerTest,
-	#category : 'Pillar-Tests-ExporterCore-Transformers'
+	#name : 'PRFootnoteTransformerTest',
+	#superclass : 'PRNodeTransformerTest',
+	#category : 'Pillar-Tests-ExporterCore-Transformers',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRFootnoteTransformerTest >> actualClass [
 	^ PRFootnoteTransformer
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRFootnoteTransformerTest >> testTransformationFootnoteWithList [
 	| input expected |
 	input := PRDocument new
@@ -40,7 +42,7 @@ PRFootnoteTransformerTest >> testTransformationFootnoteWithList [
 	self assert: (self executePhase: input with: self configuration) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRFootnoteTransformerTest >> testTransformationFootnoteWithParagraph [
 	| input expected |
 	input := PRDocument new

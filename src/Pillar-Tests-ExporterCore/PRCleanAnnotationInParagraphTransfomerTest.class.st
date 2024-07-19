@@ -1,34 +1,36 @@
 Class {
-	#name : #PRCleanAnnotationInParagraphTransfomerTest,
-	#superclass : #PRNodeTransformerTest,
-	#category : #'Pillar-Tests-ExporterCore-Transformers'
+	#name : 'PRCleanAnnotationInParagraphTransfomerTest',
+	#superclass : 'PRNodeTransformerTest',
+	#category : 'Pillar-Tests-ExporterCore-Transformers',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRCleanAnnotationInParagraphTransfomerTest >> actualClass [
 	^ PRCleanAnnotationInParagraphTransformer
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRCleanAnnotationInParagraphTransfomerTest >> exampleAnnotation [
 	^ PRFootnoteAnnotation new
 		parameterAt: 'note' put: 'Foo';
 		yourself
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRCleanAnnotationInParagraphTransfomerTest >> exampleMisc [
 	^ PRText content: 'foo'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCleanAnnotationInParagraphTransfomerTest >> testShouldNotBreakWithEmptyParagraph [
 	| document |
 	document := PRDocument with: PREmptyParagraph new.
 	self executePhase: document
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCleanAnnotationInParagraphTransfomerTest >> testShouldNotRemoveWhenSomethingElseFollowsTheAnnotationInParagraph [
 	| document misc annotation |
 	annotation := self exampleAnnotation.
@@ -41,7 +43,7 @@ PRCleanAnnotationInParagraphTransfomerTest >> testShouldNotRemoveWhenSomethingEl
 	self deny: document children first equals: annotation
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCleanAnnotationInParagraphTransfomerTest >> testShouldNotRemoveWhenSomethingElseThanAnnotationInParagraph [
 	| document misc |
 	misc := self exampleMisc.
@@ -53,7 +55,7 @@ PRCleanAnnotationInParagraphTransfomerTest >> testShouldNotRemoveWhenSomethingEl
 	self deny: document children first equals: misc
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCleanAnnotationInParagraphTransfomerTest >> testShouldRemoveWhenAnnotationAloneInParagraph [
 	| document annotation |
 	annotation := self exampleAnnotation.
@@ -65,7 +67,7 @@ PRCleanAnnotationInParagraphTransfomerTest >> testShouldRemoveWhenAnnotationAlon
 	self assert: document children first equals: annotation
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCleanAnnotationInParagraphTransfomerTest >> testShouldRemoveWhenAnnotationAloneWithLineBreakInParagraph [
 	| document misc annotation |
 	annotation := self exampleAnnotation.

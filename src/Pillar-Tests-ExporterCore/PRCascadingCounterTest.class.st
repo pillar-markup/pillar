@@ -2,17 +2,19 @@
 I test the PRCascadingCounter class.
 "
 Class {
-	#name : #PRCascadingCounterTest,
-	#superclass : #TestCase,
-	#category : #'Pillar-Tests-ExporterCore-Various'
+	#name : 'PRCascadingCounterTest',
+	#superclass : 'TestCase',
+	#category : 'Pillar-Tests-ExporterCore-Various',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Various'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCascadingCounterTest >> packageNamesUnderTest [
 	^ #('Pillar-ExporterCore')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCascadingCounterTest >> testElementsForNonSimpleCounter [
 	| counter |
 	counter := PRCascadingCounter maxLevel: 5.
@@ -21,7 +23,7 @@ PRCascadingCounterTest >> testElementsForNonSimpleCounter [
 	self assert: counter elements equals: { 0 . 1 }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCascadingCounterTest >> testElementsForSimpleCounter [
 	| counter |
 	counter := PRCascadingCounter maxLevel: 5.
@@ -30,7 +32,7 @@ PRCascadingCounterTest >> testElementsForSimpleCounter [
 	self assert: counter elements equals: { 1 }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCascadingCounterTest >> testIsValidCounter [
 	self assert: (PRCascadingCounter maxLevel: 5) isValidCounter.
 	self deny: (PRNotFoundCounter maxLevel: 5) isValidCounter

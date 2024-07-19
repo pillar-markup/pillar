@@ -2,21 +2,23 @@
 Test class for docList Transformer
 "
 Class {
-	#name : #PRDocumentListTransformerTest,
-	#superclass : #PRNodeTransformerTest,
+	#name : 'PRDocumentListTransformerTest',
+	#superclass : 'PRNodeTransformerTest',
 	#instVars : [
 		'testingFileSystem'
 	],
-	#category : #'Pillar-Tests-ExporterCore-Document-List'
+	#category : 'Pillar-Tests-ExporterCore-Document-List',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Document-List'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PRDocumentListTransformerTest class >> directoryNameForTest [
 
 	^ 'blogs'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest class >> fileContentsOne [
 
 	^ '!! Okay
@@ -24,7 +26,7 @@ PRDocumentListTransformerTest class >> fileContentsOne [
 We gonna test annotations'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest class >> fileContentsThree [
 
 	^ '!! And the third
@@ -32,7 +34,7 @@ PRDocumentListTransformerTest class >> fileContentsThree [
 one for testing annotations'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest class >> fileContentsTwo [
 
 	^ '!! That''s the second
@@ -40,25 +42,25 @@ PRDocumentListTransformerTest class >> fileContentsTwo [
 one for testing annotations'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest class >> fileNameOne [
 
 	^ 'blog1.pillar'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest class >> fileNameThree [
 
 	^ 'blog3.pillar'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest class >> fileNameTwo [
 
 	^ 'blog2.pillar'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest class >> templateFileContents [
 
 	^ '<div>
@@ -66,12 +68,12 @@ PRDocumentListTransformerTest class >> templateFileContents [
 </div>'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest >> actualClass [
 	^ PRDocumentListTransformer
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest >> createFilesIn: aDirectory [
 
 	(aDirectory / PRDocumentListTransformerTest fileNameOne)
@@ -87,7 +89,7 @@ PRDocumentListTransformerTest >> createFilesIn: aDirectory [
 			stream nextPutAll: PRDocumentListTransformerTest fileContentsThree ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest >> createTemplateFile [
 	| dir templateFile |
 	dir := (testingFileSystem / 'templates') ensureCreateDirectory.
@@ -96,7 +98,7 @@ PRDocumentListTransformerTest >> createTemplateFile [
 			stream nextPutAll: self class templateFileContents ].
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest >> setUp [
 	
 	| workingDirectory |
@@ -106,7 +108,7 @@ PRDocumentListTransformerTest >> setUp [
 	self createFilesIn: workingDirectory.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest >> testAnnotationCreateGoodLinks [
 	| doc documentGroup sections |
 	"${docList:path=blogs|limit=3|sort=name}$"
@@ -134,7 +136,7 @@ PRDocumentListTransformerTest >> testAnnotationCreateGoodLinks [
 	self assert: (sections at: 6) reference  equals: 'blogs/blog3.pillar'.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest >> testAnnotationIsReplacedByFilesContents [
 	| doc documentGroup sections |
 	"${docList:path=blogs|limit=3}$"
@@ -161,7 +163,7 @@ PRDocumentListTransformerTest >> testAnnotationIsReplacedByFilesContents [
 	self assert: sections first text equals: 'OkayWe gonna test annotations'.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest >> testAnnotationWithEmptyMultipleMustacheTemplateShouldNotContainsRaw [
 	| doc |
 	"${docList:path=blogs}$"
@@ -182,7 +184,7 @@ PRDocumentListTransformerTest >> testAnnotationWithEmptyMultipleMustacheTemplate
 	self deny: (doc children allSatisfy: [ :each | each class = PRRaw ])
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest >> testAnnotationWithLowLimitShouldOnlyTakeLimitNumberOfFilesInPath [
 	| doc documentGroup links |
 	"${docList:path=blogs|limit=2}$"
@@ -207,7 +209,7 @@ PRDocumentListTransformerTest >> testAnnotationWithLowLimitShouldOnlyTakeLimitNu
 	self assert: links size equals: 2
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest >> testAnnotationWithMultipleMustacheTemplateShouldContainsRaw [
 	| doc |
 	"${docList:path=blogs|sort=name|limit=3|templates=#('templates/docArticle.mustache' 'templates/me.mustache')}$"
@@ -231,7 +233,7 @@ PRDocumentListTransformerTest >> testAnnotationWithMultipleMustacheTemplateShoul
 	self assert: (doc children anySatisfy: [ :each | each class = PRRaw ])
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest >> testAnnotationWithTooHighLimitShouldOnlyTakeNumberOfFilesInPath [
 	| doc documentGroup links |
 	"${docList:path=blogs|limit=5}$"
@@ -257,7 +259,7 @@ PRDocumentListTransformerTest >> testAnnotationWithTooHighLimitShouldOnlyTakeNum
 	self assert: links size equals: 3
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest >> testAnnotationWithWrongPathShouldReturnEmptyDocumentGroup [
 	| doc documentGroup sections |
 	"${docList:path=wrongDirectory|limit=3|sort=name}$"
@@ -280,7 +282,7 @@ PRDocumentListTransformerTest >> testAnnotationWithWrongPathShouldReturnEmptyDoc
 	self assertEmpty: sections
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest >> testAnnotationWithWrongTemplateExtensionShouldNotContainsRaw [
 	| doc |
 	"${docList:path=blogs|sort=name|limit=3|templates=#('templates/docArticle.avi')}$"
@@ -304,7 +306,7 @@ PRDocumentListTransformerTest >> testAnnotationWithWrongTemplateExtensionShouldN
 	self deny: (doc children allSatisfy: [ :each | each class = PRRaw ])
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest >> testAnnotationWithoutLimitParameterShouldTakeDefaultLimitValue [
 	| doc documentGroup sections links |
 	"${docList:path=blogs|sort=name}$"
@@ -336,7 +338,7 @@ PRDocumentListTransformerTest >> testAnnotationWithoutLimitParameterShouldTakeDe
 	self assert: links size equals: 3
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest >> testAnnotationWithoutSortParameterShouldListFilesInArbitraryOrder [
 	| doc documentGroup sections |
 	"${docList:path=blogs|limit=2}$"
@@ -361,7 +363,7 @@ PRDocumentListTransformerTest >> testAnnotationWithoutSortParameterShouldListFil
 	self assert: sections first text equals: 'OkayWe gonna test annotations'.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest >> testAnnotationWithoutSpecifyingPathShouldRaiseError [
 	| doc |
 	"${docList:sort=name|limit=5}$"
@@ -380,7 +382,7 @@ PRDocumentListTransformerTest >> testAnnotationWithoutSpecifyingPathShouldRaiseE
 	self should: [((PRDocumentListTransformer withContext: (PRProject on: testingFileSystem)) start: doc)] raise: Error
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest >> testFilesAreSortedByBaseName [
 	| doc documentGroup sections |
 	"${docList:path=blogs|sort=name|limit=3}$"
@@ -410,7 +412,7 @@ PRDocumentListTransformerTest >> testFilesAreSortedByBaseName [
 	self assert: (sections at: 5) text equals: 'And the thirdone for testing annotations'.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentListTransformerTest >> testFilesAreSortedByModificationDate [
 	| doc documentGroup sections |
 	"${docList:path=blogs|limit=3|sort=date}$"

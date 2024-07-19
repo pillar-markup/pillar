@@ -1,10 +1,12 @@
 Class {
-	#name : #PRManualNumberingWriterTest,
-	#superclass : #PRDocumentWriterTest,
-	#category : 'Pillar-Tests-ExporterCore-LevelPrinter'
+	#name : 'PRManualNumberingWriterTest',
+	#superclass : 'PRDocumentWriterTest',
+	#category : 'Pillar-Tests-ExporterCore-LevelPrinter',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'LevelPrinter'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRManualNumberingWriterTest class >> isAbstract [
 	"Override to true if a TestCase subclass is Abstract and should not have
 	TestCase instances built from it"
@@ -12,57 +14,57 @@ PRManualNumberingWriterTest class >> isAbstract [
 	^self name = #PRManualNumberingWriterTest
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRManualNumberingWriterTest >> counter11DefinitionString [
 	^ '1.1. '
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRManualNumberingWriterTest >> counter11ReferenceString [
 	^ '1.1'
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRManualNumberingWriterTest >> counter1DefinitionString [
 	^ '1. '
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRManualNumberingWriterTest >> counter1ReferenceString [
 	^ '1'
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRManualNumberingWriterTest >> counter2DefinitionString [
 	^ '2. '
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRManualNumberingWriterTest >> level1HeaderWith1Foo [
 	^ self level1HeaderBegin , self counter1DefinitionString , self foo
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRManualNumberingWriterTest >> level2HeaderWith11Foo [
 	^ self level2HeaderBegin , self counter11DefinitionString , self foo
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRManualNumberingWriterTest >> level2HeaderWith1Foo [
 	^ self level2HeaderBegin , self counter1DefinitionString , self foo
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRManualNumberingWriterTest >> level2HeaderWithFoo [
 	^ self level2HeaderBegin , self foo
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRManualNumberingWriterTest >> referenceToFigurePierLogo [
 	^ '0.1'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRManualNumberingWriterTest >> testHeadersAreNumbered [
 	| item |
 	item := PRDocument new
@@ -92,7 +94,7 @@ PRManualNumberingWriterTest >> testHeadersAreNumbered [
 			self counter2DefinitionString}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRManualNumberingWriterTest >> testReferenceToFigureAnchor [
 	| item resultString indexOfReference referenceString |
 	item := PRDocument new
@@ -131,7 +133,7 @@ PRManualNumberingWriterTest >> testReferenceToFigureAnchor [
 	self assert: referenceString includesSubstring: self counter11ReferenceString
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRManualNumberingWriterTest >> testReferenceToHeaderAnchor [
 	| item resultString indexOfReference referenceString |
 	item := PRDocument new
@@ -160,7 +162,7 @@ PRManualNumberingWriterTest >> testReferenceToHeaderAnchor [
 	self assert: referenceString includesSubstring: self counter1ReferenceString
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRManualNumberingWriterTest >> testSubHeadersAreNumbered [
 	| item |
 	item := PRDocument new

@@ -1,13 +1,15 @@
 Class {
-	#name : #PRTestWithMemoryFileSystem,
-	#superclass : #TestCase,
+	#name : 'PRTestWithMemoryFileSystem',
+	#superclass : 'TestCase',
 	#instVars : [
 		'memoryFileSystem'
 	],
-	#category : #'Pillar-Tests-ExporterCore-Base'
+	#category : 'Pillar-Tests-ExporterCore-Base',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Base'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTestWithMemoryFileSystem >> createMicrodownFile1 [
  
 	(memoryFileSystem / 'input1.md') writeStreamDo: [ :stream |
@@ -33,7 +35,7 @@ What are you thinking about !!!??
 		 ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTestWithMemoryFileSystem >> createPillarFile1 [
  
 	(memoryFileSystem / 'input1.pillar') writeStreamDo: [ :stream |
@@ -67,7 +69,7 @@ Where are you !!
 		 ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTestWithMemoryFileSystem >> setUp [
 	super setUp.
 	memoryFileSystem := FileSystem memory.

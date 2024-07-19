@@ -1,15 +1,17 @@
 Class {
-	#name : #PRCitationTransformerTest,
-	#superclass : #PRNodeTransformerTest,
-	#category : 'Pillar-Tests-ExporterCore-Transformers'
+	#name : 'PRCitationTransformerTest',
+	#superclass : 'PRNodeTransformerTest',
+	#category : 'Pillar-Tests-ExporterCore-Transformers',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRCitationTransformerTest >> actualClass [
 	^PRCitationTransformer
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCitationTransformerTest >> testTransformWithAnnotationAndText [
 	| input expected |
 	input := PRDocument new
@@ -29,7 +31,7 @@ PRCitationTransformerTest >> testTransformWithAnnotationAndText [
 	self assert: (self executePhase: input with: self configuration) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCitationTransformerTest >> testTransformWithListInList [
 	| input expected |
 	input := PRDocument new
@@ -51,7 +53,7 @@ PRCitationTransformerTest >> testTransformWithListInList [
 	self assert: (self executePhase: input with: self configuration) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCitationTransformerTest >> testTransformWithOneAnnotation [
 	| input expected |
 	input := PRDocument new
@@ -61,7 +63,7 @@ PRCitationTransformerTest >> testTransformWithOneAnnotation [
 	self assert: (self executePhase: input with: self configuration) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCitationTransformerTest >> testTransformWithOneAnnotationithRef [
 	| input expected |
 	input := PRDocument new

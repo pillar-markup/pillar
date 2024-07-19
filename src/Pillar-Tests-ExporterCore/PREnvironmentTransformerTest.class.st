@@ -1,15 +1,17 @@
 Class {
-	#name : #PREnvironmentTransformerTest,
-	#superclass : #PRNodeTransformerTest,
-	#category : #'Pillar-Tests-ExporterCore-Transformers'
+	#name : 'PREnvironmentTransformerTest',
+	#superclass : 'PRNodeTransformerTest',
+	#category : 'Pillar-Tests-ExporterCore-Transformers',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PREnvironmentTransformerTest >> actualClass [
 	^ PREnvironmentTransformer
 ]
 
-{ #category : #'tests environment' }
+{ #category : 'tests environment' }
 PREnvironmentTransformerTest >> testAbsenceOfEnvironment [
 	"there is not environment so nothing happens."
 	| input |
@@ -22,7 +24,7 @@ PREnvironmentTransformerTest >> testAbsenceOfEnvironment [
 	self assert: (self executePhase: input with: self configuration) equals: input
 ]
 
-{ #category : #'tests environment' }
+{ #category : 'tests environment' }
 PREnvironmentTransformerTest >> testBasicTextInsideAnEnvironment [
 	| input expected |
 	input := PRDocument new
@@ -40,7 +42,7 @@ PREnvironmentTransformerTest >> testBasicTextInsideAnEnvironment [
 	self assert: (self executePhase: input) equals: expected
 ]
 
-{ #category : #'tests environment' }
+{ #category : 'tests environment' }
 PREnvironmentTransformerTest >> testBeginEnvironmentWithoutEnd [
 	| input |
 	input := PRDocument
@@ -55,7 +57,7 @@ PREnvironmentTransformerTest >> testBeginEnvironmentWithoutEnd [
 		description: 'Missing end of environment ''card'''
 ]
 
-{ #category : #'tests environment' }
+{ #category : 'tests environment' }
 PREnvironmentTransformerTest >> testEndEnvironmentWithoutBegin [
 	| input |
 	input := PRDocument with: (PREndEnvironmentAnnotation named: 'card').
@@ -67,7 +69,7 @@ PREnvironmentTransformerTest >> testEndEnvironmentWithoutBegin [
 		description: 'Missing begin environment'
 ]
 
-{ #category : #'tests environment' }
+{ #category : 'tests environment' }
 PREnvironmentTransformerTest >> testEndEnvironmentWithoutBeginAfterCorrectEnvironment [
 	| input |
 	input := PRDocument new
@@ -83,7 +85,7 @@ PREnvironmentTransformerTest >> testEndEnvironmentWithoutBeginAfterCorrectEnviro
 		description: 'Missing begin environment'
 ]
 
-{ #category : #'tests environment' }
+{ #category : 'tests environment' }
 PREnvironmentTransformerTest >> testEnvironmentHasBeginAnnotationProperties [
 	| input node |
 	input := PRDocument new
@@ -100,7 +102,7 @@ PREnvironmentTransformerTest >> testEnvironmentHasBeginAnnotationProperties [
 	self assert: (node children first propertyAt: 'string') equals: 'a string'.
 ]
 
-{ #category : #'tests environment' }
+{ #category : 'tests environment' }
 PREnvironmentTransformerTest >> testEnvironmentWithManyNestedEnvironments [
 	| input expected |
 	input := PRDocument new
@@ -128,7 +130,7 @@ PREnvironmentTransformerTest >> testEnvironmentWithManyNestedEnvironments [
 	self assert: (self executePhase: input) equals: expected
 ]
 
-{ #category : #'tests environment' }
+{ #category : 'tests environment' }
 PREnvironmentTransformerTest >> testMismatchEnvironments [
 	| input |
 	input := PRDocument new
@@ -145,7 +147,7 @@ PREnvironmentTransformerTest >> testMismatchEnvironments [
 		description: 'Mismatch Environments'
 ]
 
-{ #category : #'tests environment' }
+{ #category : 'tests environment' }
 PREnvironmentTransformerTest >> testMissingNameInBeginAnnotationFails [
 	| input |
 	input := PRDocument new
@@ -158,7 +160,7 @@ PREnvironmentTransformerTest >> testMissingNameInBeginAnnotationFails [
 	self should: [ self executePhase: input ] raise: PREnvironmentMissedNamed
 ]
 
-{ #category : #'tests environment' }
+{ #category : 'tests environment' }
 PREnvironmentTransformerTest >> testMissingNameInEndAnnotationFails [
 	| input |
 	input := PRDocument new
@@ -171,7 +173,7 @@ PREnvironmentTransformerTest >> testMissingNameInEndAnnotationFails [
 	self should: [ self executePhase: input ] raise: PREnvironmentMissedNamed
 ]
 
-{ #category : #'tests environment' }
+{ #category : 'tests environment' }
 PREnvironmentTransformerTest >> testMixedEnvironments [
 	| input |
 	input := PRDocument new
@@ -188,7 +190,7 @@ PREnvironmentTransformerTest >> testMixedEnvironments [
 		description: 'Mismatch Environments'
 ]
 
-{ #category : #'tests environment' }
+{ #category : 'tests environment' }
 PREnvironmentTransformerTest >> testNestedEnvironments [
 	| input expected |
 	input := PRDocument new
@@ -206,7 +208,7 @@ PREnvironmentTransformerTest >> testNestedEnvironments [
 	self assert: (self executePhase: input) equals: expected
 ]
 
-{ #category : #'tests environment' }
+{ #category : 'tests environment' }
 PREnvironmentTransformerTest >> testNestedEnvironmentsWithTextInsideDeepest [
 	| input expected |
 	input := PRDocument new
@@ -228,7 +230,7 @@ PREnvironmentTransformerTest >> testNestedEnvironmentsWithTextInsideDeepest [
 	self assert: (self executePhase: input) equals: expected
 ]
 
-{ #category : #'tests environment' }
+{ #category : 'tests environment' }
 PREnvironmentTransformerTest >> testNestedEnvironmentsWithTextSiblingOfEnvironment [
 	| input expected |
 	input := PRDocument new

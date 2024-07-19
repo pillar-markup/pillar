@@ -2,47 +2,49 @@
 I am a class of trait used to test different exporter of slide. (e.g. Beamer exporter, DeckJS exporter etc...)
 "
 Trait {
-	#name : #PRTSliderWriterTest,
-	#category : #'Pillar-Tests-ExporterCore-Various'
+	#name : 'PRTSliderWriterTest',
+	#category : 'Pillar-Tests-ExporterCore-Various',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Various'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRTSliderWriterTest >> actualClass [
 	^ self explicitRequirement
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRTSliderWriterTest >> endSlideTag [
 	^ self explicitRequirement
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRTSliderWriterTest >> headerInSlide [
 	"I return one string that define a header rendering in a slide."
 
 	^ self explicitRequirement
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRTSliderWriterTest >> representationOfAnchor [
 	"I return a string which reprensent an anchor in the slider format."
 
 	^ self explicitRequirement
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRTSliderWriterTest >> slideRepresentation [
 	^ self explicitRequirement
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRTSliderWriterTest >> slideTitle [
 	"I return a collection with an explicite rendering of a slide title."
 
 	^ self explicitRequirement
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTSliderWriterTest >> testExport1SimpleSlide [
 	"self debug: #testExportSlideTitle"
 
@@ -56,7 +58,7 @@ PRTSliderWriterTest >> testExport1SimpleSlide [
 		includesTexts: self slideRepresentation.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTSliderWriterTest >> testExport2SlidesCloseAllFrames [
 	"self debug: #testExportSlideTitle"
 
@@ -72,7 +74,7 @@ PRTSliderWriterTest >> testExport2SlidesCloseAllFrames [
 	self assert: index > 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTSliderWriterTest >> testRenderStructureAsSlide [
 	| item |
 	item := PRDocument new
@@ -89,7 +91,7 @@ PRTSliderWriterTest >> testRenderStructureAsSlide [
 	self deny: [ (self write: item) includesSubstring: self headerInSlide ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTSliderWriterTest >> testTitleOfSlide [
 	"self debug: #testExportSlideTitle"
 
@@ -102,7 +104,7 @@ PRTSliderWriterTest >> testTitleOfSlide [
 		includesTexts: self slideTitle.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTSliderWriterTest >> testslideWithLabel [
 	"self debug: #testExportSlideTitle"
 

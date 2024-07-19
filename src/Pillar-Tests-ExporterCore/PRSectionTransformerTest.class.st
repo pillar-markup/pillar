@@ -1,16 +1,18 @@
 Class {
-	#name : #PRSectionTransformerTest,
-	#superclass : #PRNodeTransformerTest,
-	#category : 'Pillar-Tests-ExporterCore-Transformers'
+	#name : 'PRSectionTransformerTest',
+	#superclass : 'PRNodeTransformerTest',
+	#category : 'Pillar-Tests-ExporterCore-Transformers',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRSectionTransformerTest >> actualClass [
 
 	^ PRSectionTransformer
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRSectionTransformerTest >> testTransformWithChangedMaxDepthLevel [
 	| input expected |
 	input := PRDocument new
@@ -46,7 +48,7 @@ PRSectionTransformerTest >> testTransformWithChangedMaxDepthLevel [
 	self actualClass initialize
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRSectionTransformerTest >> testTransformWithOneSection [
 	| input expected |
 	input := PRDocument new
@@ -68,7 +70,7 @@ PRSectionTransformerTest >> testTransformWithOneSection [
 	self assert: (self executePhase: input with: self configuration) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRSectionTransformerTest >> testTransformWithParagraphBeforeSection [
 	| input expected |
 	input := PRDocument new
@@ -92,7 +94,7 @@ PRSectionTransformerTest >> testTransformWithParagraphBeforeSection [
 	self assert: (self executePhase: input with: self configuration) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRSectionTransformerTest >> testTransformWithTwoSections [
 	| input expected |
 	input := PRDocument new
@@ -131,7 +133,7 @@ PRSectionTransformerTest >> testTransformWithTwoSections [
 	self assert: (self executePhase: input with: self configuration) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRSectionTransformerTest >> testTransformWithoutSection [
 	| input |
 	input := PRDocument new

@@ -1,15 +1,17 @@
 Class {
-	#name : #PRScriptLineNumberTest,
-	#superclass : #PRNodeTransformerTest,
-	#category : 'Pillar-Tests-ExporterCore-Transformers'
+	#name : 'PRScriptLineNumberTest',
+	#superclass : 'PRNodeTransformerTest',
+	#category : 'Pillar-Tests-ExporterCore-Transformers',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRScriptLineNumberTest >> actualClass [
 	^ PRScriptLineNumber 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptLineNumberTest >> testScriptWithLineNumber [
 	| input expected |
 	input := PRDocument new
@@ -29,7 +31,7 @@ PRScriptLineNumberTest >> testScriptWithLineNumber [
 	self assert: (self executePhase: input with: self configuration) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptLineNumberTest >> testScriptWithLineNumberFalse [
 	| input expected |
 	input := PRDocument new
@@ -49,7 +51,7 @@ PRScriptLineNumberTest >> testScriptWithLineNumberFalse [
 	self assert: (self executePhase: input with: self configuration) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptLineNumberTest >> testScriptWithSeveralLineNumbers [
 	
 	| input expected |
@@ -75,7 +77,7 @@ PRScriptLineNumberTest >> testScriptWithSeveralLineNumbers [
 	self assert: (self executePhase: input with: self configuration) children first text  equals: expected children first text 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptLineNumberTest >> testScriptWithoutParameter [
 	| input expected |
 	input := PRDocument new

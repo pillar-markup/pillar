@@ -1,55 +1,57 @@
 Class {
-	#name : #PRTitlePrinterTest,
-	#superclass : #TestCase,
-	#category : #'Pillar-Tests-ExporterCore-LevelPrinter'
+	#name : 'PRTitlePrinterTest',
+	#superclass : 'TestCase',
+	#category : 'Pillar-Tests-ExporterCore-LevelPrinter',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'LevelPrinter'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRTitlePrinterTest class >> isAbstract [
 	^ self = PRTitlePrinterTest
 ]
 
-{ #category : #requirement }
+{ #category : 'requirement' }
 PRTitlePrinterTest >> actualClass [
 	^ PRTitlePrinterSpecification
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTitlePrinterTest >> configurationClass [ 
 	^ ConfigurationForPillar
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRTitlePrinterTest >> counterLevel3 [
 	^ Array with: 1 with: -1 with: 3
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRTitlePrinterTest >> defaultDictionary [
 	^ Dictionary with: 'numbering' -> true with: 'size' -> 1 with: 'renderAs' -> 'roman'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRTitlePrinterTest >> newDefaultConfiguration [
 	^ self actualClass with: self defaultDictionary
 ]
 
-{ #category : #requirement }
+{ #category : 'requirement' }
 PRTitlePrinterTest >> representationOf26 [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirement }
+{ #category : 'requirement' }
 PRTitlePrinterTest >> representationOf27 [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirement }
+{ #category : 'requirement' }
 PRTitlePrinterTest >> representationOfOne [
 	^ self subclassResponsibility
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTitlePrinterTest >> testCounter [
 	| printer spec |
 	printer := PRTitlePrinter new.
@@ -68,7 +70,7 @@ PRTitlePrinterTest >> testCounter [
 	self assert: (printer level3 printCounter: self counterLevel3) equals: 'I.c'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTitlePrinterTest >> testFillFrom [
 	| specTarget specSource |
 	specTarget := PRTitlePrinterSpecification new.
@@ -87,7 +89,7 @@ PRTitlePrinterTest >> testFillFrom [
 	self assert: specTarget capitalization equals: 'capitalize english'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTitlePrinterTest >> testPrintElement [
 	| printer |
 	printer := self newDefaultConfiguration.
@@ -98,7 +100,7 @@ PRTitlePrinterTest >> testPrintElement [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTitlePrinterTest >> testSize [
 	| printer spec |
 	printer := PRTitlePrinter new.
@@ -123,7 +125,7 @@ PRTitlePrinterTest >> testSize [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTitlePrinterTest >> testSizeHigherThanThePossible [
 	
 	| printer spec |
@@ -139,7 +141,7 @@ PRTitlePrinterTest >> testSizeHigherThanThePossible [
 	self assert: (printer level2 printCounter: #(-1 1)) equals: '1'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTitlePrinterTest >> testSizeIsNotTheFullSizePossible [
 	
 	| printer spec |
@@ -156,7 +158,7 @@ PRTitlePrinterTest >> testSizeIsNotTheFullSizePossible [
 	self assert: (printer level2 printCounter: #(1 1)) equals: '1'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTitlePrinterTest >> testSizeWhenNumeratingIsFalse [
 	| printer |
 	printer := PRTitlePrinterSpecification with: ( Dictionary with: 'numbering' -> false with: 'size' -> 0).

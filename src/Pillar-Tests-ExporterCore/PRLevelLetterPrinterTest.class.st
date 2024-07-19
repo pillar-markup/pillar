@@ -1,25 +1,27 @@
 Class {
-	#name : #PRLevelLetterPrinterTest,
-	#superclass : #PRTitlePrinterTest,
-	#category : 'Pillar-Tests-ExporterCore-LevelPrinter'
+	#name : 'PRLevelLetterPrinterTest',
+	#superclass : 'PRTitlePrinterTest',
+	#category : 'Pillar-Tests-ExporterCore-LevelPrinter',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'LevelPrinter'
 }
 
-{ #category : #requirement }
+{ #category : 'requirement' }
 PRLevelLetterPrinterTest >> actualClass [
 	^ PRLevelLetterPrinter
 ]
 
-{ #category : #requirement }
+{ #category : 'requirement' }
 PRLevelLetterPrinterTest >> representationOf26 [
 	^ 'z'
 ]
 
-{ #category : #requirement }
+{ #category : 'requirement' }
 PRLevelLetterPrinterTest >> representationOf27 [
 	^ 'a'''
 ]
 
-{ #category : #requirement }
+{ #category : 'requirement' }
 PRLevelLetterPrinterTest >> representationOfOne [
 	^ 'a'
 ]

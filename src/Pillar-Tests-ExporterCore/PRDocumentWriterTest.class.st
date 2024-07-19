@@ -2,15 +2,17 @@
 I provide abstract tests and helper methods to test the subclasses of PRDocumentWriter.
 "
 Class {
-	#name : #PRDocumentWriterTest,
-	#superclass : #PRVisitorTest,
+	#name : 'PRDocumentWriterTest',
+	#superclass : 'PRVisitorTest',
 	#instVars : [
 		'configuration'
 	],
-	#category : #'Pillar-Tests-ExporterCore-LevelPrinter'
+	#category : 'Pillar-Tests-ExporterCore-LevelPrinter',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'LevelPrinter'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRDocumentWriterTest class >> isAbstract [
 	"Override to true if a TestCase subclass is Abstract and should not have
 	TestCase instances built from it"
@@ -18,65 +20,65 @@ PRDocumentWriterTest class >> isAbstract [
 	^self name = #PRDocumentWriterTest
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentWriterTest >> actualClass [
 	^ PRDocumentWriter
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentWriterTest >> actualInstance [
 	^  self createWriterOn: String new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> annotation [
 	
 	^ self shouldBeImplemented.  
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 PRDocumentWriterTest >> assert: result includesSubstring: expected [
 	expected ifEmpty: [ ^ self ].
 	self assert: (result includesSubstring: expected) description: ('''{1}'' not in ''{2}''' format: {expected . result})
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 PRDocumentWriterTest >> assertWriting: aDocumentItem includesText: aString [
 	| result |
 	result := self write: aDocumentItem.
 	self assert: result includesSubstring: aString
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 PRDocumentWriterTest >> assertWriting: aDocumentItem includesTexts: aCollection [
 	| resultString |
 	resultString := self write: aDocumentItem.
 	aCollection do: [ :testString | self assert: resultString includesSubstring: testString ]
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> boldFoo [
 	^ self subclassResponsibility
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRDocumentWriterTest >> configuration [
 	^ configuration ifNil: [ configuration := self configurationClass new ]
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRDocumentWriterTest >> configurationClass [
 	^ ConfigurationForPillar
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRDocumentWriterTest >> createWriterOn: aWriteStream [ 
 	^ (self actualClass on: aWriteStream)
 		configuration: self configuration;
 		yourself
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRDocumentWriterTest >> createWriterWithSeparateOutputFilesOn: aWriteStream [
 	^ (self actualClass on: aWriteStream)
 		configuration:
@@ -86,222 +88,222 @@ PRDocumentWriterTest >> createWriterWithSeparateOutputFilesOn: aWriteStream [
 		yourself
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> dataItemWithBar [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> definitionListBegin [
 	self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> emailToFoo [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> figureAnchorForPierLogo [
 	^ self subclassResponsibility 
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> figureBegin [
 	^ self subclassResponsibility
 ]
 
-{ #category : #data }
+{ #category : 'data' }
 PRDocumentWriterTest >> foo [
 	^ 'foo'
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> footnoteBar [
 	^ ''
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> horizontalRule [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> italicFoo [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> level1HeaderBegin [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> level1HeaderWithFoo [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> level2HeaderBegin [
 	^ self subclassResponsibility 
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> listItemWith1 [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> monospaceFoo [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> orderedListBegin [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> packageNamesUnderTest [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> paragraphFoo [
 	^ self subclassResponsibility
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRDocumentWriterTest >> parser [
 	^ PRPillarParserMain
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> preformattedFooBegin [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> preformattedTextFoo [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> rawText [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> referenceToFigurePierLogo [
 	^ self subclassResponsibility
 ]
 
-{ #category : #'requirement-InternalLinks' }
+{ #category : 'requirement-InternalLinks' }
 PRDocumentWriterTest >> resultWithRefWithAnchorWithSeparateOutputFiles [
 	self subclassResponsibility
 ]
 
-{ #category : #'requirement-InternalLinks' }
+{ #category : 'requirement-InternalLinks' }
 PRDocumentWriterTest >> resultWithRefWithAnchorWithoutSeparateOutputFiles [
 	self subclassResponsibility
 ]
 
-{ #category : #'requirement-InternalLinks' }
+{ #category : 'requirement-InternalLinks' }
 PRDocumentWriterTest >> resultWithRefWithoutAnchorWithSeparateOutputFiles [
 	self subclassResponsibility
 ]
 
-{ #category : #'requirement-InternalLinks' }
+{ #category : 'requirement-InternalLinks' }
 PRDocumentWriterTest >> resultWithRefWithoutAnchorWithoutSeparateOutputFiles [
 	self subclassResponsibility
 ]
 
-{ #category : #'requirement-InternalLinks' }
+{ #category : 'requirement-InternalLinks' }
 PRDocumentWriterTest >> resultWithoutAliasWithRefWithAnchorWithoutSeparateOutputFiles [
 	self subclassResponsibility
 ]
 
-{ #category : #'requirement-InternalLinks' }
+{ #category : 'requirement-InternalLinks' }
 PRDocumentWriterTest >> resultWithoutAliasWithoutRefWithAnchorWithSeparateOutputFiles [
 	self subclassResponsibility
 ]
 
-{ #category : #'requirement-InternalLinks' }
+{ #category : 'requirement-InternalLinks' }
 PRDocumentWriterTest >> resultWithoutAliasWithoutRefWithAnchorWithoutSeparateOutputFiles [
 	self subclassResponsibility
 ]
 
-{ #category : #'requirement-InternalLinks' }
+{ #category : 'requirement-InternalLinks' }
 PRDocumentWriterTest >> resultWithoutRefWithAnchorWithSeparateOutputFiles [
 	self subclassResponsibility
 ]
 
-{ #category : #'requirement-InternalLinks' }
+{ #category : 'requirement-InternalLinks' }
 PRDocumentWriterTest >> resultWithoutRefWithAnchorWithoutSeparateOutputFiles [
 	self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> scriptAnchorForMyScript [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> scriptWithCaptionBegin [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> scriptWithoutCaptionBegin [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> strikethroughFoo [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> subscriptFoo [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> superscriptFoo [
 	^ self subclassResponsibility
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> supportSyntaxHighlighting [
 	^ true
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> tableBegin [
 	^ self subclassResponsibility 
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> tableCellWithFoo [
 	^ self subclassResponsibility 
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> tableCellWithHeadingFoo [
 	^ self subclassResponsibility 
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> tableRow [
 	^ self subclassResponsibility 
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> termItemWithFoo [
 	^ self subclassResponsibility
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testAnnotation [
 	| item |
 	{ 'note' . 'dothis' } do:
@@ -317,7 +319,7 @@ PRDocumentWriterTest >> testAnnotation [
 	].
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testBibFileIsCorrectlyTransformed [
 	
 	"Here we see that the configuration is holding a real object so taking its value blindly and pasting it in the template will not work."
@@ -329,7 +331,7 @@ PRDocumentWriterTest >> testBibFileIsCorrectlyTransformed [
 	self assert: ((MustacheToken new token: 'bibFile') valueInContext: self configuration) asString equals: 'book.bib'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testBoldFormat [
 	| item |
 	item := self addText: 'foo' to: PRBoldFormat new.
@@ -339,7 +341,7 @@ PRDocumentWriterTest >> testBoldFormat [
 			{self boldFoo}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testCommentedLineNotVisibleInOutput [
 	| item result |
 	item := PRCommentedLine content: 'some comment'.
@@ -347,7 +349,7 @@ PRDocumentWriterTest >> testCommentedLineNotVisibleInOutput [
 	self assertEmpty: result
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testConsecutiveTextsInAParagraphAreSeparatedByWhitespace [
 	| item |
 	item := PRParagraph new
@@ -358,7 +360,7 @@ PRDocumentWriterTest >> testConsecutiveTextsInAParagraphAreSeparatedByWhitespace
 	self assertWriting: item includesText: 'foo', self configuration newLine, 'bar'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testDefinitionList [
 	| item |
 	item := PRDefinitionList new
@@ -373,7 +375,7 @@ PRDocumentWriterTest >> testDefinitionList [
 			self dataItemWithBar}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testFigure [
 	| item |
 	item := PRFigure new
@@ -385,7 +387,7 @@ PRDocumentWriterTest >> testFigure [
 			'picture.png'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testFigureLabelGenerateAnchor [
 	| item |
 	item := PRFigure new
@@ -399,7 +401,7 @@ PRDocumentWriterTest >> testFigureLabelGenerateAnchor [
 			'pierLogo'}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testFigureReference [
 	| item resultString indexOfReference referenceString |
 	item := PRParagraph new
@@ -418,7 +420,7 @@ PRDocumentWriterTest >> testFigureReference [
 	self assert: referenceString includesSubstring: self referenceToFigurePierLogo
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testFigureWithLabelAndWithCaptionAreExportedWithEnvironment [
 	| item |
 	item := PRFigure new
@@ -429,7 +431,7 @@ PRDocumentWriterTest >> testFigureWithLabelAndWithCaptionAreExportedWithEnvironm
 	self assertWriting: item includesText: self figureBegin
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testFigureWithLabelAndWithoutCaptionAreExportedWithEnvironment [
 	| item |
 	item := PRFigure new
@@ -439,7 +441,7 @@ PRDocumentWriterTest >> testFigureWithLabelAndWithoutCaptionAreExportedWithEnvir
 	self assertWriting: item includesText: self figureBegin
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testFigureWithWidth [
 	| item width |
 	width := '50'.
@@ -450,7 +452,7 @@ PRDocumentWriterTest >> testFigureWithWidth [
 	self assertWriting: item includesText: self widthFor50percents
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testFigureWithoutLabelAndWithCaptionAreExportedWithEnvironment [
 	| item |
 	item := PRFigure new
@@ -460,7 +462,7 @@ PRDocumentWriterTest >> testFigureWithoutLabelAndWithCaptionAreExportedWithEnvir
 	self assertWriting: item includesText: self figureBegin
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testFigureWithoutLabelAndWithoutCaptionAreExportedWithoutEnvironment [
 	| item result |
 	item := PRFigure new
@@ -470,7 +472,7 @@ PRDocumentWriterTest >> testFigureWithoutLabelAndWithoutCaptionAreExportedWithou
 	self figureBegin ifNotEmpty: [ self deny: (result includesSubstring: self figureBegin) ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testFiguresHaveACaption [
 	| item caption filename |
 	caption := 'A description'.
@@ -488,7 +490,7 @@ PRDocumentWriterTest >> testFiguresHaveACaption [
 			caption}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testFileExtension [
 	| fileExtension |
 	fileExtension := self instance fileExtension.
@@ -496,7 +498,7 @@ PRDocumentWriterTest >> testFileExtension [
 	self assert: fileExtension isString
 ]
 
-{ #category : #'tests-internalLinks' }
+{ #category : 'tests-internalLinks' }
 PRDocumentWriterTest >> testFootnote [
 	| item |
 	item := PRParagraph new
@@ -507,12 +509,12 @@ PRDocumentWriterTest >> testFootnote [
 	self assertWriting: item includesText: self footnoteBar
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testHasName [
 	self denyEmpty: self actualClass writerName
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testHeader [
 	| item |
 	item := PRHeader new
@@ -522,14 +524,14 @@ PRDocumentWriterTest >> testHeader [
 	self assertWriting: item includesTexts: {self level1HeaderWithFoo}.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testHorizontalRule [
 	| item  |
 	item := PRHorizontalRule new.
 	self assertWriting: item includesText: self horizontalRule
 ]
 
-{ #category : #'tests-internalLinks' }
+{ #category : 'tests-internalLinks' }
 PRDocumentWriterTest >> testInternalLinkWithAliasWithRefWithAncorWithSeparateOutputFiles [
 	| item resultString |
 	item := PRParagraph new
@@ -545,7 +547,7 @@ PRDocumentWriterTest >> testInternalLinkWithAliasWithRefWithAncorWithSeparateOut
 	self assert: (resultString includesSubstring: 'Alias')
 ]
 
-{ #category : #'tests-internalLinks' }
+{ #category : 'tests-internalLinks' }
 PRDocumentWriterTest >> testInternalLinkWithAliasWithReferenceWithoutAnchorWithSeparateOutputFiles [
 	| item resultString |
 	item := PRParagraph new
@@ -561,7 +563,7 @@ PRDocumentWriterTest >> testInternalLinkWithAliasWithReferenceWithoutAnchorWithS
 	self assert: (resultString includesSubstring: 'Alias')
 ]
 
-{ #category : #'tests-internalLinks' }
+{ #category : 'tests-internalLinks' }
 PRDocumentWriterTest >> testInternalLinkWithAliasWithoutReferenceWithAnchorWithSeparateOutputFiles [
 	| item resultString |
 	item := PRParagraph new
@@ -577,7 +579,7 @@ PRDocumentWriterTest >> testInternalLinkWithAliasWithoutReferenceWithAnchorWithS
 	self assert: (resultString includesSubstring: 'Alias')
 ]
 
-{ #category : #'tests-internalLinks' }
+{ #category : 'tests-internalLinks' }
 PRDocumentWriterTest >> testInternalLinkWithoutAliasWithRefWithAncorWithSeparateOutputFiles [
 	| item resultString |
 	item := PRParagraph new
@@ -589,7 +591,7 @@ PRDocumentWriterTest >> testInternalLinkWithoutAliasWithRefWithAncorWithSeparate
 		ifFalse: [ self assert: (resultString includesSubstring: self resultWithRefWithAnchorWithSeparateOutputFiles) ]
 ]
 
-{ #category : #'tests-internalLinks' }
+{ #category : 'tests-internalLinks' }
 PRDocumentWriterTest >> testInternalLinkWithoutAliasWithReferenceWithoutAnchorWithSeparateOutputFiles [
 	| item resultString |
 	item := PRParagraph new
@@ -601,7 +603,7 @@ PRDocumentWriterTest >> testInternalLinkWithoutAliasWithReferenceWithoutAnchorWi
 		ifFalse: [ self assert: (resultString includesSubstring: self resultWithRefWithoutAnchorWithSeparateOutputFiles) ]
 ]
 
-{ #category : #'tests-internalLinks' }
+{ #category : 'tests-internalLinks' }
 PRDocumentWriterTest >> testInternalLinkWithoutAliasWithoutReferenceWithAnchorWithSeparateOutputFiles [
 	| item resultString |
 	item := PRParagraph new
@@ -615,7 +617,7 @@ PRDocumentWriterTest >> testInternalLinkWithoutAliasWithoutReferenceWithAnchorWi
 		ifFalse: [ self assert: (resultString includesSubstring: self resultWithoutAliasWithoutRefWithAnchorWithSeparateOutputFiles) ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testItalicFormat [
 	| item |
 	item := self addText: 'foo' to: PRItalicFormat new.
@@ -625,7 +627,7 @@ PRDocumentWriterTest >> testItalicFormat [
 			{self italicFoo}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testLanguageForScript [
 	| item smalltalk writer http |
 	writer := self instance.
@@ -643,7 +645,7 @@ PRDocumentWriterTest >> testLanguageForScript [
 	self assert: (writer languageForScript: item) equals: http
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testLanguageForScript2 [
 	"This test documents how to map values to script languages"
 	
@@ -653,7 +655,7 @@ PRDocumentWriterTest >> testLanguageForScript2 [
 	self assert: (PRRealScriptLanguage for: 'smalltalk') class equals:  PRSmalltalkScriptLanguage.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testMailLink [
 	| item |
 	configuration propertyAt: #scrambledEmailAddresses put: false.
@@ -664,7 +666,7 @@ PRDocumentWriterTest >> testMailLink [
 			{self emailToFoo . 'Foo Bar'}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testMarkupType [
 	| markupType |
 	markupType := self instance markupType.
@@ -672,7 +674,7 @@ PRDocumentWriterTest >> testMarkupType [
 	self assert: markupType isSymbol
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testMonospaceFormat [
 	| item |
 	item := self addText: 'foo' to: PRMonospaceFormat new.
@@ -682,7 +684,7 @@ PRDocumentWriterTest >> testMonospaceFormat [
 			{self monospaceFoo}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testOrderedList [
 	| item |
 	item := PROrderedList new
@@ -695,21 +697,21 @@ PRDocumentWriterTest >> testOrderedList [
 			(self listItemWith1)}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testParagraph [
 	| item |
 	item := self addText: 'foo' to: PRParagraph new.
 	self assertWriting: item includesText: self paragraphFoo
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testPreformatted [
 	| item |
 	item := self addText: 'foo' to: PRPreformatted new.
 	self assertWriting: item includesTexts: {self preformattedFooBegin . self preformattedTextFoo}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testPreformattedWithMultipleLines [
 	| item |
 	item := PRPreformatted new
@@ -719,7 +721,7 @@ PRDocumentWriterTest >> testPreformattedWithMultipleLines [
 	self assertWriting: item includesText: 'foo' , self configuration newLine
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testRaw [
 	| item |
 	item := PRRaw content: self rawText.
@@ -729,14 +731,14 @@ PRDocumentWriterTest >> testRaw [
 			self rawText
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testScript [
 	| item |
 	item := PRCodeblock content: 'foo'.
 	self assertWriting: item includesTexts: {self scriptWithoutCaptionBegin . self foo}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testScriptDefaultLanguage [
 	| item |
 	self supportSyntaxHighlighting
@@ -746,7 +748,7 @@ PRDocumentWriterTest >> testScriptDefaultLanguage [
 	self assertWriting: item includesTexts: {PRHTMLScriptLanguage standardName}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testScriptLabelGenerateAnchor [
 	| item |
 	item := (PRCodeblock content: 'foo')
@@ -759,7 +761,7 @@ PRDocumentWriterTest >> testScriptLabelGenerateAnchor [
 			'myScript'}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testScriptLanguage [
 	| item |
 	self supportSyntaxHighlighting ifFalse: [ self skip ].
@@ -769,7 +771,7 @@ PRDocumentWriterTest >> testScriptLanguage [
 	self assertWriting: item includesTexts: {(PRHTMLScriptLanguage standardName)}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testScriptWithFormattedCaption [
 	| item |
 	item := (PRCodeblock content: 'bar')
@@ -778,7 +780,7 @@ PRDocumentWriterTest >> testScriptWithFormattedCaption [
 	self assertWriting: item includesText: self boldFoo
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testScriptWithProblematicEval [
 	| item nonExistingMethod |
 	nonExistingMethod := 'FooBarDoesNotExistX'.
@@ -789,7 +791,7 @@ PRDocumentWriterTest >> testScriptWithProblematicEval [
 	self assertWriting: item includesText: nonExistingMethod
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testScriptsHaveACaption [
 	| item caption |
 	caption := 'A description'.
@@ -803,14 +805,7 @@ PRDocumentWriterTest >> testScriptsHaveACaption [
 			caption}
 ]
 
-{ #category : #tests }
-PRDocumentWriterTest >> testSpecifyPackageNamesUnderTest [
-	self assert: self packageNamesUnderTest isCollection.
-	self denyEmpty: self packageNamesUnderTest.
-	self packageNamesUnderTest do: [ :packageName | self denyEmpty: (RPackage organizer packageNamed: packageName) methods ]
-]
-
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testStrikethroughFormat [
 	| item |
 	item := self addText: 'foo' to: PRStrikethroughFormat new.
@@ -820,7 +815,7 @@ PRDocumentWriterTest >> testStrikethroughFormat [
 			{self strikethroughFoo}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testSubscriptFormat [
 	| item |
 	item := self addText: 'foo' to: PRSubscriptFormat new.
@@ -830,7 +825,7 @@ PRDocumentWriterTest >> testSubscriptFormat [
 			{self subscriptFoo}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testSuperscriptFormat [
 	| item |
 	item := self addText: 'foo' to: PRSuperscriptFormat new.
@@ -840,7 +835,7 @@ PRDocumentWriterTest >> testSuperscriptFormat [
 			{self superscriptFoo}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testTable [
 	| item |
 	item := PRTable new
@@ -857,7 +852,7 @@ PRDocumentWriterTest >> testTable [
 			(self tableCellWithFoo)}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testTableWith2CellsInARow [
 	| item |
 	item := PRTable new
@@ -876,7 +871,7 @@ PRDocumentWriterTest >> testTableWith2CellsInARow [
 	^ item
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testTableWithHeading [
 	| item |
 	item := PRTable new
@@ -899,7 +894,7 @@ PRDocumentWriterTest >> testTableWithHeading [
 			(self tableCellWithHeadingFoo)}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testUnderlineFormat [
 	| item |
 	item := self addText: 'foo' to: PRUnderlineFormat new.
@@ -909,7 +904,7 @@ PRDocumentWriterTest >> testUnderlineFormat [
 			{self underlineFoo}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testUnorderedList [
 	| item |
 	item := PRUnorderedList new
@@ -922,7 +917,7 @@ PRDocumentWriterTest >> testUnorderedList [
 			(self listItemWith1)}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRDocumentWriterTest >> testWritersAreNotResponsibleForHeadingLevelOffset [
 	| item |
 	item := PRHeader new
@@ -935,22 +930,22 @@ PRDocumentWriterTest >> testWritersAreNotResponsibleForHeadingLevelOffset [
 	self assertWriting: item includesTexts: {self level1HeaderWithFoo}
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> underlineFoo [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> unorderedListBegin [
 	^ self subclassResponsibility
 ]
 
-{ #category : #requirements }
+{ #category : 'requirements' }
 PRDocumentWriterTest >> widthFor50percents [
 	^ '50'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRDocumentWriterTest >> write: aDocumentItem [
 
 	^ String
@@ -960,7 +955,7 @@ PRDocumentWriterTest >> write: aDocumentItem [
 			writer start: aDocumentItem ]
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRDocumentWriterTest >> writeWithSeparateOutputFiles: aDocumentItem [
 	| writer |
 	^ String

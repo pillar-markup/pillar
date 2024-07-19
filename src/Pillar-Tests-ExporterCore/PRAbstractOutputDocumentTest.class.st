@@ -1,10 +1,12 @@
 Class {
-	#name : #PRAbstractOutputDocumentTest,
-	#superclass : #PRTestWithMemoryFileSystem,
-	#category : #'Pillar-Tests-ExporterCore-Base'
+	#name : 'PRAbstractOutputDocumentTest',
+	#superclass : 'PRTestWithMemoryFileSystem',
+	#category : 'Pillar-Tests-ExporterCore-Base',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Base'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRAbstractOutputDocumentTest >> testParseInput [
 
 	| doc |

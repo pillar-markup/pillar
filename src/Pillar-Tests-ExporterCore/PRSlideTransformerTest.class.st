@@ -1,15 +1,17 @@
 Class {
-	#name : #PRSlideTransformerTest,
-	#superclass : #PRNodeTransformerTest,
-	#category : 'Pillar-Tests-ExporterCore-Transformers'
+	#name : 'PRSlideTransformerTest',
+	#superclass : 'PRNodeTransformerTest',
+	#category : 'Pillar-Tests-ExporterCore-Transformers',
+	#package : 'Pillar-Tests-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRSlideTransformerTest >> actualClass [
 	^ PRSlideTransformer
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRSlideTransformerTest >> testTransformAnnotationStopAtTitle [
 	| input expected |
 	input := PRDocument new
@@ -36,7 +38,7 @@ PRSlideTransformerTest >> testTransformAnnotationStopAtTitle [
 	self assert: (self executePhase: input) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRSlideTransformerTest >> testTransformWithOneAnnotation [
 	| input expected |
 	input := PRDocument new
@@ -52,7 +54,7 @@ PRSlideTransformerTest >> testTransformWithOneAnnotation [
 	self assert: (self executePhase: input) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRSlideTransformerTest >> testTransformWithTwoAnnotation [
 	| input expected |
 	input := PRDocument new
@@ -76,7 +78,7 @@ PRSlideTransformerTest >> testTransformWithTwoAnnotation [
 	self assert: (self executePhase: input) equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRSlideTransformerTest >> testTransformationKeepSameContent [
 	| input |
 	input := PRDocument new
@@ -92,7 +94,7 @@ PRSlideTransformerTest >> testTransformationKeepSameContent [
 	self assert: (self executePhase: input) equals: input
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRSlideTransformerTest >> testTransformationWithNonGroupItemAtTopLevel [
 	| input expected |
 	"This test makes sure that a document item which is not a document group can be a direct child of a slide"
