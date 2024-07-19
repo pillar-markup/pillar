@@ -79,7 +79,7 @@ To make the `pillar` command available in your shell you can:
 ```bash
 ln -s $PILLAR_HOME/build/pillar ~/bin/pillar
 ```
-- or add the build folder into the your `PATH` envirnment variable, for example by adding into your `.bashrc` (or shell startup):
+- or add the build folder into the your `PATH` environment variable, for example by adding into your `.bashrc` (or shell startup):
 ```bash
 export PATH="$PATH:$PILLAR_HOME/build"
 ```
@@ -90,7 +90,7 @@ You need to have a `LaTeX` installation in your machine. The simplest is to do a
 
 #### Installing `LaTeX` on OSX
 
-The simplest installation is to do a full mactex installation. Just follow the instructions in https://www.tug.org/mactex/
+The simplest installation is to do a full Mactex installation. Just follow the instructions in https://www.tug.org/mactex/
 
 #### Installing `LaTeX` on *nix
 
@@ -151,16 +151,16 @@ Use the latest dev-8 as a root for your changes.
 ### Cleaning first 
 
 First remove existing packages from the Pharo distribution.
+
 ```
-IceRepository registry 
-	detect: [ :each | #('Microdown' 'NewTools-DocumentationReader') includes: each name ]
-	ifFound: [ :aRepository | aRepository forget ].
-"This, however, needs to stay :)"
-#( 'BeautifulComments' 'BaselineOfBeautifulComments' 'BaselineOfMicrodownDev' 'BaselineOfMicrodown' 'Microdown' 'Microdown-Tests' 'Microdown-MicrodownRichTextComposer' 'Microdown-ResolvePath' 
-'Microdown-ResolvePath-Tests' 'NewTools-DocumentationReader-Tests' 'BaselineOfNewToolsDocumentationReader' 'Microdown-RichTextComposer' 'Microdown-RichTextPresenter' 'Microdown-RichTextPresenter-Tests' 'Spec2-Microdown'
-'NewTools-DocumentationReader') do: [ :each | 
-	(RPackageOrganizer default packageNamed: each ifAbsent: [ nil ]) 
-		ifNotNil: [ :aPackage | aPackage removeFromSystem ] ]
+#( 'Microdown' 'BeautifulComments' 'DocumentBrowser' ) do: [ :name |
+		(IceRepository repositoryNamed: name)
+			ifNil: [ self inform: 'Project not found: ' , name ]
+			ifNotNil: [ :found |
+				found
+					unload;
+					forget ] ]
+
 ```
 
 The following script can be useful if you develop using the launcher and want to try to execute the image as from a pillar command
