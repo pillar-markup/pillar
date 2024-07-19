@@ -37,22 +37,24 @@ project build: PRHtmlOutput new.
 project build: PRPdfOutput new.
 "
 Class {
-	#name : #PRProject,
-	#superclass : #PRObject,
+	#name : 'PRProject',
+	#superclass : 'PRObject',
 	#instVars : [
 		'baseDirectory',
 		'templatable',
 		'toc'
 	],
-	#category : #'Pillar-Project-Core'
+	#category : 'Pillar-Project-Core',
+	#package : 'Pillar-Project',
+	#tag : 'Core'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRProject class >> isAbstract [
 	^ false
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRProject class >> on: aDirectory [
 
 	^ self new
@@ -60,12 +62,12 @@ PRProject class >> on: aDirectory [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRProject class >> pathToString: aPath [
 	^ aPath pillarPrintString
 ]
 
-{ #category : #archetypes }
+{ #category : 'archetypes' }
 PRProject >> archetypeNamed: aString [ 
 	
 	^ PRArchetype new
@@ -74,23 +76,23 @@ PRProject >> archetypeNamed: aString [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRProject >> baseDirectory [
 	^ baseDirectory
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRProject >> baseDirectory: aFileReference [ 
 	baseDirectory := aFileReference
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRProject >> beTemplatable [
 
 	templatable := true
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRProject >> build: output [
 	"Output is an instance of subclass of PRTarget"
 	
@@ -101,7 +103,7 @@ PRProject >> build: output [
 	^ output buildOn: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRProject >> configuration [
 	
 	| readConfiguration extension |
@@ -117,38 +119,38 @@ PRProject >> configuration [
 	^ readConfiguration
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRProject >> configurationFileReference [
 	
 	^ self baseDirectory / 'pillar.conf'
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRProject >> contributeToPipelineBuilding: aPRPipelineBuilder [ 
 	
 	self plugins do: [ :each | each contributeToPipelineBuilding: aPRPipelineBuilder ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRProject >> defaultOutputDirectoryName [
 	^ '_result'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRProject >> defaultTarget [
 	| defaultExport |
 	defaultExport := [self configuration defaultExport ifEmpty: [ ^ PRAbsentTarget]] on: Error do: [ ^ PRAbsentTarget ]  .
 	^ PRTarget targetByFormatName: defaultExport
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRProject >> initialize [
 
 	super initialize.
 	templatable := false
 ]
 
-{ #category : #archetypes }
+{ #category : 'archetypes' }
 PRProject >> installArchetypeNamed: archetypeName [
 	| archetype |
 	archetype := self archetypeNamed: archetypeName.
@@ -156,7 +158,7 @@ PRProject >> installArchetypeNamed: archetypeName [
 	archetype installIn: self baseDirectory
 ]
 
-{ #category : #archetypes }
+{ #category : 'archetypes' }
 PRProject >> installArchetypeNamed: archetypeName fromDirectory: pillarDirectory [
 	
 	| archetype |
@@ -166,7 +168,7 @@ PRProject >> installArchetypeNamed: archetypeName fromDirectory: pillarDirectory
 	archetype installIn: self baseDirectory
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRProject >> installTemplateNamed: archetypeName [ 
 	
 	| archetype |
@@ -175,13 +177,13 @@ PRProject >> installTemplateNamed: archetypeName [
 	archetype installTemplateIn: self baseDirectory
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRProject >> isTemplatable [
 
 	^ templatable
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRProject >> outputDirectory [
 	"pay attention the output directory of a output document is more precise than the one of a project. 
 	Indeed it will take into account the kind of document and add 'pdf', 'html'.... as subfolder.
@@ -190,7 +192,7 @@ PRProject >> outputDirectory [
 	^ self baseDirectory resolve: self configuration outputDirectory
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRProject >> plugins [
 	
 	^ (self configuration propertyAt: #plugins ifAbsent: [ #() ])
@@ -201,7 +203,7 @@ PRProject >> plugins [
 				plugin withContext: self ]
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRProject >> prepareForTarget: target [
 	"We want to build a given project i.e. PDF, HTML. We are setting up the system to be built. With prepareForTarget:, the actions that will be triggered are happening before the pipeline is set and executed."
 	
@@ -209,13 +211,13 @@ PRProject >> prepareForTarget: target [
 	self plugins do: [ :each | each prepareForExecutionOn: self ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRProject >> supportDirectory [
 	
 	^ self baseDirectory / '_support'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRProject >> tableOfContents [
 	| tocFilePath tocFileName inputDoc |
 	toc ifNotNil: [ ^ toc ].
@@ -231,7 +233,7 @@ PRProject >> tableOfContents [
 		visit: inputDoc
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PRProject >> updateBuild [
 	| destination reference |
 	reference := FileLocator imageDirectory parent / 'archetypes'.
@@ -243,7 +245,7 @@ PRProject >> updateBuild [
 	reference copyAllTo: destination
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PRProject >> wipeout [
 	
 	self outputDirectory ensureDeleteAll

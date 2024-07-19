@@ -1,32 +1,34 @@
 Class {
-	#name : #PRArchetype,
-	#superclass : #PRObject,
+	#name : 'PRArchetype',
+	#superclass : 'PRObject',
 	#instVars : [
 		'name',
 		'project',
 		'directory'
 	],
-	#category : #'Pillar-Project-Core'
+	#category : 'Pillar-Project-Core',
+	#package : 'Pillar-Project',
+	#tag : 'Core'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRArchetype class >> isAbstract [
 
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRArchetype >> directory [
 
 	^ directory ifNil: [ ^ FileLocator imageDirectory / 'archetypes' / name ] 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRArchetype >> directory: aDirectory [
 	directory := aDirectory
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PRArchetype >> installIn: baseDirectory [
 
 	(self directory / 'sample')
@@ -35,7 +37,7 @@ PRArchetype >> installIn: baseDirectory [
 	self installTemplateIn: baseDirectory.
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PRArchetype >> installTemplateIn: baseDirectory [ 
 
 	| destination |
@@ -47,19 +49,19 @@ PRArchetype >> installTemplateIn: baseDirectory [
 		copyAllTo: destination
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRArchetype >> name: aString [ 
 	name := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRArchetype >> project: aPRProject [ 
 	project := aPRProject
 ]
 
-{ #category : #validating }
+{ #category : 'validating' }
 PRArchetype >> validateExists [
-
+	
 	self directory exists ifFalse: [
 		self error: 'Archetype ', name, ' does not exist'
 	].

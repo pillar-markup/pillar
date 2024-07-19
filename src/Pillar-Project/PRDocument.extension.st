@@ -1,11 +1,11 @@
-Extension { #name : #PRDocument }
+Extension { #name : 'PRDocument' }
 
-{ #category : #'*Pillar-Project' }
+{ #category : '*Pillar-Project' }
 PRDocument >> dependencies [
 	self shouldBeImplemented.
 ]
 
-{ #category : #'*Pillar-Project' }
+{ #category : '*Pillar-Project' }
 PRDocument >> pdfTransformationsFor: anOutputDocument [
 
 	^ { 

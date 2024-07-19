@@ -17,15 +17,16 @@ My #performTest method is defined  to obtain all test arguments using the argume
 I am not used so far because I don't work in SmalltalkCI
 "
 Class {
-	#name : #PRParameterizableTestCase,
-	#superclass : #TestCase,
+	#name : 'PRParameterizableTestCase',
+	#superclass : 'TestCase',
 	#instVars : [
 		'testArguments'
 	],
-	#category : 'Pillar-Tests-Integration'
+	#category : 'Pillar-Tests-Integration',
+	#package : 'Pillar-Tests-Integration'
 }
 
-{ #category : #'building suites' }
+{ #category : 'building suites' }
 PRParameterizableTestCase class >> buildSuiteFromMethods: testMethods [
 
 	| testCases suite |
@@ -36,13 +37,13 @@ PRParameterizableTestCase class >> buildSuiteFromMethods: testMethods [
 	^ suite
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRParameterizableTestCase class >> isAbstract [
 
 	^ self class == PRParameterizableTestCase
 ]
 
-{ #category : #'building suites' }
+{ #category : 'building suites' }
 PRParameterizableTestCase class >> permutationsOf: aCollection [ 
 	
 	| restOfPermutations |
@@ -52,7 +53,7 @@ PRParameterizableTestCase class >> permutationsOf: aCollection [
 		restOfPermutations collect: [ :permutation | permutation copyWithFirst: element  ] ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRParameterizableTestCase class >> selector: testSelector arguments: arguments [
 
 	^ self new
@@ -61,7 +62,7 @@ PRParameterizableTestCase class >> selector: testSelector arguments: arguments [
 		yourself
 ]
 
-{ #category : #'building suites' }
+{ #category : 'building suites' }
 PRParameterizableTestCase class >> testCasesForSelector: testSelector [
 	
 	| method argumentPossibilities |
@@ -74,12 +75,12 @@ PRParameterizableTestCase class >> testCasesForSelector: testSelector [
 				self selector: testSelector arguments: permutation ]
 ]
 
-{ #category : #'building suites' }
+{ #category : 'building suites' }
 PRParameterizableTestCase class >> testSelectors [
 	^ self selectors select: [ :each | (each beginsWith: 'test') ]
 ]
 
-{ #category : #'private-parameterizable' }
+{ #category : 'private-parameterizable' }
 PRParameterizableTestCase >> cleanUpInstanceVariables [
 	| instVarsToKeep |
 	instVarsToKeep := #( 'testSelector' 'testArguments' ).
@@ -88,7 +89,7 @@ PRParameterizableTestCase >> cleanUpInstanceVariables [
 			self instVarNamed: name put: nil ] ]
 ]
 
-{ #category : #'private-parameterizable' }
+{ #category : 'private-parameterizable' }
 PRParameterizableTestCase >> performTest [
 
 	^ self
@@ -96,13 +97,13 @@ PRParameterizableTestCase >> performTest [
 		withArguments: (testArguments collect: [ :each | self perform: each ])
 ]
 
-{ #category : #'private-parameterizable' }
+{ #category : 'private-parameterizable' }
 PRParameterizableTestCase >> printOn: aStream [
 	super printOn: aStream.
 	testArguments printOn: aStream.
 ]
 
-{ #category : #'private-parameterizable' }
+{ #category : 'private-parameterizable' }
 PRParameterizableTestCase >> setTestArguments: aCollection [ 
 	
 	testArguments := aCollection

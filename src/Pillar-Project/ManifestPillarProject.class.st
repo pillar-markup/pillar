@@ -2,7 +2,9 @@
 I store metadata for this package. These meta data are used by other tools such as the SmalllintManifestChecker and the critics Browser
 "
 Class {
-	#name : #ManifestPillarProject,
-	#superclass : #PackageManifest,
-	#category : 'Pillar-Project-Core'
+	#name : 'ManifestPillarProject',
+	#superclass : 'PackageManifest',
+	#category : 'Pillar-Project-Core',
+	#package : 'Pillar-Project',
+	#tag : 'Core'
 }

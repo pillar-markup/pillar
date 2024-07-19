@@ -1,13 +1,15 @@
 Class {
-	#name : #PRFileCopyVisitor,
-	#superclass : #CopyVisitor,
+	#name : 'PRFileCopyVisitor',
+	#superclass : 'CopyVisitor',
 	#instVars : [
 		'conflictResolutionBlock'
 	],
-	#category : 'Pillar-Project-Core'
+	#category : 'Pillar-Project-Core',
+	#package : 'Pillar-Project',
+	#tag : 'Core'
 }
 
-{ #category : #copying }
+{ #category : 'copying' }
 PRFileCopyVisitor class >> copy: srcReference to: dstReference onConflictDo: conflictResolutionBlock [
 	^ self basicNew
 		initializeWithSource: srcReference 
@@ -16,13 +18,13 @@ PRFileCopyVisitor class >> copy: srcReference to: dstReference onConflictDo: con
 		visit
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRFileCopyVisitor >> conflictResolutionBlock: aConflictResolutionBlock [
 
 	conflictResolutionBlock := aConflictResolutionBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRFileCopyVisitor >> copyDirectory: aReference [
 	| copy |
 	copy := dest resolve: (aReference relativeTo: source).
@@ -31,7 +33,7 @@ PRFileCopyVisitor >> copyDirectory: aReference [
 	copy createDirectory
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRFileCopyVisitor >> copyFile: aReference [
 	| copy |
 	copy := dest resolve: (aReference relativeTo: source).
@@ -40,7 +42,7 @@ PRFileCopyVisitor >> copyFile: aReference [
 	aReference copyTo: copy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRFileCopyVisitor >> initialize [
 	super initialize.
 	conflictResolutionBlock := [ :sourceFile :targetFile | sourceFile copyTo: targetFile ]
