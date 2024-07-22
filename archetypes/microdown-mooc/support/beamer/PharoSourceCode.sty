@@ -1,0 +1,122 @@
+% By Luc Fabresse, 2015
+\ProvidesPackage{PharoSourceCode}
+
+\RequirePackage[most]{tcolorbox}
+
+\newcommand{\codesourcesize}{\small}
+
+% \newcommand{\codesourcefont}{\codesourcesize\sffamily}
+\newcommand{\codesourcefont}{\codesourcesize\usefont{T1}{SourceSansPro-TLF}{m}{n}}
+
+% Source Code
+\newcommand{\myCommentStyle}[1]{{\codesourcefont\color{gray!100!white} #1}}
+% my string style
+\newcommand{\myStringStyle}[1]{{\codesourcefont\color{violet!100!black} #1}}
+% my symbol style
+\newcommand{\mySymbolStyle}[1]{{\codesourcefont\color{violet!100!black} #1}}
+% my keyword style
+\newcommand{\myKeywordStyle}[1]{{\codesourcefont\color{green!70!black} #1}}
+% my global style
+\newcommand{\myGlobalStyle}[1]{{\codesourcefont\color{blue!100!black} #1}}
+% my number style
+\newcommand{\myNumberStyle}[1]{{\codesourcefont\color{brown!100!black} #1}}
+
+\lstset{
+% inputencoding=utf8,
+language={},
+tabsize=3,
+% we don't use the escapechar
+% escapechar={!},
+xleftmargin=-6pt,
+nolol,
+keepspaces=true,
+breaklines=true,
+alsoletter={\#},
+literate={\$}{{{\$}}}1,
+breakautoindent=true,
+columns=fullflexible,
+showstringspaces=false,
+frame=single,
+% aboveskip=1em, % automatic space before
+aboveskip=0em, 
+belowskip=-1em,
+framerule=0pt,
+basicstyle=\codesourcefont\color{black},
+% basicstyle=\codesourcefont\color{black},
+keywordstyle=\myKeywordStyle,% keyword style
+commentstyle=\myCommentStyle,% comment style
+frame=single,%
+% backgroundcolor=\color{source},
+mathescape=false,
+stepnumber=1,
+% numbersep=10pt,
+numberstyle=\tiny\color{Pharo-blue!75!black},
+numberfirstline=true,
+captionpos=b,
+moredelim=[is][\bfseries]{&lt;b&gt;}{&lt;/b&gt;},
+moredelim=[is][\textit]{&lt;i&gt;}{&lt;/i&gt;},
+moredelim=[is][\underbar]{&lt;u&gt;}{&lt;/u&gt;},
+moredelim=[is][\color{red}\uwave]{&lt;wave&gt;}{&lt;/wave&gt;},
+moredelim=[is][\color{red}\sout]{&lt;del&gt;}{&lt;/del&gt;},
+moredelim=[is][\color{blue}\underbar]{&lt;ins&gt;}{&lt;/ins&gt;},
+morecomment=[s][\myCommentStyle]{"}{"},
+morestring=[b][\myStringStyle]',
+moredelim=[is][]{&lt;sel&gt;}{&lt;/sel&gt;},
+moredelim=[is][]{&lt;rcv&gt;}{&lt;/rcv&gt;},
+moredelim=[is][\itshape]{&lt;symb&gt;}{&lt;/symb&gt;},
+moredelim=[is][\scshape]{&lt;class&gt;}{&lt;/class&gt;},
+morekeywords={true,false,nil,self,super,thisContext},
+identifierstyle=\idstyle,
+}
+
+\makeatletter
+\newcommand*\idstyle[1]{%
+\expandafter\id@style\the\lst@token{#1}\relax%
+}
+\def\id@style#1#2\relax{%
+\ifnum\pdfstrcmp{#1}{\#}=0%
+% this is a symbol
+\mySymbolStyle{\the\lst@token}%
+\else%
+\edef\tempa{\uccode`#1}%
+\edef\tempb{`#1}%
+\ifnum\tempa=\tempb%
+% this is a global
+\myGlobalStyle{\the\lst@token}%
+\else%
+\the\lst@token%
+\fi%
+\fi%
+}
+\makeatother
+
+% \usepackage{fixltx2e}
+
+\newtcblisting{listing}[1]{
+% enhanced,%
+% nobeforeafter,
+boxrule=1pt,%leftrule=4pt,
+colback=white!95!Pharo-blue,colframe=white!50!Pharo-blue,listing only, listing options={linewidth=1.05\textwidth}}
+
+% enlarge listings
+% \newtcblisting{code}[1]{
+% % enhanced,%
+% % nobeforeafter,
+% boxrule=1pt,%leftrule=4pt,
+% width=\textwidth+1.05cm,
+% % enlarge left by=-1cm,left=1cm,
+% enlarge right by=-1.05cm,right=1.05cm,
+% colback=white!95!Pharo-blue,colframe=white!50!Pharo-blue,listing only, listing options={linewidth=10cm,breakindent=0.5em}}
+
+\newtcblisting{numcode}[1]{
+enhanced,%nobeforeafter,
+boxrule=1pt,%leftrule=10pt,
+colback=white!95!Pharo-blue,colframe=white!50!Pharo-blue,listing only, listing options={numbers=left}}
+
+% \newtcbox{\codeinline}{enhanced,nobeforeafter,
+% fontupper=\codesourcefont,tcbox raise base,boxrule=0pt,top=0mm,bottom=0mm,
+%   right=0mm,left=0mm,arc=1pt,boxsep=2pt,
+%   colback=white!95!Pharo-blue,colframe=white!50!Pharo-blue}
+% \robustify{\codeinline}
+
+\newcommand{\code}[1]{{\codefont{}#1}}

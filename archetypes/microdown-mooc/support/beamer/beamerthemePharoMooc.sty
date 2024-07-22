@@ -1,0 +1,95 @@
+% By Luc Fabresse, 2015
+\ProvidesPackage{beamerthemePharoMooc}
+
+% Default values if no video
+\newlength{\videowidth}
+\setlength{\videowidth}{0px}			% video width
+\newcommand{\insertSpaceForVideo}{} 
+
+\newcommand{\insertBorderForHandout}{} 
+\newcommand{\insertSpaceBeforeBottomLeftFotHandout}{} 
+
+\newlength{\originaltextwidth}
+\setlength{\originaltextwidth}{\textwidth}
+
+\newlength{\pharoPhotoWidth}
+% \setlength{\pharoPhotoWidth}{2.295cm}
+\setlength{\pharoPhotoWidth}{4cm}
+
+% ====== Package option to reserve space for the video
+\DeclareOptionBeamer{spaceforvideo}[false]{%
+\setlength{\videowidth}{128px}%
+\setlength{\pharoPhotoWidth}{2.1cm}
+
+% Commande pour afficher une zone réservée pour la video
+\renewcommand{\insertSpaceForVideo}{%
+\begin{beamercolorbox}[wd=0.13\paperwidth,ht=8ex,dp=3ex,center]{author in head/foot}%
+\begin{textblock*}{10px}(11.48cm,5.76cm)%
+% \includegraphics[width=\videowidth,height=91.7px]{espace-res-transparent}%
+\end{textblock*}%
+\end{beamercolorbox}%
+}%
+
+\setlength{\textwidth}{\originaltextwidth - \videowidth + 0.95cm}%
+}
+% \ExecuteOptionsBeamer{spaceforvideo=false}
+
+% ====== Package option for handout
+\DeclareOptionBeamer{handout}[false]{%
+
+	\renewcommand{\insertSpaceBeforeBottomLeftFotHandout}{\hskip 0.2mm} 
+
+	% to print the handout version
+	\mode<handout>{
+	  \usepackage{pgfpages}
+	  \pgfpagesuselayout{8 on 1}[a4paper,border shrink=1mm]
+	  % \pgfpagesuselayout{16 on 1}[a4paper,border shrink=2mm,landscape]
+
+	  % Make a border around frames
+	  \renewcommand{\insertBorderForHandout}{ \tikz \draw[semithick,draw=Pharo-blue!90!black]
+	      (current page.north west)
+	      rectangle
+	      (current page.south east); }
+	}
+}
+
+% ===============
+\ProcessOptionsBeamer
+% ===============
+
+\usecolortheme{PharoMooc}
+\useoutertheme{PharoMooc}
+
+\setlist[itemize,1]{topsep=0em,leftmargin=1em,partopsep=0.5em,label=\raisebox{0.4ex}{\tiny$\CIRCLE$},font=\color{Pharo-blue}}
+\setlist[itemize,2]{leftmargin=1em,label=\raisebox{0.1ex}{$\circ$},font=\color{Pharo-blue}}
+
+
+\setlist[enumerate]{label*=\arabic*.,font=\color{Pharo-blue}}
+
+\setlength{\leftmargini}{1.5em}
+
+\usefonttheme{PharoMooc}
+
+\RequirePackage{PharoSourceCode}
+
+
+%-------------------------------------------------------------------------------
+%                Section slides
+%-------------------------------------------------------------------------------
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Plan}
+    \small\tableofcontents[currentsection,subsectionstyle=hide/hide/hide]
+  \end{frame}
+}
+
+\AtBeginSubsection[] % Do nothing for \subsection* 
+{ 
+\begin{frame}<beamer> 
+\frametitle{Plan}
+\small\tableofcontents[currentsection,currentsubsection,subsectionstyle=show/shaded/hide] 
+\end{frame} 
+} 
+
