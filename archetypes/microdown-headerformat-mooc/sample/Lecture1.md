@@ -1,6 +1,7 @@
 {
-"title" : "Advanced Object-Oriented Design",
-"slidesid":"2023"
+ "title" : "Sample with header as slide definition",
+ "subtitle" : "A nice extension",
+ "slidesid":"M5S3-2"
 }
 
 # First slide

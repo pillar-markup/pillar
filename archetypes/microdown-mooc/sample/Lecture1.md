@@ -1,6 +1,7 @@
 {
-"title" : "Sample with <! !> use",
-"slidesid":"2023"
+  "title" : "Sample with <! !> use",
+  "subtitle" : "A bit verbose",
+  "slidesid" : "2023"
 }
 
 <!slide|title=First slide
