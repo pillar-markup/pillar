@@ -24,7 +24,7 @@ For HTTPS setup, execute the `build.sh` script found in the `scripts` directory:
 ```bash
 $ git clone https://github.com/pillar-markup/pillar.git
 $ cd pillar
-$ git checkout v10.0.1
+$ git checkout v10.1.0
 $ chmod a+x ./scripts/build.sh
 $ ./scripts/build.sh
 ```
@@ -174,7 +174,7 @@ The following script can be useful if you develop using the launcher and want to
 
 ### For Pharo 12 
 The development of Pillar and Microdown are now in Pharo 12.
-- V10.1.0 Introduces new template for slides - microdown-mooc (based on extension <!slide...!>) and microdown-headerformat-mooc (using top-level header as slide definition marker. 
+- V10.1.0 Introduces new template for slides - microdown-mooc (based on extension <!slide...!>) and microdown-headerformat-mooc (using top-level header as slide definition marker. It sses Microdown v2.5.5.
 - v10.0.1 Introduce figure arguments in caption instead of url for better integration with Github.
 - v10.0.0 bug fix with some links problems due to new inline parser.
 
