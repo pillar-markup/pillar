@@ -169,15 +169,12 @@ The following script can be useful if you develop using the launcher and want to
 /Users/ducasse/Documents/Pharo/vms/100-x64/Pharo.app/Contents/MacOS/Pharo  /Users/ducasse/Documents/Pharo/images/P11-PillarRealReference/P10-PillarRealReference.image clap build pdf index.pillar
 ```
 
-## More documentation
-
-Read the documentation at [https://github.com/SquareBracketAssociates/Booklet-PublishingAPillarBooklet](https://github.com/SquareBracketAssociates/Booklet-PublishingAPillarBooklet).
-Please note that chapter on "Pharo a web Perspective" is obsolete since it refers to Pharo 60.
 
 ## History
 
 ### For Pharo 12 
 The development of Pillar and Microdown are now in Pharo 12.
+- V10.1.0 Introduces new template for slides - microdown-mooc (based on extension <!slide...!>) and microdown-headerformat-mooc (using top-level header as slide definition marker. 
 - v10.0.1 Introduce figure arguments in caption instead of url for better integration with Github.
 - v10.0.0 bug fix with some links problems due to new inline parser.
 
@@ -206,12 +203,16 @@ The development of Pillar and Microdown are now in Pharo 12.
 - 7.4.1 introduces element-based templating (templates found in a given folder are used to output one given element).
 
 ## Planned development
-- Release new Pillar for Pharo11.
-- Check Seaside book conversion bug
-- Check dev version of Microdown with new inline parser: when working, freeze MD with a new tagged version and freeze a new Pillar version. 
-- Check support for math
+- Take advantage of booktester
+- Check Macrodown and Foliage
+- Stronger support for math
 - Use Templating for LaTeX
-- Remodularize packaging to be able to use Pillar inside Pharo for class/package comments.
 - Integration with Citezen
 - Better templates for Web
-- More components - Simple blog
+- New markup for natural nesting (not forcing closing markup)
+
+## Old and obsolete documentation
+
+Read the documentation at [https://github.com/SquareBracketAssociates/Booklet-PublishingAPillarBooklet](https://github.com/SquareBracketAssociates/Booklet-PublishingAPillarBooklet).
+Please note that chapter on "Pharo a web Perspective" is obsolete since it refers to Pharo 60.
+
