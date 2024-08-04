@@ -9,6 +9,7 @@ Class {
 BaselineOfPillar >> baseline: spec [
 
 	<baseline>
+	self halt.
 	spec for: #common do: [
 		self
 			chrysal: spec;
@@ -139,7 +140,9 @@ BaselineOfPillar >> microdown: spec [
 BaselineOfPillar >> microdownPreLoad [
 	
 	| packagesToUnload |
+	self halt.
 	((IceRepository repositoryNamed: 'Microdown') packageNamed: 'BaselineOfMicrodown') unload.
+	
 	packagesToUnload := ((PackageOrganizer default packages 
 		select: [ :each | each name beginsWith: 'Microdown' ])  collect: [ :each | each name ]) 
 		reject: [ :each |  
