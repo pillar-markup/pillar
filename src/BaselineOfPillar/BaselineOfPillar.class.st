@@ -195,8 +195,6 @@ BaselineOfPillar >> microdown: spec [
 BaselineOfPillar >> microdownPreLoad [
 	
 	| packagesToUnload |
-	self halt.
-	(IceRepository repositoryNamed: 'Microdown') ifNotNil: [ :i | (i packageNamed: 'BaselineOfMicrodown') unload].
 	
 	packagesToUnload := ((PackageOrganizer default packages 
 		select: [ :each | each name beginsWith: 'Microdown' ])  collect: [ :each | each name ]) 
@@ -204,11 +202,12 @@ BaselineOfPillar >> microdownPreLoad [
  #('Microdown-RichTextPresenter' 'Microdown-RichTextPresenter-Tests') includes: each ].
 	"these two are not managed by the microdown repo but the documentation.
 	I should rename them in the future to avoid confusion"
-
+	packagesToUnload add: 'BaselineOfMicrodown'.
 	packagesToUnload do: 
 		[ :each | 
 			((IceRepository repositoryNamed: 'Microdown') packageNamed: each) unload ].
-
+	(IceRepository repositoryNamed: 'Microdown') delete.
+	Smalltalk globals at: #BaselineOfMicrodown ifPresent: [ :c | c removeFromSystem ]
 
 ]
 
