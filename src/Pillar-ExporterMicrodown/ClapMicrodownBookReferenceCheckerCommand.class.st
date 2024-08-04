@@ -35,31 +35,42 @@ ClapMicrodownBookReferenceCheckerCommand class >> commandSpecification [
 ClapMicrodownBookReferenceCheckerCommand >> execute [
 	| file checker |
 	file :=  self requestedFile asString asFileReference. 
+
 	file exists 
 		ifTrue: [ 
 			checker := MicReferenceChecker new.
+			checker fileSystem: FileSystem workingDirectory.
 			checker checkProject: file.
 			checker isOkay
 					ifTrue: [ 
 						self outputStreamDo: 
 									[ :str | str 
+											cr;
 											nextPutAll:  'File ' ; 
-											nextPutAll: file fullName ; 
-											nextPutAll: 'does not have reference problems.' ]]
+											nextPutAll: (self relativePathStringOf: file) ; 
+											nextPutAll: ' does not have reference problems.' ]]
 					ifFalse: [ 
 						self outputStreamDo: 
 									[ :str | 
 										str 
+											cr; 
 											nextPutAll: 'File ' ; 
-											nextPutAll: file fullName ; 
-											nextPutAll: 'has reference problems.'.
-										checker buildReport: str ] ] ]
+											nextPutAll: (self relativePathStringOf: file) ; 
+											nextPutAll: ' has reference problems.'; cr.
+										checker buildReportOn: str ] ] ]
 		ifFalse: [ 
 				self outputStreamDo: [ :str | 
 					str 
+						cr; 
 						nextPutAll: 'File ' ; 
 						nextPutAll: file fullName ; 
 						nextPutAll: ' does not exist.'  ] ]
+]
+
+{ #category : 'execution' }
+ClapMicrodownBookReferenceCheckerCommand >> relativePathStringOf: aFile [
+
+	^ ((FileSystem workingDirectory resolve: aFile) relativeTo: FileSystem workingDirectory) fullName
 ]
 
 { #category : 'execution' }
