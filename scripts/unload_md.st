@@ -8,6 +8,8 @@ IceRepository registry
 
 "This, however, needs to stay :)"
 
+Smalltalk globals at: #BaselineOfMicrodown ifPresent: [ :c | c removeFromSystem ].
+
 #( 'Microdown' 'BeautifulComments' 'DocumentBrowser' ) do: [ :name |
 		(IceRepository repositoryNamed: name)
 			ifNil: [ self inform: 'Project not found: ' , name ]
