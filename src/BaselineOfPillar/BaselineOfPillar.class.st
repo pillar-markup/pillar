@@ -190,6 +190,27 @@ BaselineOfPillar >> microdown: spec [
 ]
 
 { #category : 'dependencies' }
+BaselineOfPillar >> microdownPreLoad [
+	
+	| packagesToUnload |
+	self halt.
+	((IceRepository repositoryNamed: 'Microdown') packageNamed: 'BaselineOfMicrodown') unload.
+	
+	packagesToUnload := ((PackageOrganizer default packages 
+		select: [ :each | each name beginsWith: 'Microdown' ])  collect: [ :each | each name ]) 
+		reject: [ :each |  
+ #('Microdown-RichTextPresenter' 'Microdown-RichTextPresenter-Tests') includes: each ].
+	"these two are not managed by the microdown repo but the documentation.
+	I should rename them in the future to avoid confusion"
+
+	packagesToUnload do: 
+		[ :each | 
+			((IceRepository repositoryNamed: 'Microdown') packageNamed: each) unload ].
+
+
+]
+
+{ #category : 'dependencies' }
 BaselineOfPillar >> mustache: spec [
 
 	spec baseline: 'Mustache' with: [
