@@ -139,6 +139,7 @@ BaselineOfPillar >> microdown: spec [
 BaselineOfPillar >> microdownPreLoad [
 	
 	| packagesToUnload |
+	((IceRepository repositoryNamed: 'Microdown') packageNamed: 'BaselineOfMicrodown') unload.
 	packagesToUnload := ((PackageOrganizer default packages 
 		select: [ :each | each name beginsWith: 'Microdown' ])  collect: [ :each | each name ]) 
 		reject: [ :each |  
