@@ -194,7 +194,7 @@ BaselineOfPillar >> microdown: spec [
 { #category : 'dependencies' }
 BaselineOfPillar >> microdownPreLoad [
 	
-	| packagesToUnload |
+	| packagesToUnload mic |
 	
 	packagesToUnload := ((PackageOrganizer default packages 
 		select: [ :each | each name beginsWith: 'Microdown' ])  collect: [ :each | each name ]) 
@@ -204,10 +204,12 @@ BaselineOfPillar >> microdownPreLoad [
 	I should rename them in the future to avoid confusion"
 	packagesToUnload := packagesToUnload asOrderedCollection.
 	packagesToUnload add: 'BaselineOfMicrodown'.
-	packagesToUnload do: 
-		[ :each | 
-			((IceRepository repositoryNamed: 'Microdown') packageNamed: each) unload ].
-	(IceRepository repositoryNamed: 'Microdown') delete.
+	mic := (IceRepository repositoryNamed: 'Microdown').
+	mic ifNotNil: [ 
+		packagesToUnload do: 
+			[ :each | 
+				(mic packageNamed: each) unload ].
+		mic delete ].
 	Smalltalk globals at: #BaselineOfMicrodown ifPresent: [ :c | c removeFromSystem ]
 
 ]
