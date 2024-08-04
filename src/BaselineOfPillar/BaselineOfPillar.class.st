@@ -22,9 +22,10 @@ BaselineOfPillar >> baseline: spec [
 			package: 'Pillar-MicrodownToPillarConverter' 
 				with: [ spec requires: #( 'Pillar-Core' 'Microdown' ) ];
 			package: 'Pillar-ExporterMicrodown' 
-				with: [ spec requires: #( 
+				with: [ 
+					"Apparently I'm not allowed to say that Pillar-ExporterMicrodown depends on Microdown-BookTester :("
+					spec requires: #( 
 					'Microdown' 
-					'Microdown-BookTester' 
 					'Pillar-PetitPillar' 
 					'Pillar-ExporterCore' 
 					'Pillar-Tests-ExporterCore') ];
@@ -185,7 +186,8 @@ BaselineOfPillar >> customProjectAttributes [
 
 { #category : 'dependencies' }
 BaselineOfPillar >> microdown: spec [
-
+	
+	self microdownPreLoad.
 	spec baseline: 'Microdown' with: [ spec repository: 'github://pillar-markup/Microdown:dev/src' ]
 ]
 
@@ -194,7 +196,7 @@ BaselineOfPillar >> microdownPreLoad [
 	
 	| packagesToUnload |
 	self halt.
-	((IceRepository repositoryNamed: 'Microdown') packageNamed: 'BaselineOfMicrodown') unload.
+	(IceRepository repositoryNamed: 'Microdown') ifNotNil: [ :i | (i packageNamed: 'BaselineOfMicrodown') unload].
 	
 	packagesToUnload := ((PackageOrganizer default packages 
 		select: [ :each | each name beginsWith: 'Microdown' ])  collect: [ :each | each name ]) 
