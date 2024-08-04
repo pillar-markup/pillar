@@ -97,7 +97,7 @@ BaselineOfPillar >> baseline: spec [
 				with: [ spec requires: #( 'Pillar-BookTester' ) ];
 			package: 'Pillar-Tests-Project' 
 				with: [ spec requires: #( 'Pillar-Project' ) ];
-			package: 'Pillar-Tests-Integration' w
+			package: 'Pillar-Tests-Integration'
 				with: [ spec requires: #( 'Pillar-Project' ) ].
 
 		spec
