@@ -202,6 +202,7 @@ BaselineOfPillar >> microdownPreLoad [
  #('Microdown-RichTextPresenter' 'Microdown-RichTextPresenter-Tests') includes: each ].
 	"these two are not managed by the microdown repo but the documentation.
 	I should rename them in the future to avoid confusion"
+	packagesToUnload := packagesToUnload asOrderedCollection.
 	packagesToUnload add: 'BaselineOfMicrodown'.
 	packagesToUnload do: 
 		[ :each | 
