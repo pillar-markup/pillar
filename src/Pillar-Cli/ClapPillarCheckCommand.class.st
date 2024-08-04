@@ -11,7 +11,7 @@ Class {
 
 { #category : 'accessing' }
 ClapPillarCheckCommand class >> commandName [
-	^ 'check'
+	^ 'codeCheck'
 ]
 
 { #category : 'command line' }
