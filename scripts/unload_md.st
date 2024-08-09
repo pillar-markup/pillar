@@ -20,7 +20,7 @@ Uncommenting this line breaks the load from the script. I do not get why."
 			ifNotNil: [ :found |
 				found
 					unload;
-					forget ] ]
+					forget ] ].
 					
 
 'BaselineOfMicrodown' asPackage remove from system.
