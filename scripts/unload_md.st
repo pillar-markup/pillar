@@ -8,7 +8,8 @@ IceRepository registry
 
 "This, however, needs to stay :)"
 
-Smalltalk globals at: #BaselineOfMicrodown ifPresent: [ :c | c removeFromSystem ].
+"Smalltalk globals at: #BaselineOfMicrodown ifPresent: [ :c | c removeFromSystem ].
+Uncommenting this line breaks the load from the script. I do not get why."
 
 #( 'Microdown' 'BeautifulComments' 'DocumentBrowser' ) do: [ :name |
 		(IceRepository repositoryNamed: name)
