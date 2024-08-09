@@ -23,7 +23,7 @@ Uncommenting this line breaks the load from the script. I do not get why."
 					forget ] ].
 					
 
-'BaselineOfMicrodown' asPackage remove from system.
+'BaselineOfMicrodown' asPackage removeFromSystem.
 'Microdown-Tests' asPackage removeFromSystem.
 'Microdown' asPackage removeFromSystem.
 'Microdown-RichTextComposer' asPackage removeFromSystem.
