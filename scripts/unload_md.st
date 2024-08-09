@@ -11,6 +11,9 @@ IceRepository registry
 "Smalltalk globals at: #BaselineOfMicrodown ifPresent: [ :c | c removeFromSystem ].
 Uncommenting this line breaks the load from the script. I do not get why."
 
+
+
+
 #( 'Microdown' 'BeautifulComments' 'DocumentBrowser' ) do: [ :name |
 		(IceRepository repositoryNamed: name)
 			ifNil: [ self inform: 'Project not found: ' , name ]
@@ -18,3 +21,12 @@ Uncommenting this line breaks the load from the script. I do not get why."
 				found
 					unload;
 					forget ] ]
+					
+
+'BaselineOfMicrodown' asPackage remove from system.
+'Microdown-Tests' asPackage removeFromSystem.
+'Microdown' asPackage removeFromSystem.
+'Microdown-RichTextComposer' asPackage removeFromSystem.
+'Microdown-RichTextPresenter-Tests' asPackage removeFromSystem.
+'Microdown-RichTextPresenter' asPackage removeFromSystem.
+'Spec2-Microdown' asPackage removeFromSystem.
