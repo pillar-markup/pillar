@@ -27,6 +27,4 @@ Uncommenting this line breaks the load from the script. I do not get why."
 'Microdown-Tests' asPackage removeFromSystem.
 'Microdown' asPackage removeFromSystem.
 'Microdown-RichTextComposer' asPackage removeFromSystem.
-'Microdown-RichTextPresenter-Tests' asPackage removeFromSystem.
-'Microdown-RichTextPresenter' asPackage removeFromSystem.
 'Spec2-Microdown' asPackage removeFromSystem.
