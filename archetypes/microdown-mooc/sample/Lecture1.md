@@ -12,6 +12,10 @@ What a beautiful slide
 - 1122
 - 1133
 
+```
+a + b = 42
+```
+
 !>
 
 <!slide|title=Second slide
