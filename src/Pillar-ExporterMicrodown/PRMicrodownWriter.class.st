@@ -102,7 +102,7 @@ PRMicrodownWriter >> visitCodeblock: aCodeBlock [
 	
 	"the only parameter that could be contain a Pillar element is the caption so let us treat separately"
 	| microdownizedCaption parameters caption |
-	parameters := aCodeBlock parameters .
+	parameters := aCodeBlock parameters.
 	"aCodeBlock hasCaption is not working well so use the accessor"
 	caption := aCodeBlock caption.
 	caption text isEmpty
@@ -110,6 +110,8 @@ PRMicrodownWriter >> visitCodeblock: aCodeBlock [
 					parameters at: 'caption' put: microdownizedCaption].
 				
 	"may be we should change the builder to accept an orderedDictionary so that we can just change the caption."
+	"The builder should probably manage this newLine logic since it forces clients to be carefull"
+	canvas newLine.
 	canvas codeblock: aCodeBlock text firstLineAssociations: parameters associations.
 	
 ]

@@ -8,6 +8,7 @@ Class {
 { #category : 'visiting - slides' }
 PRAlternateSlideMicrodownWriter >> visitSlide: aPRSlide [
 
-	canvas header: [ aPRSlide title ] withLevel: 1.
+	canvas header: [ canvas text: aPRSlide title ] withLevel: 1.
 	self visitDocumentGroup: aPRSlide.
+
 ]
