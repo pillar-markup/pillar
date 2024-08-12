@@ -82,12 +82,19 @@ PRConverterToMic >> handleConfigFile [
 ]
 
 { #category : 'conversion' }
+PRConverterToMic >> microdownWriter [
+
+	^ PRMicrodownWriter
+]
+
+{ #category : 'conversion' }
 PRConverterToMic >> writeMicrodownOn: aPath forInput: input [
 
 	| fileReference |
-	fileReference := aPath parent / (aPath basenameWithoutExtension , '.md').
+	fileReference := aPath parent
+	                 / (aPath basenameWithoutExtension , '.md').
 	fileReference ensureDelete.
-	^ PRMicrodownWriter new
+	^ self microdownWriter new
 		  setStream: fileReference writeStream;
 		  start: input
 ]
