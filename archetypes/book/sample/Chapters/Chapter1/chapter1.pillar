@@ -1,8 +1,0 @@
-!!Compilation
-
-+Pillar logo>figures/pillar.png|width=30+
-Welcome to Pillar's little user-guide !!
-
-To write a book, you can create chapters and include them into ''book.pillar'' (see the ''book.pillar'' file)
-or directly edit the file.
-If you don't know ''Pillar'', check its documentation at *http://github.com/pillar-markup/pillar*.
