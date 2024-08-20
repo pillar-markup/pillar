@@ -29,12 +29,27 @@ PRArchetype >> directory: aDirectory [
 ]
 
 { #category : 'actions' }
+PRArchetype >> installGHWorkflowIn: baseDirectory [ 
+
+	| destination source |
+	source := self directory / 'support' / 'github'.
+	source exists ifFalse: [ ^ self]. 
+
+	destination := baseDirectory / '.github' / 'workflows'.
+	(baseDirectory / '.github') createDirectory.
+	(baseDirectory / '.github' / 'workflows') createDirectory.
+	
+	source copyAllTo: destination
+]
+
+{ #category : 'actions' }
 PRArchetype >> installIn: baseDirectory [
 
 	(self directory / 'sample')
 		children do: [ :child | child copyAllTo: baseDirectory / child basename ].
 		
 	self installTemplateIn: baseDirectory.
+	self installGHWorkflowIn: baseDirectory
 ]
 
 { #category : 'actions' }
