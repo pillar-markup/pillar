@@ -30,7 +30,8 @@ Point class >> new
 '.
 	result := writer start: pillarobject ; contents.
 	self assert: result equals: 
-'```language=pharo&caption=Pointclass
+'
+```language=pharo&caption=Pointclass
 Point class >> new
 	self foo	
 ```
@@ -47,7 +48,8 @@ Point class >> new
 ]]]'.
 	result := writer start: pillarobject ; contents.
 	self assert: result equals: 
-'```language=smalltalk
+'
+```language=smalltalk
 Point class >> new
 	self foo	
 ```
@@ -231,7 +233,8 @@ Point class >> new
 
 	result := writer start: pillarobject ; contents.
 	self assert: result equals: 
-'```
+'
+```
 Point class >> new
 	self foo	
 ```

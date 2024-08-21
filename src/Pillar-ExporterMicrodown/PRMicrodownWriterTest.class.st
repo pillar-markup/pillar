@@ -75,16 +75,16 @@ PRMicrodownWriterTest >> testAnchor [
 PRMicrodownWriterTest >> testAnnotated [
 	"!!Note Pharo is cool and microdown too."
 	
-	self testWithInitialText: (builder rawAnnotated: 'Note' paragraph:  'Pharo is cool and microdown too'; contents).
-	self assert: parsedBloc children first label equals: 'Note'.
+	self testWithInitialText: (builder rawAnnotated: 'note' paragraph:  'Pharo is cool and microdown too'; contents).
+	self assert: parsedBloc children first label equals: 'note'.
 ]
 
 { #category : 'tests - annotated' }
 PRMicrodownWriterTest >> testAnnotatedOnMultipleLines [
 
-	self testWithInitialText: (builder rawAnnotated: 'Note' paragraph:  'Pharo is cool
+	self testWithInitialText: (builder rawAnnotated: 'note' paragraph:  'Pharo is cool
 and microdown too'; contents).
-	self assert: parsedBloc children first label equals: 'Note'.
+	self assert: parsedBloc children first label equals: 'note'.
 ]
 
 { #category : 'tests - formatting' }
@@ -111,6 +111,7 @@ PRMicrodownWriterTest >> testCodeBlockCaptionContainsMonospace [
 
 	| mictext |
 	mictext := builder
+						newLine;
 		           codeblock: self exampleTextMultipleLines
 		           firstLineAssociations: { 
 							  ('language' -> 'pharo').
@@ -131,7 +132,8 @@ PRMicrodownWriterTest >> testCodeBlockParametersWithValueTrue [
 	pillar := PRPillarParser new parse: '[[[testcase=true
 this is a code block
 ]]]'.
-	self assert: (pillar accept: writer) contents equals: '```testcase=true
+	self assert: (pillar accept: writer) contents equals: '
+```testcase=true
 this is a code block
 ```
 '
@@ -625,7 +627,7 @@ PRMicrodownWriterTest >> testSimpleCodeBlock [
 	Pharo
 	```"
 	
-	self testWithInitialText: (builder codeblock: self exampleTextMultipleLines 
+	self testWithInitialText: (builder newLine; codeblock: self exampleTextMultipleLines 
 												 firstLineAssociations: {('language' -> 'pharo')}; contents)
 ]
 
@@ -636,7 +638,7 @@ PRMicrodownWriterTest >> testSimpleCodeBlockWithFirstTag [
 	Pharo
 	```"
 	| mictext |
-	mictext := builder codeblock: self exampleTextMultipleLines firstLineAssociations: {'language' -> 'Pharo'} ; contents.
+	mictext := builder newLine; codeblock: self exampleTextMultipleLines firstLineAssociations: {'language' -> 'Pharo'} ; contents.
 	self testWithInitialText: mictext.
 	self assert: ('*language*' match: mictext) 
 ]
