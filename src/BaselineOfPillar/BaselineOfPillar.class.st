@@ -132,7 +132,7 @@ BaselineOfPillar >> customProjectAttributes [
 BaselineOfPillar >> microdown: spec [
 	
 	"self microdownPreLoad."
-	spec baseline: 'Microdown' with: [ spec repository: 'github://pillar-markup/Microdown:dev/src' ]
+	spec baseline: 'Microdown' with: [ spec repository: 'github://pillar-markup/Microdown:v2.5.6/src' ]
 ]
 
 { #category : 'dependencies' }
@@ -143,7 +143,7 @@ BaselineOfPillar >> microdownPreLoad [
 	packagesToUnload := ((PackageOrganizer default packages 
 		select: [ :each | each name beginsWith: 'Microdown' ])  collect: [ :each | each name ]) 
 		reject: [ :each |  
- #('Microdown-RichTextPresenter' 'Microdown-RichTextPresenter-Tests') includes: each ].
+ 	#('Microdown-RichTextPresenter' 'Microdown-RichTextPresenter-Tests') includes: each ].
 	"these two are not managed by the microdown repo but the documentation.
 	I should rename them in the future to avoid confusion"
 	packagesToUnload := packagesToUnload asOrderedCollection.
@@ -154,8 +154,13 @@ BaselineOfPillar >> microdownPreLoad [
 			[ :each | 
 				(mic packageNamed: each) unload ].
 		mic delete ].
-	Smalltalk globals at: #BaselineOfMicrodown ifPresent: [ :c | c removeFromSystem ]
-
+	#( 'Microdown' 'DocumentBrowser' ) do: [ :name |
+		(IceRepository repositoryNamed: name)
+			ifNil: [ ('Project not found: ' , name) traceCr ]
+			ifNotNil: [ :found |
+				found
+					unload;
+					forget ] ].
 ]
 
 { #category : 'dependencies' }
