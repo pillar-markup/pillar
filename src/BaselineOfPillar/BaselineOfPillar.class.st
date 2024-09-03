@@ -13,6 +13,7 @@ BaselineOfPillar >> baseline: spec [
 	spec for: #common do: [
 		self
 			chrysal: spec;
+			clap: spec;
 			containersPropertyEnvironment: spec;
 			microdown: spec;
 			mustache: spec;
@@ -107,6 +108,14 @@ BaselineOfPillar >> baseline: spec [
 BaselineOfPillar >> chrysal: spec [
 
 	spec baseline: 'Chrysal' with: [ spec repository: 'github://Ducasse/Chrysal:v1.0.0/src' ]
+]
+
+{ #category : 'dependencies' }
+BaselineOfPillar >> clap: spec [
+
+    spec 
+        baseline: #Clap
+        with: [ spec repository: 'github://pharo-contributions/clap-st:master/src' ]
 ]
 
 { #category : 'dependencies' }

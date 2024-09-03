@@ -26,7 +26,10 @@ ClapPillarArchetypeCommand class >> commandSpecification [
 		add: ((ClapPositional id: #requestedArchetype )
 			description: 'Archetype you want to use');
 		add: ((ClapFlag id: #templatable )
-			description: 'Use a template');			
+			description: 'Use a template');	
+		add: ((ClapFlag id: #list )
+			description: 'Display the list of archetypes');				
+		
 		meaning:
 			[ :args |
 			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
@@ -35,6 +38,8 @@ ClapPillarArchetypeCommand class >> commandSpecification [
 
 { #category : 'execution' }
 ClapPillarArchetypeCommand >> execute [
+
+	
 	self project installArchetypeNamed: self requestedArchetype asString.
 ]
 
