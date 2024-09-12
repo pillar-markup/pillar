@@ -20,16 +20,15 @@ ClapPillarCommand class >> commandSpecification [
 	
 	| command |
 	
-	command := (ClapCommand id: #pillar)
+	command := (ClapCommandSpec id: #pillar)
 		description: 'Pillar is a markup syntax and associated tools to write and generate documents lie books in PDF, websites in html, or slides';
-		add: ClapFlag forHelp;
-		add: ((ClapFlag id: #version )
-			description: 'Prints the version of your Pharo VM');	
+		addHelp;
+		addFlag: #version description: 'Prints the version of your Pharo VM';	
 		yourself.
 	
 	self pillarCommandsList do: [ :each | 
-		command addSubcommand: each
-		 ].
+		command addSubcommand: each ].
+	
 	 ^ command meaning: [ :args | 
 		args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
 		args at: #version ifPresent: [ 
@@ -41,9 +40,16 @@ ClapPillarCommand class >> commandSpecification [
 
 { #category : 'accessing' }
 ClapPillarCommand class >> pillarCommandsList [
+
 	^ self allSubclasses
 		select: [ :each | each isAbstract not ]
 		thenCollect: [ :each | each commandSpecification ]
+]
+
+{ #category : 'printing' }
+ClapPillarCommand class >> pillarVersion [
+
+	^ '10.2'
 ]
 
 { #category : 'printing' }
@@ -60,6 +66,23 @@ ClapPillarCommand class >> printVersion: stream [
 
 		
 	 
+]
+
+{ #category : 'execution' }
+ClapPillarCommand >> basicExecute [ 
+	
+	self printHelp.
+	
+]
+
+{ #category : 'execution' }
+ClapPillarCommand >> execute [
+
+	[  self basicExecute ]
+		on: Error 
+		do: [ :err | 
+			Transcript traceCr: 'Error ', err printString. 
+			self context exitFailure ]
 ]
 
 { #category : 'accessing' }

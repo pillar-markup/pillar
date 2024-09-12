@@ -3,6 +3,9 @@ I am a command line handler to **create a pillar project in the current director
 The pillar project contains a basic template and skeleton pillar files following the archetype convention.
 
 **Example of usage: **`./pillar archetype book`
+
+
+
 "
 Class {
 	#name : 'ClapPillarArchetypeCommand',
@@ -20,30 +23,30 @@ ClapPillarArchetypeCommand class >> commandName [
 { #category : 'command line' }
 ClapPillarArchetypeCommand class >> commandSpecification [ 
 	<commandline>
-	^ (ClapCommand id: self commandName asSymbol)
+	
+	^ (ClapCommandSpec id: self commandName asSymbol)
+		commandClass: self;
 		description: 'Create a pillar project in the current directory, which contains a basic template and skeleton pillar files following the archetype convention';
 		add: ClapFlag forHelp;
-		add: ((ClapPositional id: #requestedArchetype )
-			description: 'Archetype you want to use');
-		add: ((ClapFlag id: #templatable )
-			description: 'Use a template');	
-		add: ((ClapFlag id: #list )
-			description: 'Display the list of archetypes');				
+		addPositional: #requestedArchetype description: 'Archetype you want to use';
+		addFlag: #templatable description: 'Use a template';	
+		addFlag: #list description: 'Display the list of archetypes';
+		yourself
 		
-		meaning:
-			[ :args |
-			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
-			(self with: args) execute ]
 ]
 
 { #category : 'execution' }
 ClapPillarArchetypeCommand >> execute [
 
+	(self hasFlag: #list)
+		ifTrue: [ ^ self context stdout nextPutAll: 'The available archetypes are: ..............'.
+				].
 	
 	self project installArchetypeNamed: self requestedArchetype asString.
 ]
 
 { #category : 'activation' }
 ClapPillarArchetypeCommand >> requestedArchetype [
-	 ^ (arguments at: #requestedArchetype) value: self
+
+	^ self positional: #requestedArchetype
 ]
