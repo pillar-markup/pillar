@@ -13,7 +13,7 @@ BaselineOfPillar >> baseline: spec [
 	spec for: #common do: [
 		self
 			chrysal: spec;
-			clap: spec;
+			clap: spec; "to use a different clap"
 			containersPropertyEnvironment: spec;
 			microdown: spec;
 			mustache: spec;
@@ -113,6 +113,7 @@ BaselineOfPillar >> chrysal: spec [
 { #category : 'dependencies' }
 BaselineOfPillar >> clap: spec [
 
+	
     spec 
         baseline: #Clap
         with: [ spec repository: 'github://pharo-contributions/clap-st:master/src' ]
