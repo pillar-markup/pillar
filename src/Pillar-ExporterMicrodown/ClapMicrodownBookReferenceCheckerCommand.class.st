@@ -33,15 +33,32 @@ ClapMicrodownBookReferenceCheckerCommand class >> commandSpecification [
 
 { #category : 'execution' }
 ClapMicrodownBookReferenceCheckerCommand >> execute [
-	| file checker |
+	| file |
 	file :=  self requestedFile asString asFileReference. 
-
 	file exists 
 		ifTrue: [ 
+			| reporter  parent exampleChecker checker collector |
+			parent := self project baseDirectory.
+
+			reporter := MicAnalysisReportWriter new.
 			checker := MicReferenceChecker new.
-			checker fileSystem: FileSystem workingDirectory.
+			checker fileSystem: parent.
 			checker checkProject: file.
-			checker isOkay
+
+			reporter addResults: checker results.
+			
+			collector := MicFileCollector new.
+			collector 
+				rootDirectory: parent;
+				visit: (Microdown parseFile: file).
+			
+			exampleChecker := MicCodeBlockValidator new.
+			
+			collector visitedFiles do: [ :each |
+				exampleChecker start: each ].
+			reporter addResults: exampleChecker results. 
+				
+			reporter isOkay
 					ifTrue: [ 
 						self outputStreamDo: 
 									[ :str | str 
@@ -57,7 +74,7 @@ ClapMicrodownBookReferenceCheckerCommand >> execute [
 											nextPutAll: 'File ' ; 
 											nextPutAll: (self relativePathStringOf: file) ; 
 											nextPutAll: ' has reference problems.'; cr.
-										checker buildReportOn: str ] ] ]
+										reporter buildReportOn: str ] ] ]
 		ifFalse: [ 
 				self outputStreamDo: [ :str | 
 					str 
