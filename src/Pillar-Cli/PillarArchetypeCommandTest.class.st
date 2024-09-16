@@ -4,8 +4,9 @@ Class {
 	#instVars : [
 		'context'
 	],
-	#category : 'Pillar-Cli',
-	#package : 'Pillar-Cli'
+	#category : 'Pillar-Cli-Tests',
+	#package : 'Pillar-Cli',
+	#tag : 'Tests'
 }
 
 { #category : 'utils' }
