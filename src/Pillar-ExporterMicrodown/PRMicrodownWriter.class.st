@@ -79,10 +79,10 @@ PRMicrodownWriter >> visitAnchor: anAnchor [
 
 { #category : 'visiting - document' }
 PRMicrodownWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
-	"!!label paragraph
-	And Paragraph keeps going here"
-	canvas annotatedAnnotation: anAnnotatedParagraph annotation.
-	self visitParagraph: anAnnotatedParagraph
+	
+	canvas 
+		annotated: anAnnotatedParagraph annotation
+		paragraph: [ canvas text: anAnnotatedParagraph text ]
 	
 ]
 
