@@ -17,7 +17,7 @@ Class {
 		'builder'
 	],
 	#pools : [
-		'MicroSharedPool'
+		'MicSharedPool'
 	],
 	#category : 'Pillar-ExporterMicrodown',
 	#package : 'Pillar-ExporterMicrodown'
