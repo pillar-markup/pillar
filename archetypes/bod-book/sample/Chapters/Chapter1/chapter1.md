@@ -65,7 +65,9 @@ $$
 
 Microdown supports both inline math using `$` and equation `$$`
 
-`$x^2$` - inline LaTeX is done using `$x^2$`.
+- Inline LaTeX is done using `$` as in `$x^2$` to produce $x^2$.
+
+- For equation, you should use `$$` as follows. The expression 
 
 ```
 $$ %anchor=frac
