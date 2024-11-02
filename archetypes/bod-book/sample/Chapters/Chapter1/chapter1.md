@@ -283,11 +283,7 @@ Microdown proposes two kinds of extensions: inline and paragraph-level ones.
 ### Microdown inline extensions
 
 There is potentially an endless number of extensions one would like to add to Microdown. Rather than keep inventing new syntax, the generic syntax for inline syntax is:
-<<<<<<< HEAD
-`{!extension|par1=value1&par2=value2&par3=value3!}`. What the extension does will typically depend on the visitor ($\LaTeX$ generation, Text generation, HTML generation etc)
-=======
-`{!extensionName|parameter1=value1&parameter2=value2&parameter3=value3!}`. What the extension does will typically depend on the visitor (LaTeX generation, Text generation, HTML generation etc)
->>>>>>> 6dd433b65cfe19477d6b33a8b5be5365bb0f42b2
+`{!extension|par1=value1&par2=value2&par3=value3!}`. What the extension does will typically depend on the visitor (LaTeX generation, Text generation, HTML generation etc)
 
 Some extensions are already defined in the Microdown library:
 - **footnote|note=some note which goes to the foot**  - adds a footnote the the generated document
