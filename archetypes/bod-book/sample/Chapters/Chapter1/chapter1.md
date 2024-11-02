@@ -54,7 +54,7 @@ $$
 
 Microdown supports both inline math using `$` and equation `$$`
 
-`$x^2$` - inline `$\LaTeX$` is done using `$x^2$` (and `$LaTeX$`).
+`$x^2$` - inline LaTeX is done using `$x^2$`.
 
 ```
 $$ %anchor=frac
@@ -257,7 +257,7 @@ Leaving out the second line merely produces a table without header highlighting.
 ### Microdown inline extensions
 
 There is potentially an endless number of extensions one would like to add to Microdown. Rather than keep inventing new syntax, the generic syntax for inline syntax is:
-`{!extensionName|parameter1=value1&parameter2=value2&parameter3=value3!}`. What the extension does will typically depend on the visitor ($\LaTeX$ generation, Text generation, HTML generation etc)
+`{!extensionName|parameter1=value1&parameter2=value2&parameter3=value3!}`. What the extension does will typically depend on the visitor (LaTeX generation, Text generation, HTML generation etc)
 
 Some extensions are already defined in the Microdown library:
 - **footnote|note=some note which goes to the foot**  - adds a footnote the the generated document
@@ -269,7 +269,7 @@ So `{!citation|ref=Duca99a}` can be expressed as `{!citation|Duca99a}`.
 ### Microdown paragraph extensions
 
 Microdown offers a generic way to create new bloc-level elements. These can also be nested
-and are close to $\LaTeX$ environments. 
+and are close to LaTeX environments. 
 There are defined using `<!tag|key1=value1&key2=value2!>`
 
 The most common use is the inputFile one: `<!inputFile|path=uri!>` inserts the contents of the microdown document at uri at this place.
