@@ -1,7 +1,7 @@
 ## Microdown syntax
-The syntax covers two distict categories - inline and paragraphs. 
-- Inline commands cover things like emphasis and links. Inline syntax is about elements inside paragraphs.
-- Paragraphs are commands that span several lines of text (lists, code examples, etc). We often named them Bloc level elements. 
+The syntax covers two distinct categories - inline and paragraphs. 
+- Inline commands cover things like emphasis and links. The inline syntax is about elements inside paragraphs.
+- Paragraphs are commands that span several lines of text (lists, code examples, etc). We often named them Bloc-level elements. 
 
 
 ### Text emphasis
@@ -12,7 +12,7 @@ The syntax covers two distict categories - inline and paragraphs.
 
 ### Links and Figure
 - [Link](https://Pharo.org) is done as ` [Link](https://Pharo.org) `. The produced link will open in the standard browser (Pharo `WebBrowser class >> #openOn:`)
-- ![alt text](https://pharo.org/web/files/pharo-logo-small.png) is done using ` ![alt text](https://pharo.org/web/files/pharo-logo-small.png) `.  Often larger figures are done by placing using this syntax on a line by itself
+- ![alt text](figures/pillar.png) is done using ` ![alt text](figures/pillar.png) `.  Often larger figures are done by placing using this syntax on a line by itself
 
 
 
@@ -33,9 +33,9 @@ Microdown supports different anchors: at the heading level, math equations, and 
 #### Figures
 
 ```
-![This is a caption. %width=50&anchor=aFigAnchor](testMicrodown/toplevel.png)
+![This is a caption. %width=50&anchor=aFigAnchor](figures/pillar.png)
 ```
-![This is a caption. %width=50&anchor=aFigAnchor](testMicrodown/toplevel.png)
+![This is a caption. %width=50&anchor=aFigAnchor](figures/pillar.png)
 
 Any anchor can be referred to using an anchor reference following this syntax: `*@anAnchor@*`.
 For example, we refer to Figure *@aFigAnchor@*.
