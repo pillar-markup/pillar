@@ -6,17 +6,29 @@ The syntax covers two distinct categories - inline and paragraphs.
 
 ### Text emphasis
 - **bold** is done by `**bold**` (You can get \** by `\\**`)  
-- _italics_ is done by `_italics_` (should be underline, but now it stuck, there is no underline)
+- _italics_ is done by `_italics_`
 - ~strike~ is done by `~strike~`
 - `inline code` is done by   \`inline code\`
 
-### Links and Figure
-- [Link](https://Pharo.org) is done as ` [Link](https://Pharo.org) `. The produced link will open in the standard browser (Pharo `WebBrowser class >> #openOn:`)
-- ![alt text](figures/pillar.png) is done using ` ![alt text](figures/pillar.png) `.  Often larger figures are done by placing using this syntax on a line by itself
+### Links and Figures
 
+[Link](https://Pharo.org) is done as `[Link](https://Pharo.org)`. 
+
+Figures are supported using the markdown idiomatic syntax: `![A caption](figures/pillar.png)`.  
+In books, figures are generally not in paragraphs but by placing them on a line by itself.
+Figure *@aFigAnchor@* in addition specifies a size and an anchor as explained below.
+
+```
+![This is a caption. %width=50&anchor=aFigAnchor](figures/pillar.png)
+```
+
+![This is a caption. %width=50&anchor=aFigAnchor](figures/pillar.png)
+
+Any anchor can be referred to using an anchor reference following this syntax: `*@anAnchor@*`.
 
 
 ## Key systematic features
+
 Microdown offers anchors and references. Most of anchors are expressed using bloc parameters. 
 So we present this basic feature first then show its usage.
 
@@ -32,13 +44,19 @@ Microdown supports different anchors: at the heading level, math equations, and 
 
 #### Figures
 
-```
-![This is a caption. %width=50&anchor=aFigAnchor](figures/pillar.png)
-```
-![This is a caption. %width=50&anchor=aFigAnchor](figures/pillar.png)
+As explained above we can define width and anchor delimited by `%`. Figure  *@aFigAnchor@* is defined as:
 
-Any anchor can be referred to using an anchor reference following this syntax: `*@anAnchor@*`.
-For example, we refer to Figure *@aFigAnchor@*.
+```
+![This is a caption. %width=50&anchor=aFigAnchor](figures/pillar.png)
+```
+
+
+
+
+
+
+
+
 
 #### Equations
 
