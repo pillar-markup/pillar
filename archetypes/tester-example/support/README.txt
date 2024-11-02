@@ -1,1 +1,0 @@
-This file is here because pillar requires a support directory. Otherwise Git will not commit the directory.
