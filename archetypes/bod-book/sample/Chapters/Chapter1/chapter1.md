@@ -27,12 +27,12 @@ Figure *@aFigAnchor@* in addition specifies a size and an anchor as explained be
 Any anchor can be referred to using an anchor reference following this syntax: `*@anAnchor@*`.
 
 
-## Key systematic features
+### Key systematic features
 
 Microdown offers anchors and references. Most of anchors are expressed using bloc parameters. 
 So we present this basic feature first then show its usage.
 
-### Bloc parameters
+#### Bloc parameters
 
 Microdown has a generic way to manage arguments of elements. The syntax is `tag|key1=value1&key2=value2`. 
 
@@ -49,13 +49,6 @@ As explained above we can define width and anchor delimited by `%`. Figure  *@aF
 ```
 ![This is a caption. %width=50&anchor=aFigAnchor](figures/pillar.png)
 ```
-
-
-
-
-
-
-
 
 
 #### Equations
@@ -87,16 +80,7 @@ $$
 $$
 
 
-### Raw 
 
-Microdown also supports the possibility to express raw text using `{{{` and `}}}`.
-
-```
-{{{**bold**}}}
-```
-
-
-## Microdown Bloc level elements a.k.a Paragraphs
 
 ### Headers
 Headers are done by lines starting with `#`. One `#` is the largest header, six `######` is the smallest header. The header text is written after the `#` signs.`
@@ -107,10 +91,10 @@ Headers are done by lines starting with `#`. One `#` is the largest header, six 
 It is possible to put comments in the Microdown source. Lines starting with `%` are creates a comment paragraph, but most tools ignore them.
 
 ```
-% They really are
+% They really are ignored
 ```
 
-### File level Metadata
+### File-level Metadata
 
 Microdown uses JSON to handle file-header metadata as shown after:
 
@@ -119,43 +103,6 @@ Microdown uses JSON to handle file-header metadata as shown after:
 "author" : "Stéphane Ducasse",
 "title" : "a cool documentation"
 }
-```
-
-
-### Quote blocks
-> Lines starting with `>` are supposed to be rendered in an indented manner
-> At present the in-image rendering leaves something to be desired
->  But it works for now
-Each source line which is part of the quote block need to start with a `>`
-
-```
-> this is a quote block
-> spawning on multiple lines
-```
-
-
-### Annotated paragraphs
-
-Microdown supports annotated paragraphs using `>[! as follows:
-
-```
->[! Important]
-> Microdown is extensible
-```
-
->[! Important]
-> Microdown is extensible
-
-
-### Raw HTML paragraphs
-
-With recent versions of Microdown you can embedded top level HTML blocks.
-
-```
-<address>
-kjlkjljlkj
-hkjhkjh
-<\address>
 ```
 
 
@@ -270,12 +217,73 @@ Leaving out the second line merely produces a table without header highlighting.
 | cell 1 1 | cell 1 2 | cell 1 3 |
 | cell 2 1 | cell 2 2 | cell 2 3 |
 
+
+
+
+
+## Less known features
+
+Microdown offers less used but sometimes important features.
+
+
+### Quote blocks
+
+> Lines starting with `\>` are supposed to be rendered in an indented manner
+> At present the in-image rendering leaves something to be desired
+>  But it works for now
+Each source line which is part of the quote block needs to start with a `\>`
+
+```
+> this is a quote block
+> spawning on multiple lines
+```
+
+
+### Annotated paragraphs
+
+Microdown supports annotated paragraphs using `>[!` as follows:
+
+```
+>[! Important]
+> Microdown is extensible
+```
+
+>[! Important]
+> Microdown is extensible
+
+
+### Raw HTML paragraphs
+
+With recent versions of Microdown, you can embed top-level HTML blocks.
+
+```
+<address>
+kjlkjljlkj
+hkjhkjh
+<\address>
+```
+
+
+### Raw 
+
+Microdown also supports the possibility to express raw text using `{{{` and `}}}`.
+
+```
+{{{**bold**}}}
+```
+
+With raw, Microdown just emits the text untouched so pay attention.
+
+
+
 ## Extensions
+
+Microdown proposes two kinds of extensions: inline and paragraph-level ones. 
 
 ### Microdown inline extensions
 
 There is potentially an endless number of extensions one would like to add to Microdown. Rather than keep inventing new syntax, the generic syntax for inline syntax is:
-`{!extensionName|parameter1=value1&parameter2=value2&parameter3=value3!}`. What the extension does will typically depend on the visitor ($\LaTeX$ generation, Text generation, HTML generation etc)
+`{!extension|par1=value1&par2=value2&par3=value3!}`. What the extension does will typically depend on the visitor ($\LaTeX$ generation, Text generation, HTML generation etc)
 
 Some extensions are already defined in the Microdown library:
 - **footnote|note=some note which goes to the foot**  - adds a footnote the the generated document
@@ -284,10 +292,11 @@ Some extensions are already defined in the Microdown library:
 Note that each extension has the possibility to define a default first key. 
 So `{!citation|ref=Duca99a}` can be expressed as `{!citation|Duca99a}`.
 
+
 ### Microdown paragraph extensions
 
 Microdown offers a generic way to create new bloc-level elements. These can also be nested
-and are close to $\LaTeX$ environments. 
+and are close to LaTeX environments. 
 There are defined using `<!tag|key1=value1&key2=value2!>`
 
 The most common use is the inputFile one: `<!inputFile|path=uri!>` inserts the contents of the microdown document at uri at this place.
@@ -295,3 +304,6 @@ The most common use is the inputFile one: `<!inputFile|path=uri!>` inserts the c
 ## Possible changes in future versions
 
 We are about to revise the syntax of the extension because it conflicts with the introduction of raw paragraphs. We are also considering adding element level meta data as in Kramdown. This should let users define HTML class at the node level.
+
+
+s
