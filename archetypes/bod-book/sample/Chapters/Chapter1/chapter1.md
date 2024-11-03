@@ -259,17 +259,14 @@ Microdown supports annotated paragraphs using `>[!` as follows:
 > La libre communication des pensées et des opinions est un des droits les plus précieux de l'homme ; 
 > tout citoyen peut donc parler, écrire, imprimer librement, sauf à répondre de l'abus de cette liberté dans les cas déterminés par la loi.
 
-Three labels are defined by default: important, todo, note. Anything else produce a note.
+Three labels are defined by default: important, todo, and note. Anything else produces a note.
 
 
->[! anything ]
+>[! Article 4. ]
 > La liberté consiste à pouvoir faire tout ce qui ne nuit pas à autrui : 
 > ainsi, l'exercice des droits naturels de chaque homme n'a de bornes que celles 
 > qui assurent aux autres membres de la société la jouissance de ces mêmes droits. 
 >  bornes ne peuvent être déterminées que par la loi.
-
-
-
 
 
 >[! todo]
@@ -296,7 +293,7 @@ Microdown also supports the possibility to express raw text using `{{{` and `}}}
 {{{**bold**}}}
 ```
 
-With raw, Microdown just emits the text untouched so pay attention.
+With raw, Microdown emits the text untouched so pay attention.
 
 
 
@@ -306,14 +303,14 @@ Microdown proposes two kinds of extensions: inline and paragraph-level ones.
 
 ### Microdown inline extensions
 
-There is potentially an endless number of extensions one would like to add to Microdown. Rather than keep inventing new syntax, the generic syntax for inline syntax is:
-`{!extension|par1=value1&par2=value2&par3=value3!}`. What the extension does will typically depend on the visitor (LaTeX generation, Text generation, HTML generation etc)
+There are potentially endless extensions one would like to add to Microdown. Rather than keep inventing new syntax, the generic syntax for inline syntax is:
+`{!extension|par1=value1&par2=value2&par3=value3!}`. What the extension does will typically depend on the visitor (LaTeX generation, Text generation, HTML generation, etc)
 
 Some extensions are already defined in the Microdown library:
 - **footnote|note=some note which goes to the foot**  - adds a footnote the the generated document
 - **citation|ref=somewhere so others can find it** - adds a reference to the generated document
 
-Note that each extension has the possibility to define a default first key. 
+Note that each extension can define a default first key. 
 So `{!citation|ref=Duca99a}` can be expressed as `{!citation|Duca99a}`.
 
 
@@ -325,9 +322,6 @@ There are defined using `<!tag|key1=value1&key2=value2!>`
 
 The most common use is the inputFile one: `<!inputFile|path=uri!>` inserts the contents of the microdown document at uri at this place.
 
-## Possible changes in future versions
+### Possible changes in future versions
 
 We are about to revise the syntax of the extension because it conflicts with the introduction of raw paragraphs. We are also considering adding element level meta data as in Kramdown. This should let users define HTML class at the node level.
-
-
-s
