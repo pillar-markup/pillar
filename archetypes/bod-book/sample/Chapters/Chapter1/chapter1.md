@@ -5,7 +5,7 @@ The syntax covers two distinct categories - inline and paragraphs.
 
 
 ### Text emphasis
-- **bold** is done by `**bold**` (You can get \** by `\\**`)  
+- **bold** is done by `**bold**` (You can get \** by `\**`)  
 - _italics_ is done by `_italics_`
 - ~strike~ is done by `~strike~`
 - `inline code` is done by   \`inline code\`
@@ -16,7 +16,7 @@ The syntax covers two distinct categories - inline and paragraphs.
 
 Figures are supported using the markdown idiomatic syntax: `![A caption](figures/pillar.png)`.  
 In books, figures are generally not in paragraphs but by placing them on a line by itself.
-Figure *@aFigAnchor@* in addition specifies a size and an anchor as explained below.
+Figure *@aFigAnchor@*, in addition, specifies a size and an anchor as explained below.
 
 ```
 ![This is a caption. %width=50&anchor=aFigAnchor](figures/pillar.png)
@@ -90,7 +90,7 @@ Headers are done by lines starting with `#`. One `#` is the largest header, six 
 ##### This is a header level 5, done as `##### This is a header level 5` 
 
 ### Comments
-It is possible to put comments in the Microdown source. Lines starting with `%` are creates a comment paragraph, but most tools ignore them.
+It is possible to put comments in the Microdown source. Lines starting with `%` create a comment paragraph, but most tools ignore them.
 
 ```
 % They really are ignored
@@ -230,16 +230,20 @@ Microdown offers less used but sometimes important features.
 
 ### Quote blocks
 
-> Lines starting with `\>` are supposed to be rendered in an indented manner
+> Lines starting with `>` are rendered in an indented manner.
 > At present the in-image rendering leaves something to be desired
->  But it works for now
-Each source line which is part of the quote block needs to start with a `\>`
+> But it works for now
+Each source line, which is part of the quote block, needs to start with a `>`.
 
 ```
-> this is a quote block
-> spawning on multiple lines
+> This is a quote block
+> written on multiple lines
 ```
 
+> This is a quote block
+> written on multiple lines
+
+The book style may redefine the quote environment to provide different visual feedback.
 
 ### Annotated paragraphs
 
@@ -247,11 +251,29 @@ Microdown supports annotated paragraphs using `>[!` as follows:
 
 ```
 >[! Important]
-> Microdown is extensible
+> La libre communication des pensées et des opinions est un des droits les plus précieux de l'homme ; 
+> tout citoyen peut donc parler, écrire, imprimer librement, sauf à répondre de l'abus de cette liberté dans les cas déterminés par la loi.
 ```
 
 >[! Important]
-> Microdown is extensible
+> La libre communication des pensées et des opinions est un des droits les plus précieux de l'homme ; 
+> tout citoyen peut donc parler, écrire, imprimer librement, sauf à répondre de l'abus de cette liberté dans les cas déterminés par la loi.
+
+Three labels are defined by default: important, todo, note. Anything else produce a note.
+
+
+>[! anything ]
+> La liberté consiste à pouvoir faire tout ce qui ne nuit pas à autrui : 
+> ainsi, l'exercice des droits naturels de chaque homme n'a de bornes que celles 
+> qui assurent aux autres membres de la société la jouissance de ces mêmes droits. 
+>  bornes ne peuvent être déterminées que par la loi.
+
+
+
+
+
+>[! todo]
+> In the future we may introduce a parametrizable version of annotated paragraphs
 
 
 ### Raw HTML paragraphs
