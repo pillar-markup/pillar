@@ -6,9 +6,9 @@
 
 Pillar is a markup syntax and tool-suite to generate documentation, books, websites and slides. Pillar is not new, it was invented around 2000 as a supporting language for [SmallWiki](https://www.slideshare.net/esug/smallwiki-smalltalk-wiki-towards-cms): one of the first wiki using OOP for real. Its ancestor was the markup for the Pier CMS and we extracted it from Pier to make it more applicable to different domains. The Pillar syntax is similar to markdown but its emphasis is on publishing and how it handles different types of links.
 
-Now in the latest version Pillar we are supporting Microdown syntax and migrating all the support to Microdown while supporting the Pillar syntax for backward compatibility reasons. We can migrate automatically books from Pillar syntax to Microdown syntax (compatible with markdown). 
+Now Pillar is now supporting Microdown syntax and we migrated all the support to Microdown while supporting the Pillar syntax for backward compatibility reasons. We can migrate automatically books from Pillar syntax to Microdown syntax (compatible with markdown). 
 
-In the future Pillar will be the name of the compilation chain and the syntax language will be Microdown. 
+Pillar is now the name of the compilation chain and the syntax language is Microdown. 
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://img.shields.io/badge/license-MIT-blue.svg)
 ![https://github.com/pillar-markup/pillar/workflows/unit.app/badge.svg](https://github.com/pillar-markup/pillar/workflows/unit.app/badge.svg)
@@ -17,7 +17,6 @@ In the future Pillar will be the name of the compilation chain and the syntax la
 ![https://github.com/pillar-markup/pillar/workflows/system/badge.svg](https://github.com/pillar-markup/pillar/workflows/system/badge.svg)
 ![https://github.com/pillar-markup/pillar/workflows/integration.app/badge.svg](https://github.com/pillar-markup/pillar/workflows/integration.app/badge.svg)
 
-[![Coverage Status](https://coveralls.io/repos/github/pillar-markup/pillar/badge.svg?branch=dev-8)](https://coveralls.io/github/pillar-markup/pillar?branch=dev-8)
 
 ## Installation
 
@@ -51,8 +50,6 @@ $ git checkout v8.3.2
 $ chmod a+x ./scripts/build.sh
 $ ./scripts/build.sh
 ```
-
-
 
 
 The script will create a `build` directory in your current working directory with the pillar installation.
