@@ -28,7 +28,7 @@ For HTTPS setup, execute the `build.sh` script found in the `scripts` directory:
 ```bash
 $ git clone https://github.com/pillar-markup/pillar.git
 $ cd pillar
-$ git checkout v10.1.0
+$ git checkout v10.4.0
 $ chmod a+x ./scripts/build.sh
 $ ./scripts/build.sh
 ```
@@ -83,7 +83,7 @@ To make the `pillar` command available in your shell you can:
 ```bash
 ln -s $PILLAR_HOME/build/pillar ~/bin/pillar
 ```
-- or add the build folder into the your `PATH` environment variable, for example by adding into your `.bashrc` (or shell startup):
+- or add the build folder into your `PATH` environment variable, for example by adding into your `.bashrc` (or shell startup):
 ```bash
 export PATH="$PATH:$PILLAR_HOME/build"
 ```
@@ -106,7 +106,6 @@ Install a `LaTeX` distribution such as [MiKTeX](https://miktex.org/) and install
 
 #### Tailored installation (for non-full lovers)
 Producing pdf documents with Pillar requires a `LaTeX` installation with certain packages.
-Pillar 7.7.3 introduced the possibility to use LaTeX 2018 or the rolling version of 2019.
 Check the ensure-deps.sh files and the support/latex.
 
 ## Getting started
@@ -145,10 +144,8 @@ It builds by default the export format found in `pillar.conf` at `defaultExport`
 
 **pillar updateTemplate**
 
-**pillar serve**
-
 ## Contributing to Pillar
-The current pillar version is being developped using [Pharo12](www.pharo.org).
+The current pillar version is being developed using [Pharo12](www.pharo.org).
 To contribute, the easiest way to to follow the previous scripts and send PullRequests.
 Use the latest dev as a root for your changes.
 
@@ -178,8 +175,25 @@ The following script can be useful if you develop using the launcher and want to
 
 ### For Pharo 12 
 The development of Pillar and Microdown are now in Pharo 12.
-- V10.1.0 Introduces new template for slides - microdown-mooc (based on extension <!slide...!>) and microdown-headerformat-mooc (using top-level header as slide definition marker. It sses Microdown v2.5.5.
-- v10.0.1 Introduce figure arguments in caption instead of url for better integration with Github.
+
+- v10.4.0
+  -	 Cleaned archetypes
+  - New documentation inside the bod-book template with the full syntax explained. 
+	- Uses Microdown V2.7.1: introduces new elements to support Foliage and web generation. It improves the document checker. Now the following analyses are reported: duplicated anchors, references to unexisting anchors, unreferenced figures, missing figure files, and missing input files.
+	- It has been tested with the bod-book updated archetype.
+	
+- v10.2.0
+	- New book checkers: checks for undefined or duplicated anchors, bogus inputfile
+	- Support for slides as header e.g. # a nice title
+Conversion of slides from pillar to Microdown
+	- Nicer support for extension e.g. {!comment|contents=sd thinks there is something fishy!} now can be expressed as {!comment|sd thinks there is something fishy!}`
+	- Cleaned book. Now pillar archetype bod-book can fully build on GH - check the workflows files that are automatically installed.
+	- Two new archetypes are proposed: microdown-mooc and microdown-headerformat-mooc.
+	- Support for github actions with LaTeX.
+
+- v10.1.0 
+Introduces new template for slides - microdown-mooc (based on extension <!slide...!>) and microdown-headerformat-mooc (using top-level header as slide definition marker. It uses Microdown v2.5.5.
+- v10.0.1 Introduces figure arguments in caption instead of url for better integration with Github.
 - v10.0.0 bug fix with some links problems due to new inline parser.
 
 ### For Pharo 11 

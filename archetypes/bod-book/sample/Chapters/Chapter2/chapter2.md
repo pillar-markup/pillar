@@ -114,9 +114,3 @@ Code blocks are often used to define extensions. The `MicCodeBlockValidator` def
 ### Conclusion
 
 Microdown is more than a Markdown language. In addition, to be extensible and having nice features such as references or anchors,  it is a symbiotic markdown for Pharo. It gives authors of Pharo books a clear advantage with powerful extensions and tools that make them more efficient. 
-	
-
-
-
-	
-	
