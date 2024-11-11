@@ -174,11 +174,11 @@ The following script can be useful if you develop using the launcher and want to
 The development of Pillar and Microdown are now in Pharo 12.
 
 - v10.4.0
-  -	 Cleaned archetypes
+  - Cleaned archetypes
   - New documentation inside the bod-book template with the full syntax explained. 
-	- Uses Microdown V2.7.1: introduces new elements to support Foliage and web generation. It improves the document checker. Now the following analyses are reported: duplicated anchors, references to unexisting anchors, unreferenced figures, missing figure files, and missing input files.
-	- It has been tested with the bod-book updated archetype.
-	
+  - Uses Microdown V2.7.1: introduces new elements to support Foliage and web generation. It improves the document checker. Now the following analyses are reported: duplicated anchors, references to unexisting anchors, unreferenced figures, missing figure files, and missing input files.
+  - It has been tested with the bod-book updated archetype.
+
 - v10.2.0
 	- New book checkers: checks for undefined or duplicated anchors, bogus inputfile
 	- Support for slides as header e.g. # a nice title
