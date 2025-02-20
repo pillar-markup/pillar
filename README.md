@@ -157,7 +157,11 @@ First remove existing packages from the Pharo distribution.
 			ifNotNil: [ :found |
 				found
 					unload;
-					forget ] ]
+					forget ] ].
+
+Smalltalk globals
+	at: #BaselineOfMicrodown 
+	ifPresent: [ :c | c removeFromSystem ].
 
 ```
 
