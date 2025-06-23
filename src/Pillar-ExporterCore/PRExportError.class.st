@@ -2,20 +2,22 @@
 I'm an exception class representing errors that happens while exporting a pillar document.
 "
 Class {
-	#name : #PRExportError,
-	#superclass : #PRError,
+	#name : 'PRExportError',
+	#superclass : 'PRError',
 	#instVars : [
 		'file'
 	],
-	#category : 'Pillar-ExporterCore-Exceptions'
+	#category : 'Pillar-ExporterCore-Exceptions',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Exceptions'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRExportError >> inputFile: aFile [
 	file := aFile
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRExportError >> messageText [
 	^ String
 		streamContents: [ :stream | 

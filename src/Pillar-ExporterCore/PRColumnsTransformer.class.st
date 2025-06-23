@@ -2,22 +2,24 @@
 I replace each ==columns== annotation with a structure of columns.
 "
 Class {
-	#name : #PRColumnsTransformer,
-	#superclass : #PRNodeTransformer,
+	#name : 'PRColumnsTransformer',
+	#superclass : 'PRNodeTransformer',
 	#instVars : [
 		'currentColumns',
 		'currentColumn',
 		'goal'
 	],
-	#category : #'Pillar-ExporterCore-Transformers'
+	#category : 'Pillar-ExporterCore-Transformers',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #'meta-data' }
+{ #category : 'meta-data' }
 PRColumnsTransformer class >> dependencies [
 	^ { PRCleanAnnotationInParagraphTransformer }
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRColumnsTransformer >> add: anObject toCurrentEnvironmentOr: aBlock [
 	currentColumn isNil & currentColumns isNil
 		ifTrue: [ ^ aBlock value ].
@@ -27,13 +29,13 @@ PRColumnsTransformer >> add: anObject toCurrentEnvironmentOr: aBlock [
 		ifNil: [ currentColumns add: anObject ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRColumnsTransformer >> goal: aPRBuildGoal [ 
 	
 	goal := aPRBuildGoal
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRColumnsTransformer >> start: aDocumentItem [
 	| object |
 	"Execute clean annotation before"
@@ -43,7 +45,7 @@ PRColumnsTransformer >> start: aDocumentItem [
 	^ object
 ]
 
-{ #category : #'visiting-annotations' }
+{ #category : 'visiting-annotations' }
 PRColumnsTransformer >> visitColumnAnnotation: anAnnotation [
 	currentColumns
 		ifNil:
@@ -53,24 +55,24 @@ PRColumnsTransformer >> visitColumnAnnotation: anAnnotation [
 	self delete
 ]
 
-{ #category : #'visiting-annotations' }
+{ #category : 'visiting-annotations' }
 PRColumnsTransformer >> visitColumnsAnnotation: anAnnotation [
 	currentColumns ifNotNil: [ PRError signal: 'You have to close a columns environment before you open an other. Use the ${endColumns}$ tag please.' ].
 	currentColumns := PRColumnEnvironment new.
 	self delete
 ]
 
-{ #category : #'visiting-annotations' }
+{ #category : 'visiting-annotations' }
 PRColumnsTransformer >> visitDocumentGroup: aGroup [
 	self add: aGroup toCurrentEnvironmentOr: [ super visitDocumentGroup: aGroup ]
 ]
 
-{ #category : #'visiting-annotations' }
+{ #category : 'visiting-annotations' }
 PRColumnsTransformer >> visitDocumentItem: anItem [
 	self add: anItem toCurrentEnvironmentOr: [ super visitDocumentItem: anItem ]
 ]
 
-{ #category : #'visiting-annotations' }
+{ #category : 'visiting-annotations' }
 PRColumnsTransformer >> visitEndColumnsAnnotation: anAnnotation [
 	currentColumns ifNil: [ PRError signal: 'Column environement ending encounter out of a column environment.' ].
 	self replace: {currentColumns}.

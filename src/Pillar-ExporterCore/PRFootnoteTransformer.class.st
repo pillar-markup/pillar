@@ -2,22 +2,24 @@
 I replace each ==footnote== annotation with a structure of footnote.
 "
 Class {
-	#name : #PRFootnoteTransformer,
-	#superclass : #PRNodeTransformer,
-	#category : #'Pillar-ExporterCore-Transformers'
+	#name : 'PRFootnoteTransformer',
+	#superclass : 'PRNodeTransformer',
+	#category : 'Pillar-ExporterCore-Transformers',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRFootnoteTransformer class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRFootnoteTransformer >> createFootnote: aFootnoteAnnotation [
 	^ PRFootnote noted: (aFootnoteAnnotation parameters at: 'note')
 ]
 
-{ #category : #'visiting-annotations' }
+{ #category : 'visiting-annotations' }
 PRFootnoteTransformer >> visitFootnoteAnnotation: aFootnoteAnnotation [
 	self replace: {(self createFootnote: aFootnoteAnnotation)}
 ]

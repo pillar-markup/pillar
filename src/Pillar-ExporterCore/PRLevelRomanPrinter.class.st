@@ -2,12 +2,14 @@
 I'm a configuration that render myself as a Roman number.
 "
 Class {
-	#name : #PRLevelRomanPrinter,
-	#superclass : #PRTitlePrinterSpecification,
-	#category : 'Pillar-ExporterCore-Configuration'
+	#name : 'PRLevelRomanPrinter',
+	#superclass : 'PRTitlePrinterSpecification',
+	#category : 'Pillar-ExporterCore-Configuration',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Configuration'
 }
 
-{ #category : #'rendering-element' }
+{ #category : 'rendering-element' }
 PRLevelRomanPrinter >> renderElement: aNumber on: stream [
 	stream nextPutAll: aNumber printStringRoman
 ]

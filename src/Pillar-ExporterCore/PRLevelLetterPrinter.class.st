@@ -1,10 +1,12 @@
 Class {
-	#name : #PRLevelLetterPrinter,
-	#superclass : #PRTitlePrinterSpecification,
-	#category : 'Pillar-ExporterCore-Configuration'
+	#name : 'PRLevelLetterPrinter',
+	#superclass : 'PRTitlePrinterSpecification',
+	#category : 'Pillar-ExporterCore-Configuration',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Configuration'
 }
 
-{ #category : #'rendering-element' }
+{ #category : 'rendering-element' }
 PRLevelLetterPrinter >> renderElement: aNumber on: stream [
 	| alphabet position |
 	aNumber = 0 ifTrue: [ stream nextPutAll: 'NaN'. ^self  ].

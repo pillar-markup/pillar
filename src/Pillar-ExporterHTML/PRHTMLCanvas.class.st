@@ -7,15 +7,16 @@ canvas tag
         with: [ ""some code that generates the HTML inside the link"" ]
 "
 Class {
-	#name : #PRHTMLCanvas,
-	#superclass : #PRExportCanvas,
+	#name : 'PRHTMLCanvas',
+	#superclass : 'PRExportCanvas',
 	#classVars : [
 		'HTMLCharacters'
 	],
-	#category : #'Pillar-ExporterHTML'
+	#category : 'Pillar-ExporterHTML',
+	#package : 'Pillar-ExporterHTML'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 PRHTMLCanvas class >> initialize [
 	HTMLCharacters := Dictionary new.
 	HTMLCharacters
@@ -25,19 +26,19 @@ PRHTMLCanvas class >> initialize [
 		at: $> put: '&gt;'
 ]
 
-{ #category : #tags }
+{ #category : 'tags' }
 PRHTMLCanvas >> emptyTag [
 	^ self brush: PRHTMLEmptyTag new
 ]
 
-{ #category : #'writing text' }
+{ #category : 'writing text' }
 PRHTMLCanvas >> nextPut: aCharacter [
 	(HTMLCharacters at: aCharacter ifAbsent: nil)
 		ifNil: [ super nextPut: aCharacter ]
 		ifNotNil: [ :string | self raw: string ]
 ]
 
-{ #category : #tags }
+{ #category : 'tags' }
 PRHTMLCanvas >> tag [
 	^ self brush: PRHTMLTag new
 ]

@@ -2,22 +2,23 @@
 A LaTeX writer
 "
 Class {
-	#name : #PRLaTeXWriter,
-	#superclass : #PRDocumentWriter,
-	#category : #'Pillar-ExporterLaTeX'
+	#name : 'PRLaTeXWriter',
+	#superclass : 'PRDocumentWriter',
+	#category : 'Pillar-ExporterLaTeX',
+	#package : 'Pillar-ExporterLaTeX'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRLaTeXWriter class >> fileExtension [
 	^ 'tex'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRLaTeXWriter class >> folderName [
 	^ #latex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRLaTeXWriter class >> toLatexPath: aString [
 	"Replace all (windows style) back slashes in paths by (unix style) forward slashes.
 	This is required as path in latex only support unix style pathes like
@@ -33,23 +34,18 @@ PRLaTeXWriter class >> toLatexPath: aString [
 	^ aString copyReplaceAll: '\' with: '/'
 ]
 
-{ #category : #accessing }
-PRLaTeXWriter class >> writerName [
-	^ #latex
-]
-
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRLaTeXWriter >> canvasClass [
 	^ PRLaTeXCanvas
 ]
 
-{ #category : #templating }
+{ #category : 'templating' }
 PRLaTeXWriter >> chapterTemplateName [
 	
 	^ 'latexChapterTemplate'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRLaTeXWriter >> createLinkToLabelWithAlias: anInternalLink [
 	canvas command
 		name: 'hyperref';
@@ -60,19 +56,19 @@ PRLaTeXWriter >> createLinkToLabelWithAlias: anInternalLink [
 					canvas nextPutAll: anInternalLink alias ]
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRLaTeXWriter >> createLinkToLabelWithoutAlias: anInternalLink [
 	canvas command
 		name: 'ref';
 		parameter: [ canvas raw: anInternalLink anchor ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> getLevelFor: aHeader [
 	^ aHeader level
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> getTypeOfSectionFor: aHeader [
 	| sections level section |
 	sections := self sectioningCommands.
@@ -81,7 +77,7 @@ PRLaTeXWriter >> getTypeOfSectionFor: aHeader [
 	^ section
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> includeGraphicsFor: aFigure [
 	canvas command
 		name: 'includegraphics';
@@ -89,34 +85,34 @@ PRLaTeXWriter >> includeGraphicsFor: aFigure [
 		parameter: [ canvas raw: (aFigure localFileOrExternalReference) ]
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRLaTeXWriter >> monospaceMacro [
 	^ 'code'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRLaTeXWriter >> protectUrl: aString [
 	^ ((aString copyReplaceAll: '\' with: '\\') copyReplaceAll: '#' with: '\#') copyReplaceAll: '%' with: '\%'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRLaTeXWriter >> sectioningCommands [
 	^ #('part' 'chapter' 'section' 'subsection' 'subsubsection' 'paragraph' 'subparagraph')
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRLaTeXWriter >> tabularEnvironment [
 	^ 'tabular'
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitAnchor: anAnchor [
 	canvas command
 		name: 'label';
 		parameter: anAnchor name
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
 	"Annotations need to be defined as environments in LaTeX include files (e.g. common.tex)"
 
@@ -127,12 +123,12 @@ PRLaTeXWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
 	"Attention: we do a super call on #visitParagraph: instead of #visitAnnotatedParagraph:. The goal of this hack is to avoid trailing new line characters. This is related to PRLaTeXWriterTest>>#testStrictLineBreaksInAnnotatedParagraphs"
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitBoldFormat: aFormat [
 	canvas command name: 'textbf'; parameter: [ super visitBoldFormat: aFormat ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitCitation: aCitation [
 	canvas command
 		name: 'cite';
@@ -140,7 +136,7 @@ PRLaTeXWriter >> visitCitation: aCitation [
 
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitCodeblock: aCodeBlock [
 	| env parameters |
 	parameters := OrderedCollection new.
@@ -160,25 +156,25 @@ PRLaTeXWriter >> visitCodeblock: aCodeBlock [
 			canvas newLine ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitDataItem: anItem [
 	self visitAll: anItem children.
 	canvas newLine.
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitDefinitionList: aList [
 	canvas environment
 		name: 'description';
 		with: [ super visitDefinitionList: aList ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitEmptyParagraph: aParagraph [
 	
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitExternalLink: anExternalLink [
 	| text reference |
 	reference := anExternalLink localFileOrExternalReference.
@@ -197,7 +193,7 @@ PRLaTeXWriter >> visitExternalLink: anExternalLink [
 				parameter: [ canvas command name: 'url'; parameter: (self protectUrl: reference) ] ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitFigure: aFigure [
 	(aFigure hasCaption not and: [ aFigure hasLabel not ])
 		ifTrue: [ 
@@ -220,12 +216,12 @@ PRLaTeXWriter >> visitFigure: aFigure [
 								writeLabelOfExternalLink: aFigure ] ] ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitFootnote: aFootnote [
 	canvas command name: 'footnote'; parameter: (aFootnote note)
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitHeader: aHeader [
 	| section |
 	section := self getTypeOfSectionFor: aHeader.
@@ -234,7 +230,7 @@ PRLaTeXWriter >> visitHeader: aHeader [
 		parameter: [ super visitHeader: aHeader ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitHorizontalRule: anHorizontalRule [
 
 	canvas newLine; newLine.
@@ -242,7 +238,7 @@ PRLaTeXWriter >> visitHorizontalRule: anHorizontalRule [
 	canvas newLine.
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitInternalLink: anInternalLink [
 	(anInternalLink reference isNil or: [ self configuration separateOutputFiles not ])
 		ifTrue: [ 
@@ -273,12 +269,12 @@ PRLaTeXWriter >> visitInternalLink: anInternalLink [
 									' will not be exported because LaTeX doesn''t support the inter-files links. Please add an Alias to keep this internal link.' ] ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitItalicFormat: aFormat [
 	canvas command name: 'textit'; parameter: [ super visitItalicFormat: aFormat ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitListItem: anItem [
 	canvas command name: 'item'.
 	canvas space.
@@ -286,7 +282,7 @@ PRLaTeXWriter >> visitListItem: anItem [
 	canvas newLine
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitMailLink: aLink [
 	canvas command
 		name: 'href';
@@ -294,28 +290,28 @@ PRLaTeXWriter >> visitMailLink: aLink [
 		parameter: aLink alias
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitMonospaceFormat: aFormat [
 	canvas command
 		name: self monospaceMacro;
 		parameter: [ super visitMonospaceFormat: aFormat ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitOrderedList: aList [
 	canvas environment
 		name: 'enumerate';
 		with: [ super visitOrderedList: aList ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitParagraph: aParagraph [
 	canvas newLine.
 	super visitParagraph: aParagraph.
 	canvas newLine.
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitPreformatted: aPreformatted [
 	canvas environment
 		name: 'verbatim';
@@ -328,26 +324,26 @@ PRLaTeXWriter >> visitPreformatted: aPreformatted [
 									canvas newLine ] ] ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitStrikethroughFormat: aFormat [
 	canvas command name: 'sout'; parameter: [ super visitStrikethroughFormat: aFormat ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitSubscriptFormat: aFormat [
 	canvas command
 		name: 'textsubscript';
 		parameter: [ super visitSubscriptFormat: aFormat ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitSuperscriptFormat: aFormat [
 	canvas command
 		name: 'textsuperscript';
 		parameter: [ super visitSuperscriptFormat: aFormat ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitTable: aTable [
 	| environment |
 	environment := canvas environment name: self tabularEnvironment.
@@ -363,7 +359,7 @@ PRLaTeXWriter >> visitTable: aTable [
 			canvas newLine ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitTableCell: aCell [
 	aCell isAligned
 		ifFalse: [ self writeTableCellContent: aCell ]
@@ -375,7 +371,7 @@ PRLaTeXWriter >> visitTableCell: aCell [
 				parameter: [ self writeTableCellContent: aCell ] ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitTableRow: aRow [
 	self visitAll: aRow children separatedBy: [ canvas raw: ' & ' ].
 	canvas
@@ -387,7 +383,7 @@ PRLaTeXWriter >> visitTableRow: aRow [
 			canvas newLine ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitTermItem: anItem [
 	canvas command
 		name: 'item';
@@ -395,26 +391,26 @@ PRLaTeXWriter >> visitTermItem: anItem [
 	canvas space.
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitUnderlineFormat: aFormat [
 	canvas command
 		name: 'uline';
 		parameter: [ super visitUnderlineFormat: aFormat ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRLaTeXWriter >> visitUnorderedList: aList [
 	canvas environment
 		name: 'itemize';
 		with: [ super visitUnorderedList: aList ]
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRLaTeXWriter >> writeCaptionOfExternalLink: anExternalLink [
 	self visitAll: anExternalLink children
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRLaTeXWriter >> writeGraphicsParametersOfExternalLink: anExternalLink [
 	canvas
 		nextPutAll: 'width=';
@@ -422,7 +418,7 @@ PRLaTeXWriter >> writeGraphicsParametersOfExternalLink: anExternalLink [
 		raw: '\textwidth'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRLaTeXWriter >> writeLabelOfExternalLink: anExternalLink [
 	| label |
 	label := anExternalLink parameters at: 'label' ifAbsent: [ anExternalLink localFileOrExternalReference ].
@@ -431,7 +427,7 @@ PRLaTeXWriter >> writeLabelOfExternalLink: anExternalLink [
 		parameter: [ canvas raw: label ]
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRLaTeXWriter >> writeTableCellContent: aCell [
 	^ aCell isHeading
 		ifTrue: [ 

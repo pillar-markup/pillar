@@ -1,20 +1,22 @@
 Class {
-	#name : #PREnvironmentTransformer,
-	#superclass : #PRNodeTransformer,
+	#name : 'PREnvironmentTransformer',
+	#superclass : 'PRNodeTransformer',
 	#instVars : [
 		'currentColumn',
 		'goal',
 		'environmentStack'
 	],
-	#category : #'Pillar-ExporterCore-Transformers'
+	#category : 'Pillar-ExporterCore-Transformers',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #'meta-data' }
+{ #category : 'meta-data' }
 PREnvironmentTransformer class >> dependencies [
 	^ { PRCleanAnnotationInParagraphTransformer }
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PREnvironmentTransformer >> add: anObject toCurrentEnvironmentOr: aBlock [
 	currentColumn isNil & self hasEnvironment not
 		ifTrue: [ ^ aBlock value ].
@@ -24,37 +26,37 @@ PREnvironmentTransformer >> add: anObject toCurrentEnvironmentOr: aBlock [
 		ifNil: [ self currentEnvironment add: anObject ]
 ]
 
-{ #category : #environment }
+{ #category : 'environment' }
 PREnvironmentTransformer >> currentEnvironment [
 
 	^ environmentStack first
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PREnvironmentTransformer >> goal: aPRBuildGoal [ 
 	
 	goal := aPRBuildGoal
 ]
 
-{ #category : #environment }
+{ #category : 'environment' }
 PREnvironmentTransformer >> hasEnvironment [
 	^ environmentStack isNotEmpty
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PREnvironmentTransformer >> initialize [
 
 	super initialize.
 	environmentStack := OrderedCollection new.
 ]
 
-{ #category : #environment }
+{ #category : 'environment' }
 PREnvironmentTransformer >> popEnvironment [
 
 	^ environmentStack removeFirst
 ]
 
-{ #category : #environment }
+{ #category : 'environment' }
 PREnvironmentTransformer >> pushEnvironment: anEnvironment [
 
 	"If it is the root environment (i.e., the first environment found in this document's structure)
@@ -72,7 +74,7 @@ PREnvironmentTransformer >> pushEnvironment: anEnvironment [
 	environmentStack addFirst: anEnvironment.
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PREnvironmentTransformer >> start: aDocumentItem [
 	| object |
 	"Execute clean annotation before"
@@ -82,7 +84,7 @@ PREnvironmentTransformer >> start: aDocumentItem [
 	^ object
 ]
 
-{ #category : #'visiting-annotations' }
+{ #category : 'visiting-annotations' }
 PREnvironmentTransformer >> visitBeginEnvironmentAnnotation: anAnnotation [
 
 	| environment |
@@ -92,17 +94,17 @@ PREnvironmentTransformer >> visitBeginEnvironmentAnnotation: anAnnotation [
 	self pushEnvironment: environment
 ]
 
-{ #category : #'visiting-annotations' }
+{ #category : 'visiting-annotations' }
 PREnvironmentTransformer >> visitDocumentGroup: aGroup [
 	self add: aGroup toCurrentEnvironmentOr: [ super visitDocumentGroup: aGroup ]
 ]
 
-{ #category : #'visiting-annotations' }
+{ #category : 'visiting-annotations' }
 PREnvironmentTransformer >> visitDocumentItem: anItem [
 	self add: anItem toCurrentEnvironmentOr: [ super visitDocumentItem: anItem ]
 ]
 
-{ #category : #'visiting-annotations' }
+{ #category : 'visiting-annotations' }
 PREnvironmentTransformer >> visitEndEnvironmentAnnotation: anAnnotation [
 	self hasEnvironment ifFalse: [ PRError signal: ('Missing begin of environment ''{name}''' format: {('name' -> anAnnotation name)} asDictionary) ].
 

@@ -5,19 +5,21 @@ By default it is descending sorting.
 PRDocListDateSorter with: aCollectionOfReferences
 "
 Class {
-	#name : #PRDocumentListDateSorter,
-	#superclass : #PRDocumentListSorter,
-	#category : #'Pillar-ExporterCore-Document-List'
+	#name : 'PRDocumentListDateSorter',
+	#superclass : 'PRDocumentListSorter',
+	#category : 'Pillar-ExporterCore-Document-List',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Document-List'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRDocumentListDateSorter >> initialize [
 	super initialize.
 	files := OrderedCollection new.
 	direction := -1
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 PRDocumentListDateSorter >> sort [
 	^ files sort: [ :a :b | 
 		direction < 0 ifTrue: [a modificationTime > b modificationTime ]

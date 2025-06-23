@@ -8,15 +8,17 @@ pillar build pdf file1.pillar file2.pillar
 Note that there is a bug when using two files.
 "
 Class {
-	#name : #PRBuildListStrategy,
-	#superclass : #PRBuildStrategy,
+	#name : 'PRBuildListStrategy',
+	#superclass : 'PRBuildStrategy',
 	#instVars : [
 		'files'
 	],
-	#category : #'Pillar-ExporterCore-Base'
+	#category : 'Pillar-ExporterCore-Base',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Base'
 }
 
-{ #category : #'instance-creation' }
+{ #category : 'instance-creation' }
 PRBuildListStrategy class >> list: aCollection [ 
 	
 	^ self new
@@ -24,12 +26,12 @@ PRBuildListStrategy class >> list: aCollection [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBuildListStrategy >> files: aCollection [ 
 	files := aCollection asSet
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBuildListStrategy >> filesToBuildOn: aProject [
 
 	^ files collect: [ :file | 

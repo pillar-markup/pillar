@@ -1,34 +1,36 @@
 Class {
-	#name : #PRSuccess,
-	#superclass : #PRStatus,
-	#category : 'Pillar-ExporterCore-Base'
+	#name : 'PRSuccess',
+	#superclass : 'PRStatus',
+	#category : 'Pillar-ExporterCore-Base',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Base'
 }
 
-{ #category : #controlling }
+{ #category : 'controlling' }
 PRSuccess >> and: aPRStatus [
 
 	^ aPRStatus
 ]
 
-{ #category : #controlling }
+{ #category : 'controlling' }
 PRSuccess >> exitProcess [
 
 	Exit signalSuccess
 ]
 
-{ #category : #controlling }
+{ #category : 'controlling' }
 PRSuccess >> isFailure [
 
 	^ false
 ]
 
-{ #category : #controlling }
+{ #category : 'controlling' }
 PRSuccess >> isSuccess [
 
 	^ true
 ]
 
-{ #category : #controlling }
+{ #category : 'controlling' }
 PRSuccess >> value [
 	
 	^ 0

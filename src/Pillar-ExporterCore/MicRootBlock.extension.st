@@ -1,12 +1,12 @@
-Extension { #name : #MicRootBlock }
+Extension { #name : 'MicRootBlock' }
 
-{ #category : #'*Pillar-ExporterCore' }
+{ #category : '*Pillar-ExporterCore' }
 MicRootBlock >> pdfTransformationsFor: aDocument [
 
 	^ #()
 ]
 
-{ #category : #'*Pillar-ExporterCore' }
+{ #category : '*Pillar-ExporterCore' }
 MicRootBlock >> transformDocumentFor: aPRPDFDocument [ 
 	"This is a hook to be able to have framework specific transformation hooks.
 	see PRAbstractOutputDocument>>#buildOn:"

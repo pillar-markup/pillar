@@ -1,22 +1,24 @@
 Class {
-	#name : #PRPillarInputDocument,
-	#superclass : #PRInputDocument,
-	#category : #'Pillar-ExporterCore-Base'
+	#name : 'PRPillarInputDocument',
+	#superclass : 'PRInputDocument',
+	#category : 'Pillar-ExporterCore-Base',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Base'
 }
 
-{ #category : #registration }
+{ #category : 'registration' }
 PRPillarInputDocument class >> doesHandleExtension: anExtension [
 
 	^ anExtension = 'pillar'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRPillarInputDocument >> parsedDocument [
 
 	^ self parserClass parse: file contents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRPillarInputDocument >> parserClass [
 	
 	^ PRDocument parser 

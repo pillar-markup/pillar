@@ -4,87 +4,89 @@ I represent a very simple interface for writing text to a stream.
 I'm associated with a configuration which knows some details about the output stream (e.g., the line ending convention)
 "
 Class {
-	#name : #PROutputStream,
-	#superclass : #PRBasicObject,
+	#name : 'PROutputStream',
+	#superclass : 'PRBasicObject',
 	#instVars : [
 		'stream',
 		'configuration'
 	],
-	#category : 'Pillar-ExporterCore-Utilities'
+	#category : 'Pillar-ExporterCore-Utilities',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Utilities'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PROutputStream class >> on: aWriteStream [ 
 	^ self new
 		setStream: aWriteStream;
 		yourself
 ]
 
-{ #category : #streaming }
+{ #category : 'streaming' }
 PROutputStream >> << anObject [
 	anObject isBlock
 		ifTrue: anObject
 		ifFalse: [ stream << anObject ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PROutputStream >> configuration [
 	^ configuration ifNil: [ configuration := ConfigurationForPillar new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PROutputStream >> configuration: aConfiguration [
 	^ configuration := aConfiguration
 ]
 
-{ #category : #streaming }
+{ #category : 'streaming' }
 PROutputStream >> contents [
 	^ stream contents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PROutputStream >> flush [
 	stream flush
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PROutputStream >> isEmpty [
 	
 	^ stream isEmpty
 ]
 
-{ #category : #streaming }
+{ #category : 'streaming' }
 PROutputStream >> newLine [
 	self << self configuration newLine
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PROutputStream >> nextPut: aCharacter [ 
 	stream nextPut: aCharacter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PROutputStream >> setStream: aWriteStream [
 	stream := aWriteStream
 ]
 
-{ #category : #streaming }
+{ #category : 'streaming' }
 PROutputStream >> space [
 	stream space
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PROutputStream >> stream [
 
 	^ stream
 ]
 
-{ #category : #streaming }
+{ #category : 'streaming' }
 PROutputStream >> tab [
 	stream tab
 ]
 
-{ #category : #streaming }
+{ #category : 'streaming' }
 PROutputStream >> trimLastNewLine [
 	| newLine |
 	newLine := self configuration newLine.

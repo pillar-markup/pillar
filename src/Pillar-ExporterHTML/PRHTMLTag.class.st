@@ -41,26 +41,27 @@ While when the argument is a block the block result is not used, just executed.
 ]]]
 "
 Class {
-	#name : #PRHTMLTag,
-	#superclass : #PRHTMLBrush,
+	#name : 'PRHTMLTag',
+	#superclass : 'PRHTMLBrush',
 	#instVars : [
 		'name'
 	],
-	#category : 'Pillar-ExporterHTML'
+	#category : 'Pillar-ExporterHTML',
+	#package : 'Pillar-ExporterHTML'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRHTMLTag >> name: aString [
 	name := aString.
 	stream nextPut: $<; << aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRHTMLTag >> parameterAt: aString put: anotherString [
 	stream space. stream << aString << '="' << anotherString << '"'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRHTMLTag >> with: aString [
 	stream 
 		nextPut: $>; 

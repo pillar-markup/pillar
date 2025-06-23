@@ -10,8 +10,8 @@ PRTocBuilderVisitor new
 	visit: (PRPillarParser parse: (FileSystem workingDirectory / 'file.pillar') asFileReference readStream)
 "
 Class {
-	#name : #PRTocBuilderVisitor,
-	#superclass : #PRVisitor,
+	#name : 'PRTocBuilderVisitor',
+	#superclass : 'PRVisitor',
 	#instVars : [
 		'toc',
 		'tocsStack',
@@ -19,16 +19,18 @@ Class {
 		'currentFile',
 		'inProcessFiles'
 	],
-	#category : 'Pillar-ExporterCore-Toc'
+	#category : 'Pillar-ExporterCore-Toc',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Toc'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRTocBuilderVisitor class >> isAbstract [
 
 	^ false
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTocBuilderVisitor >> addToToc: aTocTitle [
 	self top level < aTocTitle level
 		ifTrue: [ self top addChildren: aTocTitle.
@@ -37,32 +39,32 @@ PRTocBuilderVisitor >> addToToc: aTocTitle [
 			self addToToc: aTocTitle ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTocBuilderVisitor >> currentFile [
 	^ currentFile
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTocBuilderVisitor >> currentFile: anObject [
 	currentFile := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTocBuilderVisitor >> documentSource [
 	^ documentSource
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTocBuilderVisitor >> documentSource: anObject [
 	documentSource := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTocBuilderVisitor >> inProcessFiles: anObject [
 	inProcessFiles := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRTocBuilderVisitor >> initialize [
 	super initialize.
 	toc := PRToc new level: 0.
@@ -71,27 +73,27 @@ PRTocBuilderVisitor >> initialize [
 	inProcessFiles := #()
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTocBuilderVisitor >> pop [
 	^ tocsStack pop
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTocBuilderVisitor >> push: aToc [
 	^ tocsStack push: aToc
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTocBuilderVisitor >> tableOfContents [
 	^ toc
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTocBuilderVisitor >> top [
 	^ tocsStack top
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRTocBuilderVisitor >> validateInclusionOfFile: aSource [
 	
 	self documentSource = aSource ifTrue: [ 
@@ -107,13 +109,13 @@ PRTocBuilderVisitor >> validateInclusionOfFile: aSource [
 	]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTocBuilderVisitor >> visit: aDocument [
 	super visit: aDocument.
 	^ toc
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTocBuilderVisitor >> visitHeader: aHeader [
 	| titleToc|
 	titleToc := PRToc new name: aHeader text; level: aHeader level; fileReference: currentFile.
@@ -121,7 +123,7 @@ PRTocBuilderVisitor >> visitHeader: aHeader [
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRTocBuilderVisitor >> visitInputFileAnnotation: anAnnotation [
 	| document sourceSave currentSave newSource |
 	"Resolve and parse the new file"

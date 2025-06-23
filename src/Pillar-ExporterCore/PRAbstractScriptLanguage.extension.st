@@ -1,6 +1,6 @@
-Extension { #name : #PRAbstractScriptLanguage }
+Extension { #name : 'PRAbstractScriptLanguage' }
 
-{ #category : #'*pillar-exportercore' }
+{ #category : '*pillar-exportercore' }
 PRAbstractScriptLanguage >> isSyntaxHighlightingPossible [
 	^ false
 ]

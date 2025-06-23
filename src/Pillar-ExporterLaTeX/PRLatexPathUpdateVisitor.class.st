@@ -8,40 +8,41 @@ Latex Paths have to use the / delimiter, even in windows. The following are exam
 C:/Program Files/Something
 "
 Class {
-	#name : #PRLatexPathUpdateVisitor,
-	#superclass : #PRNodeTransformer,
-	#category : #'Pillar-ExporterLaTeX'
+	#name : 'PRLatexPathUpdateVisitor',
+	#superclass : 'PRNodeTransformer',
+	#category : 'Pillar-ExporterLaTeX',
+	#package : 'Pillar-ExporterLaTeX'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRLatexPathUpdateVisitor class >> isAbstract [
 	^ false
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRLatexPathUpdateVisitor class >> key [
 
 	^ #latexPathUpdate
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRLatexPathUpdateVisitor class >> start: aDocument [
 	^ self new start: aDocument
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRLatexPathUpdateVisitor >> newReferenceFor: aReference [
 	
 	^ aReference reference copyReplaceAll: '\' with: '/'
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRLatexPathUpdateVisitor >> visitFigure: aFigure [
 	aFigure reference: (self newReferenceFor: aFigure).
 	super visitFigure: aFigure
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRLatexPathUpdateVisitor >> visitInternalLink: anInternalLink [
 	anInternalLink hasReference  
 		ifTrue: [ anInternalLink reference: (self newReferenceFor: anInternalLink) ].

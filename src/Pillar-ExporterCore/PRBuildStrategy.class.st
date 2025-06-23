@@ -3,28 +3,30 @@ I represent ways to identify files to process.
 My main extension point is the method filesToBuildOn: aProject
 "
 Class {
-	#name : #PRBuildStrategy,
-	#superclass : #Object,
+	#name : 'PRBuildStrategy',
+	#superclass : 'Object',
 	#instVars : [
 		'supportedLanguageExtensions'
 	],
-	#category : #'Pillar-ExporterCore-Base'
+	#category : 'Pillar-ExporterCore-Base',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBuildStrategy >> filesToBuildOn: aProject [
 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBuildStrategy >> initialize [
 
 	super initialize.
 	supportedLanguageExtensions := #('pillar' 'mic' 'md')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBuildStrategy >> isSupportedExtension: aString [
 	^ supportedLanguageExtensions includes: aString trimBoth asLowercase
 ]

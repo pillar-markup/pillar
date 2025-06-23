@@ -4,16 +4,18 @@ I'm an abstract class. I allow the transformation of a tree. I'll visit a tree a
  replacement is a Stack with all the nodes of the branch of the node I'm visiting.
 "
 Class {
-	#name : #PRNodeTransformer,
-	#superclass : #PRVisitor,
+	#name : 'PRNodeTransformer',
+	#superclass : 'PRVisitor',
 	#instVars : [
 		'replacement',
 		'configuration'
 	],
-	#category : #'Pillar-ExporterCore-Transformers'
+	#category : 'Pillar-ExporterCore-Transformers',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #'instance-creation' }
+{ #category : 'instance-creation' }
 PRNodeTransformer class >> executeOn: aPillarContext [
 	self new
 		configuration: aPillarContext configuration;
@@ -21,12 +23,12 @@ PRNodeTransformer class >> executeOn: aPillarContext [
 	^ aPillarContext
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRNodeTransformer class >> isAbstract [
 	^ self = PRNodeTransformer 
 ]
 
-{ #category : #'instance-creation' }
+{ #category : 'instance-creation' }
 PRNodeTransformer class >> withContext: aContext [
 	"The API is done this way (without using the parameter) because most of the subclasses do not need to access the context of the process (such as files, configuration). Some subclasses may get access by redefine it."
 	
@@ -34,50 +36,50 @@ PRNodeTransformer class >> withContext: aContext [
 		
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRNodeTransformer >> configuration [
 	^ configuration
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRNodeTransformer >> configuration: anObject [
 	configuration := anObject.
 	self flag: #SD.
 	"self halt: 'configuration: dans NodeTransformer'"
 ]
 
-{ #category : #pipeline }
+{ #category : 'pipeline' }
 PRNodeTransformer >> contributeToPipelineBuilding: aPRPipelineBuilder [ 
 	
 	aPRPipelineBuilder addPillarDocumentTransformation: self
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRNodeTransformer >> delete [
 	"When we do a transformation I replace the current node by nothing."
 	self replace: {  }
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRNodeTransformer >> executeOn: aPillarContext [
 	
 	self start: aPillarContext input.
 	^ aPillarContext
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRNodeTransformer >> initialize [
 	super initialize.
 	replacement := Stack new
 ]
 
-{ #category : #preparation }
+{ #category : 'preparation' }
 PRNodeTransformer >> prepareForExecutionOn: aPRProject [ 
 	"This is the setup of the process. This is before the pipeline building."
 	"Do nothing by default"
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRNodeTransformer >> replace: newNodes [
 	"When we do a transformation I replace the current node by his transformation."
 
@@ -85,13 +87,13 @@ PRNodeTransformer >> replace: newNodes [
 	replacement push: newNodes
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRNodeTransformer >> start: anObject [
 	super start: anObject.
 	^ anObject
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRNodeTransformer >> visitDocumentGroup: aGroup [
 	aGroup
 		setChildren:

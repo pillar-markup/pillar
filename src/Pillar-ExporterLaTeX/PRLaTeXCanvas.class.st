@@ -2,15 +2,16 @@
 A LaTeX canvas
 "
 Class {
-	#name : #PRLaTeXCanvas,
-	#superclass : #PRExportCanvas,
+	#name : 'PRLaTeXCanvas',
+	#superclass : 'PRExportCanvas',
 	#classVars : [
 		'LatexCharacters'
 	],
-	#category : #'Pillar-ExporterLaTeX'
+	#category : 'Pillar-ExporterLaTeX',
+	#package : 'Pillar-ExporterLaTeX'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 PRLaTeXCanvas class >> initialize [
 	" self initialize "
 	LatexCharacters := Dictionary new.
@@ -86,17 +87,17 @@ PRLaTeXCanvas class >> initialize [
 		at: $Ñ put: '\~{N}'
 ]
 
-{ #category : #tags }
+{ #category : 'tags' }
 PRLaTeXCanvas >> command [
 	^ self brush: PRLaTeXCommand new
 ]
 
-{ #category : #tags }
+{ #category : 'tags' }
 PRLaTeXCanvas >> environment [
 	^ self brush: PRLaTeXEnvironment new
 ]
 
-{ #category : #'writing text' }
+{ #category : 'writing text' }
 PRLaTeXCanvas >> nextPut: aCharacter [
 	(LatexCharacters at: aCharacter ifAbsent: nil)
 		ifNil: [ super nextPut: aCharacter ]

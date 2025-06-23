@@ -16,71 +16,73 @@ transformerInputFileOn: aCollection
 				start: each ]
 "
 Class {
-	#name : #PRPhase,
-	#superclass : #PRObject,
+	#name : 'PRPhase',
+	#superclass : 'PRObject',
 	#instVars : [
 		'configuration'
 	],
-	#category : #'Pillar-ExporterCore-Transformers'
+	#category : 'Pillar-ExporterCore-Transformers',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #'instance-creation' }
+{ #category : 'instance-creation' }
 PRPhase class >> executeOn: aPillarContext [
 	^ self new
 		actionOn: aPillarContext
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRPhase class >> isAbstract [
 	^ self = PRPhase
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PRPhase >> actionOn: anInput [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRPhase >> configuration [
 	^ configuration ifNil: [ ConfigurationForPillar new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRPhase >> configuration: aConfiguration [
 	configuration := aConfiguration
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PRPhase >> executeOn: anInput [
 
 	^ self actionOn: anInput
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRPhase >> isFileInclusionPhase [
 	
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRPhase >> isOutputFormatterPhase [
 	
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRPhase >> isParsingPhase [
 	
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRPhase >> isSavePhase [
 	
 	^ false
 ]
 
-{ #category : #pipeline }
+{ #category : 'pipeline' }
 PRPhase >> prepareForExecutionOn: aPRProject [ 
 	
 	self subclassResponsibility

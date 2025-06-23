@@ -4,12 +4,14 @@ This strategy will handle all the files in the root.
 note that for now it does not work.
 "
 Class {
-	#name : #PRBuildAllStrategy,
-	#superclass : #PRBuildStrategy,
-	#category : #'Pillar-ExporterCore-Base'
+	#name : 'PRBuildAllStrategy',
+	#superclass : 'PRBuildStrategy',
+	#category : 'Pillar-ExporterCore-Base',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Base'
 }
 
-{ #category : #'instance-creation' }
+{ #category : 'instance-creation' }
 PRBuildAllStrategy class >> on: aPRProject [ 
 	
 	^ self new
@@ -17,7 +19,7 @@ PRBuildAllStrategy class >> on: aPRProject [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBuildAllStrategy >> filesToBuildOn: aProject [
 	
 	| children |
@@ -33,7 +35,7 @@ PRBuildAllStrategy >> filesToBuildOn: aProject [
 					yourself ] ]
 ]
 
-{ #category : #'private - testing' }
+{ #category : 'private - testing' }
 PRBuildAllStrategy >> shouldExcludeDirectory: aFileReference [ 
 	
 	^ aFileReference basename beginsWithAnyOf: #( '.' '_' )

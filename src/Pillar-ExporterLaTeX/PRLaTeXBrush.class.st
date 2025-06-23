@@ -2,12 +2,13 @@
 A LaTeX brush
 "
 Class {
-	#name : #PRLaTeXBrush,
-	#superclass : #PRExportBrush,
-	#category : 'Pillar-ExporterLaTeX'
+	#name : 'PRLaTeXBrush',
+	#superclass : 'PRExportBrush',
+	#category : 'Pillar-ExporterLaTeX',
+	#package : 'Pillar-ExporterLaTeX'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRLaTeXBrush >> optParameter: aString [ 
 	stream
 		<< $[
@@ -15,7 +16,7 @@ PRLaTeXBrush >> optParameter: aString [
 		<< $]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRLaTeXBrush >> parameter: aString [ 
 	stream
 		<< ${

@@ -8,18 +8,19 @@ doc = PRDocument new.
 
 "
 Class {
-	#name : #PRDocumentListTransformer,
-	#superclass : #PRNodeTransformer,
+	#name : 'PRDocumentListTransformer',
+	#superclass : 'PRNodeTransformer',
 	#instVars : [
 		'workingDirectory',
 		'currentFile',
 		'filesDirectory',
 		'availableTemplates'
 	],
-	#category : #'Pillar-ExporterHTML'
+	#category : 'Pillar-ExporterHTML',
+	#package : 'Pillar-ExporterHTML'
 }
 
-{ #category : #'instance-creation' }
+{ #category : 'instance-creation' }
 PRDocumentListTransformer class >> withContext: aContext [
 
 	| inst |
@@ -28,7 +29,7 @@ PRDocumentListTransformer class >> withContext: aContext [
 	^ inst
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PRDocumentListTransformer >> addAbstractOfCurrentFileToDocument: aDocument inAnnotation: aPRDocListAnnotation [
 	| abstractOfCurrentFile |
 	abstractOfCurrentFile := PRPillarParserMain parse: self currentFile contents.
@@ -44,7 +45,7 @@ PRDocumentListTransformer >> addAbstractOfCurrentFileToDocument: aDocument inAnn
 			self addLinkToDocument: aDocument ]
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PRDocumentListTransformer >> addLinkToDocument: aDocument [
 	aDocument
 		add:
@@ -53,12 +54,12 @@ PRDocumentListTransformer >> addLinkToDocument: aDocument [
 				yourself)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRDocumentListTransformer >> availableTemplates [
 	^ availableTemplates
 ]
 
-{ #category : #transforming }
+{ #category : 'transforming' }
 PRDocumentListTransformer >> createDocList: aPRDocListAnnotation [
 	| files document sortedFiles |
 	"Check if the specified path exist and get pillar files from it.
@@ -84,23 +85,23 @@ PRDocumentListTransformer >> createDocList: aPRDocListAnnotation [
 	^ document
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PRDocumentListTransformer >> currentDocumentInternalLink [
 	
 	^ PRInternalLink reference: self filesDirectory , '/' , self currentFile basename
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRDocumentListTransformer >> currentFile [
 	^ currentFile
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRDocumentListTransformer >> filesDirectory [
 	^ filesDirectory
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 PRDocumentListTransformer >> generateFileUsingTemplateFromDocument: aDocument [
 	| conf htmlDoc |
 	"Read configurations"
@@ -117,12 +118,12 @@ PRDocumentListTransformer >> generateFileUsingTemplateFromDocument: aDocument [
 	^ htmlDoc
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRDocumentListTransformer >> lookForAvailableTemplates: aCollection [
 	^ (aCollection select: [ :each | (self workingDirectory resolve: each) exists and: [ each asFileReference extension = 'mustache' ] ]) asOrderedCollection
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 PRDocumentListTransformer >> sort: aCollectionOfReferences limit: anInteger by: aString [
 	| references |
 	references := aCollectionOfReferences first: anInteger.
@@ -133,18 +134,18 @@ PRDocumentListTransformer >> sort: aCollectionOfReferences limit: anInteger by: 
 	^ references
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRDocumentListTransformer >> visitDocListAnnotation: aPRDocListAnnotation [
 
 	self replace: { (self createDocList: aPRDocListAnnotation) }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRDocumentListTransformer >> workingDirectory [
 	^ workingDirectory
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRDocumentListTransformer >> workingDirectory: aFileReference [
 	workingDirectory := aFileReference
 ]

@@ -1,6 +1,6 @@
-Extension { #name : #PRTable }
+Extension { #name : 'PRTable' }
 
-{ #category : #'*Pillar-ExporterLaTeX' }
+{ #category : '*Pillar-ExporterLaTeX' }
 PRTable >> latexSpecification [
 	^ String new: self columnCount withAll: $l
 ]

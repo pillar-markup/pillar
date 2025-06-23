@@ -22,26 +22,28 @@ executeOn: aPillarContext
 
 "
 Class {
-	#name : #PRCompilationContext,
-	#superclass : #PRObject,
+	#name : 'PRCompilationContext',
+	#superclass : 'PRObject',
 	#instVars : [
 		'configuration',
 		'input'
 	],
-	#category : #'Pillar-ExporterCore-Transformers'
+	#category : 'Pillar-ExporterCore-Transformers',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRCompilationContext class >> configuration: aConfiguration [
 	^ self new configuration: aConfiguration
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRCompilationContext class >> isAbstract [
 	^ false
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRCompilationContext class >> withDocument: aDocument withConfiguration: aConfiguration [
 	^ self new
 		input: aDocument;
@@ -49,22 +51,22 @@ PRCompilationContext class >> withDocument: aDocument withConfiguration: aConfig
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCompilationContext >> configuration [
 	^ configuration
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCompilationContext >> configuration: aConfiguration [
 	configuration := aConfiguration
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCompilationContext >> input [
 	^ input
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCompilationContext >> input: anObject [
 	input := anObject
 ]

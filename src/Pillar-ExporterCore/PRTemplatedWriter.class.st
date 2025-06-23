@@ -6,366 +6,368 @@ Otherwise I simply delegate the writing to the wrapped one.
 I am carefully designed so if an element X is delegated to the wrapped writer, it should delegate the writing of X's children back to myself.
 "
 Class {
-	#name : #PRTemplatedWriter,
-	#superclass : #PRVisitor,
+	#name : 'PRTemplatedWriter',
+	#superclass : 'PRVisitor',
 	#instVars : [
 		'outputDocument',
 		'defaultWriter',
 		'environmentStack'
 	],
-	#category : #'Pillar-ExporterCore-Transformers'
+	#category : 'Pillar-ExporterCore-Transformers',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> anchorTemplateFileName [
 	
 	^ 'anchor.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> boldTemplateFileName [
 	
 	^ 'bold.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> codeBlockTemplateFileName [
 	
 	^ 'codeBlock.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> commentedLineTemplateFileName [
 	
 	^ 'commentedLine.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> dataItemTemplateFileName [
 	
 	^ 'dataItem.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> defaultAnnotatedParagraphTemplateFileName [
 	
 	^ 'defaultAnnotatedParagraph.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> definitionListTemplateFileName [
 	
 	^ 'definitionList.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> emptyParagraphTemplateFileName [
 
 	^ 'emptyParagraph.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> externalLinkTemplateFileName [
 	
 	^ 'externalLink.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> figureTemplateFileName [
 
 	^ 'figure.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> headerTemplateFileName [
 	
 	^ 'header.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> horizontalRuleTemplateFileName [
 	
 	^ 'horizontalRule.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> internalLinkTemplateFileName [
 	
 	^ 'internalLink.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> italicTemplateFileName [
 	
 	^ 'italic.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> lineBreakTemplateFileName [
 	
 	^ 'lineBreak.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> listItemTemplateFileName [
 
 	^ 'listItem.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> mailLinkTemplateFileName [
 	
 	^ 'mailLink.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> monospaceTemplateFileName [
 
 	^ 'monospace.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> orderedListTemplateFileName [
 	
 	^ 'orderedList.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> paragraphTemplateFileName [
 	
 	^ 'paragraph.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> preformattedTemplateFileName [
 	
 	^ 'preformatted.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> sectionTemplateFileName [
 	
 	^ 'section.mustache'
 ]
 
-{ #category : #templates }
+{ #category : 'templates' }
 PRTemplatedWriter class >> unorderedListTemplateFileName [
 
 	^ 'unorderedList.mustache'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter class >> writerName [
 
 	^ #templatedWriter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> anchorTemplateFileName [
 
 	^ self class anchorTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> boldTemplateFileName [
 
 	^ self class boldTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> codeBlockTemplateFileName [
 
 	^ self class codeBlockTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> commentedLineTemplateFileName [
 
 	^ self class commentedLineTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> contents [
 	
 	^ defaultWriter contents
 ]
 
-{ #category : #environment }
+{ #category : 'environment' }
 PRTemplatedWriter >> currentEnvironmentPath [
 	
 	^ RelativePath withAll: (environmentStack collect: #name) reversed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> dataItemTemplateFileName [
 
 	^ self class dataItemTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> defaultAnnotatedParagraphTemplateFileName [
 
 	^ self class defaultAnnotatedParagraphTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> defaultWriter [
 	^ defaultWriter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> defaultWriter: anObject [
 	defaultWriter := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> definitionListTemplateFileName [
 
 	^ self class definitionListTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> emptyParagraphTemplateFileName [
 
 	^ self class emptyParagraphTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> environmentStack: aCollection [ 
 	environmentStack := aCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> externalLinkTemplateFileName [
 
 	^ self class externalLinkTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> figureTemplateFileName [
 
 	^ self class figureTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> folderName [
 
 	^ defaultWriter folderName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> headerTemplateFileName [
 
 	^ self class headerTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> horizontalRuleTemplateFileName [
 
 	^ self class horizontalRuleTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> initialize [
 	super initialize.
 	environmentStack := OrderedCollection new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> internalLinkTemplateFileName [
 
 	^ self class internalLinkTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> italicTemplateFileName [
 		
 	^ self class italicTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> lineBreakTemplateFileName [
 
 	^ self class lineBreakTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> listItemTemplateFileName [
 
 	^ self class listItemTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> mailLinkTemplateFileName [
 
 	^ self class mailLinkTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> monospaceTemplateFileName [
 
 	^ self class monospaceTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> orderedListTemplateFileName [
 
 	^ self class orderedListTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> outputDocument [
 	^ outputDocument
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> outputDocument: anObject [
 	outputDocument := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> paragraphTemplateFileName [
 
 	^ self class paragraphTemplateFileName
 ]
 
-{ #category : #environment }
+{ #category : 'environment' }
 PRTemplatedWriter >> popEnvironment [
 	
 	environmentStack removeFirst
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> preformattedTemplateFileName [
 
 	^ self class preformattedTemplateFileName
 ]
 
-{ #category : #environment }
+{ #category : 'environment' }
 PRTemplatedWriter >> pushEnvironment: aPREnvironment [ 
 	
 	environmentStack addFirst: aPREnvironment
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> sectionTemplateFileName [
 
 	^ self class sectionTemplateFileName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> templateForConfiguration: aConfiguration [
 
 	^ defaultWriter templateForConfiguration: aConfiguration
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTemplatedWriter >> unorderedListTemplateFileName [
 
 	^ self class unorderedListTemplateFileName
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitAnchor: aPRAnchor [
 
 	self
@@ -375,7 +377,7 @@ PRTemplatedWriter >> visitAnchor: aPRAnchor [
 		ifAbsent: [ defaultWriter visitAnchor: aPRAnchor ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
 
 	| arguments |
@@ -392,7 +394,7 @@ PRTemplatedWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
 				ifAbsent: [ defaultWriter visitAnnotatedParagraph: anAnnotatedParagraph ] ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitBoldFormat: aPRBoldFormat [
 
 	self
@@ -401,7 +403,7 @@ PRTemplatedWriter >> visitBoldFormat: aPRBoldFormat [
 		ifAbsent: [ defaultWriter visitBoldFormat: aPRBoldFormat ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitCodeblock: aPRCodeblock [ 
 
 	self
@@ -411,7 +413,7 @@ PRTemplatedWriter >> visitCodeblock: aPRCodeblock [
 		ifAbsent: [ defaultWriter visitCodeblock: aPRCodeblock ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitCommentedLine: aPRText [ 
 
 	self
@@ -420,7 +422,7 @@ PRTemplatedWriter >> visitCommentedLine: aPRText [
 		ifAbsent: [ defaultWriter visitCommentedLine: aPRText  ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitDataItem: aPRListItem [
 
 	self
@@ -429,7 +431,7 @@ PRTemplatedWriter >> visitDataItem: aPRListItem [
 		ifAbsent: [ defaultWriter visitDataItem: aPRListItem ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitDefinitionList: aPRList [
 
 	self
@@ -438,7 +440,7 @@ PRTemplatedWriter >> visitDefinitionList: aPRList [
 		ifAbsent: [ defaultWriter visitDefinitionList: aPRList ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitEmptyParagraph: anEmptyParagraph [
 	
 	self
@@ -447,7 +449,7 @@ PRTemplatedWriter >> visitEmptyParagraph: anEmptyParagraph [
 		ifAbsent: [ defaultWriter visitEmptyParagraph: anEmptyParagraph ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitEnvironment: anEnvironment [
 
 	self pushEnvironment: anEnvironment.
@@ -459,7 +461,7 @@ PRTemplatedWriter >> visitEnvironment: anEnvironment [
 	self popEnvironment.
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitExternalLink: aPRExternalLink [
 
 	self
@@ -469,7 +471,7 @@ PRTemplatedWriter >> visitExternalLink: aPRExternalLink [
 		ifAbsent: [ defaultWriter visitExternalLink: aPRExternalLink ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitFigure: aFigure [
 
 	self
@@ -481,7 +483,7 @@ PRTemplatedWriter >> visitFigure: aFigure [
 		ifAbsent: [ defaultWriter visitFigure: aFigure ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitHeader: aHeader [
 
 	self
@@ -491,7 +493,7 @@ PRTemplatedWriter >> visitHeader: aHeader [
 		ifAbsent: [ defaultWriter visitHeader: aHeader ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitHorizontalRule: aPRHorizontalRule [
 
 	self
@@ -500,7 +502,7 @@ PRTemplatedWriter >> visitHorizontalRule: aPRHorizontalRule [
 		ifAbsent: [ defaultWriter visitHorizontalRule: aPRHorizontalRule ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitInternalLink: aPRInternalLink [
 
 	self
@@ -510,7 +512,7 @@ PRTemplatedWriter >> visitInternalLink: aPRInternalLink [
 		ifAbsent: [ defaultWriter visitInternalLink: aPRInternalLink ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitItalicFormat: aPRItalicFormat [ 
 	
 	self
@@ -519,7 +521,7 @@ PRTemplatedWriter >> visitItalicFormat: aPRItalicFormat [
 		ifAbsent: [ defaultWriter visitItalicFormat: aPRItalicFormat ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitLineBreak: aPRLineBreak [
 
 	self
@@ -528,7 +530,7 @@ PRTemplatedWriter >> visitLineBreak: aPRLineBreak [
 		ifAbsent: [ defaultWriter visitLineBreak: aPRLineBreak ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitListItem: aPRListItem [
 
 	self
@@ -537,7 +539,7 @@ PRTemplatedWriter >> visitListItem: aPRListItem [
 		ifAbsent: [ defaultWriter visitListItem: aPRListItem ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitMailLink: aPRMailLink [
 
 	self
@@ -547,7 +549,7 @@ PRTemplatedWriter >> visitMailLink: aPRMailLink [
 		ifAbsent: [ defaultWriter visitExternalLink: aPRMailLink ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitMonospaceFormat: aPRMonospaceFormat [ 
 	
 	self
@@ -556,7 +558,7 @@ PRTemplatedWriter >> visitMonospaceFormat: aPRMonospaceFormat [
 		ifAbsent: [ defaultWriter visitMonospaceFormat: aPRMonospaceFormat ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitOrderedList: aPROrderedList [
 
 	self
@@ -565,7 +567,7 @@ PRTemplatedWriter >> visitOrderedList: aPROrderedList [
 		ifAbsent: [ defaultWriter visitOrderedList: aPROrderedList ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitParagraph: aParagraph [
 
 	self
@@ -574,7 +576,7 @@ PRTemplatedWriter >> visitParagraph: aParagraph [
 		ifAbsent: [ defaultWriter visitParagraph: aParagraph ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitPreformatted: aPRPreformatted [
 
 	self
@@ -583,13 +585,13 @@ PRTemplatedWriter >> visitPreformatted: aPRPreformatted [
 		ifAbsent: [ defaultWriter visitPreformatted: aPRPreformatted ]
 ]
 
-{ #category : #delegating }
+{ #category : 'delegating' }
 PRTemplatedWriter >> visitRaw: aPRRaw [ 
 	
 	defaultWriter visitRaw: aPRRaw
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitSection: aPRSection [
 
 	self
@@ -598,13 +600,13 @@ PRTemplatedWriter >> visitSection: aPRSection [
 		ifAbsent: [ defaultWriter visitSection: aPRSection ]
 ]
 
-{ #category : #delegating }
+{ #category : 'delegating' }
 PRTemplatedWriter >> visitText: aPRText [ 
 	
 	defaultWriter visitText: aPRText
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTemplatedWriter >> visitUnorderedList: aPRUnorderedList [ 
 
 	self
@@ -613,14 +615,14 @@ PRTemplatedWriter >> visitUnorderedList: aPRUnorderedList [
 		ifAbsent: [ defaultWriter visitUnorderedList: aPRUnorderedList ]
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 PRTemplatedWriter >> write: aPRElement [ 
 	
 	aPRElement accept: self.
 	^ defaultWriter contents
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 PRTemplatedWriter >> write: aDocumentItem withTemplateFileName: templateFileName extraArguments: arguments ifAbsent: aBlock [
 
 	self
@@ -634,7 +636,7 @@ PRTemplatedWriter >> write: aDocumentItem withTemplateFileName: templateFileName
 		ifAbsent: aBlock
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 PRTemplatedWriter >> write: aDocumentItem withTemplateFileName: templateFileName ifAbsent: aBlock [
 
 	self
@@ -644,7 +646,7 @@ PRTemplatedWriter >> write: aDocumentItem withTemplateFileName: templateFileName
 		ifAbsent: aBlock
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 PRTemplatedWriter >> writeRawText: aText withTemplateFileName: templateFileName extraArguments: arguments ifAbsent: aBlock [
 
 	| templateFile result environmentPath foundPath |
@@ -660,7 +662,7 @@ PRTemplatedWriter >> writeRawText: aText withTemplateFileName: templateFileName 
 	self visitRaw: (PRRaw content: result type: defaultWriter writerName)
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 PRTemplatedWriter >> writeRawText: aText withTemplateFileName: templateFileName ifAbsent: aBlock [
 
 	^ self

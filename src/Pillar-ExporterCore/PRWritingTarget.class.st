@@ -1,15 +1,17 @@
 Class {
-	#name : #PRWritingTarget,
-	#superclass : #PRTarget,
-	#category : #'Pillar-ExporterCore-Base'
+	#name : 'PRWritingTarget',
+	#superclass : 'PRTarget',
+	#category : 'Pillar-ExporterCore-Base',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Base'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRWritingTarget class >> isAbstract [
 	^ self == PRWritingTarget
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRWritingTarget >> createConfigurationFrom: aPRProject [
 	^ aPRProject configuration class new
 		propertyAt: #_outputFormat put: self;
@@ -17,19 +19,19 @@ PRWritingTarget >> createConfigurationFrom: aPRProject [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRWritingTarget >> extension [
 	
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRWritingTarget >> outputDirectoryName [
 	
 	^ self subclassResponsibility
 ]
 
-{ #category : #preparation }
+{ #category : 'preparation' }
 PRWritingTarget >> prepareForExecutionOn: aPRProject [
 	| configuration outputDirectory outputFormat target source |
 	"As a temporary solution, remove the old results folder before building the document.
@@ -53,13 +55,13 @@ PRWritingTarget >> prepareForExecutionOn: aPRProject [
 				ifFalse: [ each copyAllTo: outputDirectory / each basename ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRWritingTarget >> writerFor: aPRPillarConfiguration [ 
 	
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRWritingTarget >> writerFor: aPRPillarConfiguration forConfigurationTag: aTag [
 	
 	"(PRDocumentWriter allSubclasses detect: [ :each | 

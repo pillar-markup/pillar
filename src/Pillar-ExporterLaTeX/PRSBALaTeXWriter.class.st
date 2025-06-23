@@ -2,22 +2,23 @@
 Writes LaTeX code in the style expected by sbabook (https://github.com/cdlm/sbabook). sbabook is a special LaTeX book class for our technical books.
 "
 Class {
-	#name : #PRSBALaTeXWriter,
-	#superclass : #PRLaTeXWriter,
-	#category : #'Pillar-ExporterLaTeX'
+	#name : 'PRSBALaTeXWriter',
+	#superclass : 'PRLaTeXWriter',
+	#category : 'Pillar-ExporterLaTeX',
+	#package : 'Pillar-ExporterLaTeX'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRSBALaTeXWriter class >> writerName [
 	^ #latex:sbabook
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRSBALaTeXWriter >> monospaceMacro [
 	^ 'textcode'
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRSBALaTeXWriter >> optionalParametersForFloatingScript: aScript [ 
 	| parameters |
 	parameters := OrderedCollection new.
@@ -27,19 +28,19 @@ PRSBALaTeXWriter >> optionalParametersForFloatingScript: aScript [
 	^ parameters asCommaString
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRSBALaTeXWriter >> tabularEnvironment [
 	^ 'fullwidthtabular'
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRSBALaTeXWriter >> visitCodeblock: aCodeBlock [
 	aCodeBlock hasCaption | aCodeBlock hasLabel
 		ifTrue: [ self visitFloatingScript: aCodeBlock ]
 		ifFalse: [ self visitInFlowScript: aCodeBlock ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRSBALaTeXWriter >> visitFloatingScript: aScript [ 
 	canvas environment
 		name: 'listing';
@@ -51,7 +52,7 @@ PRSBALaTeXWriter >> visitFloatingScript: aScript [
 			canvas newLine ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRSBALaTeXWriter >> visitInFlowScript: aScript [ 
 	canvas environment
 		name: 'displaycode';

@@ -1,6 +1,6 @@
-Extension { #name : #Path }
+Extension { #name : 'Path' }
 
-{ #category : #'*Pillar-ExporterCore' }
+{ #category : '*Pillar-ExporterCore' }
 Path >> lookup: lookupBlock ifNone: noneBlock [
 	"Detect a job that satisfies the lookupBlock, or value noneBlock if none satisfies. 
 	The lookup starts at myself, following recursevely through my parent."

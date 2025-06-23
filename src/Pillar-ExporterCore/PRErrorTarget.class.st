@@ -1,10 +1,12 @@
 Class {
-	#name : #PRErrorTarget,
-	#superclass : #PRTarget,
-	#category : #'Pillar-ExporterCore-Base'
+	#name : 'PRErrorTarget',
+	#superclass : 'PRTarget',
+	#category : 'Pillar-ExporterCore-Base',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Base'
 }
 
-{ #category : #clap }
+{ #category : 'clap' }
 PRErrorTarget class >> buildClapCommandWithId: anId withPositionals: isWithPositionals withDescription: aDescription [
 
 	^ (ClapCommand id: anId asSymbol)
@@ -18,12 +20,12 @@ PRErrorTarget class >> buildClapCommandWithId: anId withPositionals: isWithPosit
 		yourself.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRErrorTarget class >> builderName [ 
 	^ #errorTarget
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRErrorTarget class >> isAbstract [
 	^ true
 ]

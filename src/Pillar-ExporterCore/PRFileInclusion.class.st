@@ -2,8 +2,8 @@
 I replace each ==inputFile== annotation with the content of the referenced file.
 "
 Class {
-	#name : #PRFileInclusion,
-	#superclass : #PRNodeTransformer,
+	#name : 'PRFileInclusion',
+	#superclass : 'PRNodeTransformer',
 	#instVars : [
 		'shouldTransform',
 		'input',
@@ -12,60 +12,62 @@ Class {
 		'expansionTask',
 		'inProcessFiles'
 	],
-	#category : #'Pillar-ExporterCore-Transformers'
+	#category : 'Pillar-ExporterCore-Transformers',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 PRFileInclusion >> doNotTransform [
 	shouldTransform := false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRFileInclusion >> expansionTask: aPRExpandInclusionsTask [ 
 	expansionTask := aPRExpandInclusionsTask
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRFileInclusion >> goal: aGoal [ 
 	goal := aGoal
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRFileInclusion >> inProcessFiles: aCollection [ 
 	inProcessFiles := aCollection
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRFileInclusion >> initialize [
 
 	super initialize.
 	inProcessFiles := #()
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRFileInclusion >> input: anInputDocument [
 
 	input := anInputDocument
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRFileInclusion >> isFileInclusionPhase [
 	
 	^ true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRFileInclusion >> shouldTransform [
 	^ shouldTransform ifNil: [ shouldTransform := true ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRFileInclusion >> topFile: aFileReference [
 
 	topFile := aFileReference
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 PRFileInclusion >> validateInclusionOfFile: aFileReference [ 
 	
 	aFileReference = topFile ifTrue: [ 
@@ -80,7 +82,7 @@ PRFileInclusion >> validateInclusionOfFile: aFileReference [
 			signal  ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRFileInclusion >> visitInputFileAnnotation: anInputFileAnnotation [
 	"I load the file and if the file exist I replace the node of the annotation by the content of the file."
 	| includedFile includedPillarAST cleanPillarAST |

@@ -1,6 +1,6 @@
-Extension { #name : #PRAbstractScriptLanguage }
+Extension { #name : 'PRAbstractScriptLanguage' }
 
-{ #category : #'*Pillar-ExporterLaTeX' }
+{ #category : '*Pillar-ExporterLaTeX' }
 PRAbstractScriptLanguage >> sbaString [
 
 	"was ^ self printString but this prevents us to improve the printOn: for debugging purpose.

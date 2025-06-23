@@ -1,6 +1,6 @@
-Extension { #name : #PRRealScriptLanguage }
+Extension { #name : 'PRRealScriptLanguage' }
 
-{ #category : #'*pillar-exportercore' }
+{ #category : '*pillar-exportercore' }
 PRRealScriptLanguage >> isSyntaxHighlightingPossible [
 	^ true
 ]

@@ -12,15 +12,17 @@ I add line numbers to each script with ==lineNumber=true==.
 S. Ducasse: String new writeStream is no correct because imagine that we are on mac and we want to produce document for windows... We should not output mac end of line. This is why PROutputStream should be used instead. 
 "
 Class {
-	#name : #PRScriptLineNumber,
-	#superclass : #PRNodeTransformer,
+	#name : 'PRScriptLineNumber',
+	#superclass : 'PRNodeTransformer',
 	#instVars : [
 		'stream'
 	],
-	#category : #'Pillar-ExporterCore-Transformers'
+	#category : 'Pillar-ExporterCore-Transformers',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 PRScriptLineNumber >> add: aString untilNewLineAt: firstOccurence withNumber: number [
 
 	| length |
@@ -29,7 +31,7 @@ PRScriptLineNumber >> add: aString untilNewLineAt: firstOccurence withNumber: nu
 	^ aString allButFirst: length
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PRScriptLineNumber >> add: aString withNumber: number [
 
 	stream
@@ -38,7 +40,7 @@ PRScriptLineNumber >> add: aString withNumber: number [
 		<< aString
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PRScriptLineNumber >> addLineNumberTo: aScript [
 	"I add a numerotation at each line of a script."
 
@@ -55,20 +57,20 @@ PRScriptLineNumber >> addLineNumberTo: aScript [
 	^ aScript text: stream contents
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRScriptLineNumber >> hasLineNumber: aScript [
 	^ aScript parameters 
 			at: 'lineNumber' 
 			ifPresent: [ :lN | lN = 'true' or: [ lN = true ] ] ifAbsent: [ false ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRScriptLineNumber >> initialize [
 	super initialize.
 	stream := PROutputStream on: (String new writeStream). 
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRScriptLineNumber >> visitCodeblock: aScript [
 	(self hasLineNumber: aScript)
 		ifTrue: [ self replace: {self addLineNumberTo: aScript} ]

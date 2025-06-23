@@ -5,12 +5,14 @@ I (will be) used when the user types
 	pillar build pdf
 "
 Class {
-	#name : #PRBuildRootMainStrategy,
-	#superclass : #PRBuildStrategy,
-	#category : #'Pillar-ExporterCore-Base'
+	#name : 'PRBuildRootMainStrategy',
+	#superclass : 'PRBuildStrategy',
+	#category : 'Pillar-ExporterCore-Base',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRBuildRootMainStrategy >> filesToBuildOn: aProject [ 
 	"select the only file with pillar extension in current directory ; if there is no OR several pillar files, relative error is raised"
 	"Now it select a file named index which can be a pillar or a microdown file and if there is no one, relative error is raised"

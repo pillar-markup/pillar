@@ -1,6 +1,6 @@
-Extension { #name : #PRTableCell }
+Extension { #name : 'PRTableCell' }
 
-{ #category : #'*Pillar-ExporterLaTeX' }
+{ #category : '*Pillar-ExporterLaTeX' }
 PRTableCell >> latexAlignment [
 	self isAlignedCenter ifTrue: [ ^ 'c' ].
 	self isAlignedRight ifTrue: [ ^ 'r' ].

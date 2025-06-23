@@ -1,16 +1,17 @@
 Class {
-	#name : #PRPdfOutput,
-	#superclass : #PRWritingTarget,
-	#category : #'Pillar-ExporterLaTeX'
+	#name : 'PRPdfOutput',
+	#superclass : 'PRWritingTarget',
+	#category : 'Pillar-ExporterLaTeX',
+	#package : 'Pillar-ExporterLaTeX'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRPdfOutput class >> builderName [
 	
 	^ #pdf
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRPdfOutput >> documentFor: aFile [
 
 	^ PRPDFDocument new
@@ -21,19 +22,19 @@ PRPdfOutput >> documentFor: aFile [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRPdfOutput >> extension [
 	
 	^ 'pdf'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRPdfOutput >> outputDirectoryName [
 	
 	^ 'pdf'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRPdfOutput >> writerFor: aPRPillarConfiguration [ 
 	
 	^ self writerFor: aPRPillarConfiguration forConfigurationTag: #latexWriter

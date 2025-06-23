@@ -1,20 +1,22 @@
 Class {
-	#name : #PRInputDocument,
-	#superclass : #Object,
+	#name : 'PRInputDocument',
+	#superclass : 'Object',
 	#instVars : [
 		'project',
 		'file'
 	],
-	#category : #'Pillar-ExporterCore-Base'
+	#category : 'Pillar-ExporterCore-Base',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Base'
 }
 
-{ #category : #factory }
+{ #category : 'factory' }
 PRInputDocument class >> forFile: aFile [
 	
 	^ (self inputClassForFile: aFile) new file: aFile ; yourself
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 PRInputDocument class >> inputClassForFile: aFile [
 	"In the future classes should register explicitely and not be based on subclasses or implementator tricks."
 	
@@ -34,13 +36,13 @@ PRInputDocument class >> inputClassForFile: aFile [
 		ifNone: [ PRNoInputDocument  ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRInputDocument >> basename [
 	
 	^ file basename
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRInputDocument >> contributeToPipelineBuilding: aPRPipelineBuilder [ 
 	
 	1halt.
@@ -50,28 +52,28 @@ PRInputDocument >> contributeToPipelineBuilding: aPRPipelineBuilder [
 	aPRPipelineBuilder parser: self parser
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRInputDocument >> file [
 	^ file
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRInputDocument >> file: aFileReference [ 
 	file := aFileReference
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRInputDocument >> fullName [
 	^ file fullName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRInputDocument >> path [
 	
 	^ file path
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PRInputDocument >> printOn: aStream [
 	aStream
 		nextPutAll: self class name;
@@ -80,12 +82,12 @@ PRInputDocument >> printOn: aStream [
 		nextPutAll: ')'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRInputDocument >> project [
 	^ project
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRInputDocument >> project: aPRProject [ 
 	project := aPRProject
 ]

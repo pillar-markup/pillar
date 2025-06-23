@@ -5,19 +5,21 @@ By default it is ascending sorting.
 PRDocListNameSorter with: aCollectionOfReferences
 "
 Class {
-	#name : #PRDocumentListNameSorter,
-	#superclass : #PRDocumentListSorter,
-	#category : #'Pillar-ExporterCore-Document-List'
+	#name : 'PRDocumentListNameSorter',
+	#superclass : 'PRDocumentListSorter',
+	#category : 'Pillar-ExporterCore-Document-List',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Document-List'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRDocumentListNameSorter >> initialize [
 	super initialize.
 	files := OrderedCollection new.
 	direction := 1
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRDocumentListNameSorter >> sort [
 	^ files sort: [ :a :b | 
 		direction > 0 ifTrue: [a basename < b basename ]
