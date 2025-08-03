@@ -15,8 +15,8 @@ BaselineOfPillar >> baseline: spec [
 			chrysal: spec;
 			containersPropertyEnvironment: spec;
 			microdown: spec;
-			mustache: spec;
-			petitParser2: spec.
+			mustache: spec.
+			
 		spec postLoadDoIt: #postload:package:.
 		spec
 			package: 'Pillar-Core'
