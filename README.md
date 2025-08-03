@@ -4,24 +4,33 @@
     <img alt="Pharo" src="https://img.shields.io/static/v1?style=for-the-badge&message=Pharo&color=3297d4&logo=Harbor&logoColor=FFFFFF&label=" />
 </a>
 
-Pillar is a markup syntax and tool-suite to generate documentation, books, websites and slides. Pillar is not new, it was invented around 2000 as a supporting language for [SmallWiki](https://www.slideshare.net/esug/smallwiki-smalltalk-wiki-towards-cms): one of the first wiki using OOP for real. Its ancestor was the markup for the Pier CMS and we extracted it from Pier to make it more applicable to different domains. The Pillar syntax is similar to markdown but its emphasis is on publishing and how it handles different types of links.
-
-Now Pillar is now supporting Microdown syntax and we migrated all the support to Microdown while supporting the Pillar syntax for backward compatibility reasons. We can migrate automatically books from Pillar syntax to Microdown syntax (compatible with markdown). 
+Pillar is a documentation compilation chain taking documents written in Microdown (and Pillar) and producing books and slides.
 
 Pillar is now the name of the compilation chain and the syntax language is Microdown. 
 
+## History
+
+Pillar was a markup syntax and tool-suite to generate documentation, books, websites and slides. Pillar as a markup is not new, it was invented around 2000 as a supporting language for [SmallWiki](https://www.slideshare.net/esug/smallwiki-smalltalk-wiki-towards-cms): one of the first wiki using OOP for real. Its syntax was based on the one of the original Wiki from Ward Cunningham. From SmallWiki it became the markup of the Pier CMS (which was an application server written in Seaside). 
+Then we extracted it from Pier to make it more applicable to different domains. 
+In recent years we migrated all the transformation logic (parser, asts, visitors to Microdown). 
+In the near future we will retire the Pillar markup from the compilation chain. 
+
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://img.shields.io/badge/license-MIT-blue.svg)
-![https://github.com/pillar-markup/pillar/workflows/unit.app/badge.svg](https://github.com/pillar-markup/pillar/workflows/unit.app/badge.svg)
-![https://github.com/pillar-markup/pillar/workflows/unitTests/badge.svg](https://github.com/pillar-markup/pillar/workflows/unitTests/badge.svg)
-
-![https://github.com/pillar-markup/pillar/workflows/system/badge.svg](https://github.com/pillar-markup/pillar/workflows/system/badge.svg)
-![https://github.com/pillar-markup/pillar/workflows/integration.app/badge.svg](https://github.com/pillar-markup/pillar/workflows/integration.app/badge.svg)
-
 
 ## Installation
 
 ### 1. Building from sources
 For HTTPS setup, execute the `build.sh` script found in the `scripts` directory:
+
+### Here is the latesst version for Pharo 13. 
+```bash
+$ git clone https://github.com/pillar-markup/pillar.git
+$ cd pillar
+$ git checkout v10.4.2
+$ chmod a+x ./scripts/build.sh
+$ ./scripts/build.sh
+```
+
 
 ### Here is the latest version for Pharo 12.
 ```bash
@@ -142,7 +151,8 @@ It builds by default the export format found in `pillar.conf` at `defaultExport`
 **pillar updateTemplate**
 
 ## Contributing to Pillar
-The current pillar version is being developed using [Pharo12](www.pharo.org).
+
+The current pillar version is being developed using [Pharo13](www.pharo.org).
 To contribute, the easiest way to to follow the previous scripts and send PullRequests.
 Use the latest dev as a root for your changes.
 
@@ -177,16 +187,20 @@ The following script can be useful if you develop using the launcher and want to
 ### For Pharo 12 
 The development of Pillar and Microdown are now in Pharo 12.
 
+- v10.4.2
+	- Use Microdown generators
+	- Mustache v1.3
+	- Microdown v2.9.2
 - v10.4.0
-  -	 Cleaned archetypes
-  - New documentation inside the bod-book template with the full syntax explained. 
+	- Cleaned archetypes
+  	- New documentation inside the bod-book template with the full syntax explained. 
 	- Uses Microdown V2.7.1: introduces new elements to support Foliage and web generation. It improves the document checker. Now the following analyses are reported: duplicated anchors, references to unexisting anchors, unreferenced figures, missing figure files, and missing input files.
 	- It has been tested with the bod-book updated archetype.
 	
 - v10.2.0
 	- New book checkers: checks for undefined or duplicated anchors, bogus inputfile
 	- Support for slides as header e.g. # a nice title
-Conversion of slides from pillar to Microdown
+	- Conversion of slides from pillar to Microdown
 	- Nicer support for extension e.g. {!comment|contents=sd thinks there is something fishy!} now can be expressed as {!comment|sd thinks there is something fishy!}`
 	- Cleaned book. Now pillar archetype bod-book can fully build on GH - check the workflows files that are automatically installed.
 	- Two new archetypes are proposed: microdown-mooc and microdown-headerformat-mooc.
