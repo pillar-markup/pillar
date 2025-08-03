@@ -28,11 +28,7 @@ BaselineOfPillar >> baseline: spec [
 		
 			package: 'Pillar-ExporterCore' with: [ spec requires: #( 'Pillar-Model' 'ContainersPropertyEnvironment' ) ];
 			
-			package: 'Pillar-ExporterHTML' with: [ spec requires: #( 'Pillar-ExporterCore' ) ];
-			package: 'Pillar-ExporterLaTeX' with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-ExporterPillar' ) ];
-			package: 'Pillar-ExporterMarkdown' with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-ExporterHTML' ) ];
-			package: 'Pillar-ExporterPillar' with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-PetitPillar' ) ];
-			package: 'Pillar-ExporterText' with: [ spec requires: #( 'Pillar-ExporterCore' ) ];
+			
 			package: 'Pillar-CodeBlockEvaluator' with: [ spec requires: #( 'Pillar-Core' ) ];
 			package: 'Pillar-PetitPillar' with: [ spec requires: #( 'PetitParser2Core' 'Pillar-Model' ) ];
 			package: 'Pillar-Pharo-Tools' with: [ spec requires: #( 'Pillar-Model' 'All exporters' ) ];
@@ -42,11 +38,7 @@ BaselineOfPillar >> baseline: spec [
 			
 			package: 'Pillar-Tests-ExporterCore' with: [ spec requires: #( 'Pillar-Tests-Model' 'Pillar-ExporterCore' ) ];
 			
-			package: 'Pillar-Tests-ExporterHTML' with: [ spec requires: #( 'Pillar-ExporterHTML' 'Pillar-Tests-ExporterCore' ) ];
-			package: 'Pillar-Tests-ExporterLaTeX' with: [ spec requires: #( 'Pillar-ExporterLaTeX' 'Pillar-Tests-ExporterCore' ) ];
-			package: 'Pillar-Tests-ExporterMarkdown' with: [ spec requires: #( 'Pillar-ExporterMarkdown' 'Pillar-Tests-ExporterCore' 'Pillar-Tests-ExporterHTML' ) ];
-			package: 'Pillar-Tests-ExporterPillar' with: [ spec requires: #( 'Pillar-ExporterPillar' 'Pillar-Tests-ExporterCore' ) ];
-			package: 'Pillar-Tests-ExporterText' with: [ spec requires: #( 'Pillar-ExporterText' 'Pillar-Tests-ExporterCore' ) ];
+			
 			package: 'Pillar-Tests-Model' with: [ spec requires: #( 'Pillar-Model' 'Pillar-ExporterPillar' 'Pillar-ExporterText' 'Pillar-Core' 'Pillar-Tests-PetitPillar' ) ];
 			package: 'Pillar-Tests-Model-PetitPillar' with: [ spec requires: #( 'Pillar-Core' 'Pillar-Tests-Core' 'Pillar-Tests-Model' 'Pillar-PetitPillar' 'Pillar-Model' 'Pillar-Tests-PetitPillar' ) ];
 			package: 'Pillar-Tests-Model-ExporterText' with: [ spec requires: #( 'Pillar-Core' 'Pillar-PetitPillar' 'Pillar-Tests-ExporterText' ) ];
