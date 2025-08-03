@@ -132,7 +132,7 @@ BaselineOfPillar >> customProjectAttributes [
 BaselineOfPillar >> microdown: spec [
 	
 	"self microdownPreLoad."
-	spec baseline: 'Microdown' with: [ spec repository: 'github://pillar-markup/Microdown:v2.7.2/src' ]
+	spec baseline: 'Microdown' with: [ spec repository: 'github://pillar-markup/Microdown:v2.9.2/src' ]
 ]
 
 { #category : 'dependencies' }
@@ -168,7 +168,7 @@ BaselineOfPillar >> mustache: spec [
 
 	spec baseline: 'Mustache' with: [
 		spec
-			repository: 'github://noha/mustache:v1.0/repository';
+			repository: 'github://noha/mustache:v1.3/repository';
 			loads: #( 'Core' 'Tests' ) ]
 ]
 
