@@ -187,7 +187,7 @@ The following script can be useful if you develop using the launcher and want to
 ### For Pharo 12 
 The development of Pillar and Microdown are now in Pharo 12.
 
-- v10.4.2
+- v10.4.2 [Last version supporting Pillar documents]
 	- Use Microdown generators
 	- Mustache v1.3
 	- Microdown v2.9.2
