@@ -31,9 +31,13 @@ BaselineOfPillar >> baseline: spec [
 			
 			package: 'Pillar-CodeBlockEvaluator' with: [ spec requires: #( 'Pillar-Core' ) ];
 			package: 'Pillar-PetitPillar' with: [ spec requires: #( 'PetitParser2Core' 'Pillar-Model' ) ];
+
+
 			package: 'Pillar-Pharo-Tools' with: [ spec requires: #( 'Pillar-Model' 'All exporters' ) ];
 			package: 'Pillar-Project' with: [ spec requires: #( 'Pillar-Model' 'All exporters' ) ];
-			package: 'Pillar-BookTester' with: [ spec requires: #( 'Pillar-Project' ) ];
+
+	
+
 			package: 'Pillar-Tests-Cli' with: [ spec requires: #( 'Pillar-Cli' ) ];
 			
 			package: 'Pillar-Tests-ExporterCore' with: [ spec requires: #( 'Pillar-Tests-Model' 'Pillar-ExporterCore' ) ];
@@ -44,7 +48,7 @@ BaselineOfPillar >> baseline: spec [
 			package: 'Pillar-Tests-Model-ExporterText' with: [ spec requires: #( 'Pillar-Core' 'Pillar-PetitPillar' 'Pillar-Tests-ExporterText' ) ];
 			package: 'Pillar-Tests-Model-ExporterPillar' with: [ spec requires: #( 'Pillar-Model' 'Pillar-PetitPillar' 'Pillar-Tests-ExporterPillar' ) ];
 			package: 'Pillar-Tests-PetitPillar' with: [ spec requires: #( 'PetitParser2Core' 'Pillar-PetitPillar' ) ];
-			package: 'Pillar-Tests-BookTester' with: [ spec requires: #( 'Pillar-BookTester' ) ];
+		
 			package: 'Pillar-Tests-Project' with: [ spec requires: #( 'Pillar-Project' ) ];
 			package: 'Pillar-Tests-Integration' with: [ spec requires: #( 'Pillar-Project' ) ].
 
