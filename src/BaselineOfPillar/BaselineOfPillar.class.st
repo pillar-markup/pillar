@@ -19,18 +19,27 @@ BaselineOfPillar >> baseline: spec [
 			petitParser2: spec.
 		spec postLoadDoIt: #postload:package:.
 		spec
-			package: 'Pillar-Core';
+			package: 'Pillar-Core'
+				with: [ spec requires: 
+							#( 'Pillar-ExporterCore' ) ];
 			package: 'Pillar-Tests-Core' 
-				with: [ spec requires: #( 'Pillar-Core' 'Pillar-ExporterText' 'Pillar-ExporterPillar' 'Pillar-PetitPillar' ) ];
+				with: [ spec requires: 
+							#( 'Pillar-Core') ];
 		
 			package: 'Pillar-Model' 
 				with: [ spec requires: #( 'Pillar-Core' ) ];
+		
 			package: 'Pillar-Tests-Model' 
-				with: [ spec requires: #( 'Pillar-Model' 'Pillar-ExporterPillar' 'Pillar-ExporterText' 'Pillar-Core' 'Pillar-Tests-PetitPillar' ) ];
+				with: [ spec requires: 
+						#( 	'Pillar-Core' 'Pillar-Model' 'Pillar-Tests-Core' ) ];
 			
-			package: 'Pillar-Chrysal-Generator' with: [ spec requires: #( 'Chrysal' ) ];
+			package: 'Pillar-Chrysal-Generator' 
+				with: [ spec requires: #( 'Chrysal' ) ];
 			
-			package: 'Pillar-Cli' with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-Chrysal' ) ];
+			
+			package: 'Pillar-Cli' 
+				with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-Chrysal' 'Pillar-Project') ];
+				
 			package: 'Pillar-Tests-Cli' with: [ spec requires: #( 'Pillar-Cli' ) ];
 			
 			package: 'Pillar-Chrysal' with: [ spec requires: #( 'Pillar-ExporterCore' ) ];
@@ -38,44 +47,28 @@ BaselineOfPillar >> baseline: spec [
 			package: 'Pillar-ExporterCore' with: [ spec requires: #( 'Pillar-Model' 'ContainersPropertyEnvironment' ) ];
 			package: 'Pillar-Tests-ExporterCore' with: [ spec requires: #( 'Pillar-Tests-Model' 'Pillar-ExporterCore' ) ];
 			
-
-			package: 'Pillar-Pharo-Tools' with: [ spec requires: #( 'Pillar-Model' 'All exporters' ) ];
 			package: 'Pillar-Project' with: [ spec requires: #( 'Pillar-Model' 'All exporters' ) ];
-		
 		
 			package: 'Pillar-Tests-Project' with: [ spec requires: #( 'Pillar-Project' ) ];
 			package: 'Pillar-Tests-Integration' with: [ spec requires: #( 'Pillar-Project' ) ].
 
+
 		spec
-			group: 'ALL' with: #( 'All tests' 'All but tests' );
-			group: 'All but tests' with: #( 'All exporters' 'Pillar-Cli' 'Pillar-Pharo-Tools' 'parser' 'Pillar-Project' 'Pillar-BookTester' 'Pillar-CodeBlockEvaluator' );
-			group: 'All exporter tests' with: #( 'html exporter tests' 'latex exporter tests' 'beamer exporter tests' 'deckjs exporter tests' 'markdown exporter tests' 'pillar exporter tests' 'text exporter tests' 'asciidoc exporter tests' 'ePub exporter tests' );
-			group: 'All exporters' with: #( 'html exporter' 'latex exporter' 'beamer exporter' 'deckjs exporter' 'markdown exporter' 'pillar exporter' 'text exporter' 'asciidoc exporter' 'ePub exporter' );
-			group: 'All tests' with: #( 'All exporter tests' 'Pillar-Tests-Model' 'Pillar-Tests-ExporterCore' #'Pillar-Tests-Cli' 'parser tests' 'Pillar-Tests-Project' 'Pillar-Tests-Integration' );
-			group: 'asciidoc exporter' with: #( #'Pillar-ExporterAsciiDoc' );
-			group: 'asciidoc exporter tests' with: #( #'Pillar-Tests-ExporterAsciiDoc' 'ePub exporter' );
-			group: 'beamer exporter' with: #( 'Pillar-ExporterBeamer' );
-			group: 'beamer exporter tests' with: #( 'Pillar-Tests-ExporterBeamer' );
-			group: 'deckjs exporter' with: #( 'Pillar-ExporterDeckJS' );
-			group: 'deckjs exporter tests' with: #( 'Pillar-Tests-ExporterDeckJS' );
-			group: 'ePub exporter' with: #( #'Pillar-ExporterEPub' );
-			group: 'ePub exporter tests' with: #( #'Pillar-Tests-ExporterEPub' );
-			group: 'html exporter' with: #( 'Pillar-ExporterHTML' );
-			group: 'html exporter tests' with: #( 'Pillar-Tests-ExporterHTML' );
-			group: 'booktester' with: #( 'Pillar-BookTester' );
-			group: 'booktester tests' with: #( 'Pillar-Tests-BookTester' );
-			group: 'latex exporter' with: #( 'Pillar-ExporterLaTeX' );
-			group: 'latex exporter tests' with: #( 'Pillar-Tests-ExporterLaTeX' );
-			group: 'markdown exporter' with: #( 'Pillar-ExporterMarkdown' 'parser' );
-			group: 'markdown exporter tests' with: #( 'Pillar-Tests-ExporterMarkdown' );
-			group: 'parser' with: #( 'Pillar-PetitPillar' );
-			group: 'parser tests' with: #( 'Pillar-Tests-PetitPillar' );
-			group: 'pillar exporter' with: #( 'Pillar-ExporterPillar' );
-			group: 'pillar exporter tests' with: #( 'Pillar-Tests-ExporterPillar' );
-			group: 'text exporter' with: #( 'Pillar-ExporterText' );
-			group: 'text exporter tests' with: #( 'Pillar-Tests-ExporterText' );
-			group: 'Core' with: #( 'Pillar-Core' );
-			group: 'Model' with: #( 'Pillar-Model' ) ].
+			group: 'All' 
+				with: 
+				#(
+				'Pillar-Tests-Core'
+				'Pillar-Tests-Model' 
+				'Pillar-Tests-ExporterCore' 
+				'Pillar-Tests-Cli' 
+				'Pillar-Tests-Project' 
+				'Pillar-Tests-Integration' );
+			group: 'Core' 
+				with: #( 'Pillar-Core' );
+			group: 
+				'Model' with: #( 'Pillar-Model' ) ].
+
+
 
 	spec for: #windows do: [
 		self processWrapper: spec.
