@@ -20,10 +20,13 @@ BaselineOfPillar >> baseline: spec [
 		spec postLoadDoIt: #postload:package:.
 		spec
 			package: 'Pillar-Core';
-			package: 'Pillar-Tests-Core' with: [ spec requires: #( 'Pillar-Core' 'Pillar-ExporterText' 'Pillar-ExporterPillar' 'Pillar-PetitPillar' ) ];
+			package: 'Pillar-Tests-Core' 
+				with: [ spec requires: #( 'Pillar-Core' 'Pillar-ExporterText' 'Pillar-ExporterPillar' 'Pillar-PetitPillar' ) ];
 		
-			package: 'Pillar-Model' with: [ spec requires: #( 'Pillar-Core' ) ];
-			package: 'Pillar-Tests-Model' with: [ spec requires: #( 'Pillar-Model' 'Pillar-ExporterPillar' 'Pillar-ExporterText' 'Pillar-Core' 'Pillar-Tests-PetitPillar' ) ];
+			package: 'Pillar-Model' 
+				with: [ spec requires: #( 'Pillar-Core' ) ];
+			package: 'Pillar-Tests-Model' 
+				with: [ spec requires: #( 'Pillar-Model' 'Pillar-ExporterPillar' 'Pillar-ExporterText' 'Pillar-Core' 'Pillar-Tests-PetitPillar' ) ];
 			
 			package: 'Pillar-Chrysal-Generator' with: [ spec requires: #( 'Chrysal' ) ];
 			
@@ -35,19 +38,10 @@ BaselineOfPillar >> baseline: spec [
 			package: 'Pillar-ExporterCore' with: [ spec requires: #( 'Pillar-Model' 'ContainersPropertyEnvironment' ) ];
 			package: 'Pillar-Tests-ExporterCore' with: [ spec requires: #( 'Pillar-Tests-Model' 'Pillar-ExporterCore' ) ];
 			
-		
-		
-
 
 			package: 'Pillar-Pharo-Tools' with: [ spec requires: #( 'Pillar-Model' 'All exporters' ) ];
 			package: 'Pillar-Project' with: [ spec requires: #( 'Pillar-Model' 'All exporters' ) ];
-
-			
 		
-			package: 'Pillar-Tests-Model-PetitPillar' with: [ spec requires: #( 'Pillar-Core' 'Pillar-Tests-Core' 'Pillar-Tests-Model' 'Pillar-PetitPillar' 'Pillar-Model' 'Pillar-Tests-PetitPillar' ) ];
-			package: 'Pillar-Tests-Model-ExporterText' with: [ spec requires: #( 'Pillar-Core' 'Pillar-PetitPillar' 'Pillar-Tests-ExporterText' ) ];
-			package: 'Pillar-Tests-Model-ExporterPillar' with: [ spec requires: #( 'Pillar-Model' 'Pillar-PetitPillar' 'Pillar-Tests-ExporterPillar' ) ];
-			
 		
 			package: 'Pillar-Tests-Project' with: [ spec requires: #( 'Pillar-Project' ) ];
 			package: 'Pillar-Tests-Integration' with: [ spec requires: #( 'Pillar-Project' ) ].
