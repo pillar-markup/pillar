@@ -25,8 +25,7 @@ BaselineOfPillar >> baseline: spec [
 			package: 'Pillar-Chrysal-Generator' with: [ spec requires: #( 'Chrysal' ) ];
 			package: 'Pillar-Cli' with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-Chrysal' ) ];
 			package: 'Pillar-Chrysal' with: [ spec requires: #( 'Pillar-ExporterCore' ) ];
-			package: 'Pillar-ExporterAsciiDoc' with: [ spec requires: #( 'Pillar-ExporterCore' ) ];
-			package: 'Pillar-ExporterBeamer' with: [ spec requires: #( 'Pillar-ExporterLaTeX' ) ];
+		
 			package: 'Pillar-ExporterCore' with: [ spec requires: #( 'Pillar-Model' 'ContainersPropertyEnvironment' ) ];
 			package: 'Pillar-ExporterDeckJS' with: [ spec requires: #( 'Pillar-ExporterHTML' ) ];
 			package: 'Pillar-ExporterEPub' with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-ExporterHTML' ) ];
@@ -42,8 +41,7 @@ BaselineOfPillar >> baseline: spec [
 			package: 'Pillar-Project' with: [ spec requires: #( 'Pillar-Model' 'All exporters' ) ];
 			package: 'Pillar-BookTester' with: [ spec requires: #( 'Pillar-Project' ) ];
 			package: 'Pillar-Tests-Cli' with: [ spec requires: #( 'Pillar-Cli' ) ];
-			package: 'Pillar-Tests-ExporterAsciiDoc' with: [ spec requires: #( 'Pillar-ExporterAsciiDoc' 'Pillar-Tests-ExporterCore' ) ];
-			package: 'Pillar-Tests-ExporterBeamer' with: [ spec requires: #( 'Pillar-ExporterBeamer' 'Pillar-Tests-ExporterLaTeX' ) ];
+			
 			package: 'Pillar-Tests-ExporterCore' with: [ spec requires: #( 'Pillar-Tests-Model' 'Pillar-ExporterCore' ) ];
 			package: 'Pillar-Tests-ExporterDeckJS' with: [ spec requires: #( 'Pillar-ExporterDeckJS' 'Pillar-Tests-ExporterHTML' ) ];
 			package: 'Pillar-Tests-ExporterHTML' with: [ spec requires: #( 'Pillar-ExporterHTML' 'Pillar-Tests-ExporterCore' ) ];
