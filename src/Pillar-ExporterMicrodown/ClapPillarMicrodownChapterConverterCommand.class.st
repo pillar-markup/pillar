@@ -20,9 +20,10 @@ ClapPillarMicrodownChapterConverterCommand class >> commandName [
 { #category : 'command line' }
 ClapPillarMicrodownChapterConverterCommand class >> commandSpecification [ 
 	<commandline>
-	^ (ClapCommand id: self commandName asSymbol)
+	^ (ClapCommandSpec id: self commandName asSymbol)
 		description: 'Create a microdown book chapter in the current directory, which contains the conversion in microdown format of the argument.';
-		add: ClapFlag forHelp;
+		commandClass: self;
+		addHelp;
 		add: ((ClapPositional id: #requestedFile)
 			description: 'File for the book chapter you want to convert');
 		meaning:

@@ -20,8 +20,10 @@ ClapMicrodownBookReferenceCheckerCommand class >> commandName [
 { #category : 'command line' }
 ClapMicrodownBookReferenceCheckerCommand class >> commandSpecification [ 
 	<commandline>
-	^ (ClapCommand id: self commandName asSymbol)
+	^ (ClapCommandSpec id: self commandName asSymbol)
 		description: 'Check the duplicated or unknown references as well as missing input files';
+		addHelp; 
+		commandClass: self;
 		add: ClapFlag forHelp;
 		add: ((ClapPositional id: #requestedFile)
 			description: 'File for the book you want to verify');

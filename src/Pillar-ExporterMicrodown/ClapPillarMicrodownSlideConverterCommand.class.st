@@ -20,9 +20,10 @@ ClapPillarMicrodownSlideConverterCommand class >> commandName [
 { #category : 'command line' }
 ClapPillarMicrodownSlideConverterCommand class >> commandSpecification [ 
 	<commandline>
-	^ (ClapCommand id: self commandName asSymbol)
+	^ (ClapCommandSpec id: self commandName asSymbol)
 		description: 'Create a microdown slide file in the current directory, which contains the conversion in microdown format of the argument.';
-		add: ClapFlag forHelp;
+		commandClass: self;
+		addHelp;
 		add: ((ClapPositional id: #requestedFile)
 			description: 'File for the slide you want to convert');
 		meaning:
