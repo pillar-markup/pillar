@@ -47,7 +47,7 @@ BaselineOfPillar >> baseline: spec [
 			package: 'Pillar-ExporterCore' with: [ spec requires: #( 'Pillar-Model' 'ContainersPropertyEnvironment' ) ];
 			package: 'Pillar-Tests-ExporterCore' with: [ spec requires: #( 'Pillar-Tests-Model' 'Pillar-ExporterCore' ) ];
 			
-			package: 'Pillar-Project' with: [ spec requires: #( 'Pillar-Model' 'All exporters' ) ];
+			package: 'Pillar-Project' with: [ spec requires: #( 'Pillar-Model' ) ];
 		
 			package: 'Pillar-Tests-Project' with: [ spec requires: #( 'Pillar-Project' ) ];
 			package: 'Pillar-Tests-Integration' with: [ spec requires: #( 'Pillar-Project' ) ].
