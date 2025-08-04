@@ -19,9 +19,7 @@ BaselineOfPillar >> baseline: spec [
 			
 		spec postLoadDoIt: #postload:package:.
 		spec
-			package: 'Pillar-Core'
-				with: [ spec requires: 
-							#( 'Pillar-ExporterCore' ) ];
+			package: 'Pillar-Core';
 			package: 'Pillar-Tests-Core' 
 				with: [ spec requires: 
 							#( 'Pillar-Core') ];
