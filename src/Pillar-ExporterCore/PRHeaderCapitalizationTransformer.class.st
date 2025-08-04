@@ -1,13 +1,15 @@
 Class {
-	#name : #PRHeaderCapitalizationTransformer,
-	#superclass : #PRPrintingTransformer,
+	#name : 'PRHeaderCapitalizationTransformer',
+	#superclass : 'PRPrintingTransformer',
 	#instVars : [
 		'headerCapitalization'
 	],
-	#category : #'Pillar-ExporterCore-Transformers'
+	#category : 'Pillar-ExporterCore-Transformers',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #default }
+{ #category : 'default' }
 PRHeaderCapitalizationTransformer >> capitalizationConfiguration [
 
 	^ Dictionary
@@ -18,7 +20,7 @@ PRHeaderCapitalizationTransformer >> capitalizationConfiguration [
 		with: 'raw' -> [ :text | text ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHeaderCapitalizationTransformer >> capitalizeEnglish: aString [
 
 	^ String streamContents: [ :s | 
@@ -30,7 +32,7 @@ PRHeaderCapitalizationTransformer >> capitalizeEnglish: aString [
 
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHeaderCapitalizationTransformer >> capitalizeHeader: aString [
 	
 	^ String streamContents: [ :s | 
@@ -39,7 +41,7 @@ PRHeaderCapitalizationTransformer >> capitalizeHeader: aString [
 			separatedBy: [ s  <<' ' ] ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHeaderCapitalizationTransformer >> englishWordCapitalize: aWord [
 
 	^  (self nonCapitalizedWordEnglish includes: aWord)
@@ -51,13 +53,13 @@ PRHeaderCapitalizationTransformer >> englishWordCapitalize: aWord [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRHeaderCapitalizationTransformer >> initialize [
 	super initialize.
 	headerCapitalization := 'raw'
 ]
 
-{ #category : #default }
+{ #category : 'default' }
 PRHeaderCapitalizationTransformer >> nonCapitalizedWordEnglish [
 
 	^ #( 'to' 'and' 'or' 'an'  'a' 'of'  'the' 'but' 'nor'  'for' 'yet'  'so' 'on' 'at' 'in')
@@ -65,7 +67,7 @@ PRHeaderCapitalizationTransformer >> nonCapitalizedWordEnglish [
 
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHeaderCapitalizationTransformer >> visitHeader: aHeader [
 	
 	"this is done like that because the txt can be wrapped into bold and other"
@@ -73,7 +75,7 @@ PRHeaderCapitalizationTransformer >> visitHeader: aHeader [
 	super visitHeader: aHeader 
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHeaderCapitalizationTransformer >> visitText: aText [
 
 	aText text: ((self capitalizationConfiguration at: headerCapitalization ifAbsent: [[:text|text]]) value: aText text).

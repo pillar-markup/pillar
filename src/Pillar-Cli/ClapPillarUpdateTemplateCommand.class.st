@@ -21,9 +21,10 @@ ClapPillarUpdateTemplateCommand class >> commandName [
 { #category : 'command line' }
 ClapPillarUpdateTemplateCommand class >> commandSpecification [
 	<commandline>
-	^ (ClapCommand id: self commandName asSymbol)
+	^ (ClapCommandSpec id: self commandName asSymbol)
 		description: 'Update a given template';
-		add: ClapFlag forHelp;
+		commandClass: self;
+		addHelp;
 		add: ((ClapPositional id: #requestedTemplate )
 			description: 'Template you want to update');		
 		meaning:

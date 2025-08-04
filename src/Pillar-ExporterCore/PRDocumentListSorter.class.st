@@ -2,23 +2,25 @@
 A class for representing a gloabl sorter for different kind of sorting
 "
 Class {
-	#name : #PRDocumentListSorter,
-	#superclass : #Object,
+	#name : 'PRDocumentListSorter',
+	#superclass : 'Object',
 	#instVars : [
 		'direction',
 		'files'
 	],
-	#category : 'Pillar-ExporterCore-Document-List'
+	#category : 'Pillar-ExporterCore-Document-List',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Document-List'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRDocumentListSorter class >> with: aCollection [
 	^ self new
 		files: aCollection;
 		sort
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRDocumentListSorter class >> with: aCollection order: aString [
 	^ self new
 		files: aCollection;
@@ -26,22 +28,22 @@ PRDocumentListSorter class >> with: aCollection order: aString [
 		sort
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRDocumentListSorter >> direction [
 	^ direction
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRDocumentListSorter >> files [
 	^ files
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRDocumentListSorter >> files: anObject [
 	files := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRDocumentListSorter >> sort [
 	^ self subclassResponsibility 
 ]

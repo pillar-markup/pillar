@@ -19,9 +19,10 @@ ClapPillarGenerateTestsCommand class >> commandSpecification [
 	<commandline>
 	| target |
 	target := PRCreateTestsTarget new.
-	^ (ClapCommand id: self commandName asSymbol)
+	^ (ClapCommandSpec id: self commandName asSymbol)
+		commandClass: self;
 		description: 'Generate tests from examples in the codeblocks of Pillar file(s)';
-		add: ClapFlag forHelp;
+		addHelp;
 		add: ((ClapPositional id: #requestedFiles )
 			description: 'Pillar document(s) used to generate tests';
 			implicitMeaning: [ '' ]);

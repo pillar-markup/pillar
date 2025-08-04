@@ -20,9 +20,10 @@ ClapPillarCommand class >> commandSpecification [
 	
 	| command |
 	
-	command := (ClapCommand id: #pillar)
+	command := (ClapCommandSpec id: #pillar)
 		description: 'Pillar is a markup syntax and associated tools to write and generate documents lie books in PDF, websites in html, or slides';
-		add: ClapFlag forHelp;
+		commandClass: self;
+		addHelp;
 		add: ((ClapFlag id: #version )
 			description: 'Prints the version of your Pharo VM');	
 		yourself.

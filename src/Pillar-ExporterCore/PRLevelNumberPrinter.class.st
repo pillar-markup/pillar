@@ -1,10 +1,12 @@
 Class {
-	#name : #PRLevelNumberPrinter,
-	#superclass : #PRTitlePrinterSpecification,
-	#category : 'Pillar-ExporterCore-Configuration'
+	#name : 'PRLevelNumberPrinter',
+	#superclass : 'PRTitlePrinterSpecification',
+	#category : 'Pillar-ExporterCore-Configuration',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Configuration'
 }
 
-{ #category : #'rendering-element' }
+{ #category : 'rendering-element' }
 PRLevelNumberPrinter >> renderElement: aNumber on: stream [
 	aNumber printOn: stream
 ]

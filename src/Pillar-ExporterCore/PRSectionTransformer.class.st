@@ -2,45 +2,47 @@
 For each header, I add a section structure. This is useful in export formats (such as HTML5 and Docbook) where sub-sections are embedded in their parent section.
 "
 Class {
-	#name : #PRSectionTransformer,
-	#superclass : #PRDocumentChildrenTransformer,
+	#name : 'PRSectionTransformer',
+	#superclass : 'PRDocumentChildrenTransformer',
 	#instVars : [
 		'sections'
 	],
 	#classVars : [
 		'MaxDepthLevel'
 	],
-	#category : #'Pillar-ExporterCore-Transformers'
+	#category : 'Pillar-ExporterCore-Transformers',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 PRSectionTransformer class >> initialize [
  	" self initialize "
 	MaxDepthLevel := self maxDepthLevelForSection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRSectionTransformer class >> maxDepthLevel: anObject [
 	MaxDepthLevel := anObject
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRSectionTransformer class >> maxDepthLevelForSection [
 	^ 7
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRSectionTransformer >> aSectionIsOpen [
 	sections do: [ :e | e ifNotNil: [ ^ true ] ].
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRSectionTransformer >> cleanSections [
 	self cleanSectionsUnderLevel: 1
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRSectionTransformer >> cleanSectionsAndOpenNewWith: documentItem [
 	| newSection |
 	documentItem level <= MaxDepthLevel
@@ -51,12 +53,12 @@ PRSectionTransformer >> cleanSectionsAndOpenNewWith: documentItem [
 	^ newSection
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRSectionTransformer >> cleanSectionsUnderLevel: aNumber [
 	[ self currentSectionIndex >= aNumber ] whileTrue: [ self closeLastSection ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRSectionTransformer >> closeLastSection [
 	| lastSection |
 	lastSection := self currentSection.
@@ -66,12 +68,12 @@ PRSectionTransformer >> closeLastSection [
 		ifFalse: [ newChildren add: lastSection ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRSectionTransformer >> currentSection [
 	^ sections at: self currentSectionIndex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRSectionTransformer >> currentSectionIndex [
 	"I return the index of deeper section open now. If I don't have any section open I return -1."
 
@@ -84,13 +86,13 @@ PRSectionTransformer >> currentSectionIndex [
 	^ -1
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRSectionTransformer >> initialize [
 	super initialize.
 	sections := Array ofSize: MaxDepthLevel
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRSectionTransformer >> manageItem: documentItem [
 	^ documentItem isHeader
 		ifTrue: [ self cleanSectionsAndOpenNewWith: documentItem ]
@@ -100,7 +102,7 @@ PRSectionTransformer >> manageItem: documentItem [
 				ifFalse: [ newChildren add: documentItem ] ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRSectionTransformer >> possibleTransformationEnding [
 	self cleanSections
 ]

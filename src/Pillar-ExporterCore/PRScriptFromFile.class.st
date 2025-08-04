@@ -2,17 +2,19 @@
 I replace each script with a ==fromFile== parameter with the content of the referenced file.
 "
 Class {
-	#name : #PRScriptFromFile,
-	#superclass : #PRNodeTransformer,
+	#name : 'PRScriptFromFile',
+	#superclass : 'PRNodeTransformer',
 	#instVars : [
 		'firstLine',
 		'lastLine',
 		'fileStream'
 	],
-	#category : #'Pillar-ExporterCore-Feature-ScriptFromFile'
+	#category : 'Pillar-ExporterCore-Feature-ScriptFromFile',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Feature-ScriptFromFile'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 PRScriptFromFile >> addScript: aScript [
 	| content |
 	content := String new writeStream.
@@ -29,7 +31,7 @@ PRScriptFromFile >> addScript: aScript [
 	^ aScript text: content contents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRScriptFromFile >> fileLineNumber [
 	| tmpStream cpt |
 	tmpStream := fileStream copy.
@@ -38,7 +40,7 @@ PRScriptFromFile >> fileLineNumber [
 	^ cpt
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRScriptFromFile >> hasFromFile: aScript [
 	"I check if the transformer need to transform the script. If the script has bad parameters i raise a warning."
 
@@ -68,7 +70,7 @@ PRScriptFromFile >> hasFromFile: aScript [
 		ifAbsent: [ ^ false ]
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 PRScriptFromFile >> setFileAndInterval: aFileName [
 	"I get the File and i set the line numbers."
 
@@ -80,7 +82,7 @@ PRScriptFromFile >> setFileAndInterval: aFileName [
 		ifFalse: [ PRInputFileError signal: aFileName , ' is not a valid file name into ' , self configuration baseDirectory asString , '.' ]
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 PRScriptFromFile >> updateInterval [
 	| fileLineNumber |
 	fileLineNumber := self fileLineNumber.
@@ -95,7 +97,7 @@ PRScriptFromFile >> updateInterval [
 					[ PRPropertyError signal: 'lastLine parameter is not a valid parameter. Please choose a lastLine lower than the file size and higher then the firstLine.' ] ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRScriptFromFile >> visitCodeblock: aCodeBlock [
 	(self hasFromFile: aCodeBlock)
 		ifTrue: [ self replace: {(self addScript: aCodeBlock)} ]

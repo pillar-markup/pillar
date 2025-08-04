@@ -19,9 +19,10 @@ ClapPillarCheckCommand class >> commandSpecification [
 	<commandline>
 	| target |
 	target := PRCheckBookTarget new.
-	^ (ClapCommand id: self commandName asSymbol)
+	^ (ClapCommandSpec id: self commandName asSymbol)
 		description: 'Check code in all the codeblocks in given file or book, then generate a report';
-		add: ClapFlag forHelp;
+		commandClass: self;
+		addHelp;
 		add: ((ClapPositional id: #requestedFiles )
 			description: 'Pillar document(s) you want to check';
 			implicitMeaning: [ '' ]);

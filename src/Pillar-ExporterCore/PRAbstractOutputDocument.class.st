@@ -1,28 +1,30 @@
 Class {
-	#name : #PRAbstractOutputDocument,
-	#superclass : #Object,
+	#name : 'PRAbstractOutputDocument',
+	#superclass : 'Object',
 	#instVars : [
 		'project',
 		'file',
 		'target',
 		'outputDirectory'
 	],
-	#category : #'Pillar-ExporterCore-Base'
+	#category : 'Pillar-ExporterCore-Base',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Base'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractOutputDocument >> baseDirectory [
 	
 	^ project baseDirectory
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 PRAbstractOutputDocument >> basicWriter [
 	
 	self subclassResponsibility
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRAbstractOutputDocument >> buildOn: aPRProject [ 
 	
 	| parsedDocument transformedDocument writtenFile |
@@ -34,30 +36,30 @@ PRAbstractOutputDocument >> buildOn: aPRProject [
 	^ PRSuccess new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractOutputDocument >> configuration [
 	
 	^ project configuration
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractOutputDocument >> extension [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractOutputDocument >> file [
 
 	^ file
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractOutputDocument >> file: aFile [
 	
 	file := aFile
 ]
 
-{ #category : #metadata }
+{ #category : 'metadata' }
 PRAbstractOutputDocument >> getMustacheTemplateValuesFromDocument: aDocument [
 	"aDocument already has a conifguration holding potential metadata. 
 	We add the text contents to it. This dictionarylike structure will be used by the mustache."
@@ -69,13 +71,13 @@ PRAbstractOutputDocument >> getMustacheTemplateValuesFromDocument: aDocument [
 	^ templates
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractOutputDocument >> inputFile [
 	
 	^ file file
 ]
 
-{ #category : #metadata }
+{ #category : 'metadata' }
 PRAbstractOutputDocument >> metadataConfigurationForDocument: aDocument [ 
 	"create an environment with the local document properties as children of the document properties."
 	
@@ -85,7 +87,7 @@ PRAbstractOutputDocument >> metadataConfigurationForDocument: aDocument [
 	^ subConfiguration
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractOutputDocument >> outputDirectory [
 		"pay attention the output directory of an output document is more precise than the one of a project. 
 	Indeed it will take into account the kind of document and add 'pdf', 'html'.... as subfolder.
@@ -94,7 +96,7 @@ PRAbstractOutputDocument >> outputDirectory [
 	^ outputDirectory ifNil: [ project outputDirectory ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractOutputDocument >> outputDirectory: aFileReference [
 	"pay attention the output directory of a output document is more precise than the one of a project. 
 	Indeed it will take into account the kind of document and add 'pdf', 'html'.... as subfolder.
@@ -103,61 +105,61 @@ PRAbstractOutputDocument >> outputDirectory: aFileReference [
 	outputDirectory := aFileReference 
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRAbstractOutputDocument >> parseInputFile: anInputFile [
 	
 	^ anInputFile parsedDocument
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRAbstractOutputDocument >> postWriteTransform: aFile [
 
 	"Nothing. Hook for subclasses"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractOutputDocument >> project [
 	
 	^ project
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractOutputDocument >> project: aPRProject [ 
 	
 	project := aPRProject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractOutputDocument >> tableOfContents [
 	
 	^ project tableOfContents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractOutputDocument >> target: aTarget [ 
 	target := aTarget
 ]
 
-{ #category : #templating }
+{ #category : 'templating' }
 PRAbstractOutputDocument >> templateDirectory [
 
 	^ project baseDirectory / '_support' / 'templates' / self writer folderName
 ]
 
-{ #category : #templating }
+{ #category : 'templating' }
 PRAbstractOutputDocument >> templateFile [
 	
 	^ project baseDirectory / (self writer templateForConfiguration: project configuration)
 ]
 
-{ #category : #templating }
+{ #category : 'templating' }
 PRAbstractOutputDocument >> templateFile: aDocument [
 
 	^ self templateDirectory
 		/ (aDocument propertyAt: 'template' ifAbsent: [ self writer templateForConfiguration: project configuration ])
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRAbstractOutputDocument >> transformDocument: aDocument [
 	"Double dispatch hook invoked by document. In addition let the document control the inclusion process and the transformations."
 	
@@ -169,19 +171,19 @@ PRAbstractOutputDocument >> transformDocument: aDocument [
 		into: [ :accum :each | each start: accum ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractOutputDocument >> transformations [
 	
 	^ target transformations
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractOutputDocument >> transformationsFor: aDocument [
 	
 	^ target transformations
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRAbstractOutputDocument >> writeDocument: aDocument [
 
 	| environment templatedOutput outputFile |
@@ -197,7 +199,7 @@ PRAbstractOutputDocument >> writeDocument: aDocument [
 	^ outputFile
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 PRAbstractOutputDocument >> writer [
 	
 	"If templating is active in the command, use the templated writer"

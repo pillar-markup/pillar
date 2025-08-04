@@ -12,8 +12,8 @@ I describe how a level should be printed.
 If numbering is at false, the size need to be 0.
 "
 Class {
-	#name : #PRTitlePrinterSpecification,
-	#superclass : #Object,
+	#name : 'PRTitlePrinterSpecification',
+	#superclass : 'Object',
 	#instVars : [
 		'numbering',
 		'size',
@@ -24,20 +24,22 @@ Class {
 		'printer',
 		'renderAs'
 	],
-	#category : #'Pillar-ExporterCore-Configuration'
+	#category : 'Pillar-ExporterCore-Configuration',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Configuration'
 }
 
-{ #category : #'accessing - defaults' }
+{ #category : 'accessing - defaults' }
 PRTitlePrinterSpecification class >> defaultLevel [
 	^ 1
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRTitlePrinterSpecification class >> new [
 	^ self with: Dictionary new
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRTitlePrinterSpecification class >> with: aDictionary [
 	"what a ugly API"
 	| inst |
@@ -52,34 +54,34 @@ PRTitlePrinterSpecification class >> with: aDictionary [
 	^ inst
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTitlePrinterSpecification >> autoAnchor [
 	^ autoAnchor 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTitlePrinterSpecification >> autoAnchor: anObject [ 
 
 	autoAnchor := anObject 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTitlePrinterSpecification >> capitalization [
 	^ capitalization
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTitlePrinterSpecification >> capitalization: anObject [
 	capitalization := anObject 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PRTitlePrinterSpecification >> elementSeparator [
 	"why hardcoding it?"
 	^ $.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRTitlePrinterSpecification >> fillFromAnother: another [
 	"copy all the field from another instance this is used to convert a configuration specification to an instance of one of the subclasses."
 	"the equivalent of a changeClassToThatOf:"
@@ -92,12 +94,12 @@ PRTitlePrinterSpecification >> fillFromAnother: another [
 	self size: another size
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTitlePrinterSpecification >> headerSize [
 	^ size
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTitlePrinterSpecification >> headerSize: anInteger [
 	"Pay attention changing the size only makes sense when numbering is true."
 
@@ -106,7 +108,7 @@ PRTitlePrinterSpecification >> headerSize: anInteger [
 		ifFalse: [ 0 ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRTitlePrinterSpecification >> initialize [
 
 	super initialize.
@@ -117,40 +119,40 @@ PRTitlePrinterSpecification >> initialize [
 	renderAs := 'number'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTitlePrinterSpecification >> level [
 	^ level ifNil: [ self class defaultLevel ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTitlePrinterSpecification >> level: anObject [
 	level := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTitlePrinterSpecification >> numbering [
 	^ numbering
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTitlePrinterSpecification >> numbering: anObject [
 	numbering := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTitlePrinterSpecification >> predecessor [
 	^ level = 1
 			ifTrue: [ nil ]
 			ifFalse: [ self printer perform: ('level' , (self level - 1) asString) asSymbol ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PRTitlePrinterSpecification >> printCounter: aCollection [
 	^ String streamContents: [ :s | self printCounter: aCollection withMaxSize: self size on: s ]
 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PRTitlePrinterSpecification >> printCounter: aCollection withMaxSize: aSize on: stream [
 	aSize > 0
 		ifTrue: [ (self predecessor isNotNil and: [ aSize - 1 > 0 ])
@@ -160,13 +162,13 @@ PRTitlePrinterSpecification >> printCounter: aCollection withMaxSize: aSize on: 
 			self printElement: aCollection last on: stream ]
 ]
 
-{ #category : #'rendering-element' }
+{ #category : 'rendering-element' }
 PRTitlePrinterSpecification >> printElement: aNumber on: stream [
 	aNumber = -1
 		ifFalse: [ self renderElement: aNumber on: stream ]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PRTitlePrinterSpecification >> printOn: aStream [
 
 	super printOn: aStream.
@@ -176,41 +178,41 @@ PRTitlePrinterSpecification >> printOn: aStream [
 		nextPutAll: self autoAnchor asString.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTitlePrinterSpecification >> printer [
 
 	^ printer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTitlePrinterSpecification >> printer: aPrinter [
 
 	printer := aPrinter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTitlePrinterSpecification >> renderAs [
 	"only use during serialisation to serve as an marker to create instance of adequate subclasses"
 	^ renderAs 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTitlePrinterSpecification >> renderAs: aString [
 	"only use during serialisation"
 	renderAs := aString
 ]
 
-{ #category : #'rendering-element' }
+{ #category : 'rendering-element' }
 PRTitlePrinterSpecification >> renderElement: aNumber on: stream [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTitlePrinterSpecification >> size [
 	^ self headerSize
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTitlePrinterSpecification >> size: anInteger [
 	"Pay attention changing the size only makes sense when numbering is true."
 	self headerSize: anInteger

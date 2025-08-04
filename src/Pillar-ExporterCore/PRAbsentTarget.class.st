@@ -1,11 +1,14 @@
 Class {
-	#name : #PRAbsentTarget,
-	#superclass : #PRErrorTarget,
-	#category : #'Pillar-ExporterCore-Base'
+	#name : 'PRAbsentTarget',
+	#superclass : 'PRErrorTarget',
+	#category : 'Pillar-ExporterCore-Base',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Base'
 }
 
-{ #category : #clap }
+{ #category : 'clap' }
 PRAbsentTarget class >> buildClapCommandWithId: anId withPositionals: isWithPositionals [
+	
 	^ self 
 		buildClapCommandWithId: anId 
 		withPositionals: isWithPositionals 
@@ -13,7 +16,7 @@ PRAbsentTarget class >> buildClapCommandWithId: anId withPositionals: isWithPosi
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbsentTarget class >> builderName [
 	
 	^ #errorAbsentTarget

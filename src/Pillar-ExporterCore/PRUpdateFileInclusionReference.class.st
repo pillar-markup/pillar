@@ -2,27 +2,29 @@
 I update all reference of figures and internal links for file inclusion 
 "
 Class {
-	#name : #PRUpdateFileInclusionReference,
-	#superclass : #PRVisitor,
+	#name : 'PRUpdateFileInclusionReference',
+	#superclass : 'PRVisitor',
 	#instVars : [
 		'path'
 	],
-	#category : #'Pillar-ExporterCore-Utilities'
+	#category : 'Pillar-ExporterCore-Utilities',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Utilities'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRUpdateFileInclusionReference class >> isAbstract [
 	^ false
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRUpdateFileInclusionReference class >> start: aDocument with: aPath [
 	^ self new
 		path: aPath;
 		start: aDocument
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRUpdateFileInclusionReference >> newReferenceFor: aReference [
 	(aReference reference includesSubstring: 'file://')
 		ifTrue: [ ^ aReference reference copyReplaceAll: 'file://' with: 'file://', self path , '/' ].
@@ -32,30 +34,30 @@ PRUpdateFileInclusionReference >> newReferenceFor: aReference [
 		ifNotEmpty: [ self path , '/' , aReference reference]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRUpdateFileInclusionReference >> path [
 	^ path
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRUpdateFileInclusionReference >> path: aPath [
 	path := aPath
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRUpdateFileInclusionReference >> start: anObject [
 	super start: anObject.
 	^ anObject
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRUpdateFileInclusionReference >> visitFigure: aFigure [
 	"self halt: 'PRUpdateFileInclusionReference'."
 	aFigure reference: (self newReferenceFor: aFigure).
 	super visitFigure: aFigure
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRUpdateFileInclusionReference >> visitInternalLink: anInternalLink [
 	anInternalLink hasReference  
 		ifTrue: [ anInternalLink reference: (self newReferenceFor: anInternalLink) ].

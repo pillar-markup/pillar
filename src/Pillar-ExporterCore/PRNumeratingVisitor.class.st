@@ -2,8 +2,8 @@
 I add numbers to all titles, scripts, figures, and internal links.
 "
 Class {
-	#name : #PRNumeratingVisitor,
-	#superclass : #PRNodeTransformer,
+	#name : 'PRNumeratingVisitor',
+	#superclass : 'PRNodeTransformer',
 	#instVars : [
 		'figureCounter',
 		'topLevelNumerate',
@@ -11,10 +11,12 @@ Class {
 		'headerCounter',
 		'anchorsMapping'
 	],
-	#category : #'Pillar-ExporterCore-Transformers'
+	#category : 'Pillar-ExporterCore-Transformers',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRNumeratingVisitor class >> executeOn: aPillarContext [
 	self new
 		configuration: aPillarContext configuration;
@@ -23,7 +25,7 @@ PRNumeratingVisitor class >> executeOn: aPillarContext [
 	^ aPillarContext
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRNumeratingVisitor class >> with: aConfiguration [
 	^ self new
 		configuration: aConfiguration;
@@ -31,14 +33,14 @@ PRNumeratingVisitor class >> with: aConfiguration [
 		yourself
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PRNumeratingVisitor >> actionOn: anInput [
 	^ anInput
 		propertyAt: #anchorsMapping put: anchorsMapping;
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRNumeratingVisitor >> initialize [
 	super initialize.
 	headerCounter := PRCascadingCounter maxLevel: 5.
@@ -47,7 +49,7 @@ PRNumeratingVisitor >> initialize [
 	anchorsMapping := Dictionary new
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRNumeratingVisitor >> initializeTopNumerate [
 	| cpt |
 	cpt := 1.
@@ -55,17 +57,17 @@ PRNumeratingVisitor >> initializeTopNumerate [
 	topLevelNumerate := cpt
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 PRNumeratingVisitor >> needNumbering: aHeader [
 	^ (configuration levelConfigurationFor: aHeader) numbering
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRNumeratingVisitor >> visitAnchor: anAnchor [
 	anchorsMapping at: anAnchor name put: headerCounter current
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRNumeratingVisitor >> visitCodeblock: aCodeBlock [
 	"Figures and scripts are numbered based on the top-level header. This means that figures and scripts always have 2 numbers: one indicating the header they are in, and one indicating the position of the element in the corresponding section"
 
@@ -78,7 +80,7 @@ PRNumeratingVisitor >> visitCodeblock: aCodeBlock [
 			aCodeBlock parameters at: 'label' ifPresent: [ :label | anchorsMapping at: label put: scriptCounter current ] ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRNumeratingVisitor >> visitFigure: aFigure [
 	"Figures and scripts are numbered based on the top-level header. This means that figures and scripts always have 2 numbers: one indicating the header they are in, and one indicating the position of the element in the corresponding section"
 
@@ -89,7 +91,7 @@ PRNumeratingVisitor >> visitFigure: aFigure [
 			aFigure parameters at: 'label' ifPresent: [ :label | anchorsMapping at: label put: figureCounter current ] ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRNumeratingVisitor >> visitHeader: aHeader [
 	| aLevel |
 	aLevel := aHeader level.
@@ -103,7 +105,7 @@ PRNumeratingVisitor >> visitHeader: aHeader [
 	aHeader counter: headerCounter current
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRNumeratingVisitor >> visitSlideTitleAnnotation: aSlideTitleAnnotation [
 	aSlideTitleAnnotation parameters
 		at: 'label'

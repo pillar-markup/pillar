@@ -2,12 +2,14 @@
 I allow to create a symbolic Link
 "
 Class {
-	#name : #PRCreateSymLink,
-	#superclass : #PRBasicObject,
-	#category : 'Pillar-ExporterCore-Utilities'
+	#name : 'PRCreateSymLink',
+	#superclass : 'PRBasicObject',
+	#category : 'Pillar-ExporterCore-Utilities',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Utilities'
 }
 
-{ #category : #system }
+{ #category : 'system' }
 PRCreateSymLink >> createSymbolic: name to: target [
 	| command |
 	command :='ln -sf ' , target , ' ' , name.
@@ -16,7 +18,7 @@ PRCreateSymLink >> createSymbolic: name to: target [
 	self system: command
 ]
 
-{ #category : #system }
+{ #category : 'system' }
 PRCreateSymLink >> system: command [
 	"Perform OS system() call."
 	^ self ffiCall: #(#int #system #(#char #* #command)) module: LibC

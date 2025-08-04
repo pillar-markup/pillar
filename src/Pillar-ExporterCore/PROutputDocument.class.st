@@ -6,36 +6,38 @@ I contain the already written text (String) and the pillar document (ast) used t
 - dump the text into a file
 "
 Class {
-	#name : #PROutputDocument,
-	#superclass : #PRObject,
+	#name : 'PROutputDocument',
+	#superclass : 'PRObject',
 	#instVars : [
 		'pillarDocument',
 		'outputText'
 	],
-	#category : #'Pillar-ExporterCore-Transformers'
+	#category : 'Pillar-ExporterCore-Transformers',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PROutputDocument class >> isAbstract [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PROutputDocument >> outputText [
 	^ outputText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PROutputDocument >> outputText: anObject [
 	outputText := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PROutputDocument >> pillarDocument [
 	^ pillarDocument
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PROutputDocument >> pillarDocument: aPRDocument [ 
 	pillarDocument := aPRDocument
 ]

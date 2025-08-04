@@ -1,29 +1,32 @@
 Class {
-	#name : #PRTarget,
-	#superclass : #Object,
+	#name : 'PRTarget',
+	#superclass : 'Object',
 	#instVars : [
 		'buildStrategy',
 		'transformations'
 	],
-	#category : #'Pillar-ExporterCore-Base'
+	#category : 'Pillar-ExporterCore-Base',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Base'
 }
 
-{ #category : #clap }
+{ #category : 'clap' }
 PRTarget class >> buildClapCommand [
 	
 	^ self buildClapCommandWithId: self clapId withPositionals: true
 ]
 
-{ #category : #clap }
+{ #category : 'clap' }
 PRTarget class >> buildClapCommandWithId: anId withPositionals: isWithPositionals [
 	
 	| target project command |
 	target := self new.
 	project := self newProject.
  
-	command := (ClapCommand id: anId asSymbol)
+	command := (ClapCommandSpec id: anId asSymbol)
 		description: 'Build your Pillar documents in ', self clapId asString ,' format';
-		add: ClapFlag forHelp;
+		commandClass: self;
+		addHelp;
 		add: ((ClapFlag id: #templatable)
 				description: 'Use a template');
 				meaning: [project beTemplatable];
@@ -59,7 +62,7 @@ PRTarget class >> buildClapCommandWithId: anId withPositionals: isWithPositional
 		^ command.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTarget class >> builderClassForName: aString [ 
 	
 	| builders |
@@ -70,61 +73,61 @@ PRTarget class >> builderClassForName: aString [
 	^ builders anyOne
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTarget class >> builderForName: aString [ 
 	
 	^ (self builderClassForName: aString) new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTarget class >> builderName [
 	
 	^ self subclassResponsibility
 ]
 
-{ #category : #clap }
+{ #category : 'clap' }
 PRTarget class >> clapCommandList [
 	^ self allSubclasses
 		select: [ :each | each isAbstract not ]
 		thenCollect: [ :each | each buildClapCommand ]
 ]
 
-{ #category : #clap }
+{ #category : 'clap' }
 PRTarget class >> clapId [
 	
 	^ self builderName 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRTarget class >> isAbstract [
 	^ self == PRTarget
 ]
 
-{ #category : #'clap-integration' }
+{ #category : 'clap-integration' }
 PRTarget class >> newProject [
 
 	^ PRProject on: FileSystem workingDirectory
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTarget class >> targetByFormatName: aFormat [
 	^ self allSubclasses
 		detect: [ :each | (each isAbstract not) and: [each builderName asString = aFormat asString] ] ifNone: [ ^ PRInvalidTarget ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTarget >> addPillarDocumentTransformation: aTransformation [
 	
 	transformations add: aTransformation
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRTarget >> allFilesStrategy [
 
 	self buildStrategy: PRBuildAllStrategy new
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRTarget >> buildOn: aProject [
 	"Set the pipeline and execute it for each file of the project."
 	| status |
@@ -143,36 +146,36 @@ PRTarget >> buildOn: aProject [
 	^ status
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTarget >> buildStrategy: aStrategy [
 	buildStrategy := aStrategy
 ]
 
-{ #category : #'clap-integration' }
+{ #category : 'clap-integration' }
 PRTarget >> buildWithClapArguments: project [
 
 	(project build: self) exitProcess
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRTarget >> documentFor: aFile [
 
 	self subclassResponsibility
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRTarget >> explicitFilesStrategyOn: aListOfFileReferences [
 
 	self buildStrategy: (PRBuildListStrategy list: aListOfFileReferences)
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRTarget >> filesToBuildOn: aPRProject [ 
 	
 	^ buildStrategy filesToBuildOn: aPRProject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRTarget >> initialize [
 	super initialize.
 	transformations := Set new.
@@ -180,19 +183,19 @@ PRTarget >> initialize [
 	buildStrategy := PRBuildRootMainStrategy new.
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRTarget >> onlyMainRootStrategy [
 
 	self buildStrategy: PRBuildRootMainStrategy new
 ]
 
-{ #category : #preparation }
+{ #category : 'preparation' }
 PRTarget >> prepareForExecutionOn: aPRProject [ 
 	
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTarget >> transformations [
 	
 	^ transformations

@@ -12,15 +12,17 @@ PRTransformersDocumentation on: stream.
 stream contents
 "
 Class {
-	#name : #PRTransformersDocumentation,
-	#superclass : #Object,
+	#name : 'PRTransformersDocumentation',
+	#superclass : 'Object',
 	#instVars : [
 		'stream'
 	],
-	#category : 'Pillar-ExporterCore-Configuration'
+	#category : 'Pillar-ExporterCore-Configuration',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Configuration'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRTransformersDocumentation class >> on: aStream [
 	"I generate the documentation of the Pillar transformers on a Stream."
 
@@ -30,13 +32,13 @@ PRTransformersDocumentation class >> on: aStream [
 		stream
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTransformersDocumentation >> allTransformers [
 	
 	^ PRNodeTransformer withAllConcreteClasses
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 PRTransformersDocumentation >> generateDoc [
 	| transformers |
 	transformers := self allTransformers.
@@ -49,7 +51,7 @@ PRTransformersDocumentation >> generateDoc [
 	self generateDocumentationOf: transformers
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 PRTransformersDocumentation >> generateDocumentationOf: transformers [
 	transformers
 		do: [ :transformer | 
@@ -63,12 +65,12 @@ PRTransformersDocumentation >> generateDocumentationOf: transformers [
 				nextPutAll: Smalltalk os lineEnding ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTransformersDocumentation >> stream [
 	^ stream
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTransformersDocumentation >> stream: anObject [
 	stream := anObject
 ]

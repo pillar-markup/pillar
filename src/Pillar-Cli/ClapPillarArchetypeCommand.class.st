@@ -20,9 +20,10 @@ ClapPillarArchetypeCommand class >> commandName [
 { #category : 'command line' }
 ClapPillarArchetypeCommand class >> commandSpecification [ 
 	<commandline>
-	^ (ClapCommand id: self commandName asSymbol)
+	^ (ClapCommandSpec id: self commandName asSymbol)
 		description: 'Create a pillar project in the current directory, which contains a basic template and skeleton pillar files following the archetype convention';
-		add: ClapFlag forHelp;
+		addHelp;
+		commandClass: self;
 		add: ((ClapPositional id: #requestedArchetype )
 			description: 'Archetype you want to use');
 		add: ((ClapFlag id: #templatable )

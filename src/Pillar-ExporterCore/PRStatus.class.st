@@ -1,10 +1,12 @@
 Class {
-	#name : #PRStatus,
-	#superclass : #Object,
-	#category : 'Pillar-ExporterCore-Base'
+	#name : 'PRStatus',
+	#superclass : 'Object',
+	#category : 'Pillar-ExporterCore-Base',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Base'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRStatus class >> withStatus: aBoolean [
 
 
@@ -13,31 +15,31 @@ PRStatus class >> withStatus: aBoolean [
 		ifFalse: [ PRFailure new ]
 ]
 
-{ #category : #controlling }
+{ #category : 'controlling' }
 PRStatus >> and: aPRStatus [
 
 	self subclassResponsibility
 ]
 
-{ #category : #controlling }
+{ #category : 'controlling' }
 PRStatus >> exitProcess [
 
 	self subclassResponsibility
 ]
 
-{ #category : #controlling }
+{ #category : 'controlling' }
 PRStatus >> isFailure [
 
 	self subclassResponsibility 
 ]
 
-{ #category : #controlling }
+{ #category : 'controlling' }
 PRStatus >> isSuccess [
 
 	self subclassResponsibility 
 ]
 
-{ #category : #controlling }
+{ #category : 'controlling' }
 PRStatus >> value [
 
 	self subclassResponsibility

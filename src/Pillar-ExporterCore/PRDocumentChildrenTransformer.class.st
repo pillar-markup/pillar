@@ -4,20 +4,22 @@ I'm an abstract class. I allows the transformation of a tree. I'll visit the chi
 newChildren is a Collection where we stock the new children of PRDocument during the transformation.
 "
 Class {
-	#name : #PRDocumentChildrenTransformer,
-	#superclass : #PRPhase,
+	#name : 'PRDocumentChildrenTransformer',
+	#superclass : 'PRPhase',
 	#instVars : [
 		'newChildren'
 	],
-	#category : #'Pillar-ExporterCore-Transformers'
+	#category : 'Pillar-ExporterCore-Transformers',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Transformers'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRDocumentChildrenTransformer class >> isAbstract [
 	^ self = PRDocumentChildrenTransformer 
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PRDocumentChildrenTransformer >> actionOn: anInput [
 	anInput input children
 		do: [ :documentItem | self manageItem: documentItem ].
@@ -26,31 +28,31 @@ PRDocumentChildrenTransformer >> actionOn: anInput [
 	^ anInput
 ]
 
-{ #category : #pipeline }
+{ #category : 'pipeline' }
 PRDocumentChildrenTransformer >> contributeToPipelineBuilding: aPRPipelineBuilder [ 
 	
 	aPRPipelineBuilder addPillarDocumentTransformation: self
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRDocumentChildrenTransformer >> initialize [
 	super initialize.
 	newChildren := OrderedCollection new
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentChildrenTransformer >> manageItem: documentItem [
 	^ self subclassResponsibility 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDocumentChildrenTransformer >> possibleTransformationEnding [
 	"Basicly I do nothing. Override me if you need to do an action before the end of the transformation."
 
 	
 ]
 
-{ #category : #pipeline }
+{ #category : 'pipeline' }
 PRDocumentChildrenTransformer >> prepareForExecutionOn: aPRProject [ 
 	
 	"Nothing"

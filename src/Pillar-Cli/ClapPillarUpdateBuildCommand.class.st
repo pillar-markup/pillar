@@ -21,9 +21,10 @@ ClapPillarUpdateBuildCommand class >> commandName [
 { #category : 'command line' }
 ClapPillarUpdateBuildCommand class >> commandSpecification [
 	<commandline>
-	^ (ClapCommand id: self commandName asSymbol)
+	^ (ClapCommandSpec id: self commandName asSymbol)
+		commandClass: self; 
 		description: 'Update build/archetypes using folder in parent directory';
-		add: ClapFlag forHelp;
+		addHelp;
 		meaning:
 			[ :args |
 			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].

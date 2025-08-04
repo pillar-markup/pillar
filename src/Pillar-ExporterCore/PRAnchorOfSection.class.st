@@ -4,20 +4,22 @@ After each title I add an anchor with the title of the section.
 I'm used with the autoAnchor configuration parameter.
 "
 Class {
-	#name : #PRAnchorOfSection,
-	#superclass : #PRNodeTransformer,
+	#name : 'PRAnchorOfSection',
+	#superclass : 'PRNodeTransformer',
 	#instVars : [
 		'occurenceOfHeader'
 	],
-	#category : 'Pillar-ExporterCore-Features'
+	#category : 'Pillar-ExporterCore-Features',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Features'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAnchorOfSection class >> charForAnchorOccurence [
 	^ '@'
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PRAnchorOfSection >> addAnchorOf: aPRHeader [
 
 	| anchorText headerText |
@@ -30,7 +32,7 @@ PRAnchorOfSection >> addAnchorOf: aPRHeader [
 	^ Array with: aPRHeader with: (PRAnchor named: anchorText)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRAnchorOfSection >> initOccurenceOfAnchor: aGroup [
 	occurenceOfHeader := Dictionary new.
 	aGroup children
@@ -39,7 +41,7 @@ PRAnchorOfSection >> initOccurenceOfAnchor: aGroup [
 				ifTrue: [ self verifyAnchorName: child name ] ].
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRAnchorOfSection >> verifyAnchorName: aString [
 	"Verify an anchor name, if it has the form 'anchorName@aNumber', the occurence number on  the dictionary is changed by aNumber if it is greater than the occurence and if anchorName is a key on the dictionary"
 	| anchorParts anchorLastPart realAnchorName |
@@ -57,7 +59,7 @@ PRAnchorOfSection >> verifyAnchorName: aString [
 		ifTrue: [ occurenceOfHeader at: realAnchorName put: (anchorLastPart asNumber) ].
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRAnchorOfSection >> visitDocumentGroup: aGroup [
 	occurenceOfHeader ifNil: [ self initOccurenceOfAnchor: aGroup ].
 	

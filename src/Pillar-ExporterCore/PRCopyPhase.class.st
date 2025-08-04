@@ -1,14 +1,16 @@
 Class {
-	#name : #PRCopyPhase,
-	#superclass : #Object,
+	#name : 'PRCopyPhase',
+	#superclass : 'Object',
 	#instVars : [
 		'destinationDirectory',
 		'sourceDirectory'
 	],
-	#category : 'Pillar-ExporterCore-Base'
+	#category : 'Pillar-ExporterCore-Base',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Base'
 }
 
-{ #category : #'instance-creation' }
+{ #category : 'instance-creation' }
 PRCopyPhase class >> directory: aString [ 
 	
 	^ self new
@@ -16,17 +18,17 @@ PRCopyPhase class >> directory: aString [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCopyPhase >> destinationDirectory [
 	^ destinationDirectory
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCopyPhase >> destinationDirectory: anObject [
 	destinationDirectory := anObject
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PRCopyPhase >> executeOn: aPRCompilationContext [
 	destinationDirectory exists
 		ifTrue: [ ^ self ].
@@ -35,12 +37,12 @@ PRCopyPhase >> executeOn: aPRCompilationContext [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCopyPhase >> sourceDirectory [
 	^ sourceDirectory
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCopyPhase >> sourceDirectory: anObject [
 	sourceDirectory := anObject
 ]

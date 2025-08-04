@@ -23,9 +23,10 @@ ClapPillarServeCommand class >> commandName [
 { #category : 'command line' }
 ClapPillarServeCommand class >> commandSpecification [
 	<commandline>
-	^ (ClapCommand id: self commandName asSymbol)
+	^ (ClapCommandSpec id: self commandName asSymbol)
 		description: 'Serve of the current project';
-		add: ClapFlag forHelp;
+		commandClass: self;
+		addHelp;
 		add: ((ClapPositional id: #baseurl )
 			description: 'Your base URL, empty by default';
 			implicitMeaning: [ '' ]);
