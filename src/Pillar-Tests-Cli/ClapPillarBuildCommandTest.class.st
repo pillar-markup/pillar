@@ -39,20 +39,6 @@ ClapPillarBuildCommandTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : 'adding' }
-ClapPillarBuildCommandTest >> testAddSubcommand [
-	| allIds defaultCommand |
-	defaultCommand := ClapPillarBuildCommand commandSpecification.
-	allIds := PRTarget clapCommandList collect: [ :c | c identifier ].
-	allIds do: 
-		[ :id | 
-			self assert: 
-				(defaultCommand subcommands anySatisfy: 
-					[ :c | c class = ClapCommandSpec new class and: c identifier = id asSymbol]
-			) 
-		]
-]
-
 { #category : 'tests' }
 ClapPillarBuildCommandTest >> testDefaultCommandIsBuild [
 	| defaultCommand |
@@ -67,12 +53,4 @@ ClapPillarBuildCommandTest >> testNewWayOf [
 	context := ClapPillarCommand commandSpecification activateWith: #(pillar build '--format' pdf 'index.md').
 	command := context command.
 	
-]
-
-{ #category : 'tests' }
-ClapPillarBuildCommandTest >> testSameFlagsMainAndDefault [
-	| defaultCommand mainCommand |
-	defaultCommand := ClapPillarBuildCommand commandSpecification .
-	mainCommand := (PRProject on: FileSystem workingDirectory) defaultTarget buildClapCommand.
-	self assert: defaultCommand flags asString equals: mainCommand flags asString
 ]

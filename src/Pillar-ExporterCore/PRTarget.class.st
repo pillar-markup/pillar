@@ -10,58 +10,6 @@ Class {
 	#tag : 'Base'
 }
 
-{ #category : 'clap' }
-PRTarget class >> buildClapCommand [
-	
-	^ self buildClapCommandWithId: self clapId withPositionals: true
-]
-
-{ #category : 'clap' }
-PRTarget class >> buildClapCommandWithId: anId withPositionals: isWithPositionals [
-	
-	| target project command |
-	target := self new.
-	project := self newProject.
- 
-	command := (ClapCommandSpec id: anId asSymbol)
-		description: 'Build your Pillar documents in ', self clapId asString ,' format';
-		commandClass: self;
-		addHelp;
-		add: ((ClapFlag id: #templatable)
-				description: 'Use a template');
-				meaning: [project beTemplatable];
-		add: ((ClapFlag id: #all)
-				description: 'Build all Pillar documents in repository';
-				canonicalName: 'a';
-				meaning: [ PRBuildAllStrategy new ]);
-		add: ((ClapFlag id: #mainRoot)
-				description: 'Build index.pillar in root directory';
-				canonicalName: 'm';
-				meaning: [ PRBuildRootMainStrategy new ]); yourself.
-				
-		isWithPositionals ifTrue: [ command := command add: ((ClapPositional id: #requestedFiles)
-				description: 'Pillar files you want to build';
-				multiple: true;
-				meaning: [ :doc | doc word asFileReference ]); yourself ].
-		
-		command := command meaning: [ :args |
-			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
-			args at: #templatable ifPresent: [(args at: #templatable) value ].
-			"here, default strategy is mainRoot and the following order give strategies a priority order"
-			isWithPositionals ifTrue: [ 
-			(args at: #requestedFiles ) isExplicit ifTrue:[ 
-				target buildStrategy: (PRBuildListStrategy list: (args occurrencesOf: #requestedFiles collect: #value) )
-				] ].
-			args at: #all ifPresent: [ :strat | target buildStrategy: strat value ].
-			args at: #mainRoot ifPresent: [ :strat | target buildStrategy: strat value].
-			
-			target buildWithClapArguments: project ]
-		
-		yourself.
-		
-		^ command.
-]
-
 { #category : 'accessing' }
 PRTarget class >> builderClassForName: aString [ 
 	
@@ -83,19 +31,6 @@ PRTarget class >> builderForName: aString [
 PRTarget class >> builderName [
 	
 	^ self subclassResponsibility
-]
-
-{ #category : 'clap' }
-PRTarget class >> clapCommandList [
-	^ self allSubclasses
-		select: [ :each | each isAbstract not ]
-		thenCollect: [ :each | each buildClapCommand ]
-]
-
-{ #category : 'clap' }
-PRTarget class >> clapId [
-	
-	^ self builderName 
 ]
 
 { #category : 'testing' }
