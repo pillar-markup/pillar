@@ -27,20 +27,16 @@ ClapPillarServeCommand class >> commandSpecification [
 		description: 'Serve of the current project';
 		commandClass: self;
 		addHelp;
-		add: ((ClapPositional id: #baseurl )
-			description: 'Your base URL, empty by default';
-			implicitMeaning: [ '' ]);
-		add: ((ClapPositional id: #port)
-			description: 'Your port, 8080 by default';
-			meaning: [ :m | m word asInteger ];
-			implicitMeaning: [ 8080 ]);		
-		add: ((ClapFlag id: #watch )
-			canonicalName: 'w');
-		meaning:
-			[ :args |
-			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
-			(self with: args) execute ]
-	
+		addPositional: #baseurl spec: [ :positional | 
+				positional 
+					description: 'Your base URL, empty by default';
+					defaultValue: '' ];
+		addPositional: #port spec: [ :positional | 
+				positional 
+					description: 'Your port, 8080 by default';
+					defaultValue: 8080 ];	
+		addFlag: #watch;
+		yourself 
 ]
 
 { #category : 'activation' }
