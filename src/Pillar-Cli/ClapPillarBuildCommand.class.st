@@ -33,12 +33,46 @@ ClapPillarBuildCommand class >> commandName [
 
 { #category : 'command line' }
 ClapPillarBuildCommand class >> commandSpecification [
+
 	<commandline>
+	^ (ClapCommandSpec id: #build)
+		  description: 'Build your Pillar documents in the specified format';
+		  commandClass: self;
+		  addHelp;
+		  addFlag: #templatable description: 'Use a template';
+		  addFlag: #all description: 'Build all Pillar documents in repository';
+		  addFlag: #mainRoot description: 'Build index.md in root directory';
+		  addFlagWithPositional: #format description: 'output format';
+		  addPositional: #requestedFiles spec: [ :positional |
+    		 positional      		
+		     description: 'Pillar files you want to build';
+		  	  multiple: true ];
+		  yourself
+]
+
+{ #category : 'execution' }
+ClapPillarBuildCommand >> execute [
+
+	| strategy target |
+	target := self outputTarget new.
+	project := target class newProject.
+	(self hasFlag: #templatable) ifTrue: [ project beTemplatable ].
+	(self hasFlag: #mainRoot) ifTrue: [ strategy := PRBuildRootMainStrategy new ].
+	(self hasFlag: #all) ifTrue: [ strategy := PRBuildAllStrategy new ].
 	
-	| defaultCommand  |
-	defaultCommand := self new project defaultTarget 
-		buildClapCommandWithId: #build 
-		withPositionals: false.
-	PRTarget clapCommandList do: [ :c | defaultCommand addSubcommand: c ].
-	^ defaultCommand
+	self
+		positional: #requestedFiles
+		ifPresent: [ :files | strategy := PRBuildListStrategy list: (files collect: [ :f | f asFileReference ]) ].
+		
+	target
+	 	buildStrategy: strategy;
+		buildOn: project.
+]
+
+{ #category : 'accessing' }
+ClapPillarBuildCommand >> outputTarget [
+
+	| format availableTargets |
+	format := (self positional: #format).
+	^ PRWritingTarget allSubclasses detect: [ :target | target builderName = format ]
 ]

@@ -1,10 +1,11 @@
 Class {
-	#name : #PRSubCommandLineHandlerTest,
-	#superclass : #TestCase,
-	#category : 'Pillar-Tests-Cli'
+	#name : 'PRSubCommandLineHandlerTest',
+	#superclass : 'TestCase',
+	#category : 'Pillar-Tests-Cli',
+	#package : 'Pillar-Tests-Cli'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRSubCommandLineHandlerTest >> testAddingBaseDirectoryWithADash [
 	|cli arguments |
 	cli := PRSubCommandLineHandler new.
@@ -13,7 +14,7 @@ PRSubCommandLineHandlerTest >> testAddingBaseDirectoryWithADash [
 	self assert: (arguments at: 'baseDirectory') equals: '/foo/bar-baz'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRSubCommandLineHandlerTest >> testAddingBaseDirectoryWithAnEqual [
 	|cli arguments |
 	cli := PRSubCommandLineHandler new.

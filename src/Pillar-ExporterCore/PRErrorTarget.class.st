@@ -9,9 +9,10 @@ Class {
 { #category : 'clap' }
 PRErrorTarget class >> buildClapCommandWithId: anId withPositionals: isWithPositionals withDescription: aDescription [
 
-	^ (ClapCommand id: anId asSymbol)
+	^ (ClapCommandSpec id: anId asSymbol)
 			description: aDescription asString;
-			add: ClapFlag forHelp;
+			addHelp;
+			commandClass: self;
 			meaning: [ :args |
 				args at: #helpFlag ifPresent: [ :help | help value; exitSuccess].
 				(ClapDocumenter on: (ZnCharacterWriteStream on: args context stdout))

@@ -1,10 +1,11 @@
 Class {
-	#name : #ClapPillarBuildCommandTest,
-	#superclass : #TestCase,
-	#category : #'Pillar-Tests-Cli'
+	#name : 'ClapPillarBuildCommandTest',
+	#superclass : 'TestCase',
+	#category : 'Pillar-Tests-Cli',
+	#package : 'Pillar-Tests-Cli'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 ClapPillarBuildCommandTest >> configContent [
 	^ '{
   "title": "The Pillar Super Book Archetype",
@@ -22,7 +23,7 @@ ClapPillarBuildCommandTest >> configContent [
 }'
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 ClapPillarBuildCommandTest >> setUp [
 	"Create a setup project with: index.pillar, a conf, and Chapters with Chap1 and Chap2"
 
@@ -32,13 +33,13 @@ ClapPillarBuildCommandTest >> setUp [
 	workingDir / 'pillar.conf' writeStreamDo: [ :st | st nextPutAll: self configContent ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 ClapPillarBuildCommandTest >> tearDown [
 	(FileSystem workingDirectory / 'pillar.conf') delete.
 	super tearDown
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 ClapPillarBuildCommandTest >> testAddSubcommand [
 	| allIds defaultCommand |
 	defaultCommand := ClapPillarBuildCommand commandSpecification.
@@ -47,19 +48,28 @@ ClapPillarBuildCommandTest >> testAddSubcommand [
 		[ :id | 
 			self assert: 
 				(defaultCommand subcommands anySatisfy: 
-					[ :c | c class = ClapCommand new class and: c identifier = id asSymbol]
+					[ :c | c class = ClapCommandSpec new class and: c identifier = id asSymbol]
 			) 
 		]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ClapPillarBuildCommandTest >> testDefaultCommandIsBuild [
 	| defaultCommand |
 	defaultCommand := ClapPillarBuildCommand commandSpecification.
 	self assert: defaultCommand identifier equals: #build
 ]
 
-{ #category : #tests }
+{ #category : 'adding' }
+ClapPillarBuildCommandTest >> testNewWayOf [
+
+	| context command |
+	context := ClapPillarCommand commandSpecification activateWith: #(pillar build '--format' pdf 'index.md').
+	command := context command.
+	
+]
+
+{ #category : 'tests' }
 ClapPillarBuildCommandTest >> testSameFlagsMainAndDefault [
 	| defaultCommand mainCommand |
 	defaultCommand := ClapPillarBuildCommand commandSpecification .
