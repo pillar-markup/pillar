@@ -24,14 +24,8 @@ ClapPillarArchetypeCommand class >> commandSpecification [
 		description: 'Create a pillar project in the current directory, which contains a basic template and skeleton pillar files following the archetype convention';
 		addHelp;
 		commandClass: self;
-		add: ((ClapPositional id: #requestedArchetype )
-			description: 'Archetype you want to use');
-		add: ((ClapFlag id: #templatable )
-			description: 'Use a template');			
-		meaning:
-			[ :args |
-			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
-			(self with: args) execute ]
+		addPositional: #requestedArchetype description: 'Archetype you want to use';
+	yourself
 ]
 
 { #category : 'execution' }
@@ -41,5 +35,6 @@ ClapPillarArchetypeCommand >> execute [
 
 { #category : 'activation' }
 ClapPillarArchetypeCommand >> requestedArchetype [
-	 ^ (arguments at: #requestedArchetype) value: self
+
+	 ^ self positional: #requestedArchetype
 ]

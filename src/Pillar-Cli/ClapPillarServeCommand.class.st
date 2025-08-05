@@ -41,7 +41,7 @@ ClapPillarServeCommand class >> commandSpecification [
 
 { #category : 'activation' }
 ClapPillarServeCommand >> baseurl [
-	^ baseurl ifNil: [ baseurl := (arguments at: #baseurl) value]
+	^ baseurl ifNil: [ baseurl := self positional: #baseurl ]
 ]
 
 { #category : 'execution' }
@@ -49,7 +49,7 @@ ClapPillarServeCommand >> execute [
 	self port.
 	self baseurl.
 	
-	arguments context stdout
+	context stdout
 		nextPutAll: 'Serving website at: http://localhost:';
 		nextPutAll: port asString;
 		nextPutAll: '/';
@@ -69,17 +69,19 @@ ClapPillarServeCommand >> execute [
 
 { #category : 'activation' }
 ClapPillarServeCommand >> port [
-	^ port ifNil: [ port := (arguments at: #port) value]
+	^ port ifNil: [ port := (self positional: #port) asInteger ]
 ]
 
 { #category : 'activation' }
 ClapPillarServeCommand >> watch [
-	(arguments at: #watch) isExplicit
+
+	"here we do not use self positional: because we do not want to get the value but the object."
+	(context positional: #watch) isExplicit
 		ifFalse: [ ^ self ]
 		ifTrue: [ 
 			| watcher |
 			watcher := PRWatcher new.
 			watcher project: self project.
 			watcher start
-			 ]
+			]
 ]

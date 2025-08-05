@@ -56,6 +56,7 @@ ClapPillarBuildCommand >> execute [
 	| strategy target |
 	target := self outputTarget new.
 	project := target class newProject.
+	
 	(self hasFlag: #templatable) ifTrue: [ project beTemplatable ].
 	(self hasFlag: #mainRoot) ifTrue: [ strategy := PRBuildRootMainStrategy new ].
 	(self hasFlag: #all) ifTrue: [ strategy := PRBuildAllStrategy new ].
@@ -70,9 +71,16 @@ ClapPillarBuildCommand >> execute [
 ]
 
 { #category : 'accessing' }
+ClapPillarBuildCommand >> format [ 
+
+	^ self positional: #format
+
+]
+
+{ #category : 'accessing' }
 ClapPillarBuildCommand >> outputTarget [
 
-	| format availableTargets |
-	format := (self positional: #format).
+	| format |
+	format := self format.
 	^ PRWritingTarget allSubclasses detect: [ :target | target builderName = format ]
 ]

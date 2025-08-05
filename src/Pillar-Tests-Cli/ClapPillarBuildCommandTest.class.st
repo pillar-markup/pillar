@@ -1,11 +1,14 @@
 Class {
 	#name : 'ClapPillarBuildCommandTest',
 	#superclass : 'TestCase',
+	#instVars : [
+		'memory'
+	],
 	#category : 'Pillar-Tests-Cli',
 	#package : 'Pillar-Tests-Cli'
 }
 
-{ #category : 'tests' }
+{ #category : 'running' }
 ClapPillarBuildCommandTest >> configContent [
 	^ '{
   "title": "The Pillar Super Book Archetype",
@@ -27,30 +30,39 @@ ClapPillarBuildCommandTest >> configContent [
 ClapPillarBuildCommandTest >> setUp [
 	"Create a setup project with: index.pillar, a conf, and Chapters with Chap1 and Chap2"
 
-	| workingDir |
 	super setUp.
-	workingDir := FileSystem workingDirectory.
-	workingDir / 'pillar.conf' writeStreamDo: [ :st | st nextPutAll: self configContent ]
+	memory := FileSystem memory.
+	memory / 'pillar.conf' writeStreamDo: [ :st | st nextPutAll: self configContent ]
 ]
 
 { #category : 'running' }
 ClapPillarBuildCommandTest >> tearDown [
-	(FileSystem workingDirectory / 'pillar.conf') delete.
+	
+	(memory / 'pillar.conf') delete.
 	super tearDown
 ]
 
-{ #category : 'tests' }
-ClapPillarBuildCommandTest >> testDefaultCommandIsBuild [
-	| defaultCommand |
-	defaultCommand := ClapPillarBuildCommand commandSpecification.
-	self assert: defaultCommand identifier equals: #build
+{ #category : 'tests - archetype specification' }
+ClapPillarBuildCommandTest >> testArchetype [
+
+	| context  |
+	context := ClapPillarCommand commandSpecification activationWith: #(pillar archetype  'bod-book').
+	self assert: context command requestedArchetype equals: 'bod-book'.
 ]
 
-{ #category : 'adding' }
+{ #category : 'tests - archetype specification' }
+ClapPillarBuildCommandTest >> testEmptyArchetype [
+
+	| context  |
+	context := ClapPillarCommand commandSpecification activationWith: #(pillar archetype).
+	self should: [ context command requestedArchetype ] raise: NotFound.
+]
+
+{ #category : 'test - building' }
 ClapPillarBuildCommandTest >> testNewWayOf [
 
 	| context command |
-	context := ClapPillarCommand commandSpecification activateWith: #(pillar build '--format' pdf 'index.md').
+	context := ClapPillarBuildCommand commandSpecification activationWith: #(build '--format' pdf 'index.md').
 	command := context command.
-	
+	self assert: command format equals: 'pdf'.
 ]
