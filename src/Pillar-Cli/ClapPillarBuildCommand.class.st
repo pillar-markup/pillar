@@ -21,6 +21,9 @@ This method is based on existing writing targets and generate a CLAP command for
 Class {
 	#name : 'ClapPillarBuildCommand',
 	#superclass : 'ClapPillarCommand',
+	#instVars : [
+		'strategy'
+	],
 	#category : 'Pillar-Cli-Clap',
 	#package : 'Pillar-Cli',
 	#tag : 'Clap'
@@ -45,15 +48,16 @@ ClapPillarBuildCommand class >> commandSpecification [
 		  addFlagWithPositional: #format description: 'output format';
 		  addPositional: #requestedFiles spec: [ :positional |
     		 positional      		
-		     description: 'Pillar files you want to build';
-		  	  multiple: true ];
+		     	description: 'Pillar files you want to build';
+			   defaultValue: [ #('index.md') ];
+		  	  	multiple: true ];
 		  yourself
 ]
 
 { #category : 'execution' }
 ClapPillarBuildCommand >> execute [
 
-	| strategy target |
+	| target |
 	target := self outputTarget new.
 	project := target class newProject.
 	
@@ -83,4 +87,17 @@ ClapPillarBuildCommand >> outputTarget [
 	| format |
 	format := self format.
 	^ PRWritingTarget allSubclasses detect: [ :target | target builderName = format ]
+]
+
+{ #category : 'accessing' }
+ClapPillarBuildCommand >> requestedFiles [ 
+
+	^ self positional: #requestedFiles
+
+]
+
+{ #category : 'execution' }
+ClapPillarBuildCommand >> strategy [
+
+	^ strategy
 ]

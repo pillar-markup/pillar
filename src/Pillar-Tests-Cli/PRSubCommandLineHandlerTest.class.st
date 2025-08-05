@@ -1,8 +1,9 @@
 Class {
 	#name : 'PRSubCommandLineHandlerTest',
 	#superclass : 'TestCase',
-	#category : 'Pillar-Tests-Cli',
-	#package : 'Pillar-Tests-Cli'
+	#category : 'Pillar-Tests-Cli-CommandLineHandler',
+	#package : 'Pillar-Tests-Cli',
+	#tag : 'CommandLineHandler'
 }
 
 { #category : 'tests' }
