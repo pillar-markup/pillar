@@ -1,9 +1,6 @@
 Class {
 	#name : 'ClapPillarArchetypeCommandSpecTest',
 	#superclass : 'TestCase',
-	#instVars : [
-		'memory'
-	],
 	#category : 'Pillar-Tests-Cli-Clap',
 	#package : 'Pillar-Tests-Cli',
 	#tag : 'Clap'

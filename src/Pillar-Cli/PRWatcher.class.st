@@ -20,7 +20,7 @@ PRWatcher class >> stopAll [
 	self allInstancesDo: #stop
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'private' }
 PRWatcher >> generateHtml [
 
 	| target |

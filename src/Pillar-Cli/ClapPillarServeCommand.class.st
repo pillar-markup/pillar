@@ -34,7 +34,7 @@ ClapPillarServeCommand class >> commandSpecification [
 		addPositional: #port spec: [ :positional | 
 				positional 
 					description: 'Your port, 8080 by default';
-					defaultValue: 8080 ];	
+					defaultValue: [ 8080 ] ];	
 		addFlag: #watch;
 		yourself 
 ]
@@ -48,7 +48,7 @@ ClapPillarServeCommand >> baseurl [
 ClapPillarServeCommand >> execute [
 	self port.
 	self baseurl.
-	
+
 	context stdout
 		nextPutAll: 'Serving website at: http://localhost:';
 		nextPutAll: port asString;

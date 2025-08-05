@@ -23,13 +23,9 @@ ClapPillarUpdateBuildCommand class >> commandSpecification [
 	<commandline>
 	^ (ClapCommandSpec id: self commandName asSymbol)
 		commandClass: self; 
-		description: 'Update build/archetypes using folder in parent directory';
+		description: 'Update build/archetypes using folder in parent directory. This is only useful in development of archetypes because else Pillar is installed in one place and the user gets a copy of the template in a totally different place.';
 		addHelp;
-		meaning:
-			[ :args |
-			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
-			(self with: args) execute ]
-	
+		yourself
 ]
 
 { #category : 'execution' }

@@ -22,15 +22,12 @@ ClapPillarUpdateTemplateCommand class >> commandName [
 ClapPillarUpdateTemplateCommand class >> commandSpecification [
 	<commandline>
 	^ (ClapCommandSpec id: self commandName asSymbol)
-		description: 'Update a given template';
+		description: 'Reinstall the given template';
 		commandClass: self;
 		addHelp;
-		add: ((ClapPositional id: #requestedTemplate )
-			description: 'Template you want to update');		
-		meaning:
-			[ :args |
-			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
-			(self with: args) execute ]
+		addPositional: #requestedTemplate
+			description: 'Template you want to update';
+		yourself
 	
 ]
 
@@ -41,5 +38,5 @@ ClapPillarUpdateTemplateCommand >> execute [
 
 { #category : 'activation' }
 ClapPillarUpdateTemplateCommand >> requestedTemplate [
-	 ^ (arguments at: #requestedTemplate) value: self
+	 ^ self positional: #requestedTemplate
 ]
