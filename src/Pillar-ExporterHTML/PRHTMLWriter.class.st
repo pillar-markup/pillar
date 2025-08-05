@@ -2,54 +2,55 @@
 Writes a Pillar document as HTML.
 "
 Class {
-	#name : #PRHTMLWriter,
-	#superclass : #PRDocumentWriter,
+	#name : 'PRHTMLWriter',
+	#superclass : 'PRDocumentWriter',
 	#instVars : [
 		'footnoteID',
 		'noteDictionary'
 	],
-	#category : #'Pillar-ExporterHTML'
+	#category : 'Pillar-ExporterHTML',
+	#package : 'Pillar-ExporterHTML'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRHTMLWriter class >> fileExtension [
 	^ 'html'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRHTMLWriter class >> folderName [
 	^ #html
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRHTMLWriter class >> writerName [
 	^ #html
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRHTMLWriter >> addAnchorFrom: anInternalLink To: href [
 	"I am here for the deck.js exporter or other exporter that would need to change the way anchor are generated."
 
 	^ href , '#' , anInternalLink anchor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRHTMLWriter >> canvas [
 	
 	^ canvas
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRHTMLWriter >> canvasClass [
 	^ PRHTMLCanvas
 ]
 
-{ #category : #templating }
+{ #category : 'templating' }
 PRHTMLWriter >> chapterTemplateName [
 	^ 'htmlChapterTemplate'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRHTMLWriter >> createAnchorWith: anId [
 	canvas tag
 		name: 'a';
@@ -57,7 +58,7 @@ PRHTMLWriter >> createAnchorWith: anId [
 		with: ''
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRHTMLWriter >> exportImgFor: aFigure [
 	| img |
 	img := canvas emptyTag
@@ -77,7 +78,7 @@ PRHTMLWriter >> exportImgFor: aFigure [
 	img closeTag
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRHTMLWriter >> internalLinkWillBeRender: anInternalLink [
 	(anInternalLink hasReference and: [ anInternalLink hasAnchor not ])
 		ifTrue: [ 
@@ -86,7 +87,7 @@ PRHTMLWriter >> internalLinkWillBeRender: anInternalLink [
 					'Your inter-file link will not be rendered because you export without separate output files. If you want your link to be rendered add an anchor to the beginning of your file.' ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRHTMLWriter >> noteAtEnd [
 	self noteDictionary
 		ifNotEmpty: [ canvas newLine.
@@ -106,12 +107,12 @@ PRHTMLWriter >> noteAtEnd [
 			canvas newLine ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRHTMLWriter >> noteDictionary [
 	^ noteDictionary
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRHTMLWriter >> start: anObject [
 	canvas := self canvasClass on: stream.
 	footnoteID := 0.
@@ -121,12 +122,12 @@ PRHTMLWriter >> start: anObject [
 	canvas flush
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitAnchor: anAnchor [
 	self createAnchorWith: anAnchor name
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
 	"Annotations need to be defined as CSS styles. For example...
 		@@note 
@@ -146,14 +147,14 @@ PRHTMLWriter >> visitAnnotatedParagraph: anAnnotatedParagraph [
 					super visitParagraph: anAnnotatedParagraph ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitBoldFormat: aFormat [
 	canvas tag
 		name: 'strong';
 		with: [ super visitBoldFormat: aFormat ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitCodeblock: aCodeBlock [
 	canvas tag
 		name: 'figure';
@@ -181,7 +182,7 @@ PRHTMLWriter >> visitCodeblock: aCodeBlock [
 	canvas newLine
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitColumn: aColumn [
 	canvas tag
 		name: 'div';
@@ -191,7 +192,7 @@ PRHTMLWriter >> visitColumn: aColumn [
 	canvas newLine
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitColumns: aColumns [
 	canvas tag
 		name: 'div';
@@ -201,7 +202,7 @@ PRHTMLWriter >> visitColumns: aColumns [
 	canvas newLine
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitDataItem: anItem [
 	canvas tag
 		name: 'dd';
@@ -209,7 +210,7 @@ PRHTMLWriter >> visitDataItem: anItem [
 	canvas newLine
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitDefinitionList: aList [
 	canvas tag
 		name: 'dl';
@@ -217,7 +218,7 @@ PRHTMLWriter >> visitDefinitionList: aList [
 	canvas newLine
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitExternalLink: anExternalLink [
 	canvas tag
 		name: 'a';
@@ -225,7 +226,7 @@ PRHTMLWriter >> visitExternalLink: anExternalLink [
 		with: anExternalLink alias
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitFigure: aFigure [
 	(aFigure hasLabel not and: [ aFigure hasCaption not ])
 		ifTrue: [ 
@@ -251,7 +252,7 @@ PRHTMLWriter >> visitFigure: aFigure [
 			canvas newLine ]
 ]
 
-{ #category : #'visiting-annotations' }
+{ #category : 'visiting-annotations' }
 PRHTMLWriter >> visitFootnote: aFootnote [
 	footnoteID := footnoteID + 1.
 	canvas tag
@@ -263,7 +264,7 @@ PRHTMLWriter >> visitFootnote: aFootnote [
 	noteDictionary at: footnoteID ifAbsentPut: aFootnote note
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitHeader: aHeader [
 	| level |
 	"h1 to h7 exist."
@@ -276,7 +277,7 @@ PRHTMLWriter >> visitHeader: aHeader [
 	canvas newLine
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitHorizontalRule: anHorizontalRule [
 
 	canvas newLine; newLine.
@@ -284,7 +285,7 @@ PRHTMLWriter >> visitHorizontalRule: anHorizontalRule [
 	canvas newLine.
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitInternalLink: anInternalLink [
 	| href |
 	href := String new.
@@ -304,7 +305,7 @@ PRHTMLWriter >> visitInternalLink: anInternalLink [
 					super visitInternalLink: anInternalLink ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitItalicFormat: aFormat [
 	canvas tag
 		name: 'em';
@@ -312,7 +313,7 @@ PRHTMLWriter >> visitItalicFormat: aFormat [
 
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitListItem: anItem [
 	canvas tag
 		name: 'li';
@@ -320,7 +321,7 @@ PRHTMLWriter >> visitListItem: anItem [
 	canvas newLine
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitMailLink: aLink [
 	canvas tag
 		name: 'a';
@@ -328,14 +329,14 @@ PRHTMLWriter >> visitMailLink: aLink [
 		with: aLink alias
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitMonospaceFormat: aFormat [
 	canvas tag
 		name: 'code';
 		with: [ super visitBoldFormat: aFormat ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitOrderedList: aList [
 	canvas tag
 		name: 'ol';
@@ -343,7 +344,7 @@ PRHTMLWriter >> visitOrderedList: aList [
 	canvas newLine
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitParagraph: aParagraph [
 	(aParagraph children size = 1 and: [ aParagraph children first isKindOf: PRRaw ])
 		ifTrue: [ 
@@ -360,14 +361,14 @@ PRHTMLWriter >> visitParagraph: aParagraph [
 							canvas newLine ] ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitPreformatted: aPreformatted [
 	canvas tag
 		name: 'pre';
 		with: [ aPreformatted children do: [ :child | self visit: child ] separatedBy: [ canvas newLine ] ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitSection: aSection [
 	canvas tag
 		name: 'section';
@@ -376,28 +377,28 @@ PRHTMLWriter >> visitSection: aSection [
 					super visitSection: aSection ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitStrikethroughFormat: aFormat [
 	canvas tag
 		name: 's';
 		with: [ super visitStrikethroughFormat: aFormat ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitSubscriptFormat: aFormat [
 	canvas tag
 		name: 'sub';
 		with: [ super visitSubscriptFormat: aFormat ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitSuperscriptFormat: aFormat [
 	canvas tag
 		name: 'sup';
 		with: [ super visitSuperscriptFormat: aFormat ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitTable: aTable [
 	canvas tag
 		name: 'table';
@@ -406,7 +407,7 @@ PRHTMLWriter >> visitTable: aTable [
 	canvas newLine
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitTableCell: aCell [
 	| tagName tag |
 	tagName := aCell isHeading
@@ -425,7 +426,7 @@ PRHTMLWriter >> visitTableCell: aCell [
 	canvas newLine
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitTableRow: aRow [
 	canvas tag
 		name: 'tr';
@@ -433,7 +434,7 @@ PRHTMLWriter >> visitTableRow: aRow [
 	canvas newLine
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitTermItem: anItem [
 	canvas tag
 		name: 'dt';
@@ -441,14 +442,14 @@ PRHTMLWriter >> visitTermItem: anItem [
 	canvas newLine
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitUnderlineFormat: aFormat [
 	canvas tag
 		name: 'u';
 		with: [ super visitUnderlineFormat: aFormat ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRHTMLWriter >> visitUnorderedList: aList [
 	canvas tag
 		name: 'ul';
@@ -458,7 +459,7 @@ PRHTMLWriter >> visitUnorderedList: aList [
 	canvas newLine
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 PRHTMLWriter >> writeParagraphDuring: aBlockClosure [ 
 	
 	canvas tag
@@ -469,7 +470,7 @@ PRHTMLWriter >> writeParagraphDuring: aBlockClosure [
 			canvas newLine ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRHTMLWriter >> writerFor: aPRPillarConfiguration [ 
 	
 	^ (PRDocumentWriter allSubclasses detect: [ :each | 

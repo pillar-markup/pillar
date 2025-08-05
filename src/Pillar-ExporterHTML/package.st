@@ -1,1 +1,1 @@
-Package { #name : #'Pillar-ExporterHTML' }
+Package { #name : 'Pillar-ExporterHTML' }

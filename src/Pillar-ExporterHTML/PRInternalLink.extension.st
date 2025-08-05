@@ -1,6 +1,6 @@
-Extension { #name : #PRInternalLink }
+Extension { #name : 'PRInternalLink' }
 
-{ #category : #'*Pillar-ExporterHTML' }
+{ #category : '*Pillar-ExporterHTML' }
 PRInternalLink >> referenceAsHTML [
 	"I return a reference to a pillar file as an html file."
 
