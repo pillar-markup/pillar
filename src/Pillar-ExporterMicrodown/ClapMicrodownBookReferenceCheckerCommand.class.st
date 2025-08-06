@@ -25,7 +25,6 @@ ClapMicrodownBookReferenceCheckerCommand class >> commandSpecification [
 		addHelp; 
 		commandClass: self;
 		addPositional: #requestedFile description: 'File for the book you want to verify';
-		add: (ClapPositional id: #requestedFile);
 		yourself
 ]
 
