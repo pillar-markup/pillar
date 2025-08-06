@@ -24,12 +24,9 @@ ClapPillarMicrodownChapterConverterCommand class >> commandSpecification [
 		description: 'Create a microdown book chapter in the current directory, which contains the conversion in microdown format of the argument.';
 		commandClass: self;
 		addHelp;
-		add: ((ClapPositional id: #requestedFile)
-			description: 'File for the book chapter you want to convert');
-		meaning:
-			[ :args |
-			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
-			(self with: args) execute ]
+		addPositional: #requestedFile
+			description: 'File for the book chapter you want to convert';
+		yourself 
 ]
 
 { #category : 'execution' }
@@ -43,5 +40,5 @@ ClapPillarMicrodownChapterConverterCommand >> execute [
 
 { #category : 'activation' }
 ClapPillarMicrodownChapterConverterCommand >> requestedFile [
-	 ^ (arguments at: #requestedFile) value: self
+	 ^ self positional: #requestedFile
 ]

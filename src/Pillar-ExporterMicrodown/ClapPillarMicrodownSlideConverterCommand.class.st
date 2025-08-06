@@ -24,12 +24,10 @@ ClapPillarMicrodownSlideConverterCommand class >> commandSpecification [
 		description: 'Create a microdown slide file in the current directory, which contains the conversion in microdown format of the argument.';
 		commandClass: self;
 		addHelp;
-		add: ((ClapPositional id: #requestedFile)
-			description: 'File for the slide you want to convert');
-		meaning:
-			[ :args |
-			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
-			(self with: args) execute ]
+		addPositional: #requestedFile
+			description: 'File for the slide you want to convert';
+		yourself
+	
 ]
 
 { #category : 'execution' }
@@ -43,5 +41,5 @@ ClapPillarMicrodownSlideConverterCommand >> execute [
 
 { #category : 'activation' }
 ClapPillarMicrodownSlideConverterCommand >> requestedFile [
-	 ^ (arguments at: #requestedFile) value: self
+	 ^ self position: #requestedFile
 ]

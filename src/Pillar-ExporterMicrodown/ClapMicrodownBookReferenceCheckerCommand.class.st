@@ -24,13 +24,9 @@ ClapMicrodownBookReferenceCheckerCommand class >> commandSpecification [
 		description: 'Check the duplicated or unknown references as well as missing input files';
 		addHelp; 
 		commandClass: self;
-		add: ClapFlag forHelp;
-		add: ((ClapPositional id: #requestedFile)
-			description: 'File for the book you want to verify');
-		meaning:
-			[ :args |
-			args at: #helpFlag ifPresent: [ :help | help value; exitSuccess ].
-			(self with: args) execute ]
+		addPositional: #requestedFile description: 'File for the book you want to verify';
+		add: (ClapPositional id: #requestedFile);
+		yourself
 ]
 
 { #category : 'execution' }
@@ -94,5 +90,5 @@ ClapMicrodownBookReferenceCheckerCommand >> relativePathStringOf: aFile [
 
 { #category : 'execution' }
 ClapMicrodownBookReferenceCheckerCommand >> requestedFile [
-	 ^ (arguments at: #requestedFile) value: self
+	 ^ self positional: #requestedFile
 ]

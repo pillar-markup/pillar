@@ -25,8 +25,7 @@ ClapPillarUpdateTemplateCommand class >> commandSpecification [
 		description: 'Reinstall the given template';
 		commandClass: self;
 		addHelp;
-		addPositional: #requestedTemplate
-			description: 'Template you want to update';
+		addPositional: #requestedTemplate description: 'Template you want to update';
 		yourself
 	
 ]
