@@ -24,7 +24,10 @@ ClapMicrodownBookReferenceCheckerCommand class >> commandSpecification [
 		description: 'Check the duplicated or unknown references as well as missing input files';
 		addHelp; 
 		commandClass: self;
-		addPositional: #requestedFile description: 'File for the book you want to verify';
+		addPositional: #requestedFiles spec: [ :positional |
+    		 positional      		
+		     	description: 'File for the book you want to verify, default is index.md';
+			   defaultValue: [ #('index.md') ] ];
 		yourself
 ]
 
