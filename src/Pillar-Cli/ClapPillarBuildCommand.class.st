@@ -45,7 +45,16 @@ ClapPillarBuildCommand class >> commandSpecification [
 		  addFlag: #templatable description: 'Use a template';
 		  addFlag: #all description: 'Build all Pillar documents in repository';
 		  addFlag: #mainRoot description: 'Build index.md in root directory';
-		  addFlagWithPositional: #format description: 'output format';
+			" it can only be optional if we do not specify the file so better not support
+			pillar build
+			and 
+			pillar build pdf index.md this is too confusing. 
+			May be format should be a subcommand for now make it work the same way as before using a positional"
+		  addPositional: #format spec: [ :positional |
+    		 positional      		
+		     	description: 'The format you want pdf is the default'
+		  	  	]; 
+		"addFlagWithPositional: #format description: 'output format'; was forcing to use --format "
 		  addPositional: #requestedFiles spec: [ :positional |
     		 positional      		
 		     	description: 'Pillar files you want to build';
