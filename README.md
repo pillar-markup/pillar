@@ -27,7 +27,7 @@ For HTTPS setup, execute the `build.sh` script found in the `scripts` directory:
 ```bash
 $ git clone https://github.com/pillar-markup/pillar.git
 $ cd pillar
-$ git checkout v10.4.4
+$ git checkout v10.4.5
 $ chmod a+x ./scripts/build.sh
 $ ./scripts/build.sh
 ```
@@ -189,10 +189,11 @@ The development of Pillar and Microdown are now in Pharo 13.
 
 
 ### For Pharo 13
-- v10.4.4 [ Pharo 13 - Pillar & Microdown syntax ]
+- v10.4.5 [ Pharo 13 - Pillar & Microdown syntax ]
 	- Revisit all commands and make them work in Pharo13
  	- Latest version with Pillar syntax	 	
 
+- v10.4.4 bogus
 ### For Pharo 12 
 
 - v10.4.3 [Use MicWriter for HTML output]
