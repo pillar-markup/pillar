@@ -22,6 +22,16 @@ In the near future we will retire the Pillar markup from the compilation chain.
 ### 1. Building from sources
 For HTTPS setup, execute the `build.sh` script found in the `scripts` directory:
 
+### Here is the latest version for Pharo 13.
+
+```bash
+$ git clone https://github.com/pillar-markup/pillar.git
+$ cd pillar
+$ git checkout v10.4.4
+$ chmod a+x ./scripts/build.sh
+$ ./scripts/build.sh
+```
+
 
 ### Here is the latest version for Pharo 12.
 ```bash
@@ -175,8 +185,17 @@ The following script can be useful if you develop using the launcher and want to
 
 ## History
 
+The development of Pillar and Microdown are now in Pharo 13.
+
+
+### For Pharo 13
+- v10.4.4 [ Pharo 13 - Pillar & Microdown syntax ]
+	- Revisit all commands and make them work in Pharo13
+ 	- Latest version with Pillar syntax	 	
+
 ### For Pharo 12 
-The development of Pillar and Microdown are now in Pharo 12.
+
+- v10.4.3 [Use MicWriter for HTML output]
 
 - v10.4.2 [Last version supporting Pillar documents]
 	- Use Microdown generators
