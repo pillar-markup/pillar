@@ -77,10 +77,9 @@ ClapPillarBuildCommand >> execute [
 	self
 		positional: #requestedFiles
 		ifPresent: [ :files | strategy := PRBuildListStrategy list: (files collect: [ :f | f asFileReference ]) ].
-		
-	target
-	 	buildStrategy: strategy;
-		buildOn: project.
+
+	target buildStrategy: strategy.		
+	(project build: target) exitProcess
 ]
 
 { #category : 'accessing' }
