@@ -1,16 +1,17 @@
 Class {
-	#name : #PRXHtmlDocument,
-	#superclass : #PRHtmlDocument,
-	#category : 'Pillar-ExporterHTML'
+	#name : 'PRXHtmlDocument',
+	#superclass : 'PRHtmlDocument',
+	#category : 'Pillar-ExporterHTML',
+	#package : 'Pillar-ExporterHTML'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRXHtmlDocument >> basicWriter [
 	
 	^ PRXHTMLWriter new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRXHtmlDocument >> extension [
 
 	^ 'xhtml'

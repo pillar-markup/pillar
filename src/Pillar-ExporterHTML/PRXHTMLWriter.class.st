@@ -2,33 +2,34 @@
 I write a document as XHTML for ePub
 "
 Class {
-	#name : #PRXHTMLWriter,
-	#superclass : #PRHTMLWriter,
-	#category : 'Pillar-ExporterHTML'
+	#name : 'PRXHTMLWriter',
+	#superclass : 'PRHTMLWriter',
+	#category : 'Pillar-ExporterHTML',
+	#package : 'Pillar-ExporterHTML'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRXHTMLWriter class >> fileExtension [
 	^'xhtml'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRXHTMLWriter class >> folderName [
 	^#xhtml
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRXHTMLWriter class >> writerName [
 	^#xhtml
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRXHTMLWriter >> templateForConfiguration: aConfiguration [
 	
 	^ aConfiguration propertyAt: 'epubTemplate' ifAbsent: [ '_support/templates/epub/xhtml.mustache' ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRXHTMLWriter >> visitCodeblock: aCodeBlock [
 	canvas tag
 		name: 'div';
@@ -56,13 +57,13 @@ PRXHTMLWriter >> visitCodeblock: aCodeBlock [
 	canvas newLine
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRXHTMLWriter >> visitFigure: aFigure [
 
 	self exportImgFor: aFigure.
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRXHTMLWriter >> visitHeader: aHeader [
 	canvas tag
 		name: 'div';
@@ -71,7 +72,7 @@ PRXHTMLWriter >> visitHeader: aHeader [
 	canvas newLine
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRXHTMLWriter >> visitStrikethroughFormat: aFormat [
 	canvas tag
 		name: 'span';
@@ -79,7 +80,7 @@ PRXHTMLWriter >> visitStrikethroughFormat: aFormat [
 		with: [ self visitFormat: aFormat ]
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRXHTMLWriter >> visitUnderlineFormat: aFormat [
 	canvas tag
 		name: 'span';

@@ -14,26 +14,27 @@ String streamContents: [ :stream | | canvas |
 		closeTag	 ]
 "
 Class {
-	#name : #PRHTMLEmptyTag,
-	#superclass : #PRHTMLBrush,
+	#name : 'PRHTMLEmptyTag',
+	#superclass : 'PRHTMLBrush',
 	#instVars : [
 		'name'
 	],
-	#category : 'Pillar-ExporterHTML'
+	#category : 'Pillar-ExporterHTML',
+	#package : 'Pillar-ExporterHTML'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRHTMLEmptyTag >> closeTag [
 	stream << '/>'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRHTMLEmptyTag >> name: aString [
 	name := aString.
 	stream nextPut: $<; << aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRHTMLEmptyTag >> parameterAt: aString put: anotherString [
 	stream space. stream << aString << '="' << anotherString << '"'
 ]

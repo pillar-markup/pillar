@@ -22,21 +22,12 @@ In the near future we will retire the Pillar markup from the compilation chain.
 ### 1. Building from sources
 For HTTPS setup, execute the `build.sh` script found in the `scripts` directory:
 
-### Here is the latesst version for Pharo 13. 
-```bash
-$ git clone https://github.com/pillar-markup/pillar.git
-$ cd pillar
-$ git checkout v10.4.2
-$ chmod a+x ./scripts/build.sh
-$ ./scripts/build.sh
-```
-
 
 ### Here is the latest version for Pharo 12.
 ```bash
 $ git clone https://github.com/pillar-markup/pillar.git
 $ cd pillar
-$ git checkout v10.4.0
+$ git checkout v10.4.3
 $ chmod a+x ./scripts/build.sh
 $ ./scripts/build.sh
 ```

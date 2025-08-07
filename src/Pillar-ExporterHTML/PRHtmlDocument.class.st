@@ -1,25 +1,38 @@
 Class {
-	#name : #PRHtmlDocument,
-	#superclass : #PRAbstractOutputDocument,
-	#category : 'Pillar-ExporterHTML'
+	#name : 'PRHtmlDocument',
+	#superclass : 'PRAbstractOutputDocument',
+	#category : 'Pillar-ExporterHTML',
+	#package : 'Pillar-ExporterHTML'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRHtmlDocument >> basicWriter [
 	
-	^ (PRDocumentWriter allSubclasses detect: [ :each | 
-		each isAbstract not
-			and: [ each writerName = (project configuration propertyAt: #htmlWriter) ] ])
-				new
+	"| kindOfWriter inPillar |
+	
+	
+ 	inPillar := PRDocumentWriter allSubclasses 
+		detect: [ :each | each isAbstract not
+			and: [ each writerName = kindOfWriter ] ]
+		ifNone: [ self halt. ].		
+	^ inPillar new		
+	"
+	| kindOfWriter |
+	kindOfWriter := (project configuration propertyAt: #htmlWriter).
+	
+	^ (((SystemNavigation default allImplementorsOf: #writerName) 
+		collect: [ :each | each methodClass instanceSide ]) 
+			 detect: [ :each | 	each isAbstract not 
+						and: [ each writerName asLowercase = kindOfWriter asLowercase ] ]) new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRHtmlDocument >> extension [
 	
 	^ 'html'
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PRHtmlDocument >> getMustacheTemplateValuesFromDocument: aDocument [
 	"aDocument already has a dictionary holding potential metadata. 
 	We add the text contents to the dictionary.
