@@ -19,7 +19,8 @@ BaselineOfPillar >> baseline: spec [
 			
 		spec postLoadDoIt: #postload:package:.
 		spec
-			package: 'Pillar-Core';
+			package: 'Pillar-Core' 
+				with: [ spec requires: #( 'OSSubprocess')];
 			package: 'Pillar-Tests-Core' 
 				with: [ spec requires: 
 							#( 'Pillar-Core') ];
@@ -155,7 +156,9 @@ BaselineOfPillar >> osSubProcess: spec [
 { #category : 'baselines' }
 BaselineOfPillar >> postload: loader package: packageSpec [
 	" we terminate this polling process. "
-	"((Process allInstances select: [ :p | p priority = 70 ]) select: [ :e | '*OSSub*' match: e name ]) first terminate "
+	| list |
+	list := ((Process allInstances select: [ :p | p priority = 70 ]) select: [ :e | '*OSSub*' match: e name ]).
+	list ifNotEmpty: [ :f | f first terminate ]
 ]
 
 { #category : 'dependencies' }
