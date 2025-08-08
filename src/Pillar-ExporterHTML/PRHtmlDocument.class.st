@@ -40,8 +40,10 @@ PRHtmlDocument >> getMustacheTemplateValuesFromDocument: aDocument [
 	
 	| template |
 	template := super getMustacheTemplateValuesFromDocument: aDocument.
+	"
+	Removed Toc management but keep it since I will revuild it soon
 	template 
 		at: #toc 
-		put: (self tableOfContents asCTEnvironmentWithParent: template).
+		put: (self tableOfContents asCTEnvironmentWithParent: template)."
 	^ template
 ]

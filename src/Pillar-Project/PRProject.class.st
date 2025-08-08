@@ -219,6 +219,10 @@ PRProject >> supportDirectory [
 
 { #category : 'accessing' }
 PRProject >> tableOfContents [
+	
+	"
+	Dead code left only to get idea when rebuilding it. 
+	
 	| tocFilePath tocFileName inputDoc |
 	toc ifNotNil: [ ^ toc ].
 	
@@ -230,7 +234,7 @@ PRProject >> tableOfContents [
 		documentSource: self baseDirectory / tocFileName;
 		currentFile: tocFileName;
 		inProcessFiles: (Array with: self baseDirectory / tocFileName);
-		visit: inputDoc
+		visit: inputDoc"
 ]
 
 { #category : 'as yet unclassified' }
