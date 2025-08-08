@@ -24,6 +24,17 @@ For HTTPS setup, execute the `build.sh` script found in the `scripts` directory:
 
 ### Here is the latest version for Pharo 13.
 
+Lean Pillar only Microdown format
+```bash
+$ git clone https://github.com/pillar-markup/pillar.git
+$ cd pillar
+$ git checkout v11.0.0
+$ chmod a+x ./scripts/build.sh
+$ ./scripts/build.sh
+```
+
+
+With pillar format support
 ```bash
 $ git clone https://github.com/pillar-markup/pillar.git
 $ cd pillar
