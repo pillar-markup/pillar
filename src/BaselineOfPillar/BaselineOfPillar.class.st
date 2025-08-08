@@ -25,7 +25,9 @@ BaselineOfPillar >> baseline: spec [
 			package: 'Pillar-Tests-Core' 
 				with: [ spec requires: 
 							#( 'Pillar-Core') ];
-		
+						
+			package: 'Pillar-ExporterCore' with: [ spec requires: #( 'Pillar-Model' 'ContainersPropertyEnvironment' ) ];
+					
 			package: 'Pillar-Model' 
 				with: [ spec requires: #( 'Pillar-Core' ) ];
 		
@@ -35,11 +37,7 @@ BaselineOfPillar >> baseline: spec [
 				with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-Model' 'Mustache') ];
 			package: 'Pillar-ExporterHTML'
 				with: [ spec requires: #( 'Pillar-ExporterCore') ];
-		
-		
-			package: 'Pillar-Tests-Model' 
-				with: [ spec requires: 
-						#( 	'Pillar-Core' 'Pillar-Model' 'Pillar-Tests-Core' ) ];
+
 			
 			package: 'Pillar-Chrysal-Generator' 
 				with: [ spec requires: #( 'Chrysal' ) ];
@@ -52,9 +50,6 @@ BaselineOfPillar >> baseline: spec [
 			
 			package: 'Pillar-Chrysal' with: [ spec requires: #( 'Pillar-ExporterCore' ) ];
 		
-			package: 'Pillar-ExporterCore' with: [ spec requires: #( 'Pillar-Model' 'ContainersPropertyEnvironment' ) ];
-			package: 'Pillar-Tests-ExporterCore' with: [ spec requires: #( 'Pillar-Tests-Model' 'Pillar-ExporterCore' ) ];
-			
 			package: 'Pillar-Project' with: [ spec requires: #( 'Pillar-Model' ) ];
 		
 			package: 'Pillar-Tests-Project' with: [ spec requires: #( 'Pillar-Project' ) ];
@@ -68,7 +63,6 @@ BaselineOfPillar >> baseline: spec [
 				'Pillar-ExporterLaTeX'
 				'Pillar-ExporterHTML'
 				'Pillar-Tests-Core'
-				'Pillar-Tests-ExporterCore' 
 				'Pillar-Tests-Cli' 
 				'Pillar-Tests-Project' 
 				'Pillar-Tests-Integration' );
