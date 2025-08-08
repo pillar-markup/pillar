@@ -12,6 +12,7 @@ BaselineOfPillar >> baseline: spec [
 	"undo all the changes that I tried"
 	spec for: #common do: [
 		self
+			osSubProcess: spec;
 			chrysal: spec;
 			containersPropertyEnvironment: spec;
 			microdown: spec;
