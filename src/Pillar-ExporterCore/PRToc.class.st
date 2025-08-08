@@ -5,7 +5,7 @@ Then a Title is considered as a Toc without children
 "
 Class {
 	#name : 'PRToc',
-	#superclass : 'AnObsoletePRDocumentItem',
+	#superclass : 'PRBasicObject',
 	#instVars : [
 		'name',
 		'level',
