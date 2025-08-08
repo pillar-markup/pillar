@@ -2,17 +2,18 @@
 Check ChrysalConfigurationBuilder >> #itemDescriptionForXX for the
 "
 Class {
-	#name : #ChrysalPillarConfigurationTest,
-	#superclass : #TestCase,
-	#category : #'Pillar-Chrysal'
+	#name : 'ChrysalPillarConfigurationTest',
+	#superclass : 'TestCase',
+	#category : 'Pillar-Chrysal',
+	#package : 'Pillar-Chrysal'
 }
 
-{ #category : #'tests - from cocoon' }
+{ #category : 'tests - from cocoon' }
 ChrysalPillarConfigurationTest >> configurationClass [
 	^ ConfigurationForPillar
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ChrysalPillarConfigurationTest >> printerSample [
 	^ '{
 	''levels'' : [
@@ -34,7 +35,7 @@ ChrysalPillarConfigurationTest >> printerSample [
 }'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ChrysalPillarConfigurationTest >> testPrinter [
 	| config level1 level2 |
 	config := self configurationClass newFromDictionary: (STON fromString: self printerSample).
@@ -55,17 +56,7 @@ ChrysalPillarConfigurationTest >> testPrinter [
 	self assert: level2 class equals: PRLevelNumberPrinter
 ]
 
-{ #category : #'tests - from cocoon' }
-ChrysalPillarConfigurationTest >> testReadingDefaultScriptLanguage [
-	|  config |
-	config := self configurationClass newFromDictionary:  (Dictionary with: 'defaultScriptLanguage' -> 'smalltalk').
-	self assert: config defaultScriptLanguage equals: (PRAbstractScriptLanguage for: 'smalltalk').
-	
-	config := self configurationClass newFromDictionary:  (Dictionary with: 'defaultScriptLanguage' -> 'css').
-	self assert: config defaultScriptLanguage equals: (PRAbstractScriptLanguage for: 'css')
-]
-
-{ #category : #'tests - from cocoon' }
+{ #category : 'tests - from cocoon' }
 ChrysalPillarConfigurationTest >> testReadingHeadingLevelOffset [
 	| dictionary config |
 	dictionary := Dictionary with: 'headingLevelOffset' -> 1.
@@ -73,7 +64,7 @@ ChrysalPillarConfigurationTest >> testReadingHeadingLevelOffset [
 	self assert: config headingLevelOffset equals: 1
 ]
 
-{ #category : #'tests - from cocoon' }
+{ #category : 'tests - from cocoon' }
 ChrysalPillarConfigurationTest >> testReadingNewLine [
 	| dictionary config |
 	dictionary := Dictionary with: 'newLine' -> #unix.
@@ -81,7 +72,7 @@ ChrysalPillarConfigurationTest >> testReadingNewLine [
 	self assert: config newLine equals: UnixPlatform new lineEnding
 ]
 
-{ #category : #'tests - from cocoon' }
+{ #category : 'tests - from cocoon' }
 ChrysalPillarConfigurationTest >> testReadingRenderStructureAsSlide [
 	| dictionary config |
 	dictionary := Dictionary with: 'renderStructureAsSlide' -> false.
@@ -89,7 +80,7 @@ ChrysalPillarConfigurationTest >> testReadingRenderStructureAsSlide [
 	self deny: config renderStructureAsSlide
 ]
 
-{ #category : #'tests - from cocoon' }
+{ #category : 'tests - from cocoon' }
 ChrysalPillarConfigurationTest >> testReadingScrambledEmailAddresses [
 	| dictionary config |
 	dictionary := STON fromStream: '{ "scrambledEmailAddresses" : true }' readStream.
@@ -97,7 +88,7 @@ ChrysalPillarConfigurationTest >> testReadingScrambledEmailAddresses [
 	self assert: config scrambledEmailAddresses
 ]
 
-{ #category : #'tests - from cocoon' }
+{ #category : 'tests - from cocoon' }
 ChrysalPillarConfigurationTest >> testReadingSeparateOutputFiles [
 	| dictionary config |
 	dictionary := Dictionary with: 'separateOutputFiles' -> false.
@@ -105,7 +96,7 @@ ChrysalPillarConfigurationTest >> testReadingSeparateOutputFiles [
 	self deny: config separateOutputFiles
 ]
 
-{ #category : #'tests - from cocoon' }
+{ #category : 'tests - from cocoon' }
 ChrysalPillarConfigurationTest >> testReadingTitle [
 	| dictionary config |
 	dictionary := Dictionary with: 'title' -> 'foo'.
@@ -113,7 +104,7 @@ ChrysalPillarConfigurationTest >> testReadingTitle [
 	self assert: config title equals: 'foo'
 ]
 
-{ #category : #'tests - from cocoon' }
+{ #category : 'tests - from cocoon' }
 ChrysalPillarConfigurationTest >> testReadingVerbose [
 	| dictionary config |
 	dictionary := Dictionary with: 'verbose' -> false.
@@ -121,7 +112,7 @@ ChrysalPillarConfigurationTest >> testReadingVerbose [
 	self deny: (config propertyAt: #verbose)
 ]
 
-{ #category : #'tests - from cocoon' }
+{ #category : 'tests - from cocoon' }
 ChrysalPillarConfigurationTest >> testSeparateOutputFiles [
 	| dictionary config |
 	dictionary := STON fromStream: '{  "separateOutputFiles" : false }' readStream.

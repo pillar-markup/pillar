@@ -26,12 +26,13 @@ Now to exist and be used I do not need the full Chrysal package, just the runtim
 			withDescriptionItems: ConfigurationDescriptionForXX itemDescriptionForXX 
 "
 Class {
-	#name : #ConfigurationForPillar,
-	#superclass : #ChrysalPillarishConfiguration,
-	#category : #'Pillar-Chrysal'
+	#name : 'ConfigurationForPillar',
+	#superclass : 'ChrysalPillarishConfiguration',
+	#category : 'Pillar-Chrysal',
+	#package : 'Pillar-Chrysal'
 }
 
-{ #category : #description }
+{ #category : 'description' }
 ConfigurationForPillar class >> chrysalDescriptions [
 	"I'm a generated method. I'm just here to help remembering how the class was generated. I should only be executed in presence of the configurationBuilder contained in the Chrysal package. Indeed the item objects only exist at compile-time and STON will recreate them."
 	 ^ STON fromString: '[
@@ -160,121 +161,115 @@ ConfigurationForPillar class >> chrysalDescriptions [
 ]'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> attribution [
 	"generated code"
 	^ self propertyAt: #attribution ifAbsent: ['me, myself and I']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> attribution: aValue [
 	"generated code"
 	^ self propertyAt: #attribution put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> baseDirectory [
 	"generated code"
 	^ self propertyAt: #baseDirectory ifAbsent: [(FileSystem workingDirectory / '.')]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> baseDirectory: aValue [
 	"generated code"
 	^ self propertyAt: #baseDirectory put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> bibFile [
 	"generated code"
 	^ self propertyAt: #bibFile ifAbsent: [Path from: 'book.bib']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> bibFile: aValue [
 	"generated code"
 	^ self propertyAt: #bibFile put: aValue
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertAttribution: aValue [
 	"generated code"
 	^ aValue
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertBaseDirectory: aValue [
 	"generated code"
 	^ (FileSystem workingDirectory / aValue)
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertBibFile: aValue [
 	"generated code"
 	^ Path from: aValue
 ]
 
-{ #category : #conversion }
-ConfigurationForPillar >> convertDefaultScriptLanguage: aValue [
-	"generated code"
-	^ PRAbstractScriptLanguage for: aValue
-]
-
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertHeadingLevelOffset: aValue [
 	"generated code"
 	^ aValue
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertHtmlChapterTemplate: aValue [
 	"generated code"
 	^ aValue
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertHtmlTemplate: aValue [
 	"generated code"
 	^ aValue
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertHtmlWriter: aValue [
 	"generated code"
 	^ aValue
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertInputFile: aValue [
 	"generated code"
 	^ (FileSystem workingDirectory / aValue)
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertKeywords: aValue [
 	"generated code"
 	^ aValue
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertLatexChapterTemplate: aValue [
 	"generated code"
 	^ aValue
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertLatexTemplate: aValue [
 	"generated code"
 	^ aValue
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertLatexWriter: aValue [
 	"generated code"
 	^ aValue
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertLevelSpecification: aValue [
 	"generated code"
 
@@ -293,7 +288,7 @@ ConfigurationForPillar >> convertLevelSpecification: aValue [
 	^ composite
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertLevels: aValue [
 	"generated code"
 	| elements |
@@ -303,13 +298,13 @@ ConfigurationForPillar >> convertLevels: aValue [
 	^ elements
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertMainDocument: aValue [
 	"generated code"
 	^ (FileSystem workingDirectory / aValue)
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertNewLine: aValue [
 	"generated code"
 	^ (Dictionary
@@ -322,342 +317,336 @@ ConfigurationForPillar >> convertNewLine: aValue [
 				(#dos -> Win32Platform new lineEnding)}) at: aValue
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertOutputDirectory: aValue [
 	"generated code"
 	^ Path from: aValue
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertOutputFile: aValue [
 	"generated code"
 	^ (FileSystem workingDirectory / aValue)
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertRenderStructureAsSlide: aValue [
 	"generated code"
 	^ aValue 
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertScrambledEmailAddresses: aValue [
 	"generated code"
 	^ aValue 
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertSeparateOutputFiles: aValue [
 	"generated code"
 	^ aValue 
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertSeries: aValue [
 	"generated code"
 	^ aValue
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertSlideInTemplateForDeckJS: aValue [
 	"generated code"
 	^ aValue
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertTitle: aValue [
 	"generated code"
 	^ aValue
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertTocFile: aValue [
 	"generated code"
 	^ Path from: aValue
 ]
 
-{ #category : #'declared items' }
+{ #category : 'declared items' }
 ConfigurationForPillar >> declaredItems [
 	"generated code"
 	^ #( #bibFile #title #attribution #headingLevelOffset #series #keywords #outputDirectory #baseDirectory #outputFile #mainDocument #inputFile #latexTemplate #scrambledEmailAddresses #separateOutputFiles #renderStructureAsSlide #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter #htmlWriter #slideInTemplateForDeckJS #defaultScriptLanguage #levelSpecification #levels #tocFile )
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'accessing' }
 ConfigurationForPillar >> defaultExport [
 	^ self propertyAt: #defaultExport ifAbsent: [ '' ].
 ]
 
-{ #category : #accessing }
-ConfigurationForPillar >> defaultScriptLanguage [
-	"generated code"
-	^ self propertyAt: #defaultScriptLanguage ifAbsent: [(PRRealScriptLanguage for: nil)]
-]
-
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> defaultScriptLanguage: aValue [
 	"generated code"
 	^ self propertyAt: #defaultScriptLanguage put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> headingLevelOffset [
 	"generated code"
 	^ self propertyAt: #headingLevelOffset ifAbsent: [0]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> headingLevelOffset: aValue [
 	"generated code"
 	^ self propertyAt: #headingLevelOffset put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> htmlChapterTemplate [
 	"generated code"
 	^ self propertyAt: #htmlChapterTemplate ifAbsent: ['_support/templates/html.mustache']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> htmlChapterTemplate: aValue [
 	"generated code"
 	^ self propertyAt: #htmlChapterTemplate put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> htmlTemplate [
 	"generated code"
 	^ self propertyAt: #htmlTemplate ifAbsent: ['_support/templates/html.mustache']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> htmlTemplate: aValue [
 	"generated code"
 	^ self propertyAt: #htmlTemplate put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> htmlWriter [
 	"generated code"
 	^ self propertyAt: #htmlWriter ifAbsent: ['html']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> htmlWriter: aValue [
 	"generated code"
 	^ self propertyAt: #htmlWriter put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> inputFile [
 	"generated code"
 	^ self propertyAt: #inputFile ifAbsent: [(FileSystem workingDirectory / 'book')]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> inputFile: aValue [
 	"generated code"
 	^ self propertyAt: #inputFile put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> keywords [
 	"generated code"
 	^ self propertyAt: #keywords ifAbsent: ['Pharo']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> keywords: aValue [
 	"generated code"
 	^ self propertyAt: #keywords put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> latexChapterTemplate [
 	"generated code"
 	^ self propertyAt: #latexChapterTemplate ifAbsent: ['_support/templates/chapter.latex.mustache']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> latexChapterTemplate: aValue [
 	"generated code"
 	^ self propertyAt: #latexChapterTemplate put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> latexTemplate [
 	"generated code"
 	^ self propertyAt: #latexTemplate ifAbsent: ['_support/templates/main.latex.mustache']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> latexTemplate: aValue [
 	"generated code"
 	^ self propertyAt: #latexTemplate put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> latexWriter [
 	"generated code"
 	^ self propertyAt: #latexWriter ifAbsent: ['latex:sbabook']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> latexWriter: aValue [
 	"generated code"
 	^ self propertyAt: #latexWriter put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> levelSpecification [
 	"generated code"
 	^ self propertyAt: #levelSpecification ifAbsent: [ PRTitlePrinterSpecification new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> levelSpecification: aValue [
 	"generated code"
 	^ self propertyAt: #levelSpecification put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> levels [
 	"generated code"
 	^ self propertyAt: #levels ifAbsent: [ OrderedCollection new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> levels: aValue [
 	"generated code"
 	^ self propertyAt: #levels put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> mainDocument [
 	"generated code"
 	^ self propertyAt: #mainDocument ifAbsent: [(FileSystem workingDirectory / 'book')]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> mainDocument: aValue [
 	"generated code"
 	^ self propertyAt: #mainDocument put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> newLine [
 	"generated code"
 	^ self propertyAt: #newLine ifAbsent: [Smalltalk os lineEnding]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> newLine: aValue [
 	"generated code"
 	^ self propertyAt: #newLine put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> outputDirectory [
 	"generated code"
 	^ self propertyAt: #outputDirectory ifAbsent: [Path from: 'build']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> outputDirectory: aValue [
 	"generated code"
 	^ self propertyAt: #outputDirectory put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> outputFile [
 	"generated code"
 	^ self propertyAt: #outputFile ifAbsent: [(FileSystem workingDirectory / 'output')]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> outputFile: aValue [
 	"generated code"
 	^ self propertyAt: #outputFile put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> renderStructureAsSlide [
 	"generated code"
 	^ self propertyAt: #renderStructureAsSlide ifAbsent: [true]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> renderStructureAsSlide: aValue [
 	"generated code"
 	^ self propertyAt: #renderStructureAsSlide put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> scrambledEmailAddresses [
 	"generated code"
 	^ self propertyAt: #scrambledEmailAddresses ifAbsent: [false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> scrambledEmailAddresses: aValue [
 	"generated code"
 	^ self propertyAt: #scrambledEmailAddresses put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> separateOutputFiles [
 	"generated code"
 	^ self propertyAt: #separateOutputFiles ifAbsent: [false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> separateOutputFiles: aValue [
 	"generated code"
 	^ self propertyAt: #separateOutputFiles put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> series [
 	"generated code"
 	^ self propertyAt: #series ifAbsent: ['Square Bracket Associate Collection']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> series: aValue [
 	"generated code"
 	^ self propertyAt: #series put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> slideInTemplateForDeckJS [
 	"generated code"
 	^ self propertyAt: #slideInTemplateForDeckJS ifAbsent: [1]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> slideInTemplateForDeckJS: aValue [
 	"generated code"
 	^ self propertyAt: #slideInTemplateForDeckJS put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> title [
 	"generated code"
 	^ self propertyAt: #title ifAbsent: ['my super cool book']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> title: aValue [
 	"generated code"
 	^ self propertyAt: #title put: aValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> tocFile [
 	"generated code"
 	^ self propertyAt: #tocFile ifAbsent: [Path from: '.']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationForPillar >> tocFile: aValue [
 	"generated code"
 	^ self propertyAt: #tocFile put: aValue
