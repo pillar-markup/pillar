@@ -1,3 +1,11 @@
+"
+I'm responsible to represent the kind of input format is given to Pillar. 
+In the past we got pillar and microdown but the registration was not explicit and relied on hacks
+
+See MicInputDocument >> inputClassForFile: aFile
+
+Once Pillar is removed we should revisit the architectural point. 
+"
 Class {
 	#name : 'PRInputDocument',
 	#superclass : 'Object',

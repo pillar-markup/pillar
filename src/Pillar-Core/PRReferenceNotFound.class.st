@@ -7,9 +7,9 @@ Class {
 	#instVars : [
 		'inputFile'
 	],
-	#category : 'Pillar-Model-Exceptions',
-	#package : 'Pillar-Model',
-	#tag : 'Exceptions'
+	#category : 'Pillar-Core-Errors',
+	#package : 'Pillar-Core',
+	#tag : 'Errors'
 }
 
 { #category : 'accessing' }

@@ -1,9 +1,9 @@
 Class {
 	#name : 'PRPillarInputDocument',
 	#superclass : 'PRInputDocument',
-	#category : 'Pillar-ExporterCore-Base',
+	#category : 'Pillar-ExporterCore-Removal candidates',
 	#package : 'Pillar-ExporterCore',
-	#tag : 'Base'
+	#tag : 'Removal candidates'
 }
 
 { #category : 'registration' }

@@ -7,9 +7,9 @@ Class {
 	#instVars : [
 		'files'
 	],
-	#category : 'Pillar-ExporterCore-Transformers',
+	#category : 'Pillar-ExporterCore-Kept for doc ',
 	#package : 'Pillar-ExporterCore',
-	#tag : 'Transformers'
+	#tag : 'Kept for doc '
 }
 
 { #category : 'accessing' }

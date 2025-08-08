@@ -5,16 +5,16 @@ Then a Title is considered as a Toc without children
 "
 Class {
 	#name : 'PRToc',
-	#superclass : 'PRDocumentItem',
+	#superclass : 'AnObsoletePRDocumentItem',
 	#instVars : [
 		'name',
 		'level',
 		'children',
 		'fileReference'
 	],
-	#category : 'Pillar-Model-Toc',
-	#package : 'Pillar-Model',
-	#tag : 'Toc'
+	#category : 'Pillar-ExporterCore-Kept for doc ',
+	#package : 'Pillar-ExporterCore',
+	#tag : 'Kept for doc '
 }
 
 { #category : 'testing' }
