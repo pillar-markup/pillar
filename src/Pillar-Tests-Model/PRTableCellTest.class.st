@@ -1,26 +1,28 @@
 Class {
-	#name : #PRTableCellTest,
-	#superclass : #PRDocumentGroupTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#name : 'PRTableCellTest',
+	#superclass : 'PRDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRTableCellTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTableCellTest >> actualClass [
 	^ PRTableCell
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRTableCellTest >> testAlign [
 	self instance align: #right.
 	self assert: self instance align equals: #right
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRTableCellTest >> testBeAlignedCenter [
 	self instance beAlignedCenter.
 	self assert: self instance align equals: #center.
@@ -29,7 +31,7 @@ PRTableCellTest >> testBeAlignedCenter [
 	self deny: self instance isAlignedRight
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRTableCellTest >> testBeAlignedLeft [
 	self instance beAlignedLeft.
 	self assert: self instance align equals: #left.
@@ -38,7 +40,7 @@ PRTableCellTest >> testBeAlignedLeft [
 	self deny: self instance isAlignedRight
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRTableCellTest >> testBeAlignedRight [
 	self instance beAlignedRight.
 	self assert: self instance align equals: #right.
@@ -47,13 +49,13 @@ PRTableCellTest >> testBeAlignedRight [
 	self assert: self instance isAlignedRight
 ]
 
-{ #category : #'tests-comparing' }
+{ #category : 'tests-comparing' }
 PRTableCellTest >> testEqualAlign [
 	self deny: self actualClass new beAlignedRight equals: self actualClass new beAlignedCenter.
 	self deny: self actualClass new beAlignedCenter equals: self actualClass new beAlignedLeft
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRTableCellTest >> testHeading [
 	self deny: self instance heading.
 	self deny: self instance isHeading.

@@ -1,15 +1,17 @@
 Class {
-	#name : #PRImageDependenciesTest,
-	#superclass : #PRVisitorTest,
-	#category : 'Pillar-Tests-Model-Visitor'
+	#name : 'PRImageDependenciesTest',
+	#superclass : 'PRVisitorTest',
+	#category : 'Pillar-Tests-Model-Visitor',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Visitor'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRImageDependenciesTest >> actualClass [
 	^ PRImageDependencies 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRImageDependenciesTest >> testDocumentWithFigure [
 	| item set |
 	item := PRDocument new

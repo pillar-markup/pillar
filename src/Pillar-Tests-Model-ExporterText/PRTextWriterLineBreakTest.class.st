@@ -1,20 +1,21 @@
 Class {
-	#name : #PRTextWriterLineBreakTest,
-	#superclass : #PRTextWriterDocumentItemTest,
-	#category : #'Pillar-Tests-Model-ExporterText'
+	#name : 'PRTextWriterLineBreakTest',
+	#superclass : 'PRTextWriterDocumentItemTest',
+	#category : 'Pillar-Tests-Model-ExporterText',
+	#package : 'Pillar-Tests-Model-ExporterText'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRTextWriterLineBreakTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterLineBreakTest >> actualClass [
 	^ PRLineBreak
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterLineBreakTest >> testParseOneEmptyLine [
 
 	| text tree nLine |
@@ -33,7 +34,7 @@ PRTextWriterLineBreakTest >> testParseOneEmptyLine [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterLineBreakTest >> testParseTreeLines [
 
 	| text tree nLine |
@@ -52,7 +53,7 @@ PRTextWriterLineBreakTest >> testParseTreeLines [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterLineBreakTest >> testParseTwoEmptyLines [
 
 	| text tree nLine |
@@ -72,7 +73,7 @@ PRTextWriterLineBreakTest >> testParseTwoEmptyLines [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterLineBreakTest >> testParseTwoLines [
 
 	| text tree |

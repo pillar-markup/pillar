@@ -4,42 +4,44 @@ An annotated paragraph is represented by: @@ in pillar syntax.
 @@foo bar zork
 "
 Class {
-	#name : #PRAnnotatedParagraph,
-	#superclass : #PRParagraph,
+	#name : 'PRAnnotatedParagraph',
+	#superclass : 'PRParagraph',
 	#instVars : [
 		'annotation'
 	],
-	#category : #'Pillar-Core-Model'
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRAnnotatedParagraph class >> withAll: aCollection annotation: aString [
 	^ (self withAll: aCollection)
 		annotation: aString;
 		yourself
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRAnnotatedParagraph >> = anObject [
 	^ super = anObject and: [ self annotation = anObject annotation ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRAnnotatedParagraph >> accept: aVisitor [
 	^ aVisitor visitAnnotatedParagraph: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAnnotatedParagraph >> annotation [
 	^ annotation
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAnnotatedParagraph >> annotation: aString [
 	annotation := aString
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRAnnotatedParagraph >> hash [
 	^ super hash bitXor: self annotation hash
 ]

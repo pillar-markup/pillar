@@ -1,10 +1,11 @@
 Class {
-	#name : #PRParseDocumentGroupTest,
-	#superclass : #PRParseDocumentItemTest,
-	#category : #'Pillar-Tests-PetitPillar'
+	#name : 'PRParseDocumentGroupTest',
+	#superclass : 'PRParseDocumentItemTest',
+	#category : 'Pillar-Tests-PetitPillar',
+	#package : 'Pillar-Tests-PetitPillar'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseDocumentGroupTest >> actualClass [
 	^ PRDocumentGroup
 ]

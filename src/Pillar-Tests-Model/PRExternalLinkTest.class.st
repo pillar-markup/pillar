@@ -1,36 +1,38 @@
 Class {
-	#name : #PRExternalLinkTest,
-	#superclass : #PRLinkTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#name : 'PRExternalLinkTest',
+	#superclass : 'PRLinkTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRExternalLinkTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRExternalLinkTest >> actualClass [
 	^ PRExternalLink
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRExternalLinkTest >> referenceString [
 	^ 'http://www.lukas-renggli.ch'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRExternalLinkTest >> testIsExternal [
 	self assert: self instance isExternal
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRExternalLinkTest >> testTitle [
 	self instance reference: 'http://www.lukas-renggli.ch'.
 	self assert: self instance title equals: 'http://www.lukas-renggli.ch'
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRExternalLinkTest >> testUrl [
 	self instance reference: 'http://www.lukas-renggli.ch'.
 	self assert: self instance url equals: 'http://www.lukas-renggli.ch'

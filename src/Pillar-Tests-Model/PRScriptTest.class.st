@@ -3,23 +3,25 @@ A PRRawTest is xxxxxxxxx.
 
 "
 Class {
-	#name : #PRScriptTest,
-	#superclass : #PRTextTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#name : 'PRScriptTest',
+	#superclass : 'PRTextTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRScriptTest >> actualClass [
 	^ PRCodeblock
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptTest >> testEqualScript [
 	self assert: (self actualClass content: 'foo')  ~= (self actualClass content: 'bar').
 	self assert: (self actualClass content: 'foo') equals: (self actualClass content: 'foo')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptTest >> testEqualScriptWithLanguage [
 	| param1 param2 |
 	param1 := SmallDictionary new
@@ -36,7 +38,7 @@ PRScriptTest >> testEqualScriptWithLanguage [
 				equals: (self actualClass content: 'foo' parameters: param1)
 ]
 
-{ #category : #'tests-comparing' }
+{ #category : 'tests-comparing' }
 PRScriptTest >> testHash [
 	| a b |
 	a := self actualClass content: 'foo'.
@@ -45,7 +47,7 @@ PRScriptTest >> testHash [
 	self assert: a hash equals: b hash
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptTest >> testIsStructure [
 
 	| ston nLine script |
@@ -56,7 +58,7 @@ PRScriptTest >> testIsStructure [
 	self assert: script isStructure
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRScriptTest >> testStructureName [
 
 	| ston nLine script |

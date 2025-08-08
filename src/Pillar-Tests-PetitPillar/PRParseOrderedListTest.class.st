@@ -1,20 +1,21 @@
 Class {
-	#name : #PRParseOrderedListTest,
-	#superclass : #PRParseListTest,
-	#category : #'Pillar-Tests-PetitPillar'
+	#name : 'PRParseOrderedListTest',
+	#superclass : 'PRParseListTest',
+	#category : 'Pillar-Tests-PetitPillar',
+	#package : 'Pillar-Tests-PetitPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRParseOrderedListTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseOrderedListTest >> actualClass [
 	^ PROrderedList
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseOrderedListTest >> testParseMixed [
 
 	| wiki tree nLine |
@@ -32,7 +33,7 @@ PRParseOrderedListTest >> testParseMixed [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseOrderedListTest >> testParseNested [
 
 	| wiki tree nLine |
@@ -54,7 +55,7 @@ PRParseOrderedListTest >> testParseNested [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseOrderedListTest >> wikiString [
 	^ '#'
 ]

@@ -1,5 +1,7 @@
 Class {
-	#name : #PREnvironmentMissedNamed,
-	#superclass : #Error,
-	#category : #'Pillar-Core-Errors'
+	#name : 'PREnvironmentMissedNamed',
+	#superclass : 'Error',
+	#category : 'Pillar-Core-Errors',
+	#package : 'Pillar-Core',
+	#tag : 'Errors'
 }

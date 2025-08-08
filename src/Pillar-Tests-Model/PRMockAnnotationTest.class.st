@@ -1,15 +1,17 @@
 Class {
-	#name : #PRMockAnnotationTest,
-	#superclass : #PRAbstractAnnotationTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#name : 'PRMockAnnotationTest',
+	#superclass : 'PRAbstractAnnotationTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRMockAnnotationTest >> actualClass [
 	^ PRMockAnnotation
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRMockAnnotationTest >> referenceParameters [
 	^ PRParameters withAll: { 
 		PRParameter 
@@ -20,7 +22,7 @@ PRMockAnnotationTest >> referenceParameters [
 			valueNode: (PRParameterValue value: 5) }
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRMockAnnotationTest >> referenceString [
 	^ 'mock:value=Foo|number=5'
 ]

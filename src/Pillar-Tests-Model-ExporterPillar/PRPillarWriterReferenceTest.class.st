@@ -1,25 +1,26 @@
 Class {
-	#name : #PRPillarWriterReferenceTest,
-	#superclass : #PRPillarWriterDocumentGroupTest,
-	#category : #'Pillar-Tests-Model-ExporterPillar'
+	#name : 'PRPillarWriterReferenceTest',
+	#superclass : 'PRPillarWriterDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-ExporterPillar',
+	#package : 'Pillar-Tests-Model-ExporterPillar'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRPillarWriterReferenceTest >> actualClass [
 	^ PRReference
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRPillarWriterReferenceTest >> markup [
 	^ self subclassResponsibility
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRPillarWriterReferenceTest >> referenceString [
 	self subclassResponsibility
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRPillarWriterReferenceTest >> testNonTextAlias [
 	| wiki tree |
 	wiki := self markup , 'foo ""Alias"">' , self referenceString , self markup.
@@ -38,7 +39,7 @@ PRPillarWriterReferenceTest >> testNonTextAlias [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterReferenceTest >> testParseAliased [
 	| wiki tree |
 	wiki := self markup , 'Alias>' , self referenceString , self markup.
@@ -56,7 +57,7 @@ PRPillarWriterReferenceTest >> testParseAliased [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterReferenceTest >> testParseAliasedEmpty [
 	| wiki tree |
 	wiki := self markup , '>' , self referenceString , self markup.
@@ -75,7 +76,7 @@ PRPillarWriterReferenceTest >> testParseAliasedEmpty [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterReferenceTest >> testParseBasic [
 	| wiki tree |
 	wiki := self markup  , self referenceString , self markup .
@@ -92,7 +93,7 @@ PRPillarWriterReferenceTest >> testParseBasic [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterReferenceTest >> testParseEasyness [
 
 	| wiki2 tree |
@@ -110,7 +111,7 @@ PRPillarWriterReferenceTest >> testParseEasyness [
 	self pillarWriterAssertTree: tree equalsWiki: wiki2
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterReferenceTest >> testParseEmpty [
 	| wiki2 text tree |
 	
@@ -126,7 +127,7 @@ PRPillarWriterReferenceTest >> testParseEmpty [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterReferenceTest >> testParseEscaped [
 
 	| wiki tree |
@@ -146,7 +147,7 @@ PRPillarWriterReferenceTest >> testParseEscaped [
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterReferenceTest >> testParseParameters [
 	| wiki tree |
 	wiki := self markup , 'Alias>' , self referenceString , '|a=1|b=2|c=true' , self markup .
@@ -171,7 +172,7 @@ PRPillarWriterReferenceTest >> testParseParameters [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterReferenceTest >> testParseParametersEscaped [
 	| wiki tree |
 	wiki := self markup , 'Alias>' , self referenceString , '|2=\|\=|\|\==1' , self markup .

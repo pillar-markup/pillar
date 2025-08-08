@@ -8,17 +8,19 @@ I'm delimited by
 in Pillar syntax.
 "
 Class {
-	#name : #PRPreformatted,
-	#superclass : #PRDocumentGroup,
-	#category : #'Pillar-Core-Model'
+	#name : 'PRPreformatted',
+	#superclass : 'PRDocumentGroup',
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRPreformatted >> accept: aVisitor [
 	^ aVisitor visitPreformatted: self
 ]
 
-{ #category : #'accessing-dynamic' }
+{ #category : 'accessing-dynamic' }
 PRPreformatted >> text [
 	"the text of a preformatted should not be the concatenation of children."
 	

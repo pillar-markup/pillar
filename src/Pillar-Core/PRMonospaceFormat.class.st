@@ -5,12 +5,14 @@ In Pillar, text can be shown in bold by wrapping the text around `==`.
 
 "
 Class {
-	#name : #PRMonospaceFormat,
-	#superclass : #PRFormat,
-	#category : #'Pillar-Core-Model'
+	#name : 'PRMonospaceFormat',
+	#superclass : 'PRFormat',
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRMonospaceFormat >> accept: aVisitor [
 	^ aVisitor visitMonospaceFormat: self
 ]

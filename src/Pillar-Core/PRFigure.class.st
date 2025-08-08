@@ -8,60 +8,62 @@ My alias (inherited) represents the figure caption.
 ```
 "
 Class {
-	#name : #PRFigure,
-	#superclass : #PRReference,
-	#category : #'Pillar-Core-Model'
+	#name : 'PRFigure',
+	#superclass : 'PRReference',
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRFigure class >> extensionOf: aString isOneOf: extensions [
 	| extension |
 	extension := (aString splitOn: $.) last asLowercase.
 	^ extensions includes: extension
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRFigure class >> isValidReference: aString [
 	^ (self extensionOf: aString isOneOf: self pictureExtensions)
 		and: [ aString includesSubstring: '://' caseSensitive: true ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRFigure class >> pictureExtensions [
 	^ #('png' 'jpg' 'jpeg' 'pdf')
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRFigure >> accept: aVisitor [
 	^ aVisitor visitFigure: self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRFigure >> hasCaption [
 	^ self hasChildren
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRFigure >> hasFigureExtension [
 	^ self class pictureExtensions includes: self reference asFileReference extension
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRFigure >> hasLabel [
 	^ self label isNotNil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRFigure >> label [
 	^ self parameters at: 'label' ifAbsent: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRFigure >> label: aString [
 	self parameters at: 'label' put: aString
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PRFigure >> pathInternFile [
 	| path |
 	path := self reference.

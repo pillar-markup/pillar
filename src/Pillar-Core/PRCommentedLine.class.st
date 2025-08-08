@@ -4,12 +4,14 @@ A comment does not flows on multiple lines.
 Each line to be commented should start with %.
 "
 Class {
-	#name : #PRCommentedLine,
-	#superclass : #PRText,
-	#category : #'Pillar-Core-Model'
+	#name : 'PRCommentedLine',
+	#superclass : 'PRText',
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRCommentedLine >> accept: aVisitor [
 	^ aVisitor visitCommentedLine: self
 ]

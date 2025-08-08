@@ -29,8 +29,8 @@ Instance Variables
 
 "
 Class {
-	#name : #PRAbstractAnnotation,
-	#superclass : #PRDocumentGroup,
+	#name : 'PRAbstractAnnotation',
+	#superclass : 'PRDocumentGroup',
 	#traits : 'PRTParametrizable',
 	#classTraits : 'PRTParametrizable classTrait',
 	#instVars : [
@@ -38,81 +38,83 @@ Class {
 		'hadAllKeys',
 		'isValid'
 	],
-	#category : #'Pillar-Core-Model'
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRAbstractAnnotation class >> acceptName: aTag [ 
 	^ aTag asSymbol = self tag
 ]
 
-{ #category : #constant }
+{ #category : 'constant' }
 PRAbstractAnnotation class >> closingAnnotationString [
 	^ '}$'
 				
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractAnnotation class >> defaultParameterName [
 	"Each annotation can have some parameters. A parameter has a key and a value. We allow for each annotation to have 1 parameter without key inside the pillar document. I return the key of this parameter."
 
 	^ self possibleParameters first
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRAbstractAnnotation class >> findClassAcceptingTag: aTag ifNone: aBlock [
 	^ self withAllConcreteClasses
 		detect: [ :class | class acceptName: aTag ]
 		ifNone: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractAnnotation class >> hasParameters [
 	"Subclasses should override this method when they do not require parameters."
 	^ true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRAbstractAnnotation class >> isAbstract [
 	^ self = PRAbstractAnnotation
 ]
 
-{ #category : #constant }
+{ #category : 'constant' }
 PRAbstractAnnotation class >> keyValueSeparator [
 	^ $=
 				
 	
 ]
 
-{ #category : #constant }
+{ #category : 'constant' }
 PRAbstractAnnotation class >> markupParameterSeparator [
 	^ $:
 ]
 
-{ #category : #constant }
+{ #category : 'constant' }
 PRAbstractAnnotation class >> openingAnnotationString [
 	^ '${'
 				
 	
 ]
 
-{ #category : #constant }
+{ #category : 'constant' }
 PRAbstractAnnotation class >> parameterSeparator [
 	^ $|
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractAnnotation class >> possibleParameters [
 	^ #( value )
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRAbstractAnnotation class >> tag [
 	^ self possibleParameters first
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRAbstractAnnotation class >> validateParameters: parameters [
 	| usedKeys |
 	usedKeys := parameters keys.
@@ -126,7 +128,7 @@ PRAbstractAnnotation class >> validateParameters: parameters [
 	self hasParameters not and: [ usedKeys ifNotEmpty: [ PRSyntaxError signal: 'The annotation ' , self tag , ' does not expect parameter' ] ]
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRAbstractAnnotation class >> validateParameters: aPRParameters dictionary: parametersDictionary in: anAnnotation [
 	| usedKeys |
 	usedKeys := parametersDictionary keys.
@@ -137,7 +139,7 @@ PRAbstractAnnotation class >> validateParameters: aPRParameters dictionary: para
 	self hasParameters not and: [ usedKeys ifNotEmpty: [ PRValidation strategy unexpectedParameterIn: anAnnotation ] ]
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRAbstractAnnotation >> = anObject [
 	^ super = anObject and: [ 
 		self parameters = anObject parameters and: [ 
@@ -145,13 +147,13 @@ PRAbstractAnnotation >> = anObject [
 				self isValid = anObject isValid ] ] ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRAbstractAnnotation >> accept: aVisitor [
 
 	^ aVisitor visitAnnotation: self
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PRAbstractAnnotation >> asPillar [
 	"Return a representation similar to the one used to create the annotation the assumption here is that the parameter dictionary only hold strings."
 
@@ -166,7 +168,7 @@ PRAbstractAnnotation >> asPillar [
 			s nextPutAll: self closingAnnotationString ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PRAbstractAnnotation >> asPillarKey: key value: aValue on: aStream [
 	"Output on aStream key = aValue."
 
@@ -176,7 +178,7 @@ PRAbstractAnnotation >> asPillarKey: key value: aValue on: aStream [
 		nextPutAll: aValue
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PRAbstractAnnotation >> asPillarParametersOn: aStream [
 	| nonDefaultParameters |
 	nonDefaultParameters := self parameters keys asOrderedCollection.
@@ -194,34 +196,34 @@ PRAbstractAnnotation >> asPillarParametersOn: aStream [
 		separatedBy: [ aStream nextPut: self parameterSeparator ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRAbstractAnnotation >> beInvalid [
 	isValid := false.
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PRAbstractAnnotation >> closingAnnotationString [
 	^ self class closingAnnotationString
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PRAbstractAnnotation >> defaultParameterName [
 
 	^ self class defaultParameterName
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractAnnotation >> hadAllKeys [
 	^ hadAllKeys ifNil: [ hadAllKeys := true ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractAnnotation >> hadAllKeys: anObject [
 	hadAllKeys := anObject
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRAbstractAnnotation >> hash [
 	^ ((super hash 
 		bitXor: self parameters hash)
@@ -229,63 +231,63 @@ PRAbstractAnnotation >> hash [
 		bitXor: self isValid hash
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRAbstractAnnotation >> initialize [
 	super initialize.
 	parameters := OrderedDictionary new.
 	isValid := true.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRAbstractAnnotation >> isValid [
 	^ isValid
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PRAbstractAnnotation >> keyValueSeparator [
 
 	^  self class keyValueSeparator
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PRAbstractAnnotation >> markupParameterSeparator [
 	^ self class markupParameterSeparator
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PRAbstractAnnotation >> openingAnnotationString [
 	^ self class openingAnnotationString
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PRAbstractAnnotation >> parameterSeparator [
 
 	^  self class parameterSeparator 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractAnnotation >> parameters [
 	^ parameters
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractAnnotation >> parameters: aCollection [
 	parameters := aCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractAnnotation >> possibleParameters [
 	^ self class possibleParameters
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 PRAbstractAnnotation >> postCopy [
 	super postCopy.
 	parameters := parameters copy.
 	hadAllKeys := hadAllKeys copy
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PRAbstractAnnotation >> tag [
 	^ self class tag
 ]

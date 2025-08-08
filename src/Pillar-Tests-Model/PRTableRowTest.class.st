@@ -1,20 +1,22 @@
 Class {
-	#name : #PRTableRowTest,
-	#superclass : #PRDocumentGroupTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#name : 'PRTableRowTest',
+	#superclass : 'PRDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRTableRowTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTableRowTest >> actualClass [
 	^ PRTableRow
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRTableRowTest >> testCount [
 	self instance add: PRTableCell new.
 	self assert: self instance columnCount equals: 1.
@@ -23,7 +25,7 @@ PRTableRowTest >> testCount [
 	self assert: self instance columnCount equals: 2
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRTableRowTest >> testRowWithHeadingCellIsHeading [
 	self instance
 		add:
@@ -36,7 +38,7 @@ PRTableRowTest >> testRowWithHeadingCellIsHeading [
 	self assert: self instance isHeading
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRTableRowTest >> testRowWithHeadingCellsAndOneEmptyCellIsHeading [
 	self instance
 		add:
@@ -50,7 +52,7 @@ PRTableRowTest >> testRowWithHeadingCellsAndOneEmptyCellIsHeading [
 	self assert: self instance isHeading
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRTableRowTest >> testRowWithOnlyEmptyCellIsNotHeading [
 	self instance
 		add: PRTableCell new;

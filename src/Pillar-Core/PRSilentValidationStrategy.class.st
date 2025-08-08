@@ -1,10 +1,12 @@
 Class {
-	#name : #PRSilentValidationStrategy,
-	#superclass : #PRValidationStrategy,
-	#category : #'Pillar-Core-Validations'
+	#name : 'PRSilentValidationStrategy',
+	#superclass : 'PRValidationStrategy',
+	#category : 'Pillar-Core-Validations',
+	#package : 'Pillar-Core',
+	#tag : 'Validations'
 }
 
-{ #category : #'error handling' }
+{ #category : 'error handling' }
 PRSilentValidationStrategy >> invalidParameterNames: aMissingKeys forAnnotation: anAnnotationClass withParameters: aPRParameters [
 	aMissingKeys do: [ :eachKey | 
 		aPRParameters children 
@@ -13,17 +15,17 @@ PRSilentValidationStrategy >> invalidParameterNames: aMissingKeys forAnnotation:
 			ifNone: [ "ignore" ] ]
 ]
 
-{ #category : #'error handling' }
+{ #category : 'error handling' }
 PRSilentValidationStrategy >> missingAnnotationParametersIn: aPRAnnotation [ 
 	aPRAnnotation beInvalid
 ]
 
-{ #category : #'error handling' }
+{ #category : 'error handling' }
 PRSilentValidationStrategy >> missingAnnotationSupport: aString [ 
 	^ PRUndefinedAnnotation new tag: aString
 ]
 
-{ #category : #'error handling' }
+{ #category : 'error handling' }
 PRSilentValidationStrategy >> unexpectedParameterIn: anAnnotation [
 	anAnnotation beInvalid
 ]

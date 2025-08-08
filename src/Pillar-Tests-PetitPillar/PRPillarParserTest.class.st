@@ -1,17 +1,18 @@
 Class {
-	#name : #PRPillarParserTest,
-	#superclass : #PRPillarGrammarTest,
-	#category : #'Pillar-Tests-PetitPillar'
+	#name : 'PRPillarParserTest',
+	#superclass : 'PRPillarGrammarTest',
+	#category : 'Pillar-Tests-PetitPillar',
+	#package : 'Pillar-Tests-PetitPillar'
 }
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 PRPillarParserTest >> assertStart: aStartInteger stop: aStopIndex [
 	self assert: result isNotNil.
 	self assert: result start equals: aStartInteger.
 	self assert: result stop equals: aStopIndex
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 PRPillarParserTest >> assertStart: aStartInteger stop: aStopIndex ofNode: aDocumentItem [
 	self
 		assert: aDocumentItem start
@@ -22,64 +23,64 @@ PRPillarParserTest >> assertStart: aStartInteger stop: aStopIndex ofNode: aDocum
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRPillarParserTest >> parserClass [
 	^ PRPillarParser
 ]
 
-{ #category : #'tests - Reference' }
+{ #category : 'tests - Reference' }
 PRPillarParserTest >> testAliasFigure [
 	super testAliasFigure.
 	self assert: result equals: { PRText content: 'Alias' } asOrderedCollection.
 	self assertStart: 1 stop: 5 ofNode: result first.
 ]
 
-{ #category : #'tests - Reference' }
+{ #category : 'tests - Reference' }
 PRPillarParserTest >> testAliasFigureEscape [
 	super testAliasFigureEscape.
 	self assert: result equals: { PRText content: 'Alias>' } asOrderedCollection.
 	self assertStart: 1 stop: 7 ofNode: result first.
 ]
 
-{ #category : #'tests - Reference' }
+{ #category : 'tests - Reference' }
 PRPillarParserTest >> testAliasLink [
 	super testAliasLink.
 	self assert: result equals: { PRText content: 'Alias' } asOrderedCollection.
 	self assertStart: 1 stop: 5 ofNode: result first.
 ]
 
-{ #category : #'tests - Reference' }
+{ #category : 'tests - Reference' }
 PRPillarParserTest >> testAliasLinkEscape [
 	super testAliasLinkEscape.
 	self assert: result equals: { PRText content: 'Alias>' } asOrderedCollection.
 	self assertStart: 1 stop: 7 ofNode: result first.
 ]
 
-{ #category : #'tests - Anchor' }
+{ #category : 'tests - Anchor' }
 PRPillarParserTest >> testAnchor [
 	super testAnchor.
 	self assert: result equals: (PRAnchor named: 'test')
 ]
 
-{ #category : #'tests - Anchor' }
+{ #category : 'tests - Anchor' }
 PRPillarParserTest >> testAnchorAreTrimed [
 	super testAnchorAreTrimed.
 	self assert: result equals: (PRAnchor named: 'test')
 ]
 
-{ #category : #'tests - Anchor' }
+{ #category : 'tests - Anchor' }
 PRPillarParserTest >> testAnchorWithNewLine [
 	super testAnchorWithNewLine.
 	self assert: result equals: (PRAnchor named: 'foo')
 ]
 
-{ #category : #'tests - Anchor' }
+{ #category : 'tests - Anchor' }
 PRPillarParserTest >> testAnchorWithSpaceInside [
 	super testAnchorWithSpaceInside.
 	self assert: result equals: (PRAnchor named: 'foo bar')
 ]
 
-{ #category : #'tests - Paragraph' }
+{ #category : 'tests - Paragraph' }
 PRPillarParserTest >> testAnnotatedParagraph [
 	super testAnnotatedParagraph.
 	self 
@@ -89,7 +90,7 @@ PRPillarParserTest >> testAnnotatedParagraph [
 	self assertStart: 7 stop: 9 ofNode: result children first.
 ]
 
-{ #category : #'tests - Paragraph' }
+{ #category : 'tests - Paragraph' }
 PRPillarParserTest >> testAnnotatedParagraphEmpty [
 	super testAnnotatedParagraphEmpty.
 	self
@@ -101,7 +102,7 @@ PRPillarParserTest >> testAnnotatedParagraphEmpty [
 	self assertStart: 1 stop: 5.
 ]
 
-{ #category : #'tests - Paragraph' }
+{ #category : 'tests - Paragraph' }
 PRPillarParserTest >> testAnnotatedParagraphEmptyWithNewLine [
 	super testAnnotatedParagraphEmptyWithNewLine.
 	self
@@ -113,7 +114,7 @@ PRPillarParserTest >> testAnnotatedParagraphEmptyWithNewLine [
 	self assertStart: 1 stop: 5.
 ]
 
-{ #category : #'tests - Annotation' }
+{ #category : 'tests - Annotation' }
 PRPillarParserTest >> testAnnotation [
 	super testAnnotation.
 	self
@@ -127,7 +128,7 @@ PRPillarParserTest >> testAnnotation [
 	self assertStart: 1 stop: 22.
 ]
 
-{ #category : #'tests - Annotation' }
+{ #category : 'tests - Annotation' }
 PRPillarParserTest >> testAnnotationAreTrimedAtTheRight [
 	super testAnnotationAreTrimedAtTheRight.
 	self
@@ -142,7 +143,7 @@ PRPillarParserTest >> testAnnotationAreTrimedAtTheRight [
 	self assertStart: 1 stop: 22.
 ]
 
-{ #category : #'tests - Annotation' }
+{ #category : 'tests - Annotation' }
 PRPillarParserTest >> testAnnotationOnlyWithParameterName [
 	| expected |
 	super testAnnotationOnlyWithParameterName.
@@ -154,7 +155,7 @@ PRPillarParserTest >> testAnnotationOnlyWithParameterName [
 	self assert: result equals: expected
 ]
 
-{ #category : #'tests - Annotation' }
+{ #category : 'tests - Annotation' }
 PRPillarParserTest >> testAnnotationParameter [
 	super testAnnotationParameter.
 	self assert: result equals: (PRParameter 
@@ -162,7 +163,7 @@ PRPillarParserTest >> testAnnotationParameter [
 		valueNode: (PRParameterValue value: 'foo'))
 ]
 
-{ #category : #'tests - Annotation' }
+{ #category : 'tests - Annotation' }
 PRPillarParserTest >> testAnnotationParameters [
 	| expected |
 	super testAnnotationParameters.
@@ -178,7 +179,7 @@ PRPillarParserTest >> testAnnotationParameters [
 	self assert: result stop equals: 18.
 ]
 
-{ #category : #'tests - Annotation' }
+{ #category : 'tests - Annotation' }
 PRPillarParserTest >> testAnnotationParameters2 [
 	| expected |
 	super testAnnotationParameters.
@@ -192,20 +193,20 @@ PRPillarParserTest >> testAnnotationParameters2 [
 	self assert: result equals: expected
 ]
 
-{ #category : #'tests - Annotation' }
+{ #category : 'tests - Annotation' }
 PRPillarParserTest >> testAnnotationTag [
 	super testAnnotationTag.
 	self assert: result equals: PRMockAnnotation
 ]
 
-{ #category : #'tests - Annotation' }
+{ #category : 'tests - Annotation' }
 PRPillarParserTest >> testAnnotationWithUnknownKey [
 	self 
 		should: [ super testAnnotationWithUnknownKey ]
 		raise: PRSyntaxError.
 ]
 
-{ #category : #'tests - Annotation' }
+{ #category : 'tests - Annotation' }
 PRPillarParserTest >> testAnnotationWithUnknownKeyAsNode [
 	PRValidation beSilentDuring: [ 
 		super testAnnotationWithUnknownKey.
@@ -225,7 +226,7 @@ PRPillarParserTest >> testAnnotationWithUnknownKeyAsNode [
 	
 ]
 
-{ #category : #'tests - Annotation' }
+{ #category : 'tests - Annotation' }
 PRPillarParserTest >> testAnnotationWithoutFirstParameterNameAndDefaultValues [
 	| expected |
 	super testAnnotationWithoutFirstParameterNameAndDefaultValues.
@@ -243,7 +244,7 @@ PRPillarParserTest >> testAnnotationWithoutFirstParameterNameAndDefaultValues [
 	self assert: result equals: expected
 ]
 
-{ #category : #'tests - Annotation' }
+{ #category : 'tests - Annotation' }
 PRPillarParserTest >> testAnnotationWithoutParameterName [
 	| expected |
 	super testAnnotationWithoutParameterName.
@@ -255,14 +256,14 @@ PRPillarParserTest >> testAnnotationWithoutParameterName [
 	self assert: result equals: expected
 ]
 
-{ #category : #'tests - Annotation' }
+{ #category : 'tests - Annotation' }
 PRPillarParserTest >> testAnnotationWithoutParameters [
 	self 
 		should: [ super testAnnotationWithoutParameters ]
 		raise: PRSyntaxError.
 ]
 
-{ #category : #'tests - Annotation' }
+{ #category : 'tests - Annotation' }
 PRPillarParserTest >> testAnnotationWithoutParametersAsNode [
 	PRValidation beSilentDuring: [ 
 		super testAnnotationWithoutParameters.
@@ -274,7 +275,7 @@ PRPillarParserTest >> testAnnotationWithoutParametersAsNode [
 	self deny: result isValid.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testBoldFormat [
 	super testBoldFormat.
 	self assert: result equals: (PRBoldFormat with: (PRText content: 'Foo')).
@@ -282,14 +283,14 @@ PRPillarParserTest >> testBoldFormat [
 	self assertStart: 3 stop: 5 ofNode: result children first.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testBoldFormatEmpty [
 	super testBoldFormatEmpty.
 	self assert: result equals: PRBoldFormat new.
 	self assertStart: 1 stop: 4.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testBoldFormatWithEscaped [
 	super testBoldFormatWithEscaped.
 	self assert: result equals: (PRBoldFormat with: (PRText content: '""')).
@@ -297,19 +298,19 @@ PRPillarParserTest >> testBoldFormatWithEscaped [
 	self assertStart: 3 stop: 6 ofNode: result children first.
 ]
 
-{ #category : #'tests - Text' }
+{ #category : 'tests - Text' }
 PRPillarParserTest >> testCommentedLine [
 	super testCommentedLine.
 	self assert: result equals: (PRCommentedLine content: 'some text')
 ]
 
-{ #category : #'tests - Text' }
+{ #category : 'tests - Text' }
 PRPillarParserTest >> testCommentedLineWithNewline [
 	super testCommentedLineWithNewline.
 	self assert: result equals: (PRCommentedLine content: 'some text')
 ]
 
-{ #category : #'tests - List' }
+{ #category : 'tests - List' }
 PRPillarParserTest >> testDefinitionList [
 	super testDefinitionList.
 	self
@@ -327,14 +328,14 @@ PRPillarParserTest >> testDefinitionList [
 	
 ]
 
-{ #category : #'tests - Paragraph' }
+{ #category : 'tests - Paragraph' }
 PRPillarParserTest >> testEmptyParagraph [
 	super testEmptyParagraph.
 	self assert: result equals: PREmptyParagraph new.
 	self assertStart: 1 stop: 1
 ]
 
-{ #category : #'tests - Reference' }
+{ #category : 'tests - Reference' }
 PRPillarParserTest >> testFigureFollowedByLinkWithAlias [
 	| paragraph |
 	super testFigureFollowedByLinkWithAlias.
@@ -350,7 +351,7 @@ PRPillarParserTest >> testFigureFollowedByLinkWithAlias [
 	self assertStart: 27 stop: 47 ofNode: result children second.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testFormatWithLink [
 	super testFormatWithLink.
 	self assert: result equals: (PRBoldFormat with: (PRInternalLink reference: 'foo')).
@@ -358,14 +359,14 @@ PRPillarParserTest >> testFormatWithLink [
 	self assertStart: 3 stop: 7 ofNode: result children first.
 ]
 
-{ #category : #'tests - Header' }
+{ #category : 'tests - Header' }
 PRPillarParserTest >> testHeaderEmpty [
 	super testHeaderEmpty.
 	self assert: result equals: (PRHeader withAll: Array new level: 1).
 	self assertStart: 1 stop: 1.
 ]
 
-{ #category : #'tests - Header' }
+{ #category : 'tests - Header' }
 PRPillarParserTest >> testHeaderLevel1 [
 	super testHeaderLevel1.
 	self assert: result equals: (PRHeader withAll: {PRText content: 'Foo'} level: 1).
@@ -373,7 +374,7 @@ PRPillarParserTest >> testHeaderLevel1 [
 	self assertStart: 2 stop: 4 ofNode: result children first.
 ]
 
-{ #category : #'tests - Header' }
+{ #category : 'tests - Header' }
 PRPillarParserTest >> testHeaderLevel2 [
 	super testHeaderLevel2.
 	self assert: result equals: (PRHeader withAll: {PRText content: 'Foo'} level: 2).
@@ -381,7 +382,7 @@ PRPillarParserTest >> testHeaderLevel2 [
 	self assertStart: 3 stop: 5 ofNode: result children first.
 ]
 
-{ #category : #'tests - Header' }
+{ #category : 'tests - Header' }
 PRPillarParserTest >> testHeaderLevel3 [
 	super testHeaderLevel3.
 	self assert: result equals: (PRHeader withAll: {PRText content: 'Foo'} level: 3).
@@ -389,7 +390,7 @@ PRPillarParserTest >> testHeaderLevel3 [
 	self assertStart: 4 stop: 6 ofNode: result children first.
 ]
 
-{ #category : #'tests - Header' }
+{ #category : 'tests - Header' }
 PRPillarParserTest >> testHeaderLevel4 [
 	super testHeaderLevel4.
 	self assert: result equals: (PRHeader withAll: {PRText content: 'Foo'} level: 4).
@@ -397,7 +398,7 @@ PRPillarParserTest >> testHeaderLevel4 [
 	self assertStart: 5 stop: 7 ofNode: result children first.
 ]
 
-{ #category : #'tests - Header' }
+{ #category : 'tests - Header' }
 PRPillarParserTest >> testHeaderLevel5 [
 	super testHeaderLevel5.
 	self assert: result equals: (PRHeader withAll: {PRText content: 'Foo'} level: 5).
@@ -405,7 +406,7 @@ PRPillarParserTest >> testHeaderLevel5 [
 	self assertStart: 6 stop: 8 ofNode: result children first.
 ]
 
-{ #category : #'tests - Header' }
+{ #category : 'tests - Header' }
 PRPillarParserTest >> testHeaderLevel6 [
 	super testHeaderLevel6.
 	self assert: result equals: (PRHeader withAll: {PRText content: 'Foo'} level: 6).
@@ -413,7 +414,7 @@ PRPillarParserTest >> testHeaderLevel6 [
 	self assertStart: 7 stop: 9 ofNode: result children first.
 ]
 
-{ #category : #'tests - Header' }
+{ #category : 'tests - Header' }
 PRPillarParserTest >> testHeaderWithFormat [
 	super testHeaderWithFormat.
 	self 
@@ -424,7 +425,7 @@ PRPillarParserTest >> testHeaderWithFormat [
 	self assertStart: 4 stop: 6 ofNode: result children first children first.
 ]
 
-{ #category : #'tests - Header' }
+{ #category : 'tests - Header' }
 PRPillarParserTest >> testHeaderWithFormatAndText [
 	super testHeaderWithFormatAndText.
 	self
@@ -442,7 +443,7 @@ PRPillarParserTest >> testHeaderWithFormatAndText [
 
 ]
 
-{ #category : #'tests - Header' }
+{ #category : 'tests - Header' }
 PRPillarParserTest >> testHeaderWithNewLine [
 	super testHeaderWithNewLine.
 	self assert: result equals: (PRHeader withAll: {PRText content: 'Foo'} level: 1).
@@ -450,25 +451,25 @@ PRPillarParserTest >> testHeaderWithNewLine [
 	self assertStart: 2 stop: 4 ofNode: result children first.
 ]
 
-{ #category : #'tests - HorizontalRule' }
+{ #category : 'tests - HorizontalRule' }
 PRPillarParserTest >> testHorizontalRule [
 	super testHorizontalRule.
 	self assert: result equals: PRHorizontalRule new
 ]
 
-{ #category : #'tests - HorizontalRule' }
+{ #category : 'tests - HorizontalRule' }
 PRPillarParserTest >> testHorizontalRuleFollowByNewLine [
 	super testHorizontalRuleFollowByNewLine.
 	self assert: result equals: PRHorizontalRule new
 ]
 
-{ #category : #'tests - HorizontalRule' }
+{ #category : 'tests - HorizontalRule' }
 PRPillarParserTest >> testHorizontalRuleTrimRight [
 	super testHorizontalRuleTrimRight.
 	self assert: result equals: PRHorizontalRule new
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testItalicFormat [
 	super testItalicFormat.
 	self assert: result equals: (PRItalicFormat with: (PRText content: 'Foo')).
@@ -476,14 +477,14 @@ PRPillarParserTest >> testItalicFormat [
 	self assertStart: 3 stop: 5 ofNode: result children first.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testItalicFormatEmpty [
 	super testItalicFormatEmpty.
 	self assert: result equals: PRItalicFormat new.
 	self assertStart: 1 stop: 4.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testItalicFormatWithEscaped [
 	super testItalicFormatWithEscaped.
 	self assert: result equals: (PRItalicFormat with: (PRText content: '''''')).
@@ -491,7 +492,7 @@ PRPillarParserTest >> testItalicFormatWithEscaped [
 	self assertStart: 3 stop: 6 ofNode: result children first.
 ]
 
-{ #category : #'tests - Reference' }
+{ #category : 'tests - Reference' }
 PRPillarParserTest >> testLinkFollowedByFigureWithAlias [
 	| paragraph |
 	super testLinkFollowedByFigureWithAlias.
@@ -509,7 +510,7 @@ PRPillarParserTest >> testLinkFollowedByFigureWithAlias [
 	"self assertStart: 20 stop: 21 ofNode: result children second children first."
 ]
 
-{ #category : #'tests - List' }
+{ #category : 'tests - List' }
 PRPillarParserTest >> testListMulti [
 	super testListMulti.
 	self
@@ -535,7 +536,7 @@ PRPillarParserTest >> testListMulti [
 							(PROrderedList with: (PRListItem with: (PROrderedList with: (PRListItem with: (PRText content: '8')))))})})
 ]
 
-{ #category : #'tests - List' }
+{ #category : 'tests - List' }
 PRPillarParserTest >> testListWithComment [
 	super testListWithComment.
 	self
@@ -550,7 +551,7 @@ PRPillarParserTest >> testListWithComment [
 					PRListItem with: (PRText content: 'Bar')})
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testMonospaceFormat [
 	super testMonospaceFormat.
 	self assert: result equals: (PRMonospaceFormat with: (PRText content: 'Foo')).
@@ -558,14 +559,14 @@ PRPillarParserTest >> testMonospaceFormat [
 	self assertStart: 3 stop: 5 ofNode: result children first.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testMonospaceFormatEmpty [
 	super testMonospaceFormatEmpty.
 	self assert: result equals: PRMonospaceFormat new.
 	self assertStart: 1 stop: 4.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testMonospaceFormatWithEscaped [
 	super testMonospaceFormatWithEscaped.
 	self assert: result equals: (PRMonospaceFormat with: (PRText content: '==')).
@@ -573,7 +574,7 @@ PRPillarParserTest >> testMonospaceFormatWithEscaped [
 	self assertStart: 3 stop: 6 ofNode: result children first.
 ]
 
-{ #category : #'tests - List' }
+{ #category : 'tests - List' }
 PRPillarParserTest >> testOrderedList [
 	super testOrderedList.
 	self assert: result equals: (PROrderedList with: (PRListItem with: (PRText content: 'Foo'))).
@@ -582,14 +583,14 @@ PRPillarParserTest >> testOrderedList [
 	self assertStart: 2 stop: 4 ofNode: result children first children first.
 ]
 
-{ #category : #'tests - List' }
+{ #category : 'tests - List' }
 PRPillarParserTest >> testOrderedListEmpty [
 	super testOrderedListEmpty.
 	self assert: result equals: (PROrderedList with: PRListItem new).
 	self assertStart: 1 stop: 1.
 ]
 
-{ #category : #'tests - List' }
+{ #category : 'tests - List' }
 PRPillarParserTest >> testOrderedListMulti [
 	super testOrderedListMulti.
 	self
@@ -624,7 +625,7 @@ PRPillarParserTest >> testOrderedListMulti [
 	
 ]
 
-{ #category : #'tests - List' }
+{ #category : 'tests - List' }
 PRPillarParserTest >> testOrderedListWithSubList [
 	super testOrderedListWithSubList.
 	self
@@ -638,7 +639,7 @@ PRPillarParserTest >> testOrderedListWithSubList [
 							PROrderedList with: (PRListItem with: (PRText content: 'Bar'))}))
 ]
 
-{ #category : #'tests - List' }
+{ #category : 'tests - List' }
 PRPillarParserTest >> testOrderedListWithTwoItems [
 	super testOrderedListWithTwoItems.
 	self
@@ -650,13 +651,13 @@ PRPillarParserTest >> testOrderedListWithTwoItems [
 					(PRListItem with: (PRText content: 'Bar'))})
 ]
 
-{ #category : #'tests - Paragraph' }
+{ #category : 'tests - Paragraph' }
 PRPillarParserTest >> testParagraph [
 	super testParagraph.
 	self assert: result equals: (PRParagraph new add: (PRText content: 'This is a text'))
 ]
 
-{ #category : #'tests - Paragraph' }
+{ #category : 'tests - Paragraph' }
 PRPillarParserTest >> testParagraphWithFormat [
 	super testParagraphWithFormat.
 	self
@@ -668,7 +669,7 @@ PRPillarParserTest >> testParagraphWithFormat [
 					(PRBoldFormat with: (PRText content: 'Bar'))})
 ]
 
-{ #category : #'tests - Parameter' }
+{ #category : 'tests - Parameter' }
 PRPillarParserTest >> testParameterKeyUntilNewline [
 	<expectedFailure>
 	super testParameterKeyUntilNewline.
@@ -677,7 +678,7 @@ PRPillarParserTest >> testParameterKeyUntilNewline [
 	self assertStart: 1 stop: 13
 ]
 
-{ #category : #'tests - Parameter' }
+{ #category : 'tests - Parameter' }
 PRPillarParserTest >> testParameterUntilNewline [
 	<expectedFailure>
 	super testParameterUntilNewline.
@@ -688,7 +689,7 @@ PRPillarParserTest >> testParameterUntilNewline [
 	self assertStart: 5 stop: 7 ofNode: result valueNode
 ]
 
-{ #category : #'tests - Parameter' }
+{ #category : 'tests - Parameter' }
 PRPillarParserTest >> testParameterValueUntilNewline [
 	<expectedFailure>
 	super testParameterValueUntilNewline.
@@ -697,7 +698,7 @@ PRPillarParserTest >> testParameterValueUntilNewline [
 	self assertStart: 2 stop: 15
 ]
 
-{ #category : #'tests - Parameter' }
+{ #category : 'tests - Parameter' }
 PRPillarParserTest >> testParametersUntilNewline [
 	<expectedFailure>
 	super testParametersUntilNewline.
@@ -718,26 +719,26 @@ PRPillarParserTest >> testParametersUntilNewline [
 	self assertStart: 13 stop: 16 ofNode: result children second valueNode
 ]
 
-{ #category : #'tests - Text' }
+{ #category : 'tests - Text' }
 PRPillarParserTest >> testRaw [
 	super testRaw.
 	self assert: result equals: (PRRaw content: 'foo' type: 'mock' )
 ]
 
-{ #category : #'tests - Text' }
+{ #category : 'tests - Text' }
 PRPillarParserTest >> testRawEmpty [
 	super testRawEmpty.
 	self assert: result equals: (PRRaw content: '')
 ]
 
-{ #category : #'tests - Text' }
+{ #category : 'tests - Text' }
 PRPillarParserTest >> testRawMultiLines [
 	super testRawMultiLines.
 	self assert: result equals: (PRRaw content: 'foo
 bar')
 ]
 
-{ #category : #'tests - Reference' }
+{ #category : 'tests - Reference' }
 PRPillarParserTest >> testReference [
 	super testReference. "'*foo>@bar*'"
 	self
@@ -751,44 +752,44 @@ PRPillarParserTest >> testReference [
 	self assertStart: 2 stop: 4 ofNode: result children first.
 ]
 
-{ #category : #'tests - Reference' }
+{ #category : 'tests - Reference' }
 PRPillarParserTest >> testReferenceFigure [
 	super testReferenceFigure.
 	self assert: result equals: 'file://foo.png'
 ]
 
-{ #category : #'tests - Reference' }
+{ #category : 'tests - Reference' }
 PRPillarParserTest >> testReferenceFigureEscape [
 	super testReferenceFigureEscape.
 	self assert: result equals: 'file://foo+.png'
 ]
 
-{ #category : #'tests - Reference' }
+{ #category : 'tests - Reference' }
 PRPillarParserTest >> testReferenceLink [
 	super testReferenceLink.
 	self assert: result equals: 'file://foo.png'
 ]
 
-{ #category : #'tests - Reference' }
+{ #category : 'tests - Reference' }
 PRPillarParserTest >> testReferenceLinkEscape [
 	super testReferenceLinkEscape.
 	self assert: result equals: 'file://foo*.png'
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScript [
 	super testScript.
 	self assert: result equals: (PRCodeblock content: 'foo').
 	self assertStart: 1 stop: 11.
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptParameter [
 	super testScriptParameter.
 	self assert: result equals: #('value' 'foo')
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptParameterEndsWithSpace [
 	| script |
 	super testScriptParameterTrueByDefault.
@@ -798,13 +799,13 @@ PRPillarParserTest >> testScriptParameterEndsWithSpace [
 	self assertStart: 1 stop: 14.
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptParameterEscape [
 	super testScriptParameterEscape.
 	self assert: result equals: #('value=' 'foo')
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptParameterTrueByDefault [
 	| script |
 	super testScriptParameterTrueByDefault.
@@ -814,13 +815,13 @@ PRPillarParserTest >> testScriptParameterTrueByDefault [
 	self assertStart: 1 stop: 14.
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptParameterValue [
 	super testScriptParameterValue.
 	self assert: result equals: 'foo'
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptParameterWithFloat [
 	| script |
 	super testScriptParameterWithFloat.
@@ -830,7 +831,7 @@ PRPillarParserTest >> testScriptParameterWithFloat [
 	self assertStart: 1 stop: 20.
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptParameterWithLiteralArray [
 	| script |
 	super testScriptParameterWithLiteralArray.
@@ -846,7 +847,7 @@ PRPillarParserTest >> testScriptParameterWithLiteralArray [
 	self assertStart: 9 stop: 18 ofNode: (result parameters nodeAt: #foo) valueNode.
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptParameterWithNoValues [
 	| script |
 	super testScriptParameterWithNoValues.
@@ -856,7 +857,7 @@ PRPillarParserTest >> testScriptParameterWithNoValues [
 	self assertStart: 1 stop: 15.
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptParameterWithSpacesBeforeAndAfter [
 	super testScriptParameterWithSpacesBeforeAndAfter.
 	self
@@ -868,13 +869,13 @@ PRPillarParserTest >> testScriptParameterWithSpacesBeforeAndAfter [
 				yourself)
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptParameterWithoutValue [
 	super testScriptParameterWithoutValue.
 	self assert: result equals: #('foo'  nil)
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptParameters [
 	super testScriptParameters.
 	self
@@ -885,7 +886,7 @@ PRPillarParserTest >> testScriptParameters [
 				yourself)
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptParametersEscape [
 	super testScriptParametersEscape.
 	self
@@ -897,7 +898,7 @@ PRPillarParserTest >> testScriptParametersEscape [
 				yourself)
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptParametersMultiple [
 	super testScriptParametersMultiple.
 	self
@@ -909,7 +910,7 @@ PRPillarParserTest >> testScriptParametersMultiple [
 				yourself)
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptSampleWithTrailingBlankOnTheFirstLine [
 
 	super testScriptSampleWithTrailingBlankOnTheFirstLine.
@@ -918,7 +919,7 @@ PRPillarParserTest >> testScriptSampleWithTrailingBlankOnTheFirstLine [
 
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptSampleWithTrailingBlanksOnTheFirstLine [
 
 	super testScriptSampleWithTrailingBlanksOnTheFirstLine.
@@ -927,7 +928,7 @@ PRPillarParserTest >> testScriptSampleWithTrailingBlanksOnTheFirstLine [
 
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptSampleWithTrailingTabOnTheFirstLine [
 
 	super testScriptSampleWithTrailingTabOnTheFirstLine.
@@ -936,7 +937,7 @@ PRPillarParserTest >> testScriptSampleWithTrailingTabOnTheFirstLine [
 
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptTwoParametersNoValue [
 	super testScriptTwoParametersNoValue.
 	self
@@ -948,33 +949,21 @@ PRPillarParserTest >> testScriptTwoParametersNoValue [
 				yourself)
 ]
 
-{ #category : #'tests - Script' }
-PRPillarParserTest >> testScriptWithLanguage [
-	super testScriptWithLanguage.
-	self
-		assert: result
-		equals:
-			((PRCodeblock content: 'foo')
-				language: PRSmalltalkScriptLanguage default;
-				yourself).
-	self assertStart: 1 stop: 29.
-]
-
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptWithNewLine [
 	super testScriptWithNewLine.
 	self assert: result equals: (PRCodeblock content: 'foo').
 	self assertStart: 1 stop: 12.
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptWithSpaceAtTheEnd [
 	super testScriptWithSpaceAtTheEnd.
 	self assert: result equals: (PRCodeblock content: 'foo').
 	self assertStart: 1 stop: 13.
 ]
 
-{ #category : #'tests - Script' }
+{ #category : 'tests - Script' }
 PRPillarParserTest >> testScriptWithSpacedParameters [
 	super testScriptWithSpacedParameters.
 	self assert: result equals: 
@@ -986,7 +975,7 @@ PRPillarParserTest >> testScriptWithSpacedParameters [
 	self assertStart: 1 stop: 33.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testStrikethroughFormat [
 	super testStrikethroughFormat.
 	self assert: result equals: (PRStrikethroughFormat with: (PRText content: 'Foo')).
@@ -994,14 +983,14 @@ PRPillarParserTest >> testStrikethroughFormat [
 	self assertStart: 3 stop: 5 ofNode: result children first.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testStrikethroughFormatEmpty [
 	super testStrikethroughFormatEmpty.
 	self assert: result equals: PRStrikethroughFormat new.
 	self assertStart: 1 stop: 4.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testStrikethroughFormatWithEscaped [
 	super testStrikethroughFormatWithEscaped.
 	self assert: result equals: (PRStrikethroughFormat with: (PRText content: '--')).
@@ -1009,7 +998,7 @@ PRPillarParserTest >> testStrikethroughFormatWithEscaped [
 	self assertStart: 3 stop: 6 ofNode: result children first.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testSubscriptFormat [
 	super testSubscriptFormat.
 	self assert: result equals: (PRSubscriptFormat with: (PRText content: 'Foo')).
@@ -1017,14 +1006,14 @@ PRPillarParserTest >> testSubscriptFormat [
 	self assertStart: 3 stop: 5 ofNode: result children first.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testSubscriptFormatEmpty [
 	super testSubscriptFormatEmpty.
 	self assert: result equals: PRSubscriptFormat new.
 	self assertStart: 1 stop: 4.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testSubscriptFormatWithEscaped [
 	super testSubscriptFormatWithEscaped.
 	self assert: result equals: (PRSubscriptFormat with: (PRText content: '@@')).
@@ -1032,7 +1021,7 @@ PRPillarParserTest >> testSubscriptFormatWithEscaped [
 	self assertStart: 3 stop: 6 ofNode: result children first.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testSuperscriptFormat [
 	super testSuperscriptFormat.
 	self assert: result equals: (PRSuperscriptFormat with: (PRText content: 'Foo')).
@@ -1040,14 +1029,14 @@ PRPillarParserTest >> testSuperscriptFormat [
 	self assertStart: 3 stop: 5 ofNode: result children first.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testSuperscriptFormatEmpty [
 	super testSuperscriptFormatEmpty.
 	self assert: result equals: PRSuperscriptFormat new.
 	self assertStart: 1 stop: 4.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testSuperscriptFormatWithEscaped [
 	super testSuperscriptFormatWithEscaped.
 	self assert: result equals: (PRSuperscriptFormat with: (PRText content: '^^')).
@@ -1055,7 +1044,7 @@ PRPillarParserTest >> testSuperscriptFormatWithEscaped [
 	self assertStart: 3 stop: 6 ofNode: result children first.
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTable [
 	super testTable.
 	self
@@ -1075,85 +1064,85 @@ PRPillarParserTest >> testTable [
 				yourself)
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableAlignMarkup [
 	super testTableAlignMarkup.
 	self assert: result equals: #right
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableCell [
 	super testTableCell.
 	self assert: result equals: (PRTableCell align: nil heading: false withAll: {PRText content: 'Foo'})
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableCellAreTrimed [
 	super testTableCellAreTrimed.
 	self assert: result equals: (PRTableCell align: nil heading: false withAll: {PRText content: 'Foo'})
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableCellCenter [
 	super testTableCellCenter.
 	self assert: result equals: (PRTableCell align: #center heading: false withAll: {PRText content: 'Foo'})
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableCellHeader [
 	super testTableCellHeader.
 	self assert: result equals: (PRTableCell align: nil heading: true withAll: {PRText content: 'Foo'})
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableCellHeaderCenter [
 	super testTableCellHeaderCenter.
 	self assert: result equals: (PRTableCell align: #center heading: true withAll: {PRText content: 'Foo'})
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableCellHeaderCenter2 [
 	super testTableCellHeaderCenter2.
 	self assert: result equals: (PRTableCell align: #center heading: true withAll: {PRText content: 'Foo'})
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableCellHeaderLeft [
 	super testTableCellHeaderLeft.
 	self assert: result equals: (PRTableCell align: #left heading: true withAll: {PRText content: 'Foo'})
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableCellHeaderLeft2 [
 	super testTableCellHeaderLeft2.
 	self assert: result equals: (PRTableCell align: #left heading: true withAll: {PRText content: 'Foo'})
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableCellHeaderRight [
 	super testTableCellHeaderRight.
 	self assert: result equals: (PRTableCell align: #right heading: true withAll: {PRText content: 'Foo'})
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableCellHeaderRight2 [
 	super testTableCellHeaderRight2.
 	self assert: result equals: (PRTableCell align: #right heading: true withAll: {PRText content: 'Foo'})
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableCellLeft [
 	super testTableCellLeft.
 	self assert: result equals: (PRTableCell align: #left heading: false withAll: {PRText content: 'Foo'})
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableCellRight [
 	super testTableCellRight.
 	self assert: result equals: (PRTableCell align: #right heading: false withAll: {PRText content: 'Foo'})
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableCellWithFormat [
 	super testTableCellWithFormat.
 	self
@@ -1161,25 +1150,25 @@ PRPillarParserTest >> testTableCellWithFormat [
 		equals: (PRTableCell align: nil heading: false withAll: {PRItalicFormat with: (PRText content: 'Foo')})
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableCenterMarkup [
 	super testTableCenterMarkup.
 	self assert: result equals: #center
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableHeadingMarkup [
 	super testTableHeadingMarkup.
 	self assert: result
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableLeftMarkup [
 	super testTableLeftMarkup.
 	self assert: result equals: #left
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableMarkups [
 	super testTableMarkups.
 	self
@@ -1189,7 +1178,7 @@ PRPillarParserTest >> testTableMarkups [
 			false}
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableMarkupsCenter [
 	super testTableMarkupsCenter.
 	self
@@ -1199,7 +1188,7 @@ PRPillarParserTest >> testTableMarkupsCenter [
 			false}
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableMarkupsHeading [
 	super testTableMarkupsHeading.
 	self
@@ -1209,7 +1198,7 @@ PRPillarParserTest >> testTableMarkupsHeading [
 			true}
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableMarkupsHeadingAndCenter [
 	super testTableMarkupsHeadingAndCenter.
 	self
@@ -1219,7 +1208,7 @@ PRPillarParserTest >> testTableMarkupsHeadingAndCenter [
 			true}
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableMarkupsHeadingAndCenter2 [
 	super testTableMarkupsHeadingAndCenter2.
 	self
@@ -1229,13 +1218,13 @@ PRPillarParserTest >> testTableMarkupsHeadingAndCenter2 [
 			true}
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableRightMarkup [
 	super testTableRightMarkup.
 	self assert: result equals: #right
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableRow [
 	super testTableRow.
 	self
@@ -1247,7 +1236,7 @@ PRPillarParserTest >> testTableRow [
 				yourself)
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableRowWithEmptyCells [
 	super testTableRowWithEmptyCells.
 	self
@@ -1259,7 +1248,7 @@ PRPillarParserTest >> testTableRowWithEmptyCells [
 				yourself)
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableRowWithHeading [
 	super testTableRowWithHeading.
 	self
@@ -1271,7 +1260,7 @@ PRPillarParserTest >> testTableRowWithHeading [
 				yourself)
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableWithComment [
 	super testTableWithComment.
 	self flag: #todo	"See super."
@@ -1291,7 +1280,7 @@ PRPillarParserTest >> testTableWithComment [
 					PRTableRow with: (PRTableCell align: nil heading: false withAll: {PRText content: 'Bar'})})"
 ]
 
-{ #category : #'tests - Table' }
+{ #category : 'tests - Table' }
 PRPillarParserTest >> testTableWithNewLine [
 	super testTableWithNewLine.
 	self
@@ -1311,21 +1300,21 @@ PRPillarParserTest >> testTableWithNewLine [
 				yourself)
 ]
 
-{ #category : #'tests - Anchor' }
+{ #category : 'tests - Anchor' }
 PRPillarParserTest >> testText [
 	super testText.
 	self assert: result equals: (PRText content: 'Foo').
 	self assertStart: 1 stop: 3.
 ]
 
-{ #category : #'tests - Annotation' }
+{ #category : 'tests - Annotation' }
 PRPillarParserTest >> testUndefinedAnnotation [
 	self 
 		should: [ super testUndefinedAnnotation ]
 		raise: PRSyntaxError.
 ]
 
-{ #category : #'tests - Annotation' }
+{ #category : 'tests - Annotation' }
 PRPillarParserTest >> testUndefinedAnnotationAsNode [
 	PRValidation beSilentDuring: [ super testUndefinedAnnotation ].
 	self
@@ -1338,14 +1327,14 @@ PRPillarParserTest >> testUndefinedAnnotationAsNode [
 	self assert: result tag equals: #undefinedAnnotation.
 ]
 
-{ #category : #'tests - Annotation' }
+{ #category : 'tests - Annotation' }
 PRPillarParserTest >> testUndefinedAnnotationWithParameters [
 	self 
 		should: [ super testUndefinedAnnotationWithParameters ]
 		raise: PRSyntaxError.
 ]
 
-{ #category : #'tests - Annotation' }
+{ #category : 'tests - Annotation' }
 PRPillarParserTest >> testUndefinedAnnotationWithParametersAsNode [
 	PRValidation beSilentDuring: [ 
 		super testUndefinedAnnotationWithParameters ].
@@ -1365,7 +1354,7 @@ PRPillarParserTest >> testUndefinedAnnotationWithParametersAsNode [
 	self assert: result hadAllKeys.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testUnderlineFormat [
 	super testUnderlineFormat.
 	self assert: result equals: (PRUnderlineFormat with: (PRText content: 'Foo')).
@@ -1373,14 +1362,14 @@ PRPillarParserTest >> testUnderlineFormat [
 	self assertStart: 3 stop: 5 ofNode: result children first.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testUnderlineFormatEmpty [
 	super testUnderlineFormatEmpty.
 	self assert: result equals: PRUnderlineFormat new.
 	self assertStart: 1 stop: 4.
 ]
 
-{ #category : #'tests - Format' }
+{ #category : 'tests - Format' }
 PRPillarParserTest >> testUnderlineFormatWithEscaped [
 	super testUnderlineFormatWithEscaped.
 	self assert: result equals: (PRUnderlineFormat with: (PRText content: '__')).
@@ -1388,7 +1377,7 @@ PRPillarParserTest >> testUnderlineFormatWithEscaped [
 	self assertStart: 3 stop: 6 ofNode: result children first.
 ]
 
-{ #category : #'tests - List' }
+{ #category : 'tests - List' }
 PRPillarParserTest >> testUnorderedList [
 	super testUnorderedList.
 	self
@@ -1399,14 +1388,14 @@ PRPillarParserTest >> testUnorderedList [
 	self assertStart: 2 stop: 4 ofNode: result children first children first.
 ]
 
-{ #category : #'tests - List' }
+{ #category : 'tests - List' }
 PRPillarParserTest >> testUnorderedListEmpty [
 	super testUnorderedListEmpty.
 	self assert: result equals: (PRUnorderedList with: PRListItem new).
 	self assertStart: 1 stop: 1.
 ]
 
-{ #category : #'tests - List' }
+{ #category : 'tests - List' }
 PRPillarParserTest >> testUnorderedListMulti [
 	super testUnorderedListMulti.
 	self
@@ -1434,7 +1423,7 @@ PRPillarParserTest >> testUnorderedListMulti [
 									(PRListItem with: (PRUnorderedList with: (PRListItem with: (PRText content: '8')))))})})
 ]
 
-{ #category : #'tests - List' }
+{ #category : 'tests - List' }
 PRPillarParserTest >> testUnorderedListWithSubList [
 	super testUnorderedListWithSubList.
 	self
@@ -1448,7 +1437,7 @@ PRPillarParserTest >> testUnorderedListWithSubList [
 							(PRUnorderedList with: (PRListItem with: (PRText content: 'Bar')))}))
 ]
 
-{ #category : #'tests - List' }
+{ #category : 'tests - List' }
 PRPillarParserTest >> testUnorderedListWithTwoItems [
 	super testUnorderedListWithTwoItems.
 	self

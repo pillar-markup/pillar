@@ -15,28 +15,30 @@ ${columns}$
 ${endColumns}$
 "
 Class {
-	#name : #PRBeginColumnsAnnotation,
-	#superclass : #PRAbstractAnnotation,
-	#category : #'Pillar-Model-Document'
+	#name : 'PRBeginColumnsAnnotation',
+	#superclass : 'PRAbstractAnnotation',
+	#category : 'Pillar-Model-Document',
+	#package : 'Pillar-Model',
+	#tag : 'Document'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRBeginColumnsAnnotation class >> hasParameters [
 
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRBeginColumnsAnnotation class >> possibleParameters [
 	^ #()
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRBeginColumnsAnnotation class >> tag [
 	^ #columns
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRBeginColumnsAnnotation >> accept: aVisitor [
 	^ aVisitor visitColumnsAnnotation: self
 ]

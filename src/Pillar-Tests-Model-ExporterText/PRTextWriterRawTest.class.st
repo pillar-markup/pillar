@@ -1,15 +1,16 @@
 Class {
-	#name : #PRTextWriterRawTest,
-	#superclass : #PRTextWriterTextTest,
-	#category : #'Pillar-Tests-Model-ExporterText'
+	#name : 'PRTextWriterRawTest',
+	#superclass : 'PRTextWriterTextTest',
+	#category : 'Pillar-Tests-Model-ExporterText',
+	#package : 'Pillar-Tests-Model-ExporterText'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterRawTest >> actualClass [
 	^ PRRaw
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterRawTest >> testParseBasic [
 	| text tree |
 
@@ -23,7 +24,7 @@ PRTextWriterRawTest >> testParseBasic [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterRawTest >> testParseEmpty [
 	| text tree |
 
@@ -37,7 +38,7 @@ PRTextWriterRawTest >> testParseEmpty [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterRawTest >> testParseMultiline [
 
 	| text tree nLine |
@@ -53,7 +54,7 @@ PRTextWriterRawTest >> testParseMultiline [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterRawTest >> testParseMultiple [
 	| text tree |
 
@@ -69,7 +70,7 @@ PRTextWriterRawTest >> testParseMultiple [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterRawTest >> testParseMultipleMultiline [
 
 	| text tree nLine |
@@ -87,7 +88,7 @@ PRTextWriterRawTest >> testParseMultipleMultiline [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterRawTest >> testParseStrange [
 	|  text tree |
 	text := 'a{{||}}b'.
@@ -100,7 +101,7 @@ PRTextWriterRawTest >> testParseStrange [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterRawTest >> testParseTypeHtml [
 	| text tree |
 
@@ -114,7 +115,7 @@ PRTextWriterRawTest >> testParseTypeHtml [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterRawTest >> testParseTypeLatex [
 	| text tree |
 	text := ''.
@@ -127,7 +128,7 @@ PRTextWriterRawTest >> testParseTypeLatex [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterRawTest >> testParseTypeText [
 	| text tree |
 
@@ -141,7 +142,7 @@ PRTextWriterRawTest >> testParseTypeText [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRTextWriterRawTest >> testType [
 	self instance type: 'html'.
 	self assert: self instance type equals: 'html'

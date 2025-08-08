@@ -1,20 +1,21 @@
 Class {
-	#name : #PRTextWriterTextTest,
-	#superclass : #PRTextWriterDocumentItemTest,
-	#category : #'Pillar-Tests-Model-ExporterText'
+	#name : 'PRTextWriterTextTest',
+	#superclass : 'PRTextWriterDocumentItemTest',
+	#category : 'Pillar-Tests-Model-ExporterText',
+	#package : 'Pillar-Tests-Model-ExporterText'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRTextWriterTextTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterTextTest >> actualClass [
 	^ PRText
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterTextTest >> testParseLatex [
 	| text tree |
 	text := '\begin{foo}[bar]$zork$\end{foo}'.

@@ -2,32 +2,34 @@
 I am a column.
 "
 Class {
-	#name : #PRColumn,
-	#superclass : #PRDocumentGroup,
+	#name : 'PRColumn',
+	#superclass : 'PRDocumentGroup',
 	#instVars : [
 		'width'
 	],
-	#category : #'Pillar-Model-Document'
+	#category : 'Pillar-Model-Document',
+	#package : 'Pillar-Model',
+	#tag : 'Document'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRColumn class >> width: aNumber [
 	^ self new
 		width: aNumber;
 		yourself
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRColumn >> accept: aVisitor [
 	^ aVisitor visitColumn: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRColumn >> width [
 	^ width
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRColumn >> width: anObject [
 	width := anObject
 ]

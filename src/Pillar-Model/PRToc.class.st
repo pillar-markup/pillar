@@ -4,35 +4,37 @@ A Toc can have children.
 Then a Title is considered as a Toc without children
 "
 Class {
-	#name : #PRToc,
-	#superclass : #PRDocumentItem,
+	#name : 'PRToc',
+	#superclass : 'PRDocumentItem',
 	#instVars : [
 		'name',
 		'level',
 		'children',
 		'fileReference'
 	],
-	#category : #'Pillar-Model-Toc'
+	#category : 'Pillar-Model-Toc',
+	#package : 'Pillar-Model',
+	#tag : 'Toc'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRToc class >> isAbstract [
 	^ false
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRToc >> = anItem [
 	^ self species = anItem species
 		and: [ self name = anItem name
 				and: [ self level = anItem level and: [ self fileReference = anItem fileReference ] ] ]
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PRToc >> addChildren: aToc [
 	children add: aToc
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PRToc >> asCTEnvironmentWithParent: aParent [
 	| dictionary |
 	dictionary := CTEnvironment new.
@@ -51,7 +53,7 @@ PRToc >> asCTEnvironmentWithParent: aParent [
 	^ dictionary
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PRToc >> asDictionary [
 	| dictionary |
 	dictionary := Dictionary new.
@@ -70,77 +72,77 @@ PRToc >> asDictionary [
 	^ dictionary
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PRToc >> changeFileExtension: aPillarFile [
 	^ ((aPillarFile splitOn: '.') at: 1) , '.html'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRToc >> children [
 	^ children
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRToc >> children: anObject [
 	children := anObject
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRToc >> compareChildren: anItem [
 	^ (self children with: anItem children collect: [ :elem1 :elem2 | elem1 = elem2 ])
 		inject: true
 		into: [ :res :elem | res & elem ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRToc >> fileReference [
 	^ fileReference
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRToc >> fileReference: anObject [
 	fileReference := anObject
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRToc >> hasFileReference [
 	^ fileReference isNotNil
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRToc >> hash [
 	^ name hash + level hash + fileReference hash
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRToc >> hashChildren [
 	^ (self children collect: [ :elem | elem hash ])
 		inject: 0
 		into: [ :sum :value | sum + value ]
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PRToc >> initialize [
 	super initialize.
 	children := OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRToc >> level [
 	^ level
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRToc >> level: anObject [
 	level := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRToc >> name [
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRToc >> name: anObject [
 	name := anObject
 ]

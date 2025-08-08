@@ -1,20 +1,21 @@
 Class {
-	#name : #PRParseHeaderTest,
-	#superclass : #PRParseDocumentGroupTest,
-	#category : #'Pillar-Tests-Model-PetitPillar'
+	#name : 'PRParseHeaderTest',
+	#superclass : 'PRParseDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-PetitPillar',
+	#package : 'Pillar-Tests-Model-PetitPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRParseHeaderTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseHeaderTest >> actualClass [
 	^ PRHeader
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseHeaderTest >> testParseEmpty [
 	| wiki tree |
 	wiki := '!'.
@@ -27,7 +28,7 @@ PRParseHeaderTest >> testParseEmpty [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseHeaderTest >> testParseLevel1 [
 	| wiki tree |
 	wiki := '!foo'.
@@ -41,7 +42,7 @@ PRParseHeaderTest >> testParseLevel1 [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseHeaderTest >> testParseLevel2 [
 	| wiki tree |
 	wiki := '!!foo'.
@@ -55,7 +56,7 @@ PRParseHeaderTest >> testParseLevel2 [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseHeaderTest >> testParseLevel3 [
 	| wiki tree |
 	wiki := '!!!foo'.
@@ -69,7 +70,7 @@ PRParseHeaderTest >> testParseLevel3 [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseHeaderTest >> testParseLevel4 [
 	| wiki tree |
 	wiki := '!!!!foo'.
@@ -83,7 +84,7 @@ PRParseHeaderTest >> testParseLevel4 [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseHeaderTest >> testParseLevel5 [
 	| wiki tree |
 	wiki := '!!!!!foo'.
@@ -97,7 +98,7 @@ PRParseHeaderTest >> testParseLevel5 [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseHeaderTest >> testParseLevel6 [
 	| wiki tree |
 	wiki := '!!!!!!foo'.
@@ -111,7 +112,7 @@ PRParseHeaderTest >> testParseLevel6 [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseHeaderTest >> testParseMultiline [
 
 	| wiki tree nLine |
@@ -132,7 +133,7 @@ PRParseHeaderTest >> testParseMultiline [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseHeaderTest >> testParseNested [
 	| wiki tree |
 	wiki := '!!Hello *Link*'.
@@ -149,7 +150,7 @@ PRParseHeaderTest >> testParseNested [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseHeaderTest >> testParseWithTrailingSpaces [
 	| wiki text tree |
 	wiki := '!  foo'.

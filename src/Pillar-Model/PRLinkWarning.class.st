@@ -2,7 +2,9 @@
 I am a warning raised when a we have a problem with a link at the export.
 "
 Class {
-	#name : #PRLinkWarning,
-	#superclass : #PRWarning,
-	#category : 'Pillar-Model-Exceptions'
+	#name : 'PRLinkWarning',
+	#superclass : 'PRWarning',
+	#category : 'Pillar-Model-Exceptions',
+	#package : 'Pillar-Model',
+	#tag : 'Exceptions'
 }

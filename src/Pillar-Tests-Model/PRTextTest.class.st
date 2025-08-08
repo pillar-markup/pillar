@@ -1,38 +1,40 @@
 Class {
-	#name : #PRTextTest,
-	#superclass : #PRDocumentItemTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#name : 'PRTextTest',
+	#superclass : 'PRDocumentItemTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRTextTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextTest >> actualClass [
 	^ PRText
 ]
 
-{ #category : #'tests-instantiation' }
+{ #category : 'tests-instantiation' }
 PRTextTest >> testContent [
 	instance := self actualClass content: 'zork'.
 	self assert: self instance text equals: 'zork'
 ]
 
-{ #category : #'tests-comparing' }
+{ #category : 'tests-comparing' }
 PRTextTest >> testEqualText [
 	self deny: (self actualClass content: 'foo') equals: (self actualClass content: 'bar')
 ]
 
-{ #category : #'tests-printing' }
+{ #category : 'tests-printing' }
 PRTextTest >> testPrinting [
 	| text |
 	text := PRText content: 'abcdef'.
 	'*abcdef*' match: text printString
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRTextTest >> testText [
 	self instance text: 'zork'.
 	self assert: self instance text equals: 'zork'

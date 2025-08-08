@@ -1,20 +1,22 @@
 Class {
-	#name : #PRSlideTest,
-	#superclass : #PRDocumentGroupTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#name : 'PRSlideTest',
+	#superclass : 'PRDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRSlideTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRSlideTest >> actualClass [
 	^ PRSlide
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRSlideTest >> testHaveTitle [
 	| slide |
 	slide := self actualClass titled: 'Foo'.

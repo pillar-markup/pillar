@@ -2,29 +2,31 @@
 An unsupported script language
 "
 Class {
-	#name : #PRUnsupportedScriptLanguage,
-	#superclass : #PRAbstractScriptLanguage,
-	#category : #'Pillar-Core-Model'
+	#name : 'PRUnsupportedScriptLanguage',
+	#superclass : 'PRAbstractScriptLanguage',
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRUnsupportedScriptLanguage class >> default [
 	<ignoreForCoverage>
 	^ self shouldNotImplement
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRUnsupportedScriptLanguage class >> isAbstract [
 	^ false
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRUnsupportedScriptLanguage class >> standardName [
 
 	^ 'unsupported language'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRUnsupportedScriptLanguage >> isSpecified [
 	^ false
 ]

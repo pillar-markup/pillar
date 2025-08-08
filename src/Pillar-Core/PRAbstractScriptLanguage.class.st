@@ -9,25 +9,27 @@ Check the method  visitScript: for example on PRLatexWriter.
 ...
 "
 Class {
-	#name : #PRAbstractScriptLanguage,
-	#superclass : #PRObject,
+	#name : 'PRAbstractScriptLanguage',
+	#superclass : 'PRObject',
 	#instVars : [
 		'originalName'
 	],
-	#category : #'Pillar-Core-Model'
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRAbstractScriptLanguage class >> acceptLanguage: aLanguageName [
 	^ aLanguageName matchesRegexIgnoringCase: self acceptedLanguagesRegex 
 ]
 
-{ #category : #requirement }
+{ #category : 'requirement' }
 PRAbstractScriptLanguage class >> acceptedLanguagesRegex [ 
 	^ self standardName
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRAbstractScriptLanguage class >> concreteClassFor: aLanguageName [
 	aLanguageName ifNil: [ ^ PRUnspecifiedScriptLanguage ].
 	^ (self withAllConcreteClasses copyWithout: PRUnsupportedScriptLanguage)
@@ -35,21 +37,21 @@ PRAbstractScriptLanguage class >> concreteClassFor: aLanguageName [
 		ifNone: [ PRUnsupportedScriptLanguage ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRAbstractScriptLanguage class >> default [
 	^ self new
 		originalName: self standardName;
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRAbstractScriptLanguage class >> for: aLanguageName [
 	^ (self concreteClassFor: aLanguageName) new
 		originalName: aLanguageName;
 		yourself
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRAbstractScriptLanguage class >> standardName [
 	"Pay attention standardName is used in LaTeX for displaycode as follows
 	standardName
@@ -63,38 +65,38 @@ PRAbstractScriptLanguage class >> standardName [
 	^ self subclassResponsibility
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRAbstractScriptLanguage >> = anObject [
 	^ self originalName = anObject originalName
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRAbstractScriptLanguage >> hash [
 	^ self originalName hash
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 PRAbstractScriptLanguage >> initialize [
 	super initialize.
 	self originalName: self class standardName
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRAbstractScriptLanguage >> isSpecified [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractScriptLanguage >> originalName [
 	^ originalName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRAbstractScriptLanguage >> originalName: aLanguageName [
 	originalName := aLanguageName
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PRAbstractScriptLanguage >> printOn: aStream [
 	"super printOn: aStream.
 	aStream nextPutAll: ' ('."

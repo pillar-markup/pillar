@@ -1,15 +1,16 @@
 Class {
-	#name : #PRPillarWriterRawTest,
-	#superclass : #PRPillarWriterTextTest,
-	#category : #'Pillar-Tests-Model-ExporterPillar'
+	#name : 'PRPillarWriterRawTest',
+	#superclass : 'PRPillarWriterTextTest',
+	#category : 'Pillar-Tests-Model-ExporterPillar',
+	#package : 'Pillar-Tests-Model-ExporterPillar'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRPillarWriterRawTest >> actualClass [
 	^ PRRaw
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterRawTest >> testParseBasic [
 	| wiki text tree |
 	wiki := '{{{abc}}}'.
@@ -23,7 +24,7 @@ PRPillarWriterRawTest >> testParseBasic [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterRawTest >> testParseEmpty [
 	| wiki tree |
 	wiki := '{{{}}}'.
@@ -37,7 +38,7 @@ PRPillarWriterRawTest >> testParseEmpty [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterRawTest >> testParseMultiline [
 
 	| wiki tree nLine |
@@ -51,7 +52,7 @@ PRPillarWriterRawTest >> testParseMultiline [
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterRawTest >> testParseMultiple [
 	| wiki tree |
 	wiki := '{{{a}}}b{{{c}}}'.
@@ -68,7 +69,7 @@ PRPillarWriterRawTest >> testParseMultiple [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterRawTest >> testParseMultipleMultiline [
 
 	| wiki tree nLine |
@@ -86,7 +87,7 @@ PRPillarWriterRawTest >> testParseMultipleMultiline [
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterRawTest >> testParseStrange [
 	| wiki tree |
 	wiki := '{{{a{{||}}b}}}'.
@@ -100,7 +101,7 @@ PRPillarWriterRawTest >> testParseStrange [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterRawTest >> testParseTypeHtml [
 	| wiki tree |
 	wiki := '{{{html:abc}}}'.
@@ -115,7 +116,7 @@ PRPillarWriterRawTest >> testParseTypeHtml [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterRawTest >> testParseTypeLatex [
 	| wiki text tree |
 	wiki := '{{{latex:abc}}}'.
@@ -129,7 +130,7 @@ PRPillarWriterRawTest >> testParseTypeLatex [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterRawTest >> testParseTypeText [
 	| wiki tree |
 	wiki := '{{{text:abc}}}'.

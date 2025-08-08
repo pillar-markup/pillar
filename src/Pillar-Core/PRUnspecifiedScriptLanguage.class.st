@@ -2,32 +2,34 @@
 An unspecified script language
 "
 Class {
-	#name : #PRUnspecifiedScriptLanguage,
-	#superclass : #PRAbstractScriptLanguage,
-	#category : #'Pillar-Core-Model'
+	#name : 'PRUnspecifiedScriptLanguage',
+	#superclass : 'PRAbstractScriptLanguage',
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRUnspecifiedScriptLanguage class >> acceptLanguage: aLanguageName [
 	^ aLanguageName isNil or: [ super acceptLanguage: aLanguageName ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRUnspecifiedScriptLanguage class >> isAbstract [
 	^ false
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRUnspecifiedScriptLanguage class >> standardName [
 	^ 'unspecified language'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRUnspecifiedScriptLanguage >> isSpecified [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRUnspecifiedScriptLanguage >> originalName [
 	^ ''
 ]

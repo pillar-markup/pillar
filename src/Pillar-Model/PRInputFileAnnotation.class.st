@@ -13,12 +13,14 @@ ${inputFile:myFile.pillar}$
 ${inputFile:value=directory/myFile.pillar}$
 "
 Class {
-	#name : #PRInputFileAnnotation,
-	#superclass : #PRAbstractAnnotation,
-	#category : #'Pillar-Model-Document'
+	#name : 'PRInputFileAnnotation',
+	#superclass : 'PRAbstractAnnotation',
+	#category : 'Pillar-Model-Document',
+	#package : 'Pillar-Model',
+	#tag : 'Document'
 }
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRInputFileAnnotation class >> path: aPath [
 
 	^ self withParameters: (OrderedDictionary new
@@ -26,18 +28,18 @@ PRInputFileAnnotation class >> path: aPath [
 			yourself)
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRInputFileAnnotation class >> possibleParameters [
 
 	^ #(path)
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRInputFileAnnotation class >> tag [
 	^ #inputFile
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRInputFileAnnotation class >> value: aValue [
 	
 	self deprecated: 'Please use #path: instead'
@@ -46,37 +48,37 @@ PRInputFileAnnotation class >> value: aValue [
 	^ self path: aValue
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRInputFileAnnotation >> accept: aVisitor [
 	^ aVisitor visitInputFileAnnotation: self
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PRInputFileAnnotation >> asPillarParametersOn: aStream [
 	self parameters
 		at: 'path'
 		ifPresent: [ :v | self asPillarKey: 'path' value: v asString on: aStream ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRInputFileAnnotation >> errorFileNotFound: aFile [
 	PRInputFileError signal: 'File at: ' , aFile fullName , ' not found.'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRInputFileAnnotation >> fileWithConfiguration: aConfiguration [
 	"I search my file."
 
 	^ aConfiguration baseDirectory resolve: self path
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRInputFileAnnotation >> path [
 
 	^ self parameters at: 'path'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRInputFileAnnotation >> value [
 	self deprecated: 'Please use #path instead'
 		  transformWith: '`@receiver value' 

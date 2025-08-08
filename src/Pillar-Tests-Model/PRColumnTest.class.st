@@ -1,15 +1,17 @@
 Class {
-	#name : #PRColumnTest,
-	#superclass : #PRDocumentGroupTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#name : 'PRColumnTest',
+	#superclass : 'PRDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRColumnTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRColumnTest >> actualClass [
 	^ PRColumn
 ]

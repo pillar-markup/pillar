@@ -2,12 +2,14 @@
 I am an unordered list. I am typically used for unnumbered lists
 "
 Class {
-	#name : #PRUnorderedList,
-	#superclass : #PRList,
-	#category : #'Pillar-Core-Model'
+	#name : 'PRUnorderedList',
+	#superclass : 'PRList',
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRUnorderedList >> accept: aVisitor [
 	^ aVisitor visitUnorderedList: self
 ]

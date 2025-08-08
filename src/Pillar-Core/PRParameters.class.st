@@ -1,10 +1,12 @@
 Class {
-	#name : #PRParameters,
-	#superclass : #PRDocumentGroup,
-	#category : #'Pillar-Core-Model'
+	#name : 'PRParameters',
+	#superclass : 'PRDocumentGroup',
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PRParameters class >> with: aPRParameter withAll: aCollection [ 
 	| anInstance |
 	anInstance := self new.
@@ -13,12 +15,12 @@ PRParameters class >> with: aPRParameter withAll: aCollection [
 	^ anInstance
 ]
 
-{ #category : #visitor }
+{ #category : 'visitor' }
 PRParameters >> accept: aVisitor [
 	^ aVisitor visitParameters: self
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PRParameters >> asDictionary [
 	| dict |
 	dict := OrderedDictionary new.
@@ -26,7 +28,7 @@ PRParameters >> asDictionary [
 	^ dict
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRParameters >> parameters [ 
 	^ children
 ]

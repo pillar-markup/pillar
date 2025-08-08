@@ -19,17 +19,19 @@ ${end:card}$
 See comment of PREnvironment. 
 "
 Class {
-	#name : #PRBeginEnvironmentAnnotation,
-	#superclass : #PREnvironmentAnnotation,
-	#category : #'Pillar-Core-Model'
+	#name : 'PRBeginEnvironmentAnnotation',
+	#superclass : 'PREnvironmentAnnotation',
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRBeginEnvironmentAnnotation class >> tag [
 	^ #begin
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRBeginEnvironmentAnnotation >> accept: aVisitor [
 	^ aVisitor visitBeginEnvironmentAnnotation: self
 ]

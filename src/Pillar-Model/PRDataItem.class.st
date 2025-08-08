@@ -2,12 +2,14 @@
 Data in a list
 "
 Class {
-	#name : #PRDataItem,
-	#superclass : #PRListItem,
-	#category : #'Pillar-Model-Document'
+	#name : 'PRDataItem',
+	#superclass : 'PRListItem',
+	#category : 'Pillar-Model-Document',
+	#package : 'Pillar-Model',
+	#tag : 'Document'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRDataItem >> accept: aVisitor [
 	^ aVisitor visitDataItem: self
 ]

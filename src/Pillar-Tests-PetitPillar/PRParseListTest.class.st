@@ -1,27 +1,28 @@
 Class {
-	#name : #PRParseListTest,
-	#superclass : #PRParseDocumentGroupTest,
-	#category : #'Pillar-Tests-PetitPillar'
+	#name : 'PRParseListTest',
+	#superclass : 'PRParseDocumentGroupTest',
+	#category : 'Pillar-Tests-PetitPillar',
+	#package : 'Pillar-Tests-PetitPillar'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseListTest >> actualClass [
 	^ PRList
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseListTest >> listItemClass [
 	^ PRListItem
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseListTest >> listItemWithText: aString [
 	^ self listItemClass new
 		add: (PRText content: aString);
 		yourself
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseListTest >> testParseEmpty [
 	| wiki tree |
 	wiki := self wikiString.
@@ -34,7 +35,7 @@ PRParseListTest >> testParseEmpty [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseListTest >> testParseFlat [
 
 	| wiki tree nLine |
@@ -51,7 +52,7 @@ PRParseListTest >> testParseFlat [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseListTest >> testParseMultiple [
 
 	| wiki tree nLine |
@@ -71,7 +72,7 @@ PRParseListTest >> testParseMultiple [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseListTest >> testParseWithTrailingSpaces [
 	| wiki tree |
 	wiki := self wikiString , ' 1st'.
@@ -84,7 +85,7 @@ PRParseListTest >> testParseWithTrailingSpaces [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseListTest >> wikiString [
 	self subclassResponsibility
 ]

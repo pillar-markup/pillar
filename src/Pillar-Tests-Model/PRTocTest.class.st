@@ -2,22 +2,24 @@
 Test hash properties
 "
 Class {
-	#name : #PRTocTest,
-	#superclass : #PRDocumentItemTest,
-	#category : #'Pillar-Tests-Model-Toc'
+	#name : 'PRTocTest',
+	#superclass : 'PRDocumentItemTest',
+	#category : 'Pillar-Tests-Model-Toc',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Toc'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRTocTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTocTest >> actualClass [
 	^ PRToc
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTocTest >> testDifferentTocsHaveDifferentHashValue [
 	| toc1 toc2 |
 	toc1 := PRToc new
@@ -38,7 +40,7 @@ PRTocTest >> testDifferentTocsHaveDifferentHashValue [
 	self deny: toc1 hash equals: toc2 hash
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTocTest >> testSameTocsHaveSameHashValue [
 	| toc1 toc2 |
 	toc1 := PRToc new

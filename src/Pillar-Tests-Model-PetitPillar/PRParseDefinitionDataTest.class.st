@@ -1,25 +1,26 @@
 Class {
-	#name : #PRParseDefinitionDataTest,
-	#superclass : #PRParseListTest,
-	#category : #'Pillar-Tests-Model-PetitPillar'
+	#name : 'PRParseDefinitionDataTest',
+	#superclass : 'PRParseListTest',
+	#category : 'Pillar-Tests-Model-PetitPillar',
+	#package : 'Pillar-Tests-Model-PetitPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRParseDefinitionDataTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseDefinitionDataTest >> actualClass [
 	^ PRDefinitionList
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseDefinitionDataTest >> listItemClass [
 	^ PRDataItem
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRParseDefinitionDataTest >> testParseBug [
 
 	| wiki1 wiki2 tree nLine |
@@ -46,7 +47,7 @@ PRParseDefinitionDataTest >> testParseBug [
 	self parserAssertWiki: wiki2 equalsTree: tree
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRParseDefinitionDataTest >> testParseMixed [
 
 	| wiki tree |
@@ -64,12 +65,12 @@ PRParseDefinitionDataTest >> testParseMixed [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseDefinitionDataTest >> textString: anObject level: anInteger [
 	^ (super textString: anObject level: anInteger) , '  '
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseDefinitionDataTest >> wikiString [
 	^ ':'
 ]

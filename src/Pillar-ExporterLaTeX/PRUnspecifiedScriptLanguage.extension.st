@@ -1,6 +1,6 @@
-Extension { #name : #PRUnspecifiedScriptLanguage }
+Extension { #name : 'PRUnspecifiedScriptLanguage' }
 
-{ #category : #'*Pillar-ExporterLaTeX' }
+{ #category : '*Pillar-ExporterLaTeX' }
 PRUnspecifiedScriptLanguage >> sbaString [
 	^ 'plain'
 ]

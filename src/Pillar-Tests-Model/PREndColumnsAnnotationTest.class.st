@@ -1,20 +1,22 @@
 Class {
-	#name : #PREndColumnsAnnotationTest,
-	#superclass : #PRAbstractAnnotationTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#name : 'PREndColumnsAnnotationTest',
+	#superclass : 'PRAbstractAnnotationTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PREndColumnsAnnotationTest >> actualClass [
 	^ PREndColumnsAnnotation
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PREndColumnsAnnotationTest >> referenceParameters [
 	^ PRParameters new
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PREndColumnsAnnotationTest >> referenceString [
 	^ 'endColumns'
 ]

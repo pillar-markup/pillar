@@ -1,1 +1,1 @@
-Package { #name : #'Pillar-Model' }
+Package { #name : 'Pillar-Model' }

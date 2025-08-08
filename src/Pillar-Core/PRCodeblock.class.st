@@ -22,18 +22,20 @@ In pillar is in unclear that the argument values can contain formatting directiv
 
 "
 Class {
-	#name : #PRCodeblock,
-	#superclass : #PRText,
+	#name : 'PRCodeblock',
+	#superclass : 'PRText',
 	#traits : 'PRTParametrizable',
 	#classTraits : 'PRTParametrizable classTrait',
 	#instVars : [
 		'parameters',
 		'caption'
 	],
-	#category : #'Pillar-Core-Model'
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRCodeblock class >> content: aString parameters: parameterDictionary [
 	"The pillar parser is sending us bogus parameters in the form of an orderedDictionary containing ('' -> true)
 	Since we do not know how to fix the parser we block the propagation of bogus parameters here."
@@ -48,7 +50,7 @@ PRCodeblock class >> content: aString parameters: parameterDictionary [
 		yourself
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRCodeblock >> = anObject [
 	"We use the method language to be sure that the language is a PRAbstractScriptLanguage and not a string."
 	
@@ -59,12 +61,12 @@ PRCodeblock >> = anObject [
 			self parameters = anObject parameters ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRCodeblock >> accept: aVisitor [
 	^ aVisitor visitCodeblock: self
 ]
 
-{ #category : #'accessing-delegated' }
+{ #category : 'accessing-delegated' }
 PRCodeblock >> caption [
 	"This method should be named: setAndReturnCaption"
 	self flag: #fixme. 
@@ -79,101 +81,101 @@ PRCodeblock >> caption [
 			caption ]
 ]
 
-{ #category : #'accessing-delegated' }
+{ #category : 'accessing-delegated' }
 PRCodeblock >> caption: aString [
 	"this method should be named: updateCaptionInParameters"
 	self flag: #fixme.
 	parameters := self parameters copyWith: 'caption' -> aString
 ]
 
-{ #category : #'accessing-delegated' }
+{ #category : 'accessing-delegated' }
 PRCodeblock >> defaultCaptionWhenEmpty [
 	"When there is no caption and still we asked for it, the class sets the defaultCaptionWhenEmpty as caption.
 	"
 	^ PRParagraph with: (PRText content: '')
 ]
 
-{ #category : #'accessing-delegated' }
+{ #category : 'accessing-delegated' }
 PRCodeblock >> eval: aString [
 	parameters := parameters copyWith: 'eval' -> aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCodeblock >> firstLine: aString [
 	parameters := parameters copyWith: 'firstLine' -> aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCodeblock >> fromFile: aString [
 	parameters := parameters copyWith: 'fromFile' -> aString
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRCodeblock >> hasCaption [
 	^ self parameters at: 'caption' ifPresent: [ :param | param isEmptyOrNil not ] ifAbsent: [ false ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRCodeblock >> hasLabel [
 	| label |
 	label := self parameters at: 'label' ifAbsent: [ ^ false ].
 	^ label isEmptyOrNil not
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRCodeblock >> hasNoCode [
 	^ (self text copyWithout: Character tab) isEmpty
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRCodeblock >> hasShortCaption [
 	^ self parameters at: 'shortCaption'
 		ifPresent: [ :param | param isEmptyOrNil not ]
 		ifAbsent: [ false ]
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRCodeblock >> hash [
 	^ super hash bitXor: self properties hash
 ]
 
-{ #category : #'accessing-delegated' }
+{ #category : 'accessing-delegated' }
 PRCodeblock >> hideable: aString [
 	parameters := parameters copyWith: 'hideable' -> aString
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRCodeblock >> initialize [
 	super initialize.
 	parameters := OrderedDictionary new
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRCodeblock >> isEvaluated [
 	^ self parameters at: 'eval' ifAbsent: [ false ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRCodeblock >> isHideable [
 	^ self parameters at: 'hideable' ifPresent: [ :hideable | hideable = 'true' or: [ hideable = true ] ] ifAbsent: [ false ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRCodeblock >> isStructure [
 	^ self parameters includesKey: 'structure'
 ]
 
-{ #category : #'accessing-delegated' }
+{ #category : 'accessing-delegated' }
 PRCodeblock >> label [
 	^ self parameters at: 'label' ifAbsent: ['']
 ]
 
-{ #category : #'accessing-delegated' }
+{ #category : 'accessing-delegated' }
 PRCodeblock >> label: aString [
 	parameters := parameters copyWith: 'label' -> aString
 ]
 
-{ #category : #'accessing-delegated' }
+{ #category : 'accessing-delegated' }
 PRCodeblock >> language [
 	^ self
 		parameters at: 'language'
@@ -188,67 +190,67 @@ PRCodeblock >> language [
 		ifAbsent: [ PRUnspecifiedScriptLanguage default ]
 ]
 
-{ #category : #'accessing-delegated' }
+{ #category : 'accessing-delegated' }
 PRCodeblock >> language: aLanguage [
 	self parameters at: 'language' put: aLanguage
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCodeblock >> lastLine: aString [
 	parameters := parameters copyWith: 'lastLine' -> aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCodeblock >> lineNumber: aString [
 	parameters := parameters copyWith: 'lineNumber' -> aString
 ]
 
-{ #category : #'accessing-parameters' }
+{ #category : 'accessing-parameters' }
 PRCodeblock >> parameters [
 	^ parameters
 ]
 
-{ #category : #'accessing-parameters' }
+{ #category : 'accessing-parameters' }
 PRCodeblock >> parameters: aCollection [
 
 	parameters := aCollection
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 PRCodeblock >> removePossibleParagraph: content [
 	^ content first class = PRParagraph
 		ifTrue:[ content first children ] 
 		ifFalse: [ content ]
 ]
 
-{ #category : #'accessing-delegated' }
+{ #category : 'accessing-delegated' }
 PRCodeblock >> setCaption: aParagraph [
 	"pay attention this is the not the same than the setter"
 	
 	caption := aParagraph
 ]
 
-{ #category : #'accessing-delegated' }
+{ #category : 'accessing-delegated' }
 PRCodeblock >> shortCaption [
 	^ self parameters at: 'shortCaption' ifAbsent: ['']
 ]
 
-{ #category : #'accessing-delegated' }
+{ #category : 'accessing-delegated' }
 PRCodeblock >> shortCaption: aString [ 
 	parameters := parameters copyWith: 'shortCaption' -> aString
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRCodeblock >> structureName [
 	^ self parameters at: 'structure'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRCodeblock >> structureName: aName [
 	^ self parameters at: 'structure' put: aName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCodeblock >> text: aString [
 	super text: aString withoutTrailingNewlines
 ]

@@ -1,20 +1,21 @@
 Class {
-	#name : #PRParseAnchorTest,
-	#superclass : #PRParseDocumentItemTest,
-	#category : #'Pillar-Tests-PetitPillar'
+	#name : 'PRParseAnchorTest',
+	#superclass : 'PRParseDocumentItemTest',
+	#category : 'Pillar-Tests-PetitPillar',
+	#package : 'Pillar-Tests-PetitPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRParseAnchorTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseAnchorTest >> actualClass [
 	^ PRAnchor
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseAnchorTest >> testBasic [
 	| wiki tree |
 	wiki := '@name'.
@@ -23,7 +24,7 @@ PRParseAnchorTest >> testBasic [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseAnchorTest >> testMultiple [
 
 	| wiki tree nLine |
@@ -38,7 +39,7 @@ PRParseAnchorTest >> testMultiple [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseAnchorTest >> testSpaces [
 	| wiki tree |
 	wiki := '@one two'.

@@ -8,28 +8,30 @@ My parameters are :
  
 "
 Class {
-	#name : #PRFootnoteAnnotation,
-	#superclass : #PRAbstractAnnotation,
-	#category : #'Pillar-Model-Document'
+	#name : 'PRFootnoteAnnotation',
+	#superclass : 'PRAbstractAnnotation',
+	#category : 'Pillar-Model-Document',
+	#package : 'Pillar-Model',
+	#tag : 'Document'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRFootnoteAnnotation class >> possibleParameters [
 
 	^ #(note)
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRFootnoteAnnotation class >> tag [
 	^ #footnote
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRFootnoteAnnotation >> accept: aVisitor [
 	^ aVisitor visitFootnoteAnnotation: self
 ]
 
-{ #category : #descriptions }
+{ #category : 'descriptions' }
 PRFootnoteAnnotation >> asPillarParametersOn: aStream [
 	self parameters
 		at: 'note'

@@ -1,20 +1,22 @@
 Class {
-	#name : #PRPreformattedTest,
-	#superclass : #PRDocumentGroupTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#name : 'PRPreformattedTest',
+	#superclass : 'PRDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRPreformattedTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRPreformattedTest >> actualClass [
 	^ PRPreformatted
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPreformattedTest >> testText [
 	self instance addAll: self foobarInstances.
 	self assert: self instance text equals: 'foo

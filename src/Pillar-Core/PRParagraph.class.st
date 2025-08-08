@@ -4,12 +4,14 @@ I'm close to a latex or HTML paragraph. I do not contain complex structures such
 		
 "
 Class {
-	#name : #PRParagraph,
-	#superclass : #PRDocumentGroup,
-	#category : #'Pillar-Core-Model'
+	#name : 'PRParagraph',
+	#superclass : 'PRDocumentGroup',
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRParagraph >> accept: aVisitor [
 	^ aVisitor visitParagraph: self
 ]

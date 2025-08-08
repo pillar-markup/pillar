@@ -6,12 +6,14 @@ I am an abstract link built from an alias and a reference. The alias is the stri
 =+Alias>Embedded Reference*
 "
 Class {
-	#name : #PRLink,
-	#superclass : #PRReference,
-	#category : #'Pillar-Core-Model'
+	#name : 'PRLink',
+	#superclass : 'PRReference',
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRLink class >> fromReference: aReference [
 	| classes  |
 	classes := PRLink withAllConcreteClasses select: [ :each | each isValidReference: aReference ].
@@ -19,51 +21,51 @@ PRLink class >> fromReference: aReference [
 	^ classes first reference: aReference
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRLink class >> isAbstract [ 
 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRLink class >> priority [
 	^ 0
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRLink >> accept: aVisitor [
 	<ignoreForCoverage "This method is ignored for test coverage because it is overriden in all subclasses and these subclasses don't need to do a super-send.">
 	^ aVisitor visitLink: self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRLink >> isBroken [
 	"Answer ==true== if the receiver is broken."
 
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRLink >> isExternal [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRLink >> isInternal [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRLink >> isLink [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRLink >> renderAsText [
 	^ self reference
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRLink >> title [
 	^ self renderAsText ifEmpty: [ nil ] ifNotEmpty: #yourself
 ]

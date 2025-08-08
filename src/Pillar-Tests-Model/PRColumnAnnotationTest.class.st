@@ -1,15 +1,17 @@
 Class {
-	#name : #PRColumnAnnotationTest,
-	#superclass : #PRAbstractAnnotationTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#name : 'PRColumnAnnotationTest',
+	#superclass : 'PRAbstractAnnotationTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRColumnAnnotationTest >> actualClass [
 	^ PRColumnAnnotation
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRColumnAnnotationTest >> referenceParameters [
 	^ PRParameters withAll: { 
 		PRParameter 
@@ -17,7 +19,7 @@ PRColumnAnnotationTest >> referenceParameters [
 			valueNode: (PRParameterValue value: 50) }
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRColumnAnnotationTest >> referenceString [
 	^ 'column:width=50'
 ]

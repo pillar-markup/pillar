@@ -2,22 +2,24 @@
 I'm a Mock needed in order to test PRTParametrizable
 "
 Class {
-	#name : #PRMockForParameters,
-	#superclass : #Object,
+	#name : 'PRMockForParameters',
+	#superclass : 'Object',
 	#traits : 'PRTParametrizable',
 	#classTraits : 'PRTParametrizable classTrait - {#parameterAt:IsIntegerIn:. #parameters:haveSize:}',
 	#instVars : [
 		'parameters'
 	],
-	#category : 'Pillar-Tests-Model-Core'
+	#category : 'Pillar-Tests-Model-Core',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Core'
 }
 
-{ #category : #'accessing-parameters' }
+{ #category : 'accessing-parameters' }
 PRMockForParameters >> parameters [
 	^ parameters
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRMockForParameters >> parameters: aCollection [
 	parameters := aCollection
 ]

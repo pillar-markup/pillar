@@ -12,35 +12,37 @@ My tag is: 'cite'.
 	`${cite:ref=Duca99a}$`
 "
 Class {
-	#name : #PRCitationAnnotation,
-	#superclass : #PRAbstractAnnotation,
-	#category : #'Pillar-Model-Document'
+	#name : 'PRCitationAnnotation',
+	#superclass : 'PRAbstractAnnotation',
+	#category : 'Pillar-Model-Document',
+	#package : 'Pillar-Model',
+	#tag : 'Document'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCitationAnnotation class >> possibleParameters [
 	^ #(ref)
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRCitationAnnotation class >> tag [
 	^ #cite
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRCitationAnnotation >> accept: aVisitor [
 
 	^ aVisitor visitCitationAnnotation: self
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PRCitationAnnotation >> asPillarParametersOn: aStream [
 	self parameters
 		at: 'ref'
 		ifPresent: [ :v | self asPillarKey: 'ref' value: v on: aStream ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRCitationAnnotation >> isCitation [
 	^true
 ]

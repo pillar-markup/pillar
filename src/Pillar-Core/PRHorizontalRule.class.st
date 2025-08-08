@@ -2,17 +2,19 @@
 I am a horizontal rule.
 "
 Class {
-	#name : #PRHorizontalRule,
-	#superclass : #PRDocumentItem,
-	#category : #'Pillar-Core-Model'
+	#name : 'PRHorizontalRule',
+	#superclass : 'PRDocumentItem',
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRHorizontalRule class >> isAbstract [
 	^ false
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRHorizontalRule >> accept: aVisitor [
 	^ aVisitor visitHorizontalRule: self
 ]

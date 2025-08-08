@@ -2,103 +2,105 @@
 I am an abstract group of document items.
 "
 Class {
-	#name : #PRDocumentGroup,
-	#superclass : #PRDocumentItem,
+	#name : 'PRDocumentGroup',
+	#superclass : 'PRDocumentItem',
 	#instVars : [
 		'children'
 	],
-	#category : #'Pillar-Core-Model'
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRDocumentGroup class >> isAbstract [ 
 
 	^ false
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRDocumentGroup class >> with: aDocumentItem [
 	^ self new
 		add: aDocumentItem;
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRDocumentGroup class >> withAll: aCollection [
 	^ self new
 		addAll: aCollection;
 		yourself
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRDocumentGroup >> = anObject [
 	^ super = anObject
 		and: [ self children = anObject children ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRDocumentGroup >> accept: aVisitor [
 	<ignoreForCoverage "This method is ignored for test coverage because it is overriden in all subclasses and these subclasses don't need to do a super-send.">
 	^ aVisitor visitDocumentGroup: self
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PRDocumentGroup >> add: aDocumentItem [
 	aDocumentItem parent: self. 
 	self setChildren: (self children copyWith: aDocumentItem)
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PRDocumentGroup >> addAll: aCollection [
 	self setChildren: self children , aCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRDocumentGroup >> children [
 	"Answer the children of the receiver."
 
 	^ children
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRDocumentGroup >> hasChildren [
 	^ self children isNotEmpty
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRDocumentGroup >> hash [
 	^ super hash bitXor: self children hash
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRDocumentGroup >> initialize [
 	super initialize.
 	self setChildren: #()
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRDocumentGroup >> isGroup [
 	^true
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 PRDocumentGroup >> postCopy [
 	super postCopy.
 	self setChildren: (self children
 		collect: [ :each | each copy ])
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRDocumentGroup >> setChildren: aCollection [
 	children := aCollection
 ]
 
-{ #category : #'accessing-dynamic' }
+{ #category : 'accessing-dynamic' }
 PRDocumentGroup >> size [
 	^ self children size
 ]
 
-{ #category : #'accessing-dynamic' }
+{ #category : 'accessing-dynamic' }
 PRDocumentGroup >> text [
 	^ String streamContents: [ :stream |
 		self children do: [ :each |

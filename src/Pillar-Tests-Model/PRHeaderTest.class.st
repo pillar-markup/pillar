@@ -1,36 +1,38 @@
 Class {
-	#name : #PRHeaderTest,
-	#superclass : #PRDocumentGroupTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#name : 'PRHeaderTest',
+	#superclass : 'PRDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRHeaderTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRHeaderTest >> actualClass [
 	^ PRHeader
 ]
 
-{ #category : #'tests-comparing' }
+{ #category : 'tests-comparing' }
 PRHeaderTest >> testEqualLevel [
 	self deny: (self actualClass new level: 1) equals: (self actualClass new level: 2)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRHeaderTest >> testIsHeader [
 	self assert: self actualInstance isHeader
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRHeaderTest >> testName [
 	self instance level: 3.
 	self assert: self instance level equals: 3
 ]
 
-{ #category : #'tests-instantiation' }
+{ #category : 'tests-instantiation' }
 PRHeaderTest >> testWithAllLevel [
 	instance := self actualClass withAll: self foobarInstances level: 3.
 	self assert: self instance children size equals: 2.

@@ -1,20 +1,22 @@
 Class {
-	#name : #PRHorizontalRuleTest,
-	#superclass : #PRDocumentItemTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#name : 'PRHorizontalRuleTest',
+	#superclass : 'PRDocumentItemTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRHorizontalRuleTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRHorizontalRuleTest >> actualClass [
 	^ PRHorizontalRule
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRHorizontalRuleTest >> textString [
 	^ String new: 40 withAll: $-
 ]

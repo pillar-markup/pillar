@@ -1,15 +1,17 @@
 Class {
-	#name : #PRFileDependenciesTest,
-	#superclass : #PRVisitorTest,
-	#category : 'Pillar-Tests-Model-Visitor'
+	#name : 'PRFileDependenciesTest',
+	#superclass : 'PRVisitorTest',
+	#category : 'Pillar-Tests-Model-Visitor',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Visitor'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRFileDependenciesTest >> actualClass [
 	^ PRFileDependencies 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRFileDependenciesTest >> testDocumentWithFigure [
 	| item set |
 	item := PRDocument new
@@ -24,7 +26,7 @@ PRFileDependenciesTest >> testDocumentWithFigure [
 		equals: set
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRFileDependenciesTest >> testDocumentWithFile [
 	| item set |
 	item := PRDocument new

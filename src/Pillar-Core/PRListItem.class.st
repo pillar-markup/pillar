@@ -5,12 +5,14 @@ If you need to extend Pillar to support new kind of item (for example bibitem) w
 a pillar syntax support do not subclass from this class. 
 "
 Class {
-	#name : #PRListItem,
-	#superclass : #PRDocumentGroup,
-	#category : #'Pillar-Core-Model'
+	#name : 'PRListItem',
+	#superclass : 'PRDocumentGroup',
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRListItem >> accept: aVisitor [
 	^ aVisitor visitListItem: self
 ]

@@ -1,15 +1,17 @@
 Class {
-	#name : #PRTocAnnotationTest,
-	#superclass : #PRAbstractAnnotationTest,
-	#category : #'Pillar-Tests-Model-Toc'
+	#name : 'PRTocAnnotationTest',
+	#superclass : 'PRAbstractAnnotationTest',
+	#category : 'Pillar-Tests-Model-Toc',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Toc'
 }
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRTocAnnotationTest >> actualClass [
 	^ PRTocAnnotation
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRTocAnnotationTest >> referenceParameters [
 	^ PRParameters withAll: { 
 		PRParameter 
@@ -20,7 +22,7 @@ PRTocAnnotationTest >> referenceParameters [
 			valueNode: (PRParameterValue value: 3) }
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRTocAnnotationTest >> referenceString [
 	^ 'toc:depthLevel=2|level=3'
 ]

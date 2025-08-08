@@ -1,30 +1,32 @@
 Class {
-	#name : #PRDefinitionDataTest,
-	#superclass : #PRListTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#name : 'PRDefinitionDataTest',
+	#superclass : 'PRListTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRDefinitionDataTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDefinitionDataTest >> actualClass [
 	^ PRDefinitionList
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDefinitionDataTest >> listItemClass [
 	^ PRDataItem
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDefinitionDataTest >> textString: anObject level: anInteger [
 	^ (super textString: anObject level: anInteger) , '  '
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDefinitionDataTest >> wikiString [
 	^ ':'
 ]

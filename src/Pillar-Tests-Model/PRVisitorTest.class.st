@@ -1,10 +1,12 @@
 Class {
-	#name : #PRVisitorTest,
-	#superclass : #PRBasicObjectTest,
-	#category : 'Pillar-Tests-Model-Visitor'
+	#name : 'PRVisitorTest',
+	#superclass : 'PRBasicObjectTest',
+	#category : 'Pillar-Tests-Model-Visitor',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Visitor'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRVisitorTest class >> isAbstract [
 	"Override to true if a TestCase subclass is Abstract and should not have
 	TestCase instances built from it"
@@ -12,12 +14,12 @@ PRVisitorTest class >> isAbstract [
 	^self = PRVisitorTest
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRVisitorTest >> actualClass [
 	^ PRVisitor
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRVisitorTest >> addText: aString to: aDocumentItem [
 	^ aDocumentItem
 		add: (PRText content: aString);

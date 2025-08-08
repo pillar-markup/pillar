@@ -17,23 +17,25 @@ ${slide:title=Conclusion|label=sld:ccl}$
 ]]]
 "
 Class {
-	#name : #PRSlideTitleAnnotation,
-	#superclass : #PRAbstractAnnotation,
-	#category : #'Pillar-Model-Document'
+	#name : 'PRSlideTitleAnnotation',
+	#superclass : 'PRAbstractAnnotation',
+	#category : 'Pillar-Model-Document',
+	#package : 'Pillar-Model',
+	#tag : 'Document'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRSlideTitleAnnotation class >> possibleParameters [
 
 	^ #(title label)
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRSlideTitleAnnotation class >> tag [
 	^ #slide
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRSlideTitleAnnotation >> accept: aVisitor [
 	^ aVisitor visitSlideTitleAnnotation: self
 ]

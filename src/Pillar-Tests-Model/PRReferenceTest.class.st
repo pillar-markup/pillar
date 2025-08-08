@@ -1,25 +1,27 @@
 Class {
-	#name : #PRReferenceTest,
-	#superclass : #PRDocumentGroupTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#name : 'PRReferenceTest',
+	#superclass : 'PRDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRReferenceTest >> actualClass [
 	^ PRReference
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRReferenceTest >> markup [
 	^ self subclassResponsibility
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRReferenceTest >> referenceString [
 	self subclassResponsibility
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRReferenceTest >> testAlias [
 	self deny: self instance hasAlias.
 
@@ -32,12 +34,12 @@ PRReferenceTest >> testAlias [
 	self assert: self instance alias equals: 'foobar'
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRReferenceTest >> testAnchor [
 	self deny: self instance hasAnchor
 ]
 
-{ #category : #'tests-comparing' }
+{ #category : 'tests-comparing' }
 PRReferenceTest >> testEqualReference [
 	self
 		deny:
@@ -50,7 +52,7 @@ PRReferenceTest >> testEqualReference [
 				yourself)
 ]
 
-{ #category : #'tests-parameters' }
+{ #category : 'tests-parameters' }
 PRReferenceTest >> testHasParameter [
 	self instance parameters: (Dictionary with: 'foo' -> 'zork' with: 'bar' -> nil).
 	self assert: (self instance hasParameter: 'foo').
@@ -58,28 +60,28 @@ PRReferenceTest >> testHasParameter [
 	self deny: (self instance hasParameter: 'zork')
 ]
 
-{ #category : #'tests-parameters' }
+{ #category : 'tests-parameters' }
 PRReferenceTest >> testParameterAt [
 	self instance parameters: (Dictionary with: 'foo' -> 'bar').
 	self assert: (self instance parameters at: 'foo' ifAbsent: [ nil ]) equals: 'bar'.
 	self assert: (self instance parameters at: 'bar' ifAbsent: [ nil ]) isNil
 ]
 
-{ #category : #'tests-parameters' }
+{ #category : 'tests-parameters' }
 PRReferenceTest >> testParameterAtIfAbsent [
 	self instance parameters: (Dictionary with: 'foo' -> 'bar').
 	self assert: (self instance parameters at: 'foo' ifAbsent: [ 'zork' ]) equals: 'bar'.
 	self assert: (self instance parameters at: 'bar' ifAbsent: [ 'zork' ]) equals: 'zork'
 ]
 
-{ #category : #'tests-parameters' }
+{ #category : 'tests-parameters' }
 PRReferenceTest >> testParameterAtIfPresent [
 	self instance parameters: (Dictionary with: 'foo' -> 'bar').
 	self assert: (self instance parameters at: 'foo' ifPresent: [ :value | '!' , value ]) equals: '!bar'.
 	self assert: (self instance parameters at: 'bar' ifPresent: [ :value | '!' , value ]) isNil
 ]
 
-{ #category : #'tests-parameters' }
+{ #category : 'tests-parameters' }
 PRReferenceTest >> testParameterAtPut [
 	self assert: (self instance parameters at: 'foo' put: 'bar') equals: 'bar'.
 	self assert: self instance parameters size equals: 1.
@@ -92,7 +94,7 @@ PRReferenceTest >> testParameterAtPut [
 	self assert: self instance parameters values first equals: 'zork'
 ]
 
-{ #category : #'tests-parameters' }
+{ #category : 'tests-parameters' }
 PRReferenceTest >> testParameterCopy [
 	| copy |
 	self instance parameters at: 'class' put: 'active'.
@@ -107,20 +109,20 @@ PRReferenceTest >> testParameterCopy [
 	self assert: (copy parameters at: 'foo') equals: 'bar'
 ]
 
-{ #category : #'tests-parameters' }
+{ #category : 'tests-parameters' }
 PRReferenceTest >> testParameters [
 	self assertEmpty: self instance parameters.
 	self instance parameters: (Array with: 'foo' -> 'bar').
 	self assert: self instance parameters size equals: 1
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRReferenceTest >> testReference [
 	self instance reference: 'zork'.
 	self assert: self instance reference equals: 'zork'
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRReferenceTest >> testTitle [
 	self deny: self instance title isNotNil
 ]

@@ -1,6 +1,6 @@
-Extension { #name : #Path }
+Extension { #name : 'Path' }
 
-{ #category : #'*Pillar-Model' }
+{ #category : '*Pillar-Model' }
 Path >> asMustachableValue [
 
 	^ self pathString

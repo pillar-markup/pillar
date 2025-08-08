@@ -1,20 +1,21 @@
 Class {
-	#name : #PRTextWriterPreformattedTest,
-	#superclass : #PRTextWriterDocumentGroupTest,
-	#category : #'Pillar-Tests-Model-ExporterText'
+	#name : 'PRTextWriterPreformattedTest',
+	#superclass : 'PRTextWriterDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-ExporterText',
+	#package : 'Pillar-Tests-Model-ExporterText'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRTextWriterPreformattedTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterPreformattedTest >> actualClass [
 	^ PRPreformatted
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterPreformattedTest >> testParseBasic [
 	| text tree |
 	text := 'Line'.
@@ -27,7 +28,7 @@ PRTextWriterPreformattedTest >> testParseBasic [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterPreformattedTest >> testParseEmpty [
 	| text tree |
 	text := ''.
@@ -40,7 +41,7 @@ PRTextWriterPreformattedTest >> testParseEmpty [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterPreformattedTest >> testParseMultiple [
 
 	| text tree nLine |
@@ -60,7 +61,7 @@ PRTextWriterPreformattedTest >> testParseMultiple [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterPreformattedTest >> testParseSpaces [
 
 	| text tree nLine |
@@ -76,7 +77,7 @@ PRTextWriterPreformattedTest >> testParseSpaces [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterPreformattedTest >> testParseSpecials [
 	| text tree |
 	text := '|, {, }, *, *, [, ||, |{, |}, +, +'.

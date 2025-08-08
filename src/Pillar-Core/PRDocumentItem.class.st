@@ -18,39 +18,41 @@ I'm usually contained inside a PRDocumentGroup at the exception of PRDocument.
 
 "
 Class {
-	#name : #PRDocumentItem,
-	#superclass : #PRObject,
+	#name : 'PRDocumentItem',
+	#superclass : 'PRObject',
 	#instVars : [
 		'parent',
 		'counter',
 		'start',
 		'stop'
 	],
-	#category : #'Pillar-Core-Model'
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRDocumentItem >> = anObject [
 	^ self species = anObject species
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRDocumentItem >> accept: aVisitor [
 	<ignoreForCoverage "This method is ignored for test coverage because it is overriden in all subclasses and these subclasses don't need to do a super-send.">
 	^ aVisitor visitDocumentItem: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRDocumentItem >> counter [
 	^ counter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRDocumentItem >> counter: anObject [
 	counter := anObject
 ]
 
-{ #category : #'gt-inspection' }
+{ #category : 'gt-inspection' }
 PRDocumentItem >> gtInspectPillarModel: composite [
 	<gtInspectorPresentationOrder: 50>
 	
@@ -62,80 +64,80 @@ PRDocumentItem >> gtInspectPillarModel: composite [
 		format: [ :each | (each class name withoutPrefix: 'PR'), ' - ', (each text contractTo: 50)] 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRDocumentItem >> hasChildren [
 	^ false
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRDocumentItem >> hash [
 	^ self species hash
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRDocumentItem >> initialize [
 	super initialize.
 	counter := PRNotFoundCounter maxLevel: 5
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRDocumentItem >> isDocument [
 	^self class = PRDocument
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRDocumentItem >> isGroup [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRDocumentItem >> isHeader [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRDocumentItem >> isLink [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRDocumentItem >> parent [
 
 	^ parent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRDocumentItem >> parent: aDocumentGroup [
 
 	parent := aDocumentGroup
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRDocumentItem >> parser [
   ^ self class parser
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRDocumentItem >> start [
 	^ start
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRDocumentItem >> start: anObject [
 	start := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRDocumentItem >> stop [
 	^ stop
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRDocumentItem >> stop: anObject [
 	stop := anObject
 ]
 
-{ #category : #'accessing-dynamic' }
+{ #category : 'accessing-dynamic' }
 PRDocumentItem >> text [
 	"Answer a string representation of the receiver."
 

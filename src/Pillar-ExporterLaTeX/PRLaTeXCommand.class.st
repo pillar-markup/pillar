@@ -8,12 +8,13 @@ to emit
 \mycommand[1]{#1}
 "
 Class {
-	#name : #PRLaTeXCommand,
-	#superclass : #PRLaTeXBrush,
-	#category : 'Pillar-ExporterLaTeX'
+	#name : 'PRLaTeXCommand',
+	#superclass : 'PRLaTeXBrush',
+	#category : 'Pillar-ExporterLaTeX',
+	#package : 'Pillar-ExporterLaTeX'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRLaTeXCommand >> name: aString [ 
 	stream
 		<< $\

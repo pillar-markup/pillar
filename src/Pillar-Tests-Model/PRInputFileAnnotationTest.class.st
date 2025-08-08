@@ -1,18 +1,20 @@
 Class {
-	#name : #PRInputFileAnnotationTest,
-	#superclass : #PRAbstractAnnotationTest,
+	#name : 'PRInputFileAnnotationTest',
+	#superclass : 'PRAbstractAnnotationTest',
 	#instVars : [
 		'directory'
 	],
-	#category : 'Pillar-Tests-Model-Document'
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRInputFileAnnotationTest >> actualClass [
 	^ PRInputFileAnnotation
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRInputFileAnnotationTest >> referenceParameters [
 	^ PRParameters withAll: { 
 		PRParameter 
@@ -20,7 +22,7 @@ PRInputFileAnnotationTest >> referenceParameters [
 			valueNode: (PRParameterValue value: 'foo/myFile.pillar') }
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRInputFileAnnotationTest >> referenceString [
 	^ 'inputFile:path=foo/myFile.pillar'
 ]

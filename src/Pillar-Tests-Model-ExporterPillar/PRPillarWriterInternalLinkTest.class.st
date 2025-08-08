@@ -1,25 +1,26 @@
 Class {
-	#name : #PRPillarWriterInternalLinkTest,
-	#superclass : #PRPillarWriterLinkTest,
-	#category : #'Pillar-Tests-Model-ExporterPillar'
+	#name : 'PRPillarWriterInternalLinkTest',
+	#superclass : 'PRPillarWriterLinkTest',
+	#category : 'Pillar-Tests-Model-ExporterPillar',
+	#package : 'Pillar-Tests-Model-ExporterPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRPillarWriterInternalLinkTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRPillarWriterInternalLinkTest >> actualClass [
 	^ PRInternalLink
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRPillarWriterInternalLinkTest >> referenceString [
 	^ 'Page'
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterInternalLinkTest >> testParseAnchored [
 	| wiki tree |
 	wiki := '*' , self referenceString , '@Anchor*'.
@@ -37,7 +38,7 @@ PRPillarWriterInternalLinkTest >> testParseAnchored [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterInternalLinkTest >> testParseEverything [
 	| wiki  tree |
 	wiki := '*Alias>' , self referenceString , '@Anchor*'.

@@ -1,15 +1,16 @@
 Class {
-	#name : #PRParserMockAnnotationTest,
-	#superclass : #PRAbstractAnnotationTest,
-	#category : #'Pillar-Tests-Model-PetitPillar'
+	#name : 'PRParserMockAnnotationTest',
+	#superclass : 'PRAbstractAnnotationTest',
+	#category : 'Pillar-Tests-Model-PetitPillar',
+	#package : 'Pillar-Tests-Model-PetitPillar'
 }
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRParserMockAnnotationTest >> actualClass [
 	^ PRMockAnnotation
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRParserMockAnnotationTest >> referenceParameters [
 	^ PRParameters withAll: { 
 		PRParameter 
@@ -20,12 +21,12 @@ PRParserMockAnnotationTest >> referenceParameters [
 			valueNode: (PRParameterValue value: 5) }
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRParserMockAnnotationTest >> referenceString [
 	^ 'mock:value=Foo|number=5'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRParserMockAnnotationTest >> testParseUndclaredParametersShouldRaiseAnError [
 	| input |
 	input := '${mock:Foo|option=bar}$'.
@@ -36,14 +37,14 @@ PRParserMockAnnotationTest >> testParseUndclaredParametersShouldRaiseAnError [
 	self should: [ self parser parse: input ] raise: PRError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRParserMockAnnotationTest >> testParseWithBadInterpretation [
 	| input |
 	input := '${mock:Foo|number=cinq}$'.
 	self should: [ self parser parse: input ] raise: Error
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRParserMockAnnotationTest >> testParseWithInterpretation [
 	| input expected |
 	input := '${mock:value=Foo|number=5}$'.
@@ -61,14 +62,14 @@ PRParserMockAnnotationTest >> testParseWithInterpretation [
 		equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRParserMockAnnotationTest >> testParseWithoutARequiredParameter [
 	| input |
 	input := '${mock}$'.
 	self should: [ self parser parse: input ] raise: PRError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRParserMockAnnotationTest >> testParseWithoutFirstKey [
 	"an annotation can have a default parameter name that the user does not have to be forced to specify.
 	 ${mock:Foo|number=5}$ means  ${mock:value=Foo|number=5}$ since mock defines defaultParameterName as 'value'.

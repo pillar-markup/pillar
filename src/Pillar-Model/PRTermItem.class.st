@@ -14,12 +14,14 @@ red.
 color of the fire
 "
 Class {
-	#name : #PRTermItem,
-	#superclass : #PRListItem,
-	#category : #'Pillar-Model-Document'
+	#name : 'PRTermItem',
+	#superclass : 'PRListItem',
+	#category : 'Pillar-Model-Document',
+	#package : 'Pillar-Model',
+	#tag : 'Document'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTermItem >> accept: aVisitor [
 	^ aVisitor visitTermItem: self
 ]

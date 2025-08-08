@@ -1,30 +1,32 @@
 Class {
-	#name : #PRDefinitionTermTest,
-	#superclass : #PRListTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#name : 'PRDefinitionTermTest',
+	#superclass : 'PRListTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRDefinitionTermTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDefinitionTermTest >> actualClass [
 	^ PRDefinitionList
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDefinitionTermTest >> listItemClass [
 	^ PRTermItem
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDefinitionTermTest >> textString: anObject level: anInteger [
 	^ (super textString: anObject level: anInteger) , '- '
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRDefinitionTermTest >> wikiString [
 	^ ';'
 ]

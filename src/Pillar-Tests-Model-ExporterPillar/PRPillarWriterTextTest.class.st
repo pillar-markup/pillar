@@ -1,20 +1,21 @@
 Class {
-	#name : #PRPillarWriterTextTest,
-	#superclass : #PRPillarWriterDocumentItemTest,
-	#category : #'Pillar-Tests-Model-ExporterPillar'
+	#name : 'PRPillarWriterTextTest',
+	#superclass : 'PRPillarWriterDocumentItemTest',
+	#category : 'Pillar-Tests-Model-ExporterPillar',
+	#package : 'Pillar-Tests-Model-ExporterPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRPillarWriterTextTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRPillarWriterTextTest >> actualClass [
 	^ PRText
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTextTest >> testEscapeCpp [
 	| wiki tree |
 	wiki := 'Text: \+\+'.
@@ -26,7 +27,7 @@ PRPillarWriterTextTest >> testEscapeCpp [
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTextTest >> testEscapeFirst [
 
 	| wiki tree nLine |
@@ -56,7 +57,7 @@ PRPillarWriterTextTest >> testEscapeFirst [
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTextTest >> testEscapeStrange [
 
 	| wiki tree |
@@ -71,7 +72,7 @@ PRPillarWriterTextTest >> testEscapeStrange [
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTextTest >> testEscapeText [
 	| wiki tree |
 	wiki := 'Text: \*\+'.
@@ -83,7 +84,7 @@ PRPillarWriterTextTest >> testEscapeText [
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTextTest >> testEscapeWiki [
 	| wiki tree |
 	wiki := 'Wiki: =, |, !, #, {, }, |{, ||, |}, [, ] and -'.
@@ -95,7 +96,7 @@ PRPillarWriterTextTest >> testEscapeWiki [
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTextTest >> testParseBasic [
 	| wiki tree |
 	wiki := 'abcdefghijklmnopqrstuvwxyz... ABCDEFGHIJKLMNOPQRSTUVWXYZ... 0123456789...'.
@@ -107,7 +108,7 @@ PRPillarWriterTextTest >> testParseBasic [
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTextTest >> testParseHtml [
 	| wiki tree |
 	wiki := '<strong>strong <emph>strong, emph</emph></strong>'.
@@ -119,7 +120,7 @@ PRPillarWriterTextTest >> testParseHtml [
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTextTest >> testParseLatex [
 	| wiki tree |
 	wiki := '\\begin{foo}[bar]$zork$\\end{foo}'.
@@ -133,7 +134,7 @@ PRPillarWriterTextTest >> testParseLatex [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTextTest >> testParseSpecial [
 	| wiki tree |
 	wiki := '????????????¬å???????????????¬ú??¬ü¬¬°¬¢¬£¬§¬·?¬ß?¬©¬¬´¬¨?¬Æ¬Ø¬¬±???¬µ¬¬??¬¬ª???¬ø¦Ä¦Å¦Ç¦É¦Ñ¦Ö¦Ü¦á¦à¦â¦ä¦ã¦å¦ç¦é¦è?¦ë¦í¦ì¦î¦ï¦ñ?¦ò¦ô¦ö¦õ¦ú??¦ü¦¦°¦¢¦£¦§¦·¦¶¦ß¦®¦©¦¦´¦¨¦¦Æ¦Ø?¦±¦¦¦¥¦µ¦¦¦¦¦¦ª¦º??'.
@@ -146,7 +147,7 @@ PRPillarWriterTextTest >> testParseSpecial [
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTextTest >> testParseWiki [
 	| wiki tree |
 	wiki := ' !_#-|=]@:<>\*'.

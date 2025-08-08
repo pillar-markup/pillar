@@ -1,30 +1,32 @@
 Class {
-	#name : #PRLinkTest,
-	#superclass : #PRReferenceTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#name : 'PRLinkTest',
+	#superclass : 'PRReferenceTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRLinkTest >> actualClass [
 	^ PRLink
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRLinkTest >> testIsBroken [
 	self assert: (self instance isBroken or: [ self instance isBroken not ])
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRLinkTest >> testIsExternal [
 	self deny: self instance isExternal
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRLinkTest >> testIsInternal [
 	self deny: self instance isInternal
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRLinkTest >> testIsLink [
 	self assert: self instance isLink
 ]

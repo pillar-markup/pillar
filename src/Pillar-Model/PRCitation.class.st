@@ -2,8 +2,8 @@
 I am a citation.
 "
 Class {
-	#name : #PRCitation,
-	#superclass : #PRDocumentItem,
+	#name : 'PRCitation',
+	#superclass : 'PRDocumentItem',
 	#traits : 'PRTParametrizable - {#parameterAt:put:. #hasParameters. #hasParameter:. #parameters}',
 	#classTraits : 'PRTParametrizable classTrait',
 	#instVars : [
@@ -11,48 +11,50 @@ Class {
 		'hadAllKeys',
 		'ref'
 	],
-	#category : #'Pillar-Model-Document'
+	#category : 'Pillar-Model-Document',
+	#package : 'Pillar-Model',
+	#tag : 'Document'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PRCitation class >> defaultRef [
 	^'No Reference'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PRCitation class >> isAbstract [
 	^false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PRCitation class >> ref: aString [
 	^ self new
 		ref: aString;
 		yourself
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRCitation >> = anObject [
 	^ super = anObject and: [ self ref = anObject ref ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRCitation >> accept: aVisitor [
 	^ aVisitor visitCitation: self
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRCitation >> initialize [
 	super initialize.
 	ref := self class defaultRef
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCitation >> ref [
 	^ ref
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRCitation >> ref: aString [
 	ref := aString
 ]

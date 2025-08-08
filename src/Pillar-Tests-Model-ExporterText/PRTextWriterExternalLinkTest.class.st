@@ -1,25 +1,26 @@
 Class {
-	#name : #PRTextWriterExternalLinkTest,
-	#superclass : #PRTextWriterLinkTest,
-	#category : #'Pillar-Tests-Model-ExporterText'
+	#name : 'PRTextWriterExternalLinkTest',
+	#superclass : 'PRTextWriterLinkTest',
+	#category : 'Pillar-Tests-Model-ExporterText',
+	#package : 'Pillar-Tests-Model-ExporterText'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRTextWriterExternalLinkTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterExternalLinkTest >> actualClass [
 	^ PRExternalLink
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterExternalLinkTest >> referenceString [
 	^ 'http://www.lukas-renggli.ch'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTextWriterExternalLinkTest >> testLinkToAFigureIsExternalLink [
 	| text tree |
 

@@ -5,18 +5,20 @@ May be this is better to have a subclass of PRFormat.
 We will have to revisit this.
 "
 Class {
-	#name : #PRMathInTextAnnotation,
-	#superclass : #PRAbstractAnnotation,
-	#category : #'Pillar-Core-Model'
+	#name : 'PRMathInTextAnnotation',
+	#superclass : 'PRAbstractAnnotation',
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRMathInTextAnnotation class >> tag [
 	"For now this is unclear how we will manage it. This is just to make sure that microdown mathInText is converted"
 	^ #math
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRMathInTextAnnotation >> accept: aVisitor [
 	
 	^ aVisitor visitMathInTextAnnotation: self

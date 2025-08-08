@@ -1,15 +1,17 @@
 Class {
-	#name : #PRDocumentListAnnotationTest,
-	#superclass : #PRAbstractAnnotationTest,
-	#category : #'Pillar-Tests-Model-Document-List'
+	#name : 'PRDocumentListAnnotationTest',
+	#superclass : 'PRAbstractAnnotationTest',
+	#category : 'Pillar-Tests-Model-Document-List',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document-List'
 }
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRDocumentListAnnotationTest >> actualClass [
 	^ PRDocumentListAnnotation
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRDocumentListAnnotationTest >> referenceParameters [
 	^ PRParameters withAll: { 
 		PRParameter 
@@ -29,7 +31,7 @@ PRDocumentListAnnotationTest >> referenceParameters [
 			valueNode: (PRParameterValue value: 500) }
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRDocumentListAnnotationTest >> referenceString [
 	^ 'docList:path=blogs|limit=10|sort=date|templates=#(''templates/docArticle.mustache'')|summaryMaxSize=500'
 ]

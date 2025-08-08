@@ -2,12 +2,14 @@
 Style as superscript
 "
 Class {
-	#name : #PRSuperscriptFormat,
-	#superclass : #PRFormat,
-	#category : #'Pillar-Model-Document'
+	#name : 'PRSuperscriptFormat',
+	#superclass : 'PRFormat',
+	#category : 'Pillar-Model-Document',
+	#package : 'Pillar-Model',
+	#tag : 'Document'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRSuperscriptFormat >> accept: aVisitor [
 	^ aVisitor visitSuperscriptFormat: self
 ]

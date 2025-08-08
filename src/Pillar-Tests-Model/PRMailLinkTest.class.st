@@ -1,27 +1,29 @@
 Class {
-	#name : #PRMailLinkTest,
-	#superclass : #PRExternalLinkTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#name : 'PRMailLinkTest',
+	#superclass : 'PRExternalLinkTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRMailLinkTest >> actualClass [
 	^ PRMailLink
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRMailLinkTest >> referenceString [
 	^ 'renggli@gmail.com'
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRMailLinkTest >> testTitle [
 	super testTitle.
 	self instance reference: self referenceString.
 	self assert: self instance title equals: self referenceString
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRMailLinkTest >> testUrl [
 	self instance reference: self referenceString.
 	self assert: (self instance url beginsWith: 'mailto:').

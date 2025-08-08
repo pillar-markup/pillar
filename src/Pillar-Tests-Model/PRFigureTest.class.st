@@ -1,25 +1,27 @@
 Class {
-	#name : #PRFigureTest,
-	#superclass : #PRReferenceTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#name : 'PRFigureTest',
+	#superclass : 'PRReferenceTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRFigureTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRFigureTest >> actualClass [
 	^ PRFigure
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRFigureTest >> referenceString [
 	^ 'file://test.png'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRFigureTest >> testHasCaption [
 	self deny: PRFigure new hasCaption.
 	self assert: (self addText: 'foo' to: PRFigure new) hasCaption

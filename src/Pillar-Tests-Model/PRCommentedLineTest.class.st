@@ -1,10 +1,12 @@
 Class {
-	#name : #PRCommentedLineTest,
-	#superclass : #PRTextTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#name : 'PRCommentedLineTest',
+	#superclass : 'PRTextTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRCommentedLineTest >> actualClass [
 	^ PRCommentedLine
 ]

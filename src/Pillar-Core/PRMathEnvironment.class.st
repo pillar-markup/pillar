@@ -8,22 +8,24 @@ Currently I'm just used by Microdown (delimited by `$$`) to make sure that we co
 
 "
 Class {
-	#name : #PRMathEnvironment,
-	#superclass : #PREnvironment,
-	#category : #'Pillar-Core-Model'
+	#name : 'PRMathEnvironment',
+	#superclass : 'PREnvironment',
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #'accessing-parameters' }
+{ #category : 'accessing-parameters' }
 PRMathEnvironment >> accept: aVisitor [
 	^ aVisitor visitMathEnvironment: self
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRMathEnvironment >> caption [ 
 	^ self parameters at: 'caption'
 ]
 
-{ #category : #'accessing-parameters' }
+{ #category : 'accessing-parameters' }
 PRMathEnvironment >> text [ 
 	^ self children first text
 ]

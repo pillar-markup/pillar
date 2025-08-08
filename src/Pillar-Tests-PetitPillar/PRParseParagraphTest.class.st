@@ -1,20 +1,21 @@
 Class {
-	#name : #PRParseParagraphTest,
-	#superclass : #PRParseDocumentGroupTest,
-	#category : #'Pillar-Tests-PetitPillar'
+	#name : 'PRParseParagraphTest',
+	#superclass : 'PRParseDocumentGroupTest',
+	#category : 'Pillar-Tests-PetitPillar',
+	#package : 'Pillar-Tests-PetitPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRParseParagraphTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseParagraphTest >> actualClass [
 	^ PRParagraph
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseParagraphTest >> testParseEmptyLineAtBeginning [
 
 	| wiki tree |
@@ -28,7 +29,7 @@ PRParseParagraphTest >> testParseEmptyLineAtBeginning [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseParagraphTest >> testParseOneLine [
 	| wiki tree |
 	wiki := 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nulla quis urna.'.
@@ -41,7 +42,7 @@ PRParseParagraphTest >> testParseOneLine [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseParagraphTest >> testParseThreeEmptyLines [
 
 	| wiki tree nLine |
@@ -61,7 +62,7 @@ PRParseParagraphTest >> testParseThreeEmptyLines [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseParagraphTest >> testParseTwoConsecutiveNonTextLines [
 
 	| wiki tree sentence title nLine |
@@ -81,7 +82,7 @@ PRParseParagraphTest >> testParseTwoConsecutiveNonTextLines [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseParagraphTest >> testParseTwoEmptyLines [
 
 	| wiki tree nLine |

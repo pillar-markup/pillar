@@ -1,15 +1,16 @@
 Class {
-	#name : #PRParseScriptTest,
-	#superclass : #PRParseTextTest,
-	#category : #'Pillar-Tests-Model-PetitPillar'
+	#name : 'PRParseScriptTest',
+	#superclass : 'PRParseTextTest',
+	#category : 'Pillar-Tests-Model-PetitPillar',
+	#package : 'Pillar-Tests-Model-PetitPillar'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseScriptTest >> actualClass [
 	^ PRCodeblock
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRParseScriptTest >> testIsStructure [
 
 	| ston nLine script |
@@ -21,7 +22,7 @@ PRParseScriptTest >> testIsStructure [
 	self assert: script isStructure
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseScriptTest >> testParseEscape [
 
 	| wiki tree nLine |
@@ -35,21 +36,7 @@ PRParseScriptTest >> testParseEscape [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
-PRParseScriptTest >> testParseRealLanguage [
-
-	| wiki tree nLine |
-	nLine := self lineEnding.
-	wiki := '[[[language=smalltalk' , nLine , 'foo' , nLine , ']]]'.
-	tree := PRDocument new
-		        add: ((PRCodeblock content: 'foo')
-				         language: PRSmalltalkScriptLanguage default;
-				         yourself);
-		        yourself.
-	self parserAssertWiki: wiki equalsTree: tree
-]
-
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseScriptTest >> testParseSimple [
 
 	| wiki tree nLine |
@@ -61,7 +48,7 @@ PRParseScriptTest >> testParseSimple [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseScriptTest >> testParseSimpleOn1Line [
 	"This test does *not* specify a valid usage of script. This test is here to ensure that there is a sensible default when writing invalid Pillar text."
 
@@ -73,7 +60,7 @@ PRParseScriptTest >> testParseSimpleOn1Line [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseScriptTest >> testParseWithSimpleCaption [
 
 	| wiki tree nLine |
@@ -87,7 +74,7 @@ PRParseScriptTest >> testParseWithSimpleCaption [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRParseScriptTest >> testStructureName [
 
 	| ston nLine script |

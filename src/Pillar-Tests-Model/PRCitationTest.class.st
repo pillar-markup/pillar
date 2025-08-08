@@ -1,20 +1,22 @@
 Class {
-	#name : #PRCitationTest,
-	#superclass : #PRDocumentItemTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#name : 'PRCitationTest',
+	#superclass : 'PRDocumentItemTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PRCitationTest class >> isAbstract [
 	^false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRCitationTest >> actualClass [
 	^ PRCitation 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRCitationTest >> testHaveRef [
 
 	|citation|

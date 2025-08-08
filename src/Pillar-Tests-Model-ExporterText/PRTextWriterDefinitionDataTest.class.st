@@ -1,30 +1,31 @@
 Class {
-	#name : #PRTextWriterDefinitionDataTest,
-	#superclass : #PRTextWriterListTest,
-	#category : #'Pillar-Tests-Model-ExporterText'
+	#name : 'PRTextWriterDefinitionDataTest',
+	#superclass : 'PRTextWriterListTest',
+	#category : 'Pillar-Tests-Model-ExporterText',
+	#package : 'Pillar-Tests-Model-ExporterText'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRTextWriterDefinitionDataTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterDefinitionDataTest >> actualClass [
 	^ PRDefinitionList
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterDefinitionDataTest >> listItemClass [
 	^ PRDataItem
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterDefinitionDataTest >> textString: anObject level: anInteger [
 	^ (super textString: anObject level: anInteger) , '  '
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterDefinitionDataTest >> wikiString [
 	^ ':'
 ]

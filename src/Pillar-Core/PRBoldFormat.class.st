@@ -5,12 +5,14 @@ In Pillar, text can be shown in bold by wrapping the text around `""""`.
 
 "
 Class {
-	#name : #PRBoldFormat,
-	#superclass : #PRFormat,
-	#category : #'Pillar-Core-Model'
+	#name : 'PRBoldFormat',
+	#superclass : 'PRFormat',
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRBoldFormat >> accept: aVisitor [
 	^ aVisitor visitBoldFormat: self
 ]

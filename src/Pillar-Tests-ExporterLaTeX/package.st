@@ -1,1 +1,1 @@
-Package { #name : #'Pillar-Tests-ExporterLaTeX' }
+Package { #name : 'Pillar-Tests-ExporterLaTeX' }

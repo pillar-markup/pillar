@@ -19,22 +19,24 @@ ${toc:depthLevel=5|level=3|highlight=true}$
 
 "
 Class {
-	#name : #PRTocAnnotation,
-	#superclass : #PRAbstractAnnotation,
-	#category : #'Pillar-Model-Document'
+	#name : 'PRTocAnnotation',
+	#superclass : 'PRAbstractAnnotation',
+	#category : 'Pillar-Model-Document',
+	#package : 'Pillar-Model',
+	#tag : 'Document'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRTocAnnotation class >> possibleParameters [
 	^ #(depthLevel level)
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRTocAnnotation class >> tag [
 	^ #toc
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRTocAnnotation >> accept: aVisitor [
 	^ aVisitor visitTOCAnnotation: self
 ]

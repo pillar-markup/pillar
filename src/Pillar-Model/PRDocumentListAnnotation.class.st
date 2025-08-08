@@ -15,47 +15,49 @@ ${docList:path=blogs|limit=3|sort=date|templates=#('templates/docArticle.mustach
 ${docList:path=wrongDirectory|limit=3|sort=date|templates=#('templates/docArticle.mustache' 'templates/template.mustache')}$ should raise an Error
 "
 Class {
-	#name : #PRDocumentListAnnotation,
-	#superclass : #PRAbstractAnnotation,
-	#category : #'Pillar-Model-Document'
+	#name : 'PRDocumentListAnnotation',
+	#superclass : 'PRAbstractAnnotation',
+	#category : 'Pillar-Model-Document',
+	#package : 'Pillar-Model',
+	#tag : 'Document'
 }
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRDocumentListAnnotation class >> possibleParameters [
 	
 	^ #(path limit sort templates summaryMaxSize)
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRDocumentListAnnotation class >> tag [
 	^ #docList
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRDocumentListAnnotation >> accept: aVisitor [
 
 	^ aVisitor visitDocListAnnotation: self
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRDocumentListAnnotation >> limit [
 
 	^ self parameters at: #limit ifAbsent: [ '3' ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRDocumentListAnnotation >> path [
 
 	^ self parameters at: #path
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRDocumentListAnnotation >> sort [
 
 	^ self parameters at: #sort ifAbsent: [ '' ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRDocumentListAnnotation >> summaryMaxSize [
 
 	^ self parameters at: #summaryMaxSize
@@ -63,7 +65,7 @@ PRDocumentListAnnotation >> summaryMaxSize [
 		ifAbsent: [ 500 ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRDocumentListAnnotation >> templates [
 
 	^ self parameters at: #templates ifAbsent: [ #() ]

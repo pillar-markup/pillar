@@ -2,17 +2,19 @@
 I am a vistitor which visit the document and return all file dependencies of this document.
 "
 Class {
-	#name : #PRFileDependencies,
-	#superclass : #PRDependencies,
-	#category : 'Pillar-Model-Visitor - Non Core'
+	#name : 'PRFileDependencies',
+	#superclass : 'PRDependencies',
+	#category : 'Pillar-Model-Visitor - Non Core',
+	#package : 'Pillar-Model',
+	#tag : 'Visitor - Non Core'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRFileDependencies class >> isAbstract [
 	^ false
 ]
 
-{ #category : #'visiting-document' }
+{ #category : 'visiting-document' }
 PRFileDependencies >> visitInternalLink: anInternalLink [
 	anInternalLink hasReference
 		ifTrue: [ self cachedDependencies add: (anInternalLink localFileOrExternalReference) ].

@@ -1,25 +1,26 @@
 Class {
-	#name : #PRRelativeReferenceTransformer,
-	#superclass : #Object,
+	#name : 'PRRelativeReferenceTransformer',
+	#superclass : 'Object',
 	#instVars : [
 		'inputFile',
 		'baseDirectory',
 		'outputDirectory'
 	],
-	#category : #'Pillar-ExporterLaTeX'
+	#category : 'Pillar-ExporterLaTeX',
+	#package : 'Pillar-ExporterLaTeX'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRRelativeReferenceTransformer >> baseDirectory [
 	^ baseDirectory
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRRelativeReferenceTransformer >> baseDirectory: anObject [
 	baseDirectory := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRRelativeReferenceTransformer >> destinationDirectoryFor: aDocument [ 
 	
 	| filePath relativePath |
@@ -28,7 +29,7 @@ PRRelativeReferenceTransformer >> destinationDirectoryFor: aDocument [
 	^ outputDirectory resolve: relativePath.
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PRRelativeReferenceTransformer >> executeOn: aPRDocument [
 	PRUpdateFileInclusionReference
 		start: aPRDocument
@@ -36,27 +37,27 @@ PRRelativeReferenceTransformer >> executeOn: aPRDocument [
 	^ aPRDocument
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRRelativeReferenceTransformer >> inputFile [
 	^ inputFile
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRRelativeReferenceTransformer >> inputFile: anObject [
 	inputFile := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRRelativeReferenceTransformer >> outputDirectory [
 	^ outputDirectory
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRRelativeReferenceTransformer >> outputDirectory: anObject [
 	outputDirectory := anObject
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 PRRelativeReferenceTransformer >> start: aPRDocument [ 
 	
 	^ self executeOn: aPRDocument

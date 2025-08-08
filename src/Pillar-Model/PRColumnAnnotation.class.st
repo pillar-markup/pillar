@@ -33,27 +33,29 @@ ${endColumns}$
 ]]]
 "
 Class {
-	#name : #PRColumnAnnotation,
-	#superclass : #PRAbstractAnnotation,
-	#category : #'Pillar-Model-Document'
+	#name : 'PRColumnAnnotation',
+	#superclass : 'PRAbstractAnnotation',
+	#category : 'Pillar-Model-Document',
+	#package : 'Pillar-Model',
+	#tag : 'Document'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRColumnAnnotation class >> possibleParameters [
 	^ #(width)
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRColumnAnnotation class >> tag [
 	^ #column
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRColumnAnnotation >> accept: aVisitor [
 	^ aVisitor visitColumnAnnotation: self
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PRColumnAnnotation >> asPillarParametersOn: aStream [
 	self parameters
 		at: 'width'

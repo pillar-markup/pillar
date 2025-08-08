@@ -1,20 +1,21 @@
 Class {
-	#name : #PRTextWriterTableCellTest,
-	#superclass : #PRTextWriterDocumentGroupTest,
-	#category : #'Pillar-Tests-Model-ExporterText'
+	#name : 'PRTextWriterTableCellTest',
+	#superclass : 'PRTextWriterDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-ExporterText',
+	#package : 'Pillar-Tests-Model-ExporterText'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRTextWriterTableCellTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterTableCellTest >> actualClass [
 	^ PRTableCell
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterTableCellTest >> testParseAlign1 [
 	| text tree |
 	
@@ -41,7 +42,7 @@ PRTextWriterTableCellTest >> testParseAlign1 [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterTableCellTest >> testParseAlign2 [
 	|  text tree |
 
@@ -70,7 +71,7 @@ PRTextWriterTableCellTest >> testParseAlign2 [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterTableCellTest >> testParseEncoding [
 	| text tree |
 	text := 'link	file://embedded.png	foo{}'.
@@ -97,7 +98,7 @@ PRTextWriterTableCellTest >> testParseEncoding [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterTableCellTest >> testParseHeading1 [
 	| text tree |
 	
@@ -131,7 +132,7 @@ PRTextWriterTableCellTest >> testParseHeading1 [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterTableCellTest >> testParseHeading2 [
 	| text tree |
 

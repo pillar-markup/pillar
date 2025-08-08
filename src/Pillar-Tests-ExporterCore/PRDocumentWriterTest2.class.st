@@ -387,25 +387,6 @@ PRDocumentWriterTest2 >> testFigureLabelGenerateAnchor [
 ]
 
 { #category : 'tests' }
-PRDocumentWriterTest2 >> testFigureReference [
-	| item resultString indexOfReference referenceString |
-	item := PRParagraph new
-		add:
-				(PRFigure new
-						reference: 'file://picture.png';
-						parameterAt: 'label' put: 'pierLogo';
-						counter: ((PRCascadingCounter maxLevel: 5) incrementAt: 2 );
-						yourself);
-		add: (PRText content: 'See figure ');
-		add: ((PRInternalLink reference: '@pierLogo') counter: ((PRCascadingCounter maxLevel: 5) incrementAt: 2 ));
-		yourself.
-		resultString := self write: item.
-	indexOfReference := resultString indexOfSubCollection: 'See figure ' startingAt: 1 ifAbsent: [ self fail: 'The string ''See figure '' should have been found' ].
-	referenceString := resultString allButFirst: indexOfReference - 1.
-	self assert: referenceString includesSubstring: self referenceToFigurePierLogo
-]
-
-{ #category : 'tests' }
 PRDocumentWriterTest2 >> testFigureWithLabelAndWithCaptionAreExportedWithEnvironment [
 	| item |
 	item := PRFigure new
@@ -701,34 +682,6 @@ PRDocumentWriterTest2 >> testItalicFormat [
 ]
 
 { #category : 'tests' }
-PRDocumentWriterTest2 >> testLanguageForScript [
-	| item smalltalk writer http |
-	writer := self instance.
-	item := PRCodeblock content: 'foo'.
-	
-	self assert: (writer languageForScript: item) class equals: PRUnspecifiedScriptLanguage. 
-	
-	
-	smalltalk := PRSmalltalkScriptLanguage new.
-	self configuration defaultScriptLanguage: smalltalk.
-	self assert: (writer languageForScript: item) equals: smalltalk.
-	
-	http := PRHTTPScriptLanguage new.
-	item := (PRCodeblock content: 'foo') language: http.
-	self assert: (writer languageForScript: item) equals: http
-]
-
-{ #category : 'tests' }
-PRDocumentWriterTest2 >> testLanguageForScript2 [
-	"This test documents how to map values to script languages"
-	
-	self assert: (PRRealScriptLanguage for: nil) class equals: PRUnspecifiedScriptLanguage.
-	self assert: (PRRealScriptLanguage for: 'nil') class equals:  PRUnsupportedScriptLanguage.
-	self assert: (PRRealScriptLanguage for: '') class equals:  PRUnsupportedScriptLanguage.
-	self assert: (PRRealScriptLanguage for: 'smalltalk') class equals:  PRSmalltalkScriptLanguage.
-]
-
-{ #category : 'tests' }
 PRDocumentWriterTest2 >> testMailLink [
 	| item |
 	configuration propertyAt: #scrambledEmailAddresses put: false.
@@ -812,16 +765,6 @@ PRDocumentWriterTest2 >> testScript [
 ]
 
 { #category : 'tests' }
-PRDocumentWriterTest2 >> testScriptDefaultLanguage [
-	| item |
-	self supportSyntaxHighlighting
-		ifFalse: [ self skip ].
-	item := PRCodeblock content: 'foo'.
-	configuration defaultScriptLanguage: PRHTMLScriptLanguage default.
-	self assertWriting: item includesTexts: {PRHTMLScriptLanguage standardName}
-]
-
-{ #category : 'tests' }
 PRDocumentWriterTest2 >> testScriptLabelGenerateAnchor [
 	| item |
 	item := (PRCodeblock content: 'foo')
@@ -832,16 +775,6 @@ PRDocumentWriterTest2 >> testScriptLabelGenerateAnchor [
 		includesTexts:
 			{(self scriptAnchorForMyScript).
 			'myScript'}
-]
-
-{ #category : 'tests' }
-PRDocumentWriterTest2 >> testScriptLanguage [
-	| item |
-	self supportSyntaxHighlighting ifFalse: [ self skip ].
-	item := (PRCodeblock content: 'foo')
-		language: 'html';
-		yourself.
-	self assertWriting: item includesTexts: {(PRHTMLScriptLanguage standardName)}
 ]
 
 { #category : 'tests' }

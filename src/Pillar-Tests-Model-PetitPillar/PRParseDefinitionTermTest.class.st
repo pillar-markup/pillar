@@ -1,25 +1,26 @@
 Class {
-	#name : #PRParseDefinitionTermTest,
-	#superclass : #PRParseListTest,
-	#category : #'Pillar-Tests-Model-PetitPillar'
+	#name : 'PRParseDefinitionTermTest',
+	#superclass : 'PRParseListTest',
+	#category : 'Pillar-Tests-Model-PetitPillar',
+	#package : 'Pillar-Tests-Model-PetitPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRParseDefinitionTermTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseDefinitionTermTest >> actualClass [
 	^ PRDefinitionList
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseDefinitionTermTest >> listItemClass [
 	^ PRTermItem
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRParseDefinitionTermTest >> testParseMixed [
 
 	| wiki tree nLine |
@@ -44,12 +45,12 @@ PRParseDefinitionTermTest >> testParseMixed [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseDefinitionTermTest >> textString: anObject level: anInteger [
 	^ (super textString: anObject level: anInteger) , '- '
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseDefinitionTermTest >> wikiString [
 	^ ';'
 ]

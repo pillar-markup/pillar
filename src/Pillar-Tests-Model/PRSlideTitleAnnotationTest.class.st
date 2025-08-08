@@ -1,15 +1,17 @@
 Class {
-	#name : #PRSlideTitleAnnotationTest,
-	#superclass : #PRAbstractAnnotationTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#name : 'PRSlideTitleAnnotationTest',
+	#superclass : 'PRAbstractAnnotationTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRSlideTitleAnnotationTest >> actualClass [
 	^ PRSlideTitleAnnotation
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRSlideTitleAnnotationTest >> referenceParameters [
 	^ PRParameters withAll: { 
 		PRParameter 
@@ -20,7 +22,7 @@ PRSlideTitleAnnotationTest >> referenceParameters [
 			valueNode: (PRParameterValue value: 'Tintin') }
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRSlideTitleAnnotationTest >> referenceString [
 	^ 'slide:title=Foo|label=Tintin'
 ]

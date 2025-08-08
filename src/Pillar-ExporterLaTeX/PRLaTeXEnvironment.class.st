@@ -8,22 +8,23 @@ kjlkjkl
 \end{XXX}
 "
 Class {
-	#name : #PRLaTeXEnvironment,
-	#superclass : #PRLaTeXBrush,
+	#name : 'PRLaTeXEnvironment',
+	#superclass : 'PRLaTeXBrush',
 	#instVars : [
 		'name'
 	],
-	#category : 'Pillar-ExporterLaTeX'
+	#category : 'Pillar-ExporterLaTeX',
+	#package : 'Pillar-ExporterLaTeX'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRLaTeXEnvironment >> name: aString [
 	name := aString.
 	stream newLine.
 	stream << '\begin{' << aString << '}'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRLaTeXEnvironment >> with: aBlock [
 	stream newLine.
 	aBlock value.

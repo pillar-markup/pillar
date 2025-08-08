@@ -20,56 +20,58 @@ For now the parameters should be tested and available from the syntax and this i
 
 "
 Class {
-	#name : #PREnvironment,
-	#superclass : #PRDocumentGroup,
+	#name : 'PREnvironment',
+	#superclass : 'PRDocumentGroup',
 	#traits : 'PRTParametrizable',
 	#classTraits : 'PRTParametrizable classTrait',
 	#instVars : [
 		'name',
 		'parameters'
 	],
-	#category : #'Pillar-Core-Model'
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PREnvironment class >> named: aString [ 
 	
 	^ self new name: aString; yourself
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PREnvironment >> accept: aVisitor [
 	^ aVisitor visitEnvironment: self
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PREnvironment >> initialize [
 	super initialize.
 	parameters := OrderedDictionary new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PREnvironment >> name [
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PREnvironment >> name: aString [ 
 	
 	name := aString
 ]
 
-{ #category : #'accessing-parameters' }
+{ #category : 'accessing-parameters' }
 PREnvironment >> parameters [
 	^ parameters
 ]
 
-{ #category : #'accessing-parameters' }
+{ #category : 'accessing-parameters' }
 PREnvironment >> parameters: anOrderedDictionary [
 	parameters := anOrderedDictionary
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PREnvironment >> printOn: aStream [
 	
 	super printOn: aStream.

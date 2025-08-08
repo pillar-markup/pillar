@@ -5,15 +5,17 @@ My key is instance of PRParameterKey and its associated vaue is an instance of P
 
 "
 Class {
-	#name : #PRParameter,
-	#superclass : #PRDocumentGroup,
+	#name : 'PRParameter',
+	#superclass : 'PRDocumentGroup',
 	#instVars : [
 		'isValid'
 	],
-	#category : #'Pillar-Core-Model'
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRParameter class >> keyNode: aParameterKey valueNode: aParameterValue [ 
 	| anInstance |
 	anInstance := self new.
@@ -22,54 +24,54 @@ PRParameter class >> keyNode: aParameterKey valueNode: aParameterValue [
 	^ anInstance 
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRParameter >> = anObject [
 	^ super = anObject and: [ self isValid = anObject isValid ]
 ]
 
-{ #category : #visitor }
+{ #category : 'visitor' }
 PRParameter >> accept: aVisitor [
 	^ aVisitor visitParameter: self
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRParameter >> beInvalid [
 	isValid := false
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PRParameter >> initialize [
 	super initialize.
 	isValid := true.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRParameter >> isValid [
 	^ isValid
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRParameter >> key [
 	^ self keyNode name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRParameter >> keyNode [
 	^ self children first
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PRParameter >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPutAll: ' key: '; print: self key
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRParameter >> value [
 	^ self valueNode value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRParameter >> valueNode [
 	^ self children second
 ]

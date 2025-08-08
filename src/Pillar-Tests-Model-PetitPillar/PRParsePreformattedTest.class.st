@@ -1,20 +1,21 @@
 Class {
-	#name : #PRParsePreformattedTest,
-	#superclass : #PRParseDocumentGroupTest,
-	#category : #'Pillar-Tests-Model-PetitPillar'
+	#name : 'PRParsePreformattedTest',
+	#superclass : 'PRParseDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-PetitPillar',
+	#package : 'Pillar-Tests-Model-PetitPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRParsePreformattedTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParsePreformattedTest >> actualClass [
 	^ PRPreformatted
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParsePreformattedTest >> testParseBasic [
 	| wiki tree |
 	wiki := '= Line'.
@@ -27,7 +28,7 @@ PRParsePreformattedTest >> testParseBasic [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParsePreformattedTest >> testParseEmpty [
 	| wiki  tree |
 	wiki := '= '.
@@ -41,7 +42,7 @@ PRParsePreformattedTest >> testParseEmpty [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParsePreformattedTest >> testParseMultiple [
 
 	| wiki tree nLine |
@@ -61,7 +62,7 @@ PRParsePreformattedTest >> testParseMultiple [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParsePreformattedTest >> testParseSpaces [
 
 	| wiki tree nLine |
@@ -76,7 +77,7 @@ PRParsePreformattedTest >> testParseSpaces [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParsePreformattedTest >> testParseSpecials [
 	| wiki tree |
 	wiki := '= |, {, }, *, *, [, ||, |{, |}, +, +'.

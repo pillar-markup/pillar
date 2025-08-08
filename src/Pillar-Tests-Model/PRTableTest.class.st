@@ -1,20 +1,22 @@
 Class {
-	#name : #PRTableTest,
-	#superclass : #PRDocumentGroupTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#name : 'PRTableTest',
+	#superclass : 'PRDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRTableTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTableTest >> actualClass [
 	^ PRTable
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRTableTest >> testCount [
 	self instance
 		add:

@@ -1,15 +1,16 @@
 Class {
-	#name : #PRTextWriterCommentedLineTest,
-	#superclass : #PRTextWriterTextTest,
-	#category : #'Pillar-Tests-Model-ExporterText'
+	#name : 'PRTextWriterCommentedLineTest',
+	#superclass : 'PRTextWriterTextTest',
+	#category : 'Pillar-Tests-Model-ExporterText',
+	#package : 'Pillar-Tests-Model-ExporterText'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterCommentedLineTest >> actualClass [
 	^ PRCommentedLine
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterCommentedLineTest >> testParseBasic [
 	| text tree |
 	text := ''.
@@ -20,7 +21,7 @@ PRTextWriterCommentedLineTest >> testParseBasic [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterCommentedLineTest >> testParseDontInterruptLists [
 
 	| text tree nLine |
@@ -46,7 +47,7 @@ PRTextWriterCommentedLineTest >> testParseDontInterruptLists [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterCommentedLineTest >> testParseDontParseContent [
 	| text tree |
 	text := ''.

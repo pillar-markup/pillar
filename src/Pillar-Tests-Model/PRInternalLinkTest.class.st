@@ -1,32 +1,34 @@
 Class {
-	#name : #PRInternalLinkTest,
-	#superclass : #PRLinkTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#name : 'PRInternalLinkTest',
+	#superclass : 'PRLinkTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRInternalLinkTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRInternalLinkTest >> actualClass [
 	^ PRInternalLink
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRInternalLinkTest >> referenceString [
 	^ 'Page'
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRInternalLinkTest >> testAnchor [
 	self instance anchor: 'zork'.
 	self assert: self instance anchor equals: 'zork'.
 	self assert: self instance hasAnchor
 ]
 
-{ #category : #'tests-comparing' }
+{ #category : 'tests-comparing' }
 PRInternalLinkTest >> testEqualAnchor [
 	self
 		deny:
@@ -39,12 +41,12 @@ PRInternalLinkTest >> testEqualAnchor [
 				yourself)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRInternalLinkTest >> testIsInternal [
 	self assert: self instance isInternal
 ]
 
-{ #category : #'tests-accessing' }
+{ #category : 'tests-accessing' }
 PRInternalLinkTest >> testTitle [
 	super testTitle.
 	self instance reference: 'page'.

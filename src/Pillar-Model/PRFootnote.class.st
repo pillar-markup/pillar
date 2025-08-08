@@ -6,35 +6,37 @@ noted: aString
 It create a footnote with note specified in parameter.
 "
 Class {
-	#name : #PRFootnote,
-	#superclass : #PRDocumentItem,
+	#name : 'PRFootnote',
+	#superclass : 'PRDocumentItem',
 	#instVars : [
 		'note'
 	],
-	#category : #'Pillar-Model-Document'
+	#category : 'Pillar-Model-Document',
+	#package : 'Pillar-Model',
+	#tag : 'Document'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRFootnote class >> isAbstract [
 	^ false
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRFootnote class >> noted: aString [
 	^ self new note: aString.
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRFootnote >> accept: aVisitor [
 	^ aVisitor visitFootnote: self.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRFootnote >> note [
 	^ note
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRFootnote >> note: aString [
 	note := aString
 ]

@@ -1,20 +1,21 @@
 Class {
-	#name : #PRPillarWriterTableCellTest,
-	#superclass : #PRPillarWriterDocumentGroupTest,
-	#category : #'Pillar-Tests-Model-ExporterPillar'
+	#name : 'PRPillarWriterTableCellTest',
+	#superclass : 'PRPillarWriterDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-ExporterPillar',
+	#package : 'Pillar-Tests-Model-ExporterPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRPillarWriterTableCellTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRPillarWriterTableCellTest >> actualClass [
 	^ PRTableCell
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTableCellTest >> testParseAlign1 [
 	| wiki tree |
 	wiki := '|{left||center|}right'.
@@ -42,7 +43,7 @@ PRPillarWriterTableCellTest >> testParseAlign1 [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTableCellTest >> testParseAlign2 [
 	| wiki tree |
 	wiki := '|}right|none|{left|none'.
@@ -72,7 +73,7 @@ PRPillarWriterTableCellTest >> testParseAlign2 [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTableCellTest >> testParseEncoding [
 	| wiki tree |
 	wiki := '|*link*|+file://embedded.png+|foo{}'.
@@ -101,7 +102,7 @@ PRPillarWriterTableCellTest >> testParseEncoding [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTableCellTest >> testParseHeading1 [
 	| wiki tree |
 	wiki := '|!head|{!left||!center|}!right'.
@@ -135,7 +136,7 @@ PRPillarWriterTableCellTest >> testParseHeading1 [
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTableCellTest >> testParseHeading2 [
 	| wiki2 text tree |
 	

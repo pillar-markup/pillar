@@ -1,15 +1,17 @@
 Class {
-	#name : #PRLineBreakTest,
-	#superclass : #PRDocumentItemTest,
-	#category : #'Pillar-Tests-Model-Document'
+	#name : 'PRLineBreakTest',
+	#superclass : 'PRDocumentItemTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRLineBreakTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRLineBreakTest >> actualClass [
 	^ PRLineBreak
 ]

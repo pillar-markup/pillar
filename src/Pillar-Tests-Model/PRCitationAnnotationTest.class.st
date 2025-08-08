@@ -1,15 +1,17 @@
 Class {
-	#name : #PRCitationAnnotationTest,
-	#superclass : #PRAbstractAnnotationTest,
-	#category : 'Pillar-Tests-Model-Document'
+	#name : 'PRCitationAnnotationTest',
+	#superclass : 'PRAbstractAnnotationTest',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRCitationAnnotationTest >> actualClass [
 	^PRCitationAnnotation
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRCitationAnnotationTest >> referenceParameters [
 	^ PRParameters withAll: { 
 		PRParameter 
@@ -17,7 +19,7 @@ PRCitationAnnotationTest >> referenceParameters [
 			valueNode: (PRParameterValue value: 'hello') }
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRCitationAnnotationTest >> referenceString [
 	^ 'cite:ref=hello'
 ]

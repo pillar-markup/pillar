@@ -2,23 +2,25 @@
 I am a Mock to test the annotations.
 "
 Class {
-	#name : #PRMockAnnotation,
-	#superclass : #PRAbstractAnnotation,
-	#category : 'Pillar-Tests-Model-Document'
+	#name : 'PRMockAnnotation',
+	#superclass : 'PRAbstractAnnotation',
+	#category : 'Pillar-Tests-Model-Document',
+	#package : 'Pillar-Tests-Model',
+	#tag : 'Document'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRMockAnnotation class >> possibleParameters [
 
 	^ #(value number)
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 PRMockAnnotation class >> tag [
 	^ #mock
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRMockAnnotation class >> validateParameters: parameters [
 
 	super validateParameters: parameters.
@@ -28,7 +30,7 @@ PRMockAnnotation class >> validateParameters: parameters [
 	
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRMockAnnotation class >> validateParameters: aPRParameters dictionary: parametersDictionary in: anAnnotation [
 	super
 		validateParameters: aPRParameters
@@ -39,7 +41,7 @@ PRMockAnnotation class >> validateParameters: aPRParameters dictionary: paramete
 		ifPresent: [ :v | parametersDictionary at: 'number' put: v asNumber ]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PRMockAnnotation >> asPillarParametersOn: aStream [
 	self parameters keys
 		do: [ :each | self asPillarKey: each value:  (self parameters at: each asString) asString on: aStream ]

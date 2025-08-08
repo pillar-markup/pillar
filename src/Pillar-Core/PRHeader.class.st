@@ -2,53 +2,55 @@
 I represent a header within a document. My level is a natural number.
 "
 Class {
-	#name : #PRHeader,
-	#superclass : #PRDocumentGroup,
+	#name : 'PRHeader',
+	#superclass : 'PRDocumentGroup',
 	#instVars : [
 		'level'
 	],
-	#category : #'Pillar-Core-Model'
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PRHeader class >> withAll: aCollection level: anInteger [
 	^ (self withAll: aCollection)
 		level: anInteger;
 		yourself
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRHeader >> = anObject [
 	^ super = anObject
 		and: [ self level = anObject level ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRHeader >> accept: aVisitor [
 	^ aVisitor visitHeader: self
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PRHeader >> hash [
 	^ super hash bitXor: self level hash
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRHeader >> headerText [
 	^ self children first text
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRHeader >> isHeader [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRHeader >> level [
 	^ level
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRHeader >> level: anInteger [
 	level := anInteger
 ]

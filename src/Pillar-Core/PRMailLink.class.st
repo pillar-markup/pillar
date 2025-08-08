@@ -2,12 +2,14 @@
 I am an external link pointing to a mail address. I encode my URL to prevent spam bots collecting the address.
 "
 Class {
-	#name : #PRMailLink,
-	#superclass : #PRExternalLink,
-	#category : #'Pillar-Core-Model'
+	#name : 'PRMailLink',
+	#superclass : 'PRExternalLink',
+	#category : 'Pillar-Core-Model',
+	#package : 'Pillar-Core',
+	#tag : 'Model'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRMailLink class >> isValidReference: aString [
 	| index |
 	index := aString indexOf: $@ ifAbsent: [ ^ false ].
@@ -15,27 +17,27 @@ PRMailLink class >> isValidReference: aString [
 	^ aString allSatisfy: [ :each | each isAlphaNumeric or: [ '@-.' includes: each ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRMailLink class >> priority [
 	^ 50
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PRMailLink >> accept: aVisitor [
 	^ aVisitor visitMailLink: self
 ]
 
-{ #category : #'accessing-dynamic' }
+{ #category : 'accessing-dynamic' }
 PRMailLink >> scrambledUrl [
 	^ self url
 ]
 
-{ #category : #'accessing-dynamic' }
+{ #category : 'accessing-dynamic' }
 PRMailLink >> unscrambledUrl [
 	^ self urlPrefix, super urlEntry, self urlPostfix
 ]
 
-{ #category : #'accessing-dynamic' }
+{ #category : 'accessing-dynamic' }
 PRMailLink >> urlEntry [
 	^ String streamContents: [ :stream |
 		super urlEntry do: [ :each |
@@ -45,7 +47,7 @@ PRMailLink >> urlEntry [
 		padLeftTo: 2 with: $0) ] ] ]
 ]
 
-{ #category : #'accessing-dynamic' }
+{ #category : 'accessing-dynamic' }
 PRMailLink >> urlPrefix [
 	^ 'mailto:'
 ]
