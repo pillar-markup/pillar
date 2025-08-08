@@ -2,7 +2,23 @@ Extension { #name : 'MicRootBlock' }
 
 { #category : '*Pillar-ExporterCore' }
 MicRootBlock >> pdfTransformationsFor: aDocument [
-
+	"Return a list of visitors or operations that mutate the argument.
+	In Pillar it was for example
+	
+		^ { 
+		PRRelativeReferenceTransformer new
+			inputFile: anOutputDocument inputFile;
+			baseDirectory: anOutputDocument baseDirectory asAbsolute;
+			outputDirectory: (anOutputDocument outputDirectory);
+			yourself
+		.
+		PRLatexPathUpdateVisitor new 
+		}
+	
+	"
+	
+	
+	
 	^ #()
 ]
 

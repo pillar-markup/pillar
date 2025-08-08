@@ -27,6 +27,14 @@ BaselineOfPillar >> baseline: spec [
 			package: 'Pillar-Model' 
 				with: [ spec requires: #( 'Pillar-Core' ) ];
 		
+			"I reintroduced Latex and HTML package because they contain project logic
+			I removed the generation part."
+			package: 'Pillar-ExporterLaTeX'
+				with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-Model' 'Mustache') ];
+			package: 'Pillar-ExporterHTML'
+				with: [ spec requires: #( 'Pillar-ExporterCore') ];
+		
+		
 			package: 'Pillar-Tests-Model' 
 				with: [ spec requires: 
 						#( 	'Pillar-Core' 'Pillar-Model' 'Pillar-Tests-Core' ) ];
@@ -55,6 +63,8 @@ BaselineOfPillar >> baseline: spec [
 			group: 'All' 
 				with: 
 				#(
+				'Pillar-ExporterLaTeX'
+				'Pillar-ExporterHTML'
 				'Pillar-Tests-Core'
 				'Pillar-Tests-Model' 
 				'Pillar-Tests-ExporterCore' 

@@ -87,16 +87,6 @@ PRLaTeXCanvas class >> initialize [
 		at: $Ñ put: '\~{N}'
 ]
 
-{ #category : 'tags' }
-PRLaTeXCanvas >> command [
-	^ self brush: PRLaTeXCommand new
-]
-
-{ #category : 'tags' }
-PRLaTeXCanvas >> environment [
-	^ self brush: PRLaTeXEnvironment new
-]
-
 { #category : 'writing text' }
 PRLaTeXCanvas >> nextPut: aCharacter [
 	(LatexCharacters at: aCharacter ifAbsent: nil)
