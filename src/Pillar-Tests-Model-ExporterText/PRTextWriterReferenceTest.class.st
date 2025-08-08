@@ -1,25 +1,26 @@
 Class {
-	#name : #PRTextWriterReferenceTest,
-	#superclass : #PRTextWriterDocumentGroupTest,
-	#category : #'Pillar-Tests-Model-ExporterText'
+	#name : 'PRTextWriterReferenceTest',
+	#superclass : 'PRTextWriterDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-ExporterText',
+	#package : 'Pillar-Tests-Model-ExporterText'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterReferenceTest >> actualClass [
 	^ PRReference
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterReferenceTest >> markup [
 	^ self subclassResponsibility
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterReferenceTest >> referenceString [
 	self subclassResponsibility
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRTextWriterReferenceTest >> testNonTextAlias [
 	| text tree |
 
@@ -37,7 +38,7 @@ PRTextWriterReferenceTest >> testNonTextAlias [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterReferenceTest >> testParseAliased [
 	| text tree |
 	text := 'Alias'.
@@ -53,7 +54,7 @@ PRTextWriterReferenceTest >> testParseAliased [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterReferenceTest >> testParseAliasedEmpty [
 	| text tree |
 	
@@ -71,7 +72,7 @@ PRTextWriterReferenceTest >> testParseAliasedEmpty [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterReferenceTest >> testParseBasic [
 	| text tree |
 	
@@ -89,7 +90,7 @@ PRTextWriterReferenceTest >> testParseBasic [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterReferenceTest >> testParseEasyness [
 
 	| text tree |
@@ -106,7 +107,7 @@ PRTextWriterReferenceTest >> testParseEasyness [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterReferenceTest >> testParseEmpty [
 	| text tree |
 	
@@ -121,7 +122,7 @@ PRTextWriterReferenceTest >> testParseEmpty [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterReferenceTest >> testParseEscaped [
 
 	| text tree |
@@ -140,7 +141,7 @@ PRTextWriterReferenceTest >> testParseEscaped [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterReferenceTest >> testParseParameters [
 	| text tree |
 
@@ -165,7 +166,7 @@ PRTextWriterReferenceTest >> testParseParameters [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterReferenceTest >> testParseParametersEmpty [
 	| text tree |
 
@@ -189,7 +190,7 @@ PRTextWriterReferenceTest >> testParseParametersEmpty [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterReferenceTest >> testParseParametersEscaped [
 	| text tree |
 

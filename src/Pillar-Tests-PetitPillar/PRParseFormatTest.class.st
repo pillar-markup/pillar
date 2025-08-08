@@ -1,53 +1,54 @@
 Class {
-	#name : #PRParseFormatTest,
-	#superclass : #PRParseDocumentGroupTest,
+	#name : 'PRParseFormatTest',
+	#superclass : 'PRParseDocumentGroupTest',
 	#instVars : [
 		'otherClass',
 		'markup',
 		'actualClass'
 	],
-	#category : #'Pillar-Tests-PetitPillar'
+	#category : 'Pillar-Tests-PetitPillar',
+	#package : 'Pillar-Tests-PetitPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRParseFormatTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRParseFormatTest class >> testParameters [
 	^ (ParametrizedTestMatrix new
 			forSelector: #actualClass addOptions: PRFormat subclasses )
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseFormatTest >> actualClass [
 	^ actualClass
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseFormatTest >> actualClass: aClass [
 	actualClass := aClass
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseFormatTest >> escapeMarkup:  aMarkup [
 	^ String streamContents: [ :str | aMarkup do: [ :each | str nextPut: $\; nextPut: each ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRParseFormatTest >> otherClass [
 	^ otherClass ifNil: [ otherClass := PRFormat allSubclasses detect: [ :each | self actualClass ~= each ] ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PRParseFormatTest >> setUp [
 
 	super setUp.
 	markup := PRPillarGrammar markups at: self actualClass
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseFormatTest >> testParseBasic [
 	| wiki tree |
 	wiki := '1' , markup , '2' , markup , '3'.
@@ -64,7 +65,7 @@ PRParseFormatTest >> testParseBasic [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseFormatTest >> testParseEnd [
 	| wiki tree |
 	wiki := '1' , markup , '2' , markup.
@@ -80,7 +81,7 @@ PRParseFormatTest >> testParseEnd [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseFormatTest >> testParseEscaped [
 	| wiki tree |
 	wiki := ' ' , (self escapeMarkup: markup) , (self escapeMarkup: markup).
@@ -94,7 +95,7 @@ PRParseFormatTest >> testParseEscaped [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseFormatTest >> testParseIncomplete [
 	| wiki1 wiki2 tree |
 	wiki1 := '1' , markup , '2'.
@@ -111,7 +112,7 @@ PRParseFormatTest >> testParseIncomplete [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseFormatTest >> testParseMany [
 	| wiki tree |
 	wiki := '1' , markup , '2' , markup , '3' , markup , '4' , markup , '5'.
@@ -130,7 +131,7 @@ PRParseFormatTest >> testParseMany [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseFormatTest >> testParseNested [
 	| wiki tree |
 	wiki := '1' , markup , '2' , (PRPillarGrammar markups at: self otherClass) , '3'
@@ -156,7 +157,7 @@ PRParseFormatTest >> testParseNested [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseFormatTest >> testParseNestedTight [
 	| wiki tree |
 	wiki := ' ' , markup , (PRPillarGrammar markups at: self otherClass)
@@ -172,7 +173,7 @@ PRParseFormatTest >> testParseNestedTight [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseFormatTest >> testParseWithNewLine [
 
 	| wiki tree |
@@ -190,7 +191,7 @@ PRParseFormatTest >> testParseWithNewLine [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseFormatTest >> testParseWithSpace [
 	| wiki tree |
 	wiki := '1' , markup , '2 3' , markup , '4'.

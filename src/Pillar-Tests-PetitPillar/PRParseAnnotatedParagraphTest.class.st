@@ -1,20 +1,21 @@
 Class {
-	#name : #PRParseAnnotatedParagraphTest,
-	#superclass : #PRParseDocumentGroupTest,
-	#category : #'Pillar-Tests-PetitPillar'
+	#name : 'PRParseAnnotatedParagraphTest',
+	#superclass : 'PRParseDocumentGroupTest',
+	#category : 'Pillar-Tests-PetitPillar',
+	#package : 'Pillar-Tests-PetitPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRParseAnnotatedParagraphTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseAnnotatedParagraphTest >> actualClass [
 	^ PRAnnotatedParagraph
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseAnnotatedParagraphTest >> testParseBasic [
 	| wiki tree |
 	wiki := '@@foo bar zork'.
@@ -28,7 +29,7 @@ PRParseAnnotatedParagraphTest >> testParseBasic [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseAnnotatedParagraphTest >> testParseEmptyFollowedByPreformatted [
 
 	| wiki tree nLine |
@@ -45,7 +46,7 @@ PRParseAnnotatedParagraphTest >> testParseEmptyFollowedByPreformatted [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseAnnotatedParagraphTest >> testParseOnlyAnnotation [
 	| wiki tree |
 	wiki := '@@foo'.
@@ -58,7 +59,7 @@ PRParseAnnotatedParagraphTest >> testParseOnlyAnnotation [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseAnnotatedParagraphTest >> testParseOnlyNothing [
 	| wiki tree |
 	wiki := '@@'.
@@ -71,7 +72,7 @@ PRParseAnnotatedParagraphTest >> testParseOnlyNothing [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseAnnotatedParagraphTest >> testParseOnlyText [
 	| wiki tree |
 	wiki := '@@ foo bar'.

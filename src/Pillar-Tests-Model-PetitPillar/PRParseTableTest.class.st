@@ -1,20 +1,21 @@
 Class {
-	#name : #PRParseTableTest,
-	#superclass : #PRParseDocumentGroupTest,
-	#category : #'Pillar-Tests-Model-PetitPillar'
+	#name : 'PRParseTableTest',
+	#superclass : 'PRParseDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-PetitPillar',
+	#package : 'Pillar-Tests-Model-PetitPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRParseTableTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseTableTest >> actualClass [
 	^ PRTable
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTableTest >> testParseBasic [
 	| wiki tree |
 	wiki := '|cell'.
@@ -31,7 +32,7 @@ PRParseTableTest >> testParseBasic [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTableTest >> testParseSquare [
 
 	| wiki tree nLine |
@@ -60,7 +61,7 @@ PRParseTableTest >> testParseSquare [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTableTest >> testParseTriangle [
 
 	| wiki tree nLine |
@@ -97,7 +98,7 @@ PRParseTableTest >> testParseTriangle [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTableTest >> testParseWithPreformattedAndLinkWithParameters [
 	| wiki tree |
 	wiki := '|==\+link\|a\+==|'.
@@ -118,7 +119,7 @@ PRParseTableTest >> testParseWithPreformattedAndLinkWithParameters [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTableTest >> testParseWithPreformattedAndProtectedPipe [
 	| wiki tree |
 	wiki := '|==\|==|'.

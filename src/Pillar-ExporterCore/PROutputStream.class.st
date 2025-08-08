@@ -10,9 +10,9 @@ Class {
 		'stream',
 		'configuration'
 	],
-	#category : 'Pillar-ExporterCore-Utilities',
+	#category : 'Pillar-ExporterCore-Removal candidates',
 	#package : 'Pillar-ExporterCore',
-	#tag : 'Utilities'
+	#tag : 'Removal candidates'
 }
 
 { #category : 'instance creation' }

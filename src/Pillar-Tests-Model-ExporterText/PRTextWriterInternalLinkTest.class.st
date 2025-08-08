@@ -1,25 +1,26 @@
 Class {
-	#name : #PRTextWriterInternalLinkTest,
-	#superclass : #PRTextWriterLinkTest,
-	#category : #'Pillar-Tests-Model-ExporterText'
+	#name : 'PRTextWriterInternalLinkTest',
+	#superclass : 'PRTextWriterLinkTest',
+	#category : 'Pillar-Tests-Model-ExporterText',
+	#package : 'Pillar-Tests-Model-ExporterText'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRTextWriterInternalLinkTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterInternalLinkTest >> actualClass [
 	^ PRInternalLink
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterInternalLinkTest >> referenceString [
 	^ 'Page'
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterInternalLinkTest >> testParseAnchored [
 	| text tree |
 
@@ -39,7 +40,7 @@ PRTextWriterInternalLinkTest >> testParseAnchored [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterInternalLinkTest >> testParseEverything [
 	| text tree |
 	

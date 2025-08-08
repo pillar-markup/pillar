@@ -1,20 +1,21 @@
 Class {
-	#name : #PRTextWriterHorizontalRuleTest,
-	#superclass : #PRTextWriterDocumentItemTest,
-	#category : #'Pillar-Tests-Model-ExporterText'
+	#name : 'PRTextWriterHorizontalRuleTest',
+	#superclass : 'PRTextWriterDocumentItemTest',
+	#category : 'Pillar-Tests-Model-ExporterText',
+	#package : 'Pillar-Tests-Model-ExporterText'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRTextWriterHorizontalRuleTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterHorizontalRuleTest >> actualClass [
 	^ PRHorizontalRule
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterHorizontalRuleTest >> testParseBasic [
 	| text tree |
 
@@ -26,7 +27,7 @@ PRTextWriterHorizontalRuleTest >> testParseBasic [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterHorizontalRuleTest >> testParseMultiple [
 
 	| text tree nLine |
@@ -42,7 +43,7 @@ PRTextWriterHorizontalRuleTest >> testParseMultiple [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterHorizontalRuleTest >> testParseParagraph [
 	| text tree |
 
@@ -56,7 +57,7 @@ PRTextWriterHorizontalRuleTest >> testParseParagraph [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterHorizontalRuleTest >> testParseSpaces [
 	| text tree |
 	text := self textString.
@@ -66,7 +67,7 @@ PRTextWriterHorizontalRuleTest >> testParseSpaces [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterHorizontalRuleTest >> textString [
 	^ String new: 40 withAll: $-
 ]

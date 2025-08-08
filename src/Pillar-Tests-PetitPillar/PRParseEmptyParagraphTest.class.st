@@ -1,15 +1,16 @@
 Class {
-	#name : #PRParseEmptyParagraphTest,
-	#superclass : #PRParseParagraphTest,
-	#category : #'Pillar-Tests-PetitPillar'
+	#name : 'PRParseEmptyParagraphTest',
+	#superclass : 'PRParseParagraphTest',
+	#category : 'Pillar-Tests-PetitPillar',
+	#package : 'Pillar-Tests-PetitPillar'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseEmptyParagraphTest >> actualClass [
 	^ PREmptyParagraph
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRParseEmptyParagraphTest >> testParseEmptyParagraphAtBeginning [
 
 	| wiki tree content |
@@ -24,7 +25,7 @@ PRParseEmptyParagraphTest >> testParseEmptyParagraphAtBeginning [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRParseEmptyParagraphTest >> testParseEmptyParagraphInTheMiddle [
 
 	| wiki tree content nLine |

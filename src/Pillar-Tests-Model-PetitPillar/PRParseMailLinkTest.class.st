@@ -1,25 +1,26 @@
 Class {
-	#name : #PRParseMailLinkTest,
-	#superclass : #PRParseExternalLinkTest,
-	#category : #'Pillar-Tests-Model-PetitPillar'
+	#name : 'PRParseMailLinkTest',
+	#superclass : 'PRParseExternalLinkTest',
+	#category : 'Pillar-Tests-Model-PetitPillar',
+	#package : 'Pillar-Tests-Model-PetitPillar'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseMailLinkTest >> actualClass [
 	^ PRMailLink
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseMailLinkTest >> referenceString [
 	^ 'renggli@gmail.com'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PRParseMailLinkTest >> testLinkToAFigureIsExternalLink [
 	"This test has no meaning in PRMailLinkTest."
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseMailLinkTest >> testParseBogus [
 	| wiki tree |
 	wiki := '*ab12@x.com*'.

@@ -4,9 +4,9 @@ I'm a configuration that render myself as a Roman number.
 Class {
 	#name : 'PRLevelRomanPrinter',
 	#superclass : 'PRTitlePrinterSpecification',
-	#category : 'Pillar-ExporterCore-Configuration',
+	#category : 'Pillar-ExporterCore-Kept for doc ',
 	#package : 'Pillar-ExporterCore',
-	#tag : 'Configuration'
+	#tag : 'Kept for doc '
 }
 
 { #category : 'rendering-element' }

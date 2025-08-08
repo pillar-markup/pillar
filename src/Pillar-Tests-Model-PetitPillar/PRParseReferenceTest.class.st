@@ -1,25 +1,26 @@
 Class {
-	#name : #PRParseReferenceTest,
-	#superclass : #PRParseDocumentGroupTest,
-	#category : #'Pillar-Tests-Model-PetitPillar'
+	#name : 'PRParseReferenceTest',
+	#superclass : 'PRParseDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-PetitPillar',
+	#package : 'Pillar-Tests-Model-PetitPillar'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseReferenceTest >> actualClass [
 	^ PRReference
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseReferenceTest >> markup [
 	^ self subclassResponsibility
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseReferenceTest >> referenceString [
 	self subclassResponsibility
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRParseReferenceTest >> testNonTextAlias [
 	| wiki tree |
 	wiki := self markup , 'foo ""Alias"">' , self referenceString , self markup.
@@ -36,7 +37,7 @@ PRParseReferenceTest >> testNonTextAlias [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseReferenceTest >> testParseAliased [
 	| wiki tree |
 	wiki := self markup , 'Alias>' , self referenceString , self markup.
@@ -52,7 +53,7 @@ PRParseReferenceTest >> testParseAliased [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseReferenceTest >> testParseAliasedEmpty [
 	| wiki tree |
 	wiki := self markup , '>' , self referenceString , self markup.
@@ -70,7 +71,7 @@ PRParseReferenceTest >> testParseAliasedEmpty [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseReferenceTest >> testParseBasic [
 	| wiki tree |
 	wiki := self markup  , self referenceString , self markup .
@@ -86,7 +87,7 @@ PRParseReferenceTest >> testParseBasic [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseReferenceTest >> testParseEasyness [
 
 	| wiki1 wiki2 tree |
@@ -105,7 +106,7 @@ PRParseReferenceTest >> testParseEasyness [
 	self parserAssertWiki: wiki2 equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseReferenceTest >> testParseEmpty [
 	| wiki1 wiki2 tree |
 	wiki1 := self markup , self markup.
@@ -121,7 +122,7 @@ PRParseReferenceTest >> testParseEmpty [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseReferenceTest >> testParseEscaped [
 
 	| wiki tree |
@@ -139,7 +140,7 @@ PRParseReferenceTest >> testParseEscaped [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseReferenceTest >> testParseParameters [
 	| wiki tree |
 	wiki := self markup , 'Alias>' , self referenceString , '|a=1|b=2|c=true' , self markup .
@@ -163,7 +164,7 @@ PRParseReferenceTest >> testParseParameters [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseReferenceTest >> testParseParametersEmpty [
 	| wiki tree |
 	wiki := self markup , 'Alias>' , self referenceString , '|a||b|' , self markup  .
@@ -186,7 +187,7 @@ PRParseReferenceTest >> testParseParametersEmpty [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseReferenceTest >> testParseParametersEscaped [
 	| wiki tree |
 	wiki := self markup , 'Alias>' , self referenceString , '|2=\|\=|\|\==1' , self markup .

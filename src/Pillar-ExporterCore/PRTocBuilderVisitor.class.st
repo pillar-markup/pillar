@@ -19,9 +19,9 @@ Class {
 		'currentFile',
 		'inProcessFiles'
 	],
-	#category : 'Pillar-ExporterCore-Toc',
+	#category : 'Pillar-ExporterCore-Kept for doc ',
 	#package : 'Pillar-ExporterCore',
-	#tag : 'Toc'
+	#tag : 'Kept for doc '
 }
 
 { #category : 'testing' }
@@ -131,7 +131,7 @@ PRTocBuilderVisitor >> visitInputFileAnnotation: anAnnotation [
 	currentSave := self currentFile.
 	newSource := self documentSource parent resolve: anAnnotation path.
 	self validateInclusionOfFile: newSource.
-	document := PRPillarParserMain parse: newSource contents.
+	"document := PRPillarParserMain parse: newSource contents."
 	self documentSource: newSource.
 	self currentFile: anAnnotation path.
 

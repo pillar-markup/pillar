@@ -1,20 +1,21 @@
 Class {
-	#name : #PRParseTableCellTest,
-	#superclass : #PRParseDocumentGroupTest,
-	#category : #'Pillar-Tests-Model-PetitPillar'
+	#name : 'PRParseTableCellTest',
+	#superclass : 'PRParseDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-PetitPillar',
+	#package : 'Pillar-Tests-Model-PetitPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRParseTableCellTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseTableCellTest >> actualClass [
 	^ PRTableCell
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTableCellTest >> testParseAlign1 [
 	| wiki tree |
 	wiki := '|{left||center|}right'.
@@ -40,7 +41,7 @@ PRParseTableCellTest >> testParseAlign1 [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTableCellTest >> testParseAlign2 [
 	| wiki tree |
 	wiki := '|}right|none|{left|none'.
@@ -68,7 +69,7 @@ PRParseTableCellTest >> testParseAlign2 [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTableCellTest >> testParseEncoding [
 	| wiki tree |
 	wiki := '|*link*|+file://embedded.png+|foo{}'.
@@ -95,7 +96,7 @@ PRParseTableCellTest >> testParseEncoding [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTableCellTest >> testParseHeading1 [
 	| wiki tree |
 	wiki := '|!head|{!left||!center|}!right'.
@@ -129,7 +130,7 @@ PRParseTableCellTest >> testParseHeading1 [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTableCellTest >> testParseHeading2 [
 	| wiki1 tree |
 	wiki1 := '|!head|!{left|!|center|!}right'.

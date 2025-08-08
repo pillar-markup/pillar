@@ -1,20 +1,21 @@
 Class {
-	#name : #PRPillarWriterLineBreakTest,
-	#superclass : #PRPillarWriterDocumentItemTest,
-	#category : #'Pillar-Tests-Model-ExporterPillar'
+	#name : 'PRPillarWriterLineBreakTest',
+	#superclass : 'PRPillarWriterDocumentItemTest',
+	#category : 'Pillar-Tests-Model-ExporterPillar',
+	#package : 'Pillar-Tests-Model-ExporterPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRPillarWriterLineBreakTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRPillarWriterLineBreakTest >> actualClass [
 	^ PRLineBreak
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterLineBreakTest >> testParseOneEmptyLine [
 
 	| wiki tree nLine |
@@ -34,7 +35,7 @@ PRPillarWriterLineBreakTest >> testParseOneEmptyLine [
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterLineBreakTest >> testParseTreeLines [
 
 	| wiki tree nLine |
@@ -53,7 +54,7 @@ PRPillarWriterLineBreakTest >> testParseTreeLines [
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterLineBreakTest >> testParseTwoEmptyLines [
 
 	| text tree nLine |
@@ -73,7 +74,7 @@ PRPillarWriterLineBreakTest >> testParseTwoEmptyLines [
 	self pillarWriterAssertTree: tree equalsWiki: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterLineBreakTest >> testParseTwoLines [
 
 	| wiki tree |

@@ -24,9 +24,9 @@ Class {
 		'printer',
 		'renderAs'
 	],
-	#category : 'Pillar-ExporterCore-Configuration',
+	#category : 'Pillar-ExporterCore-Kept for doc ',
 	#package : 'Pillar-ExporterCore',
-	#tag : 'Configuration'
+	#tag : 'Kept for doc '
 }
 
 { #category : 'accessing - defaults' }

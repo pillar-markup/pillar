@@ -1,20 +1,21 @@
 Class {
-	#name : #PRParseTextTest,
-	#superclass : #PRParseDocumentItemTest,
-	#category : #'Pillar-Tests-Model-PetitPillar'
+	#name : 'PRParseTextTest',
+	#superclass : 'PRParseDocumentItemTest',
+	#category : 'Pillar-Tests-Model-PetitPillar',
+	#package : 'Pillar-Tests-Model-PetitPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRParseTextTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseTextTest >> actualClass [
 	^ PRText
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTextTest >> testEscapeCpp [
 	| wiki tree |
 	wiki := 'Text: \+\+'.
@@ -27,7 +28,7 @@ PRParseTextTest >> testEscapeCpp [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTextTest >> testEscapeFirst [
 
 	| wiki tree nLine |
@@ -57,7 +58,7 @@ PRParseTextTest >> testEscapeFirst [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTextTest >> testEscapeStrange [
 
 	| wiki tree |
@@ -72,7 +73,7 @@ PRParseTextTest >> testEscapeStrange [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTextTest >> testEscapeText [
 	| wiki tree |
 	wiki := 'Text: \*\+'.
@@ -85,7 +86,7 @@ PRParseTextTest >> testEscapeText [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTextTest >> testEscapeWiki [
 	| wiki tree |
 	wiki := 'Wiki: =, |, !, #, {, }, |{, ||, |}, [, ] and -'.
@@ -98,7 +99,7 @@ PRParseTextTest >> testEscapeWiki [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTextTest >> testParseBasic [
 	| wiki tree |
 	wiki := 'abcdefghijklmnopqrstuvwxyz... ABCDEFGHIJKLMNOPQRSTUVWXYZ... 0123456789...'.
@@ -111,7 +112,7 @@ PRParseTextTest >> testParseBasic [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTextTest >> testParseHtml [
 	| wiki tree |
 	wiki := '<strong>strong <emph>strong, emph</emph></strong>'.
@@ -124,7 +125,7 @@ PRParseTextTest >> testParseHtml [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTextTest >> testParseLatex [
 	| wiki text tree |
 	wiki := '\\begin{foo}[bar]$zork$\\end{foo}'.
@@ -138,7 +139,7 @@ PRParseTextTest >> testParseLatex [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTextTest >> testParseSpecial [
 	| wiki tree |
 	wiki := '????????????¬å???????????????¬ú??¬ü¬¬°¬¢¬£¬§¬·?¬ß?¬©¬¬´¬¨?¬Æ¬Ø¬¬±???¬µ¬¬??¬¬ª???¬ø¦Ä¦Å¦Ç¦É¦Ñ¦Ö¦Ü¦á¦à¦â¦ä¦ã¦å¦ç¦é¦è?¦ë¦í¦ì¦î¦ï¦ñ?¦ò¦ô¦ö¦õ¦ú??¦ü¦¦°¦¢¦£¦§¦·¦¶¦ß¦®¦©¦¦´¦¨¦¦Æ¦Ø?¦±¦¦¦¥¦µ¦¦¦¦¦¦ª¦º??'.
@@ -152,7 +153,7 @@ PRParseTextTest >> testParseSpecial [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseTextTest >> testParseWiki [
 	| wiki tree |
 	wiki := ' !_#-|=]@:<>\*'.

@@ -1,20 +1,21 @@
 Class {
-	#name : #PRParseLineBreakTest,
-	#superclass : #PRParseDocumentItemTest,
-	#category : #'Pillar-Tests-Model-PetitPillar'
+	#name : 'PRParseLineBreakTest',
+	#superclass : 'PRParseDocumentItemTest',
+	#category : 'Pillar-Tests-Model-PetitPillar',
+	#package : 'Pillar-Tests-Model-PetitPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRParseLineBreakTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseLineBreakTest >> actualClass [
 	^ PRLineBreak
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseLineBreakTest >> testParseOneEmptyLine [
 
 	| wiki tree nLine |
@@ -34,7 +35,7 @@ PRParseLineBreakTest >> testParseOneEmptyLine [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseLineBreakTest >> testParseTreeLines [
 
 	| wiki tree nLine |
@@ -54,7 +55,7 @@ PRParseLineBreakTest >> testParseTreeLines [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseLineBreakTest >> testParseTwoEmptyLines [
 
 	| wiki tree nLine |
@@ -74,7 +75,7 @@ PRParseLineBreakTest >> testParseTwoEmptyLines [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseLineBreakTest >> testParseTwoLines [
 
 	| wiki tree |

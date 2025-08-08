@@ -1,20 +1,21 @@
 Class {
-	#name : #PRParseLinkTest,
-	#superclass : #PRParseReferenceTest,
-	#category : #'Pillar-Tests-Model-PetitPillar'
+	#name : 'PRParseLinkTest',
+	#superclass : 'PRParseReferenceTest',
+	#category : 'Pillar-Tests-Model-PetitPillar',
+	#package : 'Pillar-Tests-Model-PetitPillar'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseLinkTest >> actualClass [
 	^ PRLink
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseLinkTest >> markup [
 	^ PRPillarParser markups at: PRLink
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseLinkTest >> testParseAliased [
 	| wiki tree |
 	wiki := '*Alias>' , self referenceString , '*'.
@@ -30,7 +31,7 @@ PRParseLinkTest >> testParseAliased [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseLinkTest >> testParseAliasedEmpty [
 	| wiki tree |
 	wiki := '*>' , self referenceString , '*'.
@@ -46,7 +47,7 @@ PRParseLinkTest >> testParseAliasedEmpty [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseLinkTest >> testParseBasic [
 	| wiki tree |
 	wiki := '*' , self referenceString , '*'.
@@ -61,7 +62,7 @@ PRParseLinkTest >> testParseBasic [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseLinkTest >> testParseParameters [
 	| wiki tree |
 	wiki := '*Alias>' , self referenceString , '|a=1|b=2|c=true*'.
@@ -85,7 +86,7 @@ PRParseLinkTest >> testParseParameters [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseLinkTest >> testParseParametersEmpty [
 	| wiki tree |
 	wiki := '*Alias>' , self referenceString , '|a||b|*'.
@@ -109,7 +110,7 @@ PRParseLinkTest >> testParseParametersEmpty [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseLinkTest >> testParseParametersEscaped [
 	| wiki tree |
 	wiki := '*Alias>' , self referenceString , '|2=\|\=|\|\==1*'.

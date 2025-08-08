@@ -1,20 +1,21 @@
 Class {
-	#name : #PRTextWriterTableTest,
-	#superclass : #PRTextWriterDocumentGroupTest,
-	#category : #'Pillar-Tests-Model-ExporterText'
+	#name : 'PRTextWriterTableTest',
+	#superclass : 'PRTextWriterDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-ExporterText',
+	#package : 'Pillar-Tests-Model-ExporterText'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRTextWriterTableTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterTableTest >> actualClass [
 	^ PRTable
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterTableTest >> testParseBasic [
 	| text tree |
 
@@ -31,7 +32,7 @@ PRTextWriterTableTest >> testParseBasic [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterTableTest >> testParseSquare [
 
 	| text tree nLine |
@@ -60,7 +61,7 @@ PRTextWriterTableTest >> testParseSquare [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterTableTest >> testParseTriangle [
 
 	| text tree nLine |

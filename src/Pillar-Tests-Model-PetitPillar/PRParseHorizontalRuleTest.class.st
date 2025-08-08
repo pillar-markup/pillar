@@ -1,20 +1,21 @@
 Class {
-	#name : #PRParseHorizontalRuleTest,
-	#superclass : #PRParseDocumentItemTest,
-	#category : #'Pillar-Tests-Model-PetitPillar'
+	#name : 'PRParseHorizontalRuleTest',
+	#superclass : 'PRParseDocumentItemTest',
+	#category : 'Pillar-Tests-Model-PetitPillar',
+	#package : 'Pillar-Tests-Model-PetitPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRParseHorizontalRuleTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseHorizontalRuleTest >> actualClass [
 	^ PRHorizontalRule
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseHorizontalRuleTest >> testParseBasic [
 	| wiki tree |
 	wiki := '_'.
@@ -25,7 +26,7 @@ PRParseHorizontalRuleTest >> testParseBasic [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseHorizontalRuleTest >> testParseLink [
 	| wiki1 wiki2 tree |
 	wiki1 := '_ *link*'.
@@ -43,7 +44,7 @@ PRParseHorizontalRuleTest >> testParseLink [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseHorizontalRuleTest >> testParseMultiple [
 
 	| wiki tree nLine |
@@ -58,7 +59,7 @@ PRParseHorizontalRuleTest >> testParseMultiple [
 	self parserAssertWiki: wiki equalsTree: tree
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseHorizontalRuleTest >> testParseParagraph [
 	| wiki tree |
 	wiki := '\_ is parsed as paragraph'.
@@ -71,7 +72,7 @@ PRParseHorizontalRuleTest >> testParseParagraph [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseHorizontalRuleTest >> testParseSpaces [
 	| wiki text tree |
 	wiki := '_       '.
@@ -82,7 +83,7 @@ PRParseHorizontalRuleTest >> testParseSpaces [
 	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseHorizontalRuleTest >> textString [
 	^ String new: 40 withAll: $-
 ]

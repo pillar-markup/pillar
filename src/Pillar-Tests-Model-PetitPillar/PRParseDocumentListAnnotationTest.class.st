@@ -1,15 +1,16 @@
 Class {
-	#name : #PRParseDocumentListAnnotationTest,
-	#superclass : #PRParseAbstractAnnotationTest,
-	#category : #'Pillar-Tests-Model-PetitPillar'
+	#name : 'PRParseDocumentListAnnotationTest',
+	#superclass : 'PRParseAbstractAnnotationTest',
+	#category : 'Pillar-Tests-Model-PetitPillar',
+	#package : 'Pillar-Tests-Model-PetitPillar'
 }
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRParseDocumentListAnnotationTest >> actualClass [
 	^ PRDocumentListAnnotation
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRParseDocumentListAnnotationTest >> referenceParameters [
 	^ PRParameters withAll: { 
 		PRParameter 
@@ -29,12 +30,12 @@ PRParseDocumentListAnnotationTest >> referenceParameters [
 			valueNode: (PRParameterValue value: 500) }
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRParseDocumentListAnnotationTest >> referenceString [
 	^ 'docList:path=blogs|limit=10|sort=date|templates=#(''templates/docArticle.mustache'')|summaryMaxSize=500'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRParseDocumentListAnnotationTest >> testParsedHadAllKeys [
 
 	| annotation |

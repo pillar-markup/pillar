@@ -1,20 +1,21 @@
 Class {
-	#name : #PRTextWriterLinkTest,
-	#superclass : #PRTextWriterReferenceTest,
-	#category : #'Pillar-Tests-Model-ExporterText'
+	#name : 'PRTextWriterLinkTest',
+	#superclass : 'PRTextWriterReferenceTest',
+	#category : 'Pillar-Tests-Model-ExporterText',
+	#package : 'Pillar-Tests-Model-ExporterText'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterLinkTest >> actualClass [
 	^ PRLink
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterLinkTest >> markup [
 	^ PRPillarParser markups at: PRLink
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterLinkTest >> testParseAliased [
 	| text tree |
 
@@ -31,7 +32,7 @@ PRTextWriterLinkTest >> testParseAliased [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterLinkTest >> testParseAliasedEmpty [
 	| text tree |
 
@@ -48,7 +49,7 @@ PRTextWriterLinkTest >> testParseAliasedEmpty [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterLinkTest >> testParseBasic [
 	| text tree |
 
@@ -66,7 +67,7 @@ PRTextWriterLinkTest >> testParseBasic [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterLinkTest >> testParseParameters [
 	| text tree |
 	
@@ -91,7 +92,7 @@ PRTextWriterLinkTest >> testParseParameters [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterLinkTest >> testParseParametersEmpty [
 	| text tree |
 	
@@ -115,7 +116,7 @@ PRTextWriterLinkTest >> testParseParametersEmpty [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterLinkTest >> testParseParametersEscaped [
 	|  text tree |
 	

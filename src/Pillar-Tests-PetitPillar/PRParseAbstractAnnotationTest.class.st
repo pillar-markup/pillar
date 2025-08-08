@@ -1,37 +1,38 @@
 Class {
-	#name : #PRParseAbstractAnnotationTest,
-	#superclass : #PRParseDocumentItemTest,
-	#category : #'Pillar-Tests-PetitPillar'
+	#name : 'PRParseAbstractAnnotationTest',
+	#superclass : 'PRParseDocumentItemTest',
+	#category : 'Pillar-Tests-PetitPillar',
+	#package : 'Pillar-Tests-PetitPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRParseAbstractAnnotationTest class >> isAbstract [
 	^ self = PRParseAbstractAnnotationTest
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRParseAbstractAnnotationTest >> actualClass [
 	^ self subclassResponsibility
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRParseAbstractAnnotationTest >> annoteName [
 	^ self actualClass tag
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRParseAbstractAnnotationTest >> referenceParameters [
 	self subclassResponsibility
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PRParseAbstractAnnotationTest >> referenceString [
 	"Pay attention to order the parameters according to sorted"
 	self
 		subclassResponsibility
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRParseAbstractAnnotationTest >> testParse [
 	| wiki tree |
 	wiki := '${' , self referenceString , '}$'.
@@ -46,7 +47,7 @@ PRParseAbstractAnnotationTest >> testParse [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRParseAbstractAnnotationTest >> testParsedHadAllKeys [
 
 	self assert: (self parser parse:  '${' , self referenceString , '}$') children first children first hadAllKeys

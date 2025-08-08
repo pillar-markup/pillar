@@ -1,25 +1,26 @@
 Class {
-	#name : #PRTextWriterMailLinkTest,
-	#superclass : #PRTextWriterExternalLinkTest,
-	#category : #'Pillar-Tests-Model-ExporterText'
+	#name : 'PRTextWriterMailLinkTest',
+	#superclass : 'PRTextWriterExternalLinkTest',
+	#category : 'Pillar-Tests-Model-ExporterText',
+	#package : 'Pillar-Tests-Model-ExporterText'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterMailLinkTest >> actualClass [
 	^ PRMailLink
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterMailLinkTest >> referenceString [
 	^ 'renggli@gmail.com'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PRTextWriterMailLinkTest >> testLinkToAFigureIsExternalLink [
 	"This test has no meaning in PRMailLinkTest."
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterMailLinkTest >> testParseBogus [
 	| text tree |
 	text := 'ab12@x.com'.

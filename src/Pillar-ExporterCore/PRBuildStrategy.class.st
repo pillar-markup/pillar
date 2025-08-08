@@ -1,6 +1,11 @@
 "
 I represent ways to identify files to process.
 My main extension point is the method filesToBuildOn: aProject
+
+When documents could be in pillar and md syntaxes, the input document class was selected based 
+on the file extension and using meta programmation to avoid to have a direct reference from microdown to Pillar.
+
+
 "
 Class {
 	#name : 'PRBuildStrategy',

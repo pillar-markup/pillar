@@ -1,25 +1,26 @@
 Class {
-	#name : #PRPillarWriterExternalLinkTest,
-	#superclass : #PRPillarWriterLinkTest,
-	#category : #'Pillar-Tests-Model-ExporterPillar'
+	#name : 'PRPillarWriterExternalLinkTest',
+	#superclass : 'PRPillarWriterLinkTest',
+	#category : 'Pillar-Tests-Model-ExporterPillar',
+	#package : 'Pillar-Tests-Model-ExporterPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRPillarWriterExternalLinkTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRPillarWriterExternalLinkTest >> actualClass [
 	^ PRExternalLink
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRPillarWriterExternalLinkTest >> referenceString [
 	^ 'http://www.lukas-renggli.ch'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRPillarWriterExternalLinkTest >> testLinkToAFigureIsExternalLink [
 	| wiki tree |
 	wiki := '*file://foo.png*'.

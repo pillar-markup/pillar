@@ -1,16 +1,17 @@
 Class {
-	#name : #PRPDFDocument,
-	#superclass : #PRAbstractOutputDocument,
-	#category : #'Pillar-ExporterLaTeX'
+	#name : 'PRPDFDocument',
+	#superclass : 'PRAbstractOutputDocument',
+	#category : 'Pillar-ExporterLaTeX',
+	#package : 'Pillar-ExporterLaTeX'
 }
 
-{ #category : #writing }
+{ #category : 'writing' }
 PRPDFDocument >> basicWriter [
 	
 	^ target writerFor: project configuration
 ]
 
-{ #category : #compiling }
+{ #category : 'compiling' }
 PRPDFDocument >> executeCommand: command arguments: arguments workingDirectory: aWorkingDirectory [
 
 	OSPlatform current isWindows ifTrue: [ 
@@ -25,7 +26,7 @@ PRPDFDocument >> executeCommand: command arguments: arguments workingDirectory: 
 		workingDirectory: aWorkingDirectory
 ]
 
-{ #category : #compiling }
+{ #category : 'compiling' }
 PRPDFDocument >> executeOnUnixCommand: command arguments: arguments workingDirectory: aWorkingDirectory [
 	| process |
 	process := OSSUnixSubprocess new
@@ -37,7 +38,7 @@ PRPDFDocument >> executeOnUnixCommand: command arguments: arguments workingDirec
 		self error: 'command ', command ,' failed' ]
 ]
 
-{ #category : #compiling }
+{ #category : 'compiling' }
 PRPDFDocument >> executeOnWindowsCommand: command arguments: arguments workingDirectory: aWorkingDirectory [
 	| process success commandString |
 	commandString := 'cd "', aWorkingDirectory, '" && ', command, ' ', (' ' join: arguments).
@@ -62,19 +63,19 @@ PRPDFDocument >> executeOnWindowsCommand: command arguments: arguments workingDi
 		self error: 'command ', commandString ,' failed' ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRPDFDocument >> extension [
 	
 	^ 'pdf'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRPDFDocument >> pdfTransformationsFor: aDocument [
 
 	^ aDocument pdfTransformationsFor: self
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 PRPDFDocument >> postWriteTransform: aFile [
 
 	| relativePath outputFileReference |
@@ -89,11 +90,11 @@ PRPDFDocument >> postWriteTransform: aFile [
 			'-f' .
 			'-interaction=nonstopmode' .
 			'-outdir=', (self toCommandPath: outputFileReference fullName).
-			self toCommandPath: (PRLaTeXWriter toLatexPath: (aFile relativeTo: outputDirectory) pillarPrintString) }
+			self toCommandPath: (self toLatexPath: (aFile relativeTo: outputDirectory) pillarPrintString) }
 		workingDirectory: outputDirectory fullName
 ]
 
-{ #category : #compiling }
+{ #category : 'compiling' }
 PRPDFDocument >> toCommandPath: aPathString [
 
 	OSPlatform current isWindows ifTrue: [ 
@@ -102,21 +103,37 @@ PRPDFDocument >> toCommandPath: aPathString [
 	^ aPathString
 ]
 
-{ #category : #accessing }
+{ #category : 'writing' }
+PRPDFDocument >> toLatexPath: aString [
+	"Replace all (windows style) back slashes in paths by (unix style) forward slashes.
+	This is required as path in latex only support unix style pathes like
+	
+	  /home/xxx
+	
+	or
+	
+	  C:/home/xxx
+	
+	See https://tex.stackexchange.com/questions/9363/how-does-one-insert-a-backslash-or-a-tilde-into-latex
+	"
+	^ aString copyReplaceAll: '\' with: '/'
+]
+
+{ #category : 'accessing' }
 PRPDFDocument >> transformations [
 	self halt.
 	^ super transformations
 		", self pdfTransformations to test if for MD we need them." 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PRPDFDocument >> transformationsFor: aDocument [
 	
 	^ (super transformationsFor: aDocument)
 		, (self pdfTransformationsFor: aDocument)
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 PRPDFDocument >> writeDocument: aDocument [
 
 	| content environment templatedOutput outputFile |

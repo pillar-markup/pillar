@@ -1,20 +1,21 @@
 Class {
-	#name : #PRPillarWriterTableTest,
-	#superclass : #PRPillarWriterDocumentGroupTest,
-	#category : #'Pillar-Tests-Model-ExporterPillar'
+	#name : 'PRPillarWriterTableTest',
+	#superclass : 'PRPillarWriterDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-ExporterPillar',
+	#package : 'Pillar-Tests-Model-ExporterPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRPillarWriterTableTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRPillarWriterTableTest >> actualClass [
 	^ PRTable
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTableTest >> testParseBasic [
 	| wiki tree |
 	wiki := '|cell'.
@@ -31,7 +32,7 @@ PRPillarWriterTableTest >> testParseBasic [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTableTest >> testParseSquare [
 
 	| wiki tree nLine |
@@ -60,7 +61,7 @@ PRPillarWriterTableTest >> testParseSquare [
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTableTest >> testParseTriangle [
 
 	| wiki tree nLine |
@@ -98,7 +99,7 @@ PRPillarWriterTableTest >> testParseTriangle [
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTableTest >> testParseWithPreformattedAndLinkWithParameters [
 	| wiki tree |
 	wiki := '|==\+link\|a\+==|'.
@@ -118,7 +119,7 @@ PRPillarWriterTableTest >> testParseWithPreformattedAndLinkWithParameters [
 	self pillarWriterAssertTree: tree equalsWiki: wiki.
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterTableTest >> testParseWithPreformattedAndProtectedPipe [
 	| wiki tree |
 	wiki := '|==\|==|'.

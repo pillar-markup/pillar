@@ -1,15 +1,16 @@
 Class {
-	#name : #PRPillarWriterCommentedLineTest,
-	#superclass : #PRPillarWriterTextTest,
-	#category : #'Pillar-Tests-Model-ExporterPillar'
+	#name : 'PRPillarWriterCommentedLineTest',
+	#superclass : 'PRPillarWriterTextTest',
+	#category : 'Pillar-Tests-Model-ExporterPillar',
+	#package : 'Pillar-Tests-Model-ExporterPillar'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRPillarWriterCommentedLineTest >> actualClass [
 	^ PRCommentedLine
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterCommentedLineTest >> testParseBasic [
 	| wiki text tree |
 	wiki := '%some comment'.
@@ -20,7 +21,7 @@ PRPillarWriterCommentedLineTest >> testParseBasic [
 	
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterCommentedLineTest >> testParseDontInterruptLists [
 
 	| wiki tree nLine |
@@ -47,7 +48,7 @@ PRPillarWriterCommentedLineTest >> testParseDontInterruptLists [
 	self pillarWriterAssertTree: tree equalsWiki: wiki
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRPillarWriterCommentedLineTest >> testParseDontParseContent [
 	| wiki tree |
 	wiki := '%some *comment*'.

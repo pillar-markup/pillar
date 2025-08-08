@@ -1,15 +1,16 @@
 Class {
-	#name : #PRTextWriterScriptTest,
-	#superclass : #PRTextWriterTextTest,
-	#category : #'Pillar-Tests-Model-ExporterText'
+	#name : 'PRTextWriterScriptTest',
+	#superclass : 'PRTextWriterTextTest',
+	#category : 'Pillar-Tests-Model-ExporterText',
+	#package : 'Pillar-Tests-Model-ExporterText'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterScriptTest >> actualClass [
 	^ PRCodeblock
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterScriptTest >> testParseEscape [
 
 	| text tree nLine |
@@ -23,22 +24,7 @@ PRTextWriterScriptTest >> testParseEscape [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
-PRTextWriterScriptTest >> testParseRealLanguage [
-
-	| text tree nLine |
-	nLine := self lineEnding.
-	text := 'foo'.
-	tree := PRDocument new
-		        add: ((PRCodeblock content: 'foo')
-				         language: PRSmalltalkScriptLanguage default;
-				         yourself);
-		        yourself.
-
-	self textWriterAssertTree: tree equalsText: text
-]
-
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterScriptTest >> testParseSimple [
 
 	| text tree nLine |
@@ -50,7 +36,7 @@ PRTextWriterScriptTest >> testParseSimple [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterScriptTest >> testParseWithSimpleCaption [
 
 	| text tree nLine |

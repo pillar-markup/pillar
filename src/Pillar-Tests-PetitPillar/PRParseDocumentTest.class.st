@@ -1,20 +1,21 @@
 Class {
-	#name : #PRParseDocumentTest,
-	#superclass : #PRParseDocumentGroupTest,
-	#category : #'Pillar-Tests-PetitPillar'
+	#name : 'PRParseDocumentTest',
+	#superclass : 'PRParseDocumentGroupTest',
+	#category : 'Pillar-Tests-PetitPillar',
+	#package : 'Pillar-Tests-PetitPillar'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRParseDocumentTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRParseDocumentTest >> actualClass [
 	^ PRDocument
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseDocumentTest >> testParseEmpty [
 	| wiki tree |
 	wiki := String new.
@@ -23,7 +24,7 @@ PRParseDocumentTest >> testParseEmpty [
 
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseDocumentTest >> testParseMultipleProperties [
 	| wiki tree document|
 	wiki := '{''title'':''The title'',''authors'':''Someone else and me''}'.
@@ -36,7 +37,7 @@ PRParseDocumentTest >> testParseMultipleProperties [
 	self assert: document properties equals: tree properties
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseDocumentTest >> testParseProperties [
 	| wiki  tree document |
 	wiki := '{''title'':''The title''}'.
@@ -48,7 +49,7 @@ PRParseDocumentTest >> testParseProperties [
 	self assert: document properties equals: tree properties
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRParseDocumentTest >> testParsePropertiesWithText [
 
 	| wiki tree document |

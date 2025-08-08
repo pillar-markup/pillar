@@ -1,20 +1,21 @@
 Class {
-	#name : #PRTextWriterHeaderTest,
-	#superclass : #PRTextWriterDocumentGroupTest,
-	#category : #'Pillar-Tests-Model-ExporterText'
+	#name : 'PRTextWriterHeaderTest',
+	#superclass : 'PRTextWriterDocumentGroupTest',
+	#category : 'Pillar-Tests-Model-ExporterText',
+	#package : 'Pillar-Tests-Model-ExporterText'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PRTextWriterHeaderTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PRTextWriterHeaderTest >> actualClass [
 	^ PRHeader
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterHeaderTest >> testParseEmpty [
 	| text tree |
 	text := ''.
@@ -26,7 +27,7 @@ PRTextWriterHeaderTest >> testParseEmpty [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterHeaderTest >> testParseLevel1 [
 	| text tree |
 	text := 'foo'.
@@ -39,7 +40,7 @@ PRTextWriterHeaderTest >> testParseLevel1 [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterHeaderTest >> testParseLevel2 [
 	| text tree |
 	text := 'foo'.
@@ -52,7 +53,7 @@ PRTextWriterHeaderTest >> testParseLevel2 [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterHeaderTest >> testParseLevel3 [
 	| text tree |
 	text := 'foo'.
@@ -65,7 +66,7 @@ PRTextWriterHeaderTest >> testParseLevel3 [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterHeaderTest >> testParseLevel4 [
 	| text tree |
 	text := 'foo'.
@@ -78,7 +79,7 @@ PRTextWriterHeaderTest >> testParseLevel4 [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterHeaderTest >> testParseLevel5 [
 	| text tree |
 	text := 'foo'.
@@ -92,7 +93,7 @@ PRTextWriterHeaderTest >> testParseLevel5 [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterHeaderTest >> testParseLevel6 [
 	| text tree |
 	text := 'foo'.
@@ -105,7 +106,7 @@ PRTextWriterHeaderTest >> testParseLevel6 [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterHeaderTest >> testParseMultiline [
 
 	| text tree nLine |
@@ -127,7 +128,7 @@ PRTextWriterHeaderTest >> testParseMultiline [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterHeaderTest >> testParseNested [
 	| text tree |
 
@@ -145,7 +146,7 @@ PRTextWriterHeaderTest >> testParseNested [
 	self textWriterAssertTree: tree equalsText: text
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 PRTextWriterHeaderTest >> testParseWithTrailingSpaces [
 	| text tree |
 	text := 'foo'.
