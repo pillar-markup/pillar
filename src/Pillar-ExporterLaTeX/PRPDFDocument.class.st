@@ -90,7 +90,7 @@ PRPDFDocument >> postWriteTransform: aFile [
 			'-f' .
 			'-interaction=nonstopmode' .
 			'-outdir=', (self toCommandPath: outputFileReference fullName).
-			self toCommandPath: (PRLaTeXWriter toLatexPath: (aFile relativeTo: outputDirectory) pillarPrintString) }
+			self toCommandPath: (self toLatexPath: (aFile relativeTo: outputDirectory) pillarPrintString) }
 		workingDirectory: outputDirectory fullName
 ]
 
@@ -101,6 +101,22 @@ PRPDFDocument >> toCommandPath: aPathString [
 		^ aPathString surroundedBy: '"'
 	].
 	^ aPathString
+]
+
+{ #category : 'writing' }
+PRPDFDocument >> toLatexPath: aString [
+	"Replace all (windows style) back slashes in paths by (unix style) forward slashes.
+	This is required as path in latex only support unix style pathes like
+	
+	  /home/xxx
+	
+	or
+	
+	  C:/home/xxx
+	
+	See https://tex.stackexchange.com/questions/9363/how-does-one-insert-a-backslash-or-a-tilde-into-latex
+	"
+	^ aString copyReplaceAll: '\' with: '/'
 ]
 
 { #category : 'accessing' }
