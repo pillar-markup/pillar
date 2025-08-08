@@ -7,9 +7,8 @@ Class {
 
 { #category : 'baselines' }
 BaselineOfPillar >> baseline: spec [
-
 	<baseline>
-	"undo all the changes that I tried"
+	
 	spec for: #common do: [
 		self
 			osSubProcess: spec;
@@ -23,25 +22,18 @@ BaselineOfPillar >> baseline: spec [
 			package: 'Pillar-Core' 
 				with: [ spec requires: #( 'OSSubprocess')];
 			package: 'Pillar-Tests-Core' 
-				with: [ spec requires: 
-							#( 'Pillar-Core') ];
+				with: [ spec requires: #( 'Pillar-Core') ];
 						
-			package: 'Pillar-ExporterCore' with: [ spec requires: #( 'Pillar-Model' 'ContainersPropertyEnvironment' ) ];
+			package: 'Pillar-ExporterCore' with: [ spec requires: #( 'Pillar-Core' 'ContainersPropertyEnvironment' ) ];
 					
-			package: 'Pillar-Model' 
-				with: [ spec requires: #( 'Pillar-Core' ) ];
-		
-			"I reintroduced Latex and HTML package because they contain project logic
-			I removed the generation part."
+			"Latex and HTML packages only contain project logic."
 			package: 'Pillar-ExporterLaTeX'
-				with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-Model' 'Mustache') ];
+				with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-Core' 'Mustache') ];
 			package: 'Pillar-ExporterHTML'
 				with: [ spec requires: #( 'Pillar-ExporterCore') ];
 
-			
 			package: 'Pillar-Chrysal-Generator' 
-				with: [ spec requires: #( 'Chrysal' ) ];
-			
+				with: [ spec requires: #( 'Chrysal' ) ];			
 			
 			package: 'Pillar-Cli' 
 				with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-Chrysal' 'Pillar-Project') ];
@@ -50,11 +42,10 @@ BaselineOfPillar >> baseline: spec [
 			
 			package: 'Pillar-Chrysal' with: [ spec requires: #( 'Pillar-ExporterCore' ) ];
 		
-			package: 'Pillar-Project' with: [ spec requires: #( 'Pillar-Model' ) ];
+			package: 'Pillar-Project' with: [ spec requires: #( 'Pillar-Core' ) ];
 		
 			package: 'Pillar-Tests-Project' with: [ spec requires: #( 'Pillar-Project' ) ];
 			package: 'Pillar-Tests-Integration' with: [ spec requires: #( 'Pillar-Project' ) ].
-
 
 		spec
 			group: 'All' 
@@ -67,9 +58,7 @@ BaselineOfPillar >> baseline: spec [
 				'Pillar-Tests-Project' 
 				'Pillar-Tests-Integration' );
 			group: 'Core' 
-				with: #( 'Pillar-Core' );
-			group: 
-				'Model' with: #( 'Pillar-Model' ) ].
+				with: #( 'Pillar-Core' ) ].
 ]
 
 { #category : 'dependencies' }
