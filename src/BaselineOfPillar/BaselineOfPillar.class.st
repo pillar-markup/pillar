@@ -68,7 +68,6 @@ BaselineOfPillar >> baseline: spec [
 				'Pillar-ExporterLaTeX'
 				'Pillar-ExporterHTML'
 				'Pillar-Tests-Core'
-				'Pillar-Tests-Model' 
 				'Pillar-Tests-ExporterCore' 
 				'Pillar-Tests-Cli' 
 				'Pillar-Tests-Project' 
