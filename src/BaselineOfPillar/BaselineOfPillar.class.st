@@ -21,9 +21,7 @@ BaselineOfPillar >> baseline: spec [
 		spec
 			package: 'Pillar-Core' 
 				with: [ spec requires: #( 'OSSubprocess')];
-			package: 'Pillar-Tests-Core' 
-				with: [ spec requires: #( 'Pillar-Core') ];
-						
+		
 			package: 'Pillar-ExporterCore' with: [ spec requires: #( 'Pillar-Core' 'ContainersPropertyEnvironment' ) ];
 					
 			"Latex and HTML packages only contain project logic."
@@ -53,7 +51,6 @@ BaselineOfPillar >> baseline: spec [
 				#(
 				'Pillar-ExporterLaTeX'
 				'Pillar-ExporterHTML'
-				'Pillar-Tests-Core'
 				'Pillar-Tests-Cli' 
 				'Pillar-Tests-Project' 
 				'Pillar-Tests-Integration' );
