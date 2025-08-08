@@ -7,9 +7,9 @@ Class {
 	#instVars : [
 		'counters'
 	],
-	#category : 'Pillar-Core-Counters',
+	#category : 'Pillar-Core-LeftOvers',
 	#package : 'Pillar-Core',
-	#tag : 'Counters'
+	#tag : 'LeftOvers'
 }
 
 { #category : 'instance creation' }

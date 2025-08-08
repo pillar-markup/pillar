@@ -54,6 +54,7 @@ PRInputDocument >> basename [
 PRInputDocument >> contributeToPipelineBuilding: aPRPipelineBuilder [ 
 	
 	1halt.
+	"may be this is because there is no plugin declared?"
 	self flag: #maybeToRemove.
 	
 	aPRPipelineBuilder setInputDocument: file.

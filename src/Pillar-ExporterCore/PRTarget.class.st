@@ -1,3 +1,11 @@
+"
+I represent an objective for example to produce a PDF or a html dump.
+I know the kind of output document (PRHtmlDocument or PRPDFDocument for example) should be produced. 
+(documentFor:).
+I have build strategy to know if I should treat all, the main, a list of files. 
+
+I configure such document with information (project). 
+"
 Class {
 	#name : 'PRTarget',
 	#superclass : 'Object',
@@ -84,12 +92,6 @@ PRTarget >> buildOn: aProject [
 { #category : 'accessing' }
 PRTarget >> buildStrategy: aStrategy [
 	buildStrategy := aStrategy
-]
-
-{ #category : 'clap-integration' }
-PRTarget >> buildWithClapArguments: project [
-
-	(project build: self) exitProcess
 ]
 
 { #category : 'building' }

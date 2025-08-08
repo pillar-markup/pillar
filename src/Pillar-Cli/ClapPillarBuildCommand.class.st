@@ -94,7 +94,8 @@ ClapPillarBuildCommand >> outputTarget [
 
 	| format |
 	format := self format.
-	^ PRWritingTarget allSubclasses detect: [ :target | target builderName = format ]
+	^ PRWritingTarget allSubclasses 
+			detect: [ :target | target builderName = format ]
 ]
 
 { #category : 'accessing' }

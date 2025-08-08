@@ -7,9 +7,9 @@ Class {
 	#instVars : [
 		'file'
 	],
-	#category : 'Pillar-ExporterCore-Exceptions',
-	#package : 'Pillar-ExporterCore',
-	#tag : 'Exceptions'
+	#category : 'Pillar-Core-Errors',
+	#package : 'Pillar-Core',
+	#tag : 'Errors'
 }
 
 { #category : 'accessing' }

@@ -1,18 +1,18 @@
 Class {
-	#name : 'PRHtmlOutput',
+	#name : 'PRHtmlTarget',
 	#superclass : 'PRWritingTarget',
 	#category : 'Pillar-ExporterHTML',
 	#package : 'Pillar-ExporterHTML'
 }
 
 { #category : 'accessing' }
-PRHtmlOutput class >> builderName [
+PRHtmlTarget class >> builderName [
 	
 	^ #html
 ]
 
 { #category : 'building' }
-PRHtmlOutput >> documentFor: aFile [
+PRHtmlTarget >> documentFor: aFile [
 
 	^ PRHtmlDocument new
 		project: aFile project;
@@ -23,19 +23,19 @@ PRHtmlOutput >> documentFor: aFile [
 ]
 
 { #category : 'accessing' }
-PRHtmlOutput >> extension [
+PRHtmlTarget >> extension [
 	
 	^ 'html'
 ]
 
 { #category : 'accessing' }
-PRHtmlOutput >> outputDirectoryName [
+PRHtmlTarget >> outputDirectoryName [
 	
 	^ 'html'
 ]
 
 { #category : 'accessing' }
-PRHtmlOutput >> writerFor: aPRPillarConfiguration [ 
+PRHtmlTarget >> writerFor: aPRPillarConfiguration [ 
 	
 	^ self writerFor: aPRPillarConfiguration forConfigurationTag: #htmlWriter
 ]

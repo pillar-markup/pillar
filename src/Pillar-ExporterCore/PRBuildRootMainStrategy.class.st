@@ -17,12 +17,13 @@ PRBuildRootMainStrategy >> filesToBuildOn: aProject [
 	"select the only file with pillar extension in current directory ; if there is no OR several pillar files, relative error is raised"
 	"Now it select a file named index which can be a pillar or a microdown file and if there is no one, relative error is raised"
 	
-	| pillarFiles|
-	pillarFiles := aProject baseDirectory children select: [ :each | each isFile and:[ self isSupportedExtension: each  extension ] ].
-	pillarFiles reject: [ :each | each basename = 'README' ].
-	pillarFiles ifEmpty: [ self error: 'There is no pillar (md or pillar) file in the repository root.' ].
-	pillarFiles size = 1 ifTrue: [ ^ { (PRInputDocument forFile: pillarFiles first) 
+	| mdFiles|
+	mdFiles := aProject baseDirectory children 
+			select: [ :each | each isFile and: [ self isSupportedExtension: each  extension ] ].
+	mdFiles reject: [ :each | each basename = 'README' ].
+	mdFiles ifEmpty: [ self error: 'There is no microdown file in the repository root.' ].
+	mdFiles size = 1 ifTrue: [ ^ { (PRInputDocument forFile: mdFiles first) 
 			project: aProject;
 			yourself } ].
-	self error: 'There is more than one pillar file in the repository root.'
+	self error: 'There is more than one .md file in the repository root.'
 ]

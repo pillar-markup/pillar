@@ -33,6 +33,7 @@ PRWritingTarget >> outputDirectoryName [
 
 { #category : 'preparation' }
 PRWritingTarget >> prepareForExecutionOn: aPRProject [
+
 	| configuration outputDirectory outputFormat target source |
 	"As a temporary solution, remove the old results folder before building the document.
 	This should be replaced by a smarter solution replacing only modified files"
@@ -46,7 +47,7 @@ PRWritingTarget >> prepareForExecutionOn: aPRProject [
 	PRCopyPhase new
 		sourceDirectory: source;
 		destinationDirectory: target;
-		executeOn: nil "We used a configuration context here that is not needed anymore".
+		execute.
 		
 	outputDirectory := aPRProject outputDirectory / self outputDirectoryName.
 	aPRProject baseDirectory children

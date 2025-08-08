@@ -29,7 +29,8 @@ PRCopyPhase >> destinationDirectory: anObject [
 ]
 
 { #category : 'executing' }
-PRCopyPhase >> executeOn: aPRCompilationContext [
+PRCopyPhase >> execute [
+
 	destinationDirectory exists
 		ifTrue: [ ^ self ].
 	destinationDirectory ensureCreateDirectory.

@@ -6,9 +6,9 @@ In this case no number can be returned so a Warning is raised, and a ? is displa
 Class {
 	#name : 'PRNotFoundCounter',
 	#superclass : 'PRCascadingCounter',
-	#category : 'Pillar-Core-Counters',
+	#category : 'Pillar-Core-LeftOvers',
 	#package : 'Pillar-Core',
-	#tag : 'Counters'
+	#tag : 'LeftOvers'
 }
 
 { #category : 'accessing' }

@@ -56,7 +56,7 @@ PRIntegrationTest >> outputEPub [
 { #category : 'parameters' }
 PRIntegrationTest >> outputHtml [
 
-	^ PRHtmlOutput new
+	^ PRHtmlTarget new
 ]
 
 { #category : 'parameters' }
@@ -68,7 +68,7 @@ PRIntegrationTest >> outputMarkdown [
 { #category : 'parameters' }
 PRIntegrationTest >> outputPdf [
 
-	^ PRPdfOutput new
+	^ PRPdfTarget new
 ]
 
 { #category : 'running' }

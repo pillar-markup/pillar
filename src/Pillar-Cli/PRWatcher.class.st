@@ -24,7 +24,7 @@ PRWatcher class >> stopAll [
 PRWatcher >> generateHtml [
 
 	| target |
-	target := PRHtmlOutput new.
+	target := PRHtmlTarget new.
 	target allFilesStrategy.
 	"[" project 
 		beTemplatable; 

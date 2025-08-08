@@ -1,18 +1,19 @@
 Class {
-	#name : #PRBuilderMappingTest,
-	#superclass : #TestCase,
-	#category : 'Pillar-Tests-Project'
+	#name : 'PRBuilderMappingTest',
+	#superclass : 'TestCase',
+	#category : 'Pillar-Tests-Project',
+	#package : 'Pillar-Tests-Project'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRBuilderMappingTest >> testBuilderForHtmlIsHtmlBuilder [
 
-	self assert: (PRTarget builderClassForName: 'html') equals: PRHtmlOutput.
-	self assert: ((PRTarget builderForName: 'html') isKindOf: PRHtmlOutput)
+	self assert: (PRTarget builderClassForName: 'html') equals: PRHtmlTarget.
+	self assert: ((PRTarget builderForName: 'html') isKindOf: PRHtmlTarget)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PRBuilderMappingTest >> testBuilderForPdfIsPdfBuilder [
 
-	self assert: (PRTarget builderClassForName: 'pdf') equals: PRPdfOutput
+	self assert: (PRTarget builderClassForName: 'pdf') equals: PRPdfTarget
 ]

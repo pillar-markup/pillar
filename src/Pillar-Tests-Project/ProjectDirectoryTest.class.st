@@ -1,10 +1,11 @@
 Class {
-	#name : #ProjectDirectoryTest,
-	#superclass : #TestCase,
-	#category : #'Pillar-Tests-Project'
+	#name : 'ProjectDirectoryTest',
+	#superclass : 'TestCase',
+	#category : 'Pillar-Tests-Project',
+	#package : 'Pillar-Tests-Project'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDirectoryTest >> testDefaultOuputDirectory [
 	| fileSystem project goodDir |
 	

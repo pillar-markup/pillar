@@ -4,9 +4,9 @@ I am an abstract visitor. I provide a default implementation of all visit messag
 Class {
 	#name : 'PRVisitor',
 	#superclass : 'PRBasicObject',
-	#category : 'Pillar-Core-Visitor',
+	#category : 'Pillar-Core-LeftOvers',
 	#package : 'Pillar-Core',
-	#tag : 'Visitor'
+	#tag : 'LeftOvers'
 }
 
 { #category : 'visiting' }

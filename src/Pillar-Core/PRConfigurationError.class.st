@@ -4,7 +4,7 @@ I am the error raised when the configuration provided during the export is inval
 Class {
 	#name : 'PRConfigurationError',
 	#superclass : 'PRError',
-	#category : 'Pillar-ExporterCore-Exceptions',
-	#package : 'Pillar-ExporterCore',
-	#tag : 'Exceptions'
+	#category : 'Pillar-Core-Errors',
+	#package : 'Pillar-Core',
+	#tag : 'Errors'
 }

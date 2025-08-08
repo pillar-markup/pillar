@@ -1,13 +1,14 @@
 Class {
-	#name : #ProjectDefaultTargetTest,
-	#superclass : #TestCase,
+	#name : 'ProjectDefaultTargetTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'project'
 	],
-	#category : #'Pillar-Tests-Project'
+	#category : 'Pillar-Tests-Project',
+	#package : 'Pillar-Tests-Project'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> configAbsentTargetContent [ 
 	^ '{
   "base_url": "",
@@ -21,7 +22,7 @@ ProjectDefaultTargetTest >> configAbsentTargetContent [
 }'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> configAsciiContent [
 	^ '{
   "base_url": "",
@@ -36,7 +37,7 @@ ProjectDefaultTargetTest >> configAsciiContent [
 }'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> configHTMLContent [
 	^ '{
   "base_url": "",
@@ -51,7 +52,7 @@ ProjectDefaultTargetTest >> configHTMLContent [
 }'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> configInvalidTargetContent [
 	^ '{
   "base_url": "",
@@ -66,7 +67,7 @@ ProjectDefaultTargetTest >> configInvalidTargetContent [
 }'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> configMarkdownContent [
 	^ '{
   "base_url": "",
@@ -81,7 +82,7 @@ ProjectDefaultTargetTest >> configMarkdownContent [
 }'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> configPDFContent [
 	^ '{
   "base_url": "",
@@ -96,7 +97,7 @@ ProjectDefaultTargetTest >> configPDFContent [
 }'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> testDefaultTargetAbsent [
 	| directory |
 	directory := FileSystem memory root.
@@ -107,7 +108,7 @@ ProjectDefaultTargetTest >> testDefaultTargetAbsent [
 	self assert: project defaultTarget equals: PRAbsentTarget
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> testDefaultTargetAscii [
 	| directory |
 	directory := FileSystem memory root.
@@ -118,7 +119,7 @@ ProjectDefaultTargetTest >> testDefaultTargetAscii [
 	self assert: project defaultTarget equals: PRAsciiOutput
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> testDefaultTargetHTML [
 	| directory |
 	directory := FileSystem memory root.
@@ -126,10 +127,10 @@ ProjectDefaultTargetTest >> testDefaultTargetHTML [
 		writeStreamDo: [ :st | st nextPutAll: self configHTMLContent ].
 	project := PRProject new baseDirectory: directory.
 	
-	self assert: project defaultTarget equals: PRHtmlOutput
+	self assert: project defaultTarget equals: PRHtmlTarget
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> testDefaultTargetInvalid [
 	| directory |
 	directory := FileSystem memory root.
@@ -140,7 +141,7 @@ ProjectDefaultTargetTest >> testDefaultTargetInvalid [
 	self assert: project defaultTarget equals: PRInvalidTarget
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> testDefaultTargetMarkdown [
 	| directory |
 	directory := FileSystem memory root.
@@ -151,7 +152,7 @@ ProjectDefaultTargetTest >> testDefaultTargetMarkdown [
 	self assert: project defaultTarget equals: PRMarkdownOutput
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> testDefaultTargetPDF [
 	| directory |
 	directory := FileSystem memory root.
@@ -159,5 +160,5 @@ ProjectDefaultTargetTest >> testDefaultTargetPDF [
 		writeStreamDo: [ :st | st nextPutAll: self configPDFContent ].
 	project := PRProject new baseDirectory: directory.
 	
-	self assert: project defaultTarget equals: PRPdfOutput
+	self assert: project defaultTarget equals: PRPdfTarget
 ]
