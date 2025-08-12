@@ -19,7 +19,6 @@ ClapPillarCommand class >> commandSpecification [
 	<commandline>
 	
 	| command |
-	
 	command := (ClapCommandSpec id: #pillar)
 		description: 'Pillar is a markup syntax and associated tools to write and generate documents lie books in PDF, websites in html, or slides';
 		commandClass: self;
