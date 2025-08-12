@@ -29,26 +29,10 @@ ClapPillarBookTesterCommand >> execute [
 	file :=  self requestedFile asString asFileReference. 
 	file exists 
 		ifTrue: [ 
-			| reporter parent exampleChecker checker collector |
+			| reporter parent |
 			parent := self project baseDirectory.
-
-			reporter := MicAnalysisReportWriter new.
-			checker := MicReferenceChecker new.
-			checker fileSystem: parent.
-			checker checkProject: file.
-
-			reporter addResults: checker results.
-			
-			collector := MicFileCollector new.
-			collector 
-				rootDirectory: parent;
-				visit: (Microdown parseFile: file).
-			
-			exampleChecker := MicCodeBlockValidator new.
-			
-			collector visitedFiles do: [ :each |
-				exampleChecker start: each ].
-			reporter addResults: exampleChecker results. 
+			reporter := MicAnalysisReportWriter 
+				reportForFolder: parent startingFrom: file.
 				
 			reporter isOkay
 					ifTrue: [ 
