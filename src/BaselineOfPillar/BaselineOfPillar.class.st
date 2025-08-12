@@ -20,7 +20,7 @@ BaselineOfPillar >> baseline: spec [
 		spec postLoadDoIt: #postload:package:.
 		spec
 			package: 'Pillar-Core' 
-				with: [ spec requires: #( 'OSSubprocess')];
+				with: [ spec requires: #( 'OSSubprocess' 'Microdown')];
 			package: 'Pillar-Tests-Core' 
 				with: [ spec requires: #( 'Pillar-Core') ];
 						
@@ -31,7 +31,13 @@ BaselineOfPillar >> baseline: spec [
 				with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-Core' 'Mustache') ];
 			package: 'Pillar-ExporterHTML'
 				with: [ spec requires: #( 'Pillar-ExporterCore') ];
-
+			
+			package:  'Pillar-Cli-BookTester' 
+				with: [ spec requires: #('Pillar-Cli' 'Microdown') ];
+				"in fact I would like to express that the dependency is to microdown-booktester but I guess
+				that I cannot"
+				
+			
 			package: 'Pillar-Chrysal-Generator' 
 				with: [ spec requires: #( 'Chrysal' ) ];			
 			
