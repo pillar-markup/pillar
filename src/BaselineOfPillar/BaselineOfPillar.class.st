@@ -94,9 +94,11 @@ BaselineOfPillar >> customProjectAttributes [
 
 { #category : 'dependencies' }
 BaselineOfPillar >> microdown: spec [
-	
 	"self microdownPreLoad."
-	spec baseline: 'Microdown' with: [ spec repository: 'github://pillar-markup/Microdown:v2.9.2/src' ]
+
+	spec
+		baseline: 'Microdown'
+		with: [ spec repository: 'github://pillar-markup/Microdown:dev/src' ]
 ]
 
 { #category : 'dependencies' }
