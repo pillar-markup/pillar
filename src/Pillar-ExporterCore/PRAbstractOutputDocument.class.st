@@ -26,7 +26,9 @@ PRAbstractOutputDocument >> basicWriter [
 
 { #category : 'building' }
 PRAbstractOutputDocument >> buildOn: aPRProject [ 
-	
+	"This is a key method. It is the heart of the flow:
+		Parser, Transform, Write, Post Write"
+		
 	| parsedDocument transformedDocument writtenFile |
 	parsedDocument := self parseInputFile: file.
 	parsedDocument properties: (self metadataConfigurationForDocument: parsedDocument).

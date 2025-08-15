@@ -39,6 +39,22 @@ PRTocBuilderVisitor >> addToToc: aTocTitle [
 			self addToToc: aTocTitle ]
 ]
 
+{ #category : 'initialization' }
+PRTocBuilderVisitor >> checkCyclicIncludeOfFile: aSource [
+	
+	self documentSource = aSource ifTrue: [ 
+		PRCyclicFileInclusionError new
+			files: { aSource };
+			signal
+	].
+
+	(inProcessFiles includes: aSource)
+		ifTrue: [ PRCyclicFileInclusionError new
+			files: (inProcessFiles copyWith: aSource);
+			signal 
+	]
+]
+
 { #category : 'accessing' }
 PRTocBuilderVisitor >> currentFile [
 	^ currentFile
@@ -93,22 +109,6 @@ PRTocBuilderVisitor >> top [
 	^ tocsStack top
 ]
 
-{ #category : 'initialization' }
-PRTocBuilderVisitor >> validateInclusionOfFile: aSource [
-	
-	self documentSource = aSource ifTrue: [ 
-		PRCyclicFileInclusionError new
-			files: { aSource };
-			signal
-	].
-
-	(inProcessFiles includes: aSource)
-		ifTrue: [ PRCyclicFileInclusionError new
-			files: (inProcessFiles copyWith: aSource);
-			signal 
-	]
-]
-
 { #category : 'visiting' }
 PRTocBuilderVisitor >> visit: aDocument [
 	super visit: aDocument.
@@ -130,7 +130,7 @@ PRTocBuilderVisitor >> visitInputFileAnnotation: anAnnotation [
 	sourceSave := self documentSource.
 	currentSave := self currentFile.
 	newSource := self documentSource parent resolve: anAnnotation path.
-	self validateInclusionOfFile: newSource.
+	self checkCyclicIncludeOfFile: newSource.
 	"document := PRPillarParserMain parse: newSource contents."
 	self documentSource: newSource.
 	self currentFile: anAnnotation path.
