@@ -52,7 +52,7 @@ ClapPillarBuildCommandSpecTest >> tearDown [
 ClapPillarBuildCommandSpecTest >> testAll [
 
 	| context command |
-	context := ClapPillarBuildCommand commandSpecification activationWith: #(build '--format' pdf '--all').
+	context := ClapPillarBuildCommand commandSpecification activationWith: #(build pdf '--all').
 	command := context command.
 	self assert: (command hasFlag: 'all').
 ]
@@ -70,7 +70,7 @@ ClapPillarBuildCommandSpecTest >> testExplicitFile [
 ClapPillarBuildCommandSpecTest >> testExplicitFileDifferentFromIndex [
 
 	| context command |
-	context := ClapPillarBuildCommand commandSpecification activationWith: #(build '--format' pdf 'toto.md').
+	context := ClapPillarBuildCommand commandSpecification activationWith: #(build  pdf 'toto.md').
 	command := context command.
 	self assert: command requestedFiles asArray equals: #('toto.md')
 ]
@@ -79,7 +79,7 @@ ClapPillarBuildCommandSpecTest >> testExplicitFileDifferentFromIndex [
 ClapPillarBuildCommandSpecTest >> testExplicitFiles [
 
 	| context command |
-	context := ClapPillarBuildCommand commandSpecification activationWith: #(build '--format' pdf 'index.md' 'titi.md').
+	context := ClapPillarBuildCommand commandSpecification activationWith: #(build pdf 'index.md' 'titi.md').
 	command := context command.
 	self assert: command requestedFiles asArray equals: #('index.md' 'titi.md')
 ]
@@ -110,7 +110,7 @@ ClapPillarBuildCommandSpecTest >> testFormatNoFormatEqualsUnknownFormat [
 ClapPillarBuildCommandSpecTest >> testFormatPdf [
 
 	| context command |
-	context := ClapPillarBuildCommand commandSpecification activationWith: #(build '--format' pdf).
+	context := ClapPillarBuildCommand commandSpecification activationWith: #(build pdf).
 	command := context command.
 	self assert: command format equals: 'pdf'.
 ]
