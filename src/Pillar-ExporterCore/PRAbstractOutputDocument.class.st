@@ -200,17 +200,3 @@ PRAbstractOutputDocument >> writeDocument: aDocument [
 	outputFile writeStreamDo: [ :stream | stream nextPutAll: templatedOutput ].
 	^ outputFile
 ]
-
-{ #category : 'writing' }
-PRAbstractOutputDocument >> writer [
-	
-	"If templating is active in the command, use the templated writer"
-	| writer |
-	writer := self basicWriter.
-	project isTemplatable ifTrue: [ 
-		writer := PRTemplatedWriter new
-			outputDocument: self;
-			defaultWriter: writer;
-			yourself ].
-	^ writer
-]

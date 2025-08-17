@@ -21,8 +21,6 @@ BaselineOfPillar >> baseline: spec [
 		spec
 			package: 'Pillar-Core' 
 				with: [ spec requires: #( 'OSSubprocess' 'Microdown')];
-			package: 'Pillar-Tests-Core' 
-				with: [ spec requires: #( 'Pillar-Core') ];
 						
 			package: 'Pillar-ExporterCore' with: [ spec requires: #( 'Pillar-Core' 'ContainersPropertyEnvironment' ) ];
 					
@@ -59,7 +57,6 @@ BaselineOfPillar >> baseline: spec [
 				#(
 				'Pillar-ExporterLaTeX'
 				'Pillar-ExporterHTML'
-				'Pillar-Tests-Core'
 				'Pillar-Tests-Cli' 
 				'Pillar-Tests-Project' 
 				'Pillar-Tests-Integration' );
