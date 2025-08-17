@@ -42,27 +42,9 @@ PRIntegrationTest >> ensureTestDirectory [
 ]
 
 { #category : 'parameters' }
-PRIntegrationTest >> outputAscii [
-
-	^ PRAsciiOutput new
-]
-
-{ #category : 'parameters' }
-PRIntegrationTest >> outputEPub [
-
-	^ PREPubOutput new
-]
-
-{ #category : 'parameters' }
 PRIntegrationTest >> outputHtml [
 
 	^ PRHtmlOutput new
-]
-
-{ #category : 'parameters' }
-PRIntegrationTest >> outputMarkdown [
-
-	^ PRMarkdownOutput new
 ]
 
 { #category : 'parameters' }
@@ -115,13 +97,6 @@ PRIntegrationTest >> testBasicLatexPdf [
 ]
 
 { #category : 'tests' }
-PRIntegrationTest >> testBookAscii [
-
-	self testArchetype: self archetypeBook output: self outputAscii.
-	self assert: (project outputDirectory / 'ascii' / 'index.ascii') exists.
-]
-
-{ #category : 'tests' }
 PRIntegrationTest >> testBookEpub [
 	| archive |
 	self skip.
@@ -146,13 +121,6 @@ PRIntegrationTest >> testBookHtml [
 ]
 
 { #category : 'tests' }
-PRIntegrationTest >> testBookMarkdown [
-
-	self testArchetype: self archetypeBook output: self outputMarkdown.
-	self assert: (project outputDirectory / 'markdown' / 'index.markdown') exists.
-]
-
-{ #category : 'tests' }
 PRIntegrationTest >> testBookPdf [
 	self skip.
 	"to be unskip when we deal with the latex changes of the book template"
@@ -163,24 +131,10 @@ PRIntegrationTest >> testBookPdf [
 ]
 
 { #category : 'tests' }
-PRIntegrationTest >> testPresentationAscii [
-
-	self testArchetype: self archetypePresentation output: self outputAscii.
-	self assert: (project outputDirectory / 'ascii' / 'index.ascii') exists.
-]
-
-{ #category : 'tests' }
 PRIntegrationTest >> testPresentationHtml [
 
 	self testArchetype: self archetypePresentation output: self outputHtml.
 	self assert: (project outputDirectory / 'html' / 'index.html') exists.
-]
-
-{ #category : 'tests' }
-PRIntegrationTest >> testPresentationMarkdown [
-
-	self testArchetype: self archetypePresentation output: self outputMarkdown.
-	self assert: (project outputDirectory / 'markdown' / 'index.markdown') exists.
 ]
 
 { #category : 'tests' }
@@ -195,24 +149,10 @@ PRIntegrationTest >> testPresentationPdf [
 ]
 
 { #category : 'tests' }
-PRIntegrationTest >> testWelcomeAscii [
-
-	self testArchetype: self archetypeWelcome output: self outputAscii.
-	self assert: (project outputDirectory / 'ascii' / 'index.ascii') exists.
-]
-
-{ #category : 'tests' }
 PRIntegrationTest >> testWelcomeHtml [
 
 	self testArchetype: self archetypeWelcome output: self outputHtml.
 	self assert: (project outputDirectory / 'html' / 'index.html') exists.
-]
-
-{ #category : 'tests' }
-PRIntegrationTest >> testWelcomeMarkdown [
-
-	self testArchetype: self archetypeWelcome output: self outputMarkdown.
-	self assert: (project outputDirectory / 'markdown' / 'index.markdown') exists
 ]
 
 { #category : 'tests' }

@@ -1,1 +1,1 @@
-Package { #name : #'Pillar-Tests-Project' }
+Package { #name : 'Pillar-Tests-Project' }

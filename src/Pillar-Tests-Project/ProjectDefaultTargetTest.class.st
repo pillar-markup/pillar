@@ -1,13 +1,14 @@
 Class {
-	#name : #ProjectDefaultTargetTest,
-	#superclass : #TestCase,
+	#name : 'ProjectDefaultTargetTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'project'
 	],
-	#category : #'Pillar-Tests-Project'
+	#category : 'Pillar-Tests-Project',
+	#package : 'Pillar-Tests-Project'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> configAbsentTargetContent [ 
 	^ '{
   "base_url": "",
@@ -21,22 +22,7 @@ ProjectDefaultTargetTest >> configAbsentTargetContent [
 }'
 ]
 
-{ #category : #tests }
-ProjectDefaultTargetTest >> configAsciiContent [
-	^ '{
-  "base_url": "",
-  "site_name": "Pharo Book",
-  "title": "The Pillar Super Book Archetype",
-  "attribution": "The Pillar team",
-  "series": "Square Bracket tutorials",
-  "keywords": "project template, Pillar, Pharo, Smalltalk",
-  "language": "en-UK",
-  "latexWriter" : #latex,
-  "defaultExport" : "ascii"
-}'
-]
-
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> configHTMLContent [
 	^ '{
   "base_url": "",
@@ -51,7 +37,7 @@ ProjectDefaultTargetTest >> configHTMLContent [
 }'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> configInvalidTargetContent [
 	^ '{
   "base_url": "",
@@ -66,22 +52,7 @@ ProjectDefaultTargetTest >> configInvalidTargetContent [
 }'
 ]
 
-{ #category : #tests }
-ProjectDefaultTargetTest >> configMarkdownContent [
-	^ '{
-  "base_url": "",
-  "site_name": "Pharo Book",
-  "title": "The Pillar Super Book Archetype",
-  "attribution": "The Pillar team",
-  "series": "Square Bracket tutorials",
-  "keywords": "project template, Pillar, Pharo, Smalltalk",
-  "language": "en-UK",
-  "latexWriter" : #latex,
-  "defaultExport" : "markdown"
-}'
-]
-
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> configPDFContent [
 	^ '{
   "base_url": "",
@@ -96,7 +67,7 @@ ProjectDefaultTargetTest >> configPDFContent [
 }'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> testDefaultTargetAbsent [
 	| directory |
 	directory := FileSystem memory root.
@@ -107,18 +78,7 @@ ProjectDefaultTargetTest >> testDefaultTargetAbsent [
 	self assert: project defaultTarget equals: PRAbsentTarget
 ]
 
-{ #category : #tests }
-ProjectDefaultTargetTest >> testDefaultTargetAscii [
-	| directory |
-	directory := FileSystem memory root.
-	directory / 'pillar.conf'
-		writeStreamDo: [ :st | st nextPutAll: self configAsciiContent ].
-	project := PRProject new baseDirectory: directory.
-	
-	self assert: project defaultTarget equals: PRAsciiOutput
-]
-
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> testDefaultTargetHTML [
 	| directory |
 	directory := FileSystem memory root.
@@ -129,7 +89,7 @@ ProjectDefaultTargetTest >> testDefaultTargetHTML [
 	self assert: project defaultTarget equals: PRHtmlOutput
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> testDefaultTargetInvalid [
 	| directory |
 	directory := FileSystem memory root.
@@ -140,18 +100,7 @@ ProjectDefaultTargetTest >> testDefaultTargetInvalid [
 	self assert: project defaultTarget equals: PRInvalidTarget
 ]
 
-{ #category : #tests }
-ProjectDefaultTargetTest >> testDefaultTargetMarkdown [
-	| directory |
-	directory := FileSystem memory root.
-	directory / 'pillar.conf'
-		writeStreamDo: [ :st | st nextPutAll: self configMarkdownContent ].
-	project := PRProject new baseDirectory: directory.
-	
-	self assert: project defaultTarget equals: PRMarkdownOutput
-]
-
-{ #category : #tests }
+{ #category : 'tests' }
 ProjectDefaultTargetTest >> testDefaultTargetPDF [
 	| directory |
 	directory := FileSystem memory root.
