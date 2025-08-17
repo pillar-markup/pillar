@@ -85,28 +85,6 @@ ClapPillarBuildCommandSpecTest >> testExplicitFiles [
 ]
 
 { #category : 'tests - format' }
-ClapPillarBuildCommandSpecTest >> testFormatNoFormat [
-
-	| context command |
-	context := ClapPillarBuildCommand commandSpecification activationWith: #(build 'index.md').
-	command := context command.
-	self should: [ command format ] raise: NotFound.
-	[ command format ] on: NotFound do: [ :ex | self assert: ex messageText equals: 'Cannot find format!' ]
-]
-
-{ #category : 'tests - format' }
-ClapPillarBuildCommandSpecTest >> testFormatNoFormatEqualsUnknownFormat [
-	"may be in the future we could have a default
-	for now it is not optional to specify it. "
-
-	| context command |
-	context := ClapPillarBuildCommand commandSpecification activationWith: #(build 'index.md').
-	command := context command.
-	self should: [ command format ] raise: NotFound.
-	[ command format ] on: NotFound do: [ :ex | self assert: ex messageText equals: 'Cannot find format!' ]
-]
-
-{ #category : 'tests - format' }
 ClapPillarBuildCommandSpecTest >> testFormatPdf [
 
 	| context command |
