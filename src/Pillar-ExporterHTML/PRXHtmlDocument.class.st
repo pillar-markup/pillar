@@ -7,8 +7,9 @@ Class {
 
 { #category : 'accessing' }
 PRXHtmlDocument >> basicWriter [
+	self halt.
 	
-	^ PRXHTMLWriter new
+	^ self "was PRXHTMLWriter new"
 ]
 
 { #category : 'accessing' }
