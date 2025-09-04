@@ -28,7 +28,7 @@ Lean Pillar only Microdown format
 ```bash
 $ git clone https://github.com/pillar-markup/pillar.git
 $ cd pillar
-$ git checkout v11.0.0
+$ git checkout v11.0.1
 $ chmod a+x ./scripts/build.sh
 $ ./scripts/build.sh
 ```
