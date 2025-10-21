@@ -30,10 +30,20 @@ function get_platform_identifier() {
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 __builddir="$(pwd)/build"
 PHARO_VERSION="${PHARO_VERSION:-130}"
-PHARO="./pharo Pharo.image --no-default-preferences"
 
 rm -rf "${__builddir}" && mkdir -p "${__builddir}" && cd "${__builddir}"
-wget -O - get.pharo.org/64/${PHARO_VERSION}+vm | bash
+
+if command -v pharo >/dev/null 2>&1; then
+  echo "pharo is in PATH"
+  PHARO_VM_BIN="pharo"
+  wget -O - get.pharo.org/64/${PHARO_VERSION} | bash
+else
+  echo "pharo not found in PATH"
+  wget -O - get.pharo.org/64/${PHARO_VERSION}+vm | bash
+  PHARO_VM_BIN="./pharo"
+fi
+
+PHARO="$PHARO_VM_BIN Pharo.image --no-default-preferences"
 
 REPOSITORY_PATH=${__dir}/../src
 OS=$(get_platform_identifier)
