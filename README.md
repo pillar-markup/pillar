@@ -13,7 +13,7 @@ Pillar is now the name of the compilation chain and the syntax language is Micro
 Pillar was a markup syntax and tool-suite to generate documentation, books, websites and slides. Pillar as a markup is not new, it was invented around 2000 as a supporting language for [SmallWiki](https://www.slideshare.net/esug/smallwiki-smalltalk-wiki-towards-cms): one of the first wiki using OOP for real. Its syntax was based on the one of the original Wiki from Ward Cunningham. From SmallWiki it became the markup of the Pier CMS (which was an application server written in Seaside). 
 Then we extracted it from Pier to make it more applicable to different domains. 
 In recent years we migrated all the transformation logic (parser, asts, visitors to Microdown). 
-In the near future we will retire the Pillar markup from the compilation chain. 
+The Pillar markup has been retired from the compilation chain. Now Pillar edition chain only supports Microdown syntax.
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://img.shields.io/badge/license-MIT-blue.svg)
 
