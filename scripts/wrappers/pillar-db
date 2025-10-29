@@ -7,7 +7,7 @@ set -o nounset
 
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-PHARO_VM="${__dir}/pharo-ui"
+PHARO_VM="${__dir}/pharoForPillar-ui"
 PILLAR_IMAGE="${__dir}/Pharo.image"
 
 # disable parameter expansion to forward all arguments unprocessed to the VM

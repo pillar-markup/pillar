@@ -33,16 +33,20 @@ PHARO_VERSION="${PHARO_VERSION:-130}"
 
 rm -rf "${__builddir}" && mkdir -p "${__builddir}" && cd "${__builddir}"
 
-if command -v pharo >/dev/null 2>&1; then
-  echo "pharo is in PATH"
-  PHARO_VM_BIN="pharo"
-  wget -O - get.pharo.org/64/${PHARO_VERSION} | bash
-else
-  echo "pharo not found in PATH"
-  wget -O - get.pharo.org/64/${PHARO_VERSION}+vm | bash
-  PHARO_VM_BIN="./pharo"
-fi
+#if command -v pharo >/dev/null 2>&1; then
+#  echo "pharo is in PATH"
+#  PHARO_VM_BIN="pharo"
+#  wget -O - get.pharo.org/64/${PHARO_VERSION} | bash
+#else
+#  echo "pharo not found in PATH"
+#  wget -O - get.pharo.org/64/${PHARO_VERSION}+vm | bash
+#  PHARO_VM_BIN="./pharo"
+#fi
 
+wget -O - get.pharo.org/64/${PHARO_VERSION}+vm | bash
+mv ./pharo ./pharoForPillar
+mv ./pharo-ui ./pharoForPillar-ui
+PHARO_VM_BIN="./pharoForPillar"
 PHARO="$PHARO_VM_BIN Pharo.image --no-default-preferences"
 
 REPOSITORY_PATH=${__dir}/../src
