@@ -19,11 +19,11 @@ BaselineOfPillar >> baseline: spec [
 
 			spec postLoadDoIt: #postload:package:.
 			spec
-				for: #( #MacOS #Unix ) do: [
+				for: #( #unix #osx ) do: [
 						spec
 							package: 'Pillar-Core'
 							with: [ spec requires: #( 'OSSubprocess' 'Microdown' ) ] ];
-				for: #Windows do: [
+				for: #windows do: [
 						spec
 							package: 'Pillar-Core'
 							with: [ spec requires: #( 'OSWinSubprocess' 'Microdown' ) ] ];
