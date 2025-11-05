@@ -16,10 +16,10 @@ BaselineOfPillar >> baseline: spec [
 				containersPropertyEnvironment: spec;
 				microdown: spec;
 				mustache: spec.
-
-			spec postLoadDoIt: #postload:package:.
+			
 			spec
 				for: #( #unix #osx ) do: [
+						spec postLoadDoIt: #postload:package:.
 						spec
 							package: 'Pillar-Core'
 							with: [ spec requires: #( 'OSSubprocess' 'Microdown' ) ] ];
@@ -141,11 +141,11 @@ BaselineOfPillar >> mustache: spec [
 BaselineOfPillar >> osSubProcess: spec [
 
 	spec
-		for: #( #MacOS #Unix ) do: [
+		for: #( #unix #osx ) do: [
 				spec baseline: 'OSSubprocess' with: [
 							spec repository:
 									'github://pharo-contributions/OSSubprocess:v2.0.0/repository' ] ];
-		for: #Windows do: [
+		for: #windows do: [
 				spec baseline: 'OSWinSubprocess' with: [
 							spec repository:
 									'github://pharo-contributions/OSWinSubprocess:master/repository' ] ]
