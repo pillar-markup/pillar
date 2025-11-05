@@ -7,63 +7,61 @@ Class {
 
 { #category : 'baselines' }
 BaselineOfPillar >> baseline: spec [
-
 	<baseline>
+	
 	spec for: #common do: [
-			self
-				osSubProcess: spec;
-				chrysal: spec;
-				containersPropertyEnvironment: spec;
-				microdown: spec;
-				mustache: spec.
+		self
+			osSubProcess: spec;
+			chrysal: spec;
+			containersPropertyEnvironment: spec;
+			microdown: spec;
+			mustache: spec.
 			
-			spec
-				for: #( #unix #osx ) do: [
-						spec postLoadDoIt: #postload:package:.
-						spec
-							package: 'Pillar-Core'
-							with: [ spec requires: #( 'OSSubprocess' 'Microdown' ) ] ];
-				for: #windows do: [
-						spec
-							package: 'Pillar-Core'
-							with: [ spec requires: #( 'OSWinSubprocess' 'Microdown' ) ] ];
-				package: 'Pillar-ExporterCore'
-				with: [
-					spec requires: #( 'Pillar-Core' 'ContainersPropertyEnvironment' ) ];
-				"Latex and HTML packages only contain project logic."package:
-					'Pillar-ExporterLaTeX'
-				with: [
-					spec requires:
-							#( 'Pillar-ExporterCore' 'Pillar-Core' 'Mustache' ) ];
-				package: 'Pillar-ExporterHTML'
-				with: [ spec requires: #( 'Pillar-ExporterCore' ) ];
-				package: 'Pillar-Cli-BookTester'
-				with: [ spec requires: #( 'Pillar-Cli' 'Microdown' ) ];
+		spec postLoadDoIt: #postload:package:.
+		spec
+			package: 'Pillar-Core' 
+				with: [ spec requires: #( 'OSSubprocess' 'OSWinSubprocess' 'Microdown')];
+						
+			package: 'Pillar-ExporterCore' with: [ spec requires: #( 'Pillar-Core' 'ContainersPropertyEnvironment' ) ];
+					
+			"Latex and HTML packages only contain project logic."
+			package: 'Pillar-ExporterLaTeX'
+				with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-Core' 'Mustache') ];
+			package: 'Pillar-ExporterHTML'
+				with: [ spec requires: #( 'Pillar-ExporterCore') ];
+			
+			package:  'Pillar-Cli-BookTester' 
+				with: [ spec requires: #('Pillar-Cli' 'Microdown') ];
 				"in fact I would like to express that the dependency is to microdown-booktester but I guess
 				that I cannot"
-				package: 'Pillar-Chrysal-Generator'
-				with: [ spec requires: #( 'Chrysal' ) ];
-				package: 'Pillar-Cli' with: [
-						spec requires:
-								#( 'Pillar-ExporterCore' 'Pillar-Chrysal' 'Pillar-Project' ) ];
-				package: 'Pillar-Tests-Cli'
-				with: [ spec requires: #( 'Pillar-Cli' ) ];
-				package: 'Pillar-Chrysal'
-				with: [ spec requires: #( 'Pillar-ExporterCore' ) ];
-				package: 'Pillar-Project'
-				with: [ spec requires: #( 'Pillar-Core' ) ];
-				package: 'Pillar-Tests-Project'
-				with: [ spec requires: #( 'Pillar-Project' ) ];
-				package: 'Pillar-Tests-Integration'
-				with: [ spec requires: #( 'Pillar-Project' ) ].
+				
+			
+			package: 'Pillar-Chrysal-Generator' 
+				with: [ spec requires: #( 'Chrysal' ) ];			
+			
+			package: 'Pillar-Cli' 
+				with: [ spec requires: #( 'Pillar-ExporterCore' 'Pillar-Chrysal' 'Pillar-Project') ];
+				
+			package: 'Pillar-Tests-Cli' with: [ spec requires: #( 'Pillar-Cli' ) ];
+			
+			package: 'Pillar-Chrysal' with: [ spec requires: #( 'Pillar-ExporterCore' ) ];
+		
+			package: 'Pillar-Project' with: [ spec requires: #( 'Pillar-Core' ) ];
+		
+			package: 'Pillar-Tests-Project' with: [ spec requires: #( 'Pillar-Project' ) ];
+			package: 'Pillar-Tests-Integration' with: [ spec requires: #( 'Pillar-Project' ) ].
 
-			spec
-				group: 'All'
-				with:
-					#( 'Pillar-ExporterLaTeX' 'Pillar-ExporterHTML'
-					   'Pillar-Tests-Cli' 'Pillar-Tests-Project'
-					   'Pillar-Tests-Integration' );
-				group: 'Core' with: #( 'Pillar-Core' ) ]
+		spec
+			group: 'All' 
+				with: 
+				#(
+				'Pillar-ExporterLaTeX'
+				'Pillar-ExporterHTML'
+				'Pillar-Tests-Cli' 
+				'Pillar-Tests-Project' 
+				'Pillar-Tests-Integration' );
+			group: 'Core' 
+				with: #( 'Pillar-Core' ) ].
 ]
 
 { #category : 'dependencies' }
@@ -139,16 +137,19 @@ BaselineOfPillar >> mustache: spec [
 
 { #category : 'dependencies' }
 BaselineOfPillar >> osSubProcess: spec [
+	"From README in https://github.com/pharo-contributions/OSSubprocess:
+	It was decided together with Pharo Consortium that as a first step, we should concentrate on making it work on OSX and Unix. 
+	If the tool proves to be good and accepted, we could, at a second step, try to add Windows support. 
+	If you need Windows support, you can take a look at the https://github.com/pharo-contributions/OSWinSubprocess project."
 
-	spec
-		for: #( #unix #osx ) do: [
-				spec baseline: 'OSSubprocess' with: [
-							spec repository:
-									'github://pharo-contributions/OSSubprocess:v2.0.0/repository' ] ];
-		for: #windows do: [
-				spec baseline: 'OSWinSubprocess' with: [
-							spec repository:
-									'github://pharo-contributions/OSWinSubprocess:master/repository' ] ]
+	"For Unix and OSX"
+	spec baseline: 'OSSubprocess' with: [
+			spec repository:
+				'github://pharo-contributions/OSSubprocess:v2.0.0/repository' ].
+	"For Windows"
+	spec baseline: 'OSWinSubprocess' with: [
+			spec repository:
+				'github://pharo-contributions/OSWinSubprocess:master/repository' ]
 ]
 
 { #category : 'baselines' }
