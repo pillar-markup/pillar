@@ -49,7 +49,7 @@ PRPDFDocument >> executeOnWindowsCommand: command arguments: arguments workingDi
 		           shellCommand: commandString;
 		           runAndWait.
 
-	process exitCode = 0 ifTrue: [
+	process exitCode = 0 ifFalse: [
 		self error: 'command ' , commandString , ' failed' ]
 ]
 
