@@ -281,5 +281,5 @@ Introduces new template for slides - microdown-mooc (based on extension <!slide.
 ## Old and obsolete documentation
 
 Read the documentation at [https://github.com/SquareBracketAssociates/Booklet-PublishingAPillarBooklet](https://github.com/SquareBracketAssociates/Booklet-PublishingAPillarBooklet).
-Please note that chapter on "Pharo a web Perspective" is obsolete since it refers to Pharo 60.
+Please note that the chapter of the book [Pharo a web Perspective](https://files.pharo.org/books-pdfs/entreprise-pharo/2016-10-06-EnterprisePharo.pdf) dedicated to Pillar is obsolete since it refers to Pharo 60.
 
