@@ -55,13 +55,11 @@
 %%%
 %%% Fonts & paragraph typography
 %%%
-\RequirePackage{fontspec,gentium-otf,opensans,FiraMono}
+\RequirePackage{fontspec,opensans,FiraMono}
 
-\setmainfont{Gentium}
+\setmainfont{GentiumBookPlus}
 \setsansfont{Open Sans}[
-  \@ifpackagelater{opensans}{2019/06/19}% test for font naming bug
-    {}% 2019/06/20 fixed it
-    {BoldFont = {* Bold},}
+  sBoldFont = {* Bold},
   Scale=MatchLowercase,
   Numbers=OldStyle
 ]
