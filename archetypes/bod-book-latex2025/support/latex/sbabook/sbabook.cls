@@ -55,9 +55,9 @@
 %%%
 %%% Fonts & paragraph typography
 %%%
-\RequirePackage{fontspec,gentiumbook,opensans,FiraMono}
+\RequirePackage{fontspec,gentium-otf,opensans,FiraMono}
 
-\setmainfont{Gentium Book Plus}
+\setmainfont{Gentium}
 \setsansfont{Open Sans}[
   \@ifpackagelater{opensans}{2019/06/19}% test for font naming bug
     {}% 2019/06/20 fixed it
