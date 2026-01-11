@@ -9,12 +9,13 @@ ChrysalConfigurationBuilder new
 	withDescriptionItems: ConfigurationDescriptionForPillar itemDescriptionForPillar
 "
 Class {
-	#name : #ConfigurationDescriptionForPillar,
-	#superclass : #Object,
-	#category : 'Pillar-Chrysal-Generator'
+	#name : 'ConfigurationDescriptionForPillar',
+	#superclass : 'Object',
+	#category : 'Pillar-Chrysal-Generator',
+	#package : 'Pillar-Chrysal-Generator'
 }
 
-{ #category : #sample }
+{ #category : 'sample' }
 ConfigurationDescriptionForPillar class >> itemDescriptionForPillar [
 	^ {
 	(PathConfigurationItem new
@@ -26,96 +27,112 @@ ConfigurationDescriptionForPillar class >> itemDescriptionForPillar [
 	(StringConfigurationItem new
 		propertyName: #title;
 		default: 'my super cool book';
-		yourself).
+		yourself)
+	.
 	(StringConfigurationItem new
 		propertyName: #attribution;
 		default: 'me, myself and I';
-		yourself).
+		yourself)
+	.
 	(NumberConfigurationItem new
 		propertyName: #headingLevelOffset;
 		explanation:
-			'Indicate how to convert from the level of a Pillar heading to the level of heading in your exported document.
-	For example, a headingLevelOffset of 3 converts a 1st level Pillar heading to an <h4>in HTML';
+			'Indicate how to convert from the level of a heading to the level of heading in your exported document.
+	For example, a headingLevelOffset of 3 converts a 1st level heading to an <h4>in HTML';
 		default: 0;
-		yourself).
+		yourself)
+	.
 	(StringConfigurationItem new
 		propertyName: #series;
 		default: 'Square Bracket Associate Collection';
-		yourself).
+		yourself)
+	.
 	(StringConfigurationItem new
 		propertyName: #keywords;
 		default: 'Pharo';
-		yourself).
+		yourself)
+	.
 	(PathConfigurationItem new
 		propertyName: #outputDirectory;
-		default: 'build').
+		default: '_result')
+	.
 	(FolderConfigurationItem new
 		propertyName: #baseDirectory;
-		default: '.').
-	(FileConfigurationItem new
-		propertyName: #outputFile;
+		default: '.')
+	.
+	
+	"(FileConfigurationItem new
+		propertyName: #separatedOutputFiles;
 		default: 'output';
 		explanation:
 			'If separateOutputFiles is false, indicate the name of the output file. This can also be a write stream.').
+	"
 	(FileConfigurationItem new
 		propertyName: #mainDocument;
-		default: 'book').
+		default: 'book')
+	.
+	
 	(FileConfigurationItem new
 		propertyName: #inputFile;
-		default: 'book';
+		default: 'index';
 		explanation:
-			'The Pillar file that must be transformed. You can also specify an input file at the end of the command-line interface. Previously there was no default value').
+			'The file that must be transformed. You can also specify an input file at the end of the command-line interface. Previously there was no default value') .
+			
 	(StringConfigurationItem new
 		propertyName: #latexTemplate;
 		default: '_support/templates/main.latex.mustache').
-	(BooleanConfigurationItem new
-		propertyName: #scrambledEmailAddresses;
-		beFalseAsDefault).
-	(BooleanConfigurationItem new
+
+	"(BooleanConfigurationItem new
 		propertyName: #separateOutputFiles;
 		explanation:
 			'If true, each input file is exported to one output file. If false (the default), all input files are exported to outputFile.';
-		beFalseAsDefault).
-	(BooleanConfigurationItem new
+		beFalseAsDefault) ."
+		
+	"(BooleanConfigurationItem new
 		propertyName: #renderStructureAsSlide;
 		explanation:
 			'When true (the default), Pillar will create a dedicated slide for each Pillar header. This parameter is meaningless when generating a written document';
-		beTrueAsDefault).
+		beTrueAsDefault)."
+		
 	(StringConfigurationItem new
 		propertyName: #latexChapterTemplate;
-		default: '_support/templates/chapter.latex.mustache').
+		default: '_support/templates/chapter.latex.mustache')
+	.
 	(StringConfigurationItem new
 		propertyName: #htmlTemplate;
-		default: '_support/templates/html.mustache').
+		default: '_support/templates/html.mustache')
+	.
 	(StringConfigurationItem new
 		propertyName: #htmlChapterTemplate;
-		default: '_support/templates/html.mustache').
+		default: '_support/templates/html.mustache')
+	.
 	(NewLineConfigurationItem new
 		propertyName: #newLine;
-		defaultIsPlatform).
+		defaultIsPlatform)
+	.
 	(StringConfigurationItem new
 		propertyName: #latexWriter;
-		default: #latex:sbabook;
+		default: #miclatex:sbabook;
 		yourself)	
-		.
+	.
 	(StringConfigurationItem new
 		propertyName: #htmlWriter;
-		default: #html;
+		default: #michtml;
 		yourself)	
-		.
+	.
 	(NumberConfigurationItem new
 		propertyName: #slideInTemplateForDeckJS;
 		explanation: 'Number of slides in Template: Indicate the number of slides created by the DeckJS template. This is important to create anchors.';
 		default: 1;
-		yourself).
-	(CodeBlockDefaultLanguageItem new)
+		yourself)
 	.
+	".
 	(CompositeConfigurationItem new
 		propertyName: #levelSpecification;
 		default: #PRTitlePrinterSpecification;
 		fields: #(level renderAs capitalization numbering headerSize);
-		yourself)
-	.
+		yourself)"
+	
 	(ListConfigurationItem new
 		propertyName: #levels;
 		default: #OrderedCollection;

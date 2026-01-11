@@ -1,1 +1,1 @@
-Package { #name : #'Pillar-Chrysal-Generator' }
+Package { #name : 'Pillar-Chrysal-Generator' }

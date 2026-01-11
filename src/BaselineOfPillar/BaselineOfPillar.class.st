@@ -67,7 +67,7 @@ BaselineOfPillar >> baseline: spec [
 { #category : 'dependencies' }
 BaselineOfPillar >> chrysal: spec [
 
-	spec baseline: 'Chrysal' with: [ spec repository: 'github://Ducasse/Chrysal:v1.0.0/src' ]
+	spec baseline: 'Chrysal' with: [ spec repository: 'github://Ducasse/Chrysal:v1.1.0/src' ]
 ]
 
 { #category : 'dependencies' }
