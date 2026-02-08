@@ -1,5 +1,5 @@
 {
-  "title": "Welcome Example",
+  "title": "Welcome Example"
 }  
   
 ## Hello World
