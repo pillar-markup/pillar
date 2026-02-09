@@ -2,6 +2,38 @@
 <html lang="en">
   <head>
     <title>{{{title}}}</title>
+	<style>
+	:root {
+			--link-1: #D65472;
+			--link-2: #37C5F0;
+			--link-3: gold;
+			--text: #18272F;
+			--counter: #30B67D;
+	}
+	.city {
+	  background-color: tomato;
+	  color: white;
+	  border: 2px solid black;
+	  margin: 20px;
+	  padding: 20px;
+	}
+	.note {
+	  font-size: 120%;
+	  color: red;
+	}
+	#style-1 {
+		padding: 0 .25rem;
+		margin: 0 -.25rem;
+	  	box-shadow: inset 0 0 0 0 var(--link-1);
+	  	transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+		color: var(--link-1);
+  	
+		&:hover {
+	    	color: white;
+	    	box-shadow: inset 100px 0 0 0 var(--link-1);
+	  	}
+	}
+	</style>
   </head>
   <body>
     <div class="container">
