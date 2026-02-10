@@ -80,6 +80,10 @@ $ ls
 LICENSE  README.md  appveyor.yml  archetypes  ==>>build<<==  download.sh  scripts  src
 ```
 
+### Notes for Windows
+- Depending on git's `autocrlf` setting, the downloaded file build.sh and others might end lines with `CRLF`. Ensure that lines end simply with `LF` for script execution.
+- The build.sh script calls the `cygpath` utility. 
+
 ### 2. Setting up the environment
 
 You can then proceed to install that pillar build where you want.
@@ -120,7 +124,7 @@ The simplest way to install `LaTeX` on unix is to install texlive-full in your s
 
 #### Installing `LaTeX` on Windows
 
-Install a `LaTeX` distribution such as [MiKTeX](https://miktex.org/) and install the dependencies specified below using the provided package manager. Then, make sure the bin directory is in your PATH environment variable. For example this could be the following value:
+Install a `LaTeX` distribution such as [MiKTeX](https://miktex.org/) and install the dependencies specified below using the provided package manager. For `MiKTeX`, a perl script environment (e.g. [Strawberry Perl](https://strawberryperl.com)) must be provided separately. Then, make sure the bin directory is in your PATH environment variable. For example this could be the following value: `C:\Users\username\AppData\Local\Programs\MiKTeX\miktex\bin\x64\`.
 
 #### Tailored installation (for non-full lovers)
 Producing pdf documents with Pillar requires a `LaTeX` installation with certain packages.
@@ -186,13 +190,21 @@ Smalltalk globals
 	ifPresent: [ :c | c removeFromSystem ].
 
 ```
-
-The following script can be useful if you develop using the launcher and want to try to execute the image as from a pillar command
-
+### Executing the image as from a pillar command
+The following script can be useful if you develop using the launcher and want to try to execute the image as from a pillar command:
 ```
 /Users/ducasse/Documents/Pharo/vms/100-x64/Pharo.app/Contents/MacOS/Pharo  /Users/ducasse/Documents/Pharo/images/P11-PillarRealReference/P10-PillarRealReference.image clap build pdf index.pillar
 ```
-
+In case of `Windows`, temporary substitute in your image 
+```
+PRTarget >> newProject
+	^ PRProject on: FileSystem workingDirectory
+```
+with the adequate reference to  your target project, e.g.:
+```
+PRTarget >> newProject
+	^ PRProject on: 'C:/cygwin64/home/user/my-book-project' asFileReference
+```
 
 ## History
 
@@ -269,5 +281,5 @@ Introduces new template for slides - microdown-mooc (based on extension <!slide.
 ## Old and obsolete documentation
 
 Read the documentation at [https://github.com/SquareBracketAssociates/Booklet-PublishingAPillarBooklet](https://github.com/SquareBracketAssociates/Booklet-PublishingAPillarBooklet).
-Please note that chapter on "Pharo a web Perspective" is obsolete since it refers to Pharo 60.
+Please note that the chapter of the book [Pharo a web Perspective](https://files.pharo.org/books-pdfs/entreprise-pharo/2016-10-06-EnterprisePharo.pdf) dedicated to Pillar is obsolete since it refers to Pharo 60.
 

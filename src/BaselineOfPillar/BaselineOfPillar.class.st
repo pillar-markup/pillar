@@ -20,7 +20,7 @@ BaselineOfPillar >> baseline: spec [
 		spec postLoadDoIt: #postload:package:.
 		spec
 			package: 'Pillar-Core' 
-				with: [ spec requires: #( 'OSSubprocess' 'Microdown')];
+				with: [ spec requires: #( 'OSSubprocess' 'OSWinSubprocess' 'Microdown')];
 						
 			package: 'Pillar-ExporterCore' with: [ spec requires: #( 'Pillar-Core' 'ContainersPropertyEnvironment' ) ];
 					
@@ -137,8 +137,19 @@ BaselineOfPillar >> mustache: spec [
 
 { #category : 'dependencies' }
 BaselineOfPillar >> osSubProcess: spec [
+	"From README in https://github.com/pharo-contributions/OSSubprocess:
+	It was decided together with Pharo Consortium that as a first step, we should concentrate on making it work on OSX and Unix. 
+	If the tool proves to be good and accepted, we could, at a second step, try to add Windows support. 
+	If you need Windows support, you can take a look at the https://github.com/pharo-contributions/OSWinSubprocess project."
 
-	spec baseline: 'OSSubprocess' with: [ spec repository: 'github://pharo-contributions/OSSubprocess:v2.0.0/repository' ]
+	"For Unix and OSX"
+	spec baseline: 'OSSubprocess' with: [
+			spec repository:
+				'github://pharo-contributions/OSSubprocess:v2.0.0/repository' ].
+	"For Windows"
+	spec baseline: 'OSWinSubprocess' with: [
+			spec repository:
+				'github://pharo-contributions/OSWinSubprocess:master/repository' ]
 ]
 
 { #category : 'baselines' }
@@ -147,13 +158,4 @@ BaselineOfPillar >> postload: loader package: packageSpec [
 	| list |
 	list := ((Process allInstances select: [ :p | p priority = 70 ]) select: [ :e | '*OSSub*' match: e name ]).
 	list ifNotEmpty: [ :f | f first terminate ]
-]
-
-{ #category : 'dependencies' }
-BaselineOfPillar >> processWrapper: spec [
-
-	spec configuration: 'ProcessWrapper' with: [
-		spec
-			versionString: '1.2';
-			repository: 'http://smalltalkhub.com/mc/hernan/ProcessWrapper/main' ]
 ]

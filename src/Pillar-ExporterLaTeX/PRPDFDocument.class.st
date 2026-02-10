@@ -40,27 +40,17 @@ PRPDFDocument >> executeOnUnixCommand: command arguments: arguments workingDirec
 
 { #category : 'compiling' }
 PRPDFDocument >> executeOnWindowsCommand: command arguments: arguments workingDirectory: aWorkingDirectory [
-	| process success commandString |
-	commandString := 'cd "', aWorkingDirectory, '" && ', command, ' ', (' ' join: arguments).
-	
-	process := ProcessWrapper new.
-	process useStderr; useStdout.
-	success := process startWithShellCommand: commandString.
-	success ifFalse: [
-		self error: 'command ', commandString ,' failed' ].
 
-	success := process waitForExit.
-	success ifFalse: [
-		self error: 'command ', commandString ,' failed' ].
-	
-	Transcript show: process stdoutStream upToEnd.
-	Transcript show: process stderrStream upToEnd.
+	| process commandString |
+	commandString := 'cd "' , aWorkingDirectory , '" && ' , command , ' '
+	                 , (' ' join: arguments).
 
-	process closeStdin.
-	process closeStderr.
+	process := OSWSWinProcess new
+		           shellCommand: commandString;
+		           runAndWait.
 
 	process exitCode = 0 ifFalse: [
-		self error: 'command ', commandString ,' failed' ].
+		self error: 'command ' , commandString , ' failed' ]
 ]
 
 { #category : 'accessing' }
