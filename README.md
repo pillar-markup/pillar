@@ -185,12 +185,22 @@ Smalltalk globals
 	at: #BaselineOfMicrodown 
 	ifPresent: [ :c | c removeFromSystem ].
 
+Metacello new
+	baseline: 'Pillar';
+	repository: 'github://pillar-markup/pillar:xxx/src';
+	onConflict: [ :ex | ex useIncoming ];
+	onUpgrade: [ :ex | ex useIncoming ];
+	load: #('All').
+
 ```
 
 The following script can be useful if you develop using the launcher and want to try to execute the image as from a pillar command
 
 ```
-/Users/ducasse/Documents/Pharo/vms/100-x64/Pharo.app/Contents/MacOS/Pharo  /Users/ducasse/Documents/Pharo/images/P11-PillarRealReference/P10-PillarRealReference.image clap build pdf index.pillar
+
+/Users/ducasse/Documents/Pharo/vms/100-x64/Pharo.app/Contents/MacOS/Pharo  /Users/ducasse/Documents/Pharo/images/P11-PillarRealReference/P10-PillarRealReference.image clap archetype welcome
+
+/Users/ducasse/Documents/Pharo/vms/100-x64/Pharo.app/Contents/MacOS/Pharo  /Users/ducasse/Documents/Pharo/images/P11-PillarRealReference/P10-PillarRealReference.image clap build pdf index.md
 ```
 
 
