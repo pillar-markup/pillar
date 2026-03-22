@@ -155,12 +155,9 @@ The resulting pdf or html site will be written into the `_result` directory.
 
 Add the `-h` flag to get documentation.
 
-**pillar build**
-It builds by default the export format found in `pillar.conf` at `defaultExport` target.
-
-**pillar archetype**
-
-**pillar updateTemplate**
+- **pillar build** builds by default the export format found in `pillar.conf` at `defaultExport` target.
+- **pillar archetype** installs the archetype
+- **pillar check** launches all the book checkers defined in the configuration.
 
 ## Contributing to Pillar
 
@@ -184,24 +181,30 @@ First remove existing packages from the Pharo distribution.
 Smalltalk globals
 	at: #BaselineOfMicrodown 
 	ifPresent: [ :c | c removeFromSystem ].
+```
 
+Then load the dev branch of Pillar, it should also load the dev branch of Microdown so that you can work on both projects when they need to be in sync. 
+
+```
 Metacello new
 	baseline: 'Pillar';
 	repository: 'github://pillar-markup/pillar:xxx/src';
 	onConflict: [ :ex | ex useIncoming ];
 	onUpgrade: [ :ex | ex useIncoming ];
 	load: #('All').
-
 ```
+
 
 The following script can be useful if you develop using the launcher and want to try to execute the image as from a pillar command
 
 ```
+..../Pharo/vms/100-x64/Pharo.app/Contents/MacOS/Pharo  ..../Pharo/images/P11-PillarRealReference/P10-PillarRealReference.image clap archetype welcome
 
-/Users/ducasse/Documents/Pharo/vms/100-x64/Pharo.app/Contents/MacOS/Pharo  /Users/ducasse/Documents/Pharo/images/P11-PillarRealReference/P10-PillarRealReference.image clap archetype welcome
-
-/Users/ducasse/Documents/Pharo/vms/100-x64/Pharo.app/Contents/MacOS/Pharo  /Users/ducasse/Documents/Pharo/images/P11-PillarRealReference/P10-PillarRealReference.image clap build pdf index.md
+..../Pharo/vms/100-x64/Pharo.app/Contents/MacOS/Pharo  ..../Pharo/images/P11-PillarRealReference/P10-PillarRealReference.image clap build pdf index.md
 ```
+
+
+
 
 
 ## History
@@ -210,6 +213,12 @@ The development of Pillar and Microdown are now in Pharo 13.
 
 
 ### For Pharo 13
+- v11
+	- Removing Pillar syntax support.
+ 	- Using more recent version of Microdown.
+  	- Better support for book checkers.
+  	- On the way to use a templating microdown approach (so that user can customise the output at the document element level).
+  	  
 - v10.4.5 [ Pharo 13 - Pillar & Microdown syntax ]
 	- Revisit all commands and make them work in Pharo13
  	- Latest version with Pillar syntax	 	
