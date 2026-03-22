@@ -56,6 +56,7 @@ BaselineOfPillar >> baseline: spec [
 				with: 
 				#(
 				'Pillar-Core'
+				'Pillar-Cli-BookTester'
 				'Pillar-ExporterLaTeX'
 				'Pillar-ExporterHTML'
 				'Pillar-Tests-Cli' 
