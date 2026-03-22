@@ -5,7 +5,7 @@ Class {
 	#package : 'Pillar-Chrysal'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : 'helpers' }
 ConfigurationForPillarTest >> configurationDictionary [
 
 ^ STONJSON fromString: '{
@@ -41,7 +41,7 @@ ConfigurationForPillarTest >> configurationDictionary [
 
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'tests' }
 ConfigurationForPillarTest >> testCheckers [ 
 
 	| configuration |
@@ -57,7 +57,7 @@ ConfigurationForPillarTest >> testCheckers [
 
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'tests' }
 ConfigurationForPillarTest >> testCheckersConfiguration [
 
 	| configuration |
