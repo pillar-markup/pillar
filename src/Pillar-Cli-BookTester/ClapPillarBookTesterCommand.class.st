@@ -30,10 +30,11 @@ ClapPillarBookTesterCommand >> execute [
 	file exists 
 		ifTrue: [ 
 			| reporter parent |
-			self halt.
 			parent := self project baseDirectory.
 			reporter := MicAnalysisReportWriter 
-				reportForFolder: parent startingFrom: file.
+				reportForFolder: parent 
+				startingFrom: file 
+				configuration: self project configuration.
 				
 			reporter isOkay
 					ifTrue: [ 

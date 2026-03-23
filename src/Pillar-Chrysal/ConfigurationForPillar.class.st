@@ -163,6 +163,17 @@ ConfigurationForPillar >> bibFile: aValue [
 	^ self propertyAt: #bibFile put: aValue
 ]
 
+{ #category : 'manually added for now' }
+ConfigurationForPillar >> checkerConfigurations [
+	^ self propertyAt: #checkerConfigurations ifAbsent: [ #()]
+]
+
+{ #category : 'manually added for now' }
+ConfigurationForPillar >> checkerConfigurations: aCol [
+
+	^ self propertyAt: #checkerConfigurations put: aCol
+]
+
 { #category : 'conversion' }
 ConfigurationForPillar >> convertAttribution: aValue [
 	"generated code"
@@ -400,6 +411,17 @@ ConfigurationForPillar >> htmlWriter [
 ConfigurationForPillar >> htmlWriter: aValue [
 	"generated code"
 	^ self propertyAt: #htmlWriter put: aValue
+]
+
+{ #category : 'manually added for now' }
+ConfigurationForPillar >> ignoredCheckers [
+	^ self propertyAt: #ignoredCheckers ifAbsent: [ #()]
+]
+
+{ #category : 'manually added for now' }
+ConfigurationForPillar >> ignoredCheckers: aCol [
+
+	^ self propertyAt: #ignoredCheckers put: aCol
 ]
 
 { #category : 'accessing' }
