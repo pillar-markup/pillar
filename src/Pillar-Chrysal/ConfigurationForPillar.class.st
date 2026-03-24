@@ -532,6 +532,18 @@ ConfigurationForPillar >> newLine: aValue [
 	^ self propertyAt: #newLine put: aValue
 ]
 
+{ #category : 'manually added for now' }
+ConfigurationForPillar >> onlyCheckers [
+
+	^ self propertyAt: #onlyCheckers
+]
+
+{ #category : 'manually added for now' }
+ConfigurationForPillar >> onlyCheckers: aCol [
+
+	^ self propertyAt: #onlyCheckers put: aCol
+]
+
 { #category : 'accessing' }
 ConfigurationForPillar >> outputDirectory [
 	"generated code"
