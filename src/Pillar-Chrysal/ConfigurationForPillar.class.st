@@ -34,6 +34,127 @@ Class {
 
 { #category : 'description' }
 ConfigurationForPillar class >> chrysalDescriptions [
+	"I'm a generated method. I'm just here to help remembering how the class was generated. I should only be executed in presence of the configurationBuilder contained in the Chrysal package. Indeed the item objects only exist at compile-time and STON will recreate them.
+		Here is a sketch how the methods of the class can be regenerated.
+
+```			
+ChrysalConfigurationBuilder new 
+	configurationClass: ConfigurationForPillar2;
+	withDescriptionItems: ConfigurationForPillar chrysalDescriptions 
+```			
+"
+	 ^ STON fromString: '[
+	PathConfigurationItem {
+		#propertyName : #bibFile,
+		#default : ''book.bib'',
+		#explanation : ''Identify the file to be taken as input for the bibliography. This is the .bib file used to resolve the ${cite:ref=Key}$ annotation.''
+	},
+	StringConfigurationItem {
+		#propertyName : #title,
+		#default : ''my super cool book''
+	},
+	StringConfigurationItem {
+		#propertyName : #attribution,
+		#default : ''me, myself and I''
+	},
+	NumberConfigurationItem {
+		#propertyName : #headingLevelOffset,
+		#default : 0,
+		#explanation : ''Indicate how to convert from the level of a heading to the level of heading in your exported document.\r\tFor example, a headingLevelOffset of 3 converts a 1st level heading to an <h4>in HTML''
+	},
+	StringConfigurationItem {
+		#propertyName : #series,
+		#default : ''Square Bracket Associate Collection''
+	},
+	StringConfigurationItem {
+		#propertyName : #keywords,
+		#default : ''Pharo''
+	},
+	PathConfigurationItem {
+		#propertyName : #outputDirectory,
+		#default : ''_result''
+	},
+	FolderConfigurationItem {
+		#propertyName : #baseDirectory,
+		#default : ''.''
+	},
+	FileConfigurationItem {
+		#propertyName : #mainDocument,
+		#default : ''book''
+	},
+	FileConfigurationItem {
+		#propertyName : #inputFile,
+		#default : ''index'',
+		#explanation : ''The file that must be transformed. You can also specify an input file at the end of the command-line interface. Previously there was no default value''
+	},
+	StringConfigurationItem {
+		#propertyName : #latexTemplate,
+		#default : ''_support/templates/main.latex.mustache''
+	},
+	StringConfigurationItem {
+		#propertyName : #latexChapterTemplate,
+		#default : ''_support/templates/chapter.latex.mustache''
+	},
+	StringConfigurationItem {
+		#propertyName : #htmlTemplate,
+		#default : ''_support/templates/html.mustache''
+	},
+	StringConfigurationItem {
+		#propertyName : #htmlChapterTemplate,
+		#default : ''_support/templates/html.mustache''
+	},
+	NewLineConfigurationItem {
+		#propertyName : #newLine,
+		#default : #platform,
+		#explanation : ''The string that separates lines in the exported document. This is often either LF or CR\\+LF but any string is possible. Values are #(#cr #lf #crlf #unix #mac #dos #platform)'',
+		#defaultKey : #platform
+	},
+	StringConfigurationItem {
+		#propertyName : #latexWriter,
+		#default : #''miclatex:sbabook''
+	},
+	StringConfigurationItem {
+		#propertyName : #htmlWriter,
+		#default : #michtml
+	},
+	NumberConfigurationItem {
+		#propertyName : #slideInTemplateForDeckJS,
+		#default : 1,
+		#explanation : ''Number of slides in Template: Indicate the number of slides created by the DeckJS template. This is important to create anchors.''
+	},
+	ListConfigurationItem {
+		#propertyName : #levels,
+		#default : #OrderedCollection,
+		#element : #levelSpecification
+	},
+	PathConfigurationItem {
+		#propertyName : #tocFile,
+		#default : ''.'',
+		#explanation : ''Identify the file to be taken as input for the root of the table of contents. When it is not specified, the table of contents will not be computed and displayed''
+	},
+	ListConfigurationItem {
+		#propertyName : #onlyCheckers,
+		#default : #OrderedCollection,
+		#explanation : ''Identify the checker names that should only be considered. The list given by ignoredCheckers is not considered. Still checkers can be configured via checkerConfigurations field.'',
+		#element : #value
+	},
+	ListConfigurationItem {
+		#propertyName : #ignoredCheckers,
+		#default : #OrderedCollection,
+		#explanation : ''Identify the checker names that should be ignored when onlyCheckers is not used.'',
+		#element : #value
+	},
+	ListConfigurationItem {
+		#propertyName : #checkerConfigurations,
+		#default : #OrderedCollection,
+		#explanation : ''Specify some configurations for each of the checkers mentioned either in onlyCheckers or ignoredCheckers.'',
+		#element : #value
+	}
+]'
+]
+
+{ #category : 'description' }
+ConfigurationForPillar class >> chrysalDescriptions2 [
 	"I'm a generated method. I'm just here to help remembering how the class was generated. I should only be executed in presence of the configurationBuilder contained in the Chrysal package. Indeed the item objects only exist at compile-time and STON will recreate them."
 	 ^ STON fromString: '[
 	PathConfigurationItem {
@@ -163,15 +284,16 @@ ConfigurationForPillar >> bibFile: aValue [
 	^ self propertyAt: #bibFile put: aValue
 ]
 
-{ #category : 'manually added for now' }
+{ #category : 'accessing' }
 ConfigurationForPillar >> checkerConfigurations [
-	^ self propertyAt: #checkerConfigurations ifAbsent: [ #()]
+	"generated code"
+	^ self propertyAt: #checkerConfigurations ifAbsent: [ OrderedCollection new ]
 ]
 
-{ #category : 'manually added for now' }
-ConfigurationForPillar >> checkerConfigurations: aCol [
-
-	^ self propertyAt: #checkerConfigurations put: aCol
+{ #category : 'accessing' }
+ConfigurationForPillar >> checkerConfigurations: aValue [
+	"generated code"
+	^ self propertyAt: #checkerConfigurations put: aValue
 ]
 
 { #category : 'conversion' }
@@ -190,6 +312,16 @@ ConfigurationForPillar >> convertBaseDirectory: aValue [
 ConfigurationForPillar >> convertBibFile: aValue [
 	"generated code"
 	^ Path from: aValue
+]
+
+{ #category : 'conversion' }
+ConfigurationForPillar >> convertCheckerConfigurations: aValue [
+	"generated code"
+	| elements |
+	elements := OrderedCollection new.
+	aValue do: [:v | 
+		 elements add: (self convertValue: v ) ].
+	^ elements
 ]
 
 { #category : 'conversion' }
@@ -214,6 +346,16 @@ ConfigurationForPillar >> convertHtmlTemplate: aValue [
 ConfigurationForPillar >> convertHtmlWriter: aValue [
 	"generated code"
 	^ aValue
+]
+
+{ #category : 'conversion' }
+ConfigurationForPillar >> convertIgnoredCheckers: aValue [
+	"generated code"
+	| elements |
+	elements := OrderedCollection new.
+	aValue do: [:v | 
+		 elements add: (self convertValue: v ) ].
+	^ elements
 ]
 
 { #category : 'conversion' }
@@ -295,6 +437,16 @@ ConfigurationForPillar >> convertNewLine: aValue [
 ]
 
 { #category : 'conversion' }
+ConfigurationForPillar >> convertOnlyCheckers: aValue [
+	"generated code"
+	| elements |
+	elements := OrderedCollection new.
+	aValue do: [:v | 
+		 elements add: (self convertValue: v ) ].
+	^ elements
+]
+
+{ #category : 'conversion' }
 ConfigurationForPillar >> convertOutputDirectory: aValue [
 	"generated code"
 	^ Path from: aValue
@@ -351,7 +503,7 @@ ConfigurationForPillar >> convertTocFile: aValue [
 { #category : 'declared items' }
 ConfigurationForPillar >> declaredItems [
 	"generated code"
-	^ #( #bibFile #title #attribution #headingLevelOffset #series #keywords #outputDirectory #baseDirectory #mainDocument #inputFile #latexTemplate #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter #htmlWriter #slideInTemplateForDeckJS #levels #tocFile )
+	^ #( #bibFile #title #attribution #headingLevelOffset #series #keywords #outputDirectory #baseDirectory #mainDocument #inputFile #latexTemplate #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter #htmlWriter #slideInTemplateForDeckJS #levels #tocFile #onlyCheckers #ignoredCheckers #checkerConfigurations )
 ]
 
 { #category : 'accessing' }
@@ -413,15 +565,16 @@ ConfigurationForPillar >> htmlWriter: aValue [
 	^ self propertyAt: #htmlWriter put: aValue
 ]
 
-{ #category : 'manually added for now' }
+{ #category : 'accessing' }
 ConfigurationForPillar >> ignoredCheckers [
-	^ self propertyAt: #ignoredCheckers ifAbsent: [ #()]
+	"generated code"
+	^ self propertyAt: #ignoredCheckers ifAbsent: [ OrderedCollection new ]
 ]
 
-{ #category : 'manually added for now' }
-ConfigurationForPillar >> ignoredCheckers: aCol [
-
-	^ self propertyAt: #ignoredCheckers put: aCol
+{ #category : 'accessing' }
+ConfigurationForPillar >> ignoredCheckers: aValue [
+	"generated code"
+	^ self propertyAt: #ignoredCheckers put: aValue
 ]
 
 { #category : 'accessing' }
@@ -538,16 +691,16 @@ ConfigurationForPillar >> newLine: aValue [
 	^ self propertyAt: #newLine put: aValue
 ]
 
-{ #category : 'manually added for now' }
+{ #category : 'accessing' }
 ConfigurationForPillar >> onlyCheckers [
-
-	^ self propertyAt: #onlyCheckers
+	"generated code"
+	^ self propertyAt: #onlyCheckers ifAbsent: [ OrderedCollection new ]
 ]
 
-{ #category : 'manually added for now' }
-ConfigurationForPillar >> onlyCheckers: aCol [
-
-	^ self propertyAt: #onlyCheckers put: aCol
+{ #category : 'accessing' }
+ConfigurationForPillar >> onlyCheckers: aValue [
+	"generated code"
+	^ self propertyAt: #onlyCheckers put: aValue
 ]
 
 { #category : 'accessing' }

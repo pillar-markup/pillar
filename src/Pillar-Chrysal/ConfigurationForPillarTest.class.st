@@ -54,6 +54,7 @@ ConfigurationForPillarTest >> configurationDictionaryWithIgnored [
 	"htmlWriter" : "html",
 	"latexWriter" : "miclatex:sbabook",
 	"bibFile" : "others.bib",
+	"onlyCheckers" : [  "EnglishTypography" ],
 	"ignoredCheckers" : [ "FrenchTypography" ],
 	"checkerConfigurations" : 
 		[
@@ -81,11 +82,14 @@ ConfigurationForPillarTest >> configurationDictionaryWithIgnored [
 ConfigurationForPillarTest >> testCheckers [ 
 
 	| configuration |
-	
 	configuration := ConfigurationForPillar newFromSTONDictionary: self configurationDictionaryWithIgnored.
 	self 
-		assert: (configuration at: 'ignoredCheckers')
-		equals: #('FrenchTypography')
+		assert: configuration ignoredCheckers
+		equals: #('FrenchTypography') asOrderedCollection .
+	self 
+		assert: configuration onlyCheckers
+		equals: #('EnglishTypography') asOrderedCollection.
+
 	
 		
 	
@@ -97,11 +101,10 @@ ConfigurationForPillarTest >> testCheckers [
 ConfigurationForPillarTest >> testCheckersConfiguration [
 
 	| configuration |
-	
 	configuration := ConfigurationForPillar newFromSTONDictionary: self configurationDictionaryWithIgnored.
 	self 
-		assert: (configuration at: 'checkerConfigurations') 
-		equals: {'Vocabulary' -> #(#('sub-presenter' 'subpresenter') #('sub presenter' 'subpresenter') #('meta object' 'metaobject'))}
+		assert: configuration checkerConfigurations 
+		equals: {'Vocabulary' -> #(#('sub-presenter' 'subpresenter') #('sub presenter' 'subpresenter') #('meta object' 'metaobject'))} asOrderedCollection 
 	
 
 ]
