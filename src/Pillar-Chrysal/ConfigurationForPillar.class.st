@@ -436,6 +436,12 @@ ConfigurationForPillar >> inputFile: aValue [
 	^ self propertyAt: #inputFile put: aValue
 ]
 
+{ #category : 'manually added for now' }
+ConfigurationForPillar >> isOnlyCheckersDefined [
+
+	^ self propertyAt: #onlyCheckers ifPresent: [ true ] ifAbsent: [ false ] 
+]
+
 { #category : 'accessing' }
 ConfigurationForPillar >> keywords [
 	"generated code"
