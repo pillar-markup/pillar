@@ -108,3 +108,39 @@ ConfigurationForPillarTest >> testCheckersConfiguration [
 	
 
 ]
+
+{ #category : 'tests' }
+ConfigurationForPillarTest >> testIgnoredCheckers [
+
+    | configuration |
+	configuration := ConfigurationForPillar new.
+	configuration ignoredCheckers: #( 'CheckerA' ).
+	self assert: configuration ignoredCheckers size equals: 1.
+   self assert: configuration ignoredCheckers first equals: 'CheckerA'.
+]
+
+{ #category : 'tests' }
+ConfigurationForPillarTest >> testIgnoredandConfiguredCheckers [
+
+    | configuration |
+	configuration := ConfigurationForPillar new.
+	configuration ignoredCheckers: #( 'CheckerA' ).
+	configuration checkerConfigurations: #( #('CheckerB' 'yes') ).
+	
+	self assert: configuration ignoredCheckers size equals: 1.
+   self assert: configuration ignoredCheckers first equals: 'CheckerA'.
+	
+	self assert: configuration checkerConfigurations size equals: 1.
+    self assert: configuration checkerConfigurations first first equals: 'CheckerB'.
+]
+
+{ #category : 'tests' }
+ConfigurationForPillarTest >> testOnlyCheckers [
+
+    | configuration |
+	configuration := ConfigurationForPillar new.
+	configuration onlyCheckers: #( 'CheckerC' ).
+
+	self assert: configuration onlyCheckers size equals: 1.
+   self assert: configuration onlyCheckers first equals: 'CheckerC'.
+]
