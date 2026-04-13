@@ -144,3 +144,20 @@ ConfigurationForPillarTest >> testOnlyCheckers [
 	self assert: configuration onlyCheckers size equals: 1.
    self assert: configuration onlyCheckers first equals: 'CheckerC'.
 ]
+
+{ #category : 'tests' }
+ConfigurationForPillarTest >> testOnlyCheckersPriority [
+	| config activeCheckers |
+	config := ConfigurationForPillar new
+		onlyCheckers: #( 'Vocabulary' );
+		checkerConfigurations: { 
+			'Vocabulary' -> Dictionary new . 
+			'LastPeriodInCode' -> 'true' 
+		};
+		yourself.
+
+	activeCheckers := MicAnalysisReportWriter checkersFromConfiguration: config. 
+
+	self assert: activeCheckers size equals: 1.
+	self assert: activeCheckers first class name equals: 'MicVocabularyChecker'.
+]
