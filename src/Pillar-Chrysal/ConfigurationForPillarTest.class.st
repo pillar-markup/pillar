@@ -8,7 +8,7 @@ Class {
 { #category : 'helpers' }
 ConfigurationForPillarTest >> configurationDictionary [
 
-^ STONJSON fromString: '{
+	^ STONJSON fromString: '{
 	"language" : "en-UK",
 	"base_url" : "",
 	"attribution" : "Stéphane Ducasse and Guillermo Polito",
@@ -18,7 +18,7 @@ ConfigurationForPillarTest >> configurationDictionary [
 	"htmlWriter" : "html",
 	"latexWriter" : "miclatex:sbabook",
 	"bibFile" : "others.bib",
-	"checkers" : [ "Vocabulary" , "EnglishTypography" ],
+	"onlyCHeckers" : [ "Vocabulary" , "EnglishTypography" ],
 	"checkerConfigurations" : 
 		[
 		"Vocabulary" :
@@ -38,7 +38,6 @@ ConfigurationForPillarTest >> configurationDictionary [
 		]
 	]
 }'
-
 ]
 
 { #category : 'helpers' }
