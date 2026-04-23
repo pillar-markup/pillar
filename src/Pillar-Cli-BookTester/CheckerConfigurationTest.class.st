@@ -6,6 +6,18 @@ Class {
 }
 
 { #category : 'tests' }
+CheckerConfigurationTest >> configurationEmpty [
+	^ ConfigurationForPillar newFromSTONDictionary: (STON fromString: '{
+	"attribution" : "K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano",
+	"keywords" : "Spec, user interface, Pharo, builder, widgets",
+	"title" : "Application Building with Spec 2.0",
+	"htmlWriter" : "html",
+	"latexWriter" : "miclatex:sbabook",
+	"tocFile": "index.md"
+}')
+]
+
+{ #category : 'tests' }
 CheckerConfigurationTest >> configurationIgnored [
 
 	^ ConfigurationForPillar newFromSTONDictionary: (STON fromString: '{
@@ -115,18 +127,44 @@ CheckerConfigurationTest >> configurationTwoOnlyNoConfigureForFirst [
 ]
 
 { #category : 'tests' }
-CheckerConfigurationTest >> testConfigurationHasABogusID [
+CheckerConfigurationTest >> configurationWithBogusID [
+	^ ConfigurationForPillar newFromSTONDictionary: (STON fromString: '{
+	"attribution" : "K. De Hondt, S. Ducasse with S. Jordan Montaño and E. Lorenzano",
+	"keywords" : "Spec, user interface, Pharo, builder, widgets",
+	"title" : "Application Building with Spec 2.0",
+	"htmlWriter" : "html",
+	"latexWriter" : "miclatex:sbabook",
+	"tocFile": "index.md",
+	"checkerConfigurations" : 
+			[
+			"BogusCheckerName" : true,
+			"LastPeriodInCode" : true
+	]
+}')
+]
 
-	| checkers |
+{ #category : 'tests' }
+CheckerConfigurationTest >> testConfigurationHasABogusID [
+	| checkers inCode |
 	checkers := MicAnalysisReportWriter checkersFromConfiguration:
-		            self configurationOnlyAndMissingConfiguration.
-	self assert: checkers size equals: 1.
-	self
-		assert: checkers first class checkerName
-		equals: 'LastPeriodInParagraphLabel'.
-	self
-		assert: checkers first levelForParagraph
-		equals: checkers first defaultLevelForParagraph
+		            self configurationWithBogusID.
+	self deny: checkers isEmpty.
+	
+	inCode := checkers select: [ :each | each class checkerName = 'LastPeriodInCode' ].
+	self deny: inCode isEmpty.
+	self assert: inCode first isEndingWithPeriod
+]
+
+{ #category : 'tests' }
+CheckerConfigurationTest >> testEmptyConfigurationLoadsAllCheckers [
+	| checkers allCheckers |
+	checkers := MicAnalysisReportWriter checkersFromConfiguration:
+		            self configurationEmpty.
+		
+	allCheckers := MicChecker allSubclasses select: [ :each |
+		               each subclasses isEmpty ].
+		
+	self assert: checkers size equals: allCheckers size
 ]
 
 { #category : 'tests' }
