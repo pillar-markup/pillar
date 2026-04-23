@@ -31,7 +31,8 @@ ClapPillarCheckersCommand >> execute [
 							cr;
 							nextPutAll:  'The following checkers are available: '; cr .
 							MicChecker allSubclasses do: [ :each | 
-								str nextPutAll: '- '; nextPutAll: each checkerName; cr ]]
+								str nextPutAll: '--- '; nextPutAll: each checkerName; nextPutAll: ' ---'; cr.
+								str nextPutAll: each comment; cr; cr ]]
 ]
 
 { #category : 'execution' }
