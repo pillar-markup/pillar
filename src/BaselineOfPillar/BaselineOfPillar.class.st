@@ -97,7 +97,7 @@ BaselineOfPillar >> microdown: spec [
 
 	spec
 		baseline: 'Microdown'
-		with: [ spec repository: 'github://pillar-markup/Microdown:v2.10.2/src' ]
+		with: [ spec repository: 'github://pillar-markup/Microdown:dev/src' ]
 ]
 
 { #category : 'dependencies' }
