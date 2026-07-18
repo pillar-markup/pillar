@@ -68,8 +68,9 @@ MicAnalysisReportWriter class >> reportForFolder: folderReference
 	reporter := self new.
 
 	checkers := self checkersFromConfiguration: aConfiguration.
-	checkers do: [ :checker|
-		Stdio stdout nextPutAll: 'Checker: ', checker class name, ' is checking.';cr.
+	
+	checkers do: [ :checker |
+		Stdio stdout nextPutAll: 'Checker: ', checker class name, ' run.';crlf.
 		checker rootDirectory: folderReference.
 		checker checkProject: fileReference.
 		reporter addResults: checker results ].
@@ -87,9 +88,14 @@ MicAnalysisReportWriter >> addResults: aCollection [
 MicAnalysisReportWriter >> buildReportOn: str [ 
 
 	| dict | 
-	dict := results groupedBy: [ :each | each class ].
+	dict := results groupedBy: [ :each | each headerString ].
 	dict keysAndValuesDo: [ :k :v | 
-		str cr; nextPutAll: '## ' ;nextPutAll: k headerString; cr; cr.
+		str 
+			cr; 
+			nextPutAll: '## ' ;
+			nextPutAll: k; 
+			cr; 
+			cr.
 		self reportElements: v on: str.
 		str cr; cr.
 		]
