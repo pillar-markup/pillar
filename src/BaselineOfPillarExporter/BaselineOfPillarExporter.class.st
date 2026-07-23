@@ -19,7 +19,8 @@ BaselineOfPillarExporter >> baseline: spec [
 				baseline: 'Mustache' with: [ spec
 					repository: 'github://noha/mustache:v1.0/repository';
 					loads: #('Core' 'Tests') ];
-				
+				package: 'Pillar-PetitPillar' with: [ spec 
+					requires: #( 'PillarCore') ];
 				package: 'Pillar-Chrysal-Generator' with: [ spec 
 					requires: #( 'PillarCore' 'Chrysal') ];
 				package: 'Pillar-Chrysal' with: [ spec 
@@ -29,7 +30,7 @@ BaselineOfPillarExporter >> baseline: spec [
 				is different from Chrysal-Runtime"
 				
 				package: 'Pillar-ExporterCore' with: [ spec 
-					requires: #( 'PillarCore' 'Mustache' 'Pillar-Chrysal' ) ];
+					requires: #( 'PillarCore' 'Mustache' 'Pillar-Chrysal' 'Pillar-PetitPillar'  ) ];
 				package: 'Pillar-ExporterAsciiDoc' with: [ spec requires: #('Pillar-ExporterCore') ];
 				package: 'Pillar-ExporterBeamer' with: [ spec requires: #('Pillar-ExporterLaTeX') ];
 				package: 'Pillar-ExporterDeckJS' with: [ spec requires: #('Pillar-ExporterHTML') ];
