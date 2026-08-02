@@ -65,5 +65,5 @@ PRLink >> renderAsText [
 
 { #category : #accessing }
 PRLink >> title [
-	^ self renderAsText ifEmpty: [ nil ] ifNotEmpty: #yourself
+	^ self renderAsText ifEmpty: [ nil ] ifNotEmpty: [ self renderAsText ]
 ]
