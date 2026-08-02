@@ -14,6 +14,7 @@ Class {
 	#name : #PRInternalLink,
 	#superclass : #PRLink,
 	#instVars : [
+		'target',
 		'anchor'
 	],
 	#category : #'Pillar-Core-Model'
