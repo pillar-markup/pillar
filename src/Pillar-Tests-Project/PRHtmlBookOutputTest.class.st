@@ -155,6 +155,13 @@ PRHtmlBookOutputTest >> testLastPageHasNoNextPage [
 	self deny: ((self pageNamed: 'two.html') includesSubstring: '[next:')
 ]
 
+{ #category : 'tests - templates' }
+PRHtmlBookOutputTest >> testMainTemplateIsUsedWhenTheBookHasNoSiteTemplate [
+
+	self assert:
+		((self pageNamed: 'index.html') beginsWith: '<title>My Book</title>')
+]
+
 { #category : 'tests - template values' }
 PRHtmlBookOutputTest >> testPagesLinkToThePreviousAndNextPages [
 
@@ -169,6 +176,16 @@ PRHtmlBookOutputTest >> testReferenceToAnotherChapterLinksToItsPage [
 	self assert:
 		((self pageNamed: 'microdown-syntax.html') includesSubstring:
 			 '<a href="two.html#two">two</a>')
+]
+
+{ #category : 'tests - templates' }
+PRHtmlBookOutputTest >> testSiteTemplateIsUsedWhenTheBookHasOne [
+
+	self
+		writeFile: '_support/templates/html/site.mustache'
+		contents: '[site]{{{content}}}'.
+
+	self assert: ((self pageNamed: 'index.html') beginsWith: '[site]')
 ]
 
 { #category : 'tests - pages' }

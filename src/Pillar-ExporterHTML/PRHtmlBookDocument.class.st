@@ -1,5 +1,5 @@
 "
-I write a book as the pages of a web site: `index.html` with what comes before the first chapter, and one page per chapter, each page applied to the page template of the book (`main.mustache`, or the template of `pillar.conf`).
+I write a book as the pages of a web site: `index.html` with what comes before the first chapter, and one page per chapter, each page applied to the page template of the site: `site.mustache` when the book has one, otherwise the template of `pillar build html` (`main.mustache`, or the template of `pillar.conf`).
 
 ## Life cycle: who creates me and who uses me
 
@@ -142,6 +142,23 @@ PRHtmlBookDocument >> sectionsOfChapterAt: anIndex [
 		   chapterEntries includes: each ])
 		  collect: [ :each | tocBuilder templateValuesOf: each ]
 		  as: Array
+]
+
+{ #category : 'templating' }
+PRHtmlBookDocument >> siteTemplateName [
+
+	^ 'site.mustache'
+]
+
+{ #category : 'templating' }
+PRHtmlBookDocument >> templateFile: aDocument [
+	"Answer the page template of the site: site.mustache when the book has one, so that the book keeps main.mustache for pillar build html; otherwise the template pillar build html uses."
+
+	| siteTemplate |
+	siteTemplate := self templateDirectory / self siteTemplateName.
+	^ siteTemplate exists
+		  ifTrue: [ siteTemplate ]
+		  ifFalse: [ super templateFile: aDocument ]
 ]
 
 { #category : 'pages' }
