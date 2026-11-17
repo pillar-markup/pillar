@@ -9,9 +9,9 @@ I write a book as the pages of a web site: `index.html` with what comes before t
 
 ## Responsibility:
 
-- I run the passes in order: `MicHeaderIdentifier` (link targets of the headers), `MicChapterSplitter` (chapters at `##`), then `MicPageReferenceResolver` (references to another page).
+- I run the passes in order: `MicHeaderIdentifier` (link targets of the headers), `MicTocBuilder` (the table of contents of the whole book, built once), `MicChapterSplitter` (chapters at `##`), then `MicPageReferenceResolver` (references to another page).
 - I name each chapter page after the target of its header (`microdown-syntax.html`, or `second.html` for a header with `@second`), never `index.html`, which belongs to the home page (a chapter Index gives `index-2.html`).
-- I give the page template the values of the book (`pillar.conf` and the metadata of `index.md`) plus `content`, `title` (of the page), `bookTitle`, and `previous` and `next` (each with `href` and `title`, absent on the first and last pages).
+- I give the page template the values of the book (`pillar.conf` and the metadata of `index.md`) plus `content`, `title` (of the page), `bookTitle`, `toc`, and `previous` and `next` (each with `href` and `title`, absent on the first and last pages).
 
 ## Collaborators: 
 
@@ -30,15 +30,24 @@ I write a book as the pages of a web site: `index.html` with what comes before t
 PRHtmlBookDocument exampleOfASmallBook
 ```
 
+## Internal Representation
+
+- `tocBuilder`: the `MicTocBuilder` of the whole book, which also turns entries into template values.
+- `chapterEntries`: the entry of each chapter in its table of contents, in page order, found by the header that starts the chapter.
+
 ### Implementation Points
 
 - All the pages are at the top of the site folder, next to the copied chapter folders.
 - Figures still refer to their files with absolute paths on the disk where the book was built: a later pass will make them relative to the site.
-- No table of contents yet (`toc`): next step.
+- `toc` has the shape of `MicTocBuilder>>templateValues` (`children`, each with `name`, `href`, `hasChildren`, `children`) plus `isCurrent`: one entry per chapter linking to its page; only the current chapter lists its sections: the children of its entry in the table of contents of the book, without the chapters nested in it (a `#` title above `##` chapters), so page templates written for the table of contents of one document work unchanged.
 "
 Class {
 	#name : 'PRHtmlBookDocument',
 	#superclass : 'PRHtmlDocument',
+	#instVars : [
+		'tocBuilder',
+		'chapterEntries'
+	],
 	#category : 'Pillar-ExporterHTML',
 	#package : 'Pillar-ExporterHTML'
 }
@@ -54,6 +63,27 @@ PRHtmlBookDocument class >> exampleOfASmallBook [
 		  ((PRInputDocument forFile: project baseDirectory / 'index.md')
 			   project: project;
 			   yourself)
+]
+
+{ #category : 'pages' }
+PRHtmlBookDocument >> entriesOf: aCollectionOfChapters in: aCollectionOfTocEntries [
+	"Answer, in book order, the entries of the table of contents (and of their children) whose header starts one of aCollectionOfChapters. They are found by their header, the same object in the book and in its chapter; a chapter may be nested in the entry of a higher one (a # title above ## chapters)."
+
+	| chapterHeaders |
+	chapterHeaders := (aCollectionOfChapters collect: [ :each |
+		                   each children first ]) asIdentitySet.
+	^ self entriesWithHeaders: chapterHeaders in: aCollectionOfTocEntries
+]
+
+{ #category : 'pages' }
+PRHtmlBookDocument >> entriesWithHeaders: aSet in: aCollectionOfTocEntries [
+	"Walk the entries and their children in book order, and answer those whose header is in aSet."
+
+	^ aCollectionOfTocEntries flatCollect: [ :each |
+			  ((aSet includes: each header)
+				   ifTrue: [ { each } ]
+				   ifFalse: [ #(  ) ])
+			  , (self entriesWithHeaders: aSet in: each children) ]
 ]
 
 { #category : 'template values' }
@@ -81,18 +111,34 @@ PRHtmlBookDocument >> pageNameOf: aChapter in: aSet [
 
 { #category : 'pages' }
 PRHtmlBookDocument >> pagesOf: aBook [
-	"Run the Microdown passes on aBook and answer its pages, as pairs page name -> document: index.html with what comes before the first chapter, then one page per chapter, named after the target of its header (see MicHeaderIdentifier)."
+	"Run the Microdown passes on aBook and answer its pages, as pairs page name -> document: index.html with what comes before the first chapter, then one page per chapter, named after the target of its header (see MicHeaderIdentifier). The passes: identify the headers, build the table of contents of the whole book, split it into chapters, resolve the references across pages."
 
 	| splitter pages names |
 	MicHeaderIdentifier new identify: aBook.
 	splitter := MicChapterSplitter new.
+	tocBuilder := MicTocBuilder new.
+	tocBuilder limitUpTo: splitter chapterLevel + 1.
+	tocBuilder visit: aBook.
 	splitter split: aBook.
+	chapterEntries := self
+		                  entriesOf: splitter chapters
+		                  in: tocBuilder tocItems.
 	names := Set with: 'index'.
 	pages := OrderedCollection with: 'index.html' -> splitter frontMatter.
 	pages addAll: (splitter chapters collect: [ :each |
 			 (self pageNameOf: each in: names) -> each ]).
 	MicPageReferenceResolver new resolve: pages.
 	^ pages
+]
+
+{ #category : 'template values' }
+PRHtmlBookDocument >> sectionsOfChapterAt: anIndex [
+	"Answer the template values of the sections of the chapter at anIndex: the children of its entry in the table of contents of the book, without the chapters nested in it, which have their own pages."
+
+	^ ((chapterEntries at: anIndex) children reject: [ :each |
+		   chapterEntries includes: each ])
+		  collect: [ :each | tocBuilder templateValuesOf: each ]
+		  as: Array
 ]
 
 { #category : 'pages' }
@@ -105,8 +151,41 @@ PRHtmlBookDocument >> titleOfPageAt: anIndex in: aCollectionOfPages [
 ]
 
 { #category : 'template values' }
+PRHtmlBookDocument >> tocEntryOfPageAt: anIndex in: aCollectionOfPages current: aBoolean [
+	"Answer the table of contents entry of the chapter page at anIndex: name, href (the page), isCurrent, and as children its sections when it is the current chapter."
+
+	| sections |
+	sections := aBoolean
+		            ifTrue: [ self sectionsOfChapterAt: anIndex - 1 ]
+		            ifFalse: [ #(  ) ].
+	^ Dictionary new
+		  at: 'name'
+		  put: (self titleOfPageAt: anIndex in: aCollectionOfPages);
+		  at: 'href' put: (aCollectionOfPages at: anIndex) key;
+		  at: 'isCurrent' put: aBoolean;
+		  at: 'hasChildren' put: sections isNotEmpty;
+		  at: 'children' put: sections;
+		  yourself
+]
+
+{ #category : 'template values' }
+PRHtmlBookDocument >> tocOfPageAt: anIndex in: aCollectionOfPages [
+	"Answer the table of contents shown on the page at anIndex, in the shape of MicTocBuilder>>#templateValues: children holds one entry per chapter, linking to its page. The entry of the chapter of the page is marked isCurrent and is the only one showing its sections; the index page has no current chapter."
+
+	^ Dictionary new
+		  at: 'children' put: ((2 to: aCollectionOfPages size)
+				   collect: [ :each |
+						   self
+							   tocEntryOfPageAt: each
+							   in: aCollectionOfPages
+							   current: each = anIndex ]
+				   as: Array);
+		  yourself
+]
+
+{ #category : 'template values' }
 PRHtmlBookDocument >> valuesOfPageAt: anIndex in: aCollectionOfPages book: aBook [
-	"Answer the values the page template gets for the page at anIndex: the values of the book (pillar.conf and the metadata of index.md), with content (the HTML of the page), title (of the page), bookTitle, and previous and next (href and title), absent on the first and last pages."
+	"Answer the values the page template gets for the page at anIndex: the values of the book (pillar.conf and the metadata of index.md), with content (the HTML of the page), title (of the page), bookTitle, toc (see tocOfPageAt:in:), and previous and next (href and title), absent on the first and last pages."
 
 	| values |
 	values := ConfigurationForPillar newFromDictionary: Dictionary new.
@@ -120,6 +199,9 @@ PRHtmlBookDocument >> valuesOfPageAt: anIndex in: aCollectionOfPages book: aBook
 	values
 		at: #bookTitle
 		put: (self titleOfPageAt: 1 in: aCollectionOfPages).
+	values
+		at: #toc
+		put: (self tocOfPageAt: anIndex in: aCollectionOfPages).
 	anIndex > 1 ifTrue: [
 			values
 				at: #previous

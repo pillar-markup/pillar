@@ -43,14 +43,18 @@ PRHtmlBookOutputTest >> setUp [
 <!inputFile|path=Chapters/two.md!>';
 		writeFile: 'Chapters/one.md' contents: '## Microdown syntax
 
-See *@two@*.';
+See *@two@*.
+
+### Emphasis
+
+Some text.';
 		writeFile: 'Chapters/two.md' contents: '## Second chapter
 @two
 
 The end.';
 		writeFile: '_support/templates/html/main.mustache'
 		contents:
-			'<title>{{title}}</title>[{{bookTitle}}]{{#previous}}[previous:{{href}}:{{title}}]{{/previous}}{{#next}}[next:{{href}}:{{title}}]{{/next}}{{{content}}}'
+			'<title>{{title}}</title>[{{bookTitle}}]{{#previous}}[previous:{{href}}:{{title}}]{{/previous}}{{#next}}[next:{{href}}:{{title}}]{{/next}}{{{content}}}{{#toc}}{{#children}}[toc:{{href}}:{{name}}{{#isCurrent}}:current{{/isCurrent}}{{#children}}[section:{{href}}:{{name}}]{{/children}}]{{/children}}{{/toc}}'
 ]
 
 { #category : 'tests - pages' }
@@ -96,6 +100,13 @@ PRHtmlBookOutputTest >> testChapterPageTitleIsItsHeader [
 	self assert:
 		((self pageNamed: 'microdown-syntax.html') includesSubstring:
 			 '<title>Microdown syntax</title>[My Book]')
+]
+
+{ #category : 'tests - toc' }
+PRHtmlBookOutputTest >> testIndexHasNoCurrentChapterInTheToc [
+
+	self deny:
+		((self pageNamed: 'index.html') includesSubstring: ':current')
 ]
 
 { #category : 'tests - template values' }
@@ -156,6 +167,47 @@ PRHtmlBookOutputTest >> testSupportFilesAreCopiedToTheSite [
 			exists
 ]
 
+{ #category : 'tests - toc' }
+PRHtmlBookOutputTest >> testTocDoesNotListChaptersAsSectionsOfAHigherChapter [
+
+	self writeIndexWithATitle.
+
+	self assert: ((self pageNamed: 'my-book.html') includesSubstring:
+			 '[toc:my-book.html:My Book:current][toc:microdown-syntax.html:Microdown syntax]')
+]
+
+{ #category : 'tests - toc' }
+PRHtmlBookOutputTest >> testTocListsChaptersNestedUnderAHigherChapter [
+
+	self writeIndexWithATitle.
+
+	self assert:
+		((self pageNamed: 'microdown-syntax.html') includesSubstring:
+			 '[toc:my-book.html:My Book][toc:microdown-syntax.html:Microdown syntax:current[section:#emphasis:Emphasis]][toc:two.html:Second chapter]')
+]
+
+{ #category : 'tests - toc' }
+PRHtmlBookOutputTest >> testTocListsTheChaptersWithTheirPages [
+
+	self assert: ((self pageNamed: 'index.html') includesSubstring:
+			 '[toc:microdown-syntax.html:Microdown syntax][toc:two.html:Second chapter]')
+]
+
+{ #category : 'tests - toc' }
+PRHtmlBookOutputTest >> testTocShowsNoSectionsOfTheOtherChapters [
+
+	self assert: ((self pageNamed: 'two.html') includesSubstring:
+			 '[toc:microdown-syntax.html:Microdown syntax][toc:two.html:Second chapter:current]')
+]
+
+{ #category : 'tests - toc' }
+PRHtmlBookOutputTest >> testTocShowsTheSectionsOfTheCurrentChapter [
+
+	self assert:
+		((self pageNamed: 'microdown-syntax.html') includesSubstring:
+			 '[toc:microdown-syntax.html:Microdown syntax:current[section:#emphasis:Emphasis]][toc:two.html:Second chapter]')
+]
+
 { #category : 'helpers' }
 PRHtmlBookOutputTest >> writeFile: aPath contents: aString [
 	"Create the file at aPath in the book folder, with its parent folders."
@@ -164,4 +216,16 @@ PRHtmlBookOutputTest >> writeFile: aPath contents: aString [
 	file := book resolve: aPath.
 	file parent ensureCreateDirectory.
 	file writeStreamDo: [ :stream | stream nextPutAll: aString ]
+]
+
+{ #category : 'helpers' }
+PRHtmlBookOutputTest >> writeIndexWithATitle [
+
+	self writeFile: 'index.md' contents: '# My Book
+
+Welcome.
+
+<!inputFile|path=Chapters/one.md!>
+
+<!inputFile|path=Chapters/two.md!>'
 ]
