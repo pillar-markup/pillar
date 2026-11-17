@@ -9,7 +9,7 @@ I write a book as the pages of a web site: `index.html` with what comes before t
 
 ## Responsibility:
 
-- I run the passes in order: `MicHeaderIdentifier` (link targets of the headers), `MicTocBuilder` (the table of contents of the whole book, built once), `MicChapterSplitter` (chapters at `##`), then `MicPageReferenceResolver` (references to another page).
+- I run the passes in order: `MicPathRelativizer` (figures relative to the book folder), `MicHeaderIdentifier` (link targets of the headers), `MicTocBuilder` (the table of contents of the whole book, built once), `MicChapterSplitter` (chapters at `##`), then `MicPageReferenceResolver` (references to another page).
 - I name each chapter page after the target of its header (`microdown-syntax.html`, or `second.html` for a header with `@second`), never `index.html`, which belongs to the home page (a chapter Index gives `index-2.html`).
 - I give the page template the values of the book (`pillar.conf` and the metadata of `index.md`) plus `content`, `title` (of the page), `bookTitle`, `toc`, and `previous` and `next` (each with `href` and `title`, absent on the first and last pages).
 
@@ -38,7 +38,7 @@ PRHtmlBookDocument exampleOfASmallBook
 ### Implementation Points
 
 - All the pages are at the top of the site folder, next to the copied chapter folders.
-- Figures still refer to their files with absolute paths on the disk where the book was built: a later pass will make them relative to the site.
+- The pages are at the top of the site, which mirrors the book folder, so a figure relative to the book folder (`Chapters/Chapter1/figures/x.png`) is right for every page.
 - `toc` has the shape of `MicTocBuilder>>templateValues` (`children`, each with `name`, `href`, `hasChildren`, `children`) plus `isCurrent`: one entry per chapter linking to its page; only the current chapter lists its sections: the children of its entry in the table of contents of the book, without the chapters nested in it (a `#` title above `##` chapters), so page templates written for the table of contents of one document work unchanged.
 "
 Class {
@@ -111,9 +111,12 @@ PRHtmlBookDocument >> pageNameOf: aChapter in: aSet [
 
 { #category : 'pages' }
 PRHtmlBookDocument >> pagesOf: aBook [
-	"Run the Microdown passes on aBook and answer its pages, as pairs page name -> document: index.html with what comes before the first chapter, then one page per chapter, named after the target of its header (see MicHeaderIdentifier). The passes: identify the headers, build the table of contents of the whole book, split it into chapters, resolve the references across pages."
+	"Run the Microdown passes on aBook and answer its pages, as pairs page name -> document: index.html with what comes before the first chapter, then one page per chapter, named after the target of its header (see MicHeaderIdentifier). The passes: make the figure paths relative to the book folder (the pages are written at the top of the site, which mirrors it), identify the headers, build the table of contents of the whole book, split it into chapters, resolve the references across pages."
 
 	| splitter pages names |
+	MicPathRelativizer new
+		relativize: aBook
+		to: self project baseDirectory.
 	MicHeaderIdentifier new identify: aBook.
 	splitter := MicChapterSplitter new.
 	tocBuilder := MicTocBuilder new.

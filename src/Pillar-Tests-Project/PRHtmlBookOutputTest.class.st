@@ -102,6 +102,18 @@ PRHtmlBookOutputTest >> testChapterPageTitleIsItsHeader [
 			 '<title>Microdown syntax</title>[My Book]')
 ]
 
+{ #category : 'tests - figures' }
+PRHtmlBookOutputTest >> testFigureOfAChapterIsRelativeToTheSite [
+
+	self writeFile: 'Chapters/one.md' contents: '## Microdown syntax
+
+![A caption.](figures/x.png)'.
+
+	self assert:
+		((self pageNamed: 'microdown-syntax.html') includesSubstring:
+			 'src="Chapters/figures/x.png"')
+]
+
 { #category : 'tests - toc' }
 PRHtmlBookOutputTest >> testIndexHasNoCurrentChapterInTheToc [
 
