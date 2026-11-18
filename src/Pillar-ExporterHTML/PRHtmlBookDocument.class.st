@@ -65,6 +65,13 @@ PRHtmlBookDocument class >> exampleOfASmallBook [
 			   yourself)
 ]
 
+{ #category : 'accessing' }
+PRHtmlBookDocument >> chapterLevel [
+	"The level of the chapter headers, the one MicChapterSplitter cuts the book at (2: chapters are ##)."
+
+	^ MicChapterSplitter new chapterLevel
+]
+
 { #category : 'pages' }
 PRHtmlBookDocument >> entriesOf: aCollectionOfChapters in: aCollectionOfTocEntries [
 	"Answer, in book order, the entries of the table of contents (and of their children) whose header starts one of aCollectionOfChapters. They are found by their header, the same object in the book and in its chapter; a chapter may be nested in the entry of a higher one (a # title above ## chapters)."
@@ -193,19 +200,20 @@ PRHtmlBookDocument >> titleOfPageAt: anIndex in: aCollectionOfPages [
 
 { #category : 'template values' }
 PRHtmlBookDocument >> tocEntryOfPageAt: anIndex in: aCollectionOfPages current: aBoolean [
-	"Answer the table of contents entry of the chapter page at anIndex: name, number (nil when not numbered), href (the page), isCurrent, and as children its sections when it is the current chapter."
+	"Answer the table of contents entry of the chapter page at anIndex: name, number (nil when not numbered), href (the page), isCurrent, isPart (its header is less deep than the chapters, e.g. a # part when chapters are ##), and as children its sections when it is the current chapter."
 
-	| sections |
+	| sections header |
 	sections := aBoolean
 		            ifTrue: [ self sectionsOfChapterAt: anIndex - 1 ]
 		            ifFalse: [ #(  ) ].
+	header := (aCollectionOfPages at: anIndex) value children first.
 	^ Dictionary new
 		  at: 'name'
 		  put: (self titleOfPageAt: anIndex in: aCollectionOfPages);
-		  at: 'number' put: (MicNumberer numberStringOf:
-					   (aCollectionOfPages at: anIndex) value children first);
+		  at: 'number' put: (MicNumberer numberStringOf: header);
 		  at: 'href' put: (aCollectionOfPages at: anIndex) key;
 		  at: 'isCurrent' put: aBoolean;
+		  at: 'isPart' put: header level < self chapterLevel;
 		  at: 'hasChildren' put: sections isNotEmpty;
 		  at: 'children' put: sections;
 		  yourself

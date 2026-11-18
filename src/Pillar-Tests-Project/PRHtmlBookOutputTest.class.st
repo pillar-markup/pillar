@@ -286,6 +286,24 @@ PRHtmlBookOutputTest >> testPagesLinkToThePreviousAndNextPages [
 			 '[previous:index.html:My Book][next:two.html:Second chapter]')
 ]
 
+{ #category : 'tests - numbers' }
+PRHtmlBookOutputTest >> testPartDoesNotShiftTheChapterNumbers [
+
+	self writeFile: 'index.md' contents: '## First chapter
+
+Text.
+
+# A part
+
+## Second chapter
+
+The end.'.
+
+	self assert:
+		((self pageNamed: 'second-chapter.html') includesSubstring:
+			 '<span class="number">2</span> Second chapter')
+]
+
 { #category : 'tests - output folder' }
 PRHtmlBookOutputTest >> testPreparingThePdfKeepsTheSite [
 	"The PDF build runs latexmk; its first step, shared by all targets, is enough to check that it leaves the site alone."
@@ -365,6 +383,28 @@ PRHtmlBookOutputTest >> testTocListsTheChaptersWithTheirPages [
 
 	self assert: ((self pageNamed: 'index.html') includesSubstring:
 			 '[toc:microdown-syntax.html:Microdown syntax][toc:two.html:Second chapter]')
+]
+
+{ #category : 'tests - toc' }
+PRHtmlBookOutputTest >> testTocMarksTheParts [
+
+	self writeFile: 'index.md' contents: '## First chapter
+
+Text.
+
+# A part
+
+## Second chapter
+
+The end.'.
+	self
+		writeFile: '_support/templates/html/site.mustache'
+		contents:
+		'{{#toc}}{{#children}}[{{#isPart}}part:{{/isPart}}{{name}}]{{/children}}{{/toc}}'.
+
+	self
+		assert: (self pageNamed: 'first-chapter.html')
+		equals: '[First chapter][part:A part][Second chapter]'
 ]
 
 { #category : 'tests - toc' }
