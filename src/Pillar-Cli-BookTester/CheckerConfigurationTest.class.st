@@ -19,8 +19,7 @@ CheckerConfigurationTest >> configurationIgnored [
 	"checkerConfigurations" : 
 			[
 			"LastPeriodInParagraphLabel" : {
-					"isEndingWithPeriod" : true,
-					"levelForParagraph" : 6
+					"isEndingWithPeriod" : false
 				},
 			"LastPeriodInCode" : true,
 			"LastPeriodInCaption" : true
@@ -39,12 +38,12 @@ CheckerConfigurationTest >> configurationOnlyAndConfigurations [
 	"htmlWriter" : "html",
 	"latexWriter" : "miclatex:sbabook",
 	"tocFile": "index.md",
+	"paragraphLevel" : 4,
 	"onlyCheckers" : [ "LastPeriodInParagraphLabel" ],
 	"checkerConfigurations" : 
 			[
 			"LastPeriodInParagraphLabel" : {
-					"isEndingWithPeriod" : true,
-					"levelForParagraph" : 6
+					"isEndingWithPeriod" : false
 				},
 			"LastPeriodInCode" : true
 	]
@@ -66,8 +65,7 @@ CheckerConfigurationTest >> configurationOnlyAndIgnored [
 	"checkerConfigurations" : 
 			[
 			"LastPeriodInParagraphLabel" : {
-					"isEndingWithPeriod" : true,
-					"levelForParagraph" : 6
+					"isEndingWithPeriod" : false
 				},
 			"LastPeriodInCode" : true
 	]
@@ -114,6 +112,46 @@ CheckerConfigurationTest >> configurationTwoOnlyNoConfigureForFirst [
 }')
 ]
 
+{ #category : 'tests - book structure' }
+CheckerConfigurationTest >> testCheckersFollowTheChapterLevelOfTheBook [
+
+	| checkers |
+	checkers := MicAnalysisReportWriter checkersFromConfiguration:
+		            (ConfigurationForPillar newFromSTONDictionary:
+			             (STON fromString: '{
+	"title" : "A book with # chapters",
+	"chapterLevel" : 1,
+	"onlyCheckers" : [ "LastPeriodInParagraphLabel" ]
+}')).
+
+	self assert: checkers first bookStructure chapterLevel equals: 1.
+	self assert: checkers first bookStructure paragraphLevel equals: 4
+]
+
+{ #category : 'tests - book structure' }
+CheckerConfigurationTest >> testCheckersGetTheDefaultStructureWhenTheBookDeclaresNone [
+
+	| checkers |
+	checkers := MicAnalysisReportWriter checkersFromConfiguration:
+		            self configurationTwoOnlyNoConfigureForFirst.
+
+	self
+		assert: (checkers
+				 collect: [ :each | each bookStructure paragraphLevel ]
+				 as: Set)
+		equals: (Set with: MicBookStructure new paragraphLevel)
+]
+
+{ #category : 'tests - book structure' }
+CheckerConfigurationTest >> testCheckersGetTheStructureOfTheBook [
+
+	| checkers |
+	checkers := MicAnalysisReportWriter checkersFromConfiguration:
+		            self configurationOnlyAndConfigurations.
+
+	self assert: checkers first bookStructure paragraphLevel equals: 4
+]
+
 { #category : 'tests' }
 CheckerConfigurationTest >> testConfigurationHasABogusID [
 
@@ -124,9 +162,7 @@ CheckerConfigurationTest >> testConfigurationHasABogusID [
 	self
 		assert: checkers first class checkerName
 		equals: 'LastPeriodInParagraphLabel'.
-	self
-		assert: checkers first levelForParagraph
-		equals: checkers first defaultLevelForParagraph
+	self assert: checkers first isEndingWithPeriod
 ]
 
 { #category : 'tests' }
@@ -177,10 +213,10 @@ CheckerConfigurationTest >> testMultipleOnlyCheckersSecondIsWellConfigured [
 		assert: checkers first class checkerName
 		equals: 'LastPeriodInCode'.
 	self assert: checkers first isEndingWithPeriod.
-	
+
 	"the other only is not configured since there is no configuration"
-	
-	self assert: checkers second levelForParagraph equals: checkers second defaultLevelForParagraph 
+
+	self assert: checkers second isEndingWithPeriod
 ]
 
 { #category : 'tests' }
@@ -194,9 +230,7 @@ CheckerConfigurationTest >> testOnlyCheckerIsSelectedAndConfigured [
 	self
 		assert: checkers first class checkerName
 		equals: 'LastPeriodInParagraphLabel'.
-	self
-		assert: checkers first levelForParagraph 
-		equals: 6
+	self deny: checkers first isEndingWithPeriod
 ]
 
 { #category : 'tests' }

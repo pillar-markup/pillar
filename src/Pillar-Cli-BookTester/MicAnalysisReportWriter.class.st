@@ -12,6 +12,22 @@ Class {
 }
 
 { #category : 'instance creation' }
+MicAnalysisReportWriter class >> bookStructureFrom: aConfiguration [
+	"Answer the structure of the book declared in aConfiguration (pillar.conf): chapterLevel (2 by default) and paragraphLevel (three levels below the chapters by default, as on the web site). Signal MicInvalidBookStructure when they cannot describe a book."
+
+	| chapterLevel |
+	chapterLevel := aConfiguration
+		                propertyAt: #chapterLevel
+		                ifAbsent: [ MicBookStructure new chapterLevel ].
+	^ MicBookStructure
+		  chapterLevel: chapterLevel
+		  paragraphLevel: (aConfiguration
+				   propertyAt: #paragraphLevel
+				   ifAbsent: [
+				   (MicBookStructure chapterLevel: chapterLevel) paragraphLevel ])
+]
+
+{ #category : 'instance creation' }
 MicAnalysisReportWriter class >> checkersFromConfiguration: aConfiguration [
 	"Return all the checkers taking into account the configuration information."
 
@@ -50,12 +66,15 @@ MicAnalysisReportWriter class >> checkersFromConfiguration: aConfiguration [
 
 { #category : 'instance creation' }
 MicAnalysisReportWriter class >> configureCheckers: configuredCheckers from: aConfiguration [
+	"Give every checker the structure of the book (chapterLevel and paragraphLevel of pillar.conf), then its own part of checkerConfigurations."
 
+	| structure |
+	structure := self bookStructureFrom: aConfiguration.
+	configuredCheckers do: [ :checker | checker bookStructure: structure ].
 	aConfiguration checkerConfigurations do: [ :each |
-			configuredCheckers 
+			configuredCheckers
 				at: each key
-				ifPresent: [ :checker | 
-					checker configureFrom: each value ] ].
+				ifPresent: [ :checker | checker configureFrom: each value ] ]
 ]
 
 { #category : 'instance creation' }
