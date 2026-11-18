@@ -11,6 +11,13 @@ PRPDFDocument >> basicWriter [
 	^ target writerFor: project configuration
 ]
 
+{ #category : 'accessing' }
+PRPDFDocument >> defaultParagraphLevelFor: aChapterLevel [
+	"Four levels below the chapters, so that the PDF of a book that declares nothing is what it has always been: ##### is \subsubsection, ###### \paragraph."
+
+	^ aChapterLevel + 4
+]
+
 { #category : 'compiling' }
 PRPDFDocument >> executeCommand: command arguments: arguments workingDirectory: aWorkingDirectory [
 

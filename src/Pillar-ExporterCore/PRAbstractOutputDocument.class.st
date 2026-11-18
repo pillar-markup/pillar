@@ -26,7 +26,7 @@ PRAbstractOutputDocument >> basicWriter [
 
 { #category : 'accessing' }
 PRAbstractOutputDocument >> bookStructure [
-	"Answer the structure of the book declared in pillar.conf: chapterLevel (2 by default) and paragraphLevel (3 levels below the chapters by default). Signal MicInvalidBookStructure when they cannot describe a book."
+	"Answer the structure of the book declared in pillar.conf: chapterLevel (2 by default) and paragraphLevel (by default, see defaultParagraphLevelFor:). Signal MicInvalidBookStructure when they cannot describe a book."
 
 	| chapterLevel |
 	chapterLevel := self configuration
@@ -36,8 +36,7 @@ PRAbstractOutputDocument >> bookStructure [
 		  chapterLevel: chapterLevel
 		  paragraphLevel: (self configuration
 				   propertyAt: #paragraphLevel
-				   ifAbsent: [
-				   (MicBookStructure chapterLevel: chapterLevel) paragraphLevel ])
+				   ifAbsent: [ self defaultParagraphLevelFor: chapterLevel ])
 ]
 
 { #category : 'building' }
@@ -57,6 +56,13 @@ PRAbstractOutputDocument >> buildOn: aPRProject [
 PRAbstractOutputDocument >> configuration [
 	
 	^ project configuration
+]
+
+{ #category : 'accessing' }
+PRAbstractOutputDocument >> defaultParagraphLevelFor: aChapterLevel [
+	"The paragraph level of a book whose pillar.conf does not declare one: three levels below the chapters (##### for ## chapters), see MicBookStructure class>>chapterLevel:."
+
+	^ (MicBookStructure chapterLevel: aChapterLevel) paragraphLevel
 ]
 
 { #category : 'accessing' }

@@ -32,12 +32,17 @@ PRHtmlBookOutputTest >> pageNamed: aString [
 PRHtmlBookOutputTest >> parsedIndex [
 	"Answer index.md of the book as the site output parses it before transforming and writing it."
 
-	| project output |
+	^ self parsedIndexFor: PRHtmlBookDocument new
+]
+
+{ #category : 'helpers' }
+PRHtmlBookOutputTest >> parsedIndexFor: anOutputDocument [
+	"Answer index.md of the book as anOutputDocument parses it before transforming and writing it."
+
+	| project |
 	project := PRProject on: book.
-	output := PRHtmlBookDocument new
-		          project: project;
-		          yourself.
-	^ output parsedDocumentOf:
+	anOutputDocument project: project.
+	^ anOutputDocument parsedDocumentOf:
 		  ((PRInputDocument forFile: book / 'index.md')
 			   project: project;
 			   yourself)
@@ -176,7 +181,7 @@ PRHtmlBookOutputTest >> testChaptersAtLevelOneMakeThePages [
 	self
 		writeFile: 'pillar.conf'
 		contents:
-		'{ "title" : "My Book", "htmlWriter" : #michtml, "chapterLevel" : 1 }'.
+		'{ "title" : "My Book", "htmlWriter" : #michtml, "chapterLevel" : 1, "paragraphLevel" : 4 }'.
 	self writeFile: 'index.md' contents: 'Welcome.
 
 # One
@@ -199,6 +204,21 @@ The end.'.
 			 '<h4 class="paragraph" id="important">Important</h4>').
 	self assert: ((site / 'two.html') contents includesSubstring:
 			 '<span class="number">2</span> Two')
+]
+
+{ #category : 'tests - book structure' }
+PRHtmlBookOutputTest >> testDeclaredParagraphLevelAppliesToThePdfToo [
+
+	self
+		writeFile: 'pillar.conf'
+		contents:
+		'{ "title" : "My Book", "htmlWriter" : #michtml, "paragraphLevel" : 5 }'.
+
+	self
+		assert:
+		(self parsedIndexFor: PRPDFDocument new) bookStructure
+			paragraphLevel
+		equals: 5
 ]
 
 { #category : 'tests - example' }
@@ -396,6 +416,31 @@ The end.'.
 	self assert:
 		((self pageNamed: 'second-chapter.html') includesSubstring:
 			 '<span class="number">2</span> Second chapter')
+]
+
+{ #category : 'tests - book structure' }
+PRHtmlBookOutputTest >> testPdfKeepsFifthLevelAsASubsubsectionByDefault [
+
+	self
+		assert:
+		(self parsedIndexFor: PRPDFDocument new) bookStructure
+			paragraphLevel
+		equals: 6
+]
+
+{ #category : 'tests - book structure' }
+PRHtmlBookOutputTest >> testPdfParagraphLevelFollowsTheChapterLevelWhenNotGiven [
+
+	self
+		writeFile: 'pillar.conf'
+		contents:
+		'{ "title" : "My Book", "htmlWriter" : #michtml, "chapterLevel" : 1 }'.
+
+	self
+		assert:
+		(self parsedIndexFor: PRPDFDocument new) bookStructure
+			paragraphLevel
+		equals: 5
 ]
 
 { #category : 'tests - output folder' }
