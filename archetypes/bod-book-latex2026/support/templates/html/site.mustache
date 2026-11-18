@@ -22,7 +22,7 @@
         <summary>Contents</summary>
         <ol>
           {{#children}}
-          <li{{#isCurrent}} class="current"{{/isCurrent}}>
+          <li{{#isCurrent}} class="current"{{/isCurrent}}{{#isPart}} data-part{{/isPart}}>
             <a href="{{href}}"{{#isCurrent}} aria-current="page"{{/isCurrent}}>{{#number}}<span class="number">{{.}}</span> {{/number}}{{name}}</a>
             {{#hasChildren}}
             <ol>

@@ -326,6 +326,21 @@ body {
   font-weight: 700;
 }
 
+/* A part (a # header when chapters are ##): a heading that groups the chapters after it (site.mustache marks it). */
+.toc li[data-part] {
+  margin: 1.1rem 0 0.4rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.toc li[data-part] > a {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 /* Numbers of chapters, sections and figures (MicBookHTMLVisitor, site.mustache). */
 .number {
   color: var(--muted);
@@ -333,6 +348,7 @@ body {
 }
 
 /* In headers and captions, numbers take the highlight color. */
+h1 .number,
 h2 .number,
 h3 .number,
 h4 .number,
@@ -422,6 +438,21 @@ h3 { font-size: 1.2rem; }
 h4 { font-size: 1.05rem; }
 h5,
 h6 { font-size: 1rem; color: var(--muted); }
+
+/* A paragraph label (a header at the paragraph level of the book or deeper, ##### by default):
+   a bold label just above its paragraph, whatever its level, as \paragraph in the PDF. */
+h1.paragraph,
+h2.paragraph,
+h3.paragraph,
+h4.paragraph,
+h5.paragraph,
+h6.paragraph {
+  margin: 1.4em 0 0.3em;
+  padding: 0;
+  border: none;
+  color: var(--text);
+  font-size: 1rem;
+}
 
 p,
 ul,
