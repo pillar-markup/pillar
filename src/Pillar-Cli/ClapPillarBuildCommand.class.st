@@ -42,24 +42,25 @@ ClapPillarBuildCommand class >> commandSpecification [
 		  description: 'Build your Pillar documents in the specified format';
 		  commandClass: self;
 		  addHelp;
-		  addFlag: #templatable description: 'Use a template';
-		  addFlag: #all description: 'Build all Pillar documents in repository';
-		  addFlag: #mainRoot description: 'Build index.md in root directory';
-			" it can only be optional if we do not specify the file so better not support
+		  addFlag: #all
+		  description: 'Build all Pillar documents in repository';
+		  addFlag: #mainRoot
+		  description: 'Build index.md in root directory';
+		  " it can only be optional if we do not specify the file so better not support
 			pillar build
 			and 
 			pillar build pdf index.md this is too confusing. 
 			May be format should be a subcommand for now make it work the same way as before using a positional"
-		  addPositional: #format spec: [ :positional |
-    		 positional      		
-		     	description: 'The format you want pdf is the default'
-		  	  	]; 
-		"addFlagWithPositional: #format description: 'output format'; was forcing to use --format "
-		  addPositional: #requestedFiles spec: [ :positional |
-    		 positional      		
-		     	description: 'Pillar files you want to build';
-			   defaultValue: [ #('index.md') ];
-		  	  	multiple: true ];
+		  addPositional: #format
+		  spec: [ :positional |
+			  positional description: 'The format you want pdf is the default' ];
+		  "addFlagWithPositional: #format description: 'output format'; was forcing to use --format "
+		  addPositional: #requestedFiles
+		  spec: [ :positional |
+				  positional
+					  description: 'Pillar files you want to build';
+					  defaultValue: [ #( 'index.md' ) ];
+					  multiple: true ];
 		  yourself
 ]
 
@@ -69,16 +70,16 @@ ClapPillarBuildCommand >> execute [
 	| target |
 	target := self outputTarget new.
 	project := target class newProject.
-	
-	(self hasFlag: #templatable) ifTrue: [ project beTemplatable ].
-	(self hasFlag: #mainRoot) ifTrue: [ strategy := PRBuildRootMainStrategy new ].
-	(self hasFlag: #all) ifTrue: [ strategy := PRBuildAllStrategy new ].
-	
-	self
-		positional: #requestedFiles
-		ifPresent: [ :files | strategy := PRBuildListStrategy list: (files collect: [ :f | f asFileReference ]) ].
 
-	target buildStrategy: strategy.		
+	(self hasFlag: #mainRoot) ifTrue: [
+		strategy := PRBuildRootMainStrategy new ].
+	(self hasFlag: #all) ifTrue: [ strategy := PRBuildAllStrategy new ].
+
+	self positional: #requestedFiles ifPresent: [ :files |
+			strategy := PRBuildListStrategy list:
+				            (files collect: [ :f | f asFileReference ]) ].
+
+	target buildStrategy: strategy.
 	(project build: target) exitProcess
 ]
 
@@ -91,10 +92,20 @@ ClapPillarBuildCommand >> format [
 
 { #category : 'accessing' }
 ClapPillarBuildCommand >> outputTarget [
+	"Answer the target class of the requested format; raise a PRCommandError listing the formats when it is unknown."
 
-	| format |
+	| format formats |
 	format := self format.
-	^ PRWritingTarget allSubclasses detect: [ :target | target builderName = format ]
+	^ PRWritingTarget allSubclasses
+		  detect: [ :target | target builderName = format ]
+		  ifNone: [
+				  formats := (PRWritingTarget allSubclasses collect: [ :target |
+					              target builderName asString ]) sorted.
+				  PRCommandError signal:
+					  ('Unknown format {1}: use {2} or {3}.' format: {
+							   format.
+							   (', ' join: formats allButLast).
+							   formats last }) ]
 ]
 
 { #category : 'accessing' }

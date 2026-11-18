@@ -103,19 +103,31 @@ PRProject >> build: output [
 	^ output buildOn: self
 ]
 
+{ #category : 'checking' }
+PRProject >> checkIsABook [
+	"Raise a PRCommandError when my folder has no _support, which happens when pillar is not run in the folder of a book."
+
+	(self baseDirectory / '_support') exists ifTrue: [ ^ self ].
+	PRCommandError signal:
+		'This folder is not a Pillar book: it has no _support folder. Run pillar in the folder of the book, or create a book with pillar archetype <name> (see pillar archetype --help).'
+]
+
 { #category : 'accessing' }
 PRProject >> configuration [
-	
+
 	| readConfiguration extension |
 	extension := Dictionary new.
 	extension at: 'outputDirectory' put: self defaultOutputDirectoryName.
-	
+
 	"Just for backwards compatibility"
 	extension at: '_project' put: self.
 
 	readConfiguration := self configurationFileReference exists
-		ifFalse: [ ConfigurationForPillar newFromDictionary: extension ]
-		ifTrue: [ ConfigurationForPillar newFromFile: self configurationFileReference extendedWith: extension ].
+		                     ifFalse: [
+		                     ConfigurationForPillar newFromDictionary:
+			                     extension ]
+		                     ifTrue: [
+		                     self readConfigurationExtendedWith: extension ].
 	^ readConfiguration
 ]
 
@@ -148,6 +160,18 @@ PRProject >> defaultTarget [
 	| defaultExport |
 	defaultExport := [self configuration defaultExport ifEmpty: [ ^ PRAbsentTarget]] on: Error do: [ ^ PRAbsentTarget ]  .
 	^ PRTarget targetByFormatName: defaultExport
+]
+
+{ #category : 'checking' }
+PRProject >> displayNameOf: aFile [
+	"Answer the name of aFile as the author knows it: relative to my folder when it is inside it."
+
+	| file folder |
+	file := aFile asAbsolute.
+	folder := self baseDirectory asAbsolute.
+	^ (file isContainedBy: folder)
+		  ifTrue: [ (file relativeTo: folder) pathString ]
+		  ifFalse: [ file fullName ]
 ]
 
 { #category : 'initialization' }
@@ -217,6 +241,20 @@ PRProject >> prepareForTarget: target [
 	
 	target prepareForExecutionOn: self.
 	self plugins do: [ :each | each prepareForExecutionOn: self ]
+]
+
+{ #category : 'checking' }
+PRProject >> readConfigurationExtendedWith: aDictionary [
+	"Answer the configuration of pillar.conf; raise a PRCommandError when it is not valid STON."
+
+	^ [
+		  ConfigurationForPillar
+			  newFromFile: self configurationFileReference
+			  extendedWith: aDictionary ]
+		  on: STONReaderError
+		  do: [ :error |
+				  PRCommandError signal:
+					  'pillar.conf is not valid: ' , error messageText ]
 ]
 
 { #category : 'accessing' }

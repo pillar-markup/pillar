@@ -35,14 +35,24 @@ PRPDFDocument >> executeCommand: command arguments: arguments workingDirectory: 
 
 { #category : 'compiling' }
 PRPDFDocument >> executeOnUnixCommand: command arguments: arguments workingDirectory: aWorkingDirectory [
+	"Run command and wait for it; raise a PRCommandError when it cannot be run or fails."
+
 	| process |
-	process := OSSUnixSubprocess new
-		command: command;
-		workingDirectory: aWorkingDirectory;
-		arguments: arguments;
-		runAndWait.
+	process := [
+		           OSSUnixSubprocess new
+			           command: command;
+			           workingDirectory: aWorkingDirectory;
+			           arguments: arguments;
+			           runAndWait ]
+		           on: Error
+		           do: [ :error |
+				           PRCommandError signal:
+					           ('{1} cannot be run: is it installed? To build PDF files, install a TeX distribution (TeX Live, MacTeX) that provides latexmk and lualatex.'
+						            format: { command }) ].
 	process isSuccess ifFalse: [
-		self error: 'command ', command ,' failed' ]
+			PRCommandError signal: ('{1} failed (exit status {2})' format: {
+						 command.
+						 process exitStatus }) ]
 ]
 
 { #category : 'compiling' }
@@ -82,23 +92,36 @@ PRPDFDocument >> pdfTransformationsFor: aDocument [
 	^ aDocument pdfTransformationsFor: self
 ]
 
-{ #category : 'writing' }
+{ #category : 'building' }
 PRPDFDocument >> postWriteTransform: aFile [
+	"Run latexmk on the LaTeX file aFile; when it fails, say where its log is."
 
-	| relativePath outputFileReference |
-	relativePath := file file asAbsolute relativeTo: project baseDirectory asAbsolute.
+	| relativePath outputFileReference log |
+	relativePath := file file asAbsolute relativeTo:
+		                project baseDirectory asAbsolute.
 	outputFileReference := outputDirectory resolve: relativePath parent.
-	self
-		executeCommand: 'latexmk'
-		arguments: {
-			'-pdflatex=lualatex' . 
-			'-pdf' .
-			'-ps-' .
-			'-f' .
-			'-interaction=nonstopmode' .
-			'-outdir=', (self toCommandPath: outputFileReference fullName).
-			self toCommandPath: (self toLatexPath: (aFile relativeTo: outputDirectory) pillarPrintString) }
-		workingDirectory: outputDirectory fullName
+	log := outputFileReference
+	       / (aFile basenameWithoutExtension , '.log').
+	[
+		self
+			executeCommand: 'latexmk'
+			arguments: {
+					'-pdflatex=lualatex'.
+					'-pdf'.
+					'-ps-'.
+					'-f'.
+					'-interaction=nonstopmode'.
+					('-outdir=' , (self toCommandPath: outputFileReference fullName)).
+					(self toCommandPath: (self toLatexPath:
+							  (aFile relativeTo: outputDirectory) pillarPrintString)) }
+			workingDirectory: outputDirectory fullName ]
+		on: PRCommandError
+		do: [ :error |
+				log exists ifTrue: [
+						error messageText: ('{1}: see the LaTeX log {2}' format: {
+									 error messageText.
+									 log fullName }) ].
+				error pass ]
 ]
 
 { #category : 'compiling' }

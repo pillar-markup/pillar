@@ -14,7 +14,7 @@ Class {
 
 { #category : 'accessing' }
 PRBuildRootMainStrategy >> filesToBuildOn: aProject [
-	"Answer the only Pillar or Microdown file of the root of aProject, ignoring the README of the repository (README.md, readme.md, ...). Raise an error when there is no such file or more than one."
+	"Answer the only Pillar or Microdown file of the root of aProject, ignoring the README of the repository (README.md, readme.md, ...). Raise a PRCommandError when there is no such file or more than one."
 
 	| pillarFiles |
 	pillarFiles := aProject baseDirectory children select: [ :each |
@@ -22,14 +22,17 @@ PRBuildRootMainStrategy >> filesToBuildOn: aProject [
 					               (self isSupportedExtension: each extension) and: [
 						               (self isReadme: each) not ] ] ].
 	pillarFiles ifEmpty: [
-			self error:
-				'There is no pillar (md or pillar) file in the repository root.' ].
+			PRCommandError signal:
+				'There is no Microdown file (such as index.md) in the folder of the book: give the file to build, for example pillar build pdf index.md.' ].
 	pillarFiles size = 1 ifTrue: [
 			^ { ((PRInputDocument forFile: pillarFiles first)
 				   project: aProject;
 				   yourself) } ].
-	self error:
-		'There is more than one pillar file in the repository root.'
+	PRCommandError signal:
+		('There is more than one Microdown file in the folder of the book ({1}): give the one to build, for example pillar build pdf index.md.'
+			 format:
+			 { (', ' join:
+				  (pillarFiles collect: [ :each | each basename ]) sorted) })
 ]
 
 { #category : 'testing' }

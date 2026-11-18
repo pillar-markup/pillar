@@ -22,6 +22,12 @@ PRPdfOutput >> documentFor: aFile [
 		yourself
 ]
 
+{ #category : 'writing' }
+PRPdfOutput >> exampleWriterSetting [
+
+	^ '#''miclatex:sbabook'''
+]
+
 { #category : 'accessing' }
 PRPdfOutput >> extension [
 	
@@ -38,4 +44,10 @@ PRPdfOutput >> outputDirectoryName [
 PRPdfOutput >> writerFor: aPRPillarConfiguration [ 
 	
 	^ self writerFor: aPRPillarConfiguration forConfigurationTag: #latexWriter
+]
+
+{ #category : 'writing' }
+PRPdfOutput >> writerNames [
+
+	^ #( 'micBeamer' 'miclatex' 'miclatex:sbabook' )
 ]

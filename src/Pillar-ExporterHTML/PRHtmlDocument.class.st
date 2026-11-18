@@ -13,25 +13,10 @@ PRHtmlDocument >> addCustomCssTo: someTemplateValues [
 		exists ifTrue: [ someTemplateValues at: #customCss put: true ]
 ]
 
-{ #category : 'accessing' }
+{ #category : 'writing' }
 PRHtmlDocument >> basicWriter [
-	
-	"| kindOfWriter inPillar |
-	
-	
- 	inPillar := PRDocumentWriter allSubclasses 
-		detect: [ :each | each isAbstract not
-			and: [ each writerName = kindOfWriter ] ]
-		ifNone: [ self halt. ].		
-	^ inPillar new		
-	"
-	| kindOfWriter |
-	kindOfWriter := (project configuration propertyAt: #htmlWriter).
-	
-	^ (((SystemNavigation default allImplementorsOf: #writerName) 
-		collect: [ :each | each methodClass instanceSide ]) 
-			 detect: [ :each | 	each isAbstract not 
-						and: [ each writerName asLowercase = kindOfWriter asLowercase ] ]) new
+
+	^ target writerFor: project configuration
 ]
 
 { #category : 'accessing' }

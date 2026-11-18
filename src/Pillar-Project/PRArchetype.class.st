@@ -53,6 +53,15 @@ PRArchetype class >> repositoryDirectories [
 		  thenCollect: [ :each | each location ]
 ]
 
+{ #category : 'installing' }
+PRArchetype >> availableArchetypeNames [
+	"Answer the names of the archetypes next to me, sorted."
+
+	self directory parent exists ifFalse: [ ^ #(  ) ].
+	^ (self directory parent directories collect: [ :each |
+		   each basename ]) sorted
+]
+
 { #category : 'accessing' }
 PRArchetype >> directory [
 
@@ -62,6 +71,25 @@ PRArchetype >> directory [
 { #category : 'accessing' }
 PRArchetype >> directory: aDirectory [
 	directory := aDirectory
+]
+
+{ #category : 'installing' }
+PRArchetype >> filesInTheWayIn: baseDirectory [
+	"Answer the paths of the files of baseDirectory that installing me would overwrite: my sample files and my GitHub workflow."
+
+	| paths workflow |
+	paths := ((self directory / 'sample') children
+		          select: [ :each | (baseDirectory / each basename) exists ]
+		          thenCollect: [ :each | each basename ])
+		         asOrderedCollection.
+	workflow := self directory / 'support' / 'github'.
+	workflow exists ifTrue: [
+			paths addAll: (workflow children
+					 select: [ :each |
+						 (baseDirectory / '.github' / 'workflows' / each basename)
+							 exists ]
+					 thenCollect: [ :each | '.github/workflows/' , each basename ]) ].
+	^ paths sorted
 ]
 
 { #category : 'updating' }
@@ -77,22 +105,27 @@ PRArchetype >> installCustomIn: baseDirectory [
 ]
 
 { #category : 'actions' }
-PRArchetype >> installGHWorkflowIn: baseDirectory [ 
+PRArchetype >> installGHWorkflowIn: baseDirectory [
 
 	| destination source |
 	source := self directory / 'support' / 'github'.
-	source exists ifFalse: [ ^ self]. 
+	source exists ifFalse: [ ^ self ].
 
 	destination := baseDirectory / '.github' / 'workflows'.
-	(baseDirectory / '.github') createDirectory.
-	(baseDirectory / '.github' / 'workflows') createDirectory.
-	
+	destination ensureCreateDirectory.
 	source copyAllTo: destination
 ]
 
 { #category : 'actions' }
 PRArchetype >> installIn: baseDirectory [
-	"Install a new book in baseDirectory: my sample book, my support files as _support, my custom folder as _custom (unless the book already has one) and my GitHub workflow."
+	"Install a new book in baseDirectory: my sample book, my support files as _support, my custom folder as _custom (unless the book already has one) and my GitHub workflow. Raise a PRCommandError, before copying anything, when this would overwrite files of baseDirectory."
+
+	| inTheWay |
+	inTheWay := self filesInTheWayIn: baseDirectory.
+	inTheWay ifNotEmpty: [
+			PRCommandError signal:
+				('This folder already has {1}: run pillar archetype in an empty folder. To update the support files of a book, use pillar updateArchetype.'
+					 format: { (', ' join: inTheWay) }) ].
 
 	(self directory / 'sample') children do: [ :child |
 		child copyAllTo: baseDirectory / child basename ].
@@ -145,8 +178,11 @@ PRArchetype >> updateIn: baseDirectory [
 
 { #category : 'validating' }
 PRArchetype >> validateExists [
-	
-	self directory exists ifFalse: [
-		self error: 'Archetype ', name, ' does not exist'
-	].
+	"Raise a PRCommandError naming the archetypes that exist when I do not exist."
+
+	self directory exists ifTrue: [ ^ self ].
+	PRCommandError signal:
+		('Unknown archetype {1}. The archetypes are: {2}.' format: {
+				 name.
+				 (', ' join: self availableArchetypeNames) })
 ]

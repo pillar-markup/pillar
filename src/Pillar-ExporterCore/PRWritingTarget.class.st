@@ -36,6 +36,13 @@ PRWritingTarget >> createConfigurationFrom: aPRProject [
 		yourself
 ]
 
+{ #category : 'writing' }
+PRWritingTarget >> exampleWriterSetting [
+	"Answer the usual writer of my format as written in pillar.conf."
+
+	^ self subclassResponsibility
+]
+
 { #category : 'accessing' }
 PRWritingTarget >> extension [
 	
@@ -50,9 +57,10 @@ PRWritingTarget >> outputDirectoryName [
 
 { #category : 'preparation' }
 PRWritingTarget >> prepareForExecutionOn: aPRProject [
-	"Remove the previous output of this target only (_result/pdf, _result/html, _result/site), so that the outputs of the other formats stay side by side; then copy _support there, the files of _custom over it, and the folders of the book."
+	"Check that aPRProject is a book; remove the previous output of this target only (_result/pdf, _result/html, _result/site), so that the outputs of the other formats stay side by side; then copy _support there, the files of _custom over it, and the folders of the book."
 
 	| configuration outputDirectory outputFormat target source |
+	aPRProject checkIsABook.
 	(aPRProject outputDirectory / self outputDirectoryName)
 		ensureDeleteAll.
 	configuration := self createConfigurationFrom: aPRProject.
@@ -83,16 +91,40 @@ PRWritingTarget >> writerFor: aPRPillarConfiguration [
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : 'writing' }
 PRWritingTarget >> writerFor: aPRPillarConfiguration forConfigurationTag: aTag [
-	
-	"(PRDocumentWriter allSubclasses detect: [ :each | 
-		each isAbstract not
-			and: [ each writerName = (aPRPillarConfiguration propertyAt: #latexWriter) ] ])
-				new"
-				
-	^ (((SystemNavigation default allImplementorsOf: #writerName) 
-		collect: [ :each | each methodClass instanceSide ]) 
-			 detect: [ :each | 	each isAbstract not 
-						and: [ each writerName asLowercase = (aPRPillarConfiguration propertyAt: aTag) asLowercase ] ]) new
+	"Answer a new writer named by aTag in pillar.conf (htmlWriter, latexWriter); raise a PRCommandError naming my writers when the setting is missing or unknown."
+
+	| name |
+	name := aPRPillarConfiguration propertyAt: aTag ifAbsent: [
+			        PRCommandError signal:
+				        ('pillar.conf has no {1}: add for example "{1}" : {2} (writers: {3}).'
+					         format: {
+							         aTag.
+							         self exampleWriterSetting.
+							         self writerNamesText }) ].
+	^ (((SystemNavigation default allImplementorsOf: #writerName)
+		    collect: [ :each | each methodClass instanceSide ])
+		   detect: [ :each |
+				   each isAbstract not and: [
+					   each writerName asLowercase = name asLowercase ] ]
+		   ifNone: [
+				   PRCommandError signal:
+					   ('Unknown {1} {2} in pillar.conf (writers: {3}).' format: {
+							    aTag.
+							    name.
+							    self writerNamesText }) ]) new
+]
+
+{ #category : 'writing' }
+PRWritingTarget >> writerNames [
+	"Answer the names of the writers of my format, to write in pillar.conf."
+
+	^ self subclassResponsibility
+]
+
+{ #category : 'writing' }
+PRWritingTarget >> writerNamesText [
+
+	^ ', ' join: self writerNames
 ]

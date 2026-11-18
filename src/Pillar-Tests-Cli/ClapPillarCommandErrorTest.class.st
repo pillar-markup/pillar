@@ -52,6 +52,20 @@ ClapPillarCommandErrorTest >> testBookStructureErrorIsAnErrorOfTheAuthor [
 			, String lf
 ]
 
+{ #category : 'tests - commands' }
+ClapPillarCommandErrorTest >> testBookTesterOnAMissingFileRaisesError [
+
+	self
+		should: [
+				(self commandFor: #( pillar check 'no-such-file-for-pillar.md' ))
+					execute ]
+		raise: PRCommandError
+		withExceptionDo: [ :error |
+				self
+					assert: error messageText
+					equals: 'The file no-such-file-for-pillar.md does not exist.' ]
+]
+
 { #category : 'tests' }
 ClapPillarCommandErrorTest >> testCommandErrorPrintsItsMessage [
 
@@ -105,4 +119,16 @@ ClapPillarCommandErrorTest >> testReportedErrorEndsWithAFailure [
 
 	self deny:
 		(self report: (PRCommandError new messageText: 'wrong')) isSuccess
+]
+
+{ #category : 'tests - commands' }
+ClapPillarCommandErrorTest >> testUnknownFormatListsTheFormats [
+
+	self
+		should: [ (self commandFor: #( pillar build foo )) outputTarget ]
+		raise: PRCommandError
+		withExceptionDo: [ :error |
+				self
+					assert: error messageText
+					equals: 'Unknown format foo: use html, pdf or site.' ]
 ]

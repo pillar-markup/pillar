@@ -25,41 +25,34 @@ ClapPillarBookTesterCommand class >> commandSpecification [
 
 { #category : 'execution' }
 ClapPillarBookTesterCommand >> execute [
-	| file |
-	file :=  self requestedFile asString asFileReference. 
-	file exists 
-		ifTrue: [ 
-			| reporter parent |
-			parent := self project baseDirectory.
-			reporter := MicAnalysisReportWriter 
-				reportForFolder: parent 
-				startingFrom: file 
-				configuration: self project configuration.
-				
-			reporter isOkay
-					ifTrue: [ 
-						self outputStreamDo: 
-									[ :str | str 
-											cr;
-											nextPutAll:  'File ' ; 
-											nextPutAll: (self relativePathStringOf: file) ; 
-											nextPutAll: ' does not have reference problems.' ]]
-					ifFalse: [ 
-						self outputStreamDo: 
-									[ :str | 
-										str 
-											cr; 
-											nextPutAll: 'File ' ; 
-											nextPutAll: (self relativePathStringOf: file) ; 
-											nextPutAll: ' has reference problems.'; cr.
-										reporter buildReportOn: str ] ] ]
-		ifFalse: [ 
-				self outputStreamDo: [ :str | 
-					str 
-						cr; 
-						nextPutAll: 'File ' ; 
-						nextPutAll: file fullName ; 
-						nextPutAll: ' does not exist.'  ] ]
+	"Check the requested file and the files it includes, and print the problems found; raise a PRCommandError when the file does not exist."
+
+	| file reporter |
+	file := self requestedFile asString asFileReference.
+	file exists ifFalse: [
+			PRCommandError signal: ('The file {1} does not exist.' format:
+					 { (self project displayNameOf: file) }) ].
+	reporter := MicAnalysisReportWriter
+		            reportForFolder: self project baseDirectory
+		            startingFrom: file
+		            configuration: self project configuration.
+	reporter isOkay
+		ifTrue: [
+				self outputStreamDo: [ :str |
+						str
+							cr;
+							nextPutAll: 'File ';
+							nextPutAll: (self relativePathStringOf: file);
+							nextPutAll: ' does not have reference problems.' ] ]
+		ifFalse: [
+				self outputStreamDo: [ :str |
+						str
+							cr;
+							nextPutAll: 'File ';
+							nextPutAll: (self relativePathStringOf: file);
+							nextPutAll: ' has reference problems.';
+							cr.
+						reporter buildReportOn: str ] ]
 ]
 
 { #category : 'execution' }

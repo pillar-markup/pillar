@@ -33,9 +33,15 @@ PRBuildListStrategy >> files: aCollection [
 
 { #category : 'accessing' }
 PRBuildListStrategy >> filesToBuildOn: aProject [
+	"Answer the input documents of my files, resolved against the folder of aProject; raise a PRCommandError naming a file that does not exist."
 
-	^ files collect: [ :file | 
-				(PRInputDocument forFile: (aProject baseDirectory resolve: file))
-					project: aProject;
-					yourself ]
+	^ files collect: [ :each |
+			  | file |
+			  file := aProject baseDirectory resolve: each.
+			  file exists ifFalse: [
+					  PRCommandError signal: ('The file {1} does not exist.' format:
+							   { (aProject displayNameOf: file) }) ].
+			  (PRInputDocument forFile: file)
+				  project: aProject;
+				  yourself ]
 ]

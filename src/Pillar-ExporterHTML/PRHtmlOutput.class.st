@@ -22,6 +22,12 @@ PRHtmlOutput >> documentFor: aFile [
 		yourself
 ]
 
+{ #category : 'writing' }
+PRHtmlOutput >> exampleWriterSetting [
+
+	^ '#michtml'
+]
+
 { #category : 'accessing' }
 PRHtmlOutput >> extension [
 	
@@ -38,4 +44,10 @@ PRHtmlOutput >> outputDirectoryName [
 PRHtmlOutput >> writerFor: aPRPillarConfiguration [ 
 	
 	^ self writerFor: aPRPillarConfiguration forConfigurationTag: #htmlWriter
+]
+
+{ #category : 'writing' }
+PRHtmlOutput >> writerNames [
+
+	^ #( 'micbasichtml' 'michtml' )
 ]
