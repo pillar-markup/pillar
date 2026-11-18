@@ -1,1 +1,1 @@
-welcom
+welcome
