@@ -22,7 +22,7 @@ PRMissingArchetypeID exampleSignal
 "
 Class {
 	#name : 'PRMissingArchetypeID',
-	#superclass : 'Error',
+	#superclass : 'PRCommandError',
 	#category : 'Pillar-Project',
 	#package : 'Pillar-Project'
 }
