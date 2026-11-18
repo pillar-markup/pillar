@@ -28,6 +28,21 @@ PRHtmlBookOutputTest >> pageNamed: aString [
 	^ (self build / aString) contents
 ]
 
+{ #category : 'helpers' }
+PRHtmlBookOutputTest >> parsedIndex [
+	"Answer index.md of the book as the site output parses it before transforming and writing it."
+
+	| project output |
+	project := PRProject on: book.
+	output := PRHtmlBookDocument new
+		          project: project;
+		          yourself.
+	^ output parsedDocumentOf:
+		  ((PRInputDocument forFile: book / 'index.md')
+			   project: project;
+			   yourself)
+]
+
 { #category : 'running' }
 PRHtmlBookOutputTest >> setUp [
 
@@ -219,6 +234,17 @@ PRHtmlBookOutputTest >> testIndexTitleIsTheBookTitle [
 			 '<title>My Book</title>[My Book]')
 ]
 
+{ #category : 'tests - book structure errors' }
+PRHtmlBookOutputTest >> testInvalidStructureStopsTheBuild [
+
+	self
+		writeFile: 'pillar.conf'
+		contents:
+		'{ "title" : "My Book", "htmlWriter" : #michtml, "chapterLevel" : 1, "paragraphLevel" : 6 }'.
+
+	self should: [ self build ] raise: MicInvalidBookStructure
+]
+
 { #category : 'tests - template values' }
 PRHtmlBookOutputTest >> testLastPageHasNoNextPage [
 
@@ -284,6 +310,42 @@ PRHtmlBookOutputTest >> testPagesLinkToThePreviousAndNextPages [
 	self assert:
 		((self pageNamed: 'microdown-syntax.html') includesSubstring:
 			 '[previous:index.html:My Book][next:two.html:Second chapter]')
+]
+
+{ #category : 'tests - book structure' }
+PRHtmlBookOutputTest >> testParagraphLevelFollowsTheChapterLevelWhenNotGiven [
+
+	self
+		writeFile: 'pillar.conf'
+		contents:
+		'{ "title" : "My Book", "htmlWriter" : #michtml, "chapterLevel" : 1 }'.
+
+	self assert: self parsedIndex bookStructure paragraphLevel equals: 4
+]
+
+{ #category : 'tests - book structure' }
+PRHtmlBookOutputTest >> testParsedBookHasTheStructureOfPillarConf [
+
+	| structure |
+	self
+		writeFile: 'pillar.conf'
+		contents:
+		'{ "title" : "My Book", "htmlWriter" : #michtml, "chapterLevel" : 1, "paragraphLevel" : 3 }'.
+
+	structure := self parsedIndex bookStructure.
+
+	self assert: structure chapterLevel equals: 1.
+	self assert: structure paragraphLevel equals: 3
+]
+
+{ #category : 'tests - book structure' }
+PRHtmlBookOutputTest >> testParsedBookWithoutSettingsHasTheDefaultStructure [
+
+	| structure |
+	structure := self parsedIndex bookStructure.
+
+	self assert: structure chapterLevel equals: 2.
+	self assert: structure paragraphLevel equals: 5
 ]
 
 { #category : 'tests - numbers' }

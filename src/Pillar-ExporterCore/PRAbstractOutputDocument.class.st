@@ -24,18 +24,33 @@ PRAbstractOutputDocument >> basicWriter [
 	self subclassResponsibility
 ]
 
+{ #category : 'accessing' }
+PRAbstractOutputDocument >> bookStructure [
+	"Answer the structure of the book declared in pillar.conf: chapterLevel (2 by default) and paragraphLevel (3 levels below the chapters by default). Signal MicInvalidBookStructure when they cannot describe a book."
+
+	| chapterLevel |
+	chapterLevel := self configuration
+		                propertyAt: #chapterLevel
+		                ifAbsent: [ MicBookStructure new chapterLevel ].
+	^ MicBookStructure
+		  chapterLevel: chapterLevel
+		  paragraphLevel: (self configuration
+				   propertyAt: #paragraphLevel
+				   ifAbsent: [
+				   (MicBookStructure chapterLevel: chapterLevel) paragraphLevel ])
+]
+
 { #category : 'building' }
-PRAbstractOutputDocument >> buildOn: aPRProject [ 
+PRAbstractOutputDocument >> buildOn: aPRProject [
 	"This is a key method. It is the heart of the flow:
 		Parser, Transform, Write, Post Write"
-		
+
 	| parsedDocument transformedDocument writtenFile |
-	parsedDocument := self parseInputFile: file.
-	parsedDocument properties: (self metadataConfigurationForDocument: parsedDocument).
+	parsedDocument := self parsedDocumentOf: file.
 	transformedDocument := parsedDocument transformDocumentFor: self.
 	writtenFile := self writeDocument: transformedDocument.
 	self postWriteTransform: writtenFile.
-	^ PRSuccess new.
+	^ PRSuccess new
 ]
 
 { #category : 'accessing' }
@@ -111,6 +126,18 @@ PRAbstractOutputDocument >> outputDirectory: aFileReference [
 PRAbstractOutputDocument >> parseInputFile: anInputFile [
 	
 	^ anInputFile parsedDocument
+]
+
+{ #category : 'building' }
+PRAbstractOutputDocument >> parsedDocumentOf: anInputFile [
+	"Parse anInputFile and answer its document, with its metadata as properties and the structure of the book declared in pillar.conf (see bookStructure), so that the passes, the writers and the checkers all follow it."
+
+	| parsedDocument |
+	parsedDocument := self parseInputFile: anInputFile.
+	parsedDocument properties:
+		(self metadataConfigurationForDocument: parsedDocument).
+	parsedDocument bookStructure: self bookStructure.
+	^ parsedDocument
 ]
 
 { #category : 'building' }
