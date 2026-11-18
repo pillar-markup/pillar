@@ -9,14 +9,14 @@ I write a book as the pages of a web site: `index.html` with what comes before t
 
 ## Responsibility:
 
-- I run the passes in order: `MicPathRelativizer` (figures relative to the book folder), `MicHeaderIdentifier` (link targets of the headers), `MicTocBuilder` (the table of contents of the whole book, built once), `MicChapterSplitter` (chapters at `##`), then `MicPageReferenceResolver` (references to another page).
+- I run the passes in order: `MicPathRelativizer` (figures relative to the book folder), `MicHeaderIdentifier` (link targets of the headers), `MicNumberer` (numbers of chapters, sections, figures, listings and equations; on unless `pillar.conf` says `""numbering"" : false`, since numbers help readers find their way), `MicTocBuilder` (the table of contents of the whole book, built once), `MicChapterSplitter` (chapters at `##`), then `MicPageReferenceResolver` (references to another page).
 - I name each chapter page after the target of its header (`microdown-syntax.html`, or `second.html` for a header with `@second`), never `index.html`, which belongs to the home page (a chapter Index gives `index-2.html`).
 - I give the page template the values of the book (`pillar.conf` and the metadata of `index.md`) plus `content`, `title` (of the page), `bookTitle`, `toc`, and `previous` and `next` (each with `href` and `title`, absent on the first and last pages).
 
 ## Collaborators: 
 
-- `MicHeaderIdentifier`, `MicChapterSplitter`, `MicPageReferenceResolver`: the passes.
-- The writer of `htmlWriter` (e.g. `MicHTMLVisitor`): writes the HTML of each page.
+- `MicPathRelativizer`, `MicHeaderIdentifier`, `MicNumberer`, `MicTocBuilder`, `MicChapterSplitter`, `MicPageReferenceResolver`: the passes.
+- The writer of `htmlWriter`: writes the HTML of each page; `michtml` is `MicBookHTMLVisitor`, which shows the numbers (`micbasichtml`, `MicHTMLVisitor`, does not).
 - `MustacheTemplate` and `ConfigurationForPillar`: the page template and its values.
 
 ## Public API and Key Messages
@@ -39,7 +39,7 @@ PRHtmlBookDocument exampleOfASmallBook
 
 - All the pages are at the top of the site folder, next to the copied chapter folders.
 - The pages are at the top of the site, which mirrors the book folder, so a figure relative to the book folder (`Chapters/Chapter1/figures/x.png`) is right for every page.
-- `toc` has the shape of `MicTocBuilder>>templateValues` (`children`, each with `name`, `href`, `hasChildren`, `children`) plus `isCurrent`: one entry per chapter linking to its page; only the current chapter lists its sections: the children of its entry in the table of contents of the book, without the chapters nested in it (a `#` title above `##` chapters), so page templates written for the table of contents of one document work unchanged.
+- `toc` has the shape of `MicTocBuilder>>templateValues` (`children`, each with `name`, `number`, `href`, `hasChildren`, `children`) plus `isCurrent`: one entry per chapter linking to its page; only the current chapter lists its sections: the children of its entry in the table of contents of the book, without the chapters nested in it (a `#` title above `##` chapters), so page templates written for the table of contents of one document work unchanged.
 "
 Class {
 	#name : 'PRHtmlBookDocument',
@@ -86,6 +86,13 @@ PRHtmlBookDocument >> entriesWithHeaders: aSet in: aCollectionOfTocEntries [
 			  , (self entriesWithHeaders: aSet in: each children) ]
 ]
 
+{ #category : 'testing' }
+PRHtmlBookDocument >> isNumbered [
+	"Sites show the numbers of chapters, sections, figures, listings and equations, which helps readers find their way; a book turns them off with numbering false in pillar.conf."
+
+	^ self configuration propertyAt: #numbering ifAbsent: [ true ]
+]
+
 { #category : 'template values' }
 PRHtmlBookDocument >> linkToPageAt: anIndex in: aCollectionOfPages [
 	"Answer the values of a link to the page at anIndex, as the page template uses them for previous and next: href (the file name of the page) and title (its title)."
@@ -111,7 +118,7 @@ PRHtmlBookDocument >> pageNameOf: aChapter in: aSet [
 
 { #category : 'pages' }
 PRHtmlBookDocument >> pagesOf: aBook [
-	"Run the Microdown passes on aBook and answer its pages, as pairs page name -> document: index.html with what comes before the first chapter, then one page per chapter, named after the target of its header (see MicHeaderIdentifier). The passes: make the figure paths relative to the book folder (the pages are written at the top of the site, which mirrors it), identify the headers, build the table of contents of the whole book, split it into chapters, resolve the references across pages."
+	"Run the Microdown passes on aBook and answer its pages, as pairs page name -> document: index.html with what comes before the first chapter, then one page per chapter, named after the target of its header (see MicHeaderIdentifier). The passes: make the figure paths relative to the book folder (the pages are written at the top of the site, which mirrors it), identify the headers, number the book (unless numbering is false in pillar.conf), build the table of contents of the whole book, split it into chapters, resolve the references across pages."
 
 	| splitter pages names |
 	MicPathRelativizer new
@@ -119,6 +126,10 @@ PRHtmlBookDocument >> pagesOf: aBook [
 		to: self project baseDirectory.
 	MicHeaderIdentifier new identify: aBook.
 	splitter := MicChapterSplitter new.
+	self isNumbered ifTrue: [
+			MicNumberer new
+				chapterLevel: splitter chapterLevel;
+				number: aBook ].
 	tocBuilder := MicTocBuilder new.
 	tocBuilder limitUpTo: splitter chapterLevel + 1.
 	tocBuilder visit: aBook.
@@ -172,7 +183,7 @@ PRHtmlBookDocument >> titleOfPageAt: anIndex in: aCollectionOfPages [
 
 { #category : 'template values' }
 PRHtmlBookDocument >> tocEntryOfPageAt: anIndex in: aCollectionOfPages current: aBoolean [
-	"Answer the table of contents entry of the chapter page at anIndex: name, href (the page), isCurrent, and as children its sections when it is the current chapter."
+	"Answer the table of contents entry of the chapter page at anIndex: name, number (nil when not numbered), href (the page), isCurrent, and as children its sections when it is the current chapter."
 
 	| sections |
 	sections := aBoolean
@@ -181,6 +192,8 @@ PRHtmlBookDocument >> tocEntryOfPageAt: anIndex in: aCollectionOfPages current: 
 	^ Dictionary new
 		  at: 'name'
 		  put: (self titleOfPageAt: anIndex in: aCollectionOfPages);
+		  at: 'number' put: (MicNumberer numberStringOf:
+					   (aCollectionOfPages at: anIndex) value children first);
 		  at: 'href' put: (aCollectionOfPages at: anIndex) key;
 		  at: 'isCurrent' put: aBoolean;
 		  at: 'hasChildren' put: sections isNotEmpty;

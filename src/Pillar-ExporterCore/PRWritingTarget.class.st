@@ -33,26 +33,30 @@ PRWritingTarget >> outputDirectoryName [
 
 { #category : 'preparation' }
 PRWritingTarget >> prepareForExecutionOn: aPRProject [
+	"Remove the previous output of this target only (_result/pdf, _result/html, _result/site), so that the outputs of the other formats stay side by side; then copy _support and the folders of the book there."
+
 	| configuration outputDirectory outputFormat target source |
-	"As a temporary solution, remove the old results folder before building the document.
-	This should be replaced by a smarter solution replacing only modified files"
-	aPRProject wipeout.
+	(aPRProject outputDirectory / self outputDirectoryName)
+		ensureDeleteAll.
 	configuration := self createConfigurationFrom: aPRProject.
-	
+
 	outputFormat := configuration propertyAt: #_outputFormat.
-	target := aPRProject outputDirectory  / outputFormat outputDirectoryName resolve: (Path from: '_support').
-	source := aPRProject baseDirectory /  '_support'.
-	
+	target := aPRProject outputDirectory
+	          / outputFormat outputDirectoryName resolve:
+		          (Path from: '_support').
+	source := aPRProject baseDirectory / '_support'.
+
 	PRCopyPhase new
 		sourceDirectory: source;
 		destinationDirectory: target;
-		executeOn: nil "We used a configuration context here that is not needed anymore".
-		
-	outputDirectory := aPRProject outputDirectory / self outputDirectoryName.
-	aPRProject baseDirectory children
-		do: [ :each | 
-			((each basename beginsWith: '_') or: [ each basename beginsWith: '.' ])
-				ifFalse: [ each copyAllTo: outputDirectory / each basename ] ]
+		executeOn: nil. "We used a configuration context here that is not needed anymore"
+
+	outputDirectory := aPRProject outputDirectory
+	                   / self outputDirectoryName.
+	aPRProject baseDirectory children do: [ :each |
+			((each basename beginsWith: '_') or: [
+				 each basename beginsWith: '.' ]) ifFalse: [
+				each copyAllTo: outputDirectory / each basename ] ]
 ]
 
 { #category : 'accessing' }

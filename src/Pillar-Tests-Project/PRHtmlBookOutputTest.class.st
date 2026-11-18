@@ -68,6 +68,30 @@ PRHtmlBookOutputTest >> testBuildWritesTheIndexAndOnePagePerChapter [
 	self assert: (site / 'two.html') exists
 ]
 
+{ #category : 'tests - output folder' }
+PRHtmlBookOutputTest >> testBuildingTheSiteKeepsThePdf [
+
+	| pdf |
+	pdf := book / '_result' / 'pdf' / 'index.pdf'.
+	pdf ensureCreateFile.
+
+	self build.
+
+	self assert: pdf exists
+]
+
+{ #category : 'tests - output folder' }
+PRHtmlBookOutputTest >> testBuildingTheSiteRemovesItsOldPages [
+
+	| old |
+	old := book / '_result' / 'site' / 'old.html'.
+	old ensureCreateFile.
+
+	self build.
+
+	self deny: old exists
+]
+
 { #category : 'tests - pages' }
 PRHtmlBookOutputTest >> testChapterNamedIndexDoesNotReplaceTheIndex [
 
@@ -94,12 +118,42 @@ PRHtmlBookOutputTest >> testChapterPageHoldsItsChapterOnly [
 	self deny: (page includesSubstring: 'The end.')
 ]
 
+{ #category : 'tests - numbers' }
+PRHtmlBookOutputTest >> testChapterPageShowsTheNumbersOfItsHeaders [
+
+	| page |
+	page := self pageNamed: 'microdown-syntax.html'.
+
+	self assert: (page includesSubstring:
+			 '<h2 id="microdown-syntax"><span class="number">1</span> Microdown syntax</h2>').
+	self assert: (page includesSubstring:
+			 '<h3 id="emphasis"><span class="number">1.1</span> Emphasis</h3>')
+]
+
 { #category : 'tests - template values' }
 PRHtmlBookOutputTest >> testChapterPageTitleIsItsHeader [
 
 	self assert:
 		((self pageNamed: 'microdown-syntax.html') includesSubstring:
 			 '<title>Microdown syntax</title>[My Book]')
+]
+
+{ #category : 'tests - example' }
+PRHtmlBookOutputTest >> testExampleOfASmallBookWritesItsPages [
+
+	| document |
+	document := PRHtmlBookDocument exampleOfASmallBook.
+
+	document buildOn: document project.
+
+	self
+		assert: (document outputDirectory children
+				 collect: [ :each | each basename ]
+				 as: Set)
+		equals: #( 'index.html' 'first-chapter.html' 'second.html' ) asSet.
+	self assert:
+		((document outputDirectory / 'first-chapter.html') contents
+			 includesSubstring: 'href="second.html#second"')
 ]
 
 { #category : 'tests - figures' }
@@ -155,11 +209,57 @@ PRHtmlBookOutputTest >> testLastPageHasNoNextPage [
 	self deny: ((self pageNamed: 'two.html') includesSubstring: '[next:')
 ]
 
+{ #category : 'tests - numbers' }
+PRHtmlBookOutputTest >> testListingShowsItsNumberAndCaption [
+
+	self writeFile: 'Chapters/one.md' contents: '## Microdown syntax
+
+```caption=A first listing
+1 + 2
+```'.
+
+	self assert:
+		((self pageNamed: 'microdown-syntax.html') includesSubstring:
+			 '<figcaption><span class="number">Listing 1.1</span> A first listing</figcaption>')
+]
+
 { #category : 'tests - templates' }
 PRHtmlBookOutputTest >> testMainTemplateIsUsedWhenTheBookHasNoSiteTemplate [
 
 	self assert:
 		((self pageNamed: 'index.html') beginsWith: '<title>My Book</title>')
+]
+
+{ #category : 'tests - writers' }
+PRHtmlBookOutputTest >> testMicbasichtmlIsThePlainHTMLWriter [
+
+	self
+		writeFile: 'pillar.conf'
+		contents: '{ "title" : "My Book", "htmlWriter" : #micbasichtml }'.
+
+	self assert: self writerOfIndex class equals: MicHTMLVisitor
+]
+
+{ #category : 'tests - writers' }
+PRHtmlBookOutputTest >> testMichtmlIsTheBookWriter [
+
+	self assert: self writerOfIndex class equals: MicBookHTMLVisitor
+]
+
+{ #category : 'tests - numbers' }
+PRHtmlBookOutputTest >> testNumberingFalseShowsNoNumbers [
+
+	| page |
+	self
+		writeFile: 'pillar.conf'
+		contents:
+		'{ "title" : "My Book", "htmlWriter" : #michtml, "numbering" : false }'.
+
+	page := self pageNamed: 'microdown-syntax.html'.
+
+	self deny: (page includesSubstring: 'class="number"').
+	self assert:
+		(page includesSubstring: '<a href="two.html#two">two</a>')
 ]
 
 { #category : 'tests - template values' }
@@ -170,12 +270,25 @@ PRHtmlBookOutputTest >> testPagesLinkToThePreviousAndNextPages [
 			 '[previous:index.html:My Book][next:two.html:Second chapter]')
 ]
 
+{ #category : 'tests - output folder' }
+PRHtmlBookOutputTest >> testPreparingThePdfKeepsTheSite [
+	"The PDF build runs latexmk; its first step, shared by all targets, is enough to check that it leaves the site alone."
+
+	| site |
+	site := book / '_result' / 'site' / 'index.html'.
+	site ensureCreateFile.
+
+	PRPdfOutput new prepareForExecutionOn: (PRProject on: book).
+
+	self assert: site exists
+]
+
 { #category : 'tests - references' }
 PRHtmlBookOutputTest >> testReferenceToAnotherChapterLinksToItsPage [
 
 	self assert:
 		((self pageNamed: 'microdown-syntax.html') includesSubstring:
-			 '<a href="two.html#two">two</a>')
+			 '<a href="two.html#two">2</a>')
 ]
 
 { #category : 'tests - templates' }
@@ -229,6 +342,19 @@ PRHtmlBookOutputTest >> testTocShowsNoSectionsOfTheOtherChapters [
 			 '[toc:microdown-syntax.html:Microdown syntax][toc:two.html:Second chapter:current]')
 ]
 
+{ #category : 'tests - numbers' }
+PRHtmlBookOutputTest >> testTocShowsTheNumbers [
+
+	self
+		writeFile: '_support/templates/html/site.mustache'
+		contents:
+		'{{#toc}}{{#children}}[{{#number}}{{.}} {{/number}}{{name}}{{#children}}({{#number}}{{.}} {{/number}}{{name}}){{/children}}]{{/children}}{{/toc}}'.
+
+	self
+		assert: (self pageNamed: 'microdown-syntax.html')
+		equals: '[1 Microdown syntax(1.1 Emphasis)][2 Second chapter]'
+]
+
 { #category : 'tests - toc' }
 PRHtmlBookOutputTest >> testTocShowsTheSectionsOfTheCurrentChapter [
 
@@ -257,4 +383,14 @@ Welcome.
 <!inputFile|path=Chapters/one.md!>
 
 <!inputFile|path=Chapters/two.md!>'
+]
+
+{ #category : 'tests - writers' }
+PRHtmlBookOutputTest >> writerOfIndex [
+	"The HTML writer the document of index.md gets from the configuration of the book."
+
+	^ (PRHtmlBookOutput exampleFromIndex documentFor:
+		   ((PRInputDocument forFile: book / 'index.md')
+			    project: (PRProject on: book);
+			    yourself)) writer
 ]
