@@ -86,6 +86,16 @@ PRHtmlBookDocument >> entriesWithHeaders: aSet in: aCollectionOfTocEntries [
 			  , (self entriesWithHeaders: aSet in: each children) ]
 ]
 
+{ #category : 'pages' }
+PRHtmlBookDocument >> fileNameFor: aTarget [
+	"Answer aTarget with each character other than a letter, a digit, - , _ or . replaced by -, so that it is a safe file name and a relative URL: a : would make the browser read cha:ast.html as a URL of scheme cha, and a / would make a folder."
+
+	^ aTarget collect: [ :each |
+			  (each isAlphaNumeric or: [ '-_.' includes: each ])
+				  ifTrue: [ each ]
+				  ifFalse: [ $- ] ]
+]
+
 { #category : 'testing' }
 PRHtmlBookDocument >> isNumbered [
 	"Sites show the numbers of chapters, sections, figures, listings and equations, which helps readers find their way; a book turns them off with numbering false in pillar.conf."
@@ -106,12 +116,12 @@ PRHtmlBookDocument >> linkToPageAt: anIndex in: aCollectionOfPages [
 
 { #category : 'pages' }
 PRHtmlBookDocument >> pageNameOf: aChapter in: aSet [
-	"Answer the file name of the page of aChapter: the target of its header, made unique among the names of aSet (e.g. a chapter Index gives index-2.html, not index.html)."
+	"Answer the file name of the page of aChapter: the target of its header, escaped for a file name and a URL (see fileNameFor:), made unique among the names of aSet (e.g. a chapter Index gives index-2.html, not index.html; an anchor cha:ast gives cha-ast.html)."
 
 	| name |
 	name := MicHeaderIdentifier new
-		        uniqueId:
-		        (MicHeaderIdentifier targetOf: aChapter children first)
+		        uniqueId: (self fileNameFor:
+				         (MicHeaderIdentifier targetOf: aChapter children first))
 		        in: aSet.
 	^ name , '.html'
 ]

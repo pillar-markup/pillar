@@ -58,6 +58,22 @@ The end.';
 ]
 
 { #category : 'tests - pages' }
+PRHtmlBookOutputTest >> testAnchorWithAColonGivesAPageNameWithoutColon [
+
+	| site |
+	self writeFile: 'Chapters/two.md' contents: '## Second chapter
+@cha:two
+
+The end.'.
+
+	site := self build.
+
+	self assert:
+		((site / 'cha-two.html') contents includesSubstring: 'The end.').
+	self deny: (site / 'cha:two.html') exists
+]
+
+{ #category : 'tests - pages' }
 PRHtmlBookOutputTest >> testBuildWritesTheIndexAndOnePagePerChapter [
 
 	| site |
@@ -281,6 +297,22 @@ PRHtmlBookOutputTest >> testPreparingThePdfKeepsTheSite [
 	PRPdfOutput new prepareForExecutionOn: (PRProject on: book).
 
 	self assert: site exists
+]
+
+{ #category : 'tests - references' }
+PRHtmlBookOutputTest >> testReferenceToAnAnchorWithAColonLinksToItsEscapedPage [
+
+	self writeFile: 'Chapters/one.md' contents: '## Microdown syntax
+
+See *@cha:two@*.'.
+	self writeFile: 'Chapters/two.md' contents: '## Second chapter
+@cha:two
+
+The end.'.
+
+	self assert:
+		((self pageNamed: 'microdown-syntax.html') includesSubstring:
+			 '<a href="cha-two.html#cha:two">2</a>')
 ]
 
 { #category : 'tests - references' }
