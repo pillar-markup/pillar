@@ -11,6 +11,31 @@ Class {
 	#tag : 'Core'
 }
 
+{ #category : 'accessing' }
+PRArchetype class >> archetypesDirectory [
+	"Answer the folder holding the archetypes: next to the image in a released Pillar (scripts/build.sh copies it there), in the Pillar repository in a development image."
+
+	^ self archetypesDirectoryAmong: self candidateArchetypesDirectories
+]
+
+{ #category : 'accessing' }
+PRArchetype class >> archetypesDirectoryAmong: directories [
+	"Answer the first of directories that exists, or the first one when none does, so that the error names where archetypes are expected."
+
+	^ directories
+		  detect: [ :each | each exists ]
+		  ifNone: [ directories first ]
+]
+
+{ #category : 'accessing' }
+PRArchetype class >> candidateArchetypesDirectories [
+	"Answer the folders where archetypes may be, the preferred one first."
+
+	^ { (FileLocator imageDirectory asFileReference / 'archetypes') }
+	  ,
+	  (self repositoryDirectories collect: [ :each | each / 'archetypes' ])
+]
+
 { #category : 'testing' }
 PRArchetype class >> isAbstract [
 
@@ -18,9 +43,20 @@ PRArchetype class >> isAbstract [
 ]
 
 { #category : 'accessing' }
+PRArchetype class >> repositoryDirectories [
+	"Answer the local clones of the repositories holding the code of Pillar."
+
+	^ IceRepository registry
+		  select: [ :each |
+				  each location isNotNil and: [
+					  each includesPackageNamed: self package name ] ]
+		  thenCollect: [ :each | each location ]
+]
+
+{ #category : 'accessing' }
 PRArchetype >> directory [
 
-	^ directory ifNil: [ ^ FileLocator imageDirectory / 'archetypes' / name ] 
+	^ directory ifNil: [ self class archetypesDirectory / name ]
 ]
 
 { #category : 'accessing' }
