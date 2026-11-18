@@ -8,6 +8,9 @@ Pillar is a documentation compilation chain taking documents written in Microdow
 
 Pillar is now the name of the compilation chain and the syntax language is Microdown. 
 
+**Documentation:** [the pillar commands](doc/commands.md) and [the layout of a book](doc/book-layout.md)
+(settings, support files, customizing the look), indexed in [`doc/`](doc/README.md).
+
 ## History
 
 Pillar was a markup syntax and tool-suite to generate documentation, books, websites and slides. Pillar as a markup is not new, it was invented around 2000 as a supporting language for [SmallWiki](https://www.slideshare.net/esug/smallwiki-smalltalk-wiki-towards-cms): one of the first wiki using OOP for real. Its syntax was based on the one of the original Wiki from Ward Cunningham. From SmallWiki it became the markup of the Pier CMS (which was an application server written in Seaside). 
