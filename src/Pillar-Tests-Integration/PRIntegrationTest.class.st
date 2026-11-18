@@ -1,7 +1,7 @@
 "
 I build the archetypes of the Pillar repository (found by `PRArchetype class>>archetypesDirectory`) with the real files of their sample books and support folders, as `pillar build html`, `pillar build site` and `pillar build pdf Lecture1.md` do, and check a part of the generated files.
 
-Each test builds into its own folder, removed in `tearDown`, inside the temporary folder of the system, or the folder of the image when the first cannot be written (`buildRootDirectory`). The Beamer tests of the moocs compare the second slide of the generated LaTeX file, and are skipped on a machine without `latexmk`.
+Each test builds into its own folder, removed in `tearDown`, inside the temporary folder of the system, or the folder of the image when the first cannot be written (`buildRootDirectory`). The Beamer tests of the moocs compare the second slide of the generated LaTeX file, and are skipped on a machine without `latexmk`. The book PDF test compares parts of the generated LaTeX file only, never the PDF, and ignores a failure of `latexmk` itself (`isRaisedByLatexmk:`), so that it runs on a machine without LaTeX or its fonts.
 "
 Class {
 	#name : 'PRIntegrationTest',
@@ -33,6 +33,21 @@ PRIntegrationTest >> buildHtml: archetypeName [
 		  build: archetypeName
 		  with: PRHtmlOutput new
 		  strategy: PRBuildRootMainStrategy new
+]
+
+{ #category : 'helpers' }
+PRIntegrationTest >> buildLaTeX: archetypeName [
+	"Build the archetype as pillar build pdf does and answer the folder of the result. The LaTeX file is what we check: a failure of latexmk (not installed, missing font) is ignored, any other error is not."
+
+	^ [
+		  self
+			  build: archetypeName
+			  with: PRPdfOutput new
+			  strategy: PRBuildRootMainStrategy new ]
+		  on: Error
+		  do: [ :error |
+				  (self isRaisedByLatexmk: error) ifFalse: [ error pass ].
+				  project outputDirectory / PRPdfOutput new outputDirectoryName ]
 ]
 
 { #category : 'helpers' }
@@ -94,6 +109,19 @@ PRIntegrationTest >> htmlFileNamesIn: aDirectory [
 ]
 
 { #category : 'helpers' }
+PRIntegrationTest >> includeGraphicsLineFor: aFile width: aString [
+	"Answer the LaTeX line including the figure aFile, as the LaTeX writer generates it."
+
+	^ String streamContents: [ :stream |
+			  stream
+				  nextPutAll: '\includegraphics[width=';
+				  nextPutAll: aString;
+				  nextPutAll: '\textwidth]{';
+				  nextPutAll: aFile fullName;
+				  nextPut: $} ]
+]
+
+{ #category : 'helpers' }
 PRIntegrationTest >> isLatexmkAvailable [
 	"Answer whether latexmk, used to build PDFs, can be run on this machine."
 
@@ -108,6 +136,19 @@ PRIntegrationTest >> isLatexmkAvailable [
 			   yourself) isSuccess ]
 		  on: Error
 		  do: [ false ]
+]
+
+{ #category : 'helpers' }
+PRIntegrationTest >> isRaisedByLatexmk: anError [
+	"Answer whether anError was raised while Pillar ran latexmk on the generated LaTeX file."
+
+	| context |
+	context := anError signalerContext.
+	[ context isNil ] whileFalse: [
+			context method == (PRPDFDocument >> #postWriteTransform:) ifTrue: [
+				^ true ].
+			context := context sender ].
+	^ false
 ]
 
 { #category : 'helpers' }
@@ -205,6 +246,43 @@ PRIntegrationTest >> testBodBookLatex2026Html [
 ]
 
 { #category : 'tests' }
+PRIntegrationTest >> testBodBookLatex2026LaTeX [
+
+	| tex |
+	tex := ((self buildLaTeX: 'bod-book-latex2026') / 'index.tex')
+		       contents.
+
+	self
+		assert: (self
+				 linesOf: tex
+				 from: '\chapter{Anchors, references and numbers}'
+				 to: '\section{Anchors}\label{secAnchors}')
+		equals:
+			#( '\chapter{Anchors, references and numbers}\label{chapReferences}'
+			   'Books refer to their own parts: \textit{see Section 2.3}, \textit{as shown in Figure 1.1}.'
+			   'Microdown separates the two sides of such a link.'
+			   'An \textbf{anchor} names an element, and a \textbf{reference} points to the anchor.'
+			   'When the book is built, chapters, sections, figures, listings and equations get numbers,'
+			   'and each reference shows the number of its target.'
+			   'You never write a number yourself, so numbers stay right when you move things around.'
+			   '' '\section{Anchors}\label{secAnchors}' ).
+	self
+		assert:
+		(self linesOf: tex from: '\begin{figure}' to: '\end{figure}')
+		equals: {
+				'\begin{figure}[htpb]'.
+				'\begin{center}'.
+				(self
+					 includeGraphicsLineFor:
+					 projectDirectory / 'Chapters' / 'Chapter1' / 'figures'
+					 / 'pillar.png'
+					 width: '0.4').
+				'\caption{The Pillar logo.}\label{figPillar}'.
+				'\end{center}'.
+				'\end{figure}' }
+]
+
+{ #category : 'tests' }
 PRIntegrationTest >> testBodBookLatex2026Site [
 
 	| result |
@@ -267,6 +345,14 @@ PRIntegrationTest >> testBuildRootDirectoryWithoutWritableCandidateRaisesError [
 		withExceptionDo: [ :error |
 				self assert: (error messageText includesSubstring: 'missingTemp').
 				self assert: (error messageText includesSubstring: 'missingImage') ]
+]
+
+{ #category : 'tests - helpers' }
+PRIntegrationTest >> testIsRaisedByLatexmkIgnoresOtherErrors [
+
+	[ self error: 'not latexmk' ]
+		on: Error
+		do: [ :error | self deny: (self isRaisedByLatexmk: error) ]
 ]
 
 { #category : 'tests' }
