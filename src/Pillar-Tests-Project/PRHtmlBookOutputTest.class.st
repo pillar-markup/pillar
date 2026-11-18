@@ -169,6 +169,38 @@ PRHtmlBookOutputTest >> testChapterPageTitleIsItsHeader [
 			 '<title>Microdown syntax</title>[My Book]')
 ]
 
+{ #category : 'tests - book structure' }
+PRHtmlBookOutputTest >> testChaptersAtLevelOneMakeThePages [
+
+	| site |
+	self
+		writeFile: 'pillar.conf'
+		contents:
+		'{ "title" : "My Book", "htmlWriter" : #michtml, "chapterLevel" : 1 }'.
+	self writeFile: 'index.md' contents: 'Welcome.
+
+# One
+
+## A section
+
+#### Important
+
+Text.
+
+# Two
+
+The end.'.
+
+	site := self build.
+
+	self assert: ((site / 'one.html') contents includesSubstring:
+			 '<span class="number">1.1</span> A section').
+	self assert: ((site / 'one.html') contents includesSubstring:
+			 '<h4 class="paragraph" id="important">Important</h4>').
+	self assert: ((site / 'two.html') contents includesSubstring:
+			 '<span class="number">2</span> Two')
+]
+
 { #category : 'tests - example' }
 PRHtmlBookOutputTest >> testExampleOfASmallBookWritesItsPages [
 

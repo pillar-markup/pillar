@@ -65,13 +65,6 @@ PRHtmlBookDocument class >> exampleOfASmallBook [
 			   yourself)
 ]
 
-{ #category : 'accessing' }
-PRHtmlBookDocument >> chapterLevel [
-	"The level of the chapter headers, the one MicChapterSplitter cuts the book at (2: chapters are ##)."
-
-	^ MicChapterSplitter new chapterLevel
-]
-
 { #category : 'pages' }
 PRHtmlBookDocument >> entriesOf: aCollectionOfChapters in: aCollectionOfTocEntries [
 	"Answer, in book order, the entries of the table of contents (and of their children) whose header starts one of aCollectionOfChapters. They are found by their header, the same object in the book and in its chapter; a chapter may be nested in the entry of a higher one (a # title above ## chapters)."
@@ -135,21 +128,18 @@ PRHtmlBookDocument >> pageNameOf: aChapter in: aSet [
 
 { #category : 'pages' }
 PRHtmlBookDocument >> pagesOf: aBook [
-	"Run the Microdown passes on aBook and answer its pages, as pairs page name -> document: index.html with what comes before the first chapter, then one page per chapter, named after the target of its header (see MicHeaderIdentifier). The passes: make the figure paths relative to the book folder (the pages are written at the top of the site, which mirrors it), identify the headers, number the book (unless numbering is false in pillar.conf), build the table of contents of the whole book, split it into chapters, resolve the references across pages."
+	"Run the Microdown passes on aBook and answer its pages, as pairs page name -> document: index.html with what comes before the first chapter, then one page per chapter, named after the target of its header (see MicHeaderIdentifier). All the passes follow the structure of the book (aBook bookStructure, from pillar.conf). The passes: make the figure paths relative to the book folder (the pages are written at the top of the site, which mirrors it), identify the headers, number the book (unless numbering is false in pillar.conf), build the table of contents of the whole book (parts, chapters and sections), split it into chapters, resolve the references across pages."
 
 	| splitter pages names |
 	MicPathRelativizer new
 		relativize: aBook
 		to: self project baseDirectory.
 	MicHeaderIdentifier new identify: aBook.
-	splitter := MicChapterSplitter new.
-	self isNumbered ifTrue: [
-			MicNumberer new
-				chapterLevel: splitter chapterLevel;
-				number: aBook ].
+	self isNumbered ifTrue: [ MicNumberer new number: aBook ].
 	tocBuilder := MicTocBuilder new.
-	tocBuilder limitUpTo: splitter chapterLevel + 1.
+	tocBuilder limitUpTo: aBook bookStructure chapterLevel + 1.
 	tocBuilder visit: aBook.
+	splitter := MicChapterSplitter new.
 	splitter split: aBook.
 	chapterEntries := self
 		                  entriesOf: splitter chapters
@@ -200,7 +190,7 @@ PRHtmlBookDocument >> titleOfPageAt: anIndex in: aCollectionOfPages [
 
 { #category : 'template values' }
 PRHtmlBookDocument >> tocEntryOfPageAt: anIndex in: aCollectionOfPages current: aBoolean [
-	"Answer the table of contents entry of the chapter page at anIndex: name, number (nil when not numbered), href (the page), isCurrent, isPart (its header is less deep than the chapters, e.g. a # part when chapters are ##), and as children its sections when it is the current chapter."
+	"Answer the table of contents entry of the chapter page at anIndex: name, number (nil when not numbered), href (the page), isCurrent, isPart (its header is a part of the book, see MicBookStructure), and as children its sections when it is the current chapter."
 
 	| sections header |
 	sections := aBoolean
@@ -213,7 +203,7 @@ PRHtmlBookDocument >> tocEntryOfPageAt: anIndex in: aCollectionOfPages current: 
 		  at: 'number' put: (MicNumberer numberStringOf: header);
 		  at: 'href' put: (aCollectionOfPages at: anIndex) key;
 		  at: 'isCurrent' put: aBoolean;
-		  at: 'isPart' put: header level < self chapterLevel;
+		  at: 'isPart' put: (header bookStructure isPart: header);
 		  at: 'hasChildren' put: sections isNotEmpty;
 		  at: 'children' put: sections;
 		  yourself
