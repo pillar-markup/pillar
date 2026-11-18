@@ -132,6 +132,13 @@ PRProject >> contributeToPipelineBuilding: aPRPipelineBuilder [
 ]
 
 { #category : 'accessing' }
+PRProject >> customDirectory [
+	"Answer the folder holding the changes of the book to its support files (see doc/book-layout.md)."
+
+	^ self baseDirectory / '_custom'
+]
+
+{ #category : 'accessing' }
 PRProject >> defaultOutputDirectoryName [
 	^ '_result'
 ]
@@ -168,13 +175,14 @@ PRProject >> installArchetypeNamed: archetypeName fromDirectory: pillarDirectory
 	archetype installIn: self baseDirectory
 ]
 
-{ #category : 'templates' }
-PRProject >> installTemplateNamed: archetypeName [ 
-	
-	| archetype |
-	archetype := self archetypeNamed: archetypeName.
-	archetype validateExists.
-	archetype installTemplateIn: self baseDirectory
+{ #category : 'archetypes' }
+PRProject >> installedArchetypeName [
+	"Answer the name of the archetype the book was created from, recorded in _support/archetypeID."
+
+	| file |
+	file := self supportDirectory / 'archetypeID'.
+	file exists ifFalse: [ PRMissingArchetypeID new signal ].
+	^ file contents trimBoth
 ]
 
 { #category : 'templates' }
@@ -235,6 +243,23 @@ PRProject >> tableOfContents [
 		currentFile: tocFileName;
 		inProcessFiles: (Array with: self baseDirectory / tocFileName);
 		visit: inputDoc"
+]
+
+{ #category : 'archetypes' }
+PRProject >> updateArchetype [
+	"Update the support files of the book from the archetype it was created from (pillar updateArchetype)."
+
+	^ self updateArchetypeNamed: self installedArchetypeName
+]
+
+{ #category : 'archetypes' }
+PRProject >> updateArchetypeNamed: archetypeName [
+	"Update the support files of the book from the archetype archetypeName (pillar updateArchetype name), and answer what changed."
+
+	| archetype |
+	archetype := self archetypeNamed: archetypeName.
+	archetype validateExists.
+	^ archetype updateIn: self baseDirectory
 ]
 
 { #category : 'as yet unclassified' }

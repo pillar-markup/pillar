@@ -19,10 +19,7 @@ PRIntegrationTest >> build: archetypeName with: anOutput strategy: aStrategy [
 	"Install the archetype in the test project, build it as anOutput and answer the folder of the result."
 
 	project installArchetypeNamed: archetypeName.
-	project build: (anOutput
-			 buildStrategy: aStrategy;
-			 yourself).
-	^ project outputDirectory / anOutput outputDirectoryName
+	^ self buildInstalledWith: anOutput strategy: aStrategy
 ]
 
 { #category : 'helpers' }
@@ -36,18 +33,35 @@ PRIntegrationTest >> buildHtml: archetypeName [
 ]
 
 { #category : 'helpers' }
-PRIntegrationTest >> buildLaTeX: archetypeName [
-	"Build the archetype as pillar build pdf does and answer the folder of the result. The LaTeX file is what we check: a failure of latexmk (not installed, missing font) is ignored, any other error is not."
+PRIntegrationTest >> buildInstalledLaTeX [
+	"Build the book installed in the test project as pillar build pdf does and answer the folder of the result. The LaTeX file is what we check: a failure of latexmk (not installed, missing font) is ignored, any other error is not."
 
 	^ [
 		  self
-			  build: archetypeName
-			  with: PRPdfOutput new
+			  buildInstalledWith: PRPdfOutput new
 			  strategy: PRBuildRootMainStrategy new ]
 		  on: Error
 		  do: [ :error |
 				  (self isRaisedByLatexmk: error) ifFalse: [ error pass ].
 				  project outputDirectory / PRPdfOutput new outputDirectoryName ]
+]
+
+{ #category : 'helpers' }
+PRIntegrationTest >> buildInstalledWith: anOutput strategy: aStrategy [
+	"Build the book installed in the test project as anOutput and answer the folder of the result."
+
+	project build: (anOutput
+			 buildStrategy: aStrategy;
+			 yourself).
+	^ project outputDirectory / anOutput outputDirectoryName
+]
+
+{ #category : 'helpers' }
+PRIntegrationTest >> buildLaTeX: archetypeName [
+	"Build the archetype as pillar build pdf does and answer the folder of the result (see buildInstalledLaTeX)."
+
+	project installArchetypeNamed: archetypeName.
+	^ self buildInstalledLaTeX
 ]
 
 { #category : 'helpers' }
@@ -231,6 +245,59 @@ PRIntegrationTest >> testBasicLatexReportSite [
 			 '<h2 id="compilation"><span class="number">1</span> Compilation</h2>')
 ]
 
+{ #category : 'tests - custom' }
+PRIntegrationTest >> testBodBookLatex2026CustomSiteTemplate [
+
+	| template result |
+	project installArchetypeNamed: 'bod-book-latex2026'.
+	template := (projectDirectory / '_support' / 'templates' / 'html'
+	             / 'site.mustache') contents.
+	self assert:
+		(template includesSubstring: '<footer class="site-footer">').
+	self
+		writeInBook: '_custom/templates/html/site.mustache'
+		contents: (template
+				 copyReplaceAll: '<footer class="site-footer">'
+				 with: '<footer class="site-footer my-footer">').
+
+	result := self
+		          buildInstalledWith: PRHtmlBookOutput new
+		          strategy: PRBuildRootMainStrategy new.
+
+	self assert:
+		((result / 'chapSyntax.html') contents includesSubstring:
+			 '<footer class="site-footer my-footer">').
+	self
+		assert: (projectDirectory / '_support' / 'templates' / 'html'
+			 / 'site.mustache') contents
+		equals: template
+]
+
+{ #category : 'tests - custom' }
+PRIntegrationTest >> testBodBookLatex2026CustomTex [
+
+	| result tex |
+	project installArchetypeNamed: 'bod-book-latex2026'.
+	self
+		writeInBook: '_custom/latex/custom.tex'
+		contents: '\newcommand{\mybookmacro}{}'.
+
+	result := self buildInstalledLaTeX.
+	tex := (result / 'index.tex') contents.
+
+	self
+		assert: (result / '_support' / 'latex' / 'custom.tex') contents
+		equals: '\newcommand{\mybookmacro}{}'.
+	self
+		assert: (self
+				 linesOf: tex
+				 from: '\InputIfFileExists{_support/latex/custom.tex}'
+				 to: '\begin{document}')
+		equals:
+			#( '\InputIfFileExists{_support/latex/custom.tex}{}{}% the changes of the book, see doc/book-layout.md'
+			   '\begin{document}' )
+]
+
 { #category : 'tests' }
 PRIntegrationTest >> testBodBookLatex2026Html [
 
@@ -302,7 +369,11 @@ PRIntegrationTest >> testBodBookLatex2026Site [
 			 '<img src="Chapters/Chapter1/figures/pillar.png"').
 	self assert:
 		((result / 'chapReferences.html') contents includesSubstring:
-			 '<h3><span class="number">2.2</span> References</h3><a id="secReferences"></a>')
+			 '<h3><span class="number">2.2</span> References</h3><a id="secReferences"></a>').
+	self assert: (projectDirectory / '_custom' / 'README.md') exists.
+	self assert:
+		((result / 'chapSyntax.html') contents includesSubstring:
+			 '<link rel="stylesheet" href="_support/html/css/custom.css">')
 ]
 
 { #category : 'tests - build folder' }
@@ -387,6 +458,42 @@ PRIntegrationTest >> testMicrodownMoocSlides [
 		equals: self secondSlideLines
 ]
 
+{ #category : 'tests - custom' }
+PRIntegrationTest >> testUpdateArchetypeKeepsCustomAndReportsEditedFiles [
+
+	| bookCss update |
+	project installArchetypeNamed: 'bod-book-latex2026'.
+	bookCss := (projectDirectory / '_support' / 'html' / 'css'
+	            / 'book.css') contents.
+	self
+		writeInBook: '_support/html/css/book.css'
+		contents: bookCss , '/* edited by the author */';
+		writeInBook: '_custom/html/css/custom.css' contents: 'my rules'.
+
+	update := project updateArchetype.
+
+	self assert: update archetypeName equals: 'bod-book-latex2026'.
+	self assert: update changedFiles equals: #( 'html/css/book.css' ).
+	self assert: update addedFiles isEmpty.
+	self assert: update removedFiles isEmpty.
+	self
+		assert:
+		(projectDirectory / '_support' / 'html' / 'css' / 'book.css')
+			contents
+		equals: bookCss.
+	self assert:
+		((projectDirectory / '_support-previous' / 'html' / 'css'
+		  / 'book.css') contents endsWith: '/* edited by the author */').
+	self
+		assert:
+			(projectDirectory / '_custom' / 'html' / 'css' / 'custom.css')
+				contents
+		equals: 'my rules'.
+	self assert: (self
+			 buildInstalledWith: PRHtmlBookOutput new
+			 strategy: PRBuildRootMainStrategy new) exists
+]
+
 { #category : 'tests' }
 PRIntegrationTest >> testWelcomeHtml [
 
@@ -409,4 +516,15 @@ PRIntegrationTest >> testWelcomeSite [
 		equals: #( 'index.html' 'hello-world.html' 'credits.html' ) asSet.
 	self assert: ((result / 'credits.html') contents includesSubstring:
 			 '<h2 id="credits"><span class="number">2</span> Credits</h2>')
+]
+
+{ #category : 'helpers' }
+PRIntegrationTest >> writeInBook: aPath contents: aString [
+	"Create or replace the file at aPath of the installed book, with its parent folders."
+
+	| file |
+	file := projectDirectory resolve: aPath.
+	file parent ensureCreateDirectory.
+	file ensureDelete.
+	file writeStreamDo: [ :stream | stream nextPutAll: aString ]
 ]

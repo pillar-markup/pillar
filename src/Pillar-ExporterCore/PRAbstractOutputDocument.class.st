@@ -177,8 +177,10 @@ PRAbstractOutputDocument >> target: aTarget [
 
 { #category : 'templating' }
 PRAbstractOutputDocument >> templateDirectory [
+	"Answer the templates of the writer in the copy of _support of the output, where the build has applied the files of _custom."
 
-	^ project baseDirectory / '_support' / 'templates' / self writer folderName
+	^ self outputDirectory / '_support' / 'templates'
+	  / self writer folderName
 ]
 
 { #category : 'templating' }

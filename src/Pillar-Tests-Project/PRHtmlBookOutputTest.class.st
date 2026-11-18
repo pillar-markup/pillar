@@ -227,12 +227,14 @@ PRHtmlBookOutputTest >> testExampleOfASmallBookWritesItsPages [
 	| document |
 	document := PRHtmlBookDocument exampleOfASmallBook.
 
+	PRHtmlBookOutput exampleFromIndex prepareForExecutionOn:
+		document project.
 	document buildOn: document project.
 
 	self
 		assert: (document outputDirectory children
-				 collect: [ :each | each basename ]
-				 as: Set)
+				 select: [ :each | each extension = 'html' ]
+				 thenCollect: [ :each | each basename ]) asSet
 		equals: #( 'index.html' 'first-chapter.html' 'second.html' ) asSet.
 	self assert:
 		((document outputDirectory / 'first-chapter.html') contents
@@ -576,11 +578,12 @@ PRHtmlBookOutputTest >> testTocShowsTheSectionsOfTheCurrentChapter [
 
 { #category : 'helpers' }
 PRHtmlBookOutputTest >> writeFile: aPath contents: aString [
-	"Create the file at aPath in the book folder, with its parent folders."
+	"Create or replace the file at aPath in the book folder, with its parent folders."
 
 	| file |
 	file := book resolve: aPath.
 	file parent ensureCreateDirectory.
+	file ensureDelete.
 	file writeStreamDo: [ :stream | stream nextPutAll: aString ]
 ]
 

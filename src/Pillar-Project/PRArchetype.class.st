@@ -64,6 +64,18 @@ PRArchetype >> directory: aDirectory [
 	directory := aDirectory
 ]
 
+{ #category : 'updating' }
+PRArchetype >> installCustomIn: baseDirectory [
+	"Install my custom folder as _custom in baseDirectory when the book has none, never replacing the changes of the book. Answer whether it was installed."
+
+	| source destination |
+	source := self directory / 'custom'.
+	destination := baseDirectory / '_custom'.
+	(destination exists or: [ source exists not ]) ifTrue: [ ^ false ].
+	source copyAllTo: destination.
+	^ true
+]
+
 { #category : 'actions' }
 PRArchetype >> installGHWorkflowIn: baseDirectory [ 
 
@@ -80,11 +92,13 @@ PRArchetype >> installGHWorkflowIn: baseDirectory [
 
 { #category : 'actions' }
 PRArchetype >> installIn: baseDirectory [
+	"Install a new book in baseDirectory: my sample book, my support files as _support, my custom folder as _custom (unless the book already has one) and my GitHub workflow."
 
-	(self directory / 'sample')
-		children do: [ :child | child copyAllTo: baseDirectory / child basename ].
-		
+	(self directory / 'sample') children do: [ :child |
+		child copyAllTo: baseDirectory / child basename ].
+
 	self installTemplateIn: baseDirectory.
+	self installCustomIn: baseDirectory.
 	self installGHWorkflowIn: baseDirectory
 ]
 
@@ -108,6 +122,25 @@ PRArchetype >> name: aString [
 { #category : 'accessing' }
 PRArchetype >> project: aPRProject [ 
 	project := aPRProject
+]
+
+{ #category : 'updating' }
+PRArchetype >> updateIn: baseDirectory [
+	"Replace the support files of the book in baseDirectory by mine: keep the old ones in _support-previous (replacing an older copy), install mine as _support, and install _custom when the book has none. Never change the text of the book nor its _custom. Answer what changed."
+
+	| support previous update |
+	support := baseDirectory / '_support'.
+	previous := baseDirectory / '_support-previous'.
+	previous ensureDeleteAll.
+	"moveTo: changes its receiver into the destination: move another reference so that support still names _support"
+	support exists ifTrue: [ baseDirectory / '_support' moveTo: previous ].
+	self installTemplateIn: baseDirectory.
+	update := PRArchetypeUpdate
+		          archetypeName: name
+		          previousSupport: previous
+		          newSupport: support.
+	update hasCreatedCustom: (self installCustomIn: baseDirectory).
+	^ update
 ]
 
 { #category : 'validating' }

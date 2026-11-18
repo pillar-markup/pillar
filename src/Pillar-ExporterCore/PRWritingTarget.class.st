@@ -11,6 +11,23 @@ PRWritingTarget class >> isAbstract [
 	^ self == PRWritingTarget
 ]
 
+{ #category : 'preparation' }
+PRWritingTarget >> copyCustomFilesOf: aPRProject to: aSupportDirectory [
+	"Copy the files of the _custom folder of aPRProject over aSupportDirectory, the copy of _support in the output, so that each replaces the support file with the same path. The README explaining _custom is not a support file."
+
+	| custom |
+	custom := aPRProject customDirectory.
+	custom exists ifFalse: [ ^ self ].
+	custom allFiles do: [ :each |
+			each = (custom / 'README.md') ifFalse: [
+					| destination |
+					destination := aSupportDirectory resolve:
+						               (each relativeTo: custom).
+					destination parent ensureCreateDirectory.
+					destination ensureDelete.
+					each copyTo: destination ] ]
+]
+
 { #category : 'accessing' }
 PRWritingTarget >> createConfigurationFrom: aPRProject [
 	^ aPRProject configuration class new
@@ -33,7 +50,7 @@ PRWritingTarget >> outputDirectoryName [
 
 { #category : 'preparation' }
 PRWritingTarget >> prepareForExecutionOn: aPRProject [
-	"Remove the previous output of this target only (_result/pdf, _result/html, _result/site), so that the outputs of the other formats stay side by side; then copy _support and the folders of the book there."
+	"Remove the previous output of this target only (_result/pdf, _result/html, _result/site), so that the outputs of the other formats stay side by side; then copy _support there, the files of _custom over it, and the folders of the book."
 
 	| configuration outputDirectory outputFormat target source |
 	(aPRProject outputDirectory / self outputDirectoryName)
@@ -50,6 +67,7 @@ PRWritingTarget >> prepareForExecutionOn: aPRProject [
 		sourceDirectory: source;
 		destinationDirectory: target;
 		executeOn: nil. "We used a configuration context here that is not needed anymore"
+	self copyCustomFilesOf: aPRProject to: target.
 
 	outputDirectory := aPRProject outputDirectory
 	                   / self outputDirectoryName.
