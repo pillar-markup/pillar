@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"{{#palette}} data-palette="{{.}}"{{/palette}}{{#theme}} data-theme="{{.}}"{{/theme}}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}}</title>
+  <meta name="description" content="{{description}}">
+  {{#attribution}}<meta name="author" content="{{.}}">{{/attribution}}
+  <link rel="stylesheet" href="_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">{{bookTitle}}</a>
+  </header>
+
+  <div class="layout">
+{{#toc}}
+    <nav class="toc" aria-label="Table of contents">
+      <details open>
+        <summary>Contents</summary>
+        <ol>
+          {{#children}}
+          <li{{#isCurrent}} class="current"{{/isCurrent}}>
+            <a href="{{href}}"{{#isCurrent}} aria-current="page"{{/isCurrent}}>{{#number}}<span class="number">{{.}}</span> {{/number}}{{name}}</a>
+            {{#hasChildren}}
+            <ol>
+              {{#children}}
+              <li><a href="{{href}}">{{#number}}<span class="number">{{.}}</span> {{/number}}{{name}}</a></li>
+              {{/children}}
+            </ol>
+            {{/hasChildren}}
+          </li>
+          {{/children}}
+        </ol>
+      </details>
+    </nav>
+{{/toc}}
+
+    <main id="content" class="page">
+      {{^previous}}<h1>{{title}}</h1>{{/previous}}
+{{{content}}}
+      <nav class="pager" aria-label="Chapters">
+        {{#previous}}<a class="previous" rel="prev" href="{{href}}">← {{title}}</a>{{/previous}}
+        {{#next}}<a class="next" rel="next" href="{{href}}">{{title}} →</a>{{/next}}
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>{{bookTitle}}{{#attribution}} · {{.}}{{/attribution}}</p>
+  </footer>
+</body>
+</html>

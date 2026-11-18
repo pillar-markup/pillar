@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}} · {{site_name}}</title>
+  <meta name="description" content="{{description}}">
+  {{# attribution}}<meta name="author" content="{{.}}">{{/ attribution}}
+  <link rel="stylesheet" href="{{base_url}}/_support/html/css/book.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to the text</a>
+
+  <header class="site-header">
+    <a class="site-name" href="{{base_url}}/">{{site_name}}</a>
+  </header>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Table of contents">
+      <details open>
+        <summary>Contents</summary>
+        <ol>
+          {{# toc.children}}
+          <li>
+            <a href="{{base_url}}{{href}}">{{name}}</a>
+            {{# hasChildren}}
+            <ol>
+              {{# children}}
+              <li><a href="{{base_url}}{{href}}">{{name}}</a></li>
+              {{/ children}}
+            </ol>
+            {{/ hasChildren}}
+          </li>
+          {{/ toc.children}}
+        </ol>
+      </details>
+    </nav>
+
+    <main id="content" class="page">
+      <h1 class="chapter-title">{{title}}</h1>
+      {{{content}}}
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>{{site_name}}{{# attribution}} · {{.}}{{/ attribution}}</p>
+  </footer>
+</body>
+</html>
