@@ -17,9 +17,8 @@ It runs a Pharo image in which Pillar is loaded; `--version` prints the version 
 | [`archetype`](#pillar-archetype) | creates a new book from an archetype |
 | [`build`](#pillar-build) | builds the book as PDF, HTML or web site |
 | [`updateArchetype`](#pillar-updatearchetype) | updates the support files of an existing book |
-| [`bookTester`](#pillar-booktester) | checks a book: references, anchors, code, typography |
+| [`check`](#pillar-check) | checks a book: references, anchors, code, typography |
 | [`checkers`](#pillar-checkers) | lists the available checkers |
-| [`serve`](#pillar-serve) | serves the HTML output on a local web server |
 | [`updateBuild`](#pillar-updatebuild) | for the development of archetypes only |
 
 ## pillar archetype
@@ -56,13 +55,14 @@ An archetype folder holds:
 - `custom/`: copied as `_custom/`, where the book keeps its own changes to the look (next release);
 - `support/github/`, when present: copied as `.github/workflows/`, a GitHub workflow that builds the book.
 
-Warning: `archetype` replaces an existing `_support` folder, and overwrites the sample files of the same name.
-To update the support files of an existing book, use [`updateArchetype`](#pillar-updatearchetype).
+`archetype` refuses to run, and copies nothing, when the folder already has a file of the sample book (such as
+`index.md` or `pillar.conf`) or of its GitHub workflow: it lists them. To update the support files of an existing book,
+use [`updateArchetype`](#pillar-updatearchetype).
 
 ## pillar build
 
 ```
-pillar build <format> [files...] [--all] [--mainRoot] [--templatable]
+pillar build <format> [files...] [--all] [--mainRoot]
 ```
 
 Builds the book in `<format>`:
@@ -79,8 +79,6 @@ Which files are built:
 - `pillar build pdf Lecture1.md Lecture2.md` builds the given files (used for slides: one PDF per lecture);
 - `--mainRoot` builds `index.md` (the default);
 - `--all` builds every Microdown file of the book.
-
-`--templatable` is accepted but currently has no effect.
 
 Each build first deletes its own output folder only (`_result/pdf` for `pdf`…), so the outputs of the different
 formats stay side by side. It then copies `_support` (merged with `_custom`, next release) and every file and folder
@@ -116,10 +114,10 @@ Updates the support files of an existing book to the version of the archetype sh
 - `_custom` is never modified. It is created, with its README, when the book does not have one.
 - The book itself (`pillar.conf`, the chapters) is never modified.
 
-## pillar bookTester
+## pillar check
 
 ```
-pillar bookTester <file>
+pillar check <file>
 ```
 
 Checks the book starting from `<file>` (usually `index.md`) and the files it includes, and prints the problems found:

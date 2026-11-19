@@ -51,7 +51,7 @@ a header is a paragraph label (see `chapterLevel` and `paragraphLevel` below).
 | `site_name` | html, site | name shown in the header of the pages |
 | `palette` | site, html | colors: `sky` (default), `sunset` or `classic` |
 | `theme` | site, html | `light` or `dark`; by default the pages follow the reader's system |
-| `onlyCheckers`, `checkerConfigurations` | bookTester | see [the commands](commands.md#pillar-booktester) |
+| `onlyCheckers`, `checkerConfigurations` | check | see [the commands](commands.md#pillar-check) |
 
 ## _support: the files of Pillar
 
