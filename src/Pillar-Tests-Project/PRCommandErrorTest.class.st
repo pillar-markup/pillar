@@ -79,6 +79,18 @@ PRCommandErrorTest >> testArchetypeInAFolderWithItsFilesRaisesError [
 ]
 
 { #category : 'tests - errors' }
+PRCommandErrorTest >> testBuildingAFileThatIsNotMicrodownRaisesError [
+
+	self write: 'book/old.pillar' contents: 'Old syntax'.
+
+	self
+		assert: (self messageOf: [
+				 self buildHtml: (PRBuildListStrategy list: #( 'old.pillar' )) ])
+		equals:
+		'The file old.pillar is not a Microdown file: Pillar builds .md and .mic files.'
+]
+
+{ #category : 'tests - errors' }
 PRCommandErrorTest >> testBuildingAFolderWithoutSupportRaisesError [
 
 	(book / '_support') ensureDeleteAll.

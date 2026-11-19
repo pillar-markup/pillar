@@ -24,11 +24,11 @@ PRBuildStrategy >> filesToBuildOn: aProject [
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : 'initialization' }
 PRBuildStrategy >> initialize [
 
 	super initialize.
-	supportedLanguageExtensions := #('pillar' 'mic' 'md')
+	supportedLanguageExtensions := #( 'mic' 'md' )
 ]
 
 { #category : 'accessing' }

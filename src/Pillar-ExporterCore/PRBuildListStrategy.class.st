@@ -33,7 +33,7 @@ PRBuildListStrategy >> files: aCollection [
 
 { #category : 'accessing' }
 PRBuildListStrategy >> filesToBuildOn: aProject [
-	"Answer the input documents of my files, resolved against the folder of aProject; raise a PRCommandError naming a file that does not exist."
+	"Answer the input documents of my files, resolved against the folder of aProject; raise a PRCommandError naming a file that does not exist or is not a Microdown file."
 
 	^ files collect: [ :each |
 			  | file |
@@ -41,6 +41,10 @@ PRBuildListStrategy >> filesToBuildOn: aProject [
 			  file exists ifFalse: [
 					  PRCommandError signal: ('The file {1} does not exist.' format:
 							   { (aProject displayNameOf: file) }) ].
+			  (self isSupportedExtension: file extension) ifFalse: [
+					  PRCommandError signal:
+						  ('The file {1} is not a Microdown file: Pillar builds .md and .mic files.'
+							   format: { (aProject displayNameOf: file) }) ].
 			  (PRInputDocument forFile: file)
 				  project: aProject;
 				  yourself ]

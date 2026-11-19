@@ -28,6 +28,14 @@ PRBuildRootMainStrategyTest >> testOnlyAReadmeRaisesError [
 ]
 
 { #category : 'tests' }
+PRBuildRootMainStrategyTest >> testPillarFileIsNotBuilt [
+
+	self
+		assert: (self filesOfBookWith: #( 'index.md' 'old.pillar' )) asArray
+		equals: #( 'index.md' )
+]
+
+{ #category : 'tests' }
 PRBuildRootMainStrategyTest >> testReadmeInLowercaseIsNotBuilt [
 
 	self
