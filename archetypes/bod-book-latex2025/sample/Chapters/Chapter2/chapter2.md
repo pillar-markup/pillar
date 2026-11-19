@@ -1,4 +1,5 @@
 ## Microdown tools: Checkers
+@chapCheckers
 
 Microdown proposes several tools to help document writers. In this chapter, we present the one related to
 book validation and the available checkers. 

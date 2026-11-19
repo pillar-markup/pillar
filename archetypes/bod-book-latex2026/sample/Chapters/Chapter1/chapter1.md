@@ -54,19 +54,34 @@ To write a character that Microdown would read as markup, put a backslash before
 ### Headers
 
 A header is a line starting with one to six `#`.
-In a book, `#` is the title of a part or of the book, `##` starts a chapter, `###` a section and `####` a subsection:
+In a book, `#` is a part, `##` starts a chapter, `###` a section and `####` a subsection.
+From `#####` on, a header is a paragraph label: a short bold title placed just above the paragraph it introduces.
 
 ```text
+# A part
 ## A chapter
 ### A section
 #### A subsection
+##### A paragraph label
 ```
 
-Do not skip levels (a `####` directly under a `##`): numbering counts the missing level as 0 and shows numbers like 1.0.1.
+Chapters and sections are numbered (1, 1.1), on the web site as in the PDF.
+Parts, subsections and paragraph labels are not numbered, and the table of contents lists parts, chapters and sections only.
+
+Do not skip a section level (a `####` directly under a `##`): the subsection would belong to no section.
+A paragraph label may appear anywhere, even right after a chapter header.
+
+A book written with other levels, for example with `#` for its chapters, keeps its headers as they are:
+its `pillar.conf` declares the level of the chapters and the level of the paragraph labels (Chapter *@chapSite@*).
 
 #### A subsection
 
-This is a subsection, written `#### A subsection`. The web site numbers it as part of its section.
+This is a subsection, written `#### A subsection`. It has no number and is not in the table of contents.
+
+##### A paragraph label
+
+This paragraph is introduced by `##### A paragraph label`.
+On the web site, it is shown as a label; in the PDF, a `#####` header stays a subsubsection unless `pillar.conf` declares paragraph labels at that level.
 
 ### Lists
 

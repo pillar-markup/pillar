@@ -15,8 +15,9 @@ or copy the folder to any web server. The site needs no server-side program.
 ### The pages
 
 - `index.html` holds the text before the first chapter, usually the introduction.
-- Each chapter (each `##` header) becomes its own page, named after the anchor of its header,
+- Each chapter (each `##` header, unless `pillar.conf` declares another level) becomes its own page, named after the anchor of its header,
   (`chapSyntax.html` for Chapter *@chapSyntax@*), or after its title when it has no anchor (`extensions.html`).
+  A part (`#`) also gets a page, with its title and the text before its first chapter; the table of contents shows it as a heading over its chapters.
 - Every page shows the table of contents with the chapters and their sections,
   and links to the previous and next chapters.
 
@@ -30,6 +31,8 @@ The book is configured in `pillar.conf`:
   "attribution" : "The authors",
   "htmlWriter" : #michtml,
   "numbering" : true,
+  "chapterLevel" : 2,
+  "paragraphLevel" : 5,
   "palette" : "sky",
   "theme" : "dark"
 }
@@ -38,6 +41,13 @@ The book is configured in `pillar.conf`:
 - `htmlWriter` must be `michtml`, the writer that numbers headers, figures and listings and links references across pages.
   The writer named `micbasichtml` writes plain HTML, without numbers.
 - `numbering` is true by default; set it to false to remove all numbers.
+- `chapterLevel` is the level of the chapter headers: 2 (`##`) by default. A book written with `#` chapters sets it to 1
+  and keeps its sources as they are; the web site and the PDF both follow it.
+- `paragraphLevel` is the level from which headers are paragraph labels: three levels below the chapters on the web
+  site (`#####` by default). The PDF keeps `#####` as a subsubsection unless this setting is given, so that existing
+  books print as before. Set it to apply the same level to the web site and to the PDF.
+- The two levels must leave at most three section levels between them (section, subsection, subsubsection):
+  the build stops with a message otherwise.
 - `title` is the title of the home page, and `attribution` appears in the footer.
 - `palette` chooses the colors: `sky` (light blue with orange highlights, the default), `sunset` (orange with blue
   highlights) or `classic`.

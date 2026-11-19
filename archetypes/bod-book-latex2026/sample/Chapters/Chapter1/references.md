@@ -61,7 +61,8 @@ the reference to Figure *@figPillar@* above leads to the first chapter.
 ### How numbers are given
 
 - Chapters are numbered from 1; the text before the first chapter (the introduction of the book) is not numbered.
-- Sections are numbered within their chapter: 2.1, 2.2, and subsections within their section: 2.1.1.
+  Parts are not numbered and do not count as chapters.
+- Sections are numbered within their chapter: 2.1, 2.2. Subsections and paragraph labels are not numbered, as in the PDF.
 - Figures, listings and equations are numbered within their chapter, each kind on its own: Figure 1.1, Listing 1.1.
 - A figure, listing or equation gets a number only when it has a caption or an anchor.
   A plain snippet stays unnumbered.
