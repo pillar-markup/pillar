@@ -78,22 +78,6 @@ The end.';
 ]
 
 { #category : 'tests - pages' }
-PRHtmlBookOutputTest >> testAnchorWithAColonGivesAPageNameWithoutColon [
-
-	| site |
-	self writeFile: 'Chapters/two.md' contents: '## Second chapter
-@cha:two
-
-The end.'.
-
-	site := self build.
-
-	self assert:
-		((site / 'cha-two.html') contents includesSubstring: 'The end.').
-	self deny: (site / 'cha:two.html') exists
-]
-
-{ #category : 'tests - pages' }
 PRHtmlBookOutputTest >> testBuildWritesTheIndexAndOnePagePerChapter [
 
 	| site |
@@ -101,7 +85,7 @@ PRHtmlBookOutputTest >> testBuildWritesTheIndexAndOnePagePerChapter [
 
 	self assert: (site / 'index.html') exists.
 	self assert: (site / 'microdown-syntax.html') exists.
-	self assert: (site / 'two.html') exists
+	self assert: (site / 'second-chapter.html') exists
 ]
 
 { #category : 'tests - output folder' }
@@ -235,10 +219,11 @@ PRHtmlBookOutputTest >> testExampleOfASmallBookWritesItsPages [
 		assert: (document outputDirectory children
 				 select: [ :each | each extension = 'html' ]
 				 thenCollect: [ :each | each basename ]) asSet
-		equals: #( 'index.html' 'first-chapter.html' 'second.html' ) asSet.
+		equals:
+		#( 'index.html' 'first-chapter.html' 'second-chapter.html' ) asSet.
 	self assert:
 		((document outputDirectory / 'first-chapter.html') contents
-			 includesSubstring: 'href="second.html#second"')
+			 includesSubstring: 'href="second-chapter.html#second"')
 ]
 
 { #category : 'tests - figures' }
@@ -302,7 +287,8 @@ PRHtmlBookOutputTest >> testInvalidStructureStopsTheBuild [
 { #category : 'tests - template values' }
 PRHtmlBookOutputTest >> testLastPageHasNoNextPage [
 
-	self deny: ((self pageNamed: 'two.html') includesSubstring: '[next:')
+	self deny:
+		((self pageNamed: 'second-chapter.html') includesSubstring: '[next:')
 ]
 
 { #category : 'tests - numbers' }
@@ -355,7 +341,58 @@ PRHtmlBookOutputTest >> testNumberingFalseShowsNoNumbers [
 
 	self deny: (page includesSubstring: 'class="number"').
 	self assert:
-		(page includesSubstring: '<a href="two.html#two">two</a>')
+		(page includesSubstring: '<a href="second-chapter.html#two">two</a>')
+]
+
+{ #category : 'tests - page names' }
+PRHtmlBookOutputTest >> testPageNameIgnoresTheSpacesAroundTheTitle [
+
+	self
+		assert: (PRHtmlBookDocument new pageNameForTitle: '  Collections  ')
+		equals: 'collections'
+]
+
+{ #category : 'tests - page names' }
+PRHtmlBookOutputTest >> testPageNameIsTheTitleInLowercaseWithDashes [
+
+	self
+		assert: (PRHtmlBookDocument new pageNameForTitle: 'Basic Classes')
+		equals: 'basic-classes'
+]
+
+{ #category : 'tests - page names' }
+PRHtmlBookOutputTest >> testPageNameJoinsTheWordsWithASingleDash [
+
+	self
+		assert: (PRHtmlBookDocument new pageNameForTitle:
+				 'SUnit:  Tests   in `Pharo`.')
+		equals: 'sunit-tests-in-pharo'
+]
+
+{ #category : 'tests - page names' }
+PRHtmlBookOutputTest >> testPageNameKeepsAWordLongerThanTwentyCharacters [
+
+	self
+		assert: (PRHtmlBookDocument new pageNameForTitle:
+				 'Supercalifragilisticexpialidocious word')
+		equals: 'supercalifragilisticexpialidocious'
+]
+
+{ #category : 'tests - page names' }
+PRHtmlBookOutputTest >> testPageNameOfATitleWithoutWordsIsChapter [
+
+	self
+		assert: (PRHtmlBookDocument new pageNameForTitle: ' : ')
+		equals: 'chapter'
+]
+
+{ #category : 'tests - page names' }
+PRHtmlBookOutputTest >> testPageNameStopsAfterTheWordReachingTwentyCharacters [
+
+	self
+		assert: (PRHtmlBookDocument new pageNameForTitle:
+				 'Publishing and packaging your first Pharo project')
+		equals: 'publishing-and-packaging'
 ]
 
 { #category : 'tests - template values' }
@@ -363,7 +400,7 @@ PRHtmlBookOutputTest >> testPagesLinkToThePreviousAndNextPages [
 
 	self assert:
 		((self pageNamed: 'microdown-syntax.html') includesSubstring:
-			 '[previous:index.html:My Book][next:two.html:Second chapter]')
+			 '[previous:index.html:My Book][next:second-chapter.html:Second chapter]')
 ]
 
 { #category : 'tests - book structure' }
@@ -458,8 +495,8 @@ PRHtmlBookOutputTest >> testPreparingThePdfKeepsTheSite [
 	self assert: site exists
 ]
 
-{ #category : 'tests - references' }
-PRHtmlBookOutputTest >> testReferenceToAnAnchorWithAColonLinksToItsEscapedPage [
+{ #category : 'tests - pages' }
+PRHtmlBookOutputTest >> testReferenceToAnAnchorWithAColonLinksToItsPage [
 
 	self writeFile: 'Chapters/one.md' contents: '## Microdown syntax
 
@@ -471,7 +508,7 @@ The end.'.
 
 	self assert:
 		((self pageNamed: 'microdown-syntax.html') includesSubstring:
-			 '<a href="cha-two.html#cha:two">2</a>')
+			 '<a href="second-chapter.html#cha:two">2</a>')
 ]
 
 { #category : 'tests - references' }
@@ -479,7 +516,7 @@ PRHtmlBookOutputTest >> testReferenceToAnotherChapterLinksToItsPage [
 
 	self assert:
 		((self pageNamed: 'microdown-syntax.html') includesSubstring:
-			 '<a href="two.html#two">2</a>')
+			 '<a href="second-chapter.html#two">2</a>')
 ]
 
 { #category : 'tests - templates' }
@@ -500,6 +537,26 @@ PRHtmlBookOutputTest >> testSupportFilesAreCopiedToTheSite [
 			exists
 ]
 
+{ #category : 'tests - pages' }
+PRHtmlBookOutputTest >> testTitleWithAColonGivesAPageNameWithoutColon [
+
+	| site |
+	self
+		writeFile: 'Chapters/two.md'
+		contents: '## Traits: reusable class fragments
+@two
+
+The end.'.
+
+	site := self build.
+
+	self assert:
+		((site / 'traits-reusable-class.html') contents includesSubstring:
+			 'The end.').
+	self deny:
+		(site files anySatisfy: [ :each | each basename includes: $: ])
+]
+
 { #category : 'tests - toc' }
 PRHtmlBookOutputTest >> testTocDoesNotListChaptersAsSectionsOfAHigherChapter [
 
@@ -516,14 +573,14 @@ PRHtmlBookOutputTest >> testTocListsChaptersNestedUnderAHigherChapter [
 
 	self assert:
 		((self pageNamed: 'microdown-syntax.html') includesSubstring:
-			 '[toc:my-book.html:My Book][toc:microdown-syntax.html:Microdown syntax:current[section:#emphasis:Emphasis]][toc:two.html:Second chapter]')
+			 '[toc:my-book.html:My Book][toc:microdown-syntax.html:Microdown syntax:current[section:#emphasis:Emphasis]][toc:second-chapter.html:Second chapter]')
 ]
 
 { #category : 'tests - toc' }
 PRHtmlBookOutputTest >> testTocListsTheChaptersWithTheirPages [
 
 	self assert: ((self pageNamed: 'index.html') includesSubstring:
-			 '[toc:microdown-syntax.html:Microdown syntax][toc:two.html:Second chapter]')
+			 '[toc:microdown-syntax.html:Microdown syntax][toc:second-chapter.html:Second chapter]')
 ]
 
 { #category : 'tests - toc' }
@@ -551,8 +608,9 @@ The end.'.
 { #category : 'tests - toc' }
 PRHtmlBookOutputTest >> testTocShowsNoSectionsOfTheOtherChapters [
 
-	self assert: ((self pageNamed: 'two.html') includesSubstring:
-			 '[toc:microdown-syntax.html:Microdown syntax][toc:two.html:Second chapter:current]')
+	self assert:
+		((self pageNamed: 'second-chapter.html') includesSubstring:
+			 '[toc:microdown-syntax.html:Microdown syntax][toc:second-chapter.html:Second chapter:current]')
 ]
 
 { #category : 'tests - numbers' }
@@ -573,7 +631,7 @@ PRHtmlBookOutputTest >> testTocShowsTheSectionsOfTheCurrentChapter [
 
 	self assert:
 		((self pageNamed: 'microdown-syntax.html') includesSubstring:
-			 '[toc:microdown-syntax.html:Microdown syntax:current[section:#emphasis:Emphasis]][toc:two.html:Second chapter]')
+			 '[toc:microdown-syntax.html:Microdown syntax:current[section:#emphasis:Emphasis]][toc:second-chapter.html:Second chapter]')
 ]
 
 { #category : 'helpers' }

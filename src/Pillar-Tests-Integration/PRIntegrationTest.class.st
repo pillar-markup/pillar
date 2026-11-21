@@ -265,7 +265,7 @@ PRIntegrationTest >> testBodBookLatex2026CustomSiteTemplate [
 		          strategy: PRBuildRootMainStrategy new.
 
 	self assert:
-		((result / 'chapSyntax.html') contents includesSubstring:
+		((result / 'microdown-syntax.html') contents includesSubstring:
 			 '<footer class="site-footer my-footer">').
 	self
 		assert: (projectDirectory / '_support' / 'templates' / 'html'
@@ -357,22 +357,25 @@ PRIntegrationTest >> testBodBookLatex2026Site [
 
 	self
 		assert: (self htmlFileNamesIn: result)
-		equals: #( 'index.html' 'chapSyntax.html' 'chapReferences.html'
+		equals:
+			#( 'index.html' 'microdown-syntax.html' 'anchors-references-and.html'
 			   'extensions.html' 'less-known-features.html'
-			   'chapSite.html' 'chapCheckers.html' ) asSet.
+			   'publishing-a-book-as.html' 'microdown-tools-checkers.html' )
+				asSet.
 	self assert:
 		(result / '_support' / 'html' / 'css' / 'book.css') exists.
 	self assert:
 		(result / 'Chapters' / 'Chapter1' / 'figures' / 'pillar.png') exists.
 	self assert:
-		((result / 'chapSyntax.html') contents includesSubstring:
+		((result / 'microdown-syntax.html') contents includesSubstring:
 			 '<img src="Chapters/Chapter1/figures/pillar.png"').
 	self assert:
-		((result / 'chapReferences.html') contents includesSubstring:
+		((result / 'anchors-references-and.html') contents
+			 includesSubstring:
 			 '<h3><span class="number">2.2</span> References</h3><a id="secReferences"></a>').
 	self assert: (projectDirectory / '_custom' / 'README.md') exists.
 	self assert:
-		((result / 'chapSyntax.html') contents includesSubstring:
+		((result / 'microdown-syntax.html') contents includesSubstring:
 			 '<link rel="stylesheet" href="_support/html/css/custom.css">')
 ]
 

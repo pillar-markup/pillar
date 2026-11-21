@@ -86,16 +86,6 @@ PRHtmlBookDocument >> entriesWithHeaders: aSet in: aCollectionOfTocEntries [
 			  , (self entriesWithHeaders: aSet in: each children) ]
 ]
 
-{ #category : 'pages' }
-PRHtmlBookDocument >> fileNameFor: aTarget [
-	"Answer aTarget with each character other than a letter, a digit, - , _ or . replaced by -, so that it is a safe file name and a relative URL: a : would make the browser read cha:ast.html as a URL of scheme cha, and a / would make a folder."
-
-	^ aTarget collect: [ :each |
-			  (each isAlphaNumeric or: [ '-_.' includes: each ])
-				  ifTrue: [ each ]
-				  ifFalse: [ $- ] ]
-]
-
 { #category : 'testing' }
 PRHtmlBookDocument >> isNumbered [
 	"Sites show the numbers of chapters, sections, figures, listings and equations, which helps readers find their way; a book turns them off with numbering false in pillar.conf."
@@ -115,20 +105,45 @@ PRHtmlBookDocument >> linkToPageAt: anIndex in: aCollectionOfPages [
 ]
 
 { #category : 'pages' }
+PRHtmlBookDocument >> pageNameForTitle: aString [
+	"Answer a file name made from the title aString: its words in lowercase, separated by a single -, stopping after the word that reaches pageNameSize characters, never cutting a word (e.g. A quick tour of Pharo gives a-quick-tour-of-pharo, Traits: reusable class fragments gives traits-reusable-class). Any run of characters other than letters, digits and _ separates two words, so that the name is a safe file name and a relative URL: a : would make the browser read cha:ast.html as a URL of scheme cha, and a / would make a folder. Lowercase, because on a case-insensitive file system Index.html would replace index.html."
+
+	| words name |
+	words := (aString asLowercase collect: [ :each |
+			          (each isAlphaNumeric or: [ each = $_ ])
+				          ifTrue: [ each ]
+				          ifFalse: [ Character space ] ]) substrings.
+	words ifEmpty: [ ^ 'chapter' ].
+	name := WriteStream on: String new.
+	words do: [ :each |
+			name position >= self pageNameSize ifTrue: [ ^ name contents ].
+			name position > 0 ifTrue: [ name nextPut: $- ].
+			name nextPutAll: each ].
+	^ name contents
+]
+
+{ #category : 'pages' }
 PRHtmlBookDocument >> pageNameOf: aChapter in: aSet [
-	"Answer the file name of the page of aChapter: the target of its header, escaped for a file name and a URL (see fileNameFor:), made unique among the names of aSet (e.g. a chapter Index gives index-2.html, not index.html; an anchor cha:ast gives cha-ast.html)."
+	"Answer the file name of the page of aChapter: the name made from the text of its header (see pageNameForTitle:), made unique among the names of aSet (e.g. a chapter Index gives index-2.html, not index.html)."
 
 	| name |
 	name := MicHeaderIdentifier new
-		        uniqueId: (self fileNameFor:
-				         (MicHeaderIdentifier targetOf: aChapter children first))
+		        uniqueId:
+		        (self pageNameForTitle: aChapter children first text)
 		        in: aSet.
 	^ name , '.html'
 ]
 
 { #category : 'pages' }
+PRHtmlBookDocument >> pageNameSize [
+	"The number of characters after which the name of a page stops at the end of the current word (see pageNameForTitle:)."
+
+	^ 20
+]
+
+{ #category : 'pages' }
 PRHtmlBookDocument >> pagesOf: aBook [
-	"Run the Microdown passes on aBook and answer its pages, as pairs page name -> document: index.html with what comes before the first chapter, then one page per chapter, named after the target of its header (see MicHeaderIdentifier). All the passes follow the structure of the book (aBook bookStructure, from pillar.conf). The passes: make the figure paths relative to the book folder (the pages are written at the top of the site, which mirrors it), identify the headers, number the book (unless numbering is false in pillar.conf), build the table of contents of the whole book (parts, chapters and sections), split it into chapters, resolve the references across pages."
+	"Run the Microdown passes on aBook and answer its pages, as pairs page name -> document: index.html with what comes before the first chapter, then one page per chapter, named after the title of the chapter (see pageNameForTitle:). All the passes follow the structure of the book (aBook bookStructure, from pillar.conf). The passes: make the figure paths relative to the book folder (the pages are written at the top of the site, which mirrors it), identify the headers, number the book (unless numbering is false in pillar.conf), build the table of contents of the whole book (parts, chapters and sections), split it into chapters, resolve the references across pages."
 
 	| splitter pages names |
 	MicPathRelativizer new

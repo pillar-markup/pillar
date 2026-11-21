@@ -57,7 +57,7 @@ PRHtmlBookOutput class >> exampleFromIndex [
 
 { #category : 'script' }
 PRHtmlBookOutput class >> scriptBuildASmallBook [
-	"Build a small book of two chapters as a site and answer its pages: index.html, first-chapter.html and second.html (the second chapter has the anchor @second). The first chapter links to the second one with second.html#second."
+	"Build a small book of two chapters as a site and answer its pages: index.html, first-chapter.html and second-chapter.html (each chapter page is named after the title of the chapter). The first chapter links to the second one, which has the anchor @second, with second-chapter.html#second."
 
 	<example>
 	| book site |
