@@ -27,11 +27,11 @@ For HTTPS setup, execute the `build.sh` script found in the `scripts` directory:
 
 ### Here is the latest version for Pharo 13.
 
-Lean Pillar only Microdown format
+Lean Pillar only Microdown format + web site generation
 ```bash
 $ git clone https://github.com/pillar-markup/pillar.git
 $ cd pillar
-$ git checkout v11.0.1
+$ git checkout v11.3
 $ chmod a+x ./scripts/build.sh
 $ ./scripts/build.sh
 ```
@@ -217,6 +217,7 @@ The development of Pillar and Microdown are now in Pharo 13.
 
 ### For Pharo 13
 - v11
+	- v11.3.0 Cleaned archetypes, support for latex2026, web site generation	
 	- Removing Pillar syntax support.
  	- Using more recent version of Microdown.
   	- Better support for book checkers.
