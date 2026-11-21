@@ -14,13 +14,13 @@
 
   <header class="site-header">
     <a class="site-name" href="index.html">{{bookTitle}}</a>
+    {{#attribution}}<p class="site-authors">{{.}}</p>{{/attribution}}
   </header>
 
   <div class="layout">
 {{#toc}}
     <nav class="toc" aria-label="Table of contents">
-      <details open>
-        <summary>Contents</summary>
+      <p class="toc-title">Contents</p>
         <ol>
           {{#children}}
           <li{{#isCurrent}} class="current"{{/isCurrent}}{{#isPart}} data-part{{/isPart}}>
@@ -35,12 +35,25 @@
           </li>
           {{/children}}
         </ol>
-      </details>
     </nav>
 {{/toc}}
 
     <main id="content" class="page">
-      {{^previous}}<h1>{{title}}</h1>{{/previous}}
+      {{^previous}}
+      <section class="cover">
+        {{#cover}}
+        <figure class="cover-figure">
+          <img src="{{.}}" alt="Book cover">
+        </figure>
+        {{/cover}}
+        <div class="cover-text">
+          <h1 class="cover-title">{{bookTitle}}</h1>
+          {{#attribution}}<p class="cover-authors">{{.}}</p>{{/attribution}}
+          {{#next}}<a class="start-reading" href="{{href}}">Start reading →</a>{{/next}}
+          {{#coverCredit}}<p class="cover-credit">{{.}}</p>{{/coverCredit}}
+        </div>
+      </section>
+      {{/previous}}
 {{{content}}}
       <nav class="pager" aria-label="Chapters">
         {{#previous}}<a class="previous" rel="prev" href="{{href}}">← {{title}}</a>{{/previous}}
@@ -50,7 +63,7 @@
   </div>
 
   <footer class="site-footer">
-    <p>{{bookTitle}}{{#attribution}} · {{.}}{{/attribution}}</p>
+    <p>{{bookTitle}}{{#attribution}} · {{.}}{{/attribution}}{{#generationDate}} · Generated on {{.}}{{/generationDate}}</p>
   </footer>
 </body>
 </html>
