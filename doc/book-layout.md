@@ -42,13 +42,15 @@ a header is a paragraph label (see `chapterLevel` and `paragraphLevel` below).
 | `title`, `attribution`, `series`, `keywords` | all | title, authors, collection and keywords of the book |
 | `language` | all | for example `"en-UK"` |
 | `latexWriter` | pdf | `#'miclatex:sbabook'` for books, `#micBeamer` for slides |
-| `htmlWriter` | html, site | `#michtml`: numbers and cross-page references; `#micbasichtml`: plain HTML |
+| `htmlWriter` | html | `#michtml`: numbers and cross-page references; `#micbasichtml`: plain HTML. The site always uses `#michtml` |
 | `template` | pdf | the template file to use, for example `"slides.pharobeamer.template"` for slides |
 | `bibFile` | pdf | the BibTeX file of the citations |
 | `chapterLevel` | all, checkers | header level of the chapters: `2` (`##`, default) or `1` for a book whose chapters are `#` headers |
 | `paragraphLevel` | all, checkers | header level from which headers are paragraph labels; at most four levels below `chapterLevel` |
 | `numbering` | site | `false` removes the numbers of chapters, sections, figures and listings |
-| `site_name` | html, site | name shown in the header of the pages |
+| `site_name` | html | name shown in the header of the pages (the site shows the `title`) |
+| `cover` | site | image of the cover page (`index.html`), for example `"Cover/cover-web.jpg"`: keep it small (about 900 pixels wide) |
+| `coverCredit` | site | credit line of the cover image, for example `"Cover photo: Joseph Guégan"` |
 | `palette` | site, html | colors: `sky` (default), `sunset` or `classic` |
 | `theme` | site, html | `light` or `dark`; by default the pages follow the reader's system |
 | `onlyCheckers`, `checkerConfigurations` | check | see [the commands](commands.md#pillar-check) |
