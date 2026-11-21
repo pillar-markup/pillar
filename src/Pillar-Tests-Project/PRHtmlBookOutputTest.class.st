@@ -471,6 +471,35 @@ The end.'.
 			 '<span class="number">2</span> Second chapter')
 ]
 
+{ #category : 'tests' }
+PRHtmlBookOutputTest >> testPdfFigureIsShownWithThePngNextToIt [
+
+	self
+		writeFile: 'Chapters/one.md' contents: '## Microdown syntax
+
+![A caption.](figures/x.pdf)';
+		writeFile: 'Chapters/figures/x.pdf' contents: '';
+		writeFile: 'Chapters/figures/x.png' contents: ''.
+
+	self assert:
+		((self pageNamed: 'microdown-syntax.html') includesSubstring:
+			 'src="Chapters/figures/x.png"')
+]
+
+{ #category : 'tests' }
+PRHtmlBookOutputTest >> testPdfFigureWithoutAPngKeepsItsPdf [
+
+	self
+		writeFile: 'Chapters/one.md' contents: '## Microdown syntax
+
+![A caption.](figures/x.pdf)';
+		writeFile: 'Chapters/figures/x.pdf' contents: ''.
+
+	self assert:
+		((self pageNamed: 'microdown-syntax.html') includesSubstring:
+			 'src="Chapters/figures/x.pdf"')
+]
+
 { #category : 'tests - book structure' }
 PRHtmlBookOutputTest >> testPdfKeepsFifthLevelAsASubsubsectionByDefault [
 

@@ -143,9 +143,10 @@ PRHtmlBookDocument >> pageNameSize [
 
 { #category : 'pages' }
 PRHtmlBookDocument >> pagesOf: aBook [
-	"Run the Microdown passes on aBook and answer its pages, as pairs page name -> document: index.html with what comes before the first chapter, then one page per chapter, named after the title of the chapter (see pageNameForTitle:). All the passes follow the structure of the book (aBook bookStructure, from pillar.conf). The passes: make the figure paths relative to the book folder (the pages are written at the top of the site, which mirrors it), identify the headers, number the book (unless numbering is false in pillar.conf), build the table of contents of the whole book (parts, chapters and sections), split it into chapters, resolve the references across pages."
+	"Run the Microdown passes on aBook and answer its pages, as pairs page name -> document: index.html with what comes before the first chapter, then one page per chapter, named after the title of the chapter (see pageNameForTitle:). All the passes follow the structure of the book (aBook bookStructure, from pillar.conf). The passes: replace the PDF figures by the PNG files next to them (a browser does not show a PDF), make the figure paths relative to the book folder (the pages are written at the top of the site, which mirrors it), identify the headers, number the book (unless numbering is false in pillar.conf), build the table of contents of the whole book (parts, chapters and sections), split it into chapters, resolve the references across pages."
 
 	| splitter pages names |
+	MicWebFigureSubstituter new substitute: aBook.
 	MicPathRelativizer new
 		relativize: aBook
 		to: self project baseDirectory.
