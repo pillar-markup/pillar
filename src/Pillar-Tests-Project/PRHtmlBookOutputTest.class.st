@@ -562,6 +562,62 @@ PRHtmlBookOutputTest >> testReferenceToAnotherChapterLinksToItsPage [
 			 '<a href="second-chapter.html#two">2</a>')
 ]
 
+{ #category : 'tests' }
+PRHtmlBookOutputTest >> testSiteCopiesTheCover [
+
+	self
+		writeFile: 'pillar.conf'
+		contents: '{ "title" : "My Book", "cover" : "Cover/cover-web.jpg" }';
+		writeFile: 'Cover/cover-web.jpg' contents: 'jpg'.
+
+	self assert: (self build / 'Cover' / 'cover-web.jpg') isFile
+]
+
+{ #category : 'tests' }
+PRHtmlBookOutputTest >> testSiteCopiesTheFiguresOfItsPages [
+
+	self
+		writeFile: 'Chapters/one.md' contents: '## Microdown syntax
+
+![A caption.](figures/x.png)';
+		writeFile: 'Chapters/figures/x.png' contents: 'png'.
+
+	self assert: (self build / 'Chapters' / 'figures' / 'x.png') isFile
+]
+
+{ #category : 'tests' }
+PRHtmlBookOutputTest >> testSiteCopiesThePngOfAPdfFigureButNotThePdf [
+
+	| site |
+	self
+		writeFile: 'Chapters/one.md' contents: '## Microdown syntax
+
+![A caption.](figures/x.pdf)';
+		writeFile: 'Chapters/figures/x.pdf' contents: 'pdf';
+		writeFile: 'Chapters/figures/x.png' contents: 'png'.
+
+	site := self build.
+
+	self assert: (site / 'Chapters' / 'figures' / 'x.png') isFile.
+	self deny: (site / 'Chapters' / 'figures' / 'x.pdf') exists
+]
+
+{ #category : 'tests' }
+PRHtmlBookOutputTest >> testSiteDoesNotCopyTheSourcesOfTheBook [
+
+	| site |
+	self
+		writeFile: 'PharoDebug.log' contents: 'log';
+		writeFile: 'Chapters/figures/unused.graffle' contents: 'graffle'.
+
+	site := self build.
+
+	self deny: (site / 'PharoDebug.log') exists.
+	self deny: (site / 'pillar.conf') exists.
+	self deny: (site / 'index.md') exists.
+	self deny: (site / 'Chapters') exists
+]
+
 { #category : 'tests - writers' }
 PRHtmlBookOutputTest >> testSiteIsBuiltWithAnUnknownHtmlWriter [
 
@@ -582,6 +638,15 @@ PRHtmlBookOutputTest >> testSiteIsBuiltWithoutHtmlWriter [
 	self assert:
 		((self pageNamed: 'microdown-syntax.html') includesSubstring:
 			 '<h2 id="microdown-syntax"><span class="number">1</span> Microdown syntax</h2>')
+]
+
+{ #category : 'tests' }
+PRHtmlBookOutputTest >> testSiteKeepsItsSupportFiles [
+
+	self writeFile: '_support/html/css/book.css' contents: 'css'.
+
+	self assert:
+		(self build / '_support' / 'html' / 'css' / 'book.css') isFile
 ]
 
 { #category : 'tests - templates' }

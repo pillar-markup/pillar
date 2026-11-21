@@ -21,6 +21,16 @@ PRBuildRootMainStrategyTest >> filesOfBookWith: aCollectionOfNames [
 		  collect: [ :each | each file basename ]
 ]
 
+{ #category : 'tests' }
+PRBuildRootMainStrategyTest >> testIndexIsBuiltWhenOtherMicrodownFilesAreNextToIt [
+
+	self
+		assert:
+			(self filesOfBookWith: #( 'STYLEGUIDE.md' 'index.md' 'notes.md' ))
+				asArray
+		equals: #( 'index.md' )
+]
+
 { #category : 'tests - errors' }
 PRBuildRootMainStrategyTest >> testOnlyAReadmeRaisesError [
 
@@ -52,6 +62,14 @@ PRBuildRootMainStrategyTest >> testReadmeIsNotBuilt [
 ]
 
 { #category : 'tests' }
+PRBuildRootMainStrategyTest >> testSingleFileWithoutIndexIsBuilt [
+
+	self
+		assert: (self filesOfBookWith: #( 'book.md' )) asArray
+		equals: #( 'book.md' )
+]
+
+{ #category : 'tests' }
 PRBuildRootMainStrategyTest >> testSingleIndexIsBuilt [
 
 	self
@@ -59,10 +77,10 @@ PRBuildRootMainStrategyTest >> testSingleIndexIsBuilt [
 		equals: #( 'index.md' )
 ]
 
-{ #category : 'tests - errors' }
-PRBuildRootMainStrategyTest >> testTwoBookFilesRaiseError [
+{ #category : 'tests' }
+PRBuildRootMainStrategyTest >> testTwoFilesWithoutIndexRaiseError [
 
 	self
-		should: [ self filesOfBookWith: #( 'index.md' 'book.md' ) ]
-		raise: Error
+		should: [ self filesOfBookWith: #( 'book.md' 'notes.md' ) ]
+		raise: PRCommandError
 ]

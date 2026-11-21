@@ -126,13 +126,16 @@ PRCommandErrorTest >> testBuildingWithAnUnknownHtmlWriterRaisesError [
 { #category : 'tests - errors' }
 PRCommandErrorTest >> testBuildingWithTwoRootFilesRaisesError [
 
-	self write: 'book/other.md' contents: 'Other'.
+	(book / 'index.md') delete.
+	self
+		write: 'book/book.md' contents: 'Book';
+		write: 'book/other.md' contents: 'Other'.
 
 	self
 		assert:
 		(self messageOf: [ self buildHtml: PRBuildRootMainStrategy new ])
 		equals:
-		'There is more than one Microdown file in the folder of the book (index.md, other.md): give the one to build, for example pillar build pdf index.md.'
+		'There is no index.md and more than one Microdown file in the folder of the book (book.md, other.md): give the one to build, for example pillar build pdf book.md.'
 ]
 
 { #category : 'tests - errors' }

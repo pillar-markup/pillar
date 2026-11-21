@@ -65,6 +65,24 @@ PRHtmlBookDocument class >> exampleOfASmallBook [
 			   yourself)
 ]
 
+{ #category : 'building' }
+PRHtmlBookDocument >> copyFilesOf: aCollectionOfPages book: aBook [
+	"Copy into my output directory the files of the book that the site shows, at the same path as in the book folder: the figures of the pages (see MicFigureFileCollector; PDF figures are already replaced by their PNG) and the cover named in pillar.conf. A file that does not exist is skipped (the page shows a broken image, as the figure is wrong in the book)."
+
+	| collector |
+	collector := MicFigureFileCollector new.
+	aCollectionOfPages do: [ :each | collector collect: each value ].
+	(aBook properties at: #cover ifAbsent: [ nil ]) ifNotNil: [ :cover |
+		collector paths addIfNotPresent: cover ].
+	collector paths do: [ :each |
+			| source destination |
+			source := self project baseDirectory resolve: each.
+			destination := self outputDirectory resolve: each.
+			(source isFile and: [ destination exists not ]) ifTrue: [
+					destination parent ensureCreateDirectory.
+					source copyTo: destination ] ]
+]
+
 { #category : 'pages' }
 PRHtmlBookDocument >> entriesOf: aCollectionOfChapters in: aCollectionOfTocEntries [
 	"Answer, in book order, the entries of the table of contents (and of their children) whose header starts one of aCollectionOfChapters. They are found by their header, the same object in the book and in its chapter; a chapter may be nested in the entry of a higher one (a # title above ## chapters)."
@@ -284,10 +302,11 @@ PRHtmlBookDocument >> write: aString to: aFile [
 { #category : 'building' }
 PRHtmlBookDocument >> writeDocument: aDocument [
 	"Write the book as the pages of a site and answer the index file; I replace the superclass version, which writes a single file.
-	PRAbstractOutputDocument>>#buildOn: sends me aDocument once it is the whole book: index.md parsed, its chapters inlined, its metadata read and the transformations applied. I cut it into pages (see pagesOf:), write each page through the page template of the book, with its own values (see valuesOfPageAt:in:book:), into my output directory (_result/site), and answer index.html, which buildOn: gives to postWriteTransform:."
+	PRAbstractOutputDocument>>#buildOn: sends me aDocument once it is the whole book: index.md parsed, its chapters inlined, its metadata read and the transformations applied. I cut it into pages (see pagesOf:), copy the files they show (see copyFilesOf:book:), write each page through the page template of the book, with its own values (see valuesOfPageAt:in:book:), into my output directory (_result/site), and answer index.html, which buildOn: gives to postWriteTransform:."
 
 	| pages template |
 	pages := self pagesOf: aDocument.
+	self copyFilesOf: pages book: aDocument.
 	template := MustacheTemplate on:
 		            (self templateFile: aDocument) readStream contents.
 	pages doWithIndex: [ :page :index |

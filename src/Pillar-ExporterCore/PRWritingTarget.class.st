@@ -12,6 +12,16 @@ PRWritingTarget class >> isAbstract [
 ]
 
 { #category : 'preparation' }
+PRWritingTarget >> copyBookOf: aPRProject to: anOutputDirectory [
+	"Copy the files and folders of the book aPRProject into anOutputDirectory, except the ones whose name starts with _ or . (_support, _custom, _result, .git...): LaTeX and the HTML page need the chapters, their figures and the bibliography next to the document they compile or show."
+
+	aPRProject baseDirectory children do: [ :each |
+			((each basename beginsWith: '_') or: [
+				 each basename beginsWith: '.' ]) ifFalse: [
+				each copyAllTo: anOutputDirectory / each basename ] ]
+]
+
+{ #category : 'preparation' }
 PRWritingTarget >> copyCustomFilesOf: aPRProject to: aSupportDirectory [
 	"Copy the files of the _custom folder of aPRProject over aSupportDirectory, the copy of _support in the output, so that each replaces the support file with the same path. The README explaining _custom is not a support file."
 
@@ -57,9 +67,9 @@ PRWritingTarget >> outputDirectoryName [
 
 { #category : 'preparation' }
 PRWritingTarget >> prepareForExecutionOn: aPRProject [
-	"Check that aPRProject is a book; remove the previous output of this target only (_result/pdf, _result/html, _result/site), so that the outputs of the other formats stay side by side; then copy _support there, the files of _custom over it, and the folders of the book."
+	"Check that aPRProject is a book; remove the previous output of this target only (_result/pdf, _result/html, _result/site), so that the outputs of the other formats stay side by side; then copy _support there, the files of _custom over it, and the files of the book (see copyBookOf:to:)."
 
-	| configuration outputDirectory outputFormat target source |
+	| configuration outputFormat target source |
 	aPRProject checkIsABook.
 	(aPRProject outputDirectory / self outputDirectoryName)
 		ensureDeleteAll.
@@ -76,13 +86,9 @@ PRWritingTarget >> prepareForExecutionOn: aPRProject [
 		destinationDirectory: target;
 		executeOn: nil. "We used a configuration context here that is not needed anymore"
 	self copyCustomFilesOf: aPRProject to: target.
-
-	outputDirectory := aPRProject outputDirectory
-	                   / self outputDirectoryName.
-	aPRProject baseDirectory children do: [ :each |
-			((each basename beginsWith: '_') or: [
-				 each basename beginsWith: '.' ]) ifFalse: [
-				each copyAllTo: outputDirectory / each basename ] ]
+	self
+		copyBookOf: aPRProject
+		to: aPRProject outputDirectory / self outputDirectoryName
 ]
 
 { #category : 'accessing' }

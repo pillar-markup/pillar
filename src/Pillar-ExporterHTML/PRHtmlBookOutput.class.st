@@ -101,6 +101,13 @@ The end.').
 	^ book
 ]
 
+{ #category : 'preparation' }
+PRHtmlBookOutput >> copyBookOf: aPRProject to: anOutputDirectory [
+	"Copy nothing: a site does not need the sources, logs or configuration of the book. PRHtmlBookDocument>>copyFilesOf:book: copies the files the pages show (figures and cover) once the passes have run."
+
+	
+]
+
 { #category : 'building' }
 PRHtmlBookOutput >> documentFor: aFile [
 	"Answer the document that builds aFile (usually index.md) as the pages of a site, written into the site folder of the project."
