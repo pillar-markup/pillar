@@ -241,7 +241,7 @@ PRHtmlBookDocument >> tocOfPageAt: anIndex in: aCollectionOfPages [
 
 { #category : 'template values' }
 PRHtmlBookDocument >> valuesOfPageAt: anIndex in: aCollectionOfPages book: aBook [
-	"Answer the values the page template gets for the page at anIndex: the values of the book (pillar.conf and the metadata of index.md), with content (the HTML of the page), title (of the page), bookTitle, toc (see tocOfPageAt:in:), previous and next (href and title), absent on the first and last pages, and customCss when the book has a custom.css."
+	"Answer the values the page template gets for the page at anIndex: the values of the book (pillar.conf and the metadata of index.md), with content (the HTML of the page), title (of the page), bookTitle, toc (see tocOfPageAt:in:), previous and next (href and title), absent on the first and last pages, generationDate (today, as 2026-11-21), and customCss when the book has a custom.css."
 
 	| values |
 	values := ConfigurationForPillar newFromDictionary: Dictionary new.
@@ -266,6 +266,7 @@ PRHtmlBookDocument >> valuesOfPageAt: anIndex in: aCollectionOfPages book: aBook
 			values
 				at: #next
 				put: (self linkToPageAt: anIndex + 1 in: aCollectionOfPages) ].
+	values at: #generationDate put: Date today yyyymmdd.
 	self addCustomCssTo: values.
 	^ values
 ]

@@ -396,6 +396,18 @@ PRHtmlBookOutputTest >> testPageNameStopsAfterTheWordReachingTwentyCharacters [
 ]
 
 { #category : 'tests - template values' }
+PRHtmlBookOutputTest >> testPagesGetTheGenerationDate [
+
+	self
+		writeFile: '_support/templates/html/main.mustache'
+		contents: '[date:{{generationDate}}]'.
+
+	self
+		assert: (self pageNamed: 'second-chapter.html')
+		equals: ('[date:{1}]' format: { Date today yyyymmdd })
+]
+
+{ #category : 'tests - template values' }
 PRHtmlBookOutputTest >> testPagesLinkToThePreviousAndNextPages [
 
 	self assert:

@@ -379,6 +379,43 @@ PRIntegrationTest >> testBodBookLatex2026Site [
 			 '<link rel="stylesheet" href="_support/html/css/custom.css">')
 ]
 
+{ #category : 'tests - cover' }
+PRIntegrationTest >> testBodBookLatex2026SiteIndexIsACoverPage [
+
+	| index |
+	index := (self buildSite: 'bod-book-latex2026') / 'index.html'.
+
+	self assert: (index contents includesSubstring:
+			 '<h1 class="cover-title">The Pillar Super BOD Book Archetype Using Microdown</h1>').
+	self assert: (index contents includesSubstring:
+			 '<p class="cover-authors">The Pillar team</p>').
+	self assert: (index contents includesSubstring:
+			 '<a class="start-reading" href="microdown-syntax.html">').
+	self deny: (index contents includesSubstring: '<img')
+]
+
+{ #category : 'tests - cover' }
+PRIntegrationTest >> testBodBookLatex2026SiteIndexShowsTheCoverOfPillarConf [
+
+	| configuration index |
+	project installArchetypeNamed: 'bod-book-latex2026'.
+	configuration := (projectDirectory / 'pillar.conf') contents.
+	self assert: (configuration includesSubstring: '"palette": "sky"').
+	self writeInBook: 'pillar.conf' contents: (configuration
+			 copyReplaceAll: '"palette": "sky"'
+			 with:
+			 '"palette": "sky", "cover": "Cover/cover.jpg", "coverCredit": "Photo: Me"').
+
+	index := (self
+		          buildInstalledWith: PRHtmlBookOutput new
+		          strategy: PRBuildRootMainStrategy new) / 'index.html'.
+
+	self assert: (index contents includesSubstring:
+			 '<img src="Cover/cover.jpg" alt="Book cover">').
+	self assert: (index contents includesSubstring:
+			 '<p class="cover-credit">Photo: Me</p>')
+]
+
 { #category : 'tests - build folder' }
 PRIntegrationTest >> testBuildRootDirectoryIsTheFirstWritableCandidate [
 
