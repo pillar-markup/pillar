@@ -313,13 +313,15 @@ PRHtmlBookOutputTest >> testMainTemplateIsUsedWhenTheBookHasNoSiteTemplate [
 ]
 
 { #category : 'tests - writers' }
-PRHtmlBookOutputTest >> testMicbasichtmlIsThePlainHTMLWriter [
+PRHtmlBookOutputTest >> testMicbasichtmlIsThePlainHTMLWriterOfHtml [
 
 	self
 		writeFile: 'pillar.conf'
 		contents: '{ "title" : "My Book", "htmlWriter" : #micbasichtml }'.
 
-	self assert: self writerOfIndex class equals: MicHTMLVisitor
+	self
+		assert: (self writerOfIndexFor: PRHtmlOutput new) class
+		equals: MicHTMLVisitor
 ]
 
 { #category : 'tests - writers' }
@@ -531,6 +533,28 @@ PRHtmlBookOutputTest >> testReferenceToAnotherChapterLinksToItsPage [
 			 '<a href="second-chapter.html#two">2</a>')
 ]
 
+{ #category : 'tests - writers' }
+PRHtmlBookOutputTest >> testSiteIsBuiltWithAnUnknownHtmlWriter [
+
+	self
+		writeFile: 'pillar.conf'
+		contents: '{ "title" : "My Book", "htmlWriter" : "html" }'.
+
+	self assert:
+		((self pageNamed: 'microdown-syntax.html') includesSubstring:
+			 '<h2 id="microdown-syntax"><span class="number">1</span> Microdown syntax</h2>')
+]
+
+{ #category : 'tests - writers' }
+PRHtmlBookOutputTest >> testSiteIsBuiltWithoutHtmlWriter [
+
+	self writeFile: 'pillar.conf' contents: '{ "title" : "My Book" }'.
+
+	self assert:
+		((self pageNamed: 'microdown-syntax.html') includesSubstring:
+			 '<h2 id="microdown-syntax"><span class="number">1</span> Microdown syntax</h2>')
+]
+
 { #category : 'tests - templates' }
 PRHtmlBookOutputTest >> testSiteTemplateIsUsedWhenTheBookHasOne [
 
@@ -539,6 +563,16 @@ PRHtmlBookOutputTest >> testSiteTemplateIsUsedWhenTheBookHasOne [
 		contents: '[site]{{{content}}}'.
 
 	self assert: ((self pageNamed: 'index.html') beginsWith: '[site]')
+]
+
+{ #category : 'tests - writers' }
+PRHtmlBookOutputTest >> testSiteUsesTheBookWriterWhateverHtmlWriterNames [
+
+	self
+		writeFile: 'pillar.conf'
+		contents: '{ "title" : "My Book", "htmlWriter" : #micbasichtml }'.
+
+	self assert: self writerOfIndex class equals: MicBookHTMLVisitor
 ]
 
 { #category : 'tests - pages' }
@@ -671,9 +705,16 @@ Welcome.
 
 { #category : 'tests - writers' }
 PRHtmlBookOutputTest >> writerOfIndex [
-	"The HTML writer the document of index.md gets from the configuration of the book."
+	"The HTML writer the document of index.md gets when the book is built as a site."
 
-	^ (PRHtmlBookOutput exampleFromIndex documentFor:
+	^ self writerOfIndexFor: PRHtmlBookOutput exampleFromIndex
+]
+
+{ #category : 'tests - writers' }
+PRHtmlBookOutputTest >> writerOfIndexFor: anOutput [
+	"The HTML writer the document of index.md gets when the book is built as anOutput."
+
+	^ (anOutput documentFor:
 		   ((PRInputDocument forFile: book / 'index.md')
 			    project: (PRProject on: book);
 			    yourself)) writer

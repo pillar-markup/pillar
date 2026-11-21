@@ -120,3 +120,10 @@ PRHtmlBookOutput >> outputDirectoryName [
 
 	^ 'site'
 ]
+
+{ #category : 'accessing' }
+PRHtmlBookOutput >> writerFor: aPRPillarConfiguration [
+	"The site is always written by the book writer (michtml): its pages need the numbers of the headers, figures and listings and the links across pages that only this writer produces. The htmlWriter of pillar.conf is for pillar build html, so a missing, unknown or plain writer there does not break the site."
+
+	^ MicBookHTMLVisitor new
+]
