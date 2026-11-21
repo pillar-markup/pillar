@@ -31,7 +31,7 @@ Lean Pillar only Microdown format + web site generation
 ```bash
 $ git clone https://github.com/pillar-markup/pillar.git
 $ cd pillar
-$ git checkout v11.3
+$ git checkout v11.3.1
 $ chmod a+x ./scripts/build.sh
 $ ./scripts/build.sh
 ```
